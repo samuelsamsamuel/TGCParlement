@@ -19,7 +19,7 @@ jobs:
 
       - name: Extraction
         env:
-          CONTACT: votre.adresse@exemple.fr
+          CONTACT: sdeazevedo@icloud.com
           BUDGET_MINUTES: "300"
         run: python3 scripts/sycomore.py
 
