@@ -1,0 +1,33 @@
+name: Extraction Sycomore
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sycomore
+  cancel-in-progress: false
+
+jobs:
+  extraction:
+    runs-on: ubuntu-latest
+    timeout-minutes: 340
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Extraction
+        env:
+          CONTACT: votre.adresse@exemple.fr
+          BUDGET_MINUTES: "300"
+        run: python3 scripts/sycomore.py
+
+      - name: Enregistrement
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/sycomore
+          git diff --cached --quiet || git commit -m "Sycomore : extraction du $(date -u +%Y-%m-%d)"
+          git push
