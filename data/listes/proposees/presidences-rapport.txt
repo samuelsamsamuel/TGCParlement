@@ -1,92 +1,269 @@
-Pages lues : 1
-Présidents rattachés : 45 (0 au moins un an, 45 moins d'un an)
+ÉCHEC https://www2.assemblee-nationale.fr/node/9008 : HTTP Error 404: Not Found
+Présidents rattachés : 192 (7 au moins un an, 185 moins d'un an)
+ONGLET NON TROUVÉ : Restauration - Chambre des députés des départements (1814 - 1815) (essais : https://www2.assemblee-nationale.fr/decouvrir-l-assemblee/histoire/les-presidents-de-l-assemblee-nationale-depuis-17893/restauration-chambre-des-deputes-des-departements-1814-1815, https://www2.assemblee-nationale.fr/node/9008)
+ÉCHEC https://www2.assemblee-nationale.fr/node/9009 : HTTP Error 404: Not Found
+ONGLET NON TROUVÉ : Cent-Jours - Chambre des représentants (1815) (essais : https://www2.assemblee-nationale.fr/decouvrir-l-assemblee/histoire/les-presidents-de-l-assemblee-nationale-depuis-17893/cent-jours-chambre-des-representants-1815, https://www2.assemblee-nationale.fr/node/9009)
+ÉCHEC https://www2.assemblee-nationale.fr/decouvrir-l-assemblee/histoire/les-presidents-de-l-assemblee-nationale-depuis-17893/second-empire-corps-legislatif-1852-1870 : HTTP Error 504: Gateway Time-out
+ÉCHEC https://www2.assemblee-nationale.fr/node/9013 : HTTP Error 404: Not Found
+ONGLET NON TROUVÉ : Second Empire - Corps législatif (1852 - 1870) (essais : https://www2.assemblee-nationale.fr/decouvrir-l-assemblee/histoire/les-presidents-de-l-assemblee-nationale-depuis-17893/second-empire-corps-legislatif-1852-1870, https://www2.assemblee-nationale.fr/node/9013)
+ÉCHEC https://www2.assemblee-nationale.fr/node/9015 : HTTP Error 404: Not Found
+ONGLET NON TROUVÉ : Assemblée consultative provisoire (1943 - 1945) - Assemblée constituante (1945 - 1946) (essais : https://www2.assemblee-nationale.fr/decouvrir-l-assemblee/histoire/les-presidents-de-l-assemblee-nationale-depuis-17893/assemblee-consultative-provisoire-1943-1945-assemblee-constituante-1945-1946, https://www2.assemblee-nationale.fr/node/9015)
+ÉCHEC https://www2.assemblee-nationale.fr/node/43424 : HTTP Error 404: Not Found
+ONGLET NON TROUVÉ : Les Présidents de l'Assemblée nationale depuis 1958 (essais : https://www2.assemblee-nationale.fr/decouvrir-l-assemblee/histoire/les-presidents-de-l-assemblee-nationale-depuis-17893/les-presidents-de-l-assemblee-nationale-depuis-1958, https://www2.assemblee-nationale.fr/node/43424)
+Pages lues : 11
     64 lignes  https://www2.assemblee-nationale.fr/decouvrir-l-assemblee/histoire/les-presidents-de-l-assemblee-nationale-depuis-17893
-Aucun onglet trouvé par les liens ; attributs relevés :
-  a[id]=node_9001
-  a[name]=node_9001
-  a[data-url]=/decouvrir-l-assemblee/histoire/les-presidents-de-l-assemblee-nationale-depuis-17893#node_9001
-  a[data-target]=#node_9001
-  a[data-url]=/decouvrir-l-assemblee/histoire/les-presidents-de-l-assemblee-nationale-depuis-17893#node_9002
-  a[data-target]=#node_9002
-  a[data-url]=/decouvrir-l-assemblee/histoire/les-presidents-de-l-assemblee-nationale-depuis-17893#node_9003
-  a[data-target]=#node_9003
-  a[data-url]=/decouvrir-l-assemblee/histoire/les-presidents-de-l-assemblee-nationale-depuis-17893#node_9004
-  a[data-target]=#node_9004
-  a[data-url]=/decouvrir-l-assemblee/histoire/les-presidents-de-l-assemblee-nationale-depuis-17893#node_9006
-  a[data-target]=#node_9006
-  a[data-url]=/decouvrir-l-assemblee/histoire/les-presidents-de-l-assemblee-nationale-depuis-17893#node_9008
-  a[data-target]=#node_9008
-  a[data-url]=/decouvrir-l-assemblee/histoire/les-presidents-de-l-assemblee-nationale-depuis-17893#node_9009
-  a[data-target]=#node_9009
-  a[data-url]=/decouvrir-l-assemblee/histoire/les-presidents-de-l-assemblee-nationale-depuis-17893#node_9010
-  a[data-target]=#node_9010
-  a[data-url]=/decouvrir-l-assemblee/histoire/les-presidents-de-l-assemblee-nationale-depuis-17893#node_9011
-  a[data-target]=#node_9011
-  a[data-url]=/decouvrir-l-assemblee/histoire/les-presidents-de-l-assemblee-nationale-depuis-17893#node_9012
-  a[data-target]=#node_9012
-  a[data-url]=/decouvrir-l-assemblee/histoire/les-presidents-de-l-assemblee-nationale-depuis-17893#node_9013
-  a[data-target]=#node_9013
-  a[data-url]=/decouvrir-l-assemblee/histoire/les-presidents-de-l-assemblee-nationale-depuis-17893#node_9014
-  a[data-target]=#node_9014
-  a[data-url]=/decouvrir-l-assemblee/histoire/les-presidents-de-l-assemblee-nationale-depuis-17893#node_9015
-  a[data-target]=#node_9015
-  a[data-url]=/decouvrir-l-assemblee/histoire/les-presidents-de-l-assemblee-nationale-depuis-17893#node_9018
-  a[data-target]=#node_9018
-  a[data-url]=/decouvrir-l-assemblee/histoire/les-presidents-de-l-assemblee-nationale-depuis-17893#node_43424
-  a[data-target]=#node_43424
+    64 lignes  https://www2.assemblee-nationale.fr/decouvrir-l-assemblee/histoire/les-presidents-de-l-assemblee-nationale-depuis-17893/assemblee-nationale-constituante-1789-1791
+    27 lignes  https://www2.assemblee-nationale.fr/decouvrir-l-assemblee/histoire/les-presidents-de-l-assemblee-nationale-depuis-17893/assemblee-nationale-legislative-1791-1792
+    78 lignes  https://www2.assemblee-nationale.fr/decouvrir-l-assemblee/histoire/les-presidents-de-l-assemblee-nationale-depuis-17893/convention-nationale-1792-1795
+    53 lignes  https://www2.assemblee-nationale.fr/decouvrir-l-assemblee/histoire/les-presidents-de-l-assemblee-nationale-depuis-17893/directoire-conseil-des-cinq-cents-1795-1799
+    36 lignes  https://www2.assemblee-nationale.fr/decouvrir-l-assemblee/histoire/les-presidents-de-l-assemblee-nationale-depuis-17893/consulat-et-premier-empire-corps-legislatif-1800-an-viii-1814
+     7 lignes  https://www2.assemblee-nationale.fr/decouvrir-l-assemblee/histoire/les-presidents-de-l-assemblee-nationale-depuis-17893/restauration-chambre-des-deputes-des-departements-1815-1830
+    12 lignes  https://www2.assemblee-nationale.fr/decouvrir-l-assemblee/histoire/les-presidents-de-l-assemblee-nationale-depuis-17893/monarchie-de-juillet-chambre-des-deputes-1830-1848
+     7 lignes  https://www2.assemblee-nationale.fr/decouvrir-l-assemblee/histoire/les-presidents-de-l-assemblee-nationale-depuis-17893/deuxieme-republique-assemblee-nationale-constituante-1848-1849-et-assemblee-nationale-legislative-1849-1851
+    28 lignes  https://www2.assemblee-nationale.fr/decouvrir-l-assemblee/histoire/les-presidents-de-l-assemblee-nationale-depuis-17893/troisieme-republique-assemblee-nationale-1871-1876-et-chambre-des-deputes-1876-1940
+     6 lignes  https://www2.assemblee-nationale.fr/decouvrir-l-assemblee/histoire/les-presidents-de-l-assemblee-nationale-depuis-17893/quatrieme-republique-assemblee-nationale-1946-1958
 ÉCARTÉ (présidence refusée) : 3 juillet 1789 | Louis-Philippe d'Orléans, dit Philippe Égalité(refuse la présidence)
 ÉCARTÉ (présidence refusée) : 3 août 1789 | Jacques-Guillaume Thouret(refuse la Présidence)
 INCOHÉRENCE (fin avant début) : 10 octobre 1989 | 27 octobre 1789 | Emmanuel Fréteau de Saint Just
 NON RATTACHÉ (aucun député de ce nom en fonction à cette date) : 10 octobre 1989 | 27 octobre 1789 | Emmanuel Fréteau de Saint Just
 NON RATTACHÉ (aucun député de ce nom en fonction à cette date) : 2 février 1790 | 15 février 1790 | Jean-Xavier Bureaux de Pusy
-NON RATTACHÉ (aucun député de ce nom en fonction à cette date) : 27 mai 1790 | 7 juin 1790 | Bon-Albert Briois de Baumetz
+NON RATTACHÉ (aucun député de ce nom en fonction à cette date ; proches : 13706 Florent, Alexandre, Melchior La Baume de Montrevel / 11790 Bon, Albert Briois de Beaumetz) : 27 mai 1790 | 7 juin 1790 | Bon-Albert Briois de Baumetz
 NON RATTACHÉ (aucun député de ce nom en fonction à cette date) : 11 septembre 1790 | 24 septembre 1790 | Jean-Xavier Bureaux de Pusy
-NON RATTACHÉ (aucun député de ce nom en fonction à cette date) : 23 avril 1791 | 8 mai 1791 | Jean-François Reubell
 NON RATTACHÉ (aucun député de ce nom en fonction à cette date) : 24 mai 1791 | 5 juin 1791 | Jean-Xavier Bureaux de Pusy
+NON RATTACHÉ (aucun député de ce nom en fonction à cette date ; proches : 12807 Pierre, Charles, Louis Baudin des Ardennes / 12237 Jacques, Jean Billaud-Varennes) : 5 septembre 1793 | 18 septembre 1793 | Jacques Nicolas Billaud-Varenne
+NON RATTACHÉ (ambigu : 12496 Robert, Thomas Lindet / 12859 Jean-Baptiste, Robert Lindet) : 21 avril 1794 | 5 mai 1794 | Robert Lindet
+NON RATTACHÉ (ambigu : 11617 Marc, Antoine, Jean, Louis Savornin / 12860 Jean, Antoine Louis / 13102 Antoine, Louis La Plaigne / 15127 Jean-Paul, Louis Gouzy) : 5 juillet 1794 | 19 juillet 1794 | Jean-Antoine Louis
+NON RATTACHÉ (aucun député de ce nom en fonction à cette date) : 6 janvier 1795 | 20 janvier 1795 | Charles-Louis Le Tourneur de La Manche
+NON RATTACHÉ (ambigu : 12843 Jean-Baptiste Jourdan / 10378 Jean-Baptiste Jourdan) : 22 septembre 1797 | 21 octobre 1797 | Jean-Baptiste Jourdan
+NON RATTACHÉ (ambigu : 12843 Jean-Baptiste Jourdan / 10378 Jean-Baptiste Jourdan) : 22 septembre 1798 | 21 octobre 1798 | Jean-Baptiste Jourdan
+NON RATTACHÉ (aucun député de ce nom en fonction à cette date) : 20 février 1801 | 7 mars 1801 | Jean-Baptiste Leclerc du Maine-et-Loire
+NON RATTACHÉ (aucun député de ce nom en fonction à cette date ; proches : 12804 Jean-François Barailon / 16063 Jean, Antoine, Joseph Baillion) : 7 décembre 1801 | 22 décembre 1801 | Jean-François Baraillon
+NON RATTACHÉ (aucun député de ce nom en fonction à cette date) : 6 janvier 1802 | 21 janvier 1802 | Nicolas-Bernard Belzais-Courménil
+NON RATTACHÉ (aucun député de ce nom en fonction à cette date) : 23 novembre 1813 | 4 juin 1814 | Claude-Ambroise Régnier
+NON RATTACHÉ (ambigu : 9943 Marie, Louis, Alexandre, Blin de Bourdon / 9065 Thomas, Alexandre, Marie de Saint-Georges dit Marie / 9846 Alexandre, Marie Crépu / 9877 Edme, Marie, Alexandre Carreau) : 29 juin 1848 | 19 juillet 1848 | Alexandre Marie
+DATE ILLISIBLE : De | à | 
+DATE ILLISIBLE : 1871 | 1873 | Jules Grévy
+DATE ILLISIBLE : 1873 | 1875 | Louis-Joseph Buffet
+DATE ILLISIBLE : 1875 | 1876 | Gaston d'Audiffret-Pasquier
+DATE ILLISIBLE : 1876 | 1879 | Jules Grévy
+DATE ILLISIBLE : 1879 | 1881 | Léon Gambetta
+DATE ILLISIBLE : 1881 | 1885 | Eugène-Henri Brisson
+DATE ILLISIBLE : 1885 | 1888 | Charles Floquet
+DATE ILLISIBLE : 1888 | 1889 | Jules Méline
+DATE ILLISIBLE : 1889 | 1893 | Charles Floquet
+DATE ILLISIBLE : 1893 | 1893 | Jean Casimir-Perier
+DATE ILLISIBLE : 1893 | 1894 | Charles Dupuy
+DATE ILLISIBLE : 1894 | 1894 | Jean Casimir-Perier
+DATE ILLISIBLE : 1894 | 1894 | Auguste Burdeau
+DATE ILLISIBLE : 1894 | 1898 | Eugène-Henri Brisson
+DATE ILLISIBLE : 1898 | 1902 | Paul Deschanel
+DATE ILLISIBLE : 1902 | 1904 | Léon Bourgeois
+DATE ILLISIBLE : 1904 | 1905 | Eugène-Henri Brisson
+DATE ILLISIBLE : 1905 | 1906 | Paul Doumer
+DATE ILLISIBLE : 1906 | 1912 | Eugène-Henri Brisson
+DATE ILLISIBLE : 1912 | 1920 | Paul Deschanel
+DATE ILLISIBLE : 1920 | 1924 | Raoul Péret
+DATE ILLISIBLE : 1924 | 1925 | Paul Painlevé
+DATE ILLISIBLE : 1925 | 1926 | Édouard Herriot
+DATE ILLISIBLE : 1926 | 1927 | Raoul Péret
+DATE ILLISIBLE : 1927 | 1936 | Fernand Bouisson
+DATE ILLISIBLE : 1936 | 1940 | Édouard Herriot
+DATE ILLISIBLE : 1946 | 1947 | Vincent Auriol
+DATE ILLISIBLE : 1947 | 1954 | Édouard Herriot
+DATE ILLISIBLE : 1954 | 1955 | André Le Troquer
+DATE ILLISIBLE : 1955 | 1955 | Pierre Scneiter
+DATE ILLISIBLE : 1956 | 1958 | André Le Troquer
 
 Rattachements (vérifier chaque ligne) :
+    8505      24 j  Antoine Sénard  ->  Antoine Sénard
+    9791     311 j  Armand Marrast  ->  Armand, Marie, François, Pascal Marrast
+   10199      82 j  Jacques Laffitte  ->  Jacques Laffitte
    10580      16 j  Jean-Sylvain Bailly  ->  Jean, Sylvain Bailly
-   11492      15 j  Philippe-Antoine Merlin de Douai  ->  Philippe, Antoine Merlin de Douai
+   11005      26 j  Hippolyte Passy  ->  Hippolyte, Philibert Passy
+   11006    3153 j  Auguste Ravez  ->  Auguste, Simon, Hubert, Marie Ravez
+   11116      13 j  Jacques-Alexis Thuriot de Larosière  ->  Jacques, Alexis Thuriot de la Rosière  [GRAPHIE VOISINE, à vérifier]
+   11158      31 j  Philippe-Joseph-Benjamin Buchez  ->  Philippe, Benjamin, Joseph Buchez
+   11355      15 j  Jean-Louis Girod de L'Ain  ->  Jean-Louis Girod de l'Ain
+   11435      15 j  Pierre-Jacques Chatry-Lafosse  ->  Pierre, Jacques, Samuel Chatry-Lafosse
+   11489     271 j  Louis Girod de L'Ain  ->  Louis, Gaspard, Amédée Girod de l'Ain
+   11492      29 j  Philippe-Antoine Merlin de Douai  ->  Philippe, Antoine Merlin de Douai
+   11493      15 j  Antoine Merlin de Thionville  ->  Antoine, Christophe Merlin de Thionville
+   11535      29 j  Dieudonné Dubois  ->  Dieudonné Dubois des Vosges
+   11539      13 j  Mathieu Dumas  ->  Mathieu Dumas
+   11562      15 j  François Lobjoy  ->  François Lobjoy
+   11563      71 j  Jean Debry  ->  Jean, Antoine, Joseph Debry ou de Bry
+   11566      29 j  Nicolas-Marie Quinette  ->  Nicolas, Marie Quinette de Rochemont
+   11570      14 j  Louis-Antoine de Saint-Just  ->  Antoine, Louis, Léon de Saint-Just
+   11572      13 j  Marie-Jean-Antoine Condorcet  ->  Marie, Jean, Antoine, Nicolas Caritat de Condorcet
+   11573    3226 j  André-Marie Dupin  ->  André, Marie, Jean-Jacques Dupin
    11663      11 j  Raymond de Boisgelin de Cucé  ->  Jean-de-Dieu, Raymond Boisgelin de Cucé
    11665      42 j  Antoine d'André  ->  Antoine, Balthazar, Joseph d'André
+   11715      14 j  Louis-Marie La Revellière-Lépeaux  ->  Louis, Marie La Révellière-Lépeaux
+   11762      29 j  Jean-Baptiste Leclerc  ->  Jean-Baptiste Leclerc
    11765      15 j  Honoré-Gabriel de Mirabeau  ->  Honoré, Gabriel Riquetti de Mirabeau
+   11769      42 j  François-Antoine Boissy d'Anglas  ->  François, Antoine de Boissy d'Anglas
    11791      15 j  Charles de Lameth  ->  Charles, Malo, François de Lameth
+   11798      28 j  Maximilien Robespierre  ->  Maximilien, François, Marie, Isidore, Joseph de Robespierre
    11816      11 j  Charles-Maurice de Talleyrand-Périgord  ->  Charles, Maurice de Talleyrand-Périgord Prince de Bénévent
-   11827      13 j  Théodore Vernier  ->  Théodore Vernier de Montorient
+   11827      33 j  Théodore Vernier  ->  Théodore Vernier de Montorient
    11858      13 j  Alexandre de Lameth  ->  Alexandre, Théodore, Victor de Lameth
-   11906      11 j  Charles-Antoine Chasset  ->  Charles Antoine Chasset
+   11903      15 j  Joseph Pémartin  ->  Joseph Pémartin
+   11906      40 j  Charles-Antoine Chasset  ->  Charles Antoine Chasset
+   11927      29 j  Jean-Marie Heurtault de Lamerville  ->  Jean-Marie Heurtault de Lamerville
    11942       8 j  Jean-Louis Gouttes  ->  Jean-Louis Gouttes
    11945      11 j  Henri-Joseph de Jessé  ->  Joseph, Henri de Jessé-Levas
+   11952      13 j  Bertrand Barère de Vieuzac  ->  Bertrand Barère de Vieuzac
    11956      26 j  Alexandre de Beauharnais  ->  Alexandre, François, Marie de Beauharnais
-   12211      16 j  Jérôme Pétion de Villeneuve  ->  Jérôme Pétion de Villeneuve
+   11992      14 j  François Delattre  ->  François, Pascal Delattre
+   12048      13 j  Cécile-Stanislas de Girardin  ->  Cécile, Stanislas, Xavier, Louis de Girardin
+   12072      12 j  Jean-Baptiste Ducastel  ->  Jean-Baptiste, Louis Ducastel
+   12089      29 j  Antoine-François Hardy  ->  Antoine, François Hardy
+   12092      15 j  Jean-Pierre Duval  ->  Jean-Pierre Duval
+   12107      29 j  Jacques-Charles Bailleul  ->  Jacques, Charles Bailleul
+   12202      15 j  Pierre-Louis Prieur de La Marne  ->  Pierre, Louis Prieur de la Marne
+   12211      28 j  Jérôme Pétion de Villeneuve  ->  Jérôme Pétion de Villeneuve
    12235      13 j  Antoine Barnave  ->  Antoine, Joseph, Marie, Pierre Barnave
-   12243      14 j  Armand-Gaston Camus  ->  Armand, Gaston Camus
+   12241      44 j  Jean-Jacques Cambacérès  ->  Jean-Jacques-Régis de Cambacerès
+   12242      16 j  Joseph Cambon  ->  Joseph, Pierre Cambon
+   12243      43 j  Armand-Gaston Camus  ->  Armand, Gaston Camus
+   12244      15 j  Lazare Carnot  ->  Lazare, Nicolas, Marguerite Carnot
+   12248      28 j  Jean-Marie Collot d'Herbois  ->  Jean-Marie Collot d'Herbois
+   12249      13 j  Georges-Jacques Danton  ->  Georges, Jacques Danton
+   12251      26 j  Jean-François Delacroix  ->  Jean-François Delacroix ou Lacroix
+   12252      13 j  Jean-François-Bertrand Delmas  ->  Jean, François, Bertrand Delmas
+   12255      13 j  Edmond Dubois-Crancé  ->  Edmond, Louis, Alexis Dubois-Crancé
    12256      11 j  Adrien Duport  ->  Adrien, Jean-François Duport
-   12259       9 j  Baptiste Grégoire  ->  Henri, Jean-Baptiste Grégoire
-   12267      11 j  Jean-Paul Rabaut Saint-Étienne  ->  Jean-Paul Rabaut-Saint-Étienne
-   12322      12 j  Emmanuel-Joseph Sieyès  ->  Emmanuel, Joseph Sieyès
+   12258      27 j  Armand Gensonné  ->  Armand Gensonné
+   12259      37 j  Baptiste Grégoire  ->  Henri, Jean-Baptiste Grégoire
+   12260      26 j  Marguerite-Élie Guadet  ->  Marguerite, Elie Guadet
+   12261      13 j  Louis-Bernard Guyton de Morveau  ->  Louis, Bernard Guyton de Morveau
+   12262      39 j  Marie-Jean Hérault de Séchelles  ->  Marie Jean Hérault de Séchelles
+   12263      13 j  Maximin Isnard  ->  Honoré, Maximin Isnard
+   12266      15 j  Philippe Rühl  ->  Philippe, Jacques Rühl
+   12267      24 j  Jean-Paul Rabaut Saint-Étienne  ->  Jean-Paul Rabaut-Saint-Étienne
+   12268      72 j  Marie-Joseph Chénier  ->  Marie-Joseph, Blaise de Chénier
+   12269      15 j  Georges Couthon  ->  Georges, Auguste Couthon
+   12274      15 j  Charles-Gilbert Romme  ->  Charles, Gilbert Romme
+   12278      15 j  Paul-François Barras  ->  Paul, François, Jean, Nicolas Barras
+   12282      14 j  Louis David  ->  Jacques, Louis David
+   12305      20 j  Lucien Bonaparte  ->  Lucien Bonaparte
+   12307      13 j  Félix Bigot de Préameneu  ->  Félix, Julien, Jean Bigot de Préameneu
+   12322      57 j  Emmanuel-Joseph Sieyès  ->  Emmanuel, Joseph Sieyès
+   12323      12 j  Nicolas François de Neufchâteau  ->  Nicolas, Louis François de Neufchâteau
+   12325      28 j  Vincent-Marie Viénot de Vaublanc  ->  Vincent, Marie Viénot de Vaublanc
+   12328     216 j  Casimir Perier  ->  Casimir, Pierre Perier
+   12329     811 j  Pierre-Paul Royer Collard  ->  Pierre, Paul Royer-Collard
+   12330     691 j  Pierre-François-Hercule de Serre  ->  Pierre, François, Hercule de Serre
+   12333    2206 j  Louis de Fontanes  ->  Louis, Jean, Pierre Fontanes
+   12342      16 j  Pierre-Louis Bentabole  ->  Pierre, Louis Bentabole
+   12344      14 j  François-Louis Bourdon de L'Oise  ->  François, Louis Bourdon de l'Oise
+   12350      59 j  Michel Lecointe-Puyraveau  ->  Michel, Mathieu Lecointe-Puyraveau
+   12351      17 j  Louis Legendre  ->  Louis Legendre
    12352      13 j  Louis-Michel Le Peletier de Saint-Fargeau  ->  Louis, Michel Lepeletier de Saint-Fargeau
+   12364      44 j  Pierre-Antoine Laloy  ->  Pierre, Antoine Laloy
    12378      15 j  François-Alexandre de La Rochefoucauld-Liancourt  ->  François, Alexandre, Frédéric de La Rochefoucauld-Liancourt
-   12379      12 j  Luc Dauchy  ->  Hue, Jacques, Edouard Dauchy
+   12379      12 j  Luc Dauchy  ->  Hue, Jacques, Edouard Dauchy  [PRÉNOM NON CONCORDANT, à vérifier]
    12383      12 j  Charles-Louis-Victor de Broglie  ->  Charles, Louis, Victor de Broglie
+   12386      29 j  Jean-François Reubell  ->  Jean-François Rewbell  [GRAPHIE VOISINE, à vérifier]
    12426      14 j  Jean-George Lefranc de Pompignan  ->  Jean, Georges Lefranc de Pompignan
    12434       1 j  François-Henri de Virieu(démissionnaire)  ->  François, Henri de Virieu
    12439      11 j  Jean-Joseph Mounier  ->  Jean, Joseph Mounier
    12444      13 j  Jean-Baptiste-Charles Chabroud  ->  Jean-Baptiste, Charles Chabroud
+   12449      15 j  Claude-Pierre Dellay-d'Agier  ->  Claude, Pierre de Dellay-d'Agier ou Delay
+   12456      62 j  François Lamarque(par intérim)  ->  François Lamarque
+   12620      15 j  Marie-Félix Faulcon  ->  Marie, Félix Faulcon de la Parisière
    12633      16 j  Emmanuel Fréteau de Saint Just  ->  Emmanuel, Marie, Michel, Philippe Fréteau de Saint-Just
+   12662      15 j  Jean-Baptiste Girot-Pouzol  ->  Jean-Baptiste Girot de Pouzol
+   12691      43 j  Gustave Doulcet de Pontécoulant  ->  Louis, Gustave Doulcet de Pontécoulant
+   12723      15 j  Louis Ramond de Carbonnières  ->  Louis, François, Elizabeth Ramond de Carbonnières
+   12788      10 j  Jean-Baptiste Clauzel  ->  Jean-Baptiste Clauzel
+   12791      14 j  Marc Vadier  ->  Marc, Guillaume, Albert Vadier
+   12801      14 j  André Amar  ->  Jean-Baptiste, André Amar
+   12802      14 j  Jean-Baptiste Aubert du Bayet  ->  Jean-Baptiste, Annibal Aubert du Bayet
+   12803      13 j  Jean-Antoine d'Averhoult  ->  Jean, Antoine d'Averhoult
+   12805      14 j  Joseph-Nicolas Barbeau du Barran  ->  Joseph, Nicolas Barbeau du Barran
+   12807      14 j  Pierre Baudin des Ardennes  ->  Pierre, Charles, Louis Baudin des Ardennes
+   12808      14 j  Moyse Bayle  ->  Moïse, Antoine, Pierre, Jean Bayle  [PRÉNOM NON CONCORDANT, à vérifier]
+   12809      49 j  Théophile Berlier  ->  Théophile Berlier
+   12810      18 j  André-Antoine Bernard de Saintes  ->  André, Antoine Bernard de Saintes
    12811      28 j  Charles-François de Bonnay  ->  Charles, François de Bonnay  (1 période(s) sans date de fin, comptée(s) 0 jour)
-   12822      10 j  Joseph Defermon des Chapelières  ->  Jacques Defermon des Chapelières
+   12812      15 j  Antoine Bourg-Laprade  ->  Antoine Bourg-Laprade
+   12813      13 j  Jean-Baptiste Boyer-Fonfrède  ->  Jean-Baptiste Boyer-Fonfrède
+   12814      28 j  Jean-Jacques Bréard  ->  Jean-Jacques de Bréard-Duplessys
+   12815      18 j  Louis-Joseph Charlier  ->  Louis, Joseph Charlier
+   12816      29 j  Jean-Pierre Chazal  ->  Jean-Pierre Chazal
+   12818      15 j  Denis Couzard  ->  Denis Couzard
+   12819      29 j  Aaron-Jean-François Crassous  ->  Aaron, Jean-François Crassous
+   12820      29 j  Jacques-Antoine Creuzé-Latouche  ->  Jacques, Antoine Creuzé-Latouche
+   12821      76 j  Pierre Daunou  ->  Pierre, Claude, François Daunou  [PRÉNOM NON CONCORDANT, à vérifier]
+   12822      52 j  Joseph Defermon des Chapelières  ->  Jacques Defermon des Chapelières
    12824      39 j  Jean-Nicolas Démeunier  ->  Jean, Nicolas Démeunier
+   12825      15 j  Jacques Devismes  ->  Jacques, François, Laurent Devismes
+   12826      12 j  Claude Dorisy  ->  Claude Dorizy  [GRAPHIE VOISINE, à vérifier]
    12828      13 j  Pierre-Samuel du Pont de Nemours  ->  Pierre, Samuel Dupont de Nemours
+   12829      29 j  Joseph-Vincent Dumolard  ->  Joseph, Vincent Dumolard
+   12830      14 j  André Dumont  ->  André Dumont
+   12831      15 j  Charles-François Dupuis  ->  Charles, François Dupuis
    12833      26 j  Jean-Louis Emmery  ->  Jean-Louis, Claude Emmery de Grozyeulx
+   12836      13 j  Antoine Français de Nantes  ->  Antoine Français de Nantes
+   12837      46 j  Charles-François Génissieu  ->  Jean, Joseph, Victor Génissieu  [PRÉNOM NON CONCORDANT, à vérifier]
+   12842      13 j  André Jeanbon (dit Jean-Bon Saint-André)  ->  André Jeanbon Saint-André
    12844      13 j  César-Guillaume de La Luzerne  ->  César, Guillaume de La Luzerne
+   12845      11 j  Étienne de Lacépède  ->  Bernard, Germain, Etienne de la Ville-Sur-Illon de Lacépède
+   12846      16 j  Élie Lacoste  ->  Elie Lacoste
+   12847      13 j  Jean-Gérard Lacuée  ->  Jean, Gérard Lacuée de Cessac
+   12848      14 j  André Laffon-Ladebat  ->  André, Daniel Laffon de Ladébat
+   12849      14 j  François Lagrange  ->  François Lagrange
+   12850     329 j  Joseph-Henri-Joachim Lainé  ->  Joseph, Louis, Joachim Lainé
+   12851      13 j  Jean-Denis Lanjuinais  ->  Jean, Denis Lanjuinais
+   12852      13 j  Marie-David Lasource (dit Alba)  ->  Marc, David Alba Dit Lasource
    12853      13 j  Isaac-René-Guy Le Chapelier  ->  Isaac, René, Guy Le Chapelier
+   12855      14 j  François-Joseph Lefebvre-Cayet  ->  François, Joseph, Barthélémy, César Lefebvre-Cayet
+   12856      15 j  Pierre-Louis Lefebvre-Laroche  ->  Pierre, Louis Lefebvre-Laroche
+   12857      15 j  Pierre-Édouard Lemontey  ->  Pierre, Edouard Lemontey
+   12861      15 j  Jean-Baptiste Louvet  ->  Jean-Baptiste Louvet de Couvray
+   12862      29 j  Gabriel Malès  ->  Gabriel Malès
+   12863      13 j  François-René-Auguste Mallarmé  ->  François, René, Auguste Mallarmé
+   12865      16 j  Jean-François Joseph Marcorelle  ->  Jean-François, Joseph Marcorelle
+   12866       8 j  Jean-Baptiste-Charles Mathieu-Mirampal  ->  Jean-Baptiste, Charles Mathieu-Mirampal
    12867      15 j  Jean-François de Menou  ->  Jean-François Menou de Boussay
+   12869      15 j  Jean-François Méric  ->  Jean-François Méric
+   12870      11 j  Jean-François Merlet  ->  Jean-François, Honoré Merlet
    12871      15 j  Anne-Pierre de Montesquiou-Fezensac  ->  Anne, Pierre de Montesquiou-Fezensac
+   12875    1399 j  Élisabeth-Pierre de Montesquiou Fézensac  ->  Elizabeth, Pierre de Montesquiou-Fezensac
    12876      27 j  François-Xavier de Montesquiou-Fezensac  ->  François, Xavier, Marc, Antoine de Montesquiou-Fezensac
+   12878      13 j  Honoré de Muraire  ->  Honoré Muraire
    12879      15 j  Louis-Marie de Noailles  ->  Louis, Marie de Noailles
+   12884      68 j  Étienne Pasquier  ->  Etienne, Denis Pasquier
+   12885      47 j  Emmanuel Pastoret  ->  Claude, Emmanuel, Joseph, Pierre Pastoret
+   12886      39 j  Jean Pelet de La Lozère  ->  Jean Pelet de la Lozère
+   12922      20 j  Jean-Baptiste Perrin des Vosges  ->  Jean-Baptiste Perrin des Vosges
+   12923      29 j  Charles Pichegru  ->  Jean-Charles Pichegru
+   12924      44 j  Alexis-François Pison du Galland  ->  Alexis, François Pison du Galland
+   12925      15 j  Jacques Poisson de Coudreville  ->  Jacques Poisson de Coudreville
+   12927      29 j  Joseph-Clément Poullain de Grandprey  ->  Joseph, Clément Poullain de Grandprey
+   12928      15 j  Claude-Antoine Prieur de La Côte d'Or  ->  Claude, Antoine Prieur-Duvernois dit Prieur de la Côte-d'Or
+   12929      29 j  Jean-Baptiste Quirot  ->  Jean-Baptiste Quirot
+   12930      14 j  Pierre-Antoine Rabaut-Dupuis  ->  Pierre, Antoine Rabaut-Dupuis
+   12933       7 j  Jérôme Reynaud-Lascours  ->  Jérôme, Annibal, Joseph Reynaud de Bologne de Lascours
+   12934      29 j  François Riou de Kersalaun  ->  François, Marie, Joseph Riou de Kersalaun
+   12943      15 j  Jean-François Rossée  ->  Jean-François, Philibert Rossée
+   12944      15 j  Stanislas Rovère  ->  Joseph, Stanislas, François, Xavier, Alexis Rovère
+   12945    3101 j  Paul-Jean Sauzet  ->  Paul, Jean, Pierre Sauzet
+   12946      29 j  Julien Savary  ->  Jean, Julien, Marie Savary
+   12948      34 j  Joseph-Jérôme Siméon  ->  Joseph, Jérôme Siméon
+   12949      14 j  Jean-Lambert Tallien  ->  Jean, Lambert Tallien
+   12950      13 j  François-Alexandre Tardiveau  ->  François, Alexandre Tardiveau
    12951      14 j  Guy-Jean-Baptiste Target  ->  Guy, Jean-Baptiste Target
+   12952       9 j  Isaac Tarteyron  ->  Isaac Tarteyron
+   12953      48 j  Antoine Claire Thibaudeau  ->  Antoine, Clair Thibaudeau
    12954      46 j  Jacques-Guillaume Thouret  ->  Jacques, Guillaume Thouret
-   12955      10 j  Jean-Baptiste Treilhard  ->  Jean-Baptiste Treilhard
+   12955      52 j  Jean-Baptiste Trelhard  ->  Jean-Baptiste Treilhard  [GRAPHIE VOISINE, à vérifier]
    12956       9 j  François-Denis Tronchet  ->  François, Denis Tronchet
+   12957      28 j  Pierre-Victurien Vergniaud  ->  Pierre, Victurnien Vergniaud
+   12958      29 j  François Toussaint Villers  ->  François, Toussaint Villers
+   12959      15 j  Jean-Henri Voulland  ->  Jean, Henri Voulland
+   13172      29 j  Philippe-Laurent Pons  ->  Philippe, Laurent Pons de Verdun
    13266      26 j  Stanislas de Clermont-Tonnerre  ->  Stanislas, Marie, Adélaïde de Clermont-Tonnerre
+   13383      93 j  Antoine Boulay de La Meurthe  ->  Antoine, Jacques, Claude, Joseph Boulay de la Meurthe
+   15366      29 j  Pierre-François Henry La Rivière  ->  Lambert Rivière  [PRÉNOM NON CONCORDANT, à vérifier]
