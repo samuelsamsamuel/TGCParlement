@@ -168,6 +168,14 @@ def noms_cles(nom):
     return set(w for w in re.findall(r"[a-z]+", t) if w not in PARTICULES)
 
 
+def nom_famille_sycomore(nom):
+    """« Jean, Pierre Bel » -> « Bel » ; « Jean-Louis Tinaud » -> « Tinaud » :
+    dernier segment après la virgule, privé de son premier mot (le dernier prénom)."""
+    segment = (nom or "").split(",")[-1].strip()
+    mots = segment.split(" ", 1)
+    return mots[1] if len(mots) == 2 else segment
+
+
 def cartes_senateurs(cartes, listes):
     """Cartes des sénateurs absents de Sycomore (jamais députés), d'après l'open data du Sénat.
     Un sénateur est réputé déjà présent si une fiche Sycomore porte un nom commun et la même
@@ -186,26 +194,30 @@ def cartes_senateurs(cartes, listes):
     for s in senateurs:
         # Rapprochement sur le nom de famille entier (tous ses mots), jamais sur les prénoms
         cles = noms_cles(s.get("nom_famille") or s["nom"])
-        if s["naissance"] and any(cles <= noms_cles(c["nom"]) for c in par_date[s["naissance"]]):
+        meme_nom = lambda c: bool(cles) and cles <= noms_cles(nom_famille_sycomore(c["nom"]))
+        if s["naissance"] and any(meme_nom(c) for c in par_date[s["naissance"]]):
             continue
-        proches = [c for c in par_annee[(s["naissance"] or "")[:4]] if cles and cles <= noms_cles(c["nom"])]
+        proches = [c for c in par_annee[(s["naissance"] or "")[:4]] if meme_nom(c)]
         if s["naissance"] and proches:
             anomalies["sénateur rapproché d'une fiche Sycomore par l'année seule"].append(
                 f"{s['matricule']} {s['nom']} ({s['naissance']}) -> {proches[0]['id']} {proches[0]['nom']} ({proches[0]['naissance']})")
             continue
         mandats = []
+        fonction = (("Sénatrice" if s["sexe"] == "F" else "Sénateur")
+                    + (f" ({s['circonscription']})" if s["circonscription"] else ""))
+        if not any(m["debut"] for m in s["mandats"]):
+            # Mandat absent ou non daté dans l'open data : carte créée, durée non comptée
+            anomalies["sénateur sans mandat daté (carte créée, durée non comptée)"].append(
+                f"{s['matricule']} {s['nom']} ({s['etat']})")
+            mandats.append({"chambre": "Sénat", "fonction": fonction, "debut": None, "fin": None,
+                            "en_cours": s["etat"] == "ACTIF", "non_date": True})
         for m in s["mandats"]:
             if not m["debut"]:
                 continue
             fin = m["fin"]
             en_cours = s["etat"] == "ACTIF" and (not fin or fin > AUJOURDHUI.isoformat())
-            mandats.append({"chambre": "Sénat",
-                            "fonction": ("Sénatrice" if s["sexe"] == "F" else "Sénateur")
-                                        + (f" ({s['circonscription']})" if s["circonscription"] else ""),
+            mandats.append({"chambre": "Sénat", "fonction": fonction,
                             "debut": m["debut"], "fin": None if en_cours else fin, "en_cours": en_cours})
-        if not mandats:
-            anomalies["sénateur sans mandat daté"].append(f"{s['matricule']} {s['nom']}")
-            continue
         ident = "S" + s["matricule"]
         jours = duree_jours(mandats)
         annees = round(jours / 365.25, 1)
@@ -248,7 +260,11 @@ def texte_carte(c):
         fins = [m["fin"] for m in se if m["fin"]]
         fin = "aujourd'hui" if any(m["en_cours"] for m in se) else annee(max(fins) if fins else None)
         fonctions = list(dict.fromkeys(m["fonction"] for m in se if m["fonction"]))
-        phrases.append(f"{' et '.join(fonctions) or 'Membre de la chambre haute'} de {annee(debut)} à {fin}.")
+        libelle = ' et '.join(fonctions) or 'Membre de la chambre haute'
+        if debut:
+            phrases.append(f"{libelle} de {annee(debut)} à {fin}.")
+        else:
+            phrases.append(f"{libelle}{', en fonction' if any(m['en_cours'] for m in se) else ''}.")
     for d in c["distinctions"]:
         phrases.append(d["libelle"] + ".")
     return " ".join(phrases)
