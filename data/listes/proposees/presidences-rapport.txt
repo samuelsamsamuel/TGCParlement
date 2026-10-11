@@ -25,6 +25,32 @@ ONGLET SANS DONNÉES LISIBLES : Les Présidents de l'Assemblée nationale depuis
     | Baromètre de l’application des lois
     | Dossiers législatifs
     | Budget et sécurité sociale
+VE vue 0 : 1 présidence(s) nouvelle(s), titre « Yaël Braun-Pivet »
+VE vue 1 : 0 présidence(s) nouvelle(s), titre « Yaël Braun-Pivet »
+    | Les Présidents de l'Assemblée nationale depuis 1958 - Assemblée nationale
+    | Les Présidents de l'Assemblée nationale depuis 1958
+    | Les Présidents de l'Assemblée nationale depuis 1958
+    | Onglet actif : Les Présidents de l'Assemblée nationale depuis 1958
+VE vue 2 : 0 présidence(s) nouvelle(s), titre « Yaël Braun-Pivet »
+    | Les Présidents de l'Assemblée nationale depuis 1958 - Assemblée nationale
+    | Les Présidents de l'Assemblée nationale depuis 1958
+    | Les Présidents de l'Assemblée nationale depuis 1958
+    | Onglet actif : Les Présidents de l'Assemblée nationale depuis 1958
+VE vue 3 : 0 présidence(s) nouvelle(s), titre « Yaël Braun-Pivet »
+    | Les Présidents de l'Assemblée nationale depuis 1958 - Assemblée nationale
+    | Les Présidents de l'Assemblée nationale depuis 1958
+    | Les Présidents de l'Assemblée nationale depuis 1958
+    | Onglet actif : Les Présidents de l'Assemblée nationale depuis 1958
+VE vue 4 : 0 présidence(s) nouvelle(s), titre « Yaël Braun-Pivet »
+    | Les Présidents de l'Assemblée nationale depuis 1958 - Assemblée nationale
+    | Les Présidents de l'Assemblée nationale depuis 1958
+    | Les Présidents de l'Assemblée nationale depuis 1958
+    | Onglet actif : Les Présidents de l'Assemblée nationale depuis 1958
+VE vue 5 : 0 présidence(s) nouvelle(s), titre « Yaël Braun-Pivet »
+    | Les Présidents de l'Assemblée nationale depuis 1958 - Assemblée nationale
+    | Les Présidents de l'Assemblée nationale depuis 1958
+    | Les Présidents de l'Assemblée nationale depuis 1958
+    | Onglet actif : Les Présidents de l'Assemblée nationale depuis 1958
 Pages lues : 16
     64 lignes  https://www2.assemblee-nationale.fr/decouvrir-l-assemblee/histoire/les-presidents-de-l-assemblee-nationale-depuis-17893
     64 lignes  https://www2.assemblee-nationale.fr/decouvrir-l-assemblee/histoire/les-presidents-de-l-assemblee-nationale-depuis-17893/assemblee-nationale-constituante-1789-1791
@@ -51,8 +77,8 @@ NON RATTACHÉ (ambigu : 12843 Jean-Baptiste Jourdan / 10378 Jean-Baptiste Jourda
 NON RATTACHÉ (ambigu : 12843 Jean-Baptiste Jourdan / 10378 Jean-Baptiste Jourdan) : 22 septembre 1798 | 21 octobre 1798 | Jean-Baptiste Jourdan
 NON RATTACHÉ (aucun député de ce nom en fonction à cette date) : 6 janvier 1802 | 21 janvier 1802 | Nicolas-Bernard Belzais-Courménil
 NON RATTACHÉ (aucun député de ce nom en fonction à cette date) : 23 novembre 1813 | 4 juin 1814 | Claude-Ambroise Régnier
-NON RATTACHÉ (aucun député de ce nom en fonction à cette date) : 3 novembre 1943 | 25 juillet 1944 | Félix Gouin
-NON RATTACHÉ (aucun député de ce nom en fonction à cette date) : 7 novembre 1944 | 3 août 1945 | Félix Gouin
+EXCLU PAR DÉCISION (Exclue : assemblée consultative non élue, sans mandat de député à cette date. Règle commune : une présidence n'est comptée que si son titulaire siège comme parlementaire élu.) : 3 novembre 1943 | 25 juillet 1944 | Félix Gouin
+EXCLU PAR DÉCISION (Exclue : assemblée consultative non élue, sans mandat de député à cette date. Règle commune : une présidence n'est comptée que si son titulaire siège comme parlementaire élu.) : 7 novembre 1944 | 3 août 1945 | Félix Gouin
 
 Rattachements (vérifier chaque ligne) :
      252  années 1875-1876  Gaston d'Audiffret-Pasquier  ->  Edme, Armand, Gaston d'Audiffret-Pasquier
@@ -279,6 +305,6 @@ Rattachements (vérifier chaque ligne) :
    13172          29 j  Philippe-Laurent Pons  ->  Philippe, Laurent Pons de Verdun
    13266          26 j  Stanislas de Clermont-Tonnerre  ->  Stanislas, Marie, Adélaïde de Clermont-Tonnerre
    13383          93 j  Antoine Boulay de La Meurthe  ->  Antoine, Jacques, Claude, Joseph Boulay de la Meurthe
-   19057         712 j  Onglet actif : Yaël Braun-Pivet  ->  Yaël Braun-Pivet
+   19057         712 j  Yaël Braun-Pivet  ->  Yaël Braun-Pivet
 
 Durée indéterminée (source à l'année, écart d'un an) : 252, 285, 2569, 5168, 5653, 10133
