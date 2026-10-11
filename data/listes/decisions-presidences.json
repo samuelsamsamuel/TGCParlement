@@ -6,14 +6,14 @@
    "id": null,
    "a_decider": false,
    "candidats": "Assemblée consultative provisoire : non élue, sans mandat de député à cette date. Compter ou non cette présidence ?",
-   "motif": "Exclue : assemblée consultative non élue, sans mandat de député à cette date. Règle commune : une présidence n'est comptée que si son titulaire siège comme parlementaire élu."
+   "motif": "Exclue : assemblée consultative, sans pouvoir législatif. Règle commune : seules comptent les présidences des chambres du Parlement exerçant le pouvoir législatif, élues ou nommées (Chambre des pairs et Sénat du Second Empire compris)."
   },
   {
    "ligne": "7 novembre 1944 | Félix Gouin",
    "id": null,
    "a_decider": false,
    "candidats": "idem, Assemblée consultative de Paris",
-   "motif": "Exclue : assemblée consultative non élue, sans mandat de député à cette date. Règle commune : une présidence n'est comptée que si son titulaire siège comme parlementaire élu."
+   "motif": "Exclue : assemblée consultative, sans pouvoir législatif. Règle commune : seules comptent les présidences des chambres du Parlement exerçant le pouvoir législatif, élues ou nommées (Chambre des pairs et Sénat du Second Empire compris)."
   },
   {
    "ligne": "21 avril 1794 | Robert Lindet",
