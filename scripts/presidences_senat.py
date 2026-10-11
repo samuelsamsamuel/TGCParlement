@@ -85,12 +85,12 @@ def main():
 
     longue, courte = [], []
     rapport.append("\nRattachements (nom et années de naissance et de décès concordants) :")
-    for ident, ps in sorted(periodes.items()):
+    for ident, ps in sorted(periodes.items(), key=lambda x: str(x[0])):
         jours = sum((f - d).days for d, f, a in ps if not a)
         annees_pleines = any(a and f.year - d.year >= 2 for d, f, a in ps)
         (longue if jours >= 365 or annees_pleines else courte).append(ident)
         officiel, fiche = noms[ident]
-        rapport.append(f"  {ident:6d}  {jours:6d} j  {officiel}  ->  {fiche}"
+        rapport.append(f"  {str(ident):>8}  {jours:6d} j  {officiel}  ->  {fiche}"
                        + "".join(f"  [{a}]" for a in sorted(alertes[ident])))
     rapport.append(f"\nAucune fiche Sycomore concordante (nom et années) : {len(sans_fiche)}. Sans homonyme listé, "
                    f"le président n'a vraisemblablement jamais été député et attend la base des sénateurs ; "
