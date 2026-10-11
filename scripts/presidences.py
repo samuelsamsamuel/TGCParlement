@@ -419,7 +419,7 @@ def main():
     longue, courte = [], []
     rapport.append("\nRattachements (vérifier chaque ligne) :")
     indetermines = []
-    for ident, ps in sorted(periodes.items()):
+    for ident, ps in sorted(periodes.items(), key=lambda x: str(x[0])):
         precises = [(d, f) for d, f, a, _ in ps if not a]
         jours = sum(((f or d) - d).days for d, f in precises if not f or f >= d)
         ecarts = [e for *_, a, e in ps if a]
@@ -439,7 +439,7 @@ def main():
         sans_fin = sum(1 for _, f, a, _ in ps if not f and not a)
         if ecarts:
             jours = "années " + ", ".join(f"{d.year}-{f.year}" for d, f, a, _ in ps if a)
-        rapport.append(f"  {ident:6d}  {jours if isinstance(jours, str) else str(jours) + ' j':>12}  {officiel}  ->  {fiche}"
+        rapport.append(f"  {str(ident):>8}  {jours if isinstance(jours, str) else str(jours) + ' j':>12}  {officiel}  ->  {fiche}"
                        + (f"  ({sans_fin} période(s) sans date de fin, comptée(s) 0 jour)" if sans_fin else "")
                        + "".join(f"  [{a}]" for a in sorted(alertes[ident])))
 
