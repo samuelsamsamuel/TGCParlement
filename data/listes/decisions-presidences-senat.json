@@ -1,0 +1,7 @@
+{
+ "mode_d_emploi": "Une décision par ligne de la source (« date de début | nom » tels que transcrits dans data/sources/presidents-senat.json) : « id » = fiche Sycomore retenue, ou null pour exclure ; « motif » obligatoire.",
+ "decisions": [
+  {"ligne": "16 février 1906 | Antonin Dubost", "id": 2632,
+   "motif": "Fiche « Henri, Antonin Dubost » (1842-1921) : même nom et même année de décès que la liste du Sénat ; seule l'année de naissance diverge entre les deux sources officielles (1842 dans Sycomore, 1844 sur la page du Sénat). Aucune autre fiche Dubost compatible."}
+ ]
+}
