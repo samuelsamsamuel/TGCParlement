@@ -94,7 +94,8 @@ def mandats_an(lignes, ident):
         if not m.get("regime"):
             anomalies["mandat sans régime"].append(f"{ident} : {m}")
         p = periode(m.get("periode", ""), ident)
-        sortie.append({"chambre": "AN", "regime": m.get("regime"),
+        sortie.append({"_declare_en_cours": "en cours" in m.get("periode", "").lower(),
+                       "chambre": "AN", "regime": m.get("regime"),
                        "legislature": m.get("legislature"),
                        "departement": m.get("departement"), "groupe": m.get("groupe"),
                        "debut": p[0].isoformat() if p else None,
@@ -108,7 +109,8 @@ def mandats_senat(lignes, ident):
     for x in lignes:
         if re.match(r"(du|depuis)\s", x, re.I):
             p = periode(x, ident)
-            sortie.append({"chambre": "Sénat", "fonction": fonction,
+            sortie.append({"_declare_en_cours": "en cours" in x.lower(),
+                           "chambre": "Sénat", "fonction": fonction,
                            "debut": p[0].isoformat() if p else None,
                            "fin": p[1].isoformat() if p and p[1] else None,
                            "en_cours": bool(p and p[1] is None)})
@@ -142,7 +144,7 @@ def duree_jours(mandats):
     """Jours de mandat, intervalles chevauchants fusionnés."""
     iv = sorted((date.fromisoformat(m["debut"]),
                  date.fromisoformat(m["fin"]) if m["fin"] else AUJOURDHUI)
-                for m in mandats if m["debut"])
+                for m in mandats if m["debut"] and (m["fin"] or m["en_cours"]))
     total, cour = 0, None
     for d, f in iv:
         if cour and d <= cour[1]:
@@ -218,6 +220,13 @@ def main():
             if sexe is None:
                 anomalies["sexe non déterminé"].append(str(ident))
             for m in mandats:
+                declare = m.pop("_declare_en_cours")
+                if m["debut"] and not m["fin"] and (d_date or not declare):
+                    # Fin absente : ni mandat déclaré en cours, ni titulaire vivant.
+                    m["en_cours"] = False
+                    m["fin_inconnue"] = True
+                    anomalies["fin de mandat inconnue (exclue de la durée)"].append(
+                        f"{ident} : {m.get('regime')} | {m.get('legislature')} | depuis {m['debut']}")
                 if m["chambre"] == "AN":
                     comptes[(m["regime"], m["legislature"])] += 1
 
