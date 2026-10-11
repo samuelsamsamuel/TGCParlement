@@ -24,6 +24,7 @@ import unicodedata
 import urllib.request
 from collections import defaultdict
 from datetime import date
+from difflib import SequenceMatcher
 from html.parser import HTMLParser
 from urllib.parse import urljoin
 
@@ -55,12 +56,15 @@ class Tables(HTMLParser):
     def __init__(self):
         super().__init__(convert_charrefs=True)
         self.lignes, self.liens, self.attributs = [], [], []
+        self.onglets, self.onglet = [], None
         self.ligne, self.cellule, self.titre, self.dans_titre = None, None, None, False
 
     def handle_starttag(self, tag, attrs):
         a = dict(attrs)
         if tag == "a" and a.get("href"):
             self.liens.append(a["href"])
+        if tag == "a" and (a.get("data-target") or "").startswith("#node_"):
+            self.onglet = [a["data-target"][6:], ""]
         for k, v in attrs:
             if v and ("node" in v or "presidents" in v) and k not in ("href", "class"):
                 self.attributs.append(f"{tag}[{k}]={v}")
@@ -72,6 +76,10 @@ class Tables(HTMLParser):
             self.cellule = ""
 
     def handle_endtag(self, tag):
+        if tag == "a" and self.onglet:
+            self.onglet[1] = " ".join(self.onglet[1].split())
+            self.onglets.append(tuple(self.onglet))
+            self.onglet = None
         if tag in ("h2", "h3"):
             self.dans_titre = False
         if tag in ("td", "th") and self.cellule is not None:
@@ -83,6 +91,8 @@ class Tables(HTMLParser):
             self.ligne = None
 
     def handle_data(self, data):
+        if self.onglet is not None:
+            self.onglet[1] += data
         if self.cellule is not None:
             self.cellule += data
         if self.dans_titre:
@@ -95,6 +105,11 @@ def lire(url):
     return t
 
 
+def slug(titre):
+    t = unicodedata.normalize("NFKD", titre).encode("ascii", "ignore").decode().lower()
+    return re.sub(r"[^a-z0-9]+", "-", t).strip("-")
+
+
 # --- Rattachement aux fiches -------------------------------------------------
 
 PARTICULES = {"de", "la", "le", "du", "des", "d", "l", "dit", "dite", "ne", "nee"}
@@ -104,6 +119,15 @@ def jetons(nom):
     n = unicodedata.normalize("NFKD", nom).encode("ascii", "ignore").decode().lower()
     n = re.sub(r"\(.*?\)", " ", n)
     return [j for j in re.split(r"[^a-z]+", n) if j and j not in PARTICULES]
+
+
+_cache_fonction = {}
+
+
+def en_fonction(jour, cartes):
+    if jour not in _cache_fonction:
+        _cache_fonction[jour] = [c for c in cartes if siege_le(c, jour)]
+    return _cache_fonction[jour]
 
 
 def siege_le(carte, jour):
@@ -122,11 +146,23 @@ def rattacher(nom, jour, cartes, index):
         return None, "nom vide"
     candidats = [c for c in index.get(js[-1], []) if siege_le(c, jour)]
     if not candidats:
-        return None, "aucun député de ce nom en fonction à cette date"
+        # Graphie voisine (Reubell / Rewbell...) parmi les députés en fonction ce jour-là
+        proches = []
+        for c in en_fonction(jour, cartes):
+            for j in jetons(c["nom"] or ""):
+                if SequenceMatcher(None, js[-1], j).ratio() >= 0.8:
+                    proches.append(c)
+                    break
+        if len(proches) == 1:
+            return proches[0], "GRAPHIE VOISINE, à vérifier"
+        return None, "aucun député de ce nom en fonction à cette date" + (
+            " ; proches : " + " / ".join(f"{c['id']} {c['nom']}" for c in proches[:4]) if proches else "")
     notes = sorted(((len(set(js) & set(jetons(c["nom"] or ""))), c) for c in candidats),
                    key=lambda x: -x[0])
     if len(notes) > 1 and notes[0][0] == notes[1][0]:
         return None, "ambigu : " + " / ".join(f"{c['id']} {c['nom']}" for _, c in notes[:4])
+    if notes[0][0] < 2 and len(js) > 1:
+        return notes[0][1], "PRÉNOM NON CONCORDANT, à vérifier"
     return notes[0][1], None
 
 
@@ -145,14 +181,25 @@ def main():
         u = urljoin(PAGE, h).split("#")[0]
         if u.startswith(PAGE + "/") and u not in pages:
             pages[u] = lire(u)
+    for noeud, titre in principale.onglets:
+        essais = [PAGE + "/" + slug(titre), urljoin(PAGE, "/node/" + noeud)]
+        for u in essais:
+            if u in pages:
+                break
+            t = lire(u)
+            if t.lignes:
+                pages[u] = t
+                break
+        else:
+            rapport.append(f"ONGLET NON TROUVÉ : {titre} (essais : {', '.join(essais)})")
     rapport.append(f"Pages lues : {len(pages)}")
     for u, t in pages.items():
         rapport.append(f"  {len(t.lignes):4d} lignes  {u}")
-    if len(pages) == 1:
+    if len(pages) == 1 and not principale.onglets:
         rapport.append("Aucun onglet trouvé par les liens ; attributs relevés :")
         rapport.extend("  " + a for a in principale.attributs[:60])
 
-    vues, periodes, noms = set(), defaultdict(list), {}
+    vues, periodes, noms, alertes = set(), defaultdict(list), {}, defaultdict(set)
     for u, t in pages.items():
         for titre, (du, au, nom) in t.lignes:
             if du.lower().startswith("du"):
@@ -174,6 +221,8 @@ def main():
             if not carte:
                 rapport.append(f"NON RATTACHÉ ({motif}) : {du} | {au} | {nom}")
                 continue
+            if motif:
+                alertes[carte["id"]].add(motif)
             periodes[carte["id"]].append((d, f))
             noms[carte["id"]] = (nom, carte["nom"])
 
@@ -185,7 +234,8 @@ def main():
         officiel, fiche = noms[ident]
         sans_fin = sum(1 for _, f in ps if not f)
         rapport.append(f"  {ident:6d}  {jours:6d} j  {officiel}  ->  {fiche}"
-                       + (f"  ({sans_fin} période(s) sans date de fin, comptée(s) 0 jour)" if sans_fin else ""))
+                       + (f"  ({sans_fin} période(s) sans date de fin, comptée(s) 0 jour)" if sans_fin else "")
+                       + "".join(f"  [{a}]" for a in sorted(alertes[ident])))
 
     os.makedirs(SORTIE, exist_ok=True)
     commun = {"source": PAGE, "ids_officiels_verifies": False}
