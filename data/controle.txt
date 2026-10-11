@@ -1,0 +1,120 @@
+Fiches lues : {200: 18062, 404: 3} ; cartes produites : 18062
+
+Distinctions calculées :
+  deux-chambres : 1651
+  1789 : 1317
+  convention : 905
+  femmes-1945 : 33
+
+Répartition des raretés :
+  legendaire : 541
+  epique : 1265
+  rare : 2709
+  peu-commune : 4516
+  commune : 9031
+
+Mandats de député par régime et législature :
+  Assemblée Nationale | None : 873
+  Cent-Jours | Chambre des représentants : 625
+  Cinquième République - Assemblée nationale | IIIe législature : 517
+  Cinquième République - Assemblée nationale | IIe législature : 540
+  Cinquième République - Assemblée nationale | IVe législature : 571
+  Cinquième République - Assemblée nationale | IXe législature : 649
+  Cinquième République - Assemblée nationale | Ire législature : 620
+  Cinquième République - Assemblée nationale | VIIIe législature : 640
+  Cinquième République - Assemblée nationale | VIIe législature : 561
+  Cinquième République - Assemblée nationale | VIe législature : 537
+  Cinquième République - Assemblée nationale | Ve législature : 610
+  Cinquième République - Assemblée nationale | XIIIe législature : 693
+  Cinquième République - Assemblée nationale | XIIe législature : 646
+  Cinquième République - Assemblée nationale | XIVe législature : 691
+  Cinquième République - Assemblée nationale | XIe législature : 664
+  Cinquième République - Assemblée nationale | XVIIe législature : 677
+  Cinquième République - Assemblée nationale | XVIe législature : 633
+  Cinquième République - Assemblée nationale | XVe législature : 672
+  Cinquième République - Assemblée nationale | Xe législature : 688
+  Consulat et Premier Empire | Corps législatif : 927
+  Deuxième République | Assemblée nationale constituante : 923
+  Deuxième République | Assemblée nationale législative : 821
+  Gouvernement provisoire de la République française | 2e Assemblée nationale constituante : 588
+  Gouvernement provisoire de la République française | Ire Assemblée nationale constituante : 591
+  Monarchie de Juillet - Chambre des députés | IIIe législature : 546
+  Monarchie de Juillet - Chambre des députés | IIe législature : 566
+  Monarchie de Juillet - Chambre des députés | IVe législature : 480
+  Monarchie de Juillet - Chambre des députés | Ire législature : 567
+  Monarchie de Juillet - Chambre des députés | VIIe législature : 473
+  Monarchie de Juillet - Chambre des députés | VIe législature : 527
+  Monarchie de Juillet - Chambre des députés | Ve législature : 546
+  None | None : 4
+  Première Restauration | Chambre des députés des départements : 231
+  Quatrième République - Assemblée nationale | IIIe législature : 616
+  Quatrième République - Assemblée nationale | IIe législature : 656
+  Quatrième République - Assemblée nationale | Ire législature : 668
+  Révolution | Assemblée nationale constituante : 1324
+  Révolution | Assemblée nationale législative : 776
+  Révolution | Conseil des Cinq-Cents : 1144
+  Révolution | Convention nationale : 905
+  Second Empire - Corps législatif | IIIe législature : 346
+  Second Empire - Corps législatif | IIe législature : 325
+  Second Empire - Corps législatif | IVe législature : 301
+  Second Empire - Corps législatif | Ire législature : 306
+  Seconde Restauration - Chambre des députés des départements | IIIe législature : 449
+  Seconde Restauration - Chambre des députés des départements | IIe législature : 922
+  Seconde Restauration - Chambre des députés des départements | IVe législature : 484
+  Seconde Restauration - Chambre des députés des départements | Ire législature : 389
+  Troisième République - Chambre des députés | IIIe législature : 639
+  Troisième République - Chambre des députés | IIe législature : 686
+  Troisième République - Chambre des députés | IVe législature : 667
+  Troisième République - Chambre des députés | IXe législature : 664
+  Troisième République - Chambre des députés | Ire législature : 560
+  Troisième République - Chambre des députés | VIIIe législature : 656
+  Troisième République - Chambre des députés | VIIe législature : 640
+  Troisième République - Chambre des députés | VIe législature : 676
+  Troisième République - Chambre des députés | Ve législature : 661
+  Troisième République - Chambre des députés | XIIIe législature : 604
+  Troisième République - Chambre des députés | XIIe législature : 646
+  Troisième République - Chambre des députés | XIVe législature : 662
+  Troisième République - Chambre des députés | XIe législature : 604
+  Troisième République - Chambre des députés | XVIe législature : 648
+  Troisième République - Chambre des députés | XVe législature : 663
+  Troisième République - Chambre des députés | Xe législature : 657
+
+Anomalies :
+  mandat sans régime : 4
+    421 : {'periode': 'Depuis le 9 octobre 2026 (mandat en cours)', 'groupe': '2'}
+    10201 : {'periode': 'Depuis le 10 octobre 2026 (mandat en cours)'}
+    10671 : {'periode': 'Depuis le 22 juin 2022 (mandat en cours)', 'departement': 'Mayenne'}
+    12322 : {'periode': 'Depuis le 10 octobre 2026 (mandat en cours)'}
+  sexe non déterminé : 151
+    10606
+    10607
+    10608
+    11546
+    11659
+    11680
+    11721
+    11738
+    11945
+    11946
+    11967
+    11968
+    12089
+    12197
+    12230
+    12312
+    12376
+    12405
+    12415
+    12425
+
+Dix premières cartes :
+    50.0  legendaire  Pierre, Antoine Laloy : Député (Haute-Marne) de 1789 à aujourd'hui, 4 mandats (Révolution). Membre des États généraux ou de la Constituante de 1789. Membre de la Convention nationale.
+    45.9  legendaire  Marie-Madeleine Dienesch : Députée (Côtes-du-Nord) de 1945 à 1981, 11 mandats (Gouvernement provisoire de la République française ; Quatrième République - Assemblée nationale ; Cinquième République - Assemblée nationale). Parmi les premières femmes élues députées, en 1945.
+    43.9  legendaire  Joseph Pémartin : Député (Basses-Pyrénées) de 1789 à 1815, 6 mandats (Révolution ; Consulat et Premier Empire ; Première Restauration). Membre des États généraux ou de la Constituante de 1789. Membre de la Convention nationale.
+    43.4  legendaire  Jean-Claude Cherrier : Député (Vosges) de 1789 à 1816, 6 mandats (Révolution ; Consulat et Premier Empire ; Première Restauration ; Seconde Restauration - Chambre des députés des départements). Membre des États généraux ou de la Constituante de 1789. Membre de la Convention nationale.
+    42.9  legendaire  Marie-Claude Vaillant-Couturier Née Vogel : Députée (Seine, Paris, Val-de-Marne) de 1945 à 1973, 8 mandats (Gouvernement provisoire de la République française ; Quatrième République - Assemblée nationale ; Cinquième République - Assemblée nationale). Parmi les premières femmes élues députées, en 1945.
+    42.6  legendaire  François, Jérôme Riffard de Saint-Martin : Député (Ardèche, Côte-d'Or) de 1789 à 1814, 5 mandats (Révolution ; Consulat et Premier Empire). Membre des États généraux ou de la Constituante de 1789. Membre de la Convention nationale.
+    41.8  legendaire  Florent Guiot : Député (Côte-d'Or) de 1789 à 1814, 4 mandats (Révolution ; Consulat et Premier Empire). Membre des États généraux ou de la Constituante de 1789. Membre de la Convention nationale.
+    41.5  legendaire  Augustin, Bernard Le Goazre de Kervélégan : Député (Finistère) de 1789 à 1815, 5 mandats (Révolution ; Consulat et Premier Empire ; Première Restauration). Membre des États généraux ou de la Constituante de 1789. Membre de la Convention nationale.
+    38.6  legendaire  Gabriel, Hyacinthe Couppé de Kervennou : Député (Côtes-du-Nord) de 1789 à 1814, 4 mandats (Révolution ; Consulat et Premier Empire). Membre des États généraux ou de la Constituante de 1789. Membre de la Convention nationale.
+    35.9  legendaire  René Cornilleau : Député (Sarthe) de 1790 à 1814, 3 mandats (Révolution ; Consulat et Premier Empire). Membre des États généraux ou de la Constituante de 1789. Membre de la Convention nationale.
