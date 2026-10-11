@@ -134,32 +134,45 @@ def lire(url):
 RE_VE = re.compile(r"Présidente? de l'Assemblée nationale (?:du|depuis le) (.+?)(?: au (.+?))?(?:[.,;]|$)")
 
 
+_DATE = r"\d{1,2}(?:er)? [a-zéû]+ \d{4}"
+RE_PERIODE = re.compile(rf"du ({_DATE}) au ({_DATE})|depuis le ({_DATE})", re.I)
+
+
 def lire_ve():
-    """Pages de la Ve République : nom en titre, puis « Président de l'Assemblée nationale du X au Y »."""
-    pages, vus = {}, set()
-    for n in range(0, 40):
+    """Diaporama de la Ve République (?offset=N) : nom en titre, puis « Président de l'Assemblée nationale du X au Y »."""
+    pages, vus, vides = {}, set(), 0
+    for n in range(0, 60):
         u = VE + (f"?offset={n}" if n else "")
         html = telecharger(u)
         if not html:
             break
         t = Tables()
-        titre, trouve = None, False
+        titre, nouveaux, mentions = None, 0, []
         for balise, x in lignes_de(html):
             if balise in ("h1", "h2", "h3") and "Présidents de l'Assemblée" not in x:
-                titre = x
-            for m in RE_VE.finditer(x):
-                cle = (m.group(1), titre)
-                if titre and cle not in vus:
+                titre = re.sub(r"^Onglet actif\s*:\s*", "", x).strip()
+            if "résident" in x and "Assemblée nationale" in x:
+                mentions.append(x[:160])
+            if not RE_VE.search(x):
+                continue
+            # Toutes les périodes de la phrase (« du X au Y, du Z au W » ; « depuis le X »)
+            for m in RE_PERIODE.finditer(x[RE_VE.search(x).start():]):
+                debut, fin = (m.group(1), m.group(2)) if m.group(1) else (m.group(3), None)
+                cle = (debut, titre)
+                if titre and lire_date(debut) and cle not in vus:
                     vus.add(cle)
-                    trouve = True
-                    t.lignes.append((None, [m.group(1), m.group(2) or "en cours", titre]))
-        if not trouve:
-            if n:
-                break
-            rapport.append("VE RÉPUBLIQUE : aucune présidence lue sur la première vue ; début du texte :")
-            rapport.extend("    | " + x for _, x in lignes_de(html)[60:100])
-        else:
+                    nouveaux += 1
+                    t.lignes.append((None, [debut, fin or "en cours", titre]))
+        rapport.append(f"VE vue {n} : {nouveaux} présidence(s) nouvelle(s), titre « {titre} »")
+        if not nouveaux and mentions:
+            rapport.extend("    | " + x for x in mentions[:4])
+        if nouveaux:
             pages[u] = t
+            vides = 0
+        else:
+            vides += 1
+            if vides >= 5:
+                break
     return pages
 
 
@@ -242,24 +255,40 @@ def rattacher(nom, jour, cartes, index, fin=None):
     if coupe and jetons(coupe):
         cles.append(jetons(coupe)[-1])
     # 1. Nom exact (nom complet, puis nom sans complément)
-    candidats = {c["id"]: c for k in cles for c in index.get(k, []) if present(c)}
-    alerte = None
-    if not candidats:
-        # 2. Graphie voisine du nom (Reubell / Rewbell, Pusy / Puzy...)
+    exacts = {c["id"]: c for k in cles for c in index.get(k, []) if present(c)}
+
+    def voisins():
+        # Graphie voisine du nom (Reubell / Rewbell, Pusy / Puzy, Le Tourneur / Letourneur...)
         vivier = en_fonction(jour, cartes) if not fin else [c for c in cartes if present(c)]
+        trouves = {}
         for c in vivier:
             jc = jetons(c["nom"] or "")
             if any(SequenceMatcher(None, k, j).ratio() >= 0.8 for k in cles for j in jc):
-                candidats[c["id"]] = c
-        alerte = "GRAPHIE VOISINE, à vérifier"
+                trouves[c["id"]] = c
+            elif any(SequenceMatcher(None, k, "".join(jc[i:i + 2])).ratio() >= 0.8
+                     for k in cles for i in range(len(jc) - 1)):
+                trouves[c["id"]] = c   # nom en deux mots d'un côté, soudé de l'autre
+        return trouves
+
+    if exacts:
+        c, notes = departage(js, list(exacts.values()))
+        if c and (notes[0][0][0] >= 2 or len(js) == 1):
+            return c, None
+        # Prénom discordant ou égalité : la bonne fiche porte peut-être une graphie voisine
+        elargi = {**exacts, **voisins()}
+        c2, notes2 = departage(js, list(elargi.values()))
+        if c2 and c2["id"] not in exacts and notes2[0][0][0] >= 2:
+            return c2, "GRAPHIE VOISINE, à vérifier"
+        if not c:
+            return None, "ambigu : " + " / ".join(f"{x['id']} {x['nom']}" for _, x in notes[:4])
+        return c, "PRÉNOM NON CONCORDANT, à vérifier"
+    candidats = voisins()
     if not candidats:
         return None, "aucun député de ce nom en fonction à cette date"
     c, notes = departage(js, list(candidats.values()))
     if not c:
         return None, "ambigu : " + " / ".join(f"{x['id']} {x['nom']}" for _, x in notes[:4])
-    if not alerte and notes[0][0][0] < 2 and len(js) > 1:
-        alerte = "PRÉNOM NON CONCORDANT, à vérifier"
-    return c, alerte
+    return c, "GRAPHIE VOISINE, à vérifier"
 
 
 def main():
@@ -267,7 +296,9 @@ def main():
         cartes = json.load(f)
     par_id = {c["id"]: c for c in cartes}
     decisions, appliquees = {}, set()
-    if os.path.exists(F_DECISIONS):
+    if not os.path.exists(F_DECISIONS):
+        rapport.append(f"Fichier de décisions absent : {F_DECISIONS}")
+    else:
         with open(F_DECISIONS, encoding="utf-8") as f:
             for d in json.load(f)["decisions"]:
                 if not d.get("a_decider"):
