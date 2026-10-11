@@ -198,8 +198,11 @@ def charger_listes():
     for chemin in sorted(glob.glob(os.path.join(DOSSIER_LISTES, "*.json"))):
         with open(chemin, encoding="utf-8") as f:
             l = json.load(f)
+        if not isinstance(l, dict) or "ids" not in l or "code" not in l:
+            continue  # fichiers de travail du même dossier (décisions...), sans liste d'identifiants
         l["ids"] = set(l["ids"])
         listes.append(l)
+        print(f"Liste fermée chargée : {l['code']} ({len(l['ids'])} identifiants)")
     return listes
 
 
