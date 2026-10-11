@@ -22,8 +22,8 @@ INCOHÉRENCE (fin avant début) : 10 octobre 1989 | 27 octobre 1789 | Emmanuel F
 EXCLU PAR DÉCISION (Exclue : la liste officielle dit « Robert Lindet » ; les deux frères, tous deux conventionnels, portent le prénom Robert dans Sycomore (« Robert, Thomas » et « Jean-Baptiste, Robert »), et les sources consultées divergent sur l'attribution. Non vérifiable en l'état.) : 21 avril 1794 | 5 mai 1794 | Robert Lindet
 EXCLU PAR DÉCISION (Exclue : aucune fiche Sycomore retrouvée sous ce nom ou une graphie voisine pour un député en fonction à cette date. À reprendre si une fiche est identifiée.) : 6 janvier 1802 | 21 janvier 1802 | Nicolas-Bernard Belzais-Courménil
 EXCLU PAR DÉCISION (Exclue : aucun mandat de député de ce nom à cette date dans Sycomore ; la règle commune (titulaire siégeant comme parlementaire élu) n'est pas vérifiable.) : 23 novembre 1813 | 4 juin 1814 | Claude-Ambroise Régnier
-EXCLU PAR DÉCISION (Exclue : assemblée consultative non élue, sans mandat de député à cette date. Règle commune : une présidence n'est comptée que si son titulaire siège comme parlementaire élu.) : 3 novembre 1943 | 25 juillet 1944 | Félix Gouin
-EXCLU PAR DÉCISION (Exclue : assemblée consultative non élue, sans mandat de député à cette date. Règle commune : une présidence n'est comptée que si son titulaire siège comme parlementaire élu.) : 7 novembre 1944 | 3 août 1945 | Félix Gouin
+EXCLU PAR DÉCISION (Exclue : assemblée consultative, sans pouvoir législatif. Règle commune : seules comptent les présidences des chambres du Parlement exerçant le pouvoir législatif, élues ou nommées (Chambre des pairs et Sénat du Second Empire compris).) : 3 novembre 1943 | 25 juillet 1944 | Félix Gouin
+EXCLU PAR DÉCISION (Exclue : assemblée consultative, sans pouvoir législatif. Règle commune : seules comptent les présidences des chambres du Parlement exerçant le pouvoir législatif, élues ou nommées (Chambre des pairs et Sénat du Second Empire compris).) : 7 novembre 1944 | 3 août 1945 | Félix Gouin
 
 Rattachements (vérifier chaque ligne) :
       28  années 2007-2012  Bernard Accoyer  ->  Bernard Accoyer
