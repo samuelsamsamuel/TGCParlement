@@ -1,4 +1,4 @@
-Fiches lues : {200: 18062, 404: 3} ; cartes produites : 19625, dont 1563 sénateurs absents de Sycomore
+Fiches lues : {200: 18062, 404: 3} ; cartes produites : 19636, dont 1574 sénateurs absents de Sycomore
 
 Distinctions calculées :
   deux-chambres : 1651
@@ -11,11 +11,11 @@ Distinctions calculées :
   presidence-senat-courte : 5
 
 Répartition des raretés :
-  legendaire : 588
+  legendaire : 589
   epique : 1374
-  rare : 2944
-  peu-commune : 4906
-  commune : 9813
+  rare : 2946
+  peu-commune : 4909
+  commune : 9818
 
 Mandats de député par régime et législature :
   Assemblée Nationale | None : 873
@@ -116,23 +116,12 @@ Anomalies :
     12405
     12415
     12425
-  sénateur rapproché d'une fiche Sycomore par l'année seule : 15
+  sénateur rapproché d'une fiche Sycomore par l'année seule : 4
     000079 Charles Naveau (1903-07-14) -> 5518 Charles Naveau (1903-07-01)
     000251 Jean-Louis Tinaud (1910-09-23) -> 7078 Jean-Louis Tinaud (1910-07-23)
-    000255 Hubert Durand (1910-10-21) -> 10475 Emile Durand (1910-09-09)
-    01059Y Annie David (1963-01-17) -> 19111 Dominique David (1963-02-27)
-    11081P Alain Bertrand (1951-02-23) -> 745 Léon Bertrand (1951-05-11)
-    12041X Pierre Laurent (1957-07-01) -> 18456 Jean-Luc Laurent (1957-06-23)
-    21125C Marie-Jeanne Bellamy (1966-01-05) -> 19574 Béatrice Bellamy (1966-10-20)
     57129Y Robert Laurens (1910-09-26) -> 7499 Robert, Marie Laurens (1910-09-27)
-    57613G Paul Favre (1921-05-31) -> 2939 Jean, Eugène, Marie Favre (1921-07-19)
-    58614M André Aubry (1931-08-01) -> 245 Pierre Aubry (1931-03-28)
-    58643S Yves Durand (1910-03-12) -> 10475 Emile Durand (1910-09-09)
     59235J Hubert Martin (1912-02-23) -> 5040 Hubert Martin (1912-02-25)
-    97006K Pierre Lefebvre (1938-09-11) -> 7689 Pierre Lefebvre (1938-03-04)
-    97011G Bernard Fournier (1946-09-13) -> 18426 Michèle Fournier-Armand (1946-07-28)
-    98046X François Marc (1950-03-19) -> 17347 Jeanny Marc (1950-12-02)
-  sénateur sans mandat daté (carte créée, durée non comptée) : 143
+  sénateur sans mandat daté (carte créée, durée non comptée) : 144
     18153G Daniel Gibbs (ACTIF)
     19331L Saïd Omar Oili (ACTIF)
     19916G Bastien Coriton (ACTIF)
