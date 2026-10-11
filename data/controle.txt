@@ -1,4 +1,4 @@
-Fiches lues : {200: 18062, 404: 3} ; cartes produites : 19466, dont 1404 sénateurs absents de Sycomore
+Fiches lues : {200: 18062, 404: 3} ; cartes produites : 19625, dont 1563 sénateurs absents de Sycomore
 
 Distinctions calculées :
   deux-chambres : 1651
@@ -11,11 +11,11 @@ Distinctions calculées :
   presidence-senat-courte : 5
 
 Répartition des raretés :
-  legendaire : 583
-  epique : 1363
-  rare : 2920
-  peu-commune : 4867
-  commune : 9733
+  legendaire : 588
+  epique : 1374
+  rare : 2944
+  peu-commune : 4906
+  commune : 9813
 
 Mandats de député par régime et législature :
   Assemblée Nationale | None : 873
@@ -116,48 +116,43 @@ Anomalies :
     12405
     12415
     12425
-  sénateur rapproché d'une fiche Sycomore par l'année seule : 31
+  sénateur rapproché d'une fiche Sycomore par l'année seule : 15
     000079 Charles Naveau (1903-07-14) -> 5518 Charles Naveau (1903-07-01)
-    000196 Georges Constant (1908-08-14) -> 7787 Constant Lepourry (1908-04-05)
     000251 Jean-Louis Tinaud (1910-09-23) -> 7078 Jean-Louis Tinaud (1910-07-23)
     000255 Hubert Durand (1910-10-21) -> 10475 Emile Durand (1910-09-09)
-    000689 Louis Andre (1891-01-06) -> 1929 André, Jean-Baptiste Commentry (1891-07-25)
-    01031L Michèle André (1947-02-06) -> 148 André Angot (1947-04-28)
     01059Y Annie David (1963-01-17) -> 19111 Dominique David (1963-02-27)
-    04088S Jackie Pierre (1946-05-27) -> 1389 Jean-Pierre Calvel (1946-08-05)
-    11014C Danielle Michel (1947-04-03) -> 1472 Michel Cartaud (1947-09-24)
-    11057P Maurice Vincent (1955-09-20) -> 19062 Vincent Bru (1955-04-29)
     11081P Alain Bertrand (1951-02-23) -> 745 Léon Bertrand (1951-05-11)
     12041X Pierre Laurent (1957-07-01) -> 18456 Jean-Luc Laurent (1957-06-23)
-    14233N Geneviève Jean (1945-08-28) -> 2257 Jean-Pierre Delalande (1945-08-21)
     21125C Marie-Jeanne Bellamy (1966-01-05) -> 19574 Béatrice Bellamy (1966-10-20)
-    21660W Alexis Robin (1991-09-09) -> 19353 Robin Reda (1991-05-10)
     57129Y Robert Laurens (1910-09-26) -> 7499 Robert, Marie Laurens (1910-09-27)
     57613G Paul Favre (1921-05-31) -> 2939 Jean, Eugène, Marie Favre (1921-07-19)
-    58342G Louis Martin (1913-08-16) -> 62 Martin, Andréas Aku (1913-09-02)
     58614M André Aubry (1931-08-01) -> 245 Pierre Aubry (1931-03-28)
     58643S Yves Durand (1910-03-12) -> 10475 Emile Durand (1910-09-09)
-  sénateur sans mandat daté : 142
-    18153G Daniel Gibbs
-    19331L Saïd Omar Oili
-    19916G Bastien Coriton
-    21029D Georges Naturel
-    21030V Robert Wienie Xowie
-    21031W Jean-Marc Vayssouze-Faure
-    21033Y Stéphane Fouassin
-    21034A Evelyne Corbière Naminzo
-    21035B Audrey Bélim
-    21036C Jean-Luc Ruelle
-    21037D Mathilde Ollivier
-    21038E Olivia Richard
-    21039F Anne-Marie Nédélec
-    21040X Michel Masset
-    21041Y Raphaël Daubet
-    21042A Jocelyne Antoine
-    21043B Olivier Bitz
-    21044C Lauriane Josende
-    21045D Marion Canalès
-    21046E Corinne Bourcier
+    59235J Hubert Martin (1912-02-23) -> 5040 Hubert Martin (1912-02-25)
+    97006K Pierre Lefebvre (1938-09-11) -> 7689 Pierre Lefebvre (1938-03-04)
+    97011G Bernard Fournier (1946-09-13) -> 18426 Michèle Fournier-Armand (1946-07-28)
+    98046X François Marc (1950-03-19) -> 17347 Jeanny Marc (1950-12-02)
+  sénateur sans mandat daté (carte créée, durée non comptée) : 143
+    18153G Daniel Gibbs (ACTIF)
+    19331L Saïd Omar Oili (ACTIF)
+    19916G Bastien Coriton (ACTIF)
+    21029D Georges Naturel (ACTIF)
+    21030V Robert Wienie Xowie (ACTIF)
+    21031W Jean-Marc Vayssouze-Faure (ACTIF)
+    21033Y Stéphane Fouassin (ACTIF)
+    21034A Evelyne Corbière Naminzo (ACTIF)
+    21035B Audrey Bélim (ACTIF)
+    21036C Jean-Luc Ruelle (ACTIF)
+    21037D Mathilde Ollivier (ACTIF)
+    21038E Olivia Richard (ACTIF)
+    21039F Anne-Marie Nédélec (ACTIF)
+    21040X Michel Masset (ACTIF)
+    21041Y Raphaël Daubet (ACTIF)
+    21042A Jocelyne Antoine (ACTIF)
+    21043B Olivier Bitz (ACTIF)
+    21044C Lauriane Josende (ACTIF)
+    21045D Marion Canalès (ACTIF)
+    21046E Corinne Bourcier (ACTIF)
 
 Dix premières cartes :
    115.0  legendaire  Léon, Victor, Auguste Bourgeois : Député (Marne) de 1888 à 1905, 5 mandats (Troisième République - Chambre des députés). Sénateur de 1905 à 1925. A siégé dans les deux chambres. A présidé l'Assemblée au moins un an. A présidé la seconde chambre au moins un an.
