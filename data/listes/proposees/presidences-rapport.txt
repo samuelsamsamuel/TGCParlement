@@ -1,56 +1,4 @@
-Présidents rattachés : 225 (24 au moins un an, 195 moins d'un an, 6 indéterminés faute de dates précises)
-ONGLET SANS DONNÉES LISIBLES : Les Présidents de l'Assemblée nationale depuis 1958 (https://www2.assemblee-nationale.fr/decouvrir-l-assemblee/histoire/les-presidents-de-l-assemblee-nationale-depuis-17893/les-presidents-de-l-assemblee-nationale-depuis-1958) ; début du texte :
-    | Les Présidents de l'Assemblée nationale depuis 1958 - Assemblée nationale
-    | Assemblée nationale
-    | Accueil Accèder à la page d'accueil
-    | Vos députés
-    | Travaux parlementaires
-    | Connaître l'Assemblée
-    | Découvrir les lieux
-    | Mon compte
-    | Accèder à la page d'accueil
-    | Vos députés
-    | Présidence 577 députés Groupes politiques Élections législatives
-    | Travaux parlementaires
-    | Séance publique Commissions et autres organes Europe et International Contrôle et évaluation Congrès Pétitions
-    | Documents parlementaires
-    | Projets de loi
-    | Propositions de loi
-    | Amendements
-    | Textes adoptés
-    | Rapports d'information
-    | Rapports d'enquête
-    | Rapports législatifs
-    | Rapports sur l'application des lois
-    | Baromètre de l’application des lois
-    | Dossiers législatifs
-    | Budget et sécurité sociale
-VE vue 0 : 1 présidence(s) nouvelle(s), titre « Yaël Braun-Pivet »
-VE vue 1 : 0 présidence(s) nouvelle(s), titre « Yaël Braun-Pivet »
-    | Les Présidents de l'Assemblée nationale depuis 1958 - Assemblée nationale
-    | Les Présidents de l'Assemblée nationale depuis 1958
-    | Les Présidents de l'Assemblée nationale depuis 1958
-    | Onglet actif : Les Présidents de l'Assemblée nationale depuis 1958
-VE vue 2 : 0 présidence(s) nouvelle(s), titre « Yaël Braun-Pivet »
-    | Les Présidents de l'Assemblée nationale depuis 1958 - Assemblée nationale
-    | Les Présidents de l'Assemblée nationale depuis 1958
-    | Les Présidents de l'Assemblée nationale depuis 1958
-    | Onglet actif : Les Présidents de l'Assemblée nationale depuis 1958
-VE vue 3 : 0 présidence(s) nouvelle(s), titre « Yaël Braun-Pivet »
-    | Les Présidents de l'Assemblée nationale depuis 1958 - Assemblée nationale
-    | Les Présidents de l'Assemblée nationale depuis 1958
-    | Les Présidents de l'Assemblée nationale depuis 1958
-    | Onglet actif : Les Présidents de l'Assemblée nationale depuis 1958
-VE vue 4 : 0 présidence(s) nouvelle(s), titre « Yaël Braun-Pivet »
-    | Les Présidents de l'Assemblée nationale depuis 1958 - Assemblée nationale
-    | Les Présidents de l'Assemblée nationale depuis 1958
-    | Les Présidents de l'Assemblée nationale depuis 1958
-    | Onglet actif : Les Présidents de l'Assemblée nationale depuis 1958
-VE vue 5 : 0 présidence(s) nouvelle(s), titre « Yaël Braun-Pivet »
-    | Les Présidents de l'Assemblée nationale depuis 1958 - Assemblée nationale
-    | Les Présidents de l'Assemblée nationale depuis 1958
-    | Les Présidents de l'Assemblée nationale depuis 1958
-    | Onglet actif : Les Présidents de l'Assemblée nationale depuis 1958
+Présidents rattachés : 239 (35 au moins un an, 196 moins d'un an, 8 indéterminés faute de dates précises)
 Pages lues : 16
     64 lignes  https://www2.assemblee-nationale.fr/decouvrir-l-assemblee/histoire/les-presidents-de-l-assemblee-nationale-depuis-17893
     64 lignes  https://www2.assemblee-nationale.fr/decouvrir-l-assemblee/histoire/les-presidents-de-l-assemblee-nationale-depuis-17893/assemblee-nationale-constituante-1789-1791
@@ -67,7 +15,7 @@ Pages lues : 16
     28 lignes  https://www2.assemblee-nationale.fr/decouvrir-l-assemblee/histoire/les-presidents-de-l-assemblee-nationale-depuis-17893/troisieme-republique-assemblee-nationale-1871-1876-et-chambre-des-deputes-1876-1940
      4 lignes  https://www2.assemblee-nationale.fr/decouvrir-l-assemblee/histoire/les-presidents-de-l-assemblee-nationale-depuis-17893/assemblee-consultative-provisoire-1943-1945-assemblee-constituante-1945-1946
      6 lignes  https://www2.assemblee-nationale.fr/decouvrir-l-assemblee/histoire/les-presidents-de-l-assemblee-nationale-depuis-17893/quatrieme-republique-assemblee-nationale-1946-1958
-     1 lignes  https://www2.assemblee-nationale.fr/decouvrir-l-assemblee/histoire/la-ve-republique/les-presidents-de-l-assemblee-nationale-depuis-1958
+    18 lignes  https://www.assemblee-nationale.fr/dyn/contenu/telechargement/627133/file/Fiche%2012%20-%20La%20Pr%C3%A9sidence%20de%20l%27AN.pdf
 ÉCARTÉ (présidence refusée) : 3 juillet 1789 | Louis-Philippe d'Orléans, dit Philippe Égalité(refuse la présidence)
 ÉCARTÉ (présidence refusée) : 3 août 1789 | Jacques-Guillaume Thouret(refuse la Présidence)
 INCOHÉRENCE (fin avant début) : 10 octobre 1989 | 27 octobre 1789 | Emmanuel Fréteau de Saint Just
@@ -81,25 +29,36 @@ EXCLU PAR DÉCISION (Exclue : assemblée consultative non élue, sans mandat de 
 EXCLU PAR DÉCISION (Exclue : assemblée consultative non élue, sans mandat de député à cette date. Règle commune : une présidence n'est comptée que si son titulaire siège comme parlementaire élu.) : 7 novembre 1944 | 3 août 1945 | Félix Gouin
 
 Rattachements (vérifier chaque ligne) :
+      28  années 2007-2012  Bernard Accoyer  ->  Bernard Accoyer
      252  années 1875-1876  Gaston d'Audiffret-Pasquier  ->  Edme, Armand, Gaston d'Audiffret-Pasquier
      285  années 1946-1947  Vincent Auriol  ->  Vincent, Jules Auriol
+     454  années 2012-2017  Claude Bartolone  ->  Claude Bartolone
     1043  années 1927-1936  Fernand Bouisson  ->  Fernand, Emile, Honoré Bouisson
     1083  années 1902-1904  Léon Bourgeois  ->  Léon, Victor, Auguste Bourgeois
     1240  années 1881-1885, 1894-1898, 1904-1905, 1906-1912  Eugène-Henri Brisson  ->  Henri, Eugène Brisson
     1299  années 1873-1875  Louis-Joseph Buffet  ->  Louis, Joseph Buffet
     1312  années 1894-1894  Auguste Burdeau  ->  Auguste, Laurent Burdeau
     1484  années 1893-1893, 1894-1894  Jean Casimir-Perier  ->  Jean, Paul, Pierre Perier dit Casimir-Perier
+    2195  années 2002-2007  Jean-Louis Debré  ->  Jean-Louis Debré
     2425  années 1898-1902, 1912-1920  Paul Deschanel  ->  Paul Deschanel
     2569  années 1905-1906  Paul Doumer  ->  Paul Doumer
+    2824  années 1992-1993  Henri Emmanuelli  ->  Henri Emmanuelli
+    2876  années 1988-1992, 1997-2000  Laurent Fabius  ->  Laurent Fabius
+    2922  années 1973-1978  Edgar Faure  ->  Edgar Faure
     3032  années 1885-1888, 1889-1893  Charles Floquet  ->  Charles, Thomas Floquet
+    3062  années 2000-2002  Raymond Forni  ->  Raymond Forni
     3237  années 1879-1881  Léon Gambetta  ->  Léon, Michel Gambetta
     3496         216 j  Félix Gouin  ->  Félix, Jean Gouin
     3578  années 1871-1873, 1876-1879  Jules Grévy  ->  Jules, François, Paul Grévy
     3819  années 1925-1926, 1936-1940, 1947-1954  Édouard Herriot  ->  Edouard Herriot
     5168  années 1888-1889  Jules Méline  ->  Jules Méline
+    5210  années 1981-1986  Louis Mermaz  ->  Louis Mermaz
+    5600  années 2007-2007  Patrick Ollier  ->  Patrick Ollier
     5653  années 1924-1925  Paul Painlevé  ->  Paul Painlevé
     5779  années 1920-1924, 1926-1927  Raoul Péret  ->  Raoul, Adolphe Péret
+    5780  années 1969-1973  Achille Peretti  ->  Achille Peretti
     6353  années 1955-1955  Pierre Scneiter  ->  Pierre Schneiter  [GRAPHIE VOISINE, à vérifier]
+    6371  années 1993-1997  Philippe Séguin  ->  Philippe Séguin
     7629  années 1954-1955, 1956-1958  André Le Troquer  ->  André Le Troquer
     8505          24 j  Antoine Sénard  ->  Antoine Sénard
     9065          20 j  Alexandre Marie  ->  Thomas, Alexandre, Marie de Saint-Georges dit Marie
@@ -108,6 +67,7 @@ Rattachements (vérifier chaque ligne) :
     9436         978 j  Adolphe Billault  ->  Adolphe, Augustin, Marie Billault
     9791         311 j  Armand Marrast  ->  Armand, Marie, François, Pascal Marrast
    10133  années 1893-1894  Charles Dupuy  ->  Charles, Alexandre Dupuy
+   10179  années 1958-1969, 1978-1981, 1986-1988  Jacques Chaban-Delmas  ->  Jacques, Michel, Pierre Chaban-Delmas
    10199          82 j  Jacques Laffitte  ->  Jacques Laffitte
    10580          16 j  Jean-Sylvain Bailly  ->  Jean, Sylvain Bailly
    11005          26 j  Hippolyte Passy  ->  Hippolyte, Philibert Passy
@@ -305,6 +265,8 @@ Rattachements (vérifier chaque ligne) :
    13172          29 j  Philippe-Laurent Pons  ->  Philippe, Laurent Pons de Verdun
    13266          26 j  Stanislas de Clermont-Tonnerre  ->  Stanislas, Marie, Adélaïde de Clermont-Tonnerre
    13383          93 j  Antoine Boulay de La Meurthe  ->  Antoine, Jacques, Claude, Joseph Boulay de la Meurthe
-   19057         712 j  Yaël Braun-Pivet  ->  Yaël Braun-Pivet
+   17282  années 2017-2018  François de Rugy  ->  François De Rugy
+   18423  années 2018-2022  Richard Ferrand  ->  Richard Ferrand
+   19057  années 2022-2024  Yaël Braun-Pivet  ->  Yaël Braun-Pivet
 
-Durée indéterminée (source à l'année, écart d'un an) : 252, 285, 2569, 5168, 5653, 10133
+Durée indéterminée (source à l'année, écart d'un an) : 252, 285, 2569, 2824, 5168, 5653, 10133, 17282
