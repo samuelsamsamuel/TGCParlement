@@ -57,6 +57,7 @@ def main():
             "matricule": mat,
             "nom": f"{cle(r, 'Pr').strip()} {cle(r, 'Nom usuel').strip()}",
             "nom_famille": cle(r, "Nom usuel").strip(),
+            "prenom": cle(r, "Pr").strip(),
             "sexe": "F" if cle(r, "Qualit").strip().startswith("Mme") else "M",
             "naissance": jour(cle(r, "Date naissance")),
             "deces": jour(cle(r, "Date de d")),
