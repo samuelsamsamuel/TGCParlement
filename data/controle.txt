@@ -1,4 +1,4 @@
-Fiches lues : {200: 18062, 404: 3} ; cartes produites : 18062
+Fiches lues : {200: 18062, 404: 3} ; cartes produites : 19466, dont 1404 sénateurs absents de Sycomore
 
 Distinctions calculées :
   deux-chambres : 1651
@@ -7,15 +7,15 @@ Distinctions calculées :
   presidence-an-courte : 205
   presidence-an-longue : 35
   femmes-1945 : 33
-  presidence-senat-longue : 17
+  presidence-senat-longue : 21
   presidence-senat-courte : 5
 
 Répartition des raretés :
-  legendaire : 541
-  epique : 1265
-  rare : 2709
-  peu-commune : 4516
-  commune : 9031
+  legendaire : 583
+  epique : 1363
+  rare : 2920
+  peu-commune : 4867
+  commune : 9733
 
 Mandats de député par régime et législature :
   Assemblée Nationale | None : 873
@@ -116,15 +116,57 @@ Anomalies :
     12405
     12415
     12425
+  sénateur rapproché d'une fiche Sycomore par l'année seule : 31
+    000079 Charles Naveau (1903-07-14) -> 5518 Charles Naveau (1903-07-01)
+    000196 Georges Constant (1908-08-14) -> 7787 Constant Lepourry (1908-04-05)
+    000251 Jean-Louis Tinaud (1910-09-23) -> 7078 Jean-Louis Tinaud (1910-07-23)
+    000255 Hubert Durand (1910-10-21) -> 10475 Emile Durand (1910-09-09)
+    000689 Louis Andre (1891-01-06) -> 1929 André, Jean-Baptiste Commentry (1891-07-25)
+    01031L Michèle André (1947-02-06) -> 148 André Angot (1947-04-28)
+    01059Y Annie David (1963-01-17) -> 19111 Dominique David (1963-02-27)
+    04088S Jackie Pierre (1946-05-27) -> 1389 Jean-Pierre Calvel (1946-08-05)
+    11014C Danielle Michel (1947-04-03) -> 1472 Michel Cartaud (1947-09-24)
+    11057P Maurice Vincent (1955-09-20) -> 19062 Vincent Bru (1955-04-29)
+    11081P Alain Bertrand (1951-02-23) -> 745 Léon Bertrand (1951-05-11)
+    12041X Pierre Laurent (1957-07-01) -> 18456 Jean-Luc Laurent (1957-06-23)
+    14233N Geneviève Jean (1945-08-28) -> 2257 Jean-Pierre Delalande (1945-08-21)
+    21125C Marie-Jeanne Bellamy (1966-01-05) -> 19574 Béatrice Bellamy (1966-10-20)
+    21660W Alexis Robin (1991-09-09) -> 19353 Robin Reda (1991-05-10)
+    57129Y Robert Laurens (1910-09-26) -> 7499 Robert, Marie Laurens (1910-09-27)
+    57613G Paul Favre (1921-05-31) -> 2939 Jean, Eugène, Marie Favre (1921-07-19)
+    58342G Louis Martin (1913-08-16) -> 62 Martin, Andréas Aku (1913-09-02)
+    58614M André Aubry (1931-08-01) -> 245 Pierre Aubry (1931-03-28)
+    58643S Yves Durand (1910-03-12) -> 10475 Emile Durand (1910-09-09)
+  sénateur sans mandat daté : 142
+    18153G Daniel Gibbs
+    19331L Saïd Omar Oili
+    19916G Bastien Coriton
+    21029D Georges Naturel
+    21030V Robert Wienie Xowie
+    21031W Jean-Marc Vayssouze-Faure
+    21033Y Stéphane Fouassin
+    21034A Evelyne Corbière Naminzo
+    21035B Audrey Bélim
+    21036C Jean-Luc Ruelle
+    21037D Mathilde Ollivier
+    21038E Olivia Richard
+    21039F Anne-Marie Nédélec
+    21040X Michel Masset
+    21041Y Raphaël Daubet
+    21042A Jocelyne Antoine
+    21043B Olivier Bitz
+    21044C Lauriane Josende
+    21045D Marion Canalès
+    21046E Corinne Bourcier
 
 Dix premières cartes :
    115.0  legendaire  Léon, Victor, Auguste Bourgeois : Député (Marne) de 1888 à 1905, 5 mandats (Troisième République - Chambre des députés). Sénateur de 1905 à 1925. A siégé dans les deux chambres. A présidé l'Assemblée au moins un an. A présidé la seconde chambre au moins un an.
     90.0  legendaire  Edme, Armand, Gaston d'Audiffret-Pasquier : Député (Orne) de 1871 à 1876, 1 mandat (Assemblée Nationale). Sénateur de 1875 à 1905. A siégé dans les deux chambres. A présidé l'Assemblée. A présidé la seconde chambre au moins un an.
     90.0  legendaire  Paul Doumer : Député (Aisne, Yonne) de 1888 à 1910, 5 mandats (Troisième République - Chambre des députés). Sénateur de 1912 à 1931. A siégé dans les deux chambres. A présidé l'Assemblée. A présidé la seconde chambre au moins un an.
+    75.0  legendaire  André, Marie, Jean-Jacques Dupin : Député (Nièvre, Sarthe) de 1815 à 1851, 13 mandats (Cent-Jours ; Seconde Restauration - Chambre des députés des départements ; Monarchie de Juillet - Chambre des députés ; Deuxième République). Sénateur de 1857 à 1865. A siégé dans les deux chambres. A présidé l'Assemblée au moins un an.
     75.0  legendaire  Louis, Joseph Buffet : Député (Vosges) de 1848 à 1876, 5 mandats (Deuxième République ; Second Empire - Corps législatif ; Assemblée Nationale). Sénateur de 1876 à 1898. A siégé dans les deux chambres. A présidé l'Assemblée au moins un an.
     75.0  legendaire  Paul Deschanel : Député (Eure-et-Loir) de 1885 à 1920, 9 mandats (Troisième République - Chambre des députés). Sénateur de 1921 à 1922. A siégé dans les deux chambres. A présidé l'Assemblée au moins un an.
     75.0  legendaire  Gaston Doumergue : Député (Gard) de 1893 à 1910, 4 mandats (Troisième République - Chambre des députés). Sénateur de 1910 à 1924. A siégé dans les deux chambres. A présidé la seconde chambre au moins un an.
     75.0  legendaire  Henri, Antonin Dubost : Député (Isère) de 1880 à 1897, 5 mandats (Troisième République - Chambre des députés). Sénateur de 1897 à 1921. A siégé dans les deux chambres. A présidé la seconde chambre au moins un an.
     75.0  legendaire  Edgar Faure : Député (Jura, Doubs) de 1946 à 1980, 7 mandats (Quatrième République - Assemblée nationale ; Cinquième République - Assemblée nationale). Sénateur de 1959 à 1988. A siégé dans les deux chambres. A présidé l'Assemblée au moins un an.
     75.0  legendaire  Edouard Herriot : Député (Rhône) de 1919 à 1957, 10 mandats (Troisième République - Chambre des députés ; Gouvernement provisoire de la République française ; Quatrième République - Assemblée nationale). Sénateur de 1912 à 1919. A siégé dans les deux chambres. A présidé l'Assemblée au moins un an.
-    75.0  legendaire  Jules, Emile Jeanneney : Député (Haute-Saône) de 1902 à 1909, 2 mandats (Troisième République - Chambre des députés). Sénateur de 1909 à 1944. A siégé dans les deux chambres. A présidé la seconde chambre au moins un an.

@@ -5,8 +5,10 @@
  "libelle": "A présidé la seconde chambre au moins un an",
  "source": "https://www.senat.fr/connaitre-le-senat/lhistoire-du-senat/dossiers-dhistoire/les-presidents-de-la-seconde-chambre-du-parlement/les-presidents-de-la-seconde-chambre-du-parlement.html",
  "ids": [
-  252,
   1083,
+  12884,
+  15727,
+  252,
   2569,
   2570,
   2632,
@@ -20,7 +22,9 @@
   8564,
   8640,
   9272,
-  12884,
-  15727
+  "S000211",
+  "S68036E",
+  "S86034E",
+  "S98006P"
  ]
 }

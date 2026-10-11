@@ -1,0 +1,15 @@
+Sénateurs : 2012 ; mandats : 3348 ; mandats sans fiche générale : 0
+Sans date de naissance : 0
+Sans aucun mandat : 165
+Décennie du premier mandat :
+  1870s : 1
+  1940s : 1
+  1950s : 316
+  1960s : 131
+  1970s : 235
+  1980s : 254
+  1990s : 209
+  2000s : 246
+  2010s : 351
+  2020s : 103
+  sans mandat daté : 165
