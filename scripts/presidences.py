@@ -21,6 +21,7 @@ import re
 import sys
 import time
 import unicodedata
+import urllib.error
 import urllib.request
 from collections import defaultdict
 from datetime import date
@@ -30,6 +31,7 @@ from urllib.parse import urljoin
 
 sys.path.insert(0, os.path.dirname(__file__))
 from cartes import lire_date  # noqa: E402
+from sycomore import lignes_de  # noqa: E402
 
 PAGE = ("https://www2.assemblee-nationale.fr/decouvrir-l-assemblee/histoire/"
         "les-presidents-de-l-assemblee-nationale-depuis-17893")
@@ -40,14 +42,20 @@ rapport = []
 
 
 def telecharger(url):
-    time.sleep(1)
-    req = urllib.request.Request(url, headers={"User-Agent": UA})
-    try:
-        with urllib.request.urlopen(req, timeout=60) as r:
-            return r.read().decode("utf-8", errors="replace")
-    except Exception as e:  # le rapport dira quelle page a échoué
-        rapport.append(f"ÉCHEC {url} : {e}")
-        return ""
+    for attente in (0, 20, 60):
+        time.sleep(1 + attente)
+        req = urllib.request.Request(url, headers={"User-Agent": UA})
+        try:
+            with urllib.request.urlopen(req, timeout=60) as r:
+                return r.read().decode("utf-8", errors="replace")
+        except urllib.error.HTTPError as e:
+            erreur = e
+            if e.code < 500:
+                break
+        except Exception as e:
+            erreur = e
+    rapport.append(f"ÉCHEC {url} : {erreur}")
+    return ""
 
 
 class Tables(HTMLParser):
@@ -100,8 +108,19 @@ class Tables(HTMLParser):
 
 
 def lire(url):
+    html = telecharger(url)
     t = Tables()
-    t.feed(telecharger(url))
+    t.feed(html)
+    t.texte = []
+    if not t.lignes and html:
+        lignes = [x for _, x in lignes_de(html)]
+        if "Contenu de l'article" in lignes:
+            lignes = lignes[lignes.index("Contenu de l'article") + 1:]
+        t.texte = lignes[:60]
+        for i, x in enumerate(lignes[:-1]):
+            m = re.match(r"(?:Du|Depuis le)\s+(.+?)(?:\s+au\s+(.+))?$", x)
+            if m and lire_date(m.group(1)):
+                t.lignes.append((None, [m.group(1), m.group(2) or "", lignes[i + 1]]))
     return t
 
 
@@ -140,30 +159,62 @@ def siege_le(carte, jour):
     return False
 
 
-def rattacher(nom, jour, cartes, index):
+def siege_pendant(carte, debut, fin):
+    for m in carte["mandats"]:
+        if m["chambre"] != "AN" or not m["debut"]:
+            continue
+        mf = date.fromisoformat(m["fin"]) if m["fin"] else date.today()
+        if date.fromisoformat(m["debut"]) <= fin and mf >= debut:
+            return True
+    return False
+
+
+def departage(js, candidats):
+    """Plus de jetons communs ; à égalité, celui dont le dernier jeton est le nom cherché."""
+    def note(c):
+        jc = jetons(c["nom"] or "")
+        return (len(set(js) & set(jc)), 1 if jc and jc[-1] == js[-1] else 0)
+    notes = sorted(((note(c), c) for c in candidats), key=lambda x: x[0], reverse=True)
+    if len(notes) > 1 and notes[0][0] == notes[1][0]:
+        return None, notes
+    return notes[0][1], notes
+
+
+def rattacher(nom, jour, cartes, index, fin=None):
     js = jetons(nom)
     if not js:
         return None, "nom vide"
-    candidats = [c for c in index.get(js[-1], []) if siege_le(c, jour)]
+    present = (lambda c: siege_pendant(c, jour, fin)) if fin else (lambda c: siege_le(c, jour))
+    candidats = [c for c in index.get(js[-1], []) if present(c)]
+    if not candidats:
+        # Nom suivi d'un complément géographique (« Leclerc du Maine-et-Loire ») : autres jetons
+        for j in js[1:-1]:
+            autres = [c for c in index.get(j, []) if present(c)
+                      and jetons(c["nom"] or "")[-1:] == [j]]
+            if autres:
+                c, notes = departage(js, autres)
+                if c:
+                    return c, "NOM PARTIEL, à vérifier"
     if not candidats:
         # Graphie voisine (Reubell / Rewbell...) parmi les députés en fonction ce jour-là
         proches = []
-        for c in en_fonction(jour, cartes):
+        for c in (en_fonction(jour, cartes) if not fin else [c for c in cartes if present(c)]):
             for j in jetons(c["nom"] or ""):
                 if SequenceMatcher(None, js[-1], j).ratio() >= 0.8:
                     proches.append(c)
                     break
-        if len(proches) == 1:
-            return proches[0], "GRAPHIE VOISINE, à vérifier"
+        if proches:
+            c, _ = departage(js, proches)
+            if c:
+                return c, "GRAPHIE VOISINE, à vérifier"
         return None, "aucun député de ce nom en fonction à cette date" + (
             " ; proches : " + " / ".join(f"{c['id']} {c['nom']}" for c in proches[:4]) if proches else "")
-    notes = sorted(((len(set(js) & set(jetons(c["nom"] or ""))), c) for c in candidats),
-                   key=lambda x: -x[0])
-    if len(notes) > 1 and notes[0][0] == notes[1][0]:
-        return None, "ambigu : " + " / ".join(f"{c['id']} {c['nom']}" for _, c in notes[:4])
-    if notes[0][0] < 2 and len(js) > 1:
-        return notes[0][1], "PRÉNOM NON CONCORDANT, à vérifier"
-    return notes[0][1], None
+    c, notes = departage(js, candidats)
+    if not c:
+        return None, "ambigu : " + " / ".join(f"{x['id']} {x['nom']}" for _, x in notes[:4])
+    if notes[0][0][0] < 2 and len(js) > 1:
+        return c, "PRÉNOM NON CONCORDANT, à vérifier"
+    return c, None
 
 
 def main():
@@ -190,6 +241,10 @@ def main():
             if t.lignes:
                 pages[u] = t
                 break
+            if t.texte:
+                rapport.append(f"ONGLET SANS DONNÉES LISIBLES : {titre} ({u}) ; début du texte :")
+                rapport.extend("    | " + x for x in t.texte[:25])
+                break
         else:
             rapport.append(f"ONGLET NON TROUVÉ : {titre} (essais : {', '.join(essais)})")
     rapport.append(f"Pages lues : {len(pages)}")
@@ -202,7 +257,7 @@ def main():
     vues, periodes, noms, alertes = set(), defaultdict(list), {}, defaultdict(set)
     for u, t in pages.items():
         for titre, (du, au, nom) in t.lignes:
-            if du.lower().startswith("du"):
+            if du.lower() in ("du", "de"):
                 continue  # ligne d'en-tête
             cle = (du, au, nom)
             if cle in vues:
@@ -212,28 +267,43 @@ def main():
                 rapport.append(f"ÉCARTÉ (présidence refusée) : {du} | {nom}")
                 continue
             d, f = lire_date(du), lire_date(au)
+            annuel = False
+            if not d and re.fullmatch(r"\d{4}", du) and re.fullmatch(r"\d{4}", au or ""):
+                # Source donnée à l'année : bornes extrêmes, durée seulement encadrée
+                annuel = True
+                d, f = date(int(du), 1, 1), date(int(au), 12, 31)
             if not d:
                 rapport.append(f"DATE ILLISIBLE : {du} | {au} | {nom}")
                 continue
             if f and f < d:
                 rapport.append(f"INCOHÉRENCE (fin avant début) : {du} | {au} | {nom}")
-            carte, motif = rattacher(nom, d, cartes, index)
+            carte, motif = rattacher(nom, d, cartes, index, f if annuel else None)
             if not carte:
                 rapport.append(f"NON RATTACHÉ ({motif}) : {du} | {au} | {nom}")
                 continue
             if motif:
                 alertes[carte["id"]].add(motif)
-            periodes[carte["id"]].append((d, f))
+            periodes[carte["id"]].append((d, f, annuel, int(au) - int(du) if annuel else None))
             noms[carte["id"]] = (nom, carte["nom"])
 
     longue, courte = [], []
     rapport.append("\nRattachements (vérifier chaque ligne) :")
+    indetermines = []
     for ident, ps in sorted(periodes.items()):
-        jours = sum(((f or d) - d).days for d, f in ps if not f or f >= d)
-        (longue if jours >= 365 else courte).append(ident)
+        precises = [(d, f) for d, f, a, _ in ps if not a]
+        jours = sum(((f or d) - d).days for d, f in precises if not f or f >= d)
+        ecarts = [e for *_, a, e in ps if a]
+        if jours >= 365 or any(e >= 2 for e in ecarts):
+            longue.append(ident)          # au moins un an, certain
+        elif any(e == 1 for e in ecarts):
+            indetermines.append(ident)    # « 1888-1889 » : entre un jour et deux ans
+        else:
+            courte.append(ident)
         officiel, fiche = noms[ident]
-        sans_fin = sum(1 for _, f in ps if not f)
-        rapport.append(f"  {ident:6d}  {jours:6d} j  {officiel}  ->  {fiche}"
+        sans_fin = sum(1 for _, f, a, _ in ps if not f and not a)
+        if ecarts:
+            jours = "années " + ", ".join(f"{d.year}-{f.year}" for d, f, a, _ in ps if a)
+        rapport.append(f"  {ident:6d}  {jours if isinstance(jours, str) else str(jours) + ' j':>12}  {officiel}  ->  {fiche}"
                        + (f"  ({sans_fin} période(s) sans date de fin, comptée(s) 0 jour)" if sans_fin else "")
                        + "".join(f"  [{a}]" for a in sorted(alertes[ident])))
 
@@ -247,8 +317,10 @@ def main():
         json.dump({"code": "presidence-an-courte", "points": 15, "plancher": None,
                    "libelle": "A présidé l'Assemblée", **commun,
                    "ids": courte}, f, ensure_ascii=False, indent=1)
-    rapport.insert(1, f"Présidents rattachés : {len(periodes)} "
-                      f"({len(longue)} au moins un an, {len(courte)} moins d'un an)")
+    rapport.insert(0, f"Présidents rattachés : {len(periodes)} ({len(longue)} au moins un an, "
+                      f"{len(courte)} moins d'un an, {len(indetermines)} indéterminés faute de dates précises)")
+    if indetermines:
+        rapport.append("\nDurée indéterminée (source à l'année, écart d'un an) : " + ", ".join(map(str, indetermines)))
     texte = "\n".join(rapport)
     with open(os.path.join(SORTIE, "presidences-rapport.txt"), "w", encoding="utf-8") as f:
         f.write(texte + "\n")
