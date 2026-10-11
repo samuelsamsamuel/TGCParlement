@@ -19,7 +19,7 @@ jobs:
 
       - name: Extraction
         env:
-          CONTACT: sdeazevedo@icloud.com
+          CONTACT: votre.adresse@exemple.fr
           BUDGET_MINUTES: "300"
         run: python3 scripts/sycomore.py
 
@@ -30,4 +30,5 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/sycomore
           git diff --cached --quiet || git commit -m "Sycomore : extraction du $(date -u +%Y-%m-%d)"
+          git pull --rebase
           git push
