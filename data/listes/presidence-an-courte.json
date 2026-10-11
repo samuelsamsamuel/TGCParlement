@@ -4,7 +4,7 @@
  "plancher": null,
  "libelle": "A présidé l'Assemblée",
  "source": "https://www2.assemblee-nationale.fr/decouvrir-l-assemblee/histoire/les-presidents-de-l-assemblee-nationale-depuis-17893",
- "ids_officiels_verifies": false,
+ "etabli_par": "rattachement automatique et décisions motivées, voir data/listes/rapports",
  "ids": [
   252,
   285,

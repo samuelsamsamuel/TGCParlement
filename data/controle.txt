@@ -7,6 +7,8 @@ Distinctions calculées :
   presidence-an-courte : 205
   presidence-an-longue : 35
   femmes-1945 : 33
+  presidence-senat-longue : 16
+  presidence-senat-courte : 5
 
 Répartition des raretés :
   legendaire : 541
@@ -116,13 +118,13 @@ Anomalies :
     12425
 
 Dix premières cartes :
-    75.0  legendaire  Léon, Victor, Auguste Bourgeois : Député (Marne) de 1888 à 1905, 5 mandats (Troisième République - Chambre des députés). Sénateur de 1905 à 1925. A siégé dans les deux chambres. A présidé l'Assemblée au moins un an.
+   115.0  legendaire  Léon, Victor, Auguste Bourgeois : Député (Marne) de 1888 à 1905, 5 mandats (Troisième République - Chambre des députés). Sénateur de 1905 à 1925. A siégé dans les deux chambres. A présidé l'Assemblée au moins un an. A présidé la seconde chambre au moins un an.
+    90.0  legendaire  Edme, Armand, Gaston d'Audiffret-Pasquier : Député (Orne) de 1871 à 1876, 1 mandat (Assemblée Nationale). Sénateur de 1875 à 1905. A siégé dans les deux chambres. A présidé l'Assemblée. A présidé la seconde chambre au moins un an.
+    90.0  legendaire  Paul Doumer : Député (Aisne, Yonne) de 1888 à 1910, 5 mandats (Troisième République - Chambre des députés). Sénateur de 1912 à 1931. A siégé dans les deux chambres. A présidé l'Assemblée. A présidé la seconde chambre au moins un an.
     75.0  legendaire  Louis, Joseph Buffet : Député (Vosges) de 1848 à 1876, 5 mandats (Deuxième République ; Second Empire - Corps législatif ; Assemblée Nationale). Sénateur de 1876 à 1898. A siégé dans les deux chambres. A présidé l'Assemblée au moins un an.
     75.0  legendaire  Paul Deschanel : Député (Eure-et-Loir) de 1885 à 1920, 9 mandats (Troisième République - Chambre des députés). Sénateur de 1921 à 1922. A siégé dans les deux chambres. A présidé l'Assemblée au moins un an.
+    75.0  legendaire  Gaston Doumergue : Député (Gard) de 1893 à 1910, 4 mandats (Troisième République - Chambre des députés). Sénateur de 1910 à 1924. A siégé dans les deux chambres. A présidé la seconde chambre au moins un an.
     75.0  legendaire  Edgar Faure : Député (Jura, Doubs) de 1946 à 1980, 7 mandats (Quatrième République - Assemblée nationale ; Cinquième République - Assemblée nationale). Sénateur de 1959 à 1988. A siégé dans les deux chambres. A présidé l'Assemblée au moins un an.
     75.0  legendaire  Edouard Herriot : Député (Rhône) de 1919 à 1957, 10 mandats (Troisième République - Chambre des députés ; Gouvernement provisoire de la République française ; Quatrième République - Assemblée nationale). Sénateur de 1912 à 1919. A siégé dans les deux chambres. A présidé l'Assemblée au moins un an.
+    75.0  legendaire  Jules, Emile Jeanneney : Député (Haute-Saône) de 1902 à 1909, 2 mandats (Troisième République - Chambre des députés). Sénateur de 1909 à 1944. A siégé dans les deux chambres. A présidé la seconde chambre au moins un an.
     75.0  legendaire  Louis Mermaz : Député (Isère) de 1967 à 2001, 7 mandats (Cinquième République - Assemblée nationale). Sénateur de 2001 à 2011. A siégé dans les deux chambres. A présidé l'Assemblée au moins un an.
-    75.0  legendaire  André, Marie, Jean-Jacques Dupin : Député (Nièvre, Sarthe) de 1815 à 1851, 13 mandats (Cent-Jours ; Seconde Restauration - Chambre des députés des départements ; Monarchie de Juillet - Chambre des députés ; Deuxième République). Sénateur de 1857 à 1865. A siégé dans les deux chambres. A présidé l'Assemblée au moins un an.
-    70.0  legendaire  Claude Bartolone : Député (Seine-St-Denis) de 1981 à 2017, 8 mandats (Cinquième République - Assemblée nationale). A présidé l'Assemblée au moins un an.
-    70.0  legendaire  Fernand, Emile, Honoré Bouisson : Député (Bouches-du-Rhône) de 1909 à 1942, 8 mandats (Troisième République - Chambre des députés). A présidé l'Assemblée au moins un an.
-    70.0  legendaire  Henri, Eugène Brisson : Député (Seine, Cher, Bouches-du-Rhône) de 1871 à 1912, 11 mandats (Assemblée Nationale ; Troisième République - Chambre des députés). A présidé l'Assemblée au moins un an.
