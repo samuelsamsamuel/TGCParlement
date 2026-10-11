@@ -21,6 +21,7 @@ from collections import Counter, defaultdict
 from datetime import date
 
 F_FICHES = os.path.join("data", "sycomore", "fiches.jsonl")
+F_SENATEURS = os.path.join("data", "senat", "senateurs.json")
 F_CARTES = os.path.join("data", "cartes.json")
 F_CONTROLE = os.path.join("data", "controle.txt")
 DOSSIER_LISTES = os.path.join("data", "listes")
@@ -158,6 +159,68 @@ def duree_jours(mandats):
     return total
 
 
+PARTICULES = {"de", "du", "des", "la", "le", "les", "d", "l", "dit", "ou"}
+
+
+def noms_cles(nom):
+    import unicodedata
+    t = unicodedata.normalize("NFKD", nom or "").encode("ascii", "ignore").decode().lower()
+    return set(w for w in re.findall(r"[a-z]+", t) if w not in PARTICULES)
+
+
+def cartes_senateurs(cartes, listes):
+    """Cartes des sénateurs absents de Sycomore (jamais députés), d'après l'open data du Sénat.
+    Un sénateur est réputé déjà présent si une fiche Sycomore porte un nom commun et la même
+    date de naissance (ou, à défaut de date identique, la même année, signalée en anomalie)."""
+    if not os.path.exists(F_SENATEURS):
+        anomalies["base des sénateurs absente"].append(F_SENATEURS)
+        return []
+    with open(F_SENATEURS, encoding="utf-8") as f:
+        senateurs = json.load(f)
+    par_date, par_annee = defaultdict(list), defaultdict(list)
+    for c in cartes:
+        if c["naissance"]:
+            par_date[c["naissance"]].append(c)
+            par_annee[c["naissance"][:4]].append(c)
+    nouvelles = []
+    for s in senateurs:
+        # Rapprochement sur le nom de famille entier (tous ses mots), jamais sur les prénoms
+        cles = noms_cles(s.get("nom_famille") or s["nom"])
+        if s["naissance"] and any(cles <= noms_cles(c["nom"]) for c in par_date[s["naissance"]]):
+            continue
+        proches = [c for c in par_annee[(s["naissance"] or "")[:4]] if cles and cles <= noms_cles(c["nom"])]
+        if s["naissance"] and proches:
+            anomalies["sénateur rapproché d'une fiche Sycomore par l'année seule"].append(
+                f"{s['matricule']} {s['nom']} ({s['naissance']}) -> {proches[0]['id']} {proches[0]['nom']} ({proches[0]['naissance']})")
+            continue
+        mandats = []
+        for m in s["mandats"]:
+            if not m["debut"]:
+                continue
+            fin = m["fin"]
+            en_cours = s["etat"] == "ACTIF" and (not fin or fin > AUJOURDHUI.isoformat())
+            mandats.append({"chambre": "Sénat",
+                            "fonction": ("Sénatrice" if s["sexe"] == "F" else "Sénateur")
+                                        + (f" ({s['circonscription']})" if s["circonscription"] else ""),
+                            "debut": m["debut"], "fin": None if en_cours else fin, "en_cours": en_cours})
+        if not mandats:
+            anomalies["sénateur sans mandat daté"].append(f"{s['matricule']} {s['nom']}")
+            continue
+        ident = "S" + s["matricule"]
+        jours = duree_jours(mandats)
+        annees = round(jours / 365.25, 1)
+        distinctions = [{"code": l["code"], "points": l["points"], "libelle": l["libelle"],
+                         "plancher": l.get("plancher")} for l in listes if ident in l["ids"]]
+        carte = {"id": ident, "nom": s["nom"], "sexe": s["sexe"], "naissance": s["naissance"],
+                 "lieu_naissance": None, "deces": s["deces"], "annees_mandat": annees,
+                 "mandats": mandats, "distinctions": distinctions,
+                 "score": round(min(annees, PLAFOND_ANS) * PTS_PAR_AN + sum(d["points"] for d in distinctions), 1),
+                 "source": f"https://data.senat.fr/les-senateurs/ (matricule {s['matricule']})"}
+        carte["texte"] = texte_carte(carte)
+        nouvelles.append(carte)
+    return nouvelles
+
+
 # --- Texte de la carte --------------------------------------------------------
 
 def annee(iso):
@@ -265,8 +328,11 @@ def main():
             carte["texte"] = texte_carte(carte)
             cartes.append(carte)
 
+    senateurs = cartes_senateurs(cartes, listes)
+    cartes.extend(senateurs)
+
     # Rareté par rang, puis planchers éventuels
-    cartes.sort(key=lambda c: (-c["score"], c["id"]))
+    cartes.sort(key=lambda c: (-c["score"], str(c["id"])))
     total = len(cartes)
     for rang, c in enumerate(cartes):
         part = (rang + 1) / total if total else 1
@@ -284,7 +350,8 @@ def main():
     dist = Counter(d["code"] for c in cartes for d in c["distinctions"])
     rar = Counter(c["rarete"] for c in cartes)
     with open(F_CONTROLE, "w", encoding="utf-8") as f:
-        f.write(f"Fiches lues : {dict(statuts)} ; cartes produites : {total}\n\n")
+        f.write(f"Fiches lues : {dict(statuts)} ; cartes produites : {total}, "
+                f"dont {len(senateurs)} sénateurs absents de Sycomore\n\n")
         f.write("Distinctions calculées :\n")
         for k, v in dist.most_common():
             f.write(f"  {k} : {v}\n")
