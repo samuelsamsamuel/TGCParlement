@@ -197,7 +197,15 @@ def cartes_senateurs(cartes, listes):
         meme_nom = lambda c: bool(cles) and cles <= noms_cles(nom_famille_sycomore(c["nom"]))
         if s["naissance"] and any(meme_nom(c) for c in par_date[s["naissance"]]):
             continue
-        proches = [c for c in par_annee[(s["naissance"] or "")[:4]] if meme_nom(c)]
+        # Même année seulement : il faut aussi le même premier prénom, et une date qui ne diffère
+        # que par le jour ou que par le mois (erreur de saisie plausible dans l'une des sources)
+        prenom = noms_cles((s.get("prenom") or s["nom"].split(" ")[0]).split(" ")[0].split("-")[0])
+
+        def date_voisine(c):
+            a, b = s["naissance"], c["naissance"]
+            return a[5:7] == b[5:7] or a[8:10] == b[8:10]
+        proches = [c for c in par_annee[(s["naissance"] or "")[:4]]
+                   if meme_nom(c) and prenom and prenom <= noms_cles(c["nom"]) and date_voisine(c)]
         if s["naissance"] and proches:
             anomalies["sénateur rapproché d'une fiche Sycomore par l'année seule"].append(
                 f"{s['matricule']} {s['nom']} ({s['naissance']}) -> {proches[0]['id']} {proches[0]['nom']} ({proches[0]['naissance']})")
