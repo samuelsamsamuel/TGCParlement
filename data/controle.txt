@@ -4,10 +4,14 @@ Distinctions calculées :
   deux-chambres : 1651
   1789 : 1317
   convention : 905
+  ministre : 419
+  secretaire-etat : 275
   presidence-an-courte : 205
   presidence-an-longue : 35
   femmes-1945 : 33
+  chef-gouvernement : 25
   presidence-senat-longue : 21
+  chef-etat : 7
   presidence-senat-courte : 5
 
 Répartition des raretés :
@@ -144,13 +148,13 @@ Anomalies :
     21046E Corinne Bourcier (ACTIF)
 
 Dix premières cartes :
+   127.5  legendaire  Jacques Chirac : Député (Corrèze) de 1967 à 1995, 9 mandats (Cinquième République - Assemblée nationale). A été chef de l'État. A dirigé le Gouvernement. A été ministre. A été secrétaire d'État.
+   122.1  legendaire  Laurent Fabius : Député (Seine-Maritime) de 1978 à 2012, 9 mandats (Cinquième République - Assemblée nationale). A dirigé le Gouvernement. A été ministre. A présidé l'Assemblée au moins un an.
+   120.0  legendaire  Alain Poher : Sénateur (Val-de-Marne) de 1958 à 1995. A été chef de l'État. A présidé la seconde chambre au moins un an.
    115.0  legendaire  Léon, Victor, Auguste Bourgeois : Député (Marne) de 1888 à 1905, 5 mandats (Troisième République - Chambre des députés). Sénateur de 1905 à 1925. A siégé dans les deux chambres. A présidé l'Assemblée au moins un an. A présidé la seconde chambre au moins un an.
+   110.0  legendaire  Jacques, Michel, Pierre Chaban-Delmas : Député (Gironde) de 1946 à 1997, 14 mandats (Quatrième République - Assemblée nationale ; Cinquième République - Assemblée nationale). A dirigé le Gouvernement. A présidé l'Assemblée au moins un an.
+    91.1  legendaire  Georges Pompidou : Député (Cantal) de 1967 à 1969, 2 mandats (Cinquième République - Assemblée nationale). A été chef de l'État. A dirigé le Gouvernement.
+    90.6  legendaire  Valéry Giscard d'Estaing : Député (Puy-de-Dôme) de 1956 à 2002, 11 mandats (Quatrième République - Assemblée nationale ; Cinquième République - Assemblée nationale). A été chef de l'État. A été ministre. A été secrétaire d'État.
     90.0  legendaire  Edme, Armand, Gaston d'Audiffret-Pasquier : Député (Orne) de 1871 à 1876, 1 mandat (Assemblée Nationale). Sénateur de 1875 à 1905. A siégé dans les deux chambres. A présidé l'Assemblée. A présidé la seconde chambre au moins un an.
     90.0  legendaire  Paul Doumer : Député (Aisne, Yonne) de 1888 à 1910, 5 mandats (Troisième République - Chambre des députés). Sénateur de 1912 à 1931. A siégé dans les deux chambres. A présidé l'Assemblée. A présidé la seconde chambre au moins un an.
-    75.0  legendaire  André, Marie, Jean-Jacques Dupin : Député (Nièvre, Sarthe) de 1815 à 1851, 13 mandats (Cent-Jours ; Seconde Restauration - Chambre des députés des départements ; Monarchie de Juillet - Chambre des députés ; Deuxième République). Sénateur de 1857 à 1865. A siégé dans les deux chambres. A présidé l'Assemblée au moins un an.
-    75.0  legendaire  Louis, Joseph Buffet : Député (Vosges) de 1848 à 1876, 5 mandats (Deuxième République ; Second Empire - Corps législatif ; Assemblée Nationale). Sénateur de 1876 à 1898. A siégé dans les deux chambres. A présidé l'Assemblée au moins un an.
-    75.0  legendaire  Paul Deschanel : Député (Eure-et-Loir) de 1885 à 1920, 9 mandats (Troisième République - Chambre des députés). Sénateur de 1921 à 1922. A siégé dans les deux chambres. A présidé l'Assemblée au moins un an.
-    75.0  legendaire  Gaston Doumergue : Député (Gard) de 1893 à 1910, 4 mandats (Troisième République - Chambre des députés). Sénateur de 1910 à 1924. A siégé dans les deux chambres. A présidé la seconde chambre au moins un an.
-    75.0  legendaire  Henri, Antonin Dubost : Député (Isère) de 1880 à 1897, 5 mandats (Troisième République - Chambre des députés). Sénateur de 1897 à 1921. A siégé dans les deux chambres. A présidé la seconde chambre au moins un an.
-    75.0  legendaire  Edgar Faure : Député (Jura, Doubs) de 1946 à 1980, 7 mandats (Quatrième République - Assemblée nationale ; Cinquième République - Assemblée nationale). Sénateur de 1959 à 1988. A siégé dans les deux chambres. A présidé l'Assemblée au moins un an.
-    75.0  legendaire  Edouard Herriot : Député (Rhône) de 1919 à 1957, 10 mandats (Troisième République - Chambre des députés ; Gouvernement provisoire de la République française ; Quatrième République - Assemblée nationale). Sénateur de 1912 à 1919. A siégé dans les deux chambres. A présidé l'Assemblée au moins un an.
+    90.0  legendaire  Edgar Faure : Député (Jura, Doubs) de 1946 à 1980, 7 mandats (Quatrième République - Assemblée nationale ; Cinquième République - Assemblée nationale). Sénateur de 1959 à 1988. A siégé dans les deux chambres. A été ministre. A présidé l'Assemblée au moins un an.
