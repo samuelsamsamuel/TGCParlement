@@ -35,7 +35,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/senat data/listes data/cartes.json data/controle.txt
+          git add -A data
           git diff --cached --quiet || git commit -m "Sénateurs, listes fermées et cartes du $(date -u +%Y-%m-%d)"
           git pull --rebase
           git push
