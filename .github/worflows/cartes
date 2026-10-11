@@ -1,0 +1,25 @@
+name: Construction des cartes
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  cartes:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Construction
+        run: python3 scripts/cartes.py
+
+      - name: Enregistrement
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/cartes.json data/controle.txt
+          git diff --cached --quiet || git commit -m "Cartes : construction du $(date -u +%Y-%m-%d)"
+          git push
