@@ -1,0 +1,92 @@
+Pages lues : 1
+Présidents rattachés : 45 (0 au moins un an, 45 moins d'un an)
+    64 lignes  https://www2.assemblee-nationale.fr/decouvrir-l-assemblee/histoire/les-presidents-de-l-assemblee-nationale-depuis-17893
+Aucun onglet trouvé par les liens ; attributs relevés :
+  a[id]=node_9001
+  a[name]=node_9001
+  a[data-url]=/decouvrir-l-assemblee/histoire/les-presidents-de-l-assemblee-nationale-depuis-17893#node_9001
+  a[data-target]=#node_9001
+  a[data-url]=/decouvrir-l-assemblee/histoire/les-presidents-de-l-assemblee-nationale-depuis-17893#node_9002
+  a[data-target]=#node_9002
+  a[data-url]=/decouvrir-l-assemblee/histoire/les-presidents-de-l-assemblee-nationale-depuis-17893#node_9003
+  a[data-target]=#node_9003
+  a[data-url]=/decouvrir-l-assemblee/histoire/les-presidents-de-l-assemblee-nationale-depuis-17893#node_9004
+  a[data-target]=#node_9004
+  a[data-url]=/decouvrir-l-assemblee/histoire/les-presidents-de-l-assemblee-nationale-depuis-17893#node_9006
+  a[data-target]=#node_9006
+  a[data-url]=/decouvrir-l-assemblee/histoire/les-presidents-de-l-assemblee-nationale-depuis-17893#node_9008
+  a[data-target]=#node_9008
+  a[data-url]=/decouvrir-l-assemblee/histoire/les-presidents-de-l-assemblee-nationale-depuis-17893#node_9009
+  a[data-target]=#node_9009
+  a[data-url]=/decouvrir-l-assemblee/histoire/les-presidents-de-l-assemblee-nationale-depuis-17893#node_9010
+  a[data-target]=#node_9010
+  a[data-url]=/decouvrir-l-assemblee/histoire/les-presidents-de-l-assemblee-nationale-depuis-17893#node_9011
+  a[data-target]=#node_9011
+  a[data-url]=/decouvrir-l-assemblee/histoire/les-presidents-de-l-assemblee-nationale-depuis-17893#node_9012
+  a[data-target]=#node_9012
+  a[data-url]=/decouvrir-l-assemblee/histoire/les-presidents-de-l-assemblee-nationale-depuis-17893#node_9013
+  a[data-target]=#node_9013
+  a[data-url]=/decouvrir-l-assemblee/histoire/les-presidents-de-l-assemblee-nationale-depuis-17893#node_9014
+  a[data-target]=#node_9014
+  a[data-url]=/decouvrir-l-assemblee/histoire/les-presidents-de-l-assemblee-nationale-depuis-17893#node_9015
+  a[data-target]=#node_9015
+  a[data-url]=/decouvrir-l-assemblee/histoire/les-presidents-de-l-assemblee-nationale-depuis-17893#node_9018
+  a[data-target]=#node_9018
+  a[data-url]=/decouvrir-l-assemblee/histoire/les-presidents-de-l-assemblee-nationale-depuis-17893#node_43424
+  a[data-target]=#node_43424
+ÉCARTÉ (présidence refusée) : 3 juillet 1789 | Louis-Philippe d'Orléans, dit Philippe Égalité(refuse la présidence)
+ÉCARTÉ (présidence refusée) : 3 août 1789 | Jacques-Guillaume Thouret(refuse la Présidence)
+INCOHÉRENCE (fin avant début) : 10 octobre 1989 | 27 octobre 1789 | Emmanuel Fréteau de Saint Just
+NON RATTACHÉ (aucun député de ce nom en fonction à cette date) : 10 octobre 1989 | 27 octobre 1789 | Emmanuel Fréteau de Saint Just
+NON RATTACHÉ (aucun député de ce nom en fonction à cette date) : 2 février 1790 | 15 février 1790 | Jean-Xavier Bureaux de Pusy
+NON RATTACHÉ (aucun député de ce nom en fonction à cette date) : 27 mai 1790 | 7 juin 1790 | Bon-Albert Briois de Baumetz
+NON RATTACHÉ (aucun député de ce nom en fonction à cette date) : 11 septembre 1790 | 24 septembre 1790 | Jean-Xavier Bureaux de Pusy
+NON RATTACHÉ (aucun député de ce nom en fonction à cette date) : 23 avril 1791 | 8 mai 1791 | Jean-François Reubell
+NON RATTACHÉ (aucun député de ce nom en fonction à cette date) : 24 mai 1791 | 5 juin 1791 | Jean-Xavier Bureaux de Pusy
+
+Rattachements (vérifier chaque ligne) :
+   10580      16 j  Jean-Sylvain Bailly  ->  Jean, Sylvain Bailly
+   11492      15 j  Philippe-Antoine Merlin de Douai  ->  Philippe, Antoine Merlin de Douai
+   11663      11 j  Raymond de Boisgelin de Cucé  ->  Jean-de-Dieu, Raymond Boisgelin de Cucé
+   11665      42 j  Antoine d'André  ->  Antoine, Balthazar, Joseph d'André
+   11765      15 j  Honoré-Gabriel de Mirabeau  ->  Honoré, Gabriel Riquetti de Mirabeau
+   11791      15 j  Charles de Lameth  ->  Charles, Malo, François de Lameth
+   11816      11 j  Charles-Maurice de Talleyrand-Périgord  ->  Charles, Maurice de Talleyrand-Périgord Prince de Bénévent
+   11827      13 j  Théodore Vernier  ->  Théodore Vernier de Montorient
+   11858      13 j  Alexandre de Lameth  ->  Alexandre, Théodore, Victor de Lameth
+   11906      11 j  Charles-Antoine Chasset  ->  Charles Antoine Chasset
+   11942       8 j  Jean-Louis Gouttes  ->  Jean-Louis Gouttes
+   11945      11 j  Henri-Joseph de Jessé  ->  Joseph, Henri de Jessé-Levas
+   11956      26 j  Alexandre de Beauharnais  ->  Alexandre, François, Marie de Beauharnais
+   12211      16 j  Jérôme Pétion de Villeneuve  ->  Jérôme Pétion de Villeneuve
+   12235      13 j  Antoine Barnave  ->  Antoine, Joseph, Marie, Pierre Barnave
+   12243      14 j  Armand-Gaston Camus  ->  Armand, Gaston Camus
+   12256      11 j  Adrien Duport  ->  Adrien, Jean-François Duport
+   12259       9 j  Baptiste Grégoire  ->  Henri, Jean-Baptiste Grégoire
+   12267      11 j  Jean-Paul Rabaut Saint-Étienne  ->  Jean-Paul Rabaut-Saint-Étienne
+   12322      12 j  Emmanuel-Joseph Sieyès  ->  Emmanuel, Joseph Sieyès
+   12352      13 j  Louis-Michel Le Peletier de Saint-Fargeau  ->  Louis, Michel Lepeletier de Saint-Fargeau
+   12378      15 j  François-Alexandre de La Rochefoucauld-Liancourt  ->  François, Alexandre, Frédéric de La Rochefoucauld-Liancourt
+   12379      12 j  Luc Dauchy  ->  Hue, Jacques, Edouard Dauchy
+   12383      12 j  Charles-Louis-Victor de Broglie  ->  Charles, Louis, Victor de Broglie
+   12426      14 j  Jean-George Lefranc de Pompignan  ->  Jean, Georges Lefranc de Pompignan
+   12434       1 j  François-Henri de Virieu(démissionnaire)  ->  François, Henri de Virieu
+   12439      11 j  Jean-Joseph Mounier  ->  Jean, Joseph Mounier
+   12444      13 j  Jean-Baptiste-Charles Chabroud  ->  Jean-Baptiste, Charles Chabroud
+   12633      16 j  Emmanuel Fréteau de Saint Just  ->  Emmanuel, Marie, Michel, Philippe Fréteau de Saint-Just
+   12811      28 j  Charles-François de Bonnay  ->  Charles, François de Bonnay  (1 période(s) sans date de fin, comptée(s) 0 jour)
+   12822      10 j  Joseph Defermon des Chapelières  ->  Jacques Defermon des Chapelières
+   12824      39 j  Jean-Nicolas Démeunier  ->  Jean, Nicolas Démeunier
+   12828      13 j  Pierre-Samuel du Pont de Nemours  ->  Pierre, Samuel Dupont de Nemours
+   12833      26 j  Jean-Louis Emmery  ->  Jean-Louis, Claude Emmery de Grozyeulx
+   12844      13 j  César-Guillaume de La Luzerne  ->  César, Guillaume de La Luzerne
+   12853      13 j  Isaac-René-Guy Le Chapelier  ->  Isaac, René, Guy Le Chapelier
+   12867      15 j  Jean-François de Menou  ->  Jean-François Menou de Boussay
+   12871      15 j  Anne-Pierre de Montesquiou-Fezensac  ->  Anne, Pierre de Montesquiou-Fezensac
+   12876      27 j  François-Xavier de Montesquiou-Fezensac  ->  François, Xavier, Marc, Antoine de Montesquiou-Fezensac
+   12879      15 j  Louis-Marie de Noailles  ->  Louis, Marie de Noailles
+   12951      14 j  Guy-Jean-Baptiste Target  ->  Guy, Jean-Baptiste Target
+   12954      46 j  Jacques-Guillaume Thouret  ->  Jacques, Guillaume Thouret
+   12955      10 j  Jean-Baptiste Treilhard  ->  Jean-Baptiste Treilhard
+   12956       9 j  François-Denis Tronchet  ->  François, Denis Tronchet
+   13266      26 j  Stanislas de Clermont-Tonnerre  ->  Stanislas, Marie, Adélaïde de Clermont-Tonnerre
