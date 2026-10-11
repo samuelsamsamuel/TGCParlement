@@ -317,6 +317,8 @@ def main():
             pages[u] = lire(u)
     for noeud, titre in principale.onglets:
         essais = [PAGE + "/" + slug(titre), urljoin(PAGE, "/node/" + noeud)]
+        if "depuis 1958" in titre:
+            continue  # onglet illustré seulement ; voir data/sources/presidents-ve.json
         for u in essais:
             if u in pages:
                 break
@@ -330,8 +332,17 @@ def main():
                 break
         else:
             rapport.append(f"ONGLET NON TROUVÉ : {titre} (essais : {', '.join(essais)})")
-    pages_ve = lire_ve()
-    pages.update(pages_ve)
+    # Ve République : le diaporama du site ne se lit pas automatiquement ; transcription
+    # de la fiche officielle n° 12, conservée avec sa source dans data/sources/.
+    f_ve = os.path.join("data", "sources", "presidents-ve.json")
+    if os.path.exists(f_ve):
+        with open(f_ve, encoding="utf-8") as f:
+            ve = json.load(f)
+        t = Tables()
+        t.lignes = [(None, l) for l in ve["lignes"]]
+        pages[ve["url"]] = t
+    else:
+        rapport.append(f"Source de la Ve République absente : {f_ve}")
     rapport.append(f"Pages lues : {len(pages)}")
     for u, t in pages.items():
         rapport.append(f"  {len(t.lignes):4d} lignes  {u}")
