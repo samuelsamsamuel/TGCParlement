@@ -15,7 +15,7 @@ jobs:
 
       - name: Présidences de l'Assemblée
         env:
-          CONTACT: votre.adresse@exemple.fr
+          CONTACT: sdeazevedo@icloud.com
         run: python3 scripts/presidences.py
 
       - name: Enregistrement
