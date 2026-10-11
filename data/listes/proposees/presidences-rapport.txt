@@ -1,4 +1,4 @@
-Présidents rattachés : 239 (35 au moins un an, 196 moins d'un an, 8 indéterminés faute de dates précises)
+Présidents rattachés : 240 (35 au moins un an, 205 moins d'un an, dont 8 indéterminés faute de dates précises)
 Pages lues : 16
     64 lignes  https://www2.assemblee-nationale.fr/decouvrir-l-assemblee/histoire/les-presidents-de-l-assemblee-nationale-depuis-17893
     64 lignes  https://www2.assemblee-nationale.fr/decouvrir-l-assemblee/histoire/les-presidents-de-l-assemblee-nationale-depuis-17893/assemblee-nationale-constituante-1789-1791
@@ -19,12 +19,9 @@ Pages lues : 16
 ÉCARTÉ (présidence refusée) : 3 juillet 1789 | Louis-Philippe d'Orléans, dit Philippe Égalité(refuse la présidence)
 ÉCARTÉ (présidence refusée) : 3 août 1789 | Jacques-Guillaume Thouret(refuse la Présidence)
 INCOHÉRENCE (fin avant début) : 10 octobre 1989 | 27 octobre 1789 | Emmanuel Fréteau de Saint Just
-NON RATTACHÉ (aucun député de ce nom en fonction à cette date) : 10 octobre 1989 | 27 octobre 1789 | Emmanuel Fréteau de Saint Just
-NON RATTACHÉ (ambigu : 12496 Robert, Thomas Lindet / 12859 Jean-Baptiste, Robert Lindet) : 21 avril 1794 | 5 mai 1794 | Robert Lindet
-NON RATTACHÉ (ambigu : 12843 Jean-Baptiste Jourdan / 10378 Jean-Baptiste Jourdan) : 22 septembre 1797 | 21 octobre 1797 | Jean-Baptiste Jourdan
-NON RATTACHÉ (ambigu : 12843 Jean-Baptiste Jourdan / 10378 Jean-Baptiste Jourdan) : 22 septembre 1798 | 21 octobre 1798 | Jean-Baptiste Jourdan
-NON RATTACHÉ (aucun député de ce nom en fonction à cette date) : 6 janvier 1802 | 21 janvier 1802 | Nicolas-Bernard Belzais-Courménil
-NON RATTACHÉ (aucun député de ce nom en fonction à cette date) : 23 novembre 1813 | 4 juin 1814 | Claude-Ambroise Régnier
+EXCLU PAR DÉCISION (Exclue : la liste officielle dit « Robert Lindet » ; les deux frères, tous deux conventionnels, portent le prénom Robert dans Sycomore (« Robert, Thomas » et « Jean-Baptiste, Robert »), et les sources consultées divergent sur l'attribution. Non vérifiable en l'état.) : 21 avril 1794 | 5 mai 1794 | Robert Lindet
+EXCLU PAR DÉCISION (Exclue : aucune fiche Sycomore retrouvée sous ce nom ou une graphie voisine pour un député en fonction à cette date. À reprendre si une fiche est identifiée.) : 6 janvier 1802 | 21 janvier 1802 | Nicolas-Bernard Belzais-Courménil
+EXCLU PAR DÉCISION (Exclue : aucun mandat de député de ce nom à cette date dans Sycomore ; la règle commune (titulaire siégeant comme parlementaire élu) n'est pas vérifiable.) : 23 novembre 1813 | 4 juin 1814 | Claude-Ambroise Régnier
 EXCLU PAR DÉCISION (Exclue : assemblée consultative non élue, sans mandat de député à cette date. Règle commune : une présidence n'est comptée que si son titulaire siège comme parlementaire élu.) : 3 novembre 1943 | 25 juillet 1944 | Félix Gouin
 EXCLU PAR DÉCISION (Exclue : assemblée consultative non élue, sans mandat de député à cette date. Règle commune : une présidence n'est comptée que si son titulaire siège comme parlementaire élu.) : 7 novembre 1944 | 3 août 1945 | Félix Gouin
 
@@ -69,6 +66,7 @@ Rattachements (vérifier chaque ligne) :
    10133  années 1893-1894  Charles Dupuy  ->  Charles, Alexandre Dupuy
    10179  années 1958-1969, 1978-1981, 1986-1988  Jacques Chaban-Delmas  ->  Jacques, Michel, Pierre Chaban-Delmas
    10199          82 j  Jacques Laffitte  ->  Jacques Laffitte
+   10378          58 j  Jean-Baptiste Jourdan  ->  Jean-Baptiste Jourdan  [DÉCISION : Président du Conseil des Cinq-Cents : Jean-Baptiste Jourdan, élu de la Haute-Vienne en 1797 ; la fiche est désignée par ce département d'élection, lu dans Sycomore.]
    10580          16 j  Jean-Sylvain Bailly  ->  Jean, Sylvain Bailly
    11005          26 j  Hippolyte Passy  ->  Hippolyte, Philibert Passy
    11006        3153 j  Auguste Ravez  ->  Auguste, Simon, Hubert, Marie Ravez
@@ -157,7 +155,7 @@ Rattachements (vérifier chaque ligne) :
    12352          13 j  Louis-Michel Le Peletier de Saint-Fargeau  ->  Louis, Michel Lepeletier de Saint-Fargeau
    12364          44 j  Pierre-Antoine Laloy  ->  Pierre, Antoine Laloy
    12378          15 j  François-Alexandre de La Rochefoucauld-Liancourt  ->  François, Alexandre, Frédéric de La Rochefoucauld-Liancourt
-   12379          12 j  Luc Dauchy  ->  Hue, Jacques, Edouard Dauchy  [PRÉNOM NON CONCORDANT, à vérifier]
+   12379          12 j  Luc Dauchy  ->  Hue, Jacques, Edouard Dauchy  [DÉCISION : seule fiche Sycomore de ce nom avec un mandat de député à cette date ; prénom divergent entre la liste officielle et Sycomore, rattachement retenu sur la concordance du nom, de l'assemblée et de la date]
    12383          12 j  Charles-Louis-Victor de Broglie  ->  Charles, Louis, Victor de Broglie
    12386          29 j  Jean-François Reubell  ->  Jean-François Rewbell  [GRAPHIE VOISINE, à vérifier]
    12426          14 j  Jean-George Lefranc de Pompignan  ->  Jean, Georges Lefranc de Pompignan
@@ -167,7 +165,7 @@ Rattachements (vérifier chaque ligne) :
    12449          15 j  Claude-Pierre Dellay-d'Agier  ->  Claude, Pierre de Dellay-d'Agier ou Delay
    12456          62 j  François Lamarque(par intérim)  ->  François Lamarque
    12620          15 j  Marie-Félix Faulcon  ->  Marie, Félix Faulcon de la Parisière
-   12633          16 j  Emmanuel Fréteau de Saint Just  ->  Emmanuel, Marie, Michel, Philippe Fréteau de Saint-Just
+   12633          16 j  Emmanuel Fréteau de Saint Just  ->  Emmanuel, Marie, Michel, Philippe Fréteau de Saint-Just  [DÉCISION : Coquille manifeste de la source : la ligne se situe entre les présidences du 28 septembre et du 28 octobre 1789 et finit le 27 octobre 1789. Rattachée à la même fiche que sa seconde présidence ; la période, incohérente telle qu'imprimée, n'est pas comptée dans la durée.]
    12662          15 j  Jean-Baptiste Girot-Pouzol  ->  Jean-Baptiste Girot de Pouzol
    12691          43 j  Gustave Doulcet de Pontécoulant  ->  Louis, Gustave Doulcet de Pontécoulant
    12723          15 j  Louis Ramond de Carbonnières  ->  Louis, François, Elizabeth Ramond de Carbonnières
@@ -192,7 +190,7 @@ Rattachements (vérifier chaque ligne) :
    12819          29 j  Aaron-Jean-François Crassous  ->  Aaron, Jean-François Crassous
    12820          29 j  Jacques-Antoine Creuzé-Latouche  ->  Jacques, Antoine Creuzé-Latouche
    12821          76 j  Pierre Daunou  ->  Pierre, Claude, François Daunou  [PRÉNOM NON CONCORDANT, à vérifier]
-   12822          52 j  Joseph Defermon des Chapelières  ->  Jacques Defermon des Chapelières
+   12822          52 j  Joseph Defermon des Chapelières  ->  Jacques Defermon des Chapelières  [DÉCISION : seule fiche Sycomore de ce nom avec un mandat de député à cette date ; prénom divergent entre la liste officielle et Sycomore, rattachement retenu sur la concordance du nom, de l'assemblée et de la date]
    12824          39 j  Jean-Nicolas Démeunier  ->  Jean, Nicolas Démeunier
    12825          15 j  Jacques Devismes  ->  Jacques, François, Laurent Devismes
    12826          12 j  Claude Dorisy  ->  Claude Dorizy  [GRAPHIE VOISINE, à vérifier]
@@ -202,7 +200,7 @@ Rattachements (vérifier chaque ligne) :
    12831          15 j  Charles-François Dupuis  ->  Charles, François Dupuis
    12833          26 j  Jean-Louis Emmery  ->  Jean-Louis, Claude Emmery de Grozyeulx
    12836          13 j  Antoine Français de Nantes  ->  Antoine Français de Nantes
-   12837          46 j  Charles-François Génissieu  ->  Jean, Joseph, Victor Génissieu  [PRÉNOM NON CONCORDANT, à vérifier]
+   12837          46 j  Charles-François Génissieu  ->  Jean, Joseph, Victor Génissieu  [DÉCISION : seule fiche Sycomore de ce nom avec un mandat de député à cette date ; prénom divergent entre la liste officielle et Sycomore, rattachement retenu sur la concordance du nom, de l'assemblée et de la date]  [PRÉNOM NON CONCORDANT, à vérifier]
    12839          29 j  Pierre-François Henry La Rivière  ->  Pierre, François, Joachim Henry-Larivière
    12842          13 j  André Jeanbon (dit Jean-Bon Saint-André)  ->  André Jeanbon Saint-André
    12844          13 j  César-Guillaume de La Luzerne  ->  César, Guillaume de La Luzerne
@@ -218,6 +216,7 @@ Rattachements (vérifier chaque ligne) :
    12855          14 j  François-Joseph Lefebvre-Cayet  ->  François, Joseph, Barthélémy, César Lefebvre-Cayet
    12856          15 j  Pierre-Louis Lefebvre-Laroche  ->  Pierre, Louis Lefebvre-Laroche
    12857          15 j  Pierre-Édouard Lemontey  ->  Pierre, Edouard Lemontey
+   12858          14 j  Charles-Louis Le Tourneur de La Manche  ->  Etienne, Louis, François, Honoré Letourneur  [DÉCISION : « de La Manche » désigne le département d'élection ; la fiche est choisie parmi les députés de ce nom élus de la Manche et en fonction à cette date.]
    12860          14 j  Jean-Antoine Louis  ->  Jean, Antoine Louis
    12861          15 j  Jean-Baptiste Louvet  ->  Jean-Baptiste Louvet de Couvray
    12862          29 j  Gabriel Malès  ->  Gabriel Malès
@@ -261,7 +260,6 @@ Rattachements (vérifier chaque ligne) :
    12957          28 j  Pierre-Victurien Vergniaud  ->  Pierre, Victurnien Vergniaud
    12958          29 j  François Toussaint Villers  ->  François, Toussaint Villers
    12959          15 j  Jean-Henri Voulland  ->  Jean, Henri Voulland
-   13116          14 j  Charles-Louis Le Tourneur de La Manche  ->  Emmanuel, Pierre Le Tourneur  [PRÉNOM NON CONCORDANT, à vérifier]
    13172          29 j  Philippe-Laurent Pons  ->  Philippe, Laurent Pons de Verdun
    13266          26 j  Stanislas de Clermont-Tonnerre  ->  Stanislas, Marie, Adélaïde de Clermont-Tonnerre
    13383          93 j  Antoine Boulay de La Meurthe  ->  Antoine, Jacques, Claude, Joseph Boulay de la Meurthe
@@ -269,4 +267,4 @@ Rattachements (vérifier chaque ligne) :
    18423  années 2018-2022  Richard Ferrand  ->  Richard Ferrand
    19057  années 2022-2024  Yaël Braun-Pivet  ->  Yaël Braun-Pivet
 
-Durée indéterminée (source à l'année, écart d'un an) : 252, 285, 2569, 2824, 5168, 5653, 10133, 17282
+Durée indéterminée, classée « moins d'un an » faute de source datée : 252, 285, 2569, 2824, 5168, 5653, 10133, 17282
