@@ -1,4 +1,4 @@
-Présidents rattachés : 21 (16 au moins un an, 5 moins d'un an) ; sans fiche : 9
+Présidents rattachés : 22 (17 au moins un an, 5 moins d'un an) ; sans fiche : 8
 
 Rattachements (nom et années de naissance et de décès concordants) :
      252    1038 j  Edme d'Audiffret-Pasquier  ->  Edme, Armand, Gaston d'Audiffret-Pasquier
@@ -6,6 +6,7 @@ Rattachements (nom et années de naissance et de décès concordants) :
     1631      69 j  Auguste Champetier de Ribes  ->  Auguste Champetier de Ribes
     2569    1607 j  Paul Doumer  ->  Paul Doumer
     2570     481 j  Gaston Doumergue  ->  Gaston Doumergue
+    2632    5080 j  Antonin Dubost  ->  Henri, Antonin Dubost  [DÉCISION : Fiche « Henri, Antonin Dubost » (1842-1921) : même nom et même année de décès que la liste du Sénat ; seule l'année de naissance diverge entre les deux sources officielles (1842 dans Sycomore, 1844 sur la page du Sénat). Aucune autre fiche Dubost compatible.]
     2901    2538 j  Armand Fallières  ->  Armand Fallières
     4024    3689 j  Jules Jeanneney  ->  Jules, Emile Jeanneney
     5348    7868 j  Gaston Monnerville  ->  Gaston Monnerville
@@ -23,10 +24,9 @@ Rattachements (nom et années de naissance et de décès concordants) :
    12885     228 j  Claude-Emmanuel-Joseph-Pierre de Pastoret  ->  Claude, Emmanuel, Joseph, Pierre Pastoret
    15727    5693 j  Charles-Henry Dambray  ->  Charles, Henry Dambray
 
-Aucune fiche Sycomore concordante (nom et années) : 9. Sans homonyme listé, le président n'a vraisemblablement jamais été député et attend la base des sénateurs ; avec homonymes, vérifier les années portées sur la fiche
+Aucune fiche Sycomore concordante (nom et années) : 8. Sans homonyme listé, le président n'a vraisemblablement jamais été député et attend la base des sénateurs ; avec homonymes, vérifier les années portées sur la fiche
   28 janvier 1852 | Jérôme-Napoléon Bonaparte (1784-1860, Sénat) ; fiche 8320 Napoléon, Jérôme Bonaparte (1822-1891) ; fiche 10466 Louis, Lucien Bonaparte (1813-1891) ; fiche 12305 Lucien Bonaparte (1775-1840)
   30 décembre 1852 | Raymond-Théodore Troplong (1795-1869, Sénat)
-  16 février 1906 | Antonin Dubost (1844-1921, Sénat) ; fiche 2632 Henri, Antonin Dubost (1842-1921) ; fiche 19130 Coralie Dubost (1983-)
   19 juin 1924 | Justin de Selves (1848-1934, Sénat) ; fiche 16420 Henri, Antoine, Auguste Selves (1790-1854) ; fiche 16371 Jean-Baptiste Selves (1756-1823) ; fiche 16419 Jean Selves (1756-1818)
   3 octobre 1968 | Alain Poher (1909-1996, Sénat)
   2 octobre 1992 | René Monory (1923-2009, Sénat)
