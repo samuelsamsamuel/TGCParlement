@@ -38,6 +38,9 @@ PAGE = ("https://www2.assemblee-nationale.fr/decouvrir-l-assemblee/histoire/"
 CONTACT = os.environ.get("CONTACT", "contact non renseigne")
 UA = "Projet parlementaires, extraction autorisee par l'Assemblee nationale (" + CONTACT + ")"
 SORTIE = os.path.join("data", "listes", "proposees")
+F_DECISIONS = os.path.join("data", "listes", "decisions-presidences.json")
+VE = ("https://www2.assemblee-nationale.fr/decouvrir-l-assemblee/histoire/"
+      "la-ve-republique/les-presidents-de-l-assemblee-nationale-depuis-1958")
 rapport = []
 
 
@@ -118,10 +121,46 @@ def lire(url):
             lignes = lignes[lignes.index("Contenu de l'article") + 1:]
         t.texte = lignes[:60]
         for i, x in enumerate(lignes[:-1]):
+            p = re.search(r"\((\d{1,2}(?:er)? \w+ \d{4})\s*-\s*(\d{1,2}(?:er)? \w+ \d{4})\)", x)
+            if p and lire_date(p.group(1)):
+                t.lignes.append((x, [p.group(1), p.group(2), lignes[i + 1]]))
+                continue
             m = re.match(r"(?:Du|Depuis le)\s+(.+?)(?:\s+au\s+(.+))?$", x)
             if m and lire_date(m.group(1)):
                 t.lignes.append((None, [m.group(1), m.group(2) or "", lignes[i + 1]]))
     return t
+
+
+RE_VE = re.compile(r"Présidente? de l'Assemblée nationale (?:du|depuis le) (.+?)(?: au (.+?))?(?:[.,;]|$)")
+
+
+def lire_ve():
+    """Pages de la Ve République : nom en titre, puis « Président de l'Assemblée nationale du X au Y »."""
+    pages, vus = {}, set()
+    for n in range(0, 40):
+        u = VE + (f"?offset={n}" if n else "")
+        html = telecharger(u)
+        if not html:
+            break
+        t = Tables()
+        titre, trouve = None, False
+        for balise, x in lignes_de(html):
+            if balise in ("h1", "h2", "h3") and "Présidents de l'Assemblée" not in x:
+                titre = x
+            for m in RE_VE.finditer(x):
+                cle = (m.group(1), titre)
+                if titre and cle not in vus:
+                    vus.add(cle)
+                    trouve = True
+                    t.lignes.append((None, [m.group(1), m.group(2) or "en cours", titre]))
+        if not trouve:
+            if n:
+                break
+            rapport.append("VE RÉPUBLIQUE : aucune présidence lue sur la première vue ; début du texte :")
+            rapport.extend("    | " + x for _, x in lignes_de(html)[60:100])
+        else:
+            pages[u] = t
+    return pages
 
 
 def slug(titre):
@@ -180,46 +219,59 @@ def departage(js, candidats):
     return notes[0][1], notes
 
 
+COUPURES = re.compile(r"\s+(?:du|de la|de l'|des|de|la)\s+", re.I)
+
+
+def nom_coupe(nom):
+    """Partie du nom précédant le premier complément (« Leclerc du Maine-et-Loire » -> « Leclerc »)."""
+    tete = re.sub(r"\(.*?\)", " ", nom).strip()
+    m = list(COUPURES.finditer(tete))
+    for x in m:
+        if x.start() > 0 and len(tete[:x.start()].split()) >= 2:
+            return tete[:x.start()]
+    return None
+
+
 def rattacher(nom, jour, cartes, index, fin=None):
     js = jetons(nom)
     if not js:
         return None, "nom vide"
     present = (lambda c: siege_pendant(c, jour, fin)) if fin else (lambda c: siege_le(c, jour))
-    candidats = [c for c in index.get(js[-1], []) if present(c)]
+    cles = [js[-1]]
+    coupe = nom_coupe(nom)
+    if coupe and jetons(coupe):
+        cles.append(jetons(coupe)[-1])
+    # 1. Nom exact (nom complet, puis nom sans complément)
+    candidats = {c["id"]: c for k in cles for c in index.get(k, []) if present(c)}
+    alerte = None
     if not candidats:
-        # Nom suivi d'un complément géographique (« Leclerc du Maine-et-Loire ») : autres jetons
-        for j in js[1:-1]:
-            autres = [c for c in index.get(j, []) if present(c)
-                      and jetons(c["nom"] or "")[-1:] == [j]]
-            if autres:
-                c, notes = departage(js, autres)
-                if c:
-                    return c, "NOM PARTIEL, à vérifier"
+        # 2. Graphie voisine du nom (Reubell / Rewbell, Pusy / Puzy...)
+        vivier = en_fonction(jour, cartes) if not fin else [c for c in cartes if present(c)]
+        for c in vivier:
+            jc = jetons(c["nom"] or "")
+            if any(SequenceMatcher(None, k, j).ratio() >= 0.8 for k in cles for j in jc):
+                candidats[c["id"]] = c
+        alerte = "GRAPHIE VOISINE, à vérifier"
     if not candidats:
-        # Graphie voisine (Reubell / Rewbell...) parmi les députés en fonction ce jour-là
-        proches = []
-        for c in (en_fonction(jour, cartes) if not fin else [c for c in cartes if present(c)]):
-            for j in jetons(c["nom"] or ""):
-                if SequenceMatcher(None, js[-1], j).ratio() >= 0.8:
-                    proches.append(c)
-                    break
-        if proches:
-            c, _ = departage(js, proches)
-            if c:
-                return c, "GRAPHIE VOISINE, à vérifier"
-        return None, "aucun député de ce nom en fonction à cette date" + (
-            " ; proches : " + " / ".join(f"{c['id']} {c['nom']}" for c in proches[:4]) if proches else "")
-    c, notes = departage(js, candidats)
+        return None, "aucun député de ce nom en fonction à cette date"
+    c, notes = departage(js, list(candidats.values()))
     if not c:
         return None, "ambigu : " + " / ".join(f"{x['id']} {x['nom']}" for _, x in notes[:4])
-    if notes[0][0][0] < 2 and len(js) > 1:
-        return c, "PRÉNOM NON CONCORDANT, à vérifier"
-    return c, None
+    if not alerte and notes[0][0][0] < 2 and len(js) > 1:
+        alerte = "PRÉNOM NON CONCORDANT, à vérifier"
+    return c, alerte
 
 
 def main():
     with open(os.path.join("data", "cartes.json"), encoding="utf-8") as f:
         cartes = json.load(f)
+    par_id = {c["id"]: c for c in cartes}
+    decisions, appliquees = {}, set()
+    if os.path.exists(F_DECISIONS):
+        with open(F_DECISIONS, encoding="utf-8") as f:
+            for d in json.load(f)["decisions"]:
+                if not d.get("a_decider"):
+                    decisions[d["ligne"]] = d
     index = defaultdict(list)
     for c in cartes:
         for j in set(jetons(c["nom"] or "")):
@@ -247,6 +299,8 @@ def main():
                 break
         else:
             rapport.append(f"ONGLET NON TROUVÉ : {titre} (essais : {', '.join(essais)})")
+    pages_ve = lire_ve()
+    pages.update(pages_ve)
     rapport.append(f"Pages lues : {len(pages)}")
     for u, t in pages.items():
         rapport.append(f"  {len(t.lignes):4d} lignes  {u}")
@@ -266,7 +320,7 @@ def main():
             if "refus" in nom.lower():
                 rapport.append(f"ÉCARTÉ (présidence refusée) : {du} | {nom}")
                 continue
-            d, f = lire_date(du), lire_date(au)
+            d, f = lire_date(du), (date.today() if au == "en cours" else lire_date(au))
             annuel = False
             if not d and re.fullmatch(r"\d{4}", du) and re.fullmatch(r"\d{4}", au or ""):
                 # Source donnée à l'année : bornes extrêmes, durée seulement encadrée
@@ -277,7 +331,19 @@ def main():
                 continue
             if f and f < d:
                 rapport.append(f"INCOHÉRENCE (fin avant début) : {du} | {au} | {nom}")
-            carte, motif = rattacher(nom, d, cartes, index, f if annuel else None)
+            cle_decision = f"{du} | {nom}"
+            if cle_decision in decisions:
+                dec = decisions[cle_decision]
+                appliquees.add(cle_decision)
+                if dec.get("id") is None:
+                    rapport.append(f"EXCLU PAR DÉCISION ({dec.get('motif', '')}) : {du} | {au} | {nom}")
+                    continue
+                carte, motif = par_id.get(dec["id"]), "DÉCISION MANUELLE"
+                if not carte:
+                    rapport.append(f"DÉCISION INVALIDE (identifiant inconnu {dec['id']}) : {cle_decision}")
+                    continue
+            else:
+                carte, motif = rattacher(nom, d, cartes, index, f if annuel else None)
             if not carte:
                 rapport.append(f"NON RATTACHÉ ({motif}) : {du} | {au} | {nom}")
                 continue
@@ -286,6 +352,8 @@ def main():
             periodes[carte["id"]].append((d, f, annuel, int(au) - int(du) if annuel else None))
             noms[carte["id"]] = (nom, carte["nom"])
 
+    for cle in set(decisions) - appliquees:
+        rapport.append(f"DÉCISION SANS LIGNE CORRESPONDANTE (vérifier la clé) : {cle}")
     longue, courte = [], []
     rapport.append("\nRattachements (vérifier chaque ligne) :")
     indetermines = []
