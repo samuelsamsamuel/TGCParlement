@@ -4,6 +4,8 @@ Distinctions calculées :
   deux-chambres : 1651
   1789 : 1317
   convention : 905
+  presidence-an-courte : 205
+  presidence-an-longue : 35
   femmes-1945 : 33
 
 Répartition des raretés :
@@ -85,6 +87,12 @@ Anomalies :
     10201 : {'periode': 'Depuis le 10 octobre 2026 (mandat en cours)'}
     10671 : {'periode': 'Depuis le 22 juin 2022 (mandat en cours)', 'departement': 'Mayenne'}
     12322 : {'periode': 'Depuis le 10 octobre 2026 (mandat en cours)'}
+  fin de mandat inconnue (exclue de la durée) : 5
+    10201 : None | None | depuis 2026-10-10
+    12322 : None | None | depuis 2026-10-10
+    12364 : Révolution | Assemblée nationale constituante | depuis 1789-03-27
+    15353 : Révolution | Assemblée nationale législative | depuis 2026-10-11
+    17574 : Monarchie de Juillet - Chambre des députés | IVe législature | depuis 2026-10-11
   sexe non déterminé : 151
     10606
     10607
@@ -108,13 +116,13 @@ Anomalies :
     12425
 
 Dix premières cartes :
-    50.0  legendaire  Pierre, Antoine Laloy : Député (Haute-Marne) de 1789 à aujourd'hui, 4 mandats (Révolution). Membre des États généraux ou de la Constituante de 1789. Membre de la Convention nationale.
-    45.9  legendaire  Marie-Madeleine Dienesch : Députée (Côtes-du-Nord) de 1945 à 1981, 11 mandats (Gouvernement provisoire de la République française ; Quatrième République - Assemblée nationale ; Cinquième République - Assemblée nationale). Parmi les premières femmes élues députées, en 1945.
-    43.9  legendaire  Joseph Pémartin : Député (Basses-Pyrénées) de 1789 à 1815, 6 mandats (Révolution ; Consulat et Premier Empire ; Première Restauration). Membre des États généraux ou de la Constituante de 1789. Membre de la Convention nationale.
-    43.4  legendaire  Jean-Claude Cherrier : Député (Vosges) de 1789 à 1816, 6 mandats (Révolution ; Consulat et Premier Empire ; Première Restauration ; Seconde Restauration - Chambre des députés des départements). Membre des États généraux ou de la Constituante de 1789. Membre de la Convention nationale.
-    42.9  legendaire  Marie-Claude Vaillant-Couturier Née Vogel : Députée (Seine, Paris, Val-de-Marne) de 1945 à 1973, 8 mandats (Gouvernement provisoire de la République française ; Quatrième République - Assemblée nationale ; Cinquième République - Assemblée nationale). Parmi les premières femmes élues députées, en 1945.
-    42.6  legendaire  François, Jérôme Riffard de Saint-Martin : Député (Ardèche, Côte-d'Or) de 1789 à 1814, 5 mandats (Révolution ; Consulat et Premier Empire). Membre des États généraux ou de la Constituante de 1789. Membre de la Convention nationale.
-    41.8  legendaire  Florent Guiot : Député (Côte-d'Or) de 1789 à 1814, 4 mandats (Révolution ; Consulat et Premier Empire). Membre des États généraux ou de la Constituante de 1789. Membre de la Convention nationale.
-    41.5  legendaire  Augustin, Bernard Le Goazre de Kervélégan : Député (Finistère) de 1789 à 1815, 5 mandats (Révolution ; Consulat et Premier Empire ; Première Restauration). Membre des États généraux ou de la Constituante de 1789. Membre de la Convention nationale.
-    38.6  legendaire  Gabriel, Hyacinthe Couppé de Kervennou : Député (Côtes-du-Nord) de 1789 à 1814, 4 mandats (Révolution ; Consulat et Premier Empire). Membre des États généraux ou de la Constituante de 1789. Membre de la Convention nationale.
-    35.9  legendaire  René Cornilleau : Député (Sarthe) de 1790 à 1814, 3 mandats (Révolution ; Consulat et Premier Empire). Membre des États généraux ou de la Constituante de 1789. Membre de la Convention nationale.
+    75.0  legendaire  Léon, Victor, Auguste Bourgeois : Député (Marne) de 1888 à 1905, 5 mandats (Troisième République - Chambre des députés). Sénateur de 1905 à 1925. A siégé dans les deux chambres. A présidé l'Assemblée au moins un an.
+    75.0  legendaire  Louis, Joseph Buffet : Député (Vosges) de 1848 à 1876, 5 mandats (Deuxième République ; Second Empire - Corps législatif ; Assemblée Nationale). Sénateur de 1876 à 1898. A siégé dans les deux chambres. A présidé l'Assemblée au moins un an.
+    75.0  legendaire  Paul Deschanel : Député (Eure-et-Loir) de 1885 à 1920, 9 mandats (Troisième République - Chambre des députés). Sénateur de 1921 à 1922. A siégé dans les deux chambres. A présidé l'Assemblée au moins un an.
+    75.0  legendaire  Edgar Faure : Député (Jura, Doubs) de 1946 à 1980, 7 mandats (Quatrième République - Assemblée nationale ; Cinquième République - Assemblée nationale). Sénateur de 1959 à 1988. A siégé dans les deux chambres. A présidé l'Assemblée au moins un an.
+    75.0  legendaire  Edouard Herriot : Député (Rhône) de 1919 à 1957, 10 mandats (Troisième République - Chambre des députés ; Gouvernement provisoire de la République française ; Quatrième République - Assemblée nationale). Sénateur de 1912 à 1919. A siégé dans les deux chambres. A présidé l'Assemblée au moins un an.
+    75.0  legendaire  Louis Mermaz : Député (Isère) de 1967 à 2001, 7 mandats (Cinquième République - Assemblée nationale). Sénateur de 2001 à 2011. A siégé dans les deux chambres. A présidé l'Assemblée au moins un an.
+    75.0  legendaire  André, Marie, Jean-Jacques Dupin : Député (Nièvre, Sarthe) de 1815 à 1851, 13 mandats (Cent-Jours ; Seconde Restauration - Chambre des députés des départements ; Monarchie de Juillet - Chambre des députés ; Deuxième République). Sénateur de 1857 à 1865. A siégé dans les deux chambres. A présidé l'Assemblée au moins un an.
+    70.0  legendaire  Claude Bartolone : Député (Seine-St-Denis) de 1981 à 2017, 8 mandats (Cinquième République - Assemblée nationale). A présidé l'Assemblée au moins un an.
+    70.0  legendaire  Fernand, Emile, Honoré Bouisson : Député (Bouches-du-Rhône) de 1909 à 1942, 8 mandats (Troisième République - Chambre des députés). A présidé l'Assemblée au moins un an.
+    70.0  legendaire  Henri, Eugène Brisson : Député (Seine, Cher, Bouches-du-Rhône) de 1871 à 1912, 11 mandats (Assemblée Nationale ; Troisième République - Chambre des députés). A présidé l'Assemblée au moins un an.
