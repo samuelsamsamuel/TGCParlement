@@ -295,13 +295,17 @@ def main():
     with open(os.path.join("data", "cartes.json"), encoding="utf-8") as f:
         cartes = json.load(f)
     par_id = {c["id"]: c for c in cartes}
-    decisions, appliquees = {}, set()
+    decisions, appliquees, classements = {}, set(), {}
     if not os.path.exists(F_DECISIONS):
         rapport.append(f"Fichier de décisions absent : {F_DECISIONS}")
     else:
         with open(F_DECISIONS, encoding="utf-8") as f:
             for d in json.load(f)["decisions"]:
-                if not d.get("a_decider"):
+                if d.get("a_decider"):
+                    continue
+                if "classement" in d:
+                    classements[d["id"]] = d
+                else:
                     decisions[d["ligne"]] = d
     index = defaultdict(list)
     for c in cartes:
@@ -377,10 +381,25 @@ def main():
             if cle_decision in decisions:
                 dec = decisions[cle_decision]
                 appliquees.add(cle_decision)
+                if dec.get("departement"):
+                    # Désignation par le département d'élection, lu dans les mandats Sycomore
+                    cles = set(jetons(nom)[-1:]) | set(jetons(nom_coupe(nom) or "")[-1:])
+                    elus = [c for c in cartes if any(k in j or SequenceMatcher(None, k, j).ratio() >= 0.8
+                                                     for k in cles for j in jetons(c["nom"] or ""))
+                            and any(m["chambre"] == "AN" and m["debut"]
+                                    and dec["departement"].lower() in (m["departement"] or "").lower()
+                                    and date.fromisoformat(m["debut"]) <= d
+                                    <= (date.fromisoformat(m["fin"]) if m["fin"] else date.today())
+                                    for m in c["mandats"])]
+                    if len(elus) != 1:
+                        rapport.append(f"DÉCISION NON APPLICABLE ({len(elus)} fiche(s) pour "
+                                       f"{dec['departement']}) : {cle_decision}")
+                        continue
+                    dec = {**dec, "id": elus[0]["id"]}
                 if dec.get("id") is None:
                     rapport.append(f"EXCLU PAR DÉCISION ({dec.get('motif', '')}) : {du} | {au} | {nom}")
                     continue
-                carte, motif = par_id.get(dec["id"]), "DÉCISION MANUELLE"
+                carte, motif = par_id.get(dec["id"]), "DÉCISION : " + dec.get("motif", "")
                 if not carte:
                     rapport.append(f"DÉCISION INVALIDE (identifiant inconnu {dec['id']}) : {cle_decision}")
                     continue
@@ -403,10 +422,16 @@ def main():
         precises = [(d, f) for d, f, a, _ in ps if not a]
         jours = sum(((f or d) - d).days for d, f in precises if not f or f >= d)
         ecarts = [e for *_, a, e in ps if a]
-        if jours >= 365 or any(e >= 2 for e in ecarts):
-            longue.append(ident)          # au moins un an, certain
+        if ident in classements:
+            (longue if classements[ident]["classement"] == "longue" else courte).append(ident)
+            alertes[ident].add("CLASSEMENT PAR DÉCISION : " + classements[ident].get("motif", ""))
+        elif jours >= 365 or any(e >= 2 for e in ecarts):
+            longue.append(ident)          # au moins un an, établi par la source
         elif any(e == 1 for e in ecarts):
-            indetermines.append(ident)    # « 1888-1889 » : entre un jour et deux ans
+            # « 1888-1889 » : entre un jour et deux ans. Règle : seul ce que la source établit
+            # compte ; classé « moins d'un an » sauf décision fondée sur une source datée.
+            indetermines.append(ident)
+            courte.append(ident)
         else:
             courte.append(ident)
         officiel, fiche = noms[ident]
@@ -428,9 +453,9 @@ def main():
                    "libelle": "A présidé l'Assemblée", **commun,
                    "ids": courte}, f, ensure_ascii=False, indent=1)
     rapport.insert(0, f"Présidents rattachés : {len(periodes)} ({len(longue)} au moins un an, "
-                      f"{len(courte)} moins d'un an, {len(indetermines)} indéterminés faute de dates précises)")
+                      f"{len(courte)} moins d'un an, dont {len(indetermines)} indéterminés faute de dates précises)")
     if indetermines:
-        rapport.append("\nDurée indéterminée (source à l'année, écart d'un an) : " + ", ".join(map(str, indetermines)))
+        rapport.append("\nDurée indéterminée, classée « moins d'un an » faute de source datée : " + ", ".join(map(str, indetermines)))
     texte = "\n".join(rapport)
     with open(os.path.join(SORTIE, "presidences-rapport.txt"), "w", encoding="utf-8") as f:
         f.write(texte + "\n")
