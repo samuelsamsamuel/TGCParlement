@@ -1,55 +1,6 @@
 {
- "mode_d_emploi": "Une décision par ligne officielle. « ligne » reprend exactement « date de début | nom » tels qu'imprimés dans le rapport. « id » : identifiant Sycomore retenu, ou null pour exclure la ligne. Tant que « a_decider » vaut true, la décision est ignorée. Indiquer dans « motif » la vérification faite (fiche Sycomore consultée, source officielle).",
+ "mode_d_emploi": "Deux sortes de décisions. 1) Rattachement d'une ligne officielle : « ligne » reprend exactement « date de début | nom » tels qu'imprimés dans le rapport ; « id » = identifiant Sycomore retenu, ou null pour exclure. 2) Classement d'un président dont la durée est indéterminée : {\"id\": N, \"classement\": \"longue\" ou \"courte\", \"motif\": ...}, uniquement sur la foi d'une source officielle datée, citée dans « motif ». Tant que « a_decider » vaut true, l'entrée est ignorée. Chaque fiche candidate s'ouvre à l'adresse indiquée.",
  "decisions": [
-  {
-   "ligne": "21 avril 1794 | Robert Lindet",
-   "id": null,
-   "a_decider": true,
-   "candidats": "12496 Robert, Thomas Lindet / 12859 Jean-Baptiste, Robert Lindet",
-   "motif": ""
-  },
-  {
-   "ligne": "22 septembre 1797 | Jean-Baptiste Jourdan",
-   "id": null,
-   "a_decider": true,
-   "candidats": "12843 / 10378, deux fiches au même nom : vérifier s'il s'agit d'une même personne",
-   "motif": ""
-  },
-  {
-   "ligne": "22 septembre 1798 | Jean-Baptiste Jourdan",
-   "id": null,
-   "a_decider": true,
-   "candidats": "12843 / 10378",
-   "motif": ""
-  },
-  {
-   "ligne": "10 octobre 1989 | Emmanuel Fréteau de Saint Just",
-   "id": null,
-   "a_decider": true,
-   "candidats": "12633 ; date imprimée 1989 dans la source, présidence de 1789",
-   "motif": ""
-  },
-  {
-   "ligne": "6 janvier 1802 | Nicolas-Bernard Belzais-Courménil",
-   "id": null,
-   "a_decider": true,
-   "candidats": "aucun trouvé : chercher la graphie dans Sycomore",
-   "motif": ""
-  },
-  {
-   "ligne": "23 novembre 1813 | Claude-Ambroise Régnier",
-   "id": null,
-   "a_decider": true,
-   "candidats": "aucun député de ce nom en fonction à cette date : vérifier la fiche",
-   "motif": ""
-  },
-  {
-   "ligne": "À COMPLÉTER (date de début) | Charles-François Génissieu",
-   "id": null,
-   "a_decider": true,
-   "candidats": "12837 Jean, Joseph, Victor Génissieu ; prénom discordant ; recopier la date de début depuis la source officielle",
-   "motif": ""
-  },
   {
    "ligne": "3 novembre 1943 | Félix Gouin",
    "id": null,
@@ -63,6 +14,86 @@
    "a_decider": false,
    "candidats": "idem, Assemblée consultative de Paris",
    "motif": "Exclue : assemblée consultative non élue, sans mandat de député à cette date. Règle commune : une présidence n'est comptée que si son titulaire siège comme parlementaire élu."
+  },
+  {
+   "ligne": "21 avril 1794 | Robert Lindet",
+   "id": null,
+   "a_decider": false,
+   "candidats": "12496 https://www2.assemblee-nationale.fr/sycomore/fiche/12496 / 12859 https://www2.assemblee-nationale.fr/sycomore/fiche/12859 ; deux frères députés à la Convention",
+   "motif": "Exclue : la liste officielle dit « Robert Lindet » ; les deux frères, tous deux conventionnels, portent le prénom Robert dans Sycomore (« Robert, Thomas » et « Jean-Baptiste, Robert »), et les sources consultées divergent sur l'attribution. Non vérifiable en l'état."
+  },
+  {
+   "ligne": "22 septembre 1797 | Jean-Baptiste Jourdan",
+   "id": null,
+   "a_decider": false,
+   "candidats": "12843 https://www2.assemblee-nationale.fr/sycomore/fiche/12843 / 10378 https://www2.assemblee-nationale.fr/sycomore/fiche/10378 ; deux fiches au même nom : même personne ?",
+   "motif": "Président du Conseil des Cinq-Cents : Jean-Baptiste Jourdan, élu de la Haute-Vienne en 1797 ; la fiche est désignée par ce département d'élection, lu dans Sycomore.",
+   "departement": "Haute-Vienne"
+  },
+  {
+   "ligne": "22 septembre 1798 | Jean-Baptiste Jourdan",
+   "id": null,
+   "a_decider": false,
+   "candidats": "12843 https://www2.assemblee-nationale.fr/sycomore/fiche/12843 / 10378 https://www2.assemblee-nationale.fr/sycomore/fiche/10378",
+   "motif": "Président du Conseil des Cinq-Cents : Jean-Baptiste Jourdan, élu de la Haute-Vienne en 1797 ; la fiche est désignée par ce département d'élection, lu dans Sycomore.",
+   "departement": "Haute-Vienne"
+  },
+  {
+   "ligne": "10 octobre 1989 | Emmanuel Fréteau de Saint Just",
+   "id": 12633,
+   "a_decider": false,
+   "candidats": "12633 https://www2.assemblee-nationale.fr/sycomore/fiche/12633 ; année imprimée 1989 dans la source ; présidence de 1789",
+   "motif": "Coquille manifeste de la source : la ligne se situe entre les présidences du 28 septembre et du 28 octobre 1789 et finit le 27 octobre 1789. Rattachée à la même fiche que sa seconde présidence ; la période, incohérente telle qu'imprimée, n'est pas comptée dans la durée."
+  },
+  {
+   "ligne": "6 janvier 1802 | Nicolas-Bernard Belzais-Courménil",
+   "id": null,
+   "a_decider": false,
+   "candidats": " ; aucune fiche trouvée : chercher la graphie dans Sycomore",
+   "motif": "Exclue : aucune fiche Sycomore retrouvée sous ce nom ou une graphie voisine pour un député en fonction à cette date. À reprendre si une fiche est identifiée."
+  },
+  {
+   "ligne": "23 novembre 1813 | Claude-Ambroise Régnier",
+   "id": null,
+   "a_decider": false,
+   "candidats": " ; aucun député de ce nom en fonction à cette date",
+   "motif": "Exclue : aucun mandat de député de ce nom à cette date dans Sycomore ; la règle commune (titulaire siégeant comme parlementaire élu) n'est pas vérifiable."
+  },
+  {
+   "ligne": "6 janvier 1795 | Charles-Louis Le Tourneur de La Manche",
+   "id": null,
+   "a_decider": false,
+   "candidats": "13116 https://www2.assemblee-nationale.fr/sycomore/fiche/13116 ; rattaché à « Emmanuel, Pierre Le Tourneur », prénom discordant : chercher la fiche de Charles-Louis",
+   "motif": "« de La Manche » désigne le département d'élection ; la fiche est choisie parmi les députés de ce nom élus de la Manche et en fonction à cette date.",
+   "departement": "Manche"
+  },
+  {
+   "ligne": "6 juin 1791 | Luc Dauchy",
+   "id": 12379,
+   "a_decider": false,
+   "candidats": "12379 https://www2.assemblee-nationale.fr/sycomore/fiche/12379 ; fiche « Hue, Jacques, Edouard Dauchy », prénom discordant",
+   "motif": "seule fiche Sycomore de ce nom avec un mandat de député à cette date ; prénom divergent entre la liste officielle et Sycomore, rattachement retenu sur la concordance du nom, de l'assemblée et de la date"
+  },
+  {
+   "ligne": "19 juillet 1791 | Joseph Defermon des Chapelières",
+   "id": 12822,
+   "a_decider": false,
+   "candidats": "12822 https://www2.assemblee-nationale.fr/sycomore/fiche/12822 ; fiche « Jacques Defermon des Chapelières », prénom discordant",
+   "motif": "seule fiche Sycomore de ce nom avec un mandat de député à cette date ; prénom divergent entre la liste officielle et Sycomore, rattachement retenu sur la concordance du nom, de l'assemblée et de la date"
+  },
+  {
+   "ligne": "20 mai 1796 | Joseph Defermon des Chapelières",
+   "id": 12822,
+   "a_decider": false,
+   "candidats": "12822 https://www2.assemblee-nationale.fr/sycomore/fiche/12822",
+   "motif": "seule fiche Sycomore de ce nom avec un mandat de député à cette date ; prénom divergent entre la liste officielle et Sycomore, rattachement retenu sur la concordance du nom, de l'assemblée et de la date"
+  },
+  {
+   "ligne": "9 octobre 1795 | Charles-François Génissieu",
+   "id": 12837,
+   "a_decider": false,
+   "candidats": "12837 https://www2.assemblee-nationale.fr/sycomore/fiche/12837 ; fiche « Jean, Joseph, Victor Génissieu », prénom discordant",
+   "motif": "seule fiche Sycomore de ce nom avec un mandat de député à cette date ; prénom divergent entre la liste officielle et Sycomore, rattachement retenu sur la concordance du nom, de l'assemblée et de la date"
   }
  ]
 }
