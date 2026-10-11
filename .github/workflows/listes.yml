@@ -21,6 +21,9 @@ jobs:
       - name: Cartes, première passe
         run: python3 scripts/cartes.py > /dev/null
 
+      - name: Gouvernements de la Ve République
+        run: python3 scripts/gouvernements.py
+
       - name: Présidences de l'Assemblée
         run: python3 scripts/presidences.py
 
