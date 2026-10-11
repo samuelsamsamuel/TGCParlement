@@ -6,10 +6,10 @@ Rattachement : nom concordant ET années de naissance et de décès identiques �
 Seuls les présidents ayant aussi été députés ont une fiche Sycomore ; les autres sont listés à part,
 en attente de l'intégration de la base des sénateurs.
 
-Sorties (propositions, à valider avant usage) :
-  data/listes/proposees/presidence-senat-longue.json
-  data/listes/proposees/presidence-senat-courte.json
-  data/listes/proposees/presidences-senat-rapport.txt
+Sorties, lues directement par cartes.py :
+  data/listes/presidence-senat-longue.json
+  data/listes/presidence-senat-courte.json
+  data/listes/rapports/presidences-senat-rapport.txt
 Bibliothèque standard uniquement.
 """
 import json
@@ -24,7 +24,8 @@ from presidences import jetons, nom_coupe  # noqa: E402
 
 F_SOURCE = os.path.join("data", "sources", "presidents-senat.json")
 F_DECISIONS = os.path.join("data", "listes", "decisions-presidences-senat.json")
-SORTIE = os.path.join("data", "listes", "proposees")
+SORTIE = os.path.join("data", "listes")
+RAPPORTS = os.path.join("data", "listes", "rapports")
 
 
 def main():
@@ -73,7 +74,10 @@ def main():
                 rapport.append(f"AMBIGU : {cle} : " + " / ".join(f"{c['id']} {c['nom']}" for c in retenus))
                 continue
             if not retenus:
-                sans_fiche.append(f"{cle} ({l['naissance']}-{l['deces'] or ''}, {l['chambre']})")
+                # Homonymes présents mais années discordantes : à examiner (graphie ou date de la fiche)
+                proches = "".join(f" ; fiche {c['id']} {c['nom']} ({(c.get('naissance') or '?')[:4]}-"
+                                  f"{(c.get('deces') or '')[:4]})" for c in list(candidats.values())[:3])
+                sans_fiche.append(f"{cle} ({l['naissance']}-{l['deces'] or ''}, {l['chambre']}){proches}")
                 continue
             carte = retenus[0]
         periodes[carte["id"]].append((d, f, annuel))
@@ -88,12 +92,15 @@ def main():
         officiel, fiche = noms[ident]
         rapport.append(f"  {ident:6d}  {jours:6d} j  {officiel}  ->  {fiche}"
                        + "".join(f"  [{a}]" for a in sorted(alertes[ident])))
-    rapport.append(f"\nSans fiche Sycomore (jamais députés), en attente de la base des sénateurs : {len(sans_fiche)}")
+    rapport.append(f"\nAucune fiche Sycomore concordante (nom et années) : {len(sans_fiche)}. Sans homonyme listé, "
+                   f"le président n'a vraisemblablement jamais été député et attend la base des sénateurs ; "
+                   f"avec homonymes, vérifier les années portées sur la fiche")
     rapport.extend("  " + s for s in sans_fiche)
     rapport.insert(0, f"Présidents rattachés : {len(periodes)} ({len(longue)} au moins un an, "
                       f"{len(courte)} moins d'un an) ; sans fiche : {len(sans_fiche)}")
 
     os.makedirs(SORTIE, exist_ok=True)
+    os.makedirs(RAPPORTS, exist_ok=True)
     for code, pts, plancher, libelle, ids in (
             ("presidence-senat-longue", 40, "rare", "A présidé la seconde chambre au moins un an", longue),
             ("presidence-senat-courte", 15, None, "A présidé la seconde chambre", courte)):
@@ -101,7 +108,7 @@ def main():
             json.dump({"code": code, "points": pts, "plancher": plancher, "libelle": libelle,
                        "source": source["url"], "ids": ids}, f, ensure_ascii=False, indent=1)
     texte = "\n".join(rapport)
-    with open(os.path.join(SORTIE, "presidences-senat-rapport.txt"), "w", encoding="utf-8") as f:
+    with open(os.path.join(RAPPORTS, "presidences-senat-rapport.txt"), "w", encoding="utf-8") as f:
         f.write(texte + "\n")
     print(texte)
 
