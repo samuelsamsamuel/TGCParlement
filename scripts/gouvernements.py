@@ -15,6 +15,7 @@ Sorties : data/listes/chef-etat.json, chef-gouvernement.json, ministre.json, sec
 Bibliothèque standard uniquement.
 """
 import csv
+from datetime import date
 import io
 import json
 import os
@@ -41,6 +42,7 @@ RAPPORTS = os.path.join(SORTIE, "rapports")
 F_DECISIONS = os.path.join(SORTIE, "decisions-gouvernements.json")
 LISTES = {
     "chef-etat": (50, "A été chef de l'État"),
+    "chef-etat-interim": (15, "A assuré l'intérim de la présidence de la République"),
     "chef-gouvernement": (40, "A dirigé le Gouvernement"),
     "ministre": (15, "A été ministre"),
     "secretaire-etat": (6, "A été secrétaire d'État"),
@@ -215,7 +217,11 @@ def main():
 
     lignes = []  # (liste, prénom, nom, début, fonction)
     for r in telecharger(FICHIERS["presidents"]):
-        lignes.append(("chef-etat", r.get("prenom"), r.get("nom"), iso(r.get("date_debut_mandat")), "Président de la République", iso(r.get("date_fin_mandat"))))
+        debut, fin = iso(r.get("date_debut_mandat")), iso(r.get("date_fin_mandat"))
+        # Un exercice de moins de six mois est un intérim (article 7 de la Constitution) : distinction propre
+        interim = bool(debut and fin and (date.fromisoformat(fin) - date.fromisoformat(debut)).days < 180)
+        lignes.append(("chef-etat-interim" if interim else "chef-etat", r.get("prenom"), r.get("nom"), debut,
+                       "Président de la République par intérim" if interim else "Président de la République", fin))
     for r in telecharger(FICHIERS["premiers"]):
         lignes.append(("chef-gouvernement", r.get("prenom"), r.get("nom"), iso(r.get("date_debut_fonction")), "Premier ministre", iso(r.get("date_fin_fonction"))))
     non_comptees = defaultdict(int)
