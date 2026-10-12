@@ -186,11 +186,13 @@ def cartes_senateurs(cartes, listes):
         return []
     with open(F_SENATEURS, encoding="utf-8") as f:
         senateurs = json.load(f)
-    doublons = {}
+    # Doublons établis par décision motivée (complétés, le cas échéant, par data/listes/decisions-senateurs.json)
+    doublons = {"000086": {"sycomore": 4246, "motif": "Bernard Lafay : même personne que la fiche Sycomore 4246 "
+                                                   "(né en 1903 selon Sycomore, en 1905 selon l'open data du Sénat)."}}
     f_doublons = os.path.join("data", "listes", "decisions-senateurs.json")
     if os.path.exists(f_doublons):
         with open(f_doublons, encoding="utf-8") as f:
-            doublons = {d["matricule"]: d for d in json.load(f)["doublons"]}
+            doublons.update({d["matricule"]: d for d in json.load(f)["doublons"]})
     par_date, par_annee = defaultdict(list), defaultdict(list)
     for c in cartes:
         if c["naissance"]:
