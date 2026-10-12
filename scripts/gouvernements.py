@@ -47,6 +47,42 @@ LISTES = {
 }
 
 
+# Décisions motivées sur les homonymes, intégrées au script (un fichier
+# data/listes/decisions-gouvernements.json, s'il existe, les complète ou les remplace).
+DECISIONS_INTEGREES = [
+ {
+  "cle": "Dumas|Pierre",
+  "departement": "Savoie",
+  "motif": "Deux Pierre Dumas députés, nés en 1891 et en 1924 ; le membre des gouvernements Pompidou est le député de la Savoie."
+ },
+ {
+  "cle": "De Chambrun|Charles",
+  "departement": "Lozère",
+  "motif": "Deux Pineton de Chambrun parlementaires en 1966 ; le secrétaire d'État au commerce extérieur est Charles, député de la Lozère."
+ },
+ {
+  "cle": "Mondon|Raymond",
+  "departement": "Moselle",
+  "motif": "Deux fiches Raymond Mondon (1914 et 1917) ; le ministre des transports de 1969 est le député de la Moselle, maire de Metz."
+ },
+ {
+  "cle": "Lafay|Bernard",
+  "id": 4246,
+  "motif": "Bernard Lafay, député de Paris (fiche Sycomore 4246) ; la fiche sénatoriale S000086 décrit la même personne avec une autre année de naissance (voir decisions-senateurs.json)."
+ },
+ {
+  "cle": "Boucheron|Jean-Michel",
+  "departement": "Charente",
+  "motif": "Deux députés Jean-Michel Boucheron en 1988 (Charente et Ille-et-Vilaine) ; le secrétaire d'État aux collectivités territoriales est le député de la Charente, maire d'Angoulême."
+ },
+ {
+  "cle": "Martin|Philippe",
+  "departement": "Gers",
+  "motif": "Deux députés Philippe Martin en 2013 (Marne et Gers) ; le ministre de l'Écologie est le député du Gers."
+ }
+]
+
+
 def telecharger(url):
     for attente in (0, 20, 60):
         time.sleep(attente)
@@ -144,12 +180,10 @@ def main():
     for c in cartes:
         for w in mots(nom_usage(c["nom"])):
             index[w].append(c)
-    decisions = {}
-    if not os.path.exists(F_DECISIONS):
-        print(f"Fichier de décisions absent : {F_DECISIONS}")
-    else:
+    decisions = {d["cle"]: d for d in DECISIONS_INTEGREES}
+    if os.path.exists(F_DECISIONS):
         with open(F_DECISIONS, encoding="utf-8") as f:
-            decisions = {d["cle"]: d for d in json.load(f)["decisions"]}
+            decisions.update({d["cle"]: d for d in json.load(f)["decisions"]})
 
     lignes = []  # (liste, prénom, nom, début, fonction)
     for r in telecharger(FICHIERS["presidents"]):
@@ -230,8 +264,6 @@ def main():
         json.dump(sorted(personnes.values(), key=lambda x: x["id"]), f, ensure_ascii=False, indent=1)
 
     sans_carte = sorted(personnes[i]["nom"] for i in personnes)
-    if not decisions:
-        rapport.insert(0, f"FICHIER DE DÉCISIONS ABSENT OU VIDE : {F_DECISIONS}")
     rapport.insert(0, "Rattachés : " + ", ".join(f"{k} {len(v)}" for k, v in membres.items())
                    + f" ; hors catégorie : {len(sans_carte)}")
     if DATES_ILLISIBLES:
