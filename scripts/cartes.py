@@ -270,8 +270,10 @@ def cartes_hors_categorie(listes):
             g["fin"] = None if not (g["fin"] and f["fin"]) else max(g["fin"], f["fin"])
         fonctions = []
         for f in fusion.values():
-            if not f["fin"]:
+            if not f["fin"] and (f["debut"] or "") >= "1959":
                 periode = f"depuis {annee(f['debut'])}"
+            elif not f["fin"]:
+                periode = annee(f["debut"])  # source 1944-1959 : date de fin non relevée
             else:
                 periode = annee(f["debut"]) + (f"-{annee(f['fin'])}" if annee(f["fin"]) != annee(f["debut"]) else "")
             libelle = f"{f['fonction']} ({periode})"
