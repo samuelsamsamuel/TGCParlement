@@ -1,0 +1,2990 @@
+[
+ {
+  "id": "G-abdul-malak-rima",
+  "nom": "Rima Abdul-Malak",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de la culture",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-aigrain-pierre",
+  "nom": "Pierre Aigrain",
+  "fonctions": [
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès du Premier ministre, chargé de la recherche",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-aillagon-jean-jacques",
+  "nom": "Jean-Jacques Aillagon",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de la culture et de la communication",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de la culture et de la communication",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-albanel-christine",
+  "nom": "Christine Albanel",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de la culture et de la communication, porte-parole du Gouvernement",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de la culture et de la communication",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-allegre-claude",
+  "nom": "Claude Allègre",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de l'éducation nationale, de la recherche et de la technologie",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-amara-fadela",
+  "nom": "Fadela Amara",
+  "fonctions": [
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès de la Ministre du logement et de la ville, chargée de la politique de la ville",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès du Ministre du travail, des relations sociales, de la famille, de la solidarité et de la ville, chargée de la politique de la ville",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-arpaillange-pierre",
+  "nom": "Pierre Arpaillange",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Garde des sceaux, Ministre de la justice",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Garde des sceaux, Ministre de la justice",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-averous-gil",
+  "nom": "Gil Avérous",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre des sports, de la jeunesse et de la vie associative",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-azoulay-audrey",
+  "nom": "Audrey Azoulay",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de la culture et de la communication",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de la culture et de la communication",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-backes-sonia",
+  "nom": "Sonia Backès",
+  "fonctions": [
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès du ministre de l'intérieur et des outre-mer, chargée de la citoyenneté",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-bambuck-roger",
+  "nom": "Roger Bambuck",
+  "fonctions": [
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès du ministre d'État, Ministre de l'éducation nationale, de la recherche et des sports, chargé des sports",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès du ministre d'État, Ministre de l'éducation nationale, de la jeunesse et des sports, chargé de la jeunesse et des sports",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-baptiste-philippe",
+  "nom": "Philippe Baptiste",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre délégué auprès de la ministre d'Etat, ministre de l'éducation nationale, de l'enseignement supérieur et de la recherche, chargé de l'enseignement supérieur et de la recherche",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-barsacq-marie",
+  "nom": "Marie Barsacq",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre des sports, de la jeunesse et de la vie associative",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-baumgartner-wilfrid",
+  "nom": "Wilfrid Baumgartner",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre des finances et des affaires économiques",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-begag-azouz",
+  "nom": "Azouz Begag",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre délégué auprès du Premier ministre, chargé de la promotion de l'égalité des chances",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-belloubet-nicole",
+  "nom": "Nicole Belloubet",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre d'État, Garde des sceaux, ministre de la Justice",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de l'éducation nationale et de la jeunesse",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-benguigui-yamina",
+  "nom": "Yamina Benguigui",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre déléguée auprès du Ministre des Affaires étrangères, chargée des Français de l'étranger et de la Francophonie",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre déléguée auprès du Ministre des Affaires étrangères, chargée de la Francophonie",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-berra-nora",
+  "nom": "Nora Berra",
+  "fonctions": [
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès du Ministre du travail, des relations sociales, de la famille, de la solidarité et de la ville, chargée des aînés",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès du Ministre du Travail, de l'Emploi et de la Santé, chargée de la Santé",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-bertinotti-dominique",
+  "nom": "Dominique Bertinotti",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre déléguée auprès de la Ministre des Affaires sociales et de la Santé, chargée de la Famille",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre déléguée auprès de la Ministre des Affaires sociales et de la Santé, chargée de la Famille",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-beullac-christian",
+  "nom": "Christian Beullac",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre du travail",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre du travail",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de l'éducation",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-biasini-emile",
+  "nom": "Émile Biasini",
+  "fonctions": [
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès du ministre d'État, Ministre de l'équipement et du logement, chargé des grands travaux",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès du Ministre de la culture, de la communication, des grands travaux et du bicentenaire, chargé des grands travaux",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès du ministre de la culture et de la communication, chargé des grands travaux",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès du Premier ministre, chargé des grands travaux",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-blanquer-jean-michel",
+  "nom": "Jean-Michel Blanquer",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de l'Education nationale",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de l'Education nationale",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de l'éducation nationale et de la jeunesse",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de l'éducation nationale, de la jeunesse et des sports",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-boone-laurence",
+  "nom": "Laurence Boone",
+  "fonctions": [
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès de la ministre de l'Europe et des affaires étrangères, chargée de l'Europe",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-bougrab-jeannette",
+  "nom": "Jeannette Bougrab",
+  "fonctions": [
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès du Ministre de l'Éducation nationale, de la Jeunesse et de la Vie associative, chargée de la Jeunesse et de la Vie associative",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-braun-francois",
+  "nom": "François Braun",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de la santé et de la prévention",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-braun-theo",
+  "nom": "Théo Braun",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre délégué auprès du Ministre de la solidarité, de la santé et de la protection sociale, chargé des personnes âgées",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-breton-thierry",
+  "nom": "Thierry Breton",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de l'économie, des finances et de l'industrie",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de l'économie, des finances et de l'industrie",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-buzyn-agnes",
+  "nom": "Agnès Buzyn",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre des Solidarités et de la santé",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre des Solidarités et de la santé",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-canfin-pascal",
+  "nom": "Pascal Canfin",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre délégué auprès du Ministre des Affaires étrangères, chargé du Développement",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre délégué auprès du Ministre des Affaires étrangères, chargé du Développement",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-carenco-jean-francois",
+  "nom": "Jean-François Carenco",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre délégué auprès du ministre de l'intérieur et des outre-mer, chargé des outre-mer",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-castex-jean",
+  "nom": "Jean Castex",
+  "fonctions": [
+   {
+    "liste": "chef-gouvernement",
+    "fonction": "Premier ministre",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-caubel-charlotte",
+  "nom": "Charlotte Caubel",
+  "fonctions": [
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès de la Première ministre, chargée de l'enfance",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-chappaz-clara",
+  "nom": "Clara Chappaz",
+  "fonctions": [
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès du ministre de l'enseignement supérieur et de la recherche, chargée de l'intelligence artificielle et du numérique",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre déléguée auprès du ministre de l'économie, des finances et de la souveraineté industrielle et numérique, chargée de l'intelligence artificielle et du numérique",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-chatenet-pierre",
+  "nom": "Pierre Chatenet",
+  "fonctions": [
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès du Premier ministre",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès du Premier ministre, chargé de la mise en place des institutions nouvelles et des problèmes d'administration générale",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de l'intérieur",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-chauvet-christine",
+  "nom": "Christine Chauvet",
+  "fonctions": [
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès du Ministre de l'Industrie, chargée du Commerce Extérieur",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-chenot-bernard",
+  "nom": "Bernard Chenot",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de la santé publique et de la population",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Garde des sceaux, ministre de la justice",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-chereque-jacques",
+  "nom": "Jacques Chérèque",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre délégué auprès du Ministre de l'industrie, du commerce extérieur et de l'aménagement du territoire, chargé de l'aménagement du territoire et des reconversions",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre délégué auprès du Ministre de l'industrie et de l'aménagement du territoire, chargé de l'aménagement du territoire et des reconversions",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-cheysson-claude",
+  "nom": "Claude Cheysson",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre des relations extérieures",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre des relations extérieures",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre des relations extérieures",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre des relations extérieures",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-cluzel-sophie",
+  "nom": "Sophie Cluzel",
+  "fonctions": [
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès du Premier ministre, chargée des Personnes handicapées",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès du Premier ministre, chargée des Personnes handicapées",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès du Premier ministre, chargée des personnes handicapées",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-colonna-catherine",
+  "nom": "Catherine Colonna",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre déléguée auprès du Ministre des affaires étrangères, chargée des affaires européennes",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de l'Europe et des affaires étrangères",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-combe-jean-christophe",
+  "nom": "Jean-Christophe Combe",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre des solidarités, de l'autonomie et des personnes handicapées",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-cosse-emmanuelle",
+  "nom": "Emmanuelle Cosse",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre du logement et de l'habitat durable",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre du logement et de l'habitat durable",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-curien-hubert",
+  "nom": "Hubert Curien",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de la recherche et de la technologie",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre déléguée auprès du ministre d'État, Ministre de l'éducation nationale, de la recherche et des sports, chargé de la recherche",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de la recherche et de la technologie",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de la recherche et de la technologie",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de la recherche et de l'espace",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-daragon-nicolas",
+  "nom": "Nicolas Daragon",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre délégué auprès du ministre de l'intérieur, chargé de la sécurité du quotidien",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-dati-rachida",
+  "nom": "Rachida Dati",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Garde des sceaux, ministre de la justice",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Garde des sceaux, ministre de la justice",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de la culture",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de la culture",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de la culture",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-de-beauce-thierry",
+  "nom": "Thierry De Beaucé",
+  "fonctions": [
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès du ministre d'État, Ministre des affaires étrangères, chargé des relations culturelles internationales et de la francophonie",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès du ministre d'État, Ministre des affaires étrangères, chargé des relations culturelles internationales",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-de-gaulle-charles",
+  "nom": "Charles de Gaulle",
+  "fonctions": [
+   {
+    "liste": "chef-etat",
+    "fonction": "Président de la République",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "chef-etat",
+    "fonction": "Président de la République",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-de-guiringaud-louis",
+  "nom": "Louis De Guiringaud",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre des affaires étrangères",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre des affaires étrangères",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre des affaires étrangères",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-de-villepin-dominique",
+  "nom": "Dominique de Villepin",
+  "fonctions": [
+   {
+    "liste": "chef-gouvernement",
+    "fonction": "Premier ministre",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre des affaires étrangères, de la coopération et de la francophonie",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre des affaires étrangères",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de l'intérieur, de la sécurité intérieure et des libertés locales",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-debatisse-michel",
+  "nom": "Michel Debatisse",
+  "fonctions": [
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès du Premier ministre, chargé des industries agricoles et alimentaires",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-decaux-alain",
+  "nom": "Alain Decaux",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre délégué auprès du ministre d'État, Ministre des affaires étrangères, chargé de la francophonie",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-delors-jacques",
+  "nom": "Jacques Delors",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de l'économie et des finances",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de l'économie et des finances",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de l'économie, des finances et du budget",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-denormandie-julien",
+  "nom": "Julien Denormandie",
+  "fonctions": [
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès du ministre de la Cohésion des territoires",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre auprès du Premier ministre, chargé de la ville et du logement",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de l'agriculture et de l'alimentation",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-desir-harlem",
+  "nom": "Harlem Désir",
+  "fonctions": [
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès du ministre des Affaires étrangères et du Développement international, chargé des Affaires européennes",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès du ministre des Affaires étrangères et du Développement international, chargé des Affaires européennes",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès du ministre des Affaires étrangères et du Développement international, chargé des Affaires européennes",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-dorlhac-helene",
+  "nom": "Hélène Dorlhac",
+  "fonctions": [
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès du garde des sceaux, Ministre de la justice, chargée de la condition pénitentiaire",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès du Ministre de la solidarité, de la santé et de la protection sociale, chargée de la famille",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès du Ministre des affaires sociales et de la solidarité, chargée de la famille et des personnes âgées",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-dornano-michel",
+  "nom": "Michel D’Ornano",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de l'industrie et de la recherche",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de l'industrie et de la recherche",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de la culture et de l'environnement",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de l'environnement et du cadre de vie",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-doubin-francois",
+  "nom": "François Doubin",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre délégué auprès du Ministre de l'industrie, du commerce extérieur et de l'aménagement du territoire, chargé du commerce, de l'artisanat et du tourisme",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre délégué auprès du Ministre de l'industrie et de l'aménagement du territoire, chargé du commerce et de l'artisanat",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre délégué auprès du ministre d'État, Ministre de l'économie, des finances et du budget, chargé du commerce et de l'artisanat",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre délégué auprès du ministre d'État, Ministre de l'économie, des finances et du budget, chargé de l'artisanat, du commerce et de la consommation",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-dufourcq-elisabeth",
+  "nom": "Élisabeth Dufourcq",
+  "fonctions": [
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès du Ministre de l'Éducation Nationale, chargée de la Recherche",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-dupond-moretti-eric",
+  "nom": "Éric Dupond-Moretti",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "garde des sceaux, ministre de la justice",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "garde des sceaux, ministre de la justice",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "garde des sceaux, ministre de la justice",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-durovray-francois",
+  "nom": "François Durovray",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre délégué auprès du ministre du partenariat avec les territoires et de la décentralisation, chargé des transports",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-el-khomri-myriam",
+  "nom": "Myriam El Khomri",
+  "fonctions": [
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès du Ministre de la Ville, de la Jeunesse et des Sports chargée de la Politique de la ville",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre du Travail, de l'Emploi, de la Formation professionnelle et du Dialogue social",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre du Travail, de l'Emploi, de la Formation professionnelle et du Dialogue social",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-emmanuelli-xavier",
+  "nom": "Xavier Emmanuelli",
+  "fonctions": [
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès du Premier ministre, chargé de l'Action humanitaire d'urgence",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès du Premier ministre, chargé de l'Action humanitaire d'urgence",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-essig-philippe",
+  "nom": "Philippe Essig",
+  "fonctions": [
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès du ministre d'État, Ministre de l'équipement et du logement, chargé du logement",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-farge-jean",
+  "nom": "Jean Farge",
+  "fonctions": [
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès du Ministre de la santé et de la sécurité sociale",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-fauroux-roger",
+  "nom": "Roger Fauroux",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de l'industrie, du commerce extérieur et de l'aménagement du territoire",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de l'industrie et de l'aménagement du territoire",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-ferry-luc",
+  "nom": "Luc Ferry",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de la jeunesse, de l'éducation nationale et de la recherche",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de la jeunesse, de l'éducation nationale et de la recherche",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-flessel-laura",
+  "nom": "Laura Flessel",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre des Sports",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre des Sports",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-fontaine-nicole",
+  "nom": "Nicole Fontaine",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre délégué auprès du Ministre de l'économie, des finances et de l'industrie, chargée de l'industrie",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-galland-yves",
+  "nom": "Yves Galland",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre délégué auprès du ministre de l'intérieur, chargé des collectivités locales",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de l'industrie",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre délégué auprès du Ministre de l'économie et des finances, chargé des finances et du commerce extérieur",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-geny-stephann-delphine",
+  "nom": "Delphine Gény-Stephann",
+  "fonctions": [
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès du ministre de l'économie et des finances",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-gillibert-michel",
+  "nom": "Michel Gillibert",
+  "fonctions": [
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès du Ministre de la solidarité, de la santé et de la protection sociale, chargé des handicapés et des accidentés de la vie",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès du Ministre des affaires sociales et de la solidarité, chargé des handicapés et des accidentés de la vie",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès du ministre des affaires sociales et de l'intégration, chargé des handicapés et accidentés de la vie",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès du ministre des affaires sociales et de l'intégration, chargé des handicapés",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-girardin-brigitte",
+  "nom": "Brigitte Girardin",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de l'outre-mer",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de l'outre-mer",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de l'outre-mer",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre déléguée auprès du Ministre des affaires étrangères, chargée de la coopération, du développement et de la francophonie",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-giraud-andre",
+  "nom": "André Giraud",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de l'industrie",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de la défense",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-giroud-francoise",
+  "nom": "Françoise Giroud",
+  "fonctions": [
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès du Premier ministre, chargée de la condition féminine",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État à la culture",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-goulard-sylvie",
+  "nom": "Sylvie Goulard",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre des Armées",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-grandval-gilbert",
+  "nom": "Gilbert Grandval",
+  "fonctions": [
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État au commerce extérieur",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre du travail",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre du travail",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-griset-alain",
+  "nom": "Alain Griset",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre délégué auprès du ministre de l'économie, des finances et de la relance,chargé des petites et moyennes entreprises",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-gueant-claude",
+  "nom": "Claude Guéant",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de l'Intérieur, de l'Outre-mer, des Collectivités territoriales et de l'Immigration",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-guedj-nicole",
+  "nom": "Nicole Guedj",
+  "fonctions": [
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès du Garde des sceaux, ministre de la justice, chargée des programmes immobiliers de la justice",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès du Garde des sceaux, ministre de la justice, chargée du droits des victimes",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-guillaumat-pierre",
+  "nom": "Pierre Guillaumat",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre des armées",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre délégué auprès du Premier ministre, chargé de l'énergie atomique",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre délégué auprès du Premier ministre, chargé de l'énergie atomique, de la recherche, de la fonction publique et de la réforme administrative",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre délégué auprès du Premier ministre, chargé de l'énergie atomique, de la recherche, de la fonction publique et de la réforme administrative, Ministre de l'éducation nationale par intérim",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre délégué auprès du Premier ministre, chargé de l'énergie atomique, de la recherche, de la fonction publique et de la réforme administrative",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-guinchard-kunstler-paulette",
+  "nom": "Paulette Guinchard-Kunstler",
+  "fonctions": [
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès de la Ministre de l'emploi et de la solidarité, chargée des personnes âgées",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-guy-michel",
+  "nom": "Michel Guy",
+  "fonctions": [
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État à la culture",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-haignere-claudie",
+  "nom": "Claudie Haigneré",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre délégué auprès du Ministre de la jeunesse, de l'éducation nationale et de la recherche, chargé de la recherche et des nouvelles technologies",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre délégué auprès du Ministre des affaires étrangères, chargée des affaires européennes",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-henry-andre",
+  "nom": "André Henry",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre du temps libre",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre du temps libre",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-hirsch-martin",
+  "nom": "Martin Hirsch",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Haut-commissaire aux solidarités actives contre la pauvreté auprès du Premier ministre",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Haut-commissaire aux solidarités actives contre la pauvreté auprès du Premier ministre",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Haut-commissaire aux solidarités actives contre la pauvreté et haut-commissaire à la jeunesse auprès du Premier ministre",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Haut-commissaire aux solidarités actives contre la pauvreté auprès du Premier ministre",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-hortefeux-brice",
+  "nom": "Brice Hortefeux",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre délégué auprès du ministre d'État, Ministre de l'intérieur et de l'aménagement du territoire, chargé des collectivités territoriales",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de l'immigration, de l'intégration, de l'identité nationale et du codéveloppement",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de l'immigration, de l'intégration, de l'identité nationale et du codéveloppement",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de l'immigration, de l'intégration, de l'identité nationale et du développement solidaire",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre du travail, des relations sociales, de la famille, de la solidarité et de la ville",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de l'intérieur, de l'outre-mer et des collectivités territoriales",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de l'Intérieur, de l'Outre-mer, des Collectivités territoriales et de l'Immigration",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-hulot-nicolas",
+  "nom": "Nicolas Hulot",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre d'État, ministre de la Transition écologique et solidaire",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre d'État, ministre de la Transition écologique et solidaire",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-jeanneney-jean-noel",
+  "nom": "Jean-Noël Jeanneney",
+  "fonctions": [
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès du ministre délégué à l'industrie et au commerce extérieur, chargé du commerce extérieur",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès du ministre d'État, Ministre de l'éducation nationale et de la culture, chargé de la communication",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-jobert-michel",
+  "nom": "Michel Jobert",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre des affaires étrangères",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre des affaires étrangères",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre d'État, Ministre du commerce extérieur",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre d'État, Ministre du commerce extérieur",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-jouyet-jean-pierre",
+  "nom": "Jean-Pierre Jouyet",
+  "fonctions": [
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès du Ministre des affaires étrangères et européennes, chargé des affaires européennes",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès du Ministre des affaires étrangères et européennes, chargé des affaires européennes",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-kiejman-georges",
+  "nom": "Georges Kiejman",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre délégué auprès du Garde des sceaux, ministre de la justice",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre délégué auprès du Ministre de la culture et de la communication, chargé de la communication",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre délégué auprès du ministre d'État, Ministre des affaires étrangères, chargé des affaires étrangères",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-klein-olivier",
+  "nom": "Olivier Klein",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre délégué auprès du ministre de la transition écologique et de la cohésion des territoires, chargé de la ville et du logement",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-kouchner-bernard",
+  "nom": "Bernard Kouchner",
+  "fonctions": [
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès du Ministre des affaires sociales et de l'emploi, chargé de l'insertion sociale",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès du Premier ministre, chargé de l'action humanitaire",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès du ministre d'État, Ministre des affaires étrangères, chargé de l'action humanitaire",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de la santé et de l'action humanitaire",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès de la Ministre de l'emploi et de la solidarité, chargé de la santé",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès de la Ministre de l'emploi et de la solidarité, chargé de la santé et de l'action sociale",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre délégué auprès de la Ministre de l'emploi et de la solidarité, chargé de la santé",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre des affaires étrangères et européennes",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre des affaires étrangères et européennes",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-lagarde-christine",
+  "nom": "Christine Lagarde",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre déléguée auprès du Ministre de l'économie, des finances et de l'industrie, chargée du commerce extérieur",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de l'agriculture et de la pêche",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de l'économie, des finances et de l'emploi",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de l'économie, de l'industrie et de l'emploi",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de l'Économie, des Finances et de l'Industrie",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-lalonde-brice",
+  "nom": "Brice Lalonde",
+  "fonctions": [
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès du Premier ministre, chargé de l'environnement",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès du Premier ministre, chargé de l'environnement",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès du Premier ministre, chargé de l'environnement et de la prévention des risques technologiques et naturels majeurs",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre délégué auprès du Premier ministre, chargé de l'environnement et de la prévention des risques technologiques et naturels majeurs",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de l'environnement",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-laporte-bernard",
+  "nom": "Bernard Laporte",
+  "fonctions": [
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès de la Ministre de la santé, de la jeunesse et des sports, chargé des sports",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès de la Ministre de la santé, de la jeunesse, des sports et de la vie associative, chargé des sports, de la jeunesse et de la vie associative",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès de la Ministre de la santé et des sports, chargé des sports",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-lenoir-noelle",
+  "nom": "Noëlle Lenoir",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre délégué auprès du Ministre des affaires étrangères, chargée des affaires européennes",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-lenoir-rene",
+  "nom": "René Lenoir",
+  "fonctions": [
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès de la Ministre de la santé, chargé de l'action sociale",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès de la Ministre de la santé, chargé de l'action sociale",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès de la Ministre de la santé et de la sécurité sociale, chargé de l'Action sociale",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-lepage-corinne",
+  "nom": "Corinne Lepage",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de l'environnement",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de l'environnement",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-lesur-annie",
+  "nom": "Annie Lesur",
+  "fonctions": [
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès du Ministre de l'éducation, chargée de l'enseignement préscolaire",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-loher-fabrice",
+  "nom": "Fabrice Loher",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre délégué auprès du ministre du partenariat avec les territoires et de la décentralisation, chargé de la mer et de la pêche",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-loiseau-nathalie",
+  "nom": "Nathalie Loiseau",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre auprès du ministre de l'Europe et des Affaires étrangères, chargée des Affaires européennes",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-lombard-eric",
+  "nom": "Eric Lombard",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de l'économie, des finances et de la souveraineté industrielle et numérique",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-macron-emmanuel",
+  "nom": "Emmanuel Macron",
+  "fonctions": [
+   {
+    "liste": "chef-etat",
+    "fonction": "Président de la République",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "chef-etat",
+    "fonction": "Président de la République",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de l'Économie, de l'Industrie et du Numérique",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-malraux-andre",
+  "nom": "André Malraux",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre d'État",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre d'État, chargé des affaires culturelles",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre d'État, chargé des affaires culturelles",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre d'État, chargé des affaires culturelles",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre d'État, chargé des affaires culturelles",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre d'État, chargé des affaires culturelles",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre d'État, chargé des affaires culturelles",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre d'État, chargé des affaires culturelles",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-maracineanu-roxana",
+  "nom": "Roxana Maracineanu",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre des sports",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre délégué auprès du ministre de l'éducation nationale, de la jeunesse et des sports, chargée des sports",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-matteoli-jean",
+  "nom": "Jean Mattéoli",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre du travail et de la participation",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-meadel-juliette",
+  "nom": "Juliette Méadel",
+  "fonctions": [
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès du Premier ministre, chargée de l'aide aux victimes",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès du Premier ministre, chargée de l'aide aux victimes",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre déléguée auprès du ministre de l'aménagement du territoire et de la décentralisation, chargée de la ville",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-mekachera-hamlaoui",
+  "nom": "Hamlaoui Mékachéra",
+  "fonctions": [
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès de la Ministre de la défense, chargé des anciens combattants",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre délégué auprès de la Ministre de la défense, chargé des anciens combattants",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre délégué auprès de la Ministre de la défense, chargé des anciens combattants",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-mer-francis",
+  "nom": "Francis Mer",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de l'économie, des finances et de l'industrie",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de l'économie, des finances et de l'industrie",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-mitterrand-frederic",
+  "nom": "Frédéric Mitterrand",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de la culture et de la communication",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de la Culture et de la Communication",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-morandat-yvon",
+  "nom": "Yvon Morandat",
+  "fonctions": [
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État, auprès du Ministre des affaires sociales, chargé de l'emploi",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-moreno-elisabeth",
+  "nom": "Elisabeth Moreno",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre délégué auprès du Premier ministre, chargée de l'égalité entre les femmes et les hommes, de la diversité et de l'égalité des chance",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-nasrou-othman",
+  "nom": "Othman Nasrou",
+  "fonctions": [
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès du ministre de l'intérieur, chargé de la citoyenneté et de la lutte contre les discriminations",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-ndiaye-pap",
+  "nom": "Pap Ndiaye",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de l'éducation nationale et de la jeunesse",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-ndiaye-sibeth",
+  "nom": "Sibeth Ndiaye",
+  "fonctions": [
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès du Premier ministre, porte-parole du Gouvernement",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-nunez-laurent",
+  "nom": "Laurent Nunez",
+  "fonctions": [
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès du ministre de l'intérieur",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-nyssen-francoise",
+  "nom": "Françoise Nyssen",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de la Culture",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de la Culture",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-o-cedric",
+  "nom": "Cédric O",
+  "fonctions": [
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès du ministre de l'économie et des finances et du ministre de l'action et des comptes publics, chargé du numérique.",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès du ministre de l'économie, des finances et de la relance et de la ministre de la cohésion des territoires et des relations avec les collectivités territoriales, chargé de la transition numérique et des communications électroniques",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès du ministre de l'économie, des finances et de la relance et du de la cohésion des territoires et des relations avec les collectivités territoriales, chargé de la transition numérique et des communications électroniques",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-oudea-castera-amelie",
+  "nom": "Amélie Oudea-Castera",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre des sports et des jeux Olympiques et Paralympiques",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de l'éducation nationale, de la jeunesse, des sports et des jeux Olympiques et Paralympiques",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre des sports et des jeux Olympiques et Paralympiques",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-parly-florence",
+  "nom": "Florence Parly",
+  "fonctions": [
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès du Ministre de l'économie, des finances et de l'industrie, chargée du budget",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre des Armées",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre des armées",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-pasquier-nicole",
+  "nom": "Nicole Pasquier",
+  "fonctions": [
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès du Ministre du travail et de la participation, chargée de l'emploi féminin",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-paye-lucien",
+  "nom": "Lucien Paye",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de l'éducation nationale",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-pellerin-fleur",
+  "nom": "Fleur Pellerin",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre déléguée auprès du Ministre du Redressement productif, chargée des Petites et moyennes entreprises, de l'Innovation et de l'Economie numérique",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre déléguée auprès du Ministre du Redressement productif, chargée des Petites et moyennes entreprises, de l'Innovation et de l'Economie numérique",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès du ministre des Affaires étrangères et du Développement international, chargée du Commerce extérieur, de la Promotion du tourisme et des Français de l'étranger",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de la Culture et de la Communication",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-pelletier-monique",
+  "nom": "Monique Pelletier",
+  "fonctions": [
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès du Garde des sceaux, ministre de la justice",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre déléguée auprès du Premier ministre, chargée de la condition féminine",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre déléguée auprès du Premier ministre, chargée de la famille et de la condition féminine",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-penchard-marie-luce",
+  "nom": "Marie-Luce Penchard",
+  "fonctions": [
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès du Ministre de l'intérieur, de l'outre-mer et des collectivités territoriales, chargée de l'outre-mer",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre auprès du Ministre de l'Intérieur, de l'outre-mer et des collectivités territoriales, chargée de l'outre-mer",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre auprès du Ministre de l'Intérieur, de l'Outre-mer, des Collectivités territoriales et de l'Immigration, chargée de l'Outre-mer",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-penicaud-muriel",
+  "nom": "Muriel Pénicaud",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre du Travail",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre du Travail",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-pinvile-martine",
+  "nom": "Martine Pinvile",
+  "fonctions": [
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès du ministre de l'Economie, de l'Industrie et du Numérique, chargée du Commerce, de l'Artisanat, de la Consommation et de l'Economie sociale et solidaire",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès du ministre de l'Economie et des Finances, chargée du Commerce, de l'Artisanat, de la Consommation et de l'Economie sociale et solidaire",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès du ministre de l'Economie et des Finances, chargée du Commerce, de l'Artisanat, de la Consommation et de l'Economie sociale et solidaire",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-postel-vinay-andre",
+  "nom": "André Postel-Vinay",
+  "fonctions": [
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès du Ministre du travail, chargé des travailleurs immigrés",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-prouteau-jean-pierre",
+  "nom": "Jean-Pierre Prouteau",
+  "fonctions": [
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès du Ministre de l'industrie, chargé de la petite et moyenne industrie",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-renon-gerard",
+  "nom": "Gérard Renon",
+  "fonctions": [
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État, chargé de la prévention des risques technologiques et naturels majeurs",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État à la défense",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-retailleau-sylvie",
+  "nom": "Sylvie Retailleau",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de l'enseignement supérieur et de la recherche",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de l'enseignement supérieur et de la recherche",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-roig-marie-josee",
+  "nom": "Marie-Josée Roig",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de la famille et de l'enfance",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre déléguée auprès du Ministre de l'intérieur, de la sécurité intérieure et des libertés locales, chargée de l'intérieur",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-rome-isabelle",
+  "nom": "Isabelle Rome",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre délégué auprès de la Première ministre, chargée de l'égalité entre les femmes et les hommes, de la diversité et de l'égalité des chances",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-saa-salima",
+  "nom": "Salima Saa",
+  "fonctions": [
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès du ministre des solidarités, de l'autonomie et de l'égalité entre les femmes et les hommes, chargée de l'égalité entre les femmes et les hommes",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-saifi-tokia",
+  "nom": "Tokia Saïfi",
+  "fonctions": [
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès de la Ministre de l'écologie et du développement durable, chargée du développement durable",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès de la Ministre de l'écologie et du développement durable, chargée du développement durable",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès du Ministre de l'écologie et du développement durable, chargée du développement durable",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-saunier-seite-alice",
+  "nom": "Alice Saunier-Seïté",
+  "fonctions": [
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État aux universités",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État aux universités",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État aux universités",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre des universités",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-sautter-christian",
+  "nom": "Christian Sautter",
+  "fonctions": [
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès du Ministre de l'économie, des finances et de l'industrie, chargé du budget",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de l'économie, des finances et de l'industrie",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-sauvagnargues-jean",
+  "nom": "Jean Sauvagnargues",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre des affaires étrangères",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-schiappa-marlene",
+  "nom": "Marlène Schiappa",
+  "fonctions": [
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès du Premier ministre, chargée de l'Egalité entre les femmes et les hommes",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès du Premier ministre, chargée de l'Egalité entre les femmes et les hommes",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès du Premier ministre, chargée de l'égalité entre les femmes et les hommes et de la lutte contre les discriminations",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre délégué auprès du ministre de l'intérieur, chargée de la citoyenneté",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès de la Première ministre, chargée de l'économie sociale et solidaire et de la vie associative",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-schwartzenberg-leon",
+  "nom": "Léon Schwartzenberg",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre délégué auprès du Ministre de la solidarité, de la santé et de la protection sociale, chargé de la santé",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-scrivener-christiane",
+  "nom": "Christiane Scrivener",
+  "fonctions": [
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès du Ministre de l'économie et des finances, chargée de la consommation",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès du Ministre délégué à l'économie et aux finances, chargée de la consommation",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès du Ministre délégué à l'économie et aux finances, chargée de la consommation",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-sudre-margie",
+  "nom": "Margie Sudre",
+  "fonctions": [
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès du Ministre des Affaires étrangères, chargée de la Francophonie",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès du Ministre des Affaires étrangères, chargée de la Francophonie",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-tazieff-haroun",
+  "nom": "Haroun Tazieff",
+  "fonctions": [
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès du Premier ministre, chargé de la prévention des risques naturels et technologiques majeurs",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-vallaud-belkacem-najat",
+  "nom": "Najat Vallaud-Belkacem",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre des Droits des femmes, Porte-parole du Gouvernement",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre des Droits des femmes, Porte-parole du Gouvernement",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre des Droits des femmes, de la Ville, de la Jeunesse et des Sports",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de l'Education nationale, de l'Enseignement supérieur et de la Recherche",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de l'Education nationale, de l'Enseignement supérieur et de la Recherche",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-vedrine-hubert",
+  "nom": "Hubert Védrine",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre des affaires étrangères",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-veil-simone",
+  "nom": "Simone Veil",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de la santé",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de la santé",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de la santé",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de la santé et de la famille",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre d'État, Ministre des affaires sociales, de la santé et de la ville",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-vergriete-patrice",
+  "nom": "Patrice Vergriete",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre délégué auprès du ministre de la transition écologique et de la cohésion des territoires, chargé du logement",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre délégué auprès du ministre de la transition écologique et de la cohésion des territoires, chargé des transports",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-versini-dominique",
+  "nom": "Dominique Versini",
+  "fonctions": [
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès du Ministre des affaires sociales, du travail et de la solidarité, chargé de la lutte contre la précarité et l'exclusion",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès du Ministre des affaires sociales, du travail et de la solidarité, chargé de la lutte contre la précarité et l'exclusion",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-vidal-frederique",
+  "nom": "Frédérique Vidal",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de l'Enseignement supérieur, de la Recherche et de l'Innovation",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de l'Enseignement supérieur, de la Recherche et de l'Innovation",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de l'enseignement supérieur, de la recherche et de l'innovation",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-wargon-emmanuelle",
+  "nom": "Emmanuelle Wargon",
+  "fonctions": [
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès du ministre d'État, ministre de la transition écologique et solidaire",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès de la ministre de la transition écologique et solidaire",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre délégué auprès de la ministre de la transition écologique, chargée du logement",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-yade-rama",
+  "nom": "Rama Yade",
+  "fonctions": [
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès du Ministre des affaires étrangères et européennes, chargée des affaires étrangères et des droits de l'homme",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès de la Ministre de la santé et des sports, chargée des sports",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-zacharopoulou-chrysoula",
+  "nom": "Chrysoula Zacharopoulou",
+  "fonctions": [
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès de la ministre de l'Europe et des affaires étrangères, chargée du développement, de la francophonie et des partenariats internationaux",
+    "debut": null,
+    "fin": null
+   },
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État auprès du ministre de l'Europe et des affaires étrangères, chargée du développement et des partenariats internationaux",
+    "debut": null,
+    "fin": null
+   }
+  ]
+ }
+]
