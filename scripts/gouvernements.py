@@ -141,7 +141,7 @@ def rapprochement_souple(nf, pr, debut, index_large):
             # Le nom cherché doit se lire dans le nom de la fiche, jamais dans son premier prénom
             # (« Michel Guy » n'est pas « Guy-Michel Chauveau »)
             premier = set(premier_prenom(c["nom"]).split("-"))
-            nom_ok = nf <= segment and not (nf & premier)
+            nom_ok = nf <= segment and not nf <= premier
             prenom_ok = (pr in prenoms or parts <= tous_prenoms
                          or any(SequenceMatcher(None, pr, p).ratio() >= 0.75 for p in prenoms))
             if nom_ok and prenom_ok:
@@ -307,14 +307,22 @@ def main():
             coquilles.append(f"{prenom} {nom} = {proche}")
             continue
         ident = "G-" + re.sub(r"[^a-z0-9]+", "-", f"{n} {p}").strip("-")
-        fiche = personnes.setdefault(ident, {"id": ident, "nom": f"{prenom} {nom}", "fonctions": []})
+        # Même nom et prénom voisin d'une carte hors catégorie déjà créée : même personne (« Francis »/« François »)
+        for autre, fiche_autre in personnes.items():
+            np_autre = fiche_autre["cle"]
+            if np_autre[1] == n and SequenceMatcher(None, np_autre[0], p).ratio() >= 0.8 and autre != ident:
+                coquilles.append(f"{prenom} {nom} = {fiche_autre['nom']}")
+                ident = autre
+                break
+        fiche = personnes.setdefault(ident, {"id": ident, "nom": f"{prenom} {nom}", "fonctions": [], "cle": (p, n)})
         fiche["fonctions"].append({"liste": liste, "fonction": fonction, "debut": debut, "fin": fin})
         membres[liste].add(ident)
     for fiche in personnes.values():
         fiche["fonctions"].sort(key=lambda f: f["debut"] or "")
     os.makedirs(os.path.join("data", "gouvernement"), exist_ok=True)
     with open(os.path.join("data", "gouvernement", "hors_parlement.json"), "w", encoding="utf-8") as f:
-        json.dump(sorted(personnes.values(), key=lambda x: x["id"]), f, ensure_ascii=False, indent=1)
+        json.dump([{k: v for k, v in x.items() if k != "cle"} for x in sorted(personnes.values(), key=lambda x: x["id"])],
+                  f, ensure_ascii=False, indent=1)
 
     sans_carte = sorted(personnes[i]["nom"] for i in personnes)
     rapport.insert(0, f"Fonctions 1944-1959 reprises : {nb_ive}")
