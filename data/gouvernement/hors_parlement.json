@@ -828,6 +828,18 @@
   ]
  },
  {
+  "id": "G-dabo-sissoko-fily",
+  "nom": "Fily DABO SISSOKO",
+  "fonctions": [
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Sous-SE (industrie, commerce)",
+    "debut": "1948-09-05",
+    "fin": null
+   }
+  ]
+ },
+ {
   "id": "G-daragon-nicolas",
   "nom": "Nicolas Daragon",
   "fonctions": [
@@ -1748,6 +1760,18 @@
     "fonction": "Secrétaire d'État auprès de la Ministre de l'emploi et de la solidarité, chargée des personnes âgées",
     "debut": "2001-03-27",
     "fin": "2002-05-06"
+   }
+  ]
+ },
+ {
+  "id": "G-guy-michel",
+  "nom": "Michel Guy",
+  "fonctions": [
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Secrétaire d'État à la culture",
+    "debut": "1974-05-27",
+    "fin": "1976-08-25"
    }
   ]
  },
@@ -3134,6 +3158,60 @@
     "fonction": "Secrétaire d'État auprès du Ministre des Affaires étrangères, chargée de la Francophonie",
     "debut": "1995-11-07",
     "fin": "1997-06-02"
+   }
+  ]
+ },
+ {
+  "id": "G-tanguy-prigent-francis",
+  "nom": "Francis TANGUY-PRIGENT",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre des anciens combattants et victimes de guerre",
+    "debut": "1956-02-01",
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-tanguy-prigent-francois",
+  "nom": "François TANGUY-PRIGENT",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de l'Agriculture",
+    "debut": "1944-09-10",
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de l'Agriculture et du Ravitaillement",
+    "debut": "1945-11-21",
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de l'Agriculture (et sous-SE économie et finances)",
+    "debut": "1946-01-26",
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de l'Agriculture",
+    "debut": "1946-06-24",
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de l'Agriculture",
+    "debut": "1946-12-16",
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de l'Agriculture",
+    "debut": "1947-01-22",
+    "fin": null
    }
   ]
  },
