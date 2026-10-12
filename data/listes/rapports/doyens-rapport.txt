@@ -1,5 +1,6 @@
 Octets : 14924 ; pages annoncées : 2 ; flux de texte lus : 9 ; flux illisibles : 0 ; lignes : 130
 Années citées : de 1709 à 1863
+Législatures retenues : 50 ; contrôle 1789-1863 : 14 doyens conformes sur 17
 
 --- 60 premières lignes ---
 DOYENS D’AGE
@@ -144,3 +145,58 @@ VALENCE
 DRÔME
 1852 et
 1857
+
+--- Doyens et benjamins calculés (contrôle : nom présent dans le tableau officiel, années ≤ 1863) ---
+1795-09-26 Révolution | Conseil des Cinq-Cents (491 présents) : doyen 13179 Nicolas Raffron-Dutrouillet ou de Trouillet (1723) ; benjamin 15770 Pierre, Salvi, Félix de Cardonnel (1770) ; âges 72 et 25 ans  [CONFORME au tableau]
+1799-12-25 Consulat et Premier Empire | Corps législatif (284 présents) : doyen 12952 Isaac Tarteyron (1728) ; benjamin 15860 Michel, Ange d'Ornano (1771) ; âges 71 et 28 ans  [CONFORME au tableau]
+1815-05-02 Cent-Jours | Chambre des représentants (616 présents) : doyen 16615 Louis, Gabriel, Philibert Debranges (1738) ; benjamin 16339 Auguste, Charles Lebrun (1789) ; âges 77 et 26 ans  [CONFORME au tableau]
+1815-08-22 Seconde Restauration - Chambre des députés des départements | Ire législature (388 présents) : doyen 11699 Claude, Alexis Cochard (1743) ; benjamin 16656 Alphonse, Raymond, Marcellin, Bénigne Sagnard de Choumouroux (1788) ; âges 72 et 27 ans  [CONFORME au tableau]
+1816-09-25 Seconde Restauration - Chambre des députés des départements | IIe législature (237 présents) : doyen 11641 Jean-François Anglès (1736) ; benjamin 11408 Jean, Joseph Méallet de Fargues (1777) ; âges 80 et 39 ans  [CONFORME au tableau]
+1824-02-05 Seconde Restauration - Chambre des députés des départements | IIIe législature (425 présents) : doyen 15897 Pierre Chilhaud de la Rigaudie (1749) ; benjamin 14234 Achille, Louis de Meffray de Césarges (1787) ; âges 74 et 36 ans  [ABSENT du tableau officiel]
+1830-06-23 Monarchie de Juillet - Chambre des députés | Ire législature (428 présents) : doyen 15897 Pierre Chilhaud de la Rigaudie (1749) ; benjamin 13574 Abel, François Villemain (1790) ; âges 80 et 40 ans  [ABSENT du tableau officiel]
+1831-07-05 Monarchie de Juillet - Chambre des députés | IIe législature (420 présents) : doyen 14129 Charles, Jacques, Nicolas Duchatel (1751) ; benjamin 11746 Charles, Joseph Giraud (1801) ; âges 80 et 30 ans  [CONFORME au tableau]
+1834-06-21 Monarchie de Juillet - Chambre des députés | IIIe législature (434 présents) : doyen 11424 Joseph, Marie Gras de Préville (1755) ; benjamin 8835 Marc dit Saint-Marc-Girardin (1804) ; âges 79 et 30 ans  [CONFORME au tableau]
+1837-11-04 Monarchie de Juillet - Chambre des députés | IVe législature (446 présents) : doyen 11410 Pierre, Barthélemy, Joseph Nogaret (1762) ; benjamin 17647 Hubert, Norbert, Joseph de La Ferté-Meun (1806) ; âges 75 et 31 ans  [CONFORME au tableau]
+    âge invraisemblable, écarté : 17784 Antoine, dit Frédéric Salveton (17 ans)
+1839-03-02 Monarchie de Juillet - Chambre des députés | Ve législature (450 présents) : doyen 11424 Joseph, Marie Gras de Préville (1755) ; benjamin 11855 Louis, Paul, Achille Guilhem (1808) ; âges 84 et 31 ans  [CONFORME au tableau]
+1842-07-05 Monarchie de Juillet - Chambre des députés | VIe législature (450 présents) : doyen 11424 Joseph, Marie Gras de Préville (1755) ; benjamin 8827 Pierre, François, Alphonse Saglio (1812) ; âges 87 et 30 ans  [CONFORME au tableau]
+1846-08-01 Monarchie de Juillet - Chambre des députés | VIIe législature (447 présents) : doyen 9752 Jacques, Charles Dupont de l'Eure (1767) ; benjamin 17784 Antoine, dit Frédéric Salveton (1820) ; âges 79 et 26 ans  [CONFORME au tableau]
+1848-04-23 Deuxième République | Assemblée nationale constituante (853 présents) : doyen 9752 Jacques, Charles Dupont de l'Eure (1767) ; benjamin 9019 Armand, Félix Fresneau (1823) ; âges 81 et 25 ans  [CONFORME au tableau]
+1849-05-13 Deuxième République | Assemblée nationale législative (718 présents) : doyen 10873 Auguste, Hilarion de Kératry (1769) ; benjamin 10463 Charles Boch (1824) ; âges 79 et 25 ans  [CONFORME au tableau]
+1852-02-29 Second Empire - Corps législatif | Ire législature (260 présents) : doyen 9156 Etienne, Adrien Sapey (1771) ; benjamin 9200 Victor, Edouard Dalloz (1826) ; âges 81 et 25 ans  [CONFORME au tableau]
+1857-06-21 Second Empire - Corps législatif | IIe législature (266 présents) : doyen 9464 Jacques Mercier (1776) ; benjamin 9155 Louis, Joseph, Napoléon de Cambacérès (1832) ; âges 81 et 24 ans  [ABSENT du tableau officiel]
+1863-05-31 Second Empire - Corps législatif | IIIe législature (281 présents) : doyen 9052 Jean, Gabriel, Théophile de Boissy d'Anglas (1783) ; benjamin 9048 Victor dit Victorin Masséna Duc de Rivoli, Prince d'Essling (1836) ; âges 80 et 27 ans
+1869-05-23 Second Empire - Corps législatif | IVe législature (288 présents) : doyen 9046 Xavier, Louis Réguis (1790) ; benjamin 8014 Antoine, Just, Léon, Marie de Mouchy de Noailles de Poix (1841) ; âges 78 et 28 ans
+1876-02-20 Troisième République - Chambre des députés | Ire législature (521 présents) : doyen 6604 François, Vincent Raspail (1794) ; benjamin 7613 Louis Le Provost de Launay (1850) ; âges 82 et 25 ans
+1877-10-14 Troisième République - Chambre des députés | IIe législature (532 présents) : doyen 6604 François, Vincent Raspail (1794) ; benjamin 8084 Jules, Jean-François, Raoul André (1852) ; âges 83 et 25 ans
+1889-09-22 Troisième République - Chambre des députés | Ve législature (573 présents) : doyen 851 Pierre Blanc (1806) ; benjamin 6739 Pierre, Marie Richard (1864) ; âges 83 et 25 ans
+1893-08-20 Troisième République - Chambre des députés | VIe législature (580 présents) : doyen 851 Pierre Blanc (1806) ; benjamin 3542 Georges, Charles, Alfred, Marie Millin de Grandmaison (1865) ; âges 87 et 28 ans
+1898-05-08 Troisième République - Chambre des députés | VIIe législature (581 présents) : doyen 1158 Charles, Guillaume Boysset (1817) ; benjamin 7422 Alexandre Bourson dit Zévaes (1873) ; âges 81 et 24 ans
+    âge invraisemblable, écarté : 425 Jules Baron (13 ans)
+1902-04-27 Troisième République - Chambre des députés | VIIIe législature (586 présents) : doyen 7174 Jean, Placide Turigny (1822) ; benjamin 7168 Albert, Paul Truy (1876) ; âges 80 et 25 ans
+    âge invraisemblable, écarté : 425 Jules Baron (17 ans)
+1914-04-25 Troisième République - Chambre des députés | XIe législature (601 présents) : doyen 4868 Frédéric, Armand de Mackau (1832) ; benjamin 10839 Pierre, Etienne Flandin (1889) ; âges 81 et 25 ans
+1919-11-11 Troisième République - Chambre des députés | XIIe législature (622 présents) : doyen 6832 Jules Siegfried (1837) ; benjamin 3042 René Fonck (1894) ; âges 82 et 25 ans
+1924-05-11 Troisième République - Chambre des députés | XIIIe législature (584 présents) : doyen 5938 Adolphe Pinard (1844) ; benjamin 2556 Jacques Doriot (1898) ; âges 80 et 25 ans
+1928-04-22 Troisième République - Chambre des députés | XIVe législature (610 présents) : doyen 6821 Maurice Sibille (1847) ; benjamin 6618 Alexandre Rauzy (1903) ; âges 80 et 25 ans
+1932-05-01 Troisième République - Chambre des députés | XVe législature (614 présents) : doyen 7055 Gaston, Arnold, Marie Thomson (1848) ; benjamin 5176 Pierre, Isaac, Isidore Mendès France (1907) ; âges 84 et 25 ans
+1936-04-26 Troisième République - Chambre des députés | XVIe législature (614 présents) : doyen 6253 Antoine Sallès (1860) ; benjamin 68 André, Didier, François Albert (1911) ; âges 75 et 25 ans
+1945-10-18 Gouvernement provisoire de la République française | Ire Assemblée nationale constituante (585 présents) : doyen 2091 Paul, Raymond, Maxime Cuttoli (1864) ; benjamin 1033 Patrice, Maurice, Léonce Bougrain (1920) ; âges 81 et 25 ans
+1946-06-02 Gouvernement provisoire de la République française | 2e Assemblée nationale constituante (585 présents) : doyen 1346 Marcel, Gilles Cachin (1869) ; benjamin 1860 Pierre, Henri Clostermann (1921) ; âges 76 et 25 ans
+1946-11-10 Quatrième République - Assemblée nationale | Ire législature (620 présents) : doyen 1346 Marcel, Gilles Cachin (1869) ; benjamin 5345 Constant, Jean, Marie Monjaret (1922) ; âges 77 et 24 ans
+1951-06-17 Quatrième République - Assemblée nationale | IIe législature (630 présents) : doyen 5738 Eugène, François, Adrien Pébellier (1866) ; benjamin 2500 Hamadoun Dicko (1924) ; âges 85 et 26 ans
+1956-01-02 Quatrième République - Assemblée nationale | IIIe législature (603 présents) : doyen 1346 Marcel, Gilles Cachin (1869) ; benjamin 1761 André Chène (1928) ; âges 86 et 27 ans
+1958-11-23 Cinquième République - Assemblée nationale | Ire législature (572 présents) : doyen 4144 Félix Kir (1876) ; benjamin 7266 Guy Vaschetti (1931) ; âges 82 et 27 ans
+1962-11-18 Cinquième République - Assemblée nationale | IIe législature (479 présents) : doyen 4144 Félix Kir (1876) ; benjamin 5459 Ahmed-Idriss Moussa (1933) ; âges 86 et 29 ans
+1978-03-12 Cinquième République - Assemblée nationale | VIe législature (487 présents) : doyen 2147 Marcel Dassault (1892) ; benjamin 419 Michel Barnier (1951) ; âges 86 et 27 ans
+1981-07-02 Cinquième République - Assemblée nationale | VIIe législature (523 présents) : doyen 2147 Marcel Dassault (1892) ; benjamin 3009 François Fillon (1954) ; âges 89 et 27 ans
+1986-04-02 Cinquième République - Assemblée nationale | VIIIe législature (609 présents) : doyen 2147 Marcel Dassault (1892) ; benjamin 256 Gautier Audinot (1957) ; âges 94 et 28 ans
+1988-06-06 Cinquième République - Assemblée nationale | IXe législature (578 présents) : doyen 3144 Edouard Frédéric-Dupont (1902) ; benjamin 4956 Thierry Mandon (1957) ; âges 85 et 30 ans
+1993-04-02 Cinquième République - Assemblée nationale | Xe législature (602 présents) : doyen 2813 Charles Ehrmann (1911) ; benjamin 421 François Baroin (1965) ; âges 81 et 27 ans
+1997-05-17 Cinquième République - Assemblée nationale | XIe législature (577 présents) : doyen 2813 Charles Ehrmann (1911) ; benjamin 1209 Victor Brial (1966) ; âges 85 et 31 ans
+2002-06-19 Cinquième République - Assemblée nationale | XIIe législature (599 présents) : doyen 3725 Georges Hage (1921) ; benjamin 10653 Édouard Courtial (1973) ; âges 80 et 28 ans
+2007-06-20 Cinquième République - Assemblée nationale | XIIIe législature (595 présents) : doyen 1136 Loïc Bouvard (1929) ; benjamin 17286 Olivier Dussopt (1978) ; âges 78 et 28 ans
+2012-06-20 Cinquième République - Assemblée nationale | XIVe législature (578 présents) : doyen 10770 François Scellier (1936) ; benjamin 18477 Marion Maréchal-Le Pen (1989) ; âges 76 et 22 ans
+2017-06-21 Cinquième République - Assemblée nationale | XVe législature (578 présents) : doyen 9628 Bernard Brochand (1938) ; benjamin 19310 Ludovic Pajot (1993) ; âges 79 et 23 ans
+2022-06-22 Cinquième République - Assemblée nationale | XVIe législature (577 présents) : doyen 19664 José Gonzalez (1943) ; benjamin 19697 Tematai Le Gayic (2000) ; âges 79 et 21 ans
+2024-07-01 Cinquième République - Assemblée nationale | XVIIe législature (577 présents) : doyen 19664 José Gonzalez (1943) ; benjamin 20007 Flavien Termet (2002) ; âges 81 et 22 ans
