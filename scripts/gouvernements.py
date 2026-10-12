@@ -28,7 +28,7 @@ from collections import defaultdict
 from difflib import SequenceMatcher
 
 sys.path.insert(0, os.path.dirname(__file__))
-from cartes import nom_famille_sycomore  # noqa: E402
+from cartes import lire_date, nom_famille_sycomore  # noqa: E402
 
 SOURCE = "https://www.data.gouv.fr/datasets/historique-des-gouvernements-de-la-veme-republique"
 FICHIERS = {  # identifiants des ressources publiés sur la page du jeu de données
@@ -97,6 +97,10 @@ def iso(valeur):
     m = re.search(r"(\d{1,2})[-/.](\d{1,2})[-/.](\d{4})", v)
     if m:
         return f"{m.group(3)}-{int(m.group(2)):02d}-{int(m.group(1)):02d}"
+    # Date en toutes lettres, jour de la semaine éventuel : « jeudi 8 janvier 1959 »
+    d = lire_date(re.sub(r"^(lundi|mardi|mercredi|jeudi|vendredi|samedi|dimanche)\s+", "", v, flags=re.I))
+    if d:
+        return d.isoformat()
     if v and len(DATES_ILLISIBLES) < 5:
         DATES_ILLISIBLES.append(v)
     return None
