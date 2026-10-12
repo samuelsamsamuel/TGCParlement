@@ -88,6 +88,9 @@ def norme(t):
     return unicodedata.normalize("NFKD", t or "").encode("ascii", "ignore").decode().lower()
 
 
+NON_RETENUES = []
+
+
 def calculer(cartes):
     """Doyen et benjamin de chaque législature, d'après les mandats et dates de naissance des fiches."""
     groupes = defaultdict(list)
@@ -99,10 +102,21 @@ def calculer(cartes):
                 groupes[(m["regime"], m.get("legislature"))].append((m["debut"], c))
     resultat = []
     for (regime, leg), membres in groupes.items():
-        ouverture = min(d for d, _ in membres)
-        o = date.fromisoformat(ouverture)
-        presents = {c["id"]: c for d, c in membres if (date.fromisoformat(d) - o).days <= 30}
+        # Ouverture : début de la fenêtre de 30 jours qui concentre le plus d'entrées en fonction
+        # (une date aberrante ou une élection partielle antérieure ne doit pas la déplacer)
+        debuts = sorted(date.fromisoformat(d) for d, _ in membres)
+        meilleur, j = (0, debuts[0]), 0
+        for i, d in enumerate(debuts):
+            while (debuts[j + 1 if j + 1 < len(debuts) else j] - d).days <= 30 and j + 1 < len(debuts):
+                j += 1
+            j = max(j, i)
+            if j - i + 1 > meilleur[0]:
+                meilleur = (j - i + 1, d)
+        o = meilleur[1]
+        ouverture = o.isoformat()
+        presents = {c["id"]: c for d, c in membres if 0 <= (date.fromisoformat(d) - o).days <= 30}
         if len(presents) < 50:
+            NON_RETENUES.append(f"{regime} | {leg} : {len(presents)} présents à l'ouverture ({ouverture})")
             continue  # assemblée trop peu renseignée pour désigner sûrement doyen et benjamin
         # Âge à l'ouverture vraisemblable (18 ans minimum depuis 2011, 21 auparavant ; 105 au plus) :
         # une date de naissance ou de mandat erronée dans une fiche ne doit pas désigner le doyen ou le benjamin
@@ -115,7 +129,7 @@ def calculer(cartes):
         ecartes = [f"{c['id']} {c['nom']} ({age(c)} ans)" for c in presents.values() if c not in valides]
         par_age = sorted(valides, key=lambda c: c["naissance"])
         resultat.append({"regime": regime, "legislature": leg, "ouverture": ouverture, "presents": len(presents),
-                         "doyen": par_age[0], "benjamin": par_age[-1], "ecartes": ecartes,
+                         "doyen": par_age[0], "benjamin": par_age[-1], "ecartes": ecartes, "valides": valides,
                          "ages": (age(par_age[0]), age(par_age[-1]))})
     return sorted(resultat, key=lambda r: r["ouverture"])
 
@@ -159,12 +173,22 @@ def main():
             trouve = nom_famille in officiels
             concordants += trouve
             controle = "  [CONFORME au tableau]" if trouve else "  [ABSENT du tableau officiel]"
+            if not trouve:
+                # Le tableau officiel fait foi : parmi les présents, le plus âgé dont le nom y figure
+                cites = [c for c in r["valides"] if norme(c["nom"].split(",")[-1].split()[-1]) in officiels]
+                if cites:
+                    r["doyen"] = min(cites, key=lambda c: c["naissance"])
+                    nom_doyen = r["doyen"]["nom"]
+                    controle += f" -> doyen retenu d'après le tableau : {r['doyen']['id']} {nom_doyen}"
+                else:
+                    controle += " -> aucun doyen du tableau parmi les présents ; calcul conservé"
         rapport.append(f"{r['ouverture']} {r['regime']} | {r['legislature']} ({r['presents']} présents) : "
                        f"doyen {r['doyen']['id']} {nom_doyen} ({r['doyen']['naissance'][:4]}) ; "
                        f"benjamin {r['benjamin']['id']} {r['benjamin']['nom']} ({r['benjamin']['naissance'][:4]}) ; "
                        f"âges {r['ages'][0]} et {r['ages'][1]} ans{controle}"
                        + (f"\n    âge invraisemblable, écarté : {' ; '.join(r['ecartes'])}" if r["ecartes"] else ""))
     avant = sum(1 for r in calcul if r["ouverture"] <= "1863")
+    rapport.append("\nLégislatures non retenues (moins de 50 présents identifiés) : " + " ; ".join(NON_RETENUES))
     rapport.insert(2, f"Législatures retenues : {len(calcul)} ; contrôle 1789-1863 : {concordants} doyens conformes sur {avant}")
     ids = sorted({r[k]["id"] for r in calcul for k in ("doyen", "benjamin")}, key=str)
     with open(os.path.join("data", "listes", "doyen-benjamin.json"), "w", encoding="utf-8") as f:
