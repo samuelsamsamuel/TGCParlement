@@ -270,18 +270,6 @@
   ]
  },
  {
-  "id": "G-bergasse-henri",
-  "nom": "Henri BERGASSE",
-  "fonctions": [
-   {
-    "liste": "ministre",
-    "fonction": "Ministre des Anciens combattants et victimes de guerre",
-    "debut": "1953-01-08",
-    "fin": null
-   }
-  ]
- },
- {
   "id": "G-berra-nora",
   "nom": "Nora Berra",
   "fonctions": [
@@ -786,36 +774,6 @@
   ]
  },
  {
-  "id": "G-corniglion-molinier-edward",
-  "nom": "Edward CORNIGLION-MOLINIER",
-  "fonctions": [
-   {
-    "liste": "ministre",
-    "fonction": "Ministre d'Etat",
-    "debut": "1953-06-28",
-    "fin": null
-   },
-   {
-    "liste": "ministre",
-    "fonction": "Ministre des Travaux publics, des transports et du tourisme",
-    "debut": "1955-02-23",
-    "fin": null
-   },
-   {
-    "liste": "ministre",
-    "fonction": "Garde des Sceaux, Ministre de la Justice",
-    "debut": "1956-02-01",
-    "fin": null
-   },
-   {
-    "liste": "ministre",
-    "fonction": "Ministre d'Etat, chargé du Sahara",
-    "debut": "1958-05-14",
-    "fin": null
-   }
-  ]
- },
- {
   "id": "G-cosse-emmanuelle",
   "nom": "Emmanuelle Cosse",
   "fonctions": [
@@ -866,18 +824,6 @@
     "fonction": "Ministre de la recherche et de l'espace",
     "debut": "1992-04-02",
     "fin": "1993-03-29"
-   }
-  ]
- },
- {
-  "id": "G-dabo-sissoko-fily",
-  "nom": "Fily DABO SISSOKO",
-  "fonctions": [
-   {
-    "liste": "secretaire-etat",
-    "fonction": "Sous-SE (industrie, commerce)",
-    "debut": "1948-09-05",
-    "fin": null
    }
   ]
  },
@@ -1152,36 +1098,6 @@
   ]
  },
  {
-  "id": "G-dicko-hammadoun",
-  "nom": "Hammadoun DICKO",
-  "fonctions": [
-   {
-    "liste": "secretaire-etat",
-    "fonction": "Sous-SE (industrie, commerce)",
-    "debut": "1956-02-01",
-    "fin": null
-   },
-   {
-    "liste": "secretaire-etat",
-    "fonction": "Sous-SE (Présidence du Conseil) (à compter du 17 mars 1956)",
-    "debut": "1956-03-17",
-    "fin": null
-   },
-   {
-    "liste": "secretaire-etat",
-    "fonction": "SE (à compter du 17 juin 1957)",
-    "debut": "1957-06-17",
-    "fin": null
-   },
-   {
-    "liste": "secretaire-etat",
-    "fonction": "SE (éducation nationale) (à compter du 18 novembre 1957)",
-    "debut": "1957-11-18",
-    "fin": null
-   }
-  ]
- },
- {
   "id": "G-dorlhac-helene",
   "nom": "Hélène Dorlhac",
   "fonctions": [
@@ -1310,48 +1226,6 @@
     "fonction": "garde des sceaux, ministre de la justice",
     "debut": "2024-01-11",
     "fin": "2024-07-16"
-   }
-  ]
- },
- {
-  "id": "G-dupraz-johannes",
-  "nom": "Johannès DUPRAZ",
-  "fonctions": [
-   {
-    "liste": "secretaire-etat",
-    "fonction": "SE (armement) (à partir du 31 octobre 1947)",
-    "debut": "1947-10-22",
-    "fin": null
-   },
-   {
-    "liste": "secretaire-etat",
-    "fonction": "SE (marine)",
-    "debut": "1947-11-24",
-    "fin": null
-   },
-   {
-    "liste": "secretaire-etat",
-    "fonction": "SE (forces armées,marine)",
-    "debut": "1948-07-26",
-    "fin": null
-   },
-   {
-    "liste": "secretaire-etat",
-    "fonction": "SE (forces armées,marine)",
-    "debut": "1948-09-05",
-    "fin": null
-   },
-   {
-    "liste": "secretaire-etat",
-    "fonction": "SE (forces armées,marine)",
-    "debut": "1948-09-11",
-    "fin": null
-   },
-   {
-    "liste": "secretaire-etat",
-    "fonction": "SE (Présidence du Conseil) (à compter du 10 janvier 1953)",
-    "debut": "1953-01-10",
-    "fin": null
    }
   ]
  },
@@ -1878,18 +1752,6 @@
   ]
  },
  {
-  "id": "G-guy-michel",
-  "nom": "Michel Guy",
-  "fonctions": [
-   {
-    "liste": "secretaire-etat",
-    "fonction": "Secrétaire d'État à la culture",
-    "debut": "1974-05-27",
-    "fin": "1976-08-25"
-   }
-  ]
- },
- {
   "id": "G-haignere-claudie",
   "nom": "Claudie Haigneré",
   "fonctions": [
@@ -2036,18 +1898,6 @@
     "fonction": "Secrétaire d'État auprès du ministre d'État, Ministre de l'éducation nationale et de la culture, chargé de la communication",
     "debut": "1992-04-02",
     "fin": "1993-03-29"
-   }
-  ]
- },
- {
-  "id": "G-jeanneney-jules-emile",
-  "nom": "Jules-Emile JEANNENEY",
-  "fonctions": [
-   {
-    "liste": "ministre",
-    "fonction": "Ministre d'Etat",
-    "debut": "1944-09-10",
-    "fin": null
    }
   ]
  },
@@ -2473,18 +2323,6 @@
     "liste": "chef-etat",
     "fonction": "Président de la République",
     "debut": "2022-05-14",
-    "fin": null
-   }
-  ]
- },
- {
-  "id": "G-maga-coutoucou-hubert",
-  "nom": "Hubert MAGA-COUTOUCOU",
-  "fonctions": [
-   {
-    "liste": "secretaire-etat",
-    "fonction": "Sous-SE (à compter du 18 novembre 1957)",
-    "debut": "1957-11-18",
     "fin": null
    }
   ]
@@ -3282,30 +3120,6 @@
   ]
  },
  {
-  "id": "G-se-aviation-civile-a-compter-du-17-juin-1957-sous",
-  "nom": "Sous- SE (aviation civile) (à compter du 17 juin 1957)",
-  "fonctions": [
-   {
-    "liste": "secretaire-etat",
-    "fonction": "Sous-SE (reconstruction, logement) (à compter du 17 juin 1957)",
-    "debut": "1956-02-01",
-    "fin": null
-   }
-  ]
- },
- {
-  "id": "G-se-marine-marchande-sous",
-  "nom": "Sous- SE (marine marchande)",
-  "fonctions": [
-   {
-    "liste": "secretaire-etat",
-    "fonction": "Sous-SE (reconstruction, logement) (à compter du 17 juin 1957)",
-    "debut": "1956-02-01",
-    "fin": null
-   }
-  ]
- },
- {
   "id": "G-sudre-margie",
   "nom": "Margie Sudre",
   "fonctions": [
@@ -3320,60 +3134,6 @@
     "fonction": "Secrétaire d'État auprès du Ministre des Affaires étrangères, chargée de la Francophonie",
     "debut": "1995-11-07",
     "fin": "1997-06-02"
-   }
-  ]
- },
- {
-  "id": "G-tanguy-prigent-francis",
-  "nom": "Francis TANGUY-PRIGENT",
-  "fonctions": [
-   {
-    "liste": "ministre",
-    "fonction": "Ministre des anciens combattants et victimes de guerre",
-    "debut": "1956-02-01",
-    "fin": null
-   }
-  ]
- },
- {
-  "id": "G-tanguy-prigent-francois",
-  "nom": "François TANGUY-PRIGENT",
-  "fonctions": [
-   {
-    "liste": "ministre",
-    "fonction": "Ministre de l'Agriculture",
-    "debut": "1944-09-10",
-    "fin": null
-   },
-   {
-    "liste": "ministre",
-    "fonction": "Ministre de l'Agriculture et du Ravitaillement",
-    "debut": "1945-11-21",
-    "fin": null
-   },
-   {
-    "liste": "ministre",
-    "fonction": "Ministre de l'Agriculture (et sous-SE économie et finances)",
-    "debut": "1946-01-26",
-    "fin": null
-   },
-   {
-    "liste": "ministre",
-    "fonction": "Ministre de l'Agriculture",
-    "debut": "1946-06-24",
-    "fin": null
-   },
-   {
-    "liste": "ministre",
-    "fonction": "Ministre de l'Agriculture",
-    "debut": "1946-12-16",
-    "fin": null
-   },
-   {
-    "liste": "ministre",
-    "fonction": "Ministre de l'Agriculture",
-    "debut": "1947-01-22",
-    "fin": null
    }
   ]
  },

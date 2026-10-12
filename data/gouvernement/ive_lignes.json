@@ -5650,31 +5650,17 @@
 },
 {
 "liste": "secretaire-etat",
-"prenom": "Sous-",
-"nom": "SE (aviation civile) (à compter du 17 juin 1957)",
-"debut": "1956-02-01",
-"fonction": "Sous-SE (reconstruction, logement) (à compter du 17 juin 1957)"
-},
-{
-"liste": "secretaire-etat",
 "prenom": "Achille",
 "nom": "AUBAN",
-"debut": "1956-02-01",
-"fonction": "Sous-SE (reconstruction, logement) (à compter du 17 juin 1957)"
-},
-{
-"liste": "secretaire-etat",
-"prenom": "Sous-",
-"nom": "SE (marine marchande)",
-"debut": "1956-02-01",
-"fonction": "Sous-SE (reconstruction, logement) (à compter du 17 juin 1957)"
+"debut": "1957-06-17",
+"fonction": "Sous-SE (aviation civile) (à compter du 17 juin 1957)"
 },
 {
 "liste": "secretaire-etat",
 "prenom": "Jacques",
 "nom": "FAGGIANELLI",
 "debut": "1956-02-01",
-"fonction": "Sous-SE (reconstruction, logement) (à compter du 17 juin 1957)"
+"fonction": "Sous-SE (marine marchande)"
 },
 {
 "liste": "ministre",
