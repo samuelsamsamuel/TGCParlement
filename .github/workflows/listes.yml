@@ -28,6 +28,9 @@ jobs:
       - name: Gouvernements (Libération, IVe et Ve Républiques)
         run: python3 scripts/gouvernements.py
 
+      - name: Quatre-vingts du 10 juillet 1940
+        run: python3 scripts/quatre_vingts.py
+
       - name: Présidences de l'Assemblée
         run: python3 scripts/presidences.py
 
