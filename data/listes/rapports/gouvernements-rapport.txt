@@ -1,29 +1,14 @@
-Rattachés : chef-etat 9, chef-gouvernement 27, ministre 522, secretaire-etat 340 ; hors catégorie : 153
-DATES ILLISIBLES (exemples) : jeudi 8 janvier 1959 | mardi 28 décembre 1965 | mardi 28 décembre 1965 | lundi 28 avril 1969 | lundi 28 avril 1969
-HOMONYMES : Henri Rochereau (Ministre de l'agriculture, None) : S56305S Henri Rochereau (1908) / 6038 Henri Rochereau (1883)
-HOMONYMES : Pierre Dumas (Secrétaire d'État aux travaux publics, None) : 2693 Pierre Dumas (1924) / 10243 Jean-Baptiste, Pierre Dumas (1727) / 2692 Julien, Pierre, Paul Dumas (1857) / 11538 Pierre Dumas (1750) / 2694 Pierre Dumas (1891)
-HOMONYMES : Charles De Chambrun (Secrétaire d'État au commerce extérieur, None) : 1621 Charles Pineton de Chambrun (1930) / 1622 Gilbert, Pierre, Charles, Emmanuel Pineton de Chambrun (1909) / 8406 Charles, Emmanuel Pineton de Chambrun (1827)
-HOMONYMES : Henri Rey (Ministre d'État, None) : 6702 Henri Rey (1903) / 8219 Henri, Jean, Baptiste Rey (1845)
-HOMONYMES : Raymond Mondon (Ministre des transports, None) : 5336 Raymond, Joseph Mondon (1914) / 5335 Raymond, Antoine, Charles Mondon (1917)
-HOMONYMES : Jean Bailly (Secrétaire d'État auprès du Ministre de l'économie et des finances, None) : 10580 Jean, Sylvain Bailly (1736) / 341 Jean Bailly (1922)
-HOMONYMES : Bernard Lafay (Secrétaire d'État auprès du Ministre du développement industriel et scientifique, None) : 4246 Bernard Lafay (1903) / S000086 Bernard Lafay (1905)
-HOMONYMES : Pierre Lelong (Secrétaire d'État aux postes et télécommunications, None) : 7743 Pierre Lelong (1931) / 17079 Pierre, Arsène Lelong (1795)
-HOMONYMES : Jacques Pelletier (Secrétaire d'État auprès du Ministre de l'éducation, None) : S66002K Jacques Pelletier (1929) / 13159 Jacques Pelletier (1749)
-HOMONYMES : François Delmas (Secrétaire d'État auprès du Ministre de l'environnement et du cadre de vie, chargé de l'environnement, None) : 12252 Jean, François, Bertrand Delmas (1751) / 2314 François Delmas (1913)
-HOMONYMES : Maurice Faure (Garde des sceaux, ministre de la justice, None) : 2932 Maurice Faure (1922) / 2933 Maurice Faure dit Maurice-Faure (1850)
-HOMONYMES : André Delelis (Ministre du commerce et de l'artisanat, None) : 2291 André Delelis (1924) / 7932 Jules, André, Joseph Delelis (1827)
-HOMONYMES : Philippe Séguin (Ministre des affaires sociales et de l'emploi, None) : 6371 Philippe Séguin (1943) / 15320 Philippe, Charles, François Seguin (1741)
-HOMONYMES : Jean-Michel Boucheron (Secrétaire d'État auprès du Ministre de l'intérieur, chargé des collectivités territoriales, None) : 1012 Jean-Michel Boucheron (1948) / 1013 Jean-Michel Boucheron (1946)
-HOMONYMES : Louis Besson (Ministre délégué auprès du Ministre de l'équipement, du logement, des transports et de la mer, chargé du logement, None) : 759 Louis Besson (1937) / 12782 Claude, Louis Besson (1752)
-HOMONYMES : François D'Aubert (Secrétaire d'État auprès du Ministre de l'Économie et des Finances, chargé du Budget, None) : 235 François d'Aubert (1943) / 15731 François Aubert (1736)
-HOMONYMES : Michel Mercier (Ministre de l'espace rural et de l'aménagement du territoire, None) : 5197 Michel Mercier (1947) / 5198 Michel Mercier (1906)
-HOMONYMES : Jean Leonetti (Ministre auprès du Ministre d'État, Ministre des Affaires étrangères et européennes, chargé des Affaires européennes., None) : 7769 Jean Leonetti (1948) / 7770 Jean Léonetti (1899)
-HOMONYMES : François Lamy (Ministre délégué auprès de la Ministre de l'Egalité des territoires et du Logement, chargé de la Ville, None) : 4321 François Lamy (1959) / 18127 Armand, François Lamy (1781)
-HOMONYMES : Philippe Martin (Ministre de l'Ecologie, du Développement durable et de l'Energie, None) : 5045 Philippe Armand Martin (1949) / 10731 Philippe Martin (1953)
+Rattachés : chef-etat 9, chef-gouvernement 27, ministre 533, secretaire-etat 346 ; hors catégorie : 155
+HOMONYMES : Pierre Dumas (Secrétaire d'État aux travaux publics, 1962-04-14) : 2693 Pierre Dumas (1924) / 2694 Pierre Dumas (1891)
+HOMONYMES : Charles De Chambrun (Secrétaire d'État au commerce extérieur, 1966-01-08) : 1621 Charles Pineton de Chambrun (1930) / 1622 Gilbert, Pierre, Charles, Emmanuel Pineton de Chambrun (1909)
+HOMONYMES : Raymond Mondon (Ministre des transports, 1969-06-22) : 5336 Raymond, Joseph Mondon (1914) / 5335 Raymond, Antoine, Charles Mondon (1917)
+HOMONYMES : Bernard Lafay (Secrétaire d'État auprès du Ministre du développement industriel et scientifique, 1969-06-22) : 4246 Bernard Lafay (1903) / S000086 Bernard Lafay (1905)
+HOMONYMES : Jean-Michel Boucheron (Secrétaire d'État auprès du Ministre de l'intérieur, chargé des collectivités territoriales, 1988-05-12) : 1012 Jean-Michel Boucheron (1948) / 1013 Jean-Michel Boucheron (1946)
+HOMONYMES : Philippe Martin (Ministre de l'Ecologie, du Développement durable et de l'Energie, 2013-07-02) : 5045 Philippe Armand Martin (1949) / 10731 Philippe Martin (1953)
 
 Fonctions non comptées : 
 
-Cartes « hors catégorie » (membres du Gouvernement sans mandat parlementaire) : Agnès Buzyn; Alain Decaux; Alain Griset; Alice Saunier-Seïté; Amélie Oudea-Castera; André Giraud; André Henry; André Malraux; André Postel-Vinay; Annie Lesur; Audrey Azoulay; Azouz Begag; Bernard Chenot; Bernard Kouchner; Bernard Laporte; Brice Hortefeux; Brice Lalonde; Brigitte Girardin; Catherine Colonna; Charles de Gaulle; Charlotte Caubel; Christian Beullac; Christian Sautter; Christiane Scrivener; Christine Albanel; Christine Chauvet; Christine Lagarde; Chrysoula Zacharopoulou; Clara Chappaz; Claude Allègre; Claude Cheysson; Claude Guéant; Claudie Haigneré; Corinne Lepage; Cédric O; Delphine Gény-Stephann; Dominique Bertinotti; Dominique Versini; Dominique de Villepin; Elisabeth Moreno; Emmanuel Macron; Emmanuelle Cosse; Emmanuelle Wargon; Eric Lombard; Fabrice Loher; Fadela Amara; Fleur Pellerin; Florence Parly; Francis Mer; François Braun; François Doubin; François Durovray; Françoise Giroud; Françoise Nyssen; Frédéric Mitterrand; Frédérique Vidal; Georges Kiejman; Gil Avérous; Gilbert Grandval; Gérard Renon; Hamlaoui Mékachéra; Harlem Désir; Haroun Tazieff; Hubert Curien; Hubert Védrine; Hélène Dorlhac; Isabelle Rome; Jacques Chérèque; Jacques Delors; Jean Castex; Jean Farge; Jean Mattéoli; Jean Sauvagnargues; Jean-Christophe Combe; Jean-François Carenco; Jean-Jacques Aillagon; Jean-Michel Blanquer; Jean-Noël Jeanneney; Jean-Pierre Jouyet; Jean-Pierre Prouteau; Jeannette Bougrab; Julien Denormandie; Juliette Méadel; Laura Flessel; Laurence Boone; Laurent Nunez; Louis De Guiringaud; Luc Ferry; Lucien Paye; Léon Schwartzenberg; Margie Sudre; Marie Barsacq; Marie-Josée Roig; Marie-Luce Penchard; Marlène Schiappa; Martin Hirsch; Martine Pinvile; Michel Debatisse; Michel D’Ornano; Michel Gillibert; Michel Guy; Michel Jobert; Monique Pelletier; Muriel Pénicaud; Myriam El Khomri; Najat Vallaud-Belkacem; Nathalie Loiseau; Nicolas Daragon; Nicolas Hulot; Nicole Belloubet; Nicole Fontaine; Nicole Guedj; Nicole Pasquier; Nora Berra; Noëlle Lenoir; Olivier Klein; Othman Nasrou; Pap Ndiaye; Pascal Canfin; Patrice Vergriete; Paulette Guinchard-Kunstler; Philippe Baptiste; Philippe Essig; Pierre Aigrain; Pierre Arpaillange; Pierre Chatenet; Pierre Guillaumat; Rachida Dati; Rama Yade; René Lenoir; Rima Abdul-Malak; Roger Bambuck; Roger Fauroux; Roxana Maracineanu; Salima Saa; Sibeth Ndiaye; Simone Veil; Sonia Backès; Sophie Cluzel; Sylvie Goulard; Sylvie Retailleau; Thierry Breton; Thierry De Beaucé; Théo Braun; Tokia Saïfi; Wilfrid Baumgartner; Xavier Emmanuelli; Yamina Benguigui; Yves Galland; Yvon Morandat; Élisabeth Dufourcq; Émile Biasini; Éric Dupond-Moretti
+Cartes « hors catégorie » (membres du Gouvernement sans mandat parlementaire) : Agnès Buzyn; Alain Decaux; Alain Griset; Alice Saunier-Seïté; Amélie Oudea-Castera; André Giraud; André Henry; André Malraux; André Postel-Vinay; Annie Lesur; Audrey Azoulay; Azouz Begag; Bernard Chenot; Bernard Kouchner; Bernard Laporte; Brice Hortefeux; Brice Lalonde; Brigitte Girardin; Catherine Colonna; Charles de Gaulle; Charlotte Caubel; Christian Beullac; Christian Sautter; Christiane Scrivener; Christine Albanel; Christine Chauvet; Christine Lagarde; Chrysoula Zacharopoulou; Clara Chappaz; Claude Allègre; Claude Cheysson; Claude Guéant; Claudie Haigneré; Corinne Lepage; Cédric O; Delphine Gény-Stephann; Dominique Bertinotti; Dominique Versini; Dominique de Villepin; Elisabeth Moreno; Emmanuel Macron; Emmanuelle Cosse; Emmanuelle Wargon; Eric Lombard; Fabrice Loher; Fadela Amara; Fleur Pellerin; Florence Parly; Francis Mer; François Braun; François Doubin; François Durovray; Françoise Giroud; Françoise Nyssen; Frédéric Mitterrand; Frédérique Vidal; Georges Kiejman; Gil Avérous; Gilbert Grandval; Gérard Renon; Hamlaoui Mékachéra; Harlem Désir; Haroun Tazieff; Hubert Curien; Hubert Védrine; Hélène Dorlhac; Isabelle Rome; Jacques Chérèque; Jacques Delors; Jean Castex; Jean Farge; Jean Mattéoli; Jean Sauvagnargues; Jean-Christophe Combe; Jean-François Carenco; Jean-Jacques Aillagon; Jean-Michel Blanquer; Jean-Noël Jeanneney; Jean-Pierre Jouyet; Jean-Pierre Prouteau; Jeannette Bougrab; Julien Denormandie; Juliette Méadel; Laura Flessel; Laurence Boone; Laurent Nunez; Louis De Guiringaud; Luc Ferry; Lucien Paye; Léon Schwartzenberg; Margie Sudre; Marie Barsacq; Marie-Josée Roig; Marie-Luce Penchard; Marlène Schiappa; Martin Hirsch; Martine Pinvile; Michel Debatisse; Michel D’Ornano; Michel Gillibert; Michel Guy; Michel Jobert; Monique Pelletier; Muriel Pénicaud; Myriam El Khomri; Najat Vallaud-Belkacem; Nathalie Loiseau; Nicolas Daragon; Nicolas Hulot; Nicole Belloubet; Nicole Fontaine; Nicole Guedj; Nicole Pasquier; Nora Berra; Noëlle Lenoir; Olivier Klein; Othman Nasrou; Pap Ndiaye; Pascal Canfin; Patrice Vergriete; Paulette Guinchard-Kunstler; Philippe Baptiste; Philippe Essig; Pierre Aigrain; Pierre Arpaillange; Pierre Chatenet; Pierre Dreyfus; Pierre Guillaumat; Rachida Dati; Rama Yade; René Lenoir; Rima Abdul-Malak; Roger Bambuck; Roger Fauroux; Roxana Maracineanu; Salima Saa; Sibeth Ndiaye; Simone Veil; Sonia Backès; Sophie Cluzel; Sylvie Goulard; Sylvie Retailleau; Thierry Breton; Thierry De Beaucé; Théo Braun; Tokia Saïfi; Wilfrid Baumgartner; Xavier Emmanuelli; Yamina Benguigui; Yves Galland; Yvon Morandat; Élisabeth Dufourcq; Émile Biasini; Éric Dupond-Moretti; Éric Raoult
 
 Coquilles de la source rapportées à un membre déjà rattaché : Edgard Faure = edgar faure; Edgard Faure = edgar faure; Edgard Faure = edgar faure; Edgard Faure = edgar faure; Jean Michel Baylet = jean-michel baylet; Thani Mohemd Soilihi = thani mohamed soilihi
 
@@ -56,6 +41,7 @@ Rattachements :
   Bachelot, Roselyne -> 316 Roselyne Bachelot-Narquin
   Bacon, Paul -> 320 Paul, Jean Bacon
   Badinter, Robert -> S95006B Robert Badinter
+  Bailly, Jean -> 341 Jean Bailly
   Balladur, Édouard -> 350 Edouard Balladur
   Bareigts, Ericka -> 18349 Ericka Bareigts
   Bariani, Didier -> 411 Didier Bariani
@@ -84,6 +70,7 @@ Rattachements :
   Bertrand, Léon -> 745 Léon Bertrand
   Bertrand, Xavier -> 11024 Xavier Bertrand
   Berville, Hervé -> 19039 Hervé Berville
+  Besson, Louis -> 759 Louis Besson
   Besson, Éric -> 757 Eric Besson
   Bettencourt, André -> 769 André, Marie, Joseph Bettencourt
   Beucler, Jean-Jacques -> 770 Jean-Jacques Beucler
@@ -178,6 +165,7 @@ Rattachements :
   Crépeau, Michel -> 2065 Michel Crépeau
   Cuq, Henri -> 2088 Henri Cuq
   Cuvillier, Frédéric -> 17294 Frédéric Cuvillier
+  D'Aubert, François -> 235 François d'Aubert
   Darcos, Xavier -> S98031Q Xavier Darcos
   Darmanin, Gérald -> 18401 Gérald Darmanin
   Darrieussecq, Geneviève -> 19108 Geneviève Darrieussecq
@@ -206,8 +194,10 @@ Rattachements :
   Delattre, Nathalie -> S19719D Nathalie Delattre
   Delaunay, Michèle -> 17280 Michèle Delaunay
   Delebarre, Michel -> 2287 Michel Delebarre
+  Delelis, André -> 2291 André Delelis
   Delevoye, Jean-Paul -> 2297 Jean-Paul Delevoye
   Delga, Carole -> 18402 Carole Delga
+  Delmas, François -> 2314 François Delmas
   Demessine, Michelle -> S92018S Michelle Demessine
   Deniau, Jean-François -> 2370 Jean-François Deniau
   Deniau, Xavier -> 2372 Xavier Deniau
@@ -224,7 +214,6 @@ Rattachements :
   Douffiagues, Jacques -> 2567 Jacques Douffiagues
   Douillet, David -> 17825 David Douillet
   Douste-Blazy, Philippe -> 2574 Philippe Douste-Blazy
-  Dreyfus, Pierre -> 2590 Pierre, Sylvain Dreyfus dit Dreyfus-Schmidt
   Dreyfus, Tony -> 2588 Tony Dreyfus
   Druon, Maurice -> 2603 Maurice Druon
   Drut, Guy -> 2604 Guy Drut
@@ -253,6 +242,7 @@ Rattachements :
   Fanton, André -> 2904 André Fanton
   Faure, Dominique -> 19643 Dominique Faure
   Faure, Edgar -> 2922 Edgar Faure
+  Faure, Maurice -> 2932 Maurice Faure
   Fekl, Matthias -> 18422 Matthias Fekl
   Ferracci, Marc -> 19645 Marc Ferracci
   Ferrand, Richard -> 18423 Richard Ferrand
@@ -370,6 +360,7 @@ Rattachements :
   Lamassoure, Alain -> 4299 Alain Lamassoure
   Lambert, Alain -> S92029V Alain Lambert
   Lamour, Jean-François -> 17336 Jean-François Lamour
+  Lamy, François -> 4321 François Lamy
   Lang, Jack -> 4331 Jack Lang
   Larcher, Gérard -> S86034E Gérard Larcher
   Laurain, Jean -> 7492 Jean Laurain
@@ -391,10 +382,12 @@ Rattachements :
   Lefebvre, Frédéric -> 17394 Frédéric Lefebvre
   Legendre, Jacques -> 7710 Jacques Legendre
   Lellouche, Pierre -> 7741 Pierre Lellouche
+  Lelong, Pierre -> 7743 Pierre Lelong
   Lemaire, Axelle -> 18465 Axelle Lemaire
   Lemoine, Georges -> 7753 Georges Lemoine
   Lemoyne, Jean-Baptiste -> S14037X Jean-Baptiste Lemoyne
   Lengagne, Guy -> 7760 Guy Lengagne
+  Leonetti, Jean -> 7769 Jean Leonetti
   Lepeltier, Serge -> 7779 Serge Lepeltier
   Leroy, Maurice -> 7800 Maurice Leroy
   Lescure, Roland -> 19250 Roland Lescure
@@ -429,6 +422,7 @@ Rattachements :
   Mazeaud, Pierre -> 5144 Pierre Mazeaud
   Maziol, Jacques -> 5149 Jacques Maziol
   Mellick, Jacques -> 5170 Jacques Mellick
+  Mercier, Michel -> 5197 Michel Mercier
   Mermaz, Louis -> 5210 Louis Mermaz
   Messmer, Pierre -> 5220 Pierre Messmer
   Mestre, Philippe -> 5222 Philippe Mestre
@@ -480,6 +474,7 @@ Rattachements :
   Pau-Langevin, George -> 17365 George Pau-Langevin
   Paul, Christian -> 5720 Christian Paul
   Peillon, Vincent -> 5750 Vincent Peillon
+  Pelletier, Jacques -> S66002K Jacques Pelletier
   Perben, Dominique -> 5772 Dominique Perben
   Peyrefitte, Alain -> 5862 Alain Peyrefitte
   Pflimlin, Pierre -> 5881 Pierre, Eugène, Jean Pflimlin
@@ -519,16 +514,17 @@ Rattachements :
   Raffarin, Jean-Pierre -> S95059Q Jean-Pierre Raffarin
   Raimond, Jean-Bernard -> 6583 Jean-Bernard Raimond
   Ralite, Jack -> 6587 Jack Ralite
-  Raoult, Éric -> 6601 Eric Raoult
   Rausch, Jean-Marie -> S74042Q Jean-Marie Rausch
   Rebsamen, François -> S08070Y François Rebsamen
   Repentin, Thierry -> S04090L Thierry Repentin
   Retailleau, Bruno -> 6689 Bruno Retailleau
+  Rey, Henri -> 6702 Henri Rey
   Richard, Alain -> 6731 Alain Richard
   Richert, Philippe -> S92005M Philippe Richert
   Riester, Franck -> 17373 Franck Riester
   Rigout, Marcel -> 6769 Marcel Rigout
   Rocard, Michel -> 6024 Michel Rocard
+  Rochereau, Henri -> S56305S Henri Rochereau
   Romani, Roger -> S59312E Roger Romani
   Rossignol, Laurence -> S11045K Laurence Rossignol
   Rossinot, André -> 6099 André Rossinot
@@ -567,6 +563,7 @@ Rattachements :
   Sueur, Jean-Pierre -> 6919 Jean-Pierre Sueur
   Sédar Senghor, Léopold -> 6385 Léopold Sédar Senghor
   Ségard, Norbert -> 6368 Norbert Ségard
+  Séguin, Philippe -> 6371 Philippe Séguin
   Séjourné, Stéphane -> 20002 Stéphane Séjourné
   Tabarot, Philippe -> S20136B Philippe Tabarot
   Taittinger, Jean -> 6940 Jean Taittinger
