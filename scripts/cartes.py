@@ -22,6 +22,7 @@ from datetime import date
 
 F_FICHES = os.path.join("data", "sycomore", "fiches.jsonl")
 F_SENATEURS = os.path.join("data", "senat", "senateurs.json")
+F_HORS_PARLEMENT = os.path.join("data", "gouvernement", "hors_parlement.json")
 F_CARTES = os.path.join("data", "cartes.json")
 F_CONTROLE = os.path.join("data", "controle.txt")
 DOSSIER_LISTES = os.path.join("data", "listes")
@@ -241,6 +242,44 @@ def cartes_senateurs(cartes, listes):
     return nouvelles
 
 
+def cartes_hors_categorie(listes):
+    """Membres du Gouvernement n'ayant jamais siégé au Parlement : cartes « hors catégorie »,
+    sans durée de mandat, notées sur leurs seules fonctions et exclues du classement par rang."""
+    if not os.path.exists(F_HORS_PARLEMENT):
+        return []
+    with open(F_HORS_PARLEMENT, encoding="utf-8") as f:
+        personnes = json.load(f)
+    cartes = []
+    for p in personnes:
+        distinctions = [{"code": l["code"], "points": l["points"], "libelle": l["libelle"],
+                         "plancher": None} for l in listes if p["id"] in l["ids"]]
+        # Une même fonction exercée dans plusieurs gouvernements successifs : une seule période
+        fusion = {}
+        for f in p["fonctions"]:
+            g = fusion.setdefault(f["fonction"], dict(f))
+            g["debut"] = min(x for x in (g["debut"], f["debut"]) if x) if (g["debut"] or f["debut"]) else None
+            g["fin"] = None if not (g["fin"] and f["fin"]) else max(g["fin"], f["fin"])
+        fonctions = []
+        for f in fusion.values():
+            if not f["fin"]:
+                periode = f"depuis {annee(f['debut'])}"
+            else:
+                periode = annee(f["debut"]) + (f"-{annee(f['fin'])}" if annee(f["fin"]) != annee(f["debut"]) else "")
+            libelle = f"{f['fonction']} ({periode})"
+            if libelle not in fonctions:
+                fonctions.append(libelle)
+        texte = "Sans mandat parlementaire. " + " ; ".join(fonctions[:3])
+        if len(fonctions) > 3:
+            texte += f", et {len(fonctions) - 3} autre(s) fonction(s)"
+        cartes.append({"id": p["id"], "nom": p["nom"], "sexe": None, "naissance": None, "lieu_naissance": None,
+                       "deces": None, "annees_mandat": 0, "mandats": [], "fonctions": p["fonctions"],
+                       "distinctions": distinctions,
+                       "score": float(sum(d["points"] for d in distinctions)),
+                       "rarete": "hors-categorie", "texte": texte + ".",
+                       "source": "https://www.data.gouv.fr/datasets/historique-des-gouvernements-de-la-veme-republique"})
+    return cartes
+
+
 # --- Texte de la carte --------------------------------------------------------
 
 def annee(iso):
@@ -366,6 +405,11 @@ def main():
             if p and ORDRE.index(p) < ORDRE.index(c["rarete"]):
                 c["rarete"] = p
 
+    # Membres du Gouvernement sans mandat parlementaire : hors classement
+    hors_categorie = cartes_hors_categorie(listes)
+    hors_categorie.sort(key=lambda c: (-c["score"], c["id"]))
+    cartes.extend(hors_categorie)
+
     os.makedirs("data", exist_ok=True)
     with open(F_CARTES, "w", encoding="utf-8") as f:
         json.dump(cartes, f, ensure_ascii=False, separators=(",", ":"))
@@ -375,12 +419,13 @@ def main():
     rar = Counter(c["rarete"] for c in cartes)
     with open(F_CONTROLE, "w", encoding="utf-8") as f:
         f.write(f"Fiches lues : {dict(statuts)} ; cartes produites : {total}, "
-                f"dont {len(senateurs)} sénateurs absents de Sycomore\n\n")
+                f"dont {len(senateurs)} sénateurs absents de Sycomore ; "
+                f"plus {len(hors_categorie)} cartes hors catégorie (Gouvernement sans mandat parlementaire)\n\n")
         f.write("Distinctions calculées :\n")
         for k, v in dist.most_common():
             f.write(f"  {k} : {v}\n")
         f.write("\nRépartition des raretés :\n")
-        for n in ORDRE:
+        for n in ORDRE + ["hors-categorie"]:
             f.write(f"  {n} : {rar[n]}\n")
         f.write("\nMandats de député par régime et législature :\n")
         for (reg, leg), v in sorted(comptes.items(), key=lambda x: (str(x[0][0]), str(x[0][1]))):
