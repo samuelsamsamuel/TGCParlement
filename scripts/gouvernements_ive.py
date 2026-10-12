@@ -5,13 +5,19 @@ Source : « Composition des gouvernements provisoires suivant la Libération et 
 de la 4ème République (1944-1959) », producteur : Premier ministre (data.gouv.fr, Licence Ouverte).
 Le fichier est publié au format RTF.
 
-Première étape (mesure) : téléchargement, conversion du RTF en texte brut, et rapport sur sa
-structure, afin d'écrire ensuite la lecture des lignes sur pièces plutôt qu'à l'aveugle.
-Sorties : data/gouvernement/ive.txt et data/listes/rapports/gouvernements-ive-rapport.txt
+Étapes : téléchargement, conversion du RTF en texte brut, puis lecture des fonctions. Le document
+alterne un intitulé de fonction et un nom (« Prénom NOM », nom de famille en capitales), parfois sur
+la même ligne ; chaque gouvernement s'ouvre par le nom de son chef suivi de ses dates entre
+parenthèses. Les lignes « puis à compter du… », « jusqu'au… » précisent la date de la nomination
+suivante.
+Sorties : data/gouvernement/ive.txt (texte brut), data/gouvernement/ive_lignes.json (fonctions lues,
+reprises par gouvernements.py pour le rattachement) et data/listes/rapports/gouvernements-ive-rapport.txt
 Bibliothèque standard uniquement.
 """
+import json
 import os
 import re
+import sys
 import time
 import urllib.error
 import urllib.request
@@ -84,6 +90,83 @@ def rtf_en_texte(rtf):
     return "\n".join(l for l in lignes if l.strip())
 
 
+sys.path.insert(0, os.path.dirname(__file__))
+from cartes import lire_date  # noqa: E402
+
+F_LIGNES = os.path.join("data", "gouvernement", "ive_lignes.json")
+TITRES = {"général", "amiral", "maréchal", "colonel", "docteur", "professeur"}
+PARTICULES = {"de", "du", "des", "la", "le", "d'", "l'"}
+DEBUTS_FONCTION = ("ministre", "garde des sceaux", "vice-président", "président", "se", "sous-se",
+                   "secrétaire", "sous-secrétaire", "haut-commissaire", "haut commissaire")
+QUALIFICATIFS = ("puis", "jusqu", "à compter", "a compter", "du ", "en rouge", "en marron", "en vert",
+                 "également", "(")
+RE_ENTETE = re.compile(r"^\((\d{1,2})[/-](\d{1,2})[/-](\d{2,4})")
+
+
+def est_nom(cellule):
+    """« Prénom NOM » : au moins un mot en capitales (le nom), précédé d'au moins un prénom."""
+    c = re.sub(r"\s+\d+$", "", cellule.strip())
+    bas = c.lower()
+    if not c or bas.startswith(DEBUTS_FONCTION) or bas.startswith(QUALIFICATIFS):
+        return None
+    mots = c.split()
+    if mots and mots[0].lower().strip(".") in TITRES:
+        mots = mots[1:]
+    i = next((k for k, w in enumerate(mots)
+              if len(re.sub(r"[^A-Za-zÀ-ÿ]", "", w)) >= 2 and w == w.upper() and re.search(r"[A-ZÀ-Ý]", w)), None)
+    if i is None or i == 0:
+        return None
+    debut = i
+    while debut > 1 and mots[debut - 1].lower() in PARTICULES:
+        debut -= 1
+    prenom, nom = " ".join(mots[:debut]), " ".join(mots[debut:])
+    if not prenom[:1].isupper():
+        return None
+    return prenom, nom
+
+
+def categorie(fonction):
+    f = fonction.lower()
+    if f.startswith("président"):
+        return "chef-gouvernement"
+    if f.startswith(("se", "sous-se", "secrétaire", "sous-secrétaire")):
+        return "secretaire-etat"
+    if f.startswith(("ministre", "garde des sceaux", "vice-président")):
+        return "ministre"
+    return None
+
+
+def lire_fonctions(texte):
+    lignes = texte.split("\n")
+    resultat, fonction, debut_gvt, date_suivante = [], None, None, None
+    for k, ligne in enumerate(lignes):
+        cellules = [c for c in ligne.split("\t") if c.strip()]
+        suivante = lignes[k + 1].strip() if k + 1 < len(lignes) else ""
+        m = RE_ENTETE.match(suivante)
+        if m and len(cellules) == 1 and est_nom(cellules[0]):
+            # En-tête de gouvernement : « Charles de GAULLE 1 » suivi de « (10/09/44 21/11/45) »
+            j, mo, a = int(m.group(1)), int(m.group(2)), int(m.group(3))
+            debut_gvt = f"{(1900 + a) if a < 100 else a}-{mo:02d}-{j:02d}"
+            fonction, date_suivante = None, None
+            continue
+        for cellule in cellules:
+            nom = est_nom(cellule)
+            if nom:
+                cat = categorie(fonction or "")
+                if cat:
+                    resultat.append({"liste": cat, "prenom": nom[0], "nom": nom[1],
+                                     "debut": date_suivante or debut_gvt, "fonction": fonction})
+                date_suivante = None
+                continue
+            bas = cellule.lower()
+            d = re.search(r"(?:à|a) compter du (\d{1,2}(?:er)? [a-zéû]+ \d{4})", bas)
+            if d and lire_date(d.group(1)):
+                date_suivante = lire_date(d.group(1)).isoformat()
+            if categorie(cellule):
+                fonction = cellule.strip()
+    return resultat
+
+
 def main():
     brut = telecharger()
     rtf = brut.decode("latin-1")
@@ -101,7 +184,15 @@ def main():
     os.makedirs(os.path.dirname(RAPPORT), exist_ok=True)
     with open(RAPPORT, "w", encoding="utf-8") as f:
         f.write("\n".join(rapport) + "\n")
-    print("\n".join(rapport[:2]))
+    fonctions = lire_fonctions(texte)
+    with open(F_LIGNES, "w", encoding="utf-8") as f:
+        json.dump(fonctions, f, ensure_ascii=False, indent=0)
+    par_liste = Counter(f["liste"] for f in fonctions)
+    rapport.insert(2, "Fonctions lues : " + ", ".join(f"{k} {v}" for k, v in par_liste.items())
+                   + f" ; personnes distinctes : {len({(f['prenom'], f['nom']) for f in fonctions})}")
+    with open(RAPPORT, "w", encoding="utf-8") as f:
+        f.write("\n".join(rapport) + "\n")
+    print("\n".join(rapport[:3]))
 
 
 if __name__ == "__main__":
