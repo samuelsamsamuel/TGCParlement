@@ -1,4 +1,4 @@
-Fiches lues : {200: 18062, 404: 3} ; cartes produites : 19635, dont 1573 sénateurs absents de Sycomore ; plus 174 cartes hors catégorie (Gouvernement sans mandat parlementaire)
+Fiches lues : {200: 18062, 404: 3} ; cartes produites : 19635, dont 1573 sénateurs absents de Sycomore ; plus 173 cartes hors catégorie (Gouvernement sans mandat parlementaire)
 
 Distinctions calculées :
   deux-chambres : 1651
@@ -7,6 +7,7 @@ Distinctions calculées :
   ministre : 657
   secretaire-etat : 496
   presidence-an-courte : 205
+  quatre-vingts : 70
   chef-gouvernement : 45
   presidence-an-longue : 35
   femmes-1945 : 33
@@ -20,7 +21,7 @@ Répartition des raretés :
   rare : 2945
   peu-commune : 4909
   commune : 9818
-  hors-categorie : 174
+  hors-categorie : 173
 
 Mandats de député par régime et législature :
   Assemblée Nationale | None : 873
@@ -160,8 +161,8 @@ Dix premières cartes :
    126.0  legendaire  Alain Poher : Sénateur (Val-de-Marne) de 1958 à 1995. A été chef de l'État. A présidé la seconde chambre au moins un an. A été secrétaire d'État.
    125.0  legendaire  Jacques, Michel, Pierre Chaban-Delmas : Député (Gironde) de 1946 à 1997, 14 mandats (Quatrième République - Assemblée nationale ; Cinquième République - Assemblée nationale). A dirigé le Gouvernement. A été ministre. A présidé l'Assemblée au moins un an.
    122.1  legendaire  Laurent Fabius : Député (Seine-Maritime) de 1978 à 2012, 9 mandats (Cinquième République - Assemblée nationale). A dirigé le Gouvernement. A été ministre. A présidé l'Assemblée au moins un an.
+   120.0  legendaire  Félix, Jean Gouin : Député (Bouches-du-Rhône) de 1924 à 1958, 9 mandats (Troisième République - Chambre des députés ; Gouvernement provisoire de la République française ; Quatrième République - Assemblée nationale). A dirigé le Gouvernement. A été ministre. A présidé l'Assemblée. Parmi les Quatre-vingts qui refusèrent les pleins pouvoirs à Pétain le 10 juillet 1940.
    115.0  legendaire  Léon, Victor, Auguste Bourgeois : Député (Marne) de 1888 à 1905, 5 mandats (Troisième République - Chambre des députés). Sénateur de 1905 à 1925. A siégé dans les deux chambres. A présidé l'Assemblée au moins un an. A présidé la seconde chambre au moins un an.
    106.0  legendaire  François Mitterrand : Député (Nièvre) de 1946 à 1981, 8 mandats (Quatrième République - Assemblée nationale ; Cinquième République - Assemblée nationale). Sénateur de 1959 à 1962. A siégé dans les deux chambres. A été chef de l'État. A été ministre. A été secrétaire d'État.
-   100.0  legendaire  Félix, Jean Gouin : Député (Bouches-du-Rhône) de 1924 à 1958, 9 mandats (Troisième République - Chambre des députés ; Gouvernement provisoire de la République française ; Quatrième République - Assemblée nationale). A dirigé le Gouvernement. A été ministre. A présidé l'Assemblée.
-    91.1  legendaire  Georges Pompidou : Député (Cantal) de 1967 à 1969, 2 mandats (Cinquième République - Assemblée nationale). A été chef de l'État. A dirigé le Gouvernement.
-    90.6  legendaire  Valéry Giscard d'Estaing : Député (Puy-de-Dôme) de 1956 à 2002, 11 mandats (Quatrième République - Assemblée nationale ; Cinquième République - Assemblée nationale). A été chef de l'État. A été ministre. A été secrétaire d'État.
+    97.7  legendaire  Paul Ramadier : Député (Aveyron) de 1928 à 1958, 7 mandats (Troisième République - Chambre des députés ; Gouvernement provisoire de la République française ; Quatrième République - Assemblée nationale). A dirigé le Gouvernement. A été ministre. Parmi les Quatre-vingts qui refusèrent les pleins pouvoirs à Pétain le 10 juillet 1940.
+    96.1  legendaire  Léon, André Blum : Député (Seine, Aude) de 1919 à 1941, 5 mandats (Troisième République - Chambre des députés). A dirigé le Gouvernement. A été ministre. Parmi les Quatre-vingts qui refusèrent les pleins pouvoirs à Pétain le 10 juillet 1940.
