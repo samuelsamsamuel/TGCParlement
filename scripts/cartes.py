@@ -40,7 +40,7 @@ PTS_PAR_AN, PLAFOND_ANS = 1, 30
 # pour un quart seulement, afin qu'un même parcours ne soit pas payé plusieurs fois.
 # Présidences : la meilleure compte en entier ; avoir présidé les deux chambres ajoute 10 points.
 FAMILLES = {
-    "executif": ["chef-etat", "chef-gouvernement", "ministre", "secretaire-etat"],
+    "executif": ["chef-etat", "chef-gouvernement", "chef-etat-interim", "ministre", "secretaire-etat"],
     "presidence": ["presidence-an-longue", "presidence-senat-longue", "presidence-an-courte", "presidence-senat-courte"],
 }
 PART_SECONDAIRE = 0.25
