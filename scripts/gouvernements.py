@@ -25,6 +25,7 @@ import unicodedata
 import urllib.error
 import urllib.request
 from collections import defaultdict
+from difflib import SequenceMatcher
 
 sys.path.insert(0, os.path.dirname(__file__))
 from cartes import nom_famille_sycomore  # noqa: E402
@@ -84,14 +85,39 @@ def prenoms_carte(nom):
     return {norme(x) for x in prenoms if x}
 
 
+DATES_ILLISIBLES = []
+
+
 def iso(valeur):
-    """Accepte AAAA-MM-JJ ou JJ/MM/AAAA."""
+    """Accepte AAAA-MM-JJ, AAAA/MM/JJ, JJ/MM/AAAA, JJ-MM-AAAA, JJ.MM.AAAA (heure éventuelle ignorée)."""
     v = (valeur or "").strip()
-    m = re.match(r"(\d{4})-(\d{2})-(\d{2})", v)
+    m = re.search(r"(\d{4})[-/.](\d{1,2})[-/.](\d{1,2})", v)
     if m:
-        return v[:10]
-    m = re.match(r"(\d{1,2})/(\d{1,2})/(\d{4})", v)
-    return f"{m.group(3)}-{int(m.group(2)):02d}-{int(m.group(1)):02d}" if m else None
+        return f"{m.group(1)}-{int(m.group(2)):02d}-{int(m.group(3)):02d}"
+    m = re.search(r"(\d{1,2})[-/.](\d{1,2})[-/.](\d{4})", v)
+    if m:
+        return f"{m.group(3)}-{int(m.group(2)):02d}-{int(m.group(1)):02d}"
+    if v and len(DATES_ILLISIBLES) < 5:
+        DATES_ILLISIBLES.append(v)
+    return None
+
+
+def nom_usage(nom_carte):
+    """Nom de famille de la carte ; s'il comporte « dit », le nom d'usage qui suit."""
+    nf = nom_famille_sycomore(nom_carte)
+    return nf.split(" dit ", 1)[1] if " dit " in nf else nf
+
+
+def age_plausible(c, debut):
+    """Vivant à la date de nomination et âgé de 21 à 90 ans (exclut les homonymes d'autres siècles)."""
+    if not debut:
+        return True
+    if c["deces"] and c["deces"] < debut:
+        return False
+    if c["naissance"]:
+        age = int(debut[:4]) - int(c["naissance"][:4])
+        return 21 <= age <= 90
+    return True
 
 
 def categorie(fonction):
@@ -100,7 +126,7 @@ def categorie(fonction):
         return None  # traité par la liste des Premiers ministres
     if "secretaire d'etat" in f or "sous-secretaire" in f:
         return "secretaire-etat"
-    if "ministre" in f:
+    if "ministre" in f or "garde des sceaux" in f:
         return "ministre"
     return None  # autres fonctions (haut-commissaire...) : non comptées
 
@@ -109,8 +135,9 @@ def main():
     with open(os.path.join("data", "cartes.json"), encoding="utf-8") as f:
         cartes = json.load(f)
     index = defaultdict(list)
+    cartes = [c for c in cartes if not str(c["id"]).startswith("G-")]  # cartes hors catégorie : recréées ici
     for c in cartes:
-        for w in mots(nom_famille_sycomore(c["nom"])):
+        for w in mots(nom_usage(c["nom"])):
             index[w].append(c)
     decisions = {}
     if os.path.exists(F_DECISIONS):
@@ -119,19 +146,19 @@ def main():
 
     lignes = []  # (liste, prénom, nom, début, fonction)
     for r in telecharger(FICHIERS["presidents"]):
-        lignes.append(("chef-etat", r.get("prenom"), r.get("nom"), iso(r.get("date_debut_mandat")), "Président de la République"))
+        lignes.append(("chef-etat", r.get("prenom"), r.get("nom"), iso(r.get("date_debut_mandat")), "Président de la République", iso(r.get("date_fin_mandat"))))
     for r in telecharger(FICHIERS["premiers"]):
-        lignes.append(("chef-gouvernement", r.get("prenom"), r.get("nom"), iso(r.get("date_debut_fonction")), "Premier ministre"))
+        lignes.append(("chef-gouvernement", r.get("prenom"), r.get("nom"), iso(r.get("date_debut_fonction")), "Premier ministre", iso(r.get("date_fin_fonction"))))
     non_comptees = defaultdict(int)
     for r in telecharger(FICHIERS["membres"]):
         cat = categorie(r.get("fonction"))
         if cat:
-            lignes.append((cat, r.get("prenom"), r.get("nom"), iso(r.get("date_debut_fonction")), r.get("fonction")))
+            lignes.append((cat, r.get("prenom"), r.get("nom"), iso(r.get("date_debut_fonction")), r.get("fonction"), iso(r.get("date_fin_fonction"))))
         elif not (r.get("fonction") or "").lower().startswith("premier ministre"):
             non_comptees[r.get("fonction")] += 1
 
     rapport, membres, vus = [], defaultdict(set), {}
-    for liste, prenom, nom, debut, fonction in lignes:
+    for liste, prenom, nom, debut, fonction, fin in lignes:
         cle = f"{nom}|{prenom}"
         if cle in decisions:
             ident = decisions[cle]["id"]
@@ -140,9 +167,8 @@ def main():
             continue
         nf, pr = mots(nom), norme((prenom or "").split(" ")[0])
         candidats = {c["id"]: c for w in nf for c in index.get(w, [])
-                     if nf <= mots(nom_famille_sycomore(c["nom"])) and pr and pr in prenoms_carte(c["nom"])
-                     and (not c["naissance"] or not debut or c["naissance"] < debut)
-                     and (not c["deces"] or not debut or c["deces"] >= debut)}
+                     if nf <= mots(nom_usage(c["nom"])) and pr and pr in prenoms_carte(c["nom"])
+                     and age_plausible(c, debut)}
         if len(candidats) == 1:
             c = next(iter(candidats.values()))
             membres[liste].add(c["id"])
@@ -154,11 +180,43 @@ def main():
         elif cle not in vus:
             vus[cle] = False  # jamais parlementaire, ou absent des bases
 
-    sans_carte = sorted(k.replace("|", ", ") for k, v in vus.items() if v is False)
+    # Membres du Gouvernement sans mandat parlementaire : cartes « hors catégorie ».
+    # Une ligne dont le nom n'est qu'une coquille d'un membre déjà rattaché (« Edgard » Faure,
+    # nom et prénom inversés...) ne crée pas de seconde personne.
+    rattaches = [(norme(k.split("|")[1]), norme(k.split("|")[0])) for k, v in vus.items() if v]
+    personnes, coquilles = {}, []
+    for liste, prenom, nom, debut, fonction, fin in lignes:
+        cle = f"{nom}|{prenom}"
+        if vus.get(cle) is not False:
+            continue
+        p, n = norme(prenom), norme(nom)
+        jeu = mots(f"{prenom} {nom}")
+        proche = next((f"{rp} {rn}" for rp, rn in rattaches
+                       if mots(f"{rp} {rn}") == jeu
+                       or (rp == p and SequenceMatcher(None, rn, n).ratio() >= 0.85)
+                       or (rn == n and SequenceMatcher(None, rp, p).ratio() >= 0.8)), None)
+        if proche:
+            coquilles.append(f"{prenom} {nom} = {proche}")
+            continue
+        ident = "G-" + re.sub(r"[^a-z0-9]+", "-", f"{n} {p}").strip("-")
+        fiche = personnes.setdefault(ident, {"id": ident, "nom": f"{prenom} {nom}", "fonctions": []})
+        fiche["fonctions"].append({"liste": liste, "fonction": fonction, "debut": debut, "fin": fin})
+        membres[liste].add(ident)
+    for fiche in personnes.values():
+        fiche["fonctions"].sort(key=lambda f: f["debut"] or "")
+    os.makedirs(os.path.join("data", "gouvernement"), exist_ok=True)
+    with open(os.path.join("data", "gouvernement", "hors_parlement.json"), "w", encoding="utf-8") as f:
+        json.dump(sorted(personnes.values(), key=lambda x: x["id"]), f, ensure_ascii=False, indent=1)
+
+    sans_carte = sorted(personnes[i]["nom"] for i in personnes)
     rapport.insert(0, "Rattachés : " + ", ".join(f"{k} {len(v)}" for k, v in membres.items())
-                   + f" ; sans carte (jamais parlementaires ou absents des bases) : {len(sans_carte)}")
+                   + f" ; hors catégorie : {len(sans_carte)}")
+    if DATES_ILLISIBLES:
+        rapport.insert(1, "DATES ILLISIBLES (exemples) : " + " | ".join(DATES_ILLISIBLES))
     rapport.append("\nFonctions non comptées : " + "; ".join(f"{k} ({v})" for k, v in sorted(non_comptees.items())))
-    rapport.append("\nSans carte : " + "; ".join(sans_carte))
+    rapport.append("\nCartes « hors catégorie » (membres du Gouvernement sans mandat parlementaire) : "
+                   + "; ".join(sans_carte))
+    rapport.append("\nCoquilles de la source rapportées à un membre déjà rattaché : " + "; ".join(coquilles))
     rapport.append("\nRattachements :")
     rapport += [f"  {k.replace('|', ', ')} -> {v[0]} {v[1]}" for k, v in sorted(vus.items()) if v]
 
