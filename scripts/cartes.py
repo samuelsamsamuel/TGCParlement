@@ -32,6 +32,49 @@ AUJOURDHUI = date.today()
 
 # Grille arbitrée : critères calculables directement depuis Sycomore.
 PTS_PAR_AN, PLAFOND_ANS = 1, 30
+
+# --- Grille équilibrée -------------------------------------------------------------------------
+# Durée : 1 point par année jusqu'à 20 ans, puis 0,5 point par année jusqu'à 40 ans (30 points au
+# plus) : les très longues carrières restent distinguées sans écraser le reste du classement.
+# Familles de fonctions : dans chacune, la fonction la plus haute compte en entier et les autres
+# pour un quart seulement, afin qu'un même parcours ne soit pas payé plusieurs fois.
+# Présidences : la meilleure compte en entier ; avoir présidé les deux chambres ajoute 10 points.
+FAMILLES = {
+    "executif": ["chef-etat", "chef-gouvernement", "ministre", "secretaire-etat"],
+    "presidence": ["presidence-an-longue", "presidence-senat-longue", "presidence-an-courte", "presidence-senat-courte"],
+}
+PART_SECONDAIRE = 0.25
+BONUS_DEUX_PRESIDENCES = 10
+
+
+def points_duree(annees):
+    return min(annees, 20) + 0.5 * max(0, min(annees, 40) - 20)
+
+
+def score_carte(annees, distinctions):
+    """Score selon la grille équilibrée ; chaque distinction reçoit ses points effectifs."""
+    famille_de = {code: f for f, codes in FAMILLES.items() for code in codes}
+    par_famille = defaultdict(list)
+    total = points_duree(annees)
+    for d in distinctions:
+        f = famille_de.get(d["code"])
+        if f:
+            par_famille[f].append(d)
+        else:
+            d["points_effectifs"] = d["points"]
+            total += d["points"]
+    for f, ds in par_famille.items():
+        ds.sort(key=lambda d: -d["points"])
+        for i, d in enumerate(ds):
+            d["points_effectifs"] = d["points"] if i == 0 else round(d["points"] * PART_SECONDAIRE, 2)
+            if f == "presidence" and i > 0:
+                d["points_effectifs"] = 0
+            total += d["points_effectifs"]
+        if f == "presidence":
+            chambres = {("an" if "-an-" in d["code"] else "senat") for d in ds}
+            if len(chambres) == 2:
+                total += BONUS_DEUX_PRESIDENCES
+    return round(total, 1)
 PTS_DEUX_CHAMBRES = 5
 PTS_1789 = 10          # États généraux ou Constituante de 1789
 PTS_CONVENTION = 10
@@ -244,7 +287,7 @@ def cartes_senateurs(cartes, listes):
         carte = {"id": ident, "nom": s["nom"], "sexe": s["sexe"], "naissance": s["naissance"],
                  "lieu_naissance": None, "deces": s["deces"], "annees_mandat": annees,
                  "mandats": mandats, "distinctions": distinctions,
-                 "score": round(min(annees, PLAFOND_ANS) * PTS_PAR_AN + sum(d["points"] for d in distinctions), 1),
+                 "score": score_carte(annees, distinctions),
                  "source": f"https://data.senat.fr/les-senateurs/ (matricule {s['matricule']})"}
         carte["texte"] = texte_carte(carte)
         nouvelles.append(carte)
@@ -285,7 +328,7 @@ def cartes_hors_categorie(listes):
         cartes.append({"id": p["id"], "nom": p["nom"], "sexe": None, "naissance": None, "lieu_naissance": None,
                        "deces": None, "annees_mandat": 0, "mandats": [], "fonctions": p["fonctions"],
                        "distinctions": distinctions,
-                       "score": float(sum(d["points"] for d in distinctions)),
+                       "score": score_carte(0, distinctions),
                        "rarete": "hors-categorie", "texte": texte + ".",
                        "source": "https://www.data.gouv.fr/datasets/historique-des-gouvernements-de-la-veme-republique"})
     return cartes
@@ -398,7 +441,7 @@ def main():
                 anomalies["date de décès antérieure à la naissance (ignorée)"].append(
                     f"{ident} {r.get('nom')} : né le {n_date}, décès lu {d_date}")
                 d_date = None
-            score = min(annees, PLAFOND_ANS) * PTS_PAR_AN + sum(d["points"] for d in distinctions)
+            score = score_carte(annees, distinctions)
             carte = {"id": ident, "nom": r.get("nom"), "sexe": sexe,
                      "naissance": n_date, "lieu_naissance": n_lieu, "deces": d_date,
                      "annees_mandat": annees, "mandats": mandats,
@@ -440,6 +483,12 @@ def main():
         f.write("Distinctions calculées :\n")
         for k, v in dist.most_common():
             f.write(f"  {k} : {v}\n")
+        scores = sorted((c["score"] for c in cartes if c["rarete"] != "hors-categorie"), reverse=True)
+        f.write("\nScores (grille équilibrée) : maximum %.1f ; 10e %.1f ; 100e %.1f ; 1000e %.1f ; médiane %.1f\n"
+                % (scores[0], scores[9], scores[99], scores[999], scores[len(scores) // 2]))
+        egalite = sum(1 for x in scores if x == scores[0])
+        f.write(f"Cartes à égalité au score maximal : {egalite} ; scores distincts parmi les 100 premières : "
+                f"{len(set(scores[:100]))}\n")
         f.write("\nRépartition des raretés :\n")
         for n in ORDRE + ["hors-categorie"]:
             f.write(f"  {n} : {rar[n]}\n")
