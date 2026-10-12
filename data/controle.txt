@@ -5,7 +5,7 @@ Distinctions calculées :
   1789 : 1317
   convention : 905
   ministre : 535
-  secretaire-etat : 349
+  secretaire-etat : 350
   presidence-an-courte : 205
   presidence-an-longue : 35
   femmes-1945 : 33

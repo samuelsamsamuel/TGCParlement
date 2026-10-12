@@ -1,5 +1,4 @@
-Rattachés : chef-etat 9, chef-gouvernement 27, ministre 535, secretaire-etat 349 ; hors catégorie : 154
-DÉCISION NON APPLICABLE (2 fiche(s) pour Lozère) : De Chambrun|Charles
+Rattachés : chef-etat 9, chef-gouvernement 27, ministre 535, secretaire-etat 350 ; hors catégorie : 154
 
 Fonctions non comptées : 
 
@@ -170,6 +169,7 @@ Rattachements :
   Daubresse, Marc-Philippe -> 2154 Marc-Philippe Daubresse
   De Boishue, Jean -> 901 Jean de Boishue
   De Broglie, Jean -> 1250 Jean de Broglie
+  De Chambrun, Charles -> 1621 [décision]
   De Charette, Hervé -> 1656 Hervé de Charette
   De La Malène, Christian -> 4924 Christian Lunet de La Malène
   De Lipkowski, Jean -> 7863 Jean, Noël de Lipkowski
