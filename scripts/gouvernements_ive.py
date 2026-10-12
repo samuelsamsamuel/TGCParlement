@@ -125,6 +125,12 @@ def est_nom(cellule):
     return prenom, nom
 
 
+def casse(nom):
+    """« COUVE de MURVILLE » -> « Couve de Murville », « TANGUY-PRIGENT » -> « Tanguy-Prigent »."""
+    return " ".join("-".join(x[:1] + x[1:].lower() for x in w.split("-")) if w.isupper() else w
+                    for w in nom.split())
+
+
 def categorie(fonction):
     f = fonction.lower()
     if f.startswith("président"):
@@ -155,7 +161,7 @@ def lire_fonctions(texte):
             if nom:
                 cat = categorie(fonction or "")
                 if cat:
-                    resultat.append({"liste": cat, "prenom": nom[0], "nom": nom[1],
+                    resultat.append({"liste": cat, "prenom": nom[0], "nom": casse(nom[1]),
                                      "debut": date_suivante or debut_gvt, "fonction": fonction})
                 date_suivante = None
                 continue
