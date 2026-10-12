@@ -1,0 +1,6 @@
+{
+ "mode_d_emploi": "Sénateurs de l'open data du Sénat qui sont la même personne qu'une fiche Sycomore malgré une date de naissance discordante : aucune carte sénatoriale n'est créée pour eux.",
+ "doublons": [
+  {"matricule": "000086", "sycomore": 4246, "motif": "Bernard Lafay : conseiller de la République puis député de Paris ; né en 1903 selon Sycomore, en 1905 selon l'open data du Sénat."}
+ ]
+}
