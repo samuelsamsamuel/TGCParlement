@@ -7,7 +7,7 @@ Distinctions calculées :
   ministre : 657
   secretaire-etat : 496
   presidence-an-courte : 205
-  doyen-benjamin : 110
+  doyen-benjamin : 108
   quatre-vingts : 70
   chef-gouvernement : 45
   presidence-an-longue : 35
