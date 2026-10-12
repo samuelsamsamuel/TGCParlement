@@ -1,4 +1,4 @@
-Fiches lues : {200: 18062, 404: 3} ; cartes produites : 19636, dont 1574 sénateurs absents de Sycomore ; plus 155 cartes hors catégorie (Gouvernement sans mandat parlementaire)
+Fiches lues : {200: 18062, 404: 3} ; cartes produites : 19636, dont 1574 sénateurs absents de Sycomore ; plus 154 cartes hors catégorie (Gouvernement sans mandat parlementaire)
 
 Distinctions calculées :
   deux-chambres : 1651
@@ -20,7 +20,7 @@ Répartition des raretés :
   rare : 2946
   peu-commune : 4909
   commune : 9818
-  hors-categorie : 155
+  hors-categorie : 154
 
 Mandats de député par régime et législature :
   Assemblée Nationale | None : 873
@@ -94,6 +94,12 @@ Anomalies :
     10201 : {'periode': 'Depuis le 10 octobre 2026 (mandat en cours)'}
     10671 : {'periode': 'Depuis le 22 juin 2022 (mandat en cours)', 'departement': 'Mayenne'}
     12322 : {'periode': 'Depuis le 10 octobre 2026 (mandat en cours)'}
+  date de décès antérieure à la naissance (ignorée) : 5
+    896 Jean-Claude Bois : né le 1934-03-16, décès lu 1921-02-10
+    3152 Yves Fréville : né le 1934-12-01, décès lu 1925-12-13
+    3741 Francis Hammel : né le 1950-12-11, décès lu 1921-01-06
+    6601 Eric Raoult : né le 1955-06-19, décès lu 1921-04-16
+    19500 Jean, Baptiste, Joseph Claverie : né le 1837-05-18, décès lu 1811-12-24
   fin de mandat inconnue (exclue de la durée) : 5
     10201 : None | None | depuis 2026-10-10
     12322 : None | None | depuis 2026-10-10
