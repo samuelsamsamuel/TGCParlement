@@ -140,6 +140,7 @@ def lire_fonctions(texte):
     lignes = texte.split("\n")
     resultat, fonction, debut_gvt, date_suivante = [], None, None, None
     for k, ligne in enumerate(lignes):
+        ligne = re.sub(r"(?i)\bsous-\s+se\b", "Sous-SE", ligne)  # « Sous- SE » dans la source
         cellules = [c for c in ligne.split("\t") if c.strip()]
         suivante = lignes[k + 1].strip() if k + 1 < len(lignes) else ""
         m = RE_ENTETE.match(suivante)
