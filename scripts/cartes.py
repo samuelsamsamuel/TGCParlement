@@ -186,6 +186,11 @@ def cartes_senateurs(cartes, listes):
         return []
     with open(F_SENATEURS, encoding="utf-8") as f:
         senateurs = json.load(f)
+    doublons = {}
+    f_doublons = os.path.join("data", "listes", "decisions-senateurs.json")
+    if os.path.exists(f_doublons):
+        with open(f_doublons, encoding="utf-8") as f:
+            doublons = {d["matricule"]: d for d in json.load(f)["doublons"]}
     par_date, par_annee = defaultdict(list), defaultdict(list)
     for c in cartes:
         if c["naissance"]:
@@ -193,6 +198,8 @@ def cartes_senateurs(cartes, listes):
             par_annee[c["naissance"][:4]].append(c)
     nouvelles = []
     for s in senateurs:
+        if s["matricule"] in doublons:
+            continue  # même personne qu'une fiche Sycomore, établie par décision motivée
         # Rapprochement sur le nom de famille entier (tous ses mots), jamais sur les prénoms
         cles = noms_cles(s.get("nom_famille") or s["nom"])
         meme_nom = lambda c: bool(cles) and cles <= noms_cles(nom_famille_sycomore(c["nom"]))
