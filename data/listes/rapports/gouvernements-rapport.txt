@@ -1,11 +1,5 @@
-Rattachés : chef-etat 9, chef-gouvernement 27, ministre 533, secretaire-etat 346 ; hors catégorie : 154
-FICHIER DE DÉCISIONS ABSENT OU VIDE : data/listes/decisions-gouvernements.json
-HOMONYMES : Pierre Dumas (Secrétaire d'État aux travaux publics, 1962-04-14) : 2693 Pierre Dumas (1924) / 2694 Pierre Dumas (1891)
-HOMONYMES : Charles De Chambrun (Secrétaire d'État au commerce extérieur, 1966-01-08) : 1621 Charles Pineton de Chambrun (1930) / 1622 Gilbert, Pierre, Charles, Emmanuel Pineton de Chambrun (1909)
-HOMONYMES : Raymond Mondon (Ministre des transports, 1969-06-22) : 5336 Raymond, Joseph Mondon (1914) / 5335 Raymond, Antoine, Charles Mondon (1917)
-HOMONYMES : Bernard Lafay (Secrétaire d'État auprès du Ministre du développement industriel et scientifique, 1969-06-22) : 4246 Bernard Lafay (1903) / S000086 Bernard Lafay (1905)
-HOMONYMES : Jean-Michel Boucheron (Secrétaire d'État auprès du Ministre de l'intérieur, chargé des collectivités territoriales, 1988-05-12) : 1012 Jean-Michel Boucheron (1948) / 1013 Jean-Michel Boucheron (1946)
-HOMONYMES : Philippe Martin (Ministre de l'Ecologie, du Développement durable et de l'Energie, 2013-07-02) : 5045 Philippe Armand Martin (1949) / 10731 Philippe Martin (1953)
+Rattachés : chef-etat 9, chef-gouvernement 27, ministre 535, secretaire-etat 349 ; hors catégorie : 154
+DÉCISION NON APPLICABLE (2 fiche(s) pour Lozère) : De Chambrun|Charles
 
 Fonctions non comptées : 
 
@@ -95,6 +89,7 @@ Rattachements :
   Borotra, Franck -> 983 Franck Borotra
   Bosson, Bernard -> 996 Bernard Bosson
   Bouchardeau, Huguette -> 1006 Huguette Bouchardeau
+  Boucheron, Jean-Michel -> 1013 Jean-Michel Boucheron [décision]
   Boulin, Robert -> 1058 Robert Boulin
   Boulloche, André -> 1062 André Boulloche
   Bourges, Yvon -> 1088 Yvon Bourges
@@ -226,6 +221,7 @@ Rattachements :
   Duflot, Cécile -> 18414 Cécile Duflot
   Dufoix, Georgina -> 2671 Georgina Dufoix
   Duhamel, Jacques -> 2684 Jacques Duhamel
+  Dumas, Pierre -> 2693 Pierre Dumas [décision]
   Dumas, Roland -> 2695 Roland, Léon, Louis Dumas
   Durafour, Michel -> 2751 Michel Durafour
   Durieux, Bruno -> 2771 Bruno Durieux
@@ -357,6 +353,7 @@ Rattachements :
   Klinkert, Brigitte -> 19689 Brigitte Klinkert
   Kosciusko-Morizet, Nathalie -> 11040 Nathalie Kosciusko-Morizet
   Labarrère, André -> 4193 André Labarrère
+  Lafay, Bernard -> 4246 [décision]
   Laffineur, Marc -> 4250 Marc Laffineur
   Laignel, André -> 4276 André Laignel
   Lalumière, Catherine -> 4293 Catherine Lalumière
@@ -418,6 +415,7 @@ Rattachements :
   Mariani, Thierry -> 4994 Thierry Mariani
   Mariton, Hervé -> 5006 Hervé Mariton
   Marleix, Alain -> 5008 Alain Marleix
+  Martin, Philippe -> 10731 Philippe Martin [décision]
   Masseret, Jean-Pierre -> S83042R Jean-Pierre Masseret
   Mattei, Jean-François -> 5107 Jean-François Mattei
   Maurice-Bokanowski, Michel -> 5127 Michel, Alfred Maurice-Bokanowski
@@ -440,6 +438,7 @@ Rattachements :
   Missoffe, Hélène -> 5308 Hélène Missoffe
   Mitterrand, François -> 5312 François Mitterrand
   Mohamed Soilihi, Thani -> S11072N Thani Mohamed Soilihi
+  Mondon, Raymond -> 5336 Raymond, Joseph Mondon [décision]
   Monory, René -> S68036E René Monory
   Montchamp, Marie-Anne -> 10739 Marie-Anne Montchamp
   Montebourg, Arnaud -> 5373 Arnaud Montebourg
