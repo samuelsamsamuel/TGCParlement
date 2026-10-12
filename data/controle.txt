@@ -13,10 +13,11 @@ Distinctions calculées :
   presidence-an-longue : 35
   femmes-1945 : 33
   presidence-senat-longue : 21
-  chef-etat : 9
+  chef-etat : 8
   presidence-senat-courte : 5
+  chef-etat-interim : 1
 
-Scores (grille équilibrée) : maximum 120.2 ; 10e 84.3 ; 100e 51.5 ; 1000e 28.1 ; médiane 7.0
+Scores (grille équilibrée) : maximum 117.3 ; 10e 84.3 ; 100e 51.5 ; 1000e 28.1 ; médiane 7.0
 Cartes à égalité au score maximal : 1 ; scores distincts parmi les 100 premières : 85
 
 Répartition des raretés :
@@ -160,7 +161,6 @@ Anomalies :
     21046E Corinne Bourcier (ACTIF)
 
 Dix premières cartes :
-   120.2  legendaire  Alain Poher : Sénateur (Val-de-Marne) de 1958 à 1995. A été chef de l'État. A présidé la seconde chambre au moins un an. A été secrétaire d'État.
    117.3  legendaire  Edgar Faure : Député (Jura, Doubs) de 1946 à 1980, 7 mandats (Quatrième République - Assemblée nationale ; Cinquième République - Assemblée nationale). Sénateur de 1959 à 1988. A siégé dans les deux chambres. A dirigé le Gouvernement. A été ministre. A présidé l'Assemblée au moins un an. A été secrétaire d'État.
    113.8  legendaire  Jacques, Michel, Pierre Chaban-Delmas : Député (Gironde) de 1946 à 1997, 14 mandats (Quatrième République - Assemblée nationale ; Cinquième République - Assemblée nationale). A dirigé le Gouvernement. A été ministre. A présidé l'Assemblée au moins un an.
    107.3  legendaire  Laurent Fabius : Député (Seine-Maritime) de 1978 à 2012, 9 mandats (Cinquième République - Assemblée nationale). A dirigé le Gouvernement. A été ministre. A présidé l'Assemblée au moins un an.
@@ -168,5 +168,6 @@ Dix premières cartes :
     90.0  legendaire  Jules, Emile Jeanneney : Député (Haute-Saône) de 1902 à 1909, 2 mandats (Troisième République - Chambre des députés). Sénateur de 1909 à 1944. A siégé dans les deux chambres. A été ministre. A présidé la seconde chambre au moins un an.
     87.2  legendaire  François Mitterrand : Député (Nièvre) de 1946 à 1981, 8 mandats (Quatrième République - Assemblée nationale ; Cinquième République - Assemblée nationale). Sénateur de 1959 à 1962. A siégé dans les deux chambres. A été chef de l'État. A été ministre. A été secrétaire d'État.
     86.5  legendaire  Louis Mermaz : Député (Isère) de 1967 à 2001, 7 mandats (Cinquième République - Assemblée nationale). Sénateur de 2001 à 2011. A siégé dans les deux chambres. A été ministre. A présidé l'Assemblée au moins un an.
+    85.2  legendaire  Alain Poher : Sénateur (Val-de-Marne) de 1958 à 1995. A assuré l'intérim de la présidence de la République. A présidé la seconde chambre au moins un an. A été secrétaire d'État.
     85.1  legendaire  Paul Ramadier : Député (Aveyron) de 1928 à 1958, 7 mandats (Troisième République - Chambre des députés ; Gouvernement provisoire de la République française ; Quatrième République - Assemblée nationale). A dirigé le Gouvernement. A été ministre. Parmi les Quatre-vingts qui refusèrent les pleins pouvoirs à Pétain le 10 juillet 1940.
     84.3  legendaire  Léon, André Blum : Député (Seine, Aude) de 1919 à 1941, 5 mandats (Troisième République - Chambre des députés). A dirigé le Gouvernement. A été ministre. Parmi les Quatre-vingts qui refusèrent les pleins pouvoirs à Pétain le 10 juillet 1940.

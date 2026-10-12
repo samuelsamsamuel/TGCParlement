@@ -1,0 +1,11 @@
+{
+ "code": "chef-etat-interim",
+ "points": 15,
+ "plancher": null,
+ "libelle": "A assuré l'intérim de la présidence de la République",
+ "source": "https://www.data.gouv.fr/datasets/historique-des-gouvernements-de-la-veme-republique",
+ "perimetre": "Ve République",
+ "ids": [
+  "S000211"
+ ]
+}
