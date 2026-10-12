@@ -389,6 +389,11 @@ def main():
                     distinctions.append({"code": l["code"], "points": l["points"],
                                          "libelle": l["libelle"], "plancher": l.get("plancher")})
 
+            if d_date and n_date and d_date < n_date:
+                # Décès antérieur à la naissance : date incohérente dans la fiche, non retenue
+                anomalies["date de décès antérieure à la naissance (ignorée)"].append(
+                    f"{ident} {r.get('nom')} : né le {n_date}, décès lu {d_date}")
+                d_date = None
             score = min(annees, PLAFOND_ANS) * PTS_PAR_AN + sum(d["points"] for d in distinctions)
             carte = {"id": ident, "nom": r.get("nom"), "sexe": sexe,
                      "naissance": n_date, "lieu_naissance": n_lieu, "deces": d_date,
