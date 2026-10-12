@@ -126,8 +126,8 @@ def premier_prenom(nom):
 
 
 def rapprochement_souple(nf, pr, debut, index_large):
-    """Dernier recours, une seule fiche admise et signalée : nom écrit autrement (« Tanguy Prigent »,
-    « Maga » pour « Maga-Coutoucou »), prénom composé (« Jules-Emile ») ou voisin (« Edward »/« Édouard »)."""
+    """Dernier recours, une seule fiche admise et signalée : nom écrit autrement (« Fily-Dabo Sissoko »,
+    « Hubert, Coutoucou Maga »), prénom composé (« Jules-Emile ») ou voisin (« Edward »/« Édouard »)."""
     parts = set(pr.split("-"))
     vus, retenus = set(), []
     for w in nf:
@@ -135,11 +135,13 @@ def rapprochement_souple(nf, pr, debut, index_large):
             if c["id"] in vus or not age_plausible(c, debut):
                 continue
             vus.add(c["id"])
-            nom_c = mots(nom_usage(c["nom"]))
             segment = mots((c["nom"] or "").split(",")[-1])
             prenoms = prenoms_carte(c["nom"])
             tous_prenoms = set(x for p in prenoms for x in p.split("-"))
-            nom_ok = nf <= segment or (nom_c and nom_c <= nf)
+            # Le nom cherché doit se lire dans le nom de la fiche, jamais dans son premier prénom
+            # (« Michel Guy » n'est pas « Guy-Michel Chauveau »)
+            premier = set(premier_prenom(c["nom"]).split("-"))
+            nom_ok = nf <= segment and not (nf & premier)
             prenom_ok = (pr in prenoms or parts <= tous_prenoms
                          or any(SequenceMatcher(None, pr, p).ratio() >= 0.75 for p in prenoms))
             if nom_ok and prenom_ok:
@@ -253,7 +255,9 @@ def main():
             souple = rapprochement_souple(nf, pr, debut, index_large)
             if souple:
                 candidats = {souple[0]["id"]: souple[0]}
-                souples.append(f"{prenom} {nom} -> {souple[0]['id']} {souple[0]['nom']} ({souple[1]})")
+                ligne_souple = f"{prenom} {nom} -> {souple[0]['id']} {souple[0]['nom']}"
+                if ligne_souple not in souples:
+                    souples.append(ligne_souple)
         if norme(cle) in decisions:
             dec = decisions[norme(cle)]
             if dec.get("departement"):
