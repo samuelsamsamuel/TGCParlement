@@ -90,6 +90,20 @@ def norme(t):
 
 NON_RETENUES = []
 
+# Tableau officiel « Doyens d'âge » (assemblee-nationale.fr/histoire/doyens.pdf), transcrit :
+# nom, date de naissance imprimée, années où le doyen a présidé.
+TABLEAU = [
+    ("Grégoire de Saint-Sauveur", "1709-06-24", [1789]), ("Batault", "1716-04-02", [1791]),
+    ("Rudel du Miral", "1719-07-01", [1792]), ("Raffron-Dutrouillet", "1723-02-20", [1795]),
+    ("Tarteyron", "1769-10-18", [1800]), ("Debranges", "1738-02-10", [1815]), ("Cochard", "1743-05-01", [1815]),
+    ("Anglès", "1736-09-04", [1816]), ("Labbey de Pompières", "1751-05-03", [1824]),
+    ("Dumas", "1753-11-23", [1828]), ("Duchatel", "1751-05-29", [1831]),
+    ("Gras de Préville", "1755-01-10", [1831, 1834, 1839, 1842]), ("Nogaret", "1762-06-28", [1837]),
+    ("Dupont de l'Eure", "1767-02-07", [1846, 1848]), ("Kératry", "1769-12-28", [1849]),
+    ("Sapey", "1771-02-20", [1852, 1857]),
+]
+FIN_TABLEAU = 1857
+
 
 def calculer(cartes):
     """Doyen et benjamin de chaque législature, d'après les mandats et dates de naissance des fiches."""
@@ -162,35 +176,56 @@ def main():
     with open(os.path.join("data", "cartes.json"), encoding="utf-8") as f:
         cartes = json.load(f)
     calcul = calculer(cartes)
-    officiels = norme(" ".join(lignes))
-    concordants = 0
-    rapport.append("\n--- Doyens et benjamins calculés (contrôle : nom présent dans le tableau officiel, années ≤ 1863) ---")
+    def mots(t):
+        return set(re.findall(r"[a-z]+", norme(t))) - {"de", "du", "la", "le", "l", "d"}
+
+    def fiche_officielle(nom, naissance, presents):
+        """Fiche du doyen officiel : même nom de famille et même date de naissance, sinon même nom
+        parmi les présents (le tableau imprime pour Tarteyron une année de naissance manifestement fautive)."""
+        cles = mots(nom)
+        meme_nom = [c for c in cartes if c.get("naissance") and cles <= mots(c["nom"])]
+        exacts = [c for c in meme_nom if c["naissance"] == naissance]
+        if len(exacts) == 1:
+            return exacts[0], "nom et date de naissance"
+        parmi = [c for c in presents if cles <= mots(c["nom"])]
+        if len(parmi) == 1:
+            return parmi[0], "nom, parmi les présents"
+        return None, None
+
+    conformes, couverts = 0, 0
+    rapport.append("\n--- Doyens et benjamins (jusqu'en 1857, le tableau officiel fait foi) ---")
     for r in calcul:
-        nom_doyen = r["doyen"]["nom"]
-        nom_famille = norme(nom_doyen.split(",")[-1].split()[-1])
+        annee = int(r["ouverture"][:4])
         controle = ""
-        if r["ouverture"] <= "1863":
-            trouve = nom_famille in officiels
-            concordants += trouve
-            controle = "  [CONFORME au tableau]" if trouve else "  [ABSENT du tableau officiel]"
-            if not trouve:
-                # Le tableau officiel fait foi : parmi les présents, le plus âgé dont le nom y figure
-                cites = [c for c in r["valides"] if norme(c["nom"].split(",")[-1].split()[-1]) in officiels]
-                if cites:
-                    r["doyen"] = min(cites, key=lambda c: c["naissance"])
-                    nom_doyen = r["doyen"]["nom"]
-                    controle += f" -> doyen retenu d'après le tableau : {r['doyen']['id']} {nom_doyen}"
+        if annee <= FIN_TABLEAU:
+            entrees = [(n, d) for n, d, annees in TABLEAU if annee in annees or annee + 1 in annees]
+            if not entrees:
+                controle = "  [année absente du tableau : calcul conservé]"
+            else:
+                couverts += 1
+                fiches = [fiche_officielle(n, d, r["valides"]) + (n,) for n, d in entrees]
+                trouvees = [(f, mode, n) for f, mode, n in fiches if f]
+                if not trouvees:
+                    controle = f"  [doyen du tableau ({', '.join(n for n, _ in entrees)}) sans fiche identifiée : calcul conservé]"
                 else:
-                    controle += " -> aucun doyen du tableau parmi les présents ; calcul conservé"
+                    officiel, mode, nom_t = min(trouvees, key=lambda x: x[0]["naissance"])
+                    if officiel["id"] == r["doyen"]["id"]:
+                        conformes += 1
+                        controle = "  [CONFORME au tableau]"
+                    else:
+                        controle = f"  [tableau : {nom_t} -> fiche {officiel['id']} ({mode}) ; calcul : {r['doyen']['nom']}]"
+                        r["doyen"] = officiel
         rapport.append(f"{r['ouverture']} {r['regime']} | {r['legislature']} ({r['presents']} présents) : "
-                       f"doyen {r['doyen']['id']} {nom_doyen} ({r['doyen']['naissance'][:4]}) ; "
+                       f"doyen {r['doyen']['id']} {r['doyen']['nom']} ({r['doyen']['naissance'][:4]}) ; "
                        f"benjamin {r['benjamin']['id']} {r['benjamin']['nom']} ({r['benjamin']['naissance'][:4]}) ; "
                        f"âges {r['ages'][0]} et {r['ages'][1]} ans{controle}"
                        + (f"\n    âge invraisemblable, écarté : {' ; '.join(r['ecartes'])}" if r["ecartes"] else ""))
-    avant = sum(1 for r in calcul if r["ouverture"] <= "1863")
+    avant = couverts
+    concordants = conformes
     rapport.append("\nLégislatures non retenues (moins de 50 présents identifiés) : " + " ; ".join(NON_RETENUES))
-    rapport.insert(2, f"Législatures retenues : {len(calcul)} ; contrôle 1789-1863 : {concordants} doyens conformes sur {avant}")
+    rapport.insert(2, f"Législatures retenues : {len(calcul)} ; contrôle 1789-1857 : {concordants} doyens calculés conformes au tableau officiel sur {avant} législatures couvertes (les autres sont corrigés d'après le tableau)")
     ids = sorted({r[k]["id"] for r in calcul for k in ("doyen", "benjamin")}, key=str)
+    os.makedirs(os.path.join("data", "listes"), exist_ok=True)
     with open(os.path.join("data", "listes", "doyen-benjamin.json"), "w", encoding="utf-8") as f:
         json.dump({"code": "doyen-benjamin", "points": 5, "plancher": None,
                    "libelle": "Doyen d'âge ou benjamin d'une législature",
