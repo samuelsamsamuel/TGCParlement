@@ -194,6 +194,15 @@ def main():
         elif not (r.get("fonction") or "").lower().startswith("premier ministre"):
             non_comptees[r.get("fonction")] += 1
 
+    # Gouvernements de la Libération et de la IVe République (lus par gouvernements_ive.py)
+    f_ive = os.path.join("data", "gouvernement", "ive_lignes.json")
+    nb_ive = 0
+    if os.path.exists(f_ive):
+        with open(f_ive, encoding="utf-8") as f:
+            for r in json.load(f):
+                lignes.append((r["liste"], r["prenom"], r["nom"], r["debut"], r["fonction"], None))
+                nb_ive += 1
+
     rapport, membres, vus, ecartes = [], defaultdict(set), {}, []
     for liste, prenom, nom, debut, fonction, fin in lignes:
         cle = f"{nom}|{prenom}"
@@ -260,6 +269,7 @@ def main():
         json.dump(sorted(personnes.values(), key=lambda x: x["id"]), f, ensure_ascii=False, indent=1)
 
     sans_carte = sorted(personnes[i]["nom"] for i in personnes)
+    rapport.insert(0, f"Fonctions 1944-1959 reprises : {nb_ive}")
     rapport.insert(0, "Rattachés : " + ", ".join(f"{k} {len(v)}" for k, v in membres.items())
                    + f" ; hors catégorie : {len(sans_carte)}")
     if DATES_ILLISIBLES:
