@@ -161,18 +161,32 @@ def main():
         elif not (r.get("fonction") or "").lower().startswith("premier ministre"):
             non_comptees[r.get("fonction")] += 1
 
-    rapport, membres, vus = [], defaultdict(set), {}
+    rapport, membres, vus, ecartes = [], defaultdict(set), {}, []
     for liste, prenom, nom, debut, fonction, fin in lignes:
         cle = f"{nom}|{prenom}"
-        if cle in decisions:
-            ident = decisions[cle]["id"]
-            if ident is not None:
-                membres[liste].add(ident)
-            continue
         nf, pr = mots(nom), norme((prenom or "").split(" ")[0])
-        candidats = {c["id"]: c for w in nf for c in index.get(w, [])
-                     if nf <= mots(nom_usage(c["nom"])) and pr and pr in prenoms_carte(c["nom"])
-                     and age_plausible(c, debut)}
+        homonymes = {c["id"]: c for w in nf for c in index.get(w, [])
+                     if nf <= mots(nom_usage(c["nom"])) and pr and pr in prenoms_carte(c["nom"])}
+        candidats = {i: c for i, c in homonymes.items() if age_plausible(c, debut)}
+        if cle in decisions:
+            dec = decisions[cle]
+            if dec.get("departement"):
+                # Désignation par le département d'élection, lu dans les mandats de la carte
+                retenus = [c for c in candidats.values()
+                           if any(norme(dec["departement"]) == norme(m.get("departement"))
+                                  for m in c["mandats"])]
+                if len(retenus) == 1:
+                    membres[liste].add(retenus[0]["id"])
+                    vus[cle] = (retenus[0]["id"], retenus[0]["nom"] + " [décision]")
+                else:
+                    rapport.append(f"DÉCISION NON APPLICABLE ({len(retenus)} fiche(s) pour {dec['departement']}) : {cle}")
+            elif dec.get("id") is not None:
+                membres[liste].add(dec["id"])
+                vus[cle] = (dec["id"], "[décision]")
+            continue
+        if homonymes and not candidats and cle not in vus:
+            ecartes.append(f"{prenom} {nom} ({fonction}, {debut}) : " + " / ".join(
+                f"{c['id']} {c['nom']} ({c['naissance'] or '?'} - {c['deces'] or ''})" for c in homonymes.values()))
         if len(candidats) == 1:
             c = next(iter(candidats.values()))
             membres[liste].add(c["id"])
@@ -220,6 +234,7 @@ def main():
     rapport.append("\nFonctions non comptées : " + "; ".join(f"{k} ({v})" for k, v in sorted(non_comptees.items())))
     rapport.append("\nCartes « hors catégorie » (membres du Gouvernement sans mandat parlementaire) : "
                    + "; ".join(sans_carte))
+    rapport.append("\nHomonymes écartés par le contrôle d'âge (vérifier les dates) : " + " ; ".join(ecartes))
     rapport.append("\nCoquilles de la source rapportées à un membre déjà rattaché : " + "; ".join(coquilles))
     rapport.append("\nRattachements :")
     rapport += [f"  {k.replace('|', ', ')} -> {v[0]} {v[1]}" for k, v in sorted(vus.items()) if v]
