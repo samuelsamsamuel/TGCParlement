@@ -181,7 +181,7 @@
  },
  {
   "id": "G-barakrok-abdelkader",
-  "nom": "Abdelkader BARAKROK",
+  "nom": "Abdelkader Barakrok",
   "fonctions": [
    {
     "liste": "secretaire-etat",
@@ -403,7 +403,7 @@
  },
  {
   "id": "G-bougenot-andre",
-  "nom": "André BOUGENOT",
+  "nom": "André Bougenot",
   "fonctions": [
    {
     "liste": "secretaire-etat",
@@ -469,7 +469,7 @@
  },
  {
   "id": "G-brune-charles",
-  "nom": "Charles BRUNE",
+  "nom": "Charles Brune",
   "fonctions": [
    {
     "liste": "ministre",
@@ -828,18 +828,6 @@
   ]
  },
  {
-  "id": "G-dabo-sissoko-fily",
-  "nom": "Fily DABO SISSOKO",
-  "fonctions": [
-   {
-    "liste": "secretaire-etat",
-    "fonction": "Sous-SE (industrie, commerce)",
-    "debut": "1948-09-05",
-    "fin": null
-   }
-  ]
- },
- {
   "id": "G-daragon-nicolas",
   "nom": "Nicolas Daragon",
   "fonctions": [
@@ -889,7 +877,7 @@
  },
  {
   "id": "G-dautry-raoul",
-  "nom": "Raoul DAUTRY",
+  "nom": "Raoul Dautry",
   "fonctions": [
    {
     "liste": "ministre",
@@ -1321,7 +1309,7 @@
  },
  {
   "id": "G-farge-yves",
-  "nom": "Yves FARGE",
+  "nom": "Yves Farge",
   "fonctions": [
    {
     "liste": "ministre",
@@ -1399,7 +1387,7 @@
  },
  {
   "id": "G-frenay-henri",
-  "nom": "Henri FRENAY",
+  "nom": "Henri Frenay",
   "fonctions": [
    {
     "liste": "ministre",
@@ -1435,7 +1423,7 @@
  },
  {
   "id": "G-gavini-joseph",
-  "nom": "Joseph GAVINI",
+  "nom": "Joseph Gavini",
   "fonctions": [
    {
     "liste": "secretaire-etat",
@@ -1483,7 +1471,7 @@
  },
  {
   "id": "G-gilbert-jules-jean",
-  "nom": "Jean GILBERT-JULES",
+  "nom": "Jean Gilbert-Jules",
   "fonctions": [
    {
     "liste": "secretaire-etat",
@@ -1687,7 +1675,7 @@
  },
  {
   "id": "G-guerin-du-pabst-de-beaumont-jean-michel",
-  "nom": "Jean-Michel GUERIN DU PABST DE BEAUMONT",
+  "nom": "Jean-Michel Guerin Du Pabst De Beaumont",
   "fonctions": [
    {
     "liste": "secretaire-etat",
@@ -1975,7 +1963,7 @@
  },
  {
   "id": "G-julien-jules",
-  "nom": "Jules JULIEN",
+  "nom": "Jules Julien",
   "fonctions": [
    {
     "liste": "secretaire-etat",
@@ -2023,7 +2011,7 @@
  },
  {
   "id": "G-koenig-gerard",
-  "nom": "Gérard KOENIG",
+  "nom": "Gérard Koenig",
   "fonctions": [
    {
     "liste": "ministre",
@@ -2095,7 +2083,7 @@
  },
  {
   "id": "G-laffargue-georges",
-  "nom": "Georges LAFFARGUE",
+  "nom": "Georges Laffargue",
   "fonctions": [
    {
     "liste": "secretaire-etat",
@@ -2203,7 +2191,7 @@
  },
  {
   "id": "G-lemaitre-claude",
-  "nom": "Claude LEMAITRE",
+  "nom": "Claude Lemaitre",
   "fonctions": [
    {
     "liste": "secretaire-etat",
@@ -2269,7 +2257,7 @@
  },
  {
   "id": "G-lepercq-aime",
-  "nom": "Aimé LEPERCQ",
+  "nom": "Aimé Lepercq",
   "fonctions": [
    {
     "liste": "ministre",
@@ -2695,7 +2683,7 @@
  },
  {
   "id": "G-parodi-alexandre",
-  "nom": "Alexandre PARODI",
+  "nom": "Alexandre Parodi",
   "fonctions": [
    {
     "liste": "ministre",
@@ -2761,7 +2749,7 @@
  },
  {
   "id": "G-pelletier-emile",
-  "nom": "Emile PELLETIER",
+  "nom": "Emile Pelletier",
   "fonctions": [
    {
     "liste": "ministre",
@@ -2839,7 +2827,7 @@
  },
  {
   "id": "G-perier-jacques",
-  "nom": "Jacques PERIER",
+  "nom": "Jacques Perier",
   "fonctions": [
    {
     "liste": "secretaire-etat",
@@ -2851,7 +2839,7 @@
  },
  {
   "id": "G-pineau-francois",
-  "nom": "François PINEAU",
+  "nom": "François Pineau",
   "fonctions": [
    {
     "liste": "ministre",
@@ -3162,20 +3150,8 @@
   ]
  },
  {
-  "id": "G-tanguy-prigent-francis",
-  "nom": "Francis TANGUY-PRIGENT",
-  "fonctions": [
-   {
-    "liste": "ministre",
-    "fonction": "Ministre des anciens combattants et victimes de guerre",
-    "debut": "1956-02-01",
-    "fin": null
-   }
-  ]
- },
- {
   "id": "G-tanguy-prigent-francois",
-  "nom": "François TANGUY-PRIGENT",
+  "nom": "François Tanguy-Prigent",
   "fonctions": [
    {
     "liste": "ministre",
@@ -3212,6 +3188,12 @@
     "fonction": "Ministre de l'Agriculture",
     "debut": "1947-01-22",
     "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre des anciens combattants et victimes de guerre",
+    "debut": "1956-02-01",
+    "fin": null
    }
   ]
  },
@@ -3229,7 +3211,7 @@
  },
  {
   "id": "G-tony-revillon-michel",
-  "nom": "Michel TONY-REVILLON",
+  "nom": "Michel Tony-Revillon",
   "fonctions": [
    {
     "liste": "ministre",

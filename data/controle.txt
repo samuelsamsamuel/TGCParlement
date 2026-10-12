@@ -1,10 +1,10 @@
-Fiches lues : {200: 18062, 404: 3} ; cartes produites : 19635, dont 1573 sénateurs absents de Sycomore ; plus 176 cartes hors catégorie (Gouvernement sans mandat parlementaire)
+Fiches lues : {200: 18062, 404: 3} ; cartes produites : 19635, dont 1573 sénateurs absents de Sycomore ; plus 174 cartes hors catégorie (Gouvernement sans mandat parlementaire)
 
 Distinctions calculées :
   deux-chambres : 1651
   1789 : 1317
   convention : 905
-  ministre : 658
+  ministre : 657
   secretaire-etat : 496
   presidence-an-courte : 205
   chef-gouvernement : 45
@@ -20,7 +20,7 @@ Répartition des raretés :
   rare : 2945
   peu-commune : 4909
   commune : 9818
-  hors-categorie : 176
+  hors-categorie : 174
 
 Mandats de député par régime et législature :
   Assemblée Nationale | None : 873

@@ -1,26 +1,17 @@
-Rattachés : chef-etat 9, chef-gouvernement 45, ministre 658, secretaire-etat 496 ; hors catégorie : 176
+Rattachés : chef-etat 9, chef-gouvernement 45, ministre 657, secretaire-etat 496 ; hors catégorie : 174
 Fonctions 1944-1959 reprises : 908
 
 Fonctions non comptées : 
 
-Cartes « hors catégorie » (membres du Gouvernement sans mandat parlementaire) : Abdelkader BARAKROK; Agnès Buzyn; Aimé LEPERCQ; Alain Decaux; Alain Griset; Alexandre PARODI; Alice Saunier-Seïté; Amélie Oudea-Castera; André BOUGENOT; André Giraud; André Henry; André Malraux; André Postel-Vinay; Annie Lesur; Audrey Azoulay; Azouz Begag; Bernard Chenot; Bernard Kouchner; Bernard Laporte; Brice Hortefeux; Brice Lalonde; Brigitte Girardin; Catherine Colonna; Charles BRUNE; Charles de Gaulle; Charlotte Caubel; Christian Beullac; Christian Sautter; Christiane Scrivener; Christine Albanel; Christine Chauvet; Christine Lagarde; Chrysoula Zacharopoulou; Clara Chappaz; Claude Allègre; Claude Cheysson; Claude Guéant; Claude LEMAITRE; Claudie Haigneré; Corinne Lepage; Cédric O; Delphine Gény-Stephann; Dominique Bertinotti; Dominique Versini; Dominique de Villepin; Elisabeth Moreno; Emile PELLETIER; Emmanuel Macron; Emmanuelle Cosse; Emmanuelle Wargon; Eric Lombard; Fabrice Loher; Fadela Amara; Fily DABO SISSOKO; Fleur Pellerin; Florence Parly; Francis Mer; Francis TANGUY-PRIGENT; François Braun; François Doubin; François Durovray; François PINEAU; François TANGUY-PRIGENT; Françoise Giroud; Françoise Nyssen; Frédéric Mitterrand; Frédérique Vidal; Georges Kiejman; Georges LAFFARGUE; Gil Avérous; Gilbert Grandval; Gérard KOENIG; Gérard Renon; Hamlaoui Mékachéra; Harlem Désir; Haroun Tazieff; Henri FRENAY; Hubert Curien; Hubert Védrine; Hélène Dorlhac; Isabelle Rome; Jacques Chérèque; Jacques Delors; Jacques PERIER; Jean Castex; Jean Farge; Jean GILBERT-JULES; Jean Mattéoli; Jean Sauvagnargues; Jean-Christophe Combe; Jean-François Carenco; Jean-Jacques Aillagon; Jean-Michel Blanquer; Jean-Michel GUERIN DU PABST DE BEAUMONT; Jean-Noël Jeanneney; Jean-Pierre Jouyet; Jean-Pierre Prouteau; Jeannette Bougrab; Joseph GAVINI; Jules JULIEN; Julien Denormandie; Juliette Méadel; Laura Flessel; Laurence Boone; Laurent Nunez; Louis De Guiringaud; Luc Ferry; Lucien Paye; Léon Schwartzenberg; Margie Sudre; Marie Barsacq; Marie-Josée Roig; Marie-Luce Penchard; Marlène Schiappa; Martin Hirsch; Martine Pinvile; Michel Debatisse; Michel D’Ornano; Michel Gillibert; Michel Guy; Michel Jobert; Michel TONY-REVILLON; Monique Pelletier; Muriel Pénicaud; Myriam El Khomri; Najat Vallaud-Belkacem; Nathalie Loiseau; Nicolas Daragon; Nicolas Hulot; Nicole Belloubet; Nicole Fontaine; Nicole Guedj; Nicole Pasquier; Nora Berra; Noëlle Lenoir; Olivier Klein; Othman Nasrou; Pap Ndiaye; Pascal Canfin; Patrice Vergriete; Paulette Guinchard-Kunstler; Philippe Baptiste; Philippe Essig; Pierre Aigrain; Pierre Arpaillange; Pierre Chatenet; Pierre Dreyfus; Pierre Guillaumat; Rachida Dati; Rama Yade; Raoul DAUTRY; René Lenoir; Rima Abdul-Malak; Roger Bambuck; Roger Fauroux; Roxana Maracineanu; Salima Saa; Sibeth Ndiaye; Simone Veil; Sonia Backès; Sophie Cluzel; Sylvie Goulard; Sylvie Retailleau; Thierry Breton; Thierry De Beaucé; Théo Braun; Tokia Saïfi; Wilfrid Baumgartner; Xavier Emmanuelli; Yamina Benguigui; Yves FARGE; Yves Galland; Yvon Morandat; Élisabeth Dufourcq; Émile Biasini; Éric Dupond-Moretti
+Cartes « hors catégorie » (membres du Gouvernement sans mandat parlementaire) : Abdelkader Barakrok; Agnès Buzyn; Aimé Lepercq; Alain Decaux; Alain Griset; Alexandre Parodi; Alice Saunier-Seïté; Amélie Oudea-Castera; André Bougenot; André Giraud; André Henry; André Malraux; André Postel-Vinay; Annie Lesur; Audrey Azoulay; Azouz Begag; Bernard Chenot; Bernard Kouchner; Bernard Laporte; Brice Hortefeux; Brice Lalonde; Brigitte Girardin; Catherine Colonna; Charles Brune; Charles de Gaulle; Charlotte Caubel; Christian Beullac; Christian Sautter; Christiane Scrivener; Christine Albanel; Christine Chauvet; Christine Lagarde; Chrysoula Zacharopoulou; Clara Chappaz; Claude Allègre; Claude Cheysson; Claude Guéant; Claude Lemaitre; Claudie Haigneré; Corinne Lepage; Cédric O; Delphine Gény-Stephann; Dominique Bertinotti; Dominique Versini; Dominique de Villepin; Elisabeth Moreno; Emile Pelletier; Emmanuel Macron; Emmanuelle Cosse; Emmanuelle Wargon; Eric Lombard; Fabrice Loher; Fadela Amara; Fleur Pellerin; Florence Parly; Francis Mer; François Braun; François Doubin; François Durovray; François Pineau; François Tanguy-Prigent; Françoise Giroud; Françoise Nyssen; Frédéric Mitterrand; Frédérique Vidal; Georges Kiejman; Georges Laffargue; Gil Avérous; Gilbert Grandval; Gérard Koenig; Gérard Renon; Hamlaoui Mékachéra; Harlem Désir; Haroun Tazieff; Henri Frenay; Hubert Curien; Hubert Védrine; Hélène Dorlhac; Isabelle Rome; Jacques Chérèque; Jacques Delors; Jacques Perier; Jean Castex; Jean Farge; Jean Gilbert-Jules; Jean Mattéoli; Jean Sauvagnargues; Jean-Christophe Combe; Jean-François Carenco; Jean-Jacques Aillagon; Jean-Michel Blanquer; Jean-Michel Guerin Du Pabst De Beaumont; Jean-Noël Jeanneney; Jean-Pierre Jouyet; Jean-Pierre Prouteau; Jeannette Bougrab; Joseph Gavini; Jules Julien; Julien Denormandie; Juliette Méadel; Laura Flessel; Laurence Boone; Laurent Nunez; Louis De Guiringaud; Luc Ferry; Lucien Paye; Léon Schwartzenberg; Margie Sudre; Marie Barsacq; Marie-Josée Roig; Marie-Luce Penchard; Marlène Schiappa; Martin Hirsch; Martine Pinvile; Michel Debatisse; Michel D’Ornano; Michel Gillibert; Michel Guy; Michel Jobert; Michel Tony-Revillon; Monique Pelletier; Muriel Pénicaud; Myriam El Khomri; Najat Vallaud-Belkacem; Nathalie Loiseau; Nicolas Daragon; Nicolas Hulot; Nicole Belloubet; Nicole Fontaine; Nicole Guedj; Nicole Pasquier; Nora Berra; Noëlle Lenoir; Olivier Klein; Othman Nasrou; Pap Ndiaye; Pascal Canfin; Patrice Vergriete; Paulette Guinchard-Kunstler; Philippe Baptiste; Philippe Essig; Pierre Aigrain; Pierre Arpaillange; Pierre Chatenet; Pierre Dreyfus; Pierre Guillaumat; Rachida Dati; Rama Yade; Raoul Dautry; René Lenoir; Rima Abdul-Malak; Roger Bambuck; Roger Fauroux; Roxana Maracineanu; Salima Saa; Sibeth Ndiaye; Simone Veil; Sonia Backès; Sophie Cluzel; Sylvie Goulard; Sylvie Retailleau; Thierry Breton; Thierry De Beaucé; Théo Braun; Tokia Saïfi; Wilfrid Baumgartner; Xavier Emmanuelli; Yamina Benguigui; Yves Farge; Yves Galland; Yvon Morandat; Élisabeth Dufourcq; Émile Biasini; Éric Dupond-Moretti
 
-Rapprochements souples (graphie ou prénom différents, à vérifier) : Edgard Faure -> 2922 Edgar Faure ; Jules-Emile JEANNENEY -> 4024 Jules, Emile Jeanneney ; Johannès DUPRAZ -> 2730 Joannès, Pierre Dupraz-Bonsay dit Dupraz ; Henri BERGASSE -> 660 Henry, Alexandre, Emmanuel, Marie Bergasse ; Edward CORNIGLION-MOLINIER -> 1973 Edouard Corniglion-Molinier ; Hammadoun DICKO -> 2500 Hamadoun Dicko ; Hubert MAGA-COUTOUCOU -> 9033 Hubert, Coutoucou Maga
+Rapprochements souples (graphie ou prénom différents, à vérifier) : Edgard Faure -> 2922 Edgar Faure ; Jean Michel Baylet -> 512 Jean-Michel Baylet ; Jules-Emile Jeanneney -> 4024 Jules, Emile Jeanneney ; Johannès Dupraz -> 2730 Joannès, Pierre Dupraz-Bonsay dit Dupraz ; Fily Dabo Sissoko -> 6862 Fily-Dabo Sissoko ; Henri Bergasse -> 660 Henry, Alexandre, Emmanuel, Marie Bergasse ; Edward Corniglion-Molinier -> 1973 Edouard Corniglion-Molinier ; Hammadoun Dicko -> 2500 Hamadoun Dicko ; Hubert Maga-Coutoucou -> 9033 Hubert, Coutoucou Maga
 
-Homonymes écartés par le contrôle d'âge (vérifier les dates) : Pierre Dreyfus (Ministre de l'industrie, 1981-06-23) : 2590 Pierre, Sylvain Dreyfus dit Dreyfus-Schmidt (1902-05-11 - 1964-07-04) ; Jacques PERIER (Sous-SE (Présidence du Conseil) (à compter du 17 juin 1957), 1957-06-17) : 13244 Alexandre, Jacques, Pierre Périer (1774-12-25 - 1846-12-14)
+Homonymes écartés par le contrôle d'âge (vérifier les dates) : Pierre Dreyfus (Ministre de l'industrie, 1981-06-23) : 2590 Pierre, Sylvain Dreyfus dit Dreyfus-Schmidt (1902-05-11 - 1964-07-04) ; Jacques Perier (Sous-SE (Présidence du Conseil) (à compter du 17 juin 1957), 1957-06-17) : 13244 Alexandre, Jacques, Pierre Périer (1774-12-25 - 1846-12-14)
 
-Coquilles de la source rapportées à un membre déjà rattaché : Jean Michel Baylet = jean-michel baylet; Thani Mohemd Soilihi = thani mohamed soilihi; Gaston DEFERRE = gaston defferre; Gaston DEFERRE = gaston defferre; Georges GALY-GASPAROU = georges galy-gasparrou; Léopold-Sédar SENGHOR = leopold sedar senghor; Jean BERTHOUIN = jean berthoin
+Coquilles de la source rapportées à un membre déjà rattaché : Thani Mohemd Soilihi = thani mohamed soilihi; Gaston Deferre = gaston defferre; Gaston Deferre = gaston defferre; Georges Galy-Gasparou = georges galy-gasparrou; Léopold-Sédar Senghor = leopold sedar senghor; Francis Tanguy-Prigent = François Tanguy-Prigent; Jean Berthouin = jean berthoin
 
 Rattachements :
-  ABELIN, Pierre -> 19 Pierre, Louis, Ernest, Armand Abelin
-  ANTIER, Paul -> 161 Paul, Alphonse Antier
-  ANXIONNAZ, Paul -> 165 Paul, Marius Anxionnaz
-  ARNAL, Franck -> 196 Franck Arnal
-  ARTHAUD, René -> 214 René, Fernand Arthaud
-  AUBAN, Achille -> 227 Achille, Joseph Auban
-  AUGARDE, Jacques -> 262 Jacques Augarde
-  AUJOULAT, Louis-Paul -> 271 Louis-Paul Aujoulat
-  AURIOL, Vincent -> 285 Vincent, Jules Auriol
   Abadie, François -> 5 François Abadie
   Abad, Damien -> 18328 Damien Abad
   Abba, Bérangère -> 19003 Bérangère Abba
@@ -33,56 +24,39 @@ Rattachements :
   André, Michèle -> S01031L Michèle André
   Ansquer, Vincent -> 155 Vincent Ansquer
   Anthonioz, Marcel -> 159 Marcel, Louis, Julien Anthonioz
+  Antier, Paul -> 161 Paul, Alphonse Antier
+  Anxionnaz, Paul -> 165 Paul, Marius Anxionnaz
   Apparu, Benoist -> 17263 Benoist Apparu
   Arif, Kader -> 18338 Kader Arif
   Armand, Antoine -> 19562 Antoine Armand
+  Arnal, Franck -> 196 Franck Arnal
+  Arthaud, René -> 214 René, Fernand Arthaud
   Arthuis, Jean -> S83011J Jean Arthuis
   Attal, Gabriel -> 19016 Gabriel Attal
+  Auban, Achille -> 227 Achille, Joseph Auban
   Aubert, Raymond-Max -> 234 Raymond-Max Aubert
   Aubry, Martine -> 242 Martine Aubry
+  Augarde, Jacques -> 262 Jacques Augarde
+  Aujoulat, Louis-Paul -> 271 Louis-Paul Aujoulat
   Aurillac, Michel -> 282 Michel Aurillac
+  Auriol, Vincent -> 285 Vincent, Jules Auriol
   Auroux, Jean -> 286 Jean Auroux
   Autain, François -> 289 François Autain
   Avice, Edwige -> 296 Edwige Avice
   Ayrault, Jean-Marc -> 306 Jean-Marc Ayrault
-  BACON, Paul -> 320 Paul, Jean Bacon
-  BADIE, Vincent -> 324 Vincent, Henri Badie
-  BARDON, André -> 401 André, Paul Bardon
-  BARRACHIN, Edmond -> 428 Edmond, Marcel Barrachin
-  BAYROU, Maurice -> 517 Maurice, Albert, Henri Bayrou
-  BECHARD, Paul -> 550 Paul Béchard
-  BEGOUIN, Lucien -> 571 Lucien, Louis, Marie Bégouin
-  BERGASSE, Henri -> 660 Henry, Alexandre, Emmanuel, Marie Bergasse
-  BERTHOIN, Jean -> S000711 Jean Berthoin
-  BETOLAUD, Robert -> 767 Robert, Georges Bétolaud
-  BETTENCOURT, André -> 769 André, Marie, Joseph Bettencourt
-  BICHET, Robert -> 785 Robert Bichet
-  BIDAULT, Georges -> 788 Georges, Augustin Bidault
-  BILLERES, René -> 809 René, Sylvain, Edouard Billères
-  BILLOTTE, Pierre -> 813 Pierre, Armand, Gaston Billotte
-  BILLOUX, François -> 815 François Billoux
-  BIONDI, Jean -> 820 Jean, Dominique Biondi
-  BLUM, Léon -> 880 Léon, André Blum
-  BOISDE, Raymond -> 899 Raymond, Paul, Victor Boisdé
-  BONNEFOUS, Edouard -> 937 Edouard, Henri, Jean Bonnefous
-  BORDENEUVE, Jacques -> 968 Jacques, Guillaume Bordeneuve
-  BOSCARY-MONSSERVIN, Roland -> 991 Roland, Joseph-Marie Boscary-Monsservin
-  BOULLOCHE, André -> 1062 André Boulloche
-  BOURDAN, Pierre -> 1074 Pierre Maillaud dit Bourdan
-  BOURGES-MAUNOURY, Maurice -> 1089 Maurice, Jean, Marie Bourgès-Maunoury
-  BOUTEMY, André -> S000140 André Boutemy
-  BRUYNEEL, Robert -> 1296 Robert, Marcel, Arthur Bruyneel
-  BURON, Robert -> 1320 Robert, Albert, Gaston Buron
   Bachelot-Narquin, Roselyne -> 316 Roselyne Bachelot-Narquin
   Bachelot, Roselyne -> 316 Roselyne Bachelot-Narquin
   Bacon, Paul -> 320 Paul, Jean Bacon
+  Badie, Vincent -> 324 Vincent, Henri Badie
   Badinter, Robert -> S95006B Robert Badinter
   Bailly, Jean -> 341 Jean Bailly
   Balladur, Édouard -> 350 Edouard Balladur
+  Bardon, André -> 401 André, Paul Bardon
   Bareigts, Ericka -> 18349 Ericka Bareigts
   Bariani, Didier -> 411 Didier Bariani
   Barnier, Michel -> 419 Michel Barnier
   Baroin, François -> 421 François Baroin
+  Barrachin, Edmond -> 428 Edmond, Marcel Barrachin
   Barre, Raymond -> 432 Raymond Barre
   Barrot, Jacques -> 439 Jacques Barrot
   Barrot, Jean-Noël -> 19026 Jean-Noël Barrot
@@ -94,11 +68,15 @@ Rattachements :
   Baumet, Gilbert -> 505 Gilbert Baumet
   Baylet, Jean-Michel -> 512 Jean-Michel Baylet
   Bayrou, François -> 516 François Bayrou
+  Bayrou, Maurice -> 517 Maurice, Albert, Henri Bayrou
   Beaune, Clément -> 19572 Clément Beaune
+  Bechard, Paul -> 550 Paul Béchard
   Becht, Olivier -> 19033 Olivier Becht
   Bechu, Christophe -> S11030C Christophe Béchu
+  Begouin, Lucien -> 571 Lucien, Louis, Marie Bégouin
   Benin, Justine -> 19035 Justine Benin
   Benoîst, Daniel -> 630 Daniel Benoist
+  Bergasse, Henri -> 660 Henry, Alexandre, Emmanuel, Marie Bergasse
   Bergelin, Christian -> 661 Christian Bergelin
   Bergé, Aurore -> 19036 Aurore Bergé
   Bernard-Reymond, Pierre -> 700 Pierre Bernard-Reymond
@@ -108,31 +86,45 @@ Rattachements :
   Berville, Hervé -> 19039 Hervé Berville
   Besson, Louis -> 759 Louis Besson
   Besson, Éric -> 757 Eric Besson
+  Betolaud, Robert -> 767 Robert, Georges Bétolaud
   Bettencourt, André -> 769 André, Marie, Joseph Bettencourt
   Beucler, Jean-Jacques -> 770 Jean-Jacques Beucler
   Bianco, Jean-Louis -> 781 Jean-Louis Bianco
+  Bichet, Robert -> 785 Robert Bichet
+  Bidault, Georges -> 788 Georges, Augustin Bidault
   Bigeard, Marcel -> 795 Marcel Bigeard
   Billardon, André -> 805 André Billardon
   Billecocq, Pierre -> 808 Pierre Billecocq
+  Billeres, René -> 809 René, Sylvain, Edouard Billères
   Billotte, Pierre -> 813 Pierre, Armand, Gaston Billotte
+  Billoux, François -> 815 François Billoux
+  Biondi, Jean -> 820 Jean, Dominique Biondi
   Blanc, Christian -> 11962 Christian Blanc
   Blanc, Jacques -> 848 Jacques Blanc
+  Blum, Léon -> 880 Léon, André Blum
   Bockel, Jean-Marie -> 887 Jean-Marie Bockel
+  Boisde, Raymond -> 899 Raymond, Paul, Victor Boisdé
   Boisseau, Marie-Thérèse -> 906 Marie-Thérèse Boisseau
   Boistard, Pascale -> 18362 Pascale Boistard
+  Bonnefous, Edouard -> 937 Edouard, Henri, Jean Bonnefous
   Bonnet, Christian -> 948 Christian, Charles, Auguste Bonnet
+  Bordeneuve, Jacques -> 968 Jacques, Guillaume Bordeneuve
   Bord, André -> 966 André Bord
   Borloo, Jean-Louis -> 980 Jean-Louis Borloo
   Borne, Elisabeth -> 19586 Élisabeth Borne
   Borne, Élisabeth -> 19586 Élisabeth Borne
   Borotra, Franck -> 983 Franck Borotra
+  Boscary-Monsservin, Roland -> 991 Roland, Joseph-Marie Boscary-Monsservin
   Bosson, Bernard -> 996 Bernard Bosson
   Bouchardeau, Huguette -> 1006 Huguette Bouchardeau
   Boucheron, Jean-Michel -> 1013 Jean-Michel Boucheron [décision]
   Boulin, Robert -> 1058 Robert Boulin
   Boulloche, André -> 1062 André Boulloche
+  Bourdan, Pierre -> 1074 Pierre Maillaud dit Bourdan
+  Bourges-Maunoury, Maurice -> 1089 Maurice, Jean, Marie Bourgès-Maunoury
   Bourges, Yvon -> 1088 Yvon Bourges
   Bourguignon, Brigitte -> 18366 Brigitte Bourguignon
+  Boutemy, André -> S000140 André Boutemy
   Boutin, Christine -> 1133 Christine Boutin
   Boyon, Jacques -> 1157 Jacques Boyon
   Braillard, Thierry -> 18369 Thierry Braillard
@@ -143,6 +135,7 @@ Rattachements :
   Bricq, Nicole -> 1223 Nicole Bricq
   Brousse, Pierre -> S000574 Pierre Brousse
   Brunhes, Jacques -> 1291 Jacques Brunhes
+  Bruyneel, Robert -> 1296 Robert, Marcel, Arthur Bruyneel
   Buffet, François-Noël -> S04047H François-Noël Buffet
   Buffet, Marie-George -> 1300 Marie-George Buffet
   Buron, Robert -> 1320 Robert, Albert, Gaston Buron
@@ -151,39 +144,9 @@ Rattachements :
   Béchu, Christophe -> S11030C Christophe Béchu
   Bédier, Pierre -> 562 Pierre Bédier
   Bérégovoy, Pierre -> 656 Pierre Bérégovoy
-  CAILLAVET, Henri -> 1367 Henri, Guy, Pierre, Emile Caillavet
-  CAPITANT, René -> 1426 René, Marie, Alphonse, Charles Capitant
-  CASANOVA, Laurent -> 1482 Laurent, Antoine Casanova
-  CATOIRE, Jules -> 1523 Jules, Eugène, Edouard Catoire
-  CATROUX, Diomède -> 1525 Diomède, Anne, Claude Catroux
-  CHABAN-DELMAS, Jacques -> 10179 Jacques, Michel, Pierre Chaban-Delmas
-  CHAMANT, Jean -> 1612 Jean, Jules, Eugène, Marie Chamant
-  CHAMPEIX, Marcel -> 1629 Marcel Champeix
-  CHASTELLAIN, Jacques -> 1700 Jacques, Georges, Louis Chastellain
-  CHEVALLIER, Jacques -> 9034 Jacques Chevallier
-  CHEVALLIER, Pierre -> 1777 Pierre Chevallier
-  CHOCHOY, Bernard -> 1800 Bernard Chochoy
-  CHRISTIAENS, Louis -> 1817 Louis, Winocq, Achille, Eugène Christiaens
-  CLAPAREDE, Emile -> S000060 Emile Claparede
-  CLAUDIUS-PETIT, Eugène -> 1837 Eugène, Pierre Petit dit Claudius-Petit
-  COFFIN, Lucien -> 1881 Lucien, Louis, Antoine Coffin
-  COLIN, André -> 1894 André, Gabriel, Marie Colin
-  CONOMBO, Joseph -> 1940 Joseph, Issoufou Conombo
-  CONTE, Arthur -> 1949 Arthur, Léon Conte
-  CORNIGLION-MOLINIER, Edward -> 1973 Edouard Corniglion-Molinier
-  CORNUT-GENTILLE, Bernard -> 1982 Bernard Cornut-Gentille
-  CORNU, André -> 1976 André Cornu
-  COSTE-FLORET, Paul -> 1993 Paul Coste-Floret
-  COTY, René -> 2000 René Coty
-  COUDE DU FORESTO, Yvon -> S000702 Yvon Coude Du Foresto
-  COUDE du FORESTO, Yvon -> S000702 Yvon Coude Du Foresto
-  COUINAUD, Pierre -> 2017 Pierre, Joseph Couinaud
-  COURANT, Pierre -> 2026 Pierre Courant
-  COUVE de MURVILLE, Maurice -> 2055 Maurice Couve de Murville
-  CROIZAT, Ambroise -> 2074 Ambroise Croizat
-  CROUZIER, Jean -> 2078 Jean Crouzier
   Cabana, Camille -> S59524Q Camille Cabana
   Cahuzac, Jérôme -> 1358 Jérôme Cahuzac
+  Caillavet, Henri -> 1367 Henri, Guy, Pierre, Emile Caillavet
   Calmat, Alain -> 1381 Alain Calmat
   Canayer, Agnès -> S14053L Agnès Canayer
   Capitant, René -> 1426 René, Marie, Alphonse, Charles Capitant
@@ -191,9 +154,12 @@ Rattachements :
   Carlotti, Marie-Arlette -> 18380 Marie-Arlette Carlotti
   Carraz, Roland -> 1463 Roland Carraz
   Carrère-Gée, Marie-Claire -> S21090J Marie-Claire Carrère-Gée
+  Casanova, Laurent -> 1482 Laurent, Antoine Casanova
   Castaner, Christophe -> 18382 Christophe Castaner
   Catala, Nicole -> 1514 Nicole Catala
   Cathala, Laurent -> 1520 Laurent Cathala
+  Catoire, Jules -> 1523 Jules, Eugène, Edouard Catoire
+  Catroux, Diomède -> 1525 Diomède, Anne, Claude Catroux
   Cavaillé, Marcel -> S58202U Marcel Cavaillé
   Cayeux, Caroline -> S11044J Caroline Cayeux
   Cazenave, Thomas -> 19605 Thomas Cazenave
@@ -202,51 +168,61 @@ Rattachements :
   Chaban-Delmas, Jacques -> 10179 Jacques, Michel, Pierre Chaban-Delmas
   Chalandon, Albin -> 1608 Albin Chalandon
   Chamant, Jean -> 1612 Jean, Jules, Eugène, Marie Chamant
+  Champeix, Marcel -> 1629 Marcel Champeix
   Chandernagor, André -> 1636 André Chandernagor
   Chapuis, Robert -> 1652 Robert Chapuis
   Charasse, Michel -> S81015E Michel Charasse
   Charbonnel, Jean -> 1654 Jean Charbonnel
   Charretier, Maurice -> 1682 Maurice Charretier
+  Chastellain, Jacques -> 1700 Jacques, Georges, Louis Chastellain
   Chatel, Luc -> 10647 Luc Chatel
   Chavanes, Georges -> 1741 Georges Chavanes
+  Chevallier, Jacques -> 9034 Jacques Chevallier
+  Chevallier, Pierre -> 1777 Pierre Chevallier
   Chevènement, Jean-Pierre -> 1780 Jean-Pierre Chevènement
   Chirac, Jacques -> 1798 Jacques Chirac
+  Chochoy, Bernard -> 1800 Bernard Chochoy
+  Christiaens, Louis -> 1817 Louis, Winocq, Achille, Eugène Christiaens
   Christophe, Paul -> 19092 Paul Christophe
+  Claparede, Emile -> S000060 Emile Claparede
+  Claudius-Petit, Eugène -> 1837 Eugène, Pierre Petit dit Claudius-Petit
   Clément, Pascal -> 1847 Pascal Clément
   Cochet, Yves -> 1872 Yves Cochet
   Codaccioni, Colette -> 1876 Colette Codaccioni
+  Coffin, Lucien -> 1881 Lucien, Louis, Antoine Coffin
   Cointat, Michel -> 1887 Michel Cointat
+  Colin, André -> 1894 André, Gabriel, Marie Colin
   Collomb, Gérard -> 1908 Gérard Collomb
   Comiti, Joseph -> 1927 Joseph Comiti
+  Conombo, Joseph -> 1940 Joseph, Issoufou Conombo
+  Conte, Arthur -> 1949 Arthur, Léon Conte
   Conway-Mouret, Hélène -> S11027H Hélène Conway-Mouret
   Copé, Jean-François -> 1950 Jean-François Copé
+  Corniglion-Molinier, Edward -> 1973 Edouard Corniglion-Molinier
   Cornut-Gentille, Bernard -> 1982 Bernard Cornut-Gentille
+  Cornu, André -> 1976 André Cornu
+  Coste-Floret, Paul -> 1993 Paul Coste-Floret
+  Coty, René -> 2000 René Coty
   Cot, Jean-Pierre -> 1996 Jean-Pierre Cot
+  Coude Du Foresto, Yvon -> S000702 Yvon Coude Du Foresto
+  Coude du Foresto, Yvon -> S000702 Yvon Coude Du Foresto
   Couderc, Anne-Marie -> 2005 Anne-Marie Couderc
   Couillard, Bérangère -> 19103 Bérangère Couillard
+  Couinaud, Pierre -> 2017 Pierre, Joseph Couinaud
   Coulais, Claude -> 2018 Claude Coulais
+  Courant, Pierre -> 2026 Pierre Courant
   Courrière, Raymond -> S74050Q Raymond Courrière
   Courtial, Edouard -> 10653 Édouard Courtial
   Couve De Murville, Maurice -> 2055 Maurice Couve de Murville
   Couve de Murville, Maurice -> 2055 Maurice Couve de Murville
   Cresson, Édith -> 2071 Edith Cresson
+  Croizat, Ambroise -> 2074 Ambroise Croizat
+  Crouzier, Jean -> 2078 Jean Crouzier
   Crépeau, Michel -> 2065 Michel Crépeau
   Cuq, Henri -> 2088 Henri Cuq
   Cuvillier, Frédéric -> 17294 Frédéric Cuvillier
   D'Aubert, François -> 235 François d'Aubert
-  DEBRE, Michel -> 2196 Michel Debré
-  DEFFERRE, Gaston -> 2216 Gaston Defferre
-  DELBOS, Yvon -> 2282 Yvon, Pierre, Stanislas Delbos
-  DELCOS, François -> 2285 François Delcos
-  DEPREUX, Edouard -> 2394 Edouard, Gustave, Hector Depreux
-  DEVINAT, Paul -> 2481 Paul Devinat
-  DICKO, Hammadoun -> 2500 Hamadoun Dicko
-  DIETHELM, André -> 2512 André, Maurice Diethelm
-  DOREY, Henri -> 2552 Henri Dorey
-  DUCHET, Roger -> S000105 Roger Duchet
-  DULIN, André -> S000011 André Dulin
-  DUPRAZ, Johannès -> 2730 Joannès, Pierre Dupraz-Bonsay dit Dupraz
-  DUVEAU, Roger -> 2804 Roger Duveau
+  Dabo Sissoko, Fily -> 6862 Fily-Dabo Sissoko
   Darcos, Xavier -> S98031Q Xavier Darcos
   Darmanin, Gérald -> 18401 Gérald Darmanin
   Darrieussecq, Geneviève -> 19108 Geneviève Darrieussecq
@@ -268,6 +244,7 @@ Rattachements :
   De Veyrinas, Françoise -> 7381 Françoise de Veyrinas
   De Villiers, Philippe -> 7404 Philippe de Villiers
   Debarge, Marcel -> S77017C Marcel Debarge
+  Debre, Michel -> 2196 Michel Debré
   Debré, Bernard -> 2194 Bernard Debré
   Debré, Jean-Louis -> 2195 Jean-Louis Debré
   Debré, Michel -> 2196 Michel Debré
@@ -275,6 +252,8 @@ Rattachements :
   Defferre, Gaston -> 2216 Gaston Defferre
   Delattre, Nathalie -> S19719D Nathalie Delattre
   Delaunay, Michèle -> 17280 Michèle Delaunay
+  Delbos, Yvon -> 2282 Yvon, Pierre, Stanislas Delbos
+  Delcos, François -> 2285 François Delcos
   Delebarre, Michel -> 2287 Michel Delebarre
   Delelis, André -> 2291 André Delelis
   Delevoye, Jean-Paul -> 2297 Jean-Paul Delevoye
@@ -283,16 +262,21 @@ Rattachements :
   Demessine, Michelle -> S92018S Michelle Demessine
   Deniau, Jean-François -> 2370 Jean-François Deniau
   Deniau, Xavier -> 2372 Xavier Deniau
+  Depreux, Edouard -> 2394 Edouard, Gustave, Hector Depreux
   Descamps, Jean-Jacques -> 2417 Jean-Jacques Descamps
   Destremau, Bernard -> 2460 Bernard Destremau
   Devaquet, Alain -> 2470 Alain Devaquet
   Devedjian, Patrick -> 2473 Patrick Devedjian
+  Devinat, Paul -> 2481 Paul Devinat
+  Dicko, Hammadoun -> 2500 Hamadoun Dicko
   Dienesch, Marie-Madeleine -> 2508 Marie-Madeleine Dienesch
+  Diethelm, André -> 2512 André, Maurice Diethelm
   Dijoud, Paul -> 2515 Paul Dijoud
   Djebbari, Jean-Baptiste -> 19125 Jean-Baptiste Djebbari
   Dominati, Jacques -> 2540 Jacques Dominati
   Dondoux, Jacques -> 2547 Jacques Dondoux
   Donnedieu De Vabres, Renaud -> 2549 Renaud Donnedieu de Vabres
+  Dorey, Henri -> 2552 Henri Dorey
   Douffiagues, Jacques -> 2567 Jacques Douffiagues
   Douillet, David -> 17825 David Douillet
   Douste-Blazy, Philippe -> 2574 Philippe Douste-Blazy
@@ -300,18 +284,22 @@ Rattachements :
   Druon, Maurice -> 2603 Maurice Druon
   Drut, Guy -> 2604 Guy Drut
   Dubos, Christelle -> 19129 Christelle Dubos
+  Duchet, Roger -> S000105 Roger Duchet
   Ducray, Gérard -> 2659 Gérard Ducray
   Duffour, Michel -> S97003G Michel Duffour
   Duflot, Cécile -> 18414 Cécile Duflot
   Dufoix, Georgina -> 2671 Georgina Dufoix
   Duhamel, Jacques -> 2684 Jacques Duhamel
+  Dulin, André -> S000011 André Dulin
   Dumas, Pierre -> 2693 Pierre Dumas [décision]
   Dumas, Roland -> 2695 Roland, Léon, Louis Dumas
+  Dupraz, Johannès -> 2730 Joannès, Pierre Dupraz-Bonsay dit Dupraz
   Durafour, Michel -> 2751 Michel Durafour
   Durieux, Bruno -> 2771 Bruno Durieux
   Dusseaulx, Roger -> 2786 Roger, Armand Dusseaulx
   Dussopt, Olivier -> 17286 Olivier Dussopt
   Dutreil, Renaud -> 2796 Renaud Dutreil
+  Duveau, Roger -> 2804 Roger Duveau
   Duvillard, Henri -> 2807 Henri, Albert, André Duvillard
   Eckert, Christian -> 17287 Christian Eckert
   El Hairy, Sarah -> 19140 Sarah El Haïry
@@ -320,17 +308,8 @@ Rattachements :
   Emmanuelli, Henri -> 2824 Henri Emmanuelli
   Escoffier, Anne-Marie -> S08064B Anne-Marie Escoffier
   Estrosi, Christian -> 2858 Christian Estrosi
-  FAGGIANELLI, Jacques -> 2888 Jacques Faggianelli
-  FAURE, Edgar -> 2922 Edgar Faure
-  FAURE, Maurice -> 2932 Maurice Faure
-  FERRI, Pierre -> 2978 Pierre Ferri
-  FILIPPI, Jean -> S000135 Jean Filippi
-  FORCINAL, Albert -> 3051 Albert Forcinal
-  FOUCHET, Christian -> 3073 Christian Fouchet
-  FOUQUES-DUPARC, Henri -> 3083 Henri, Marie, Arthur Fouques-Duparc
-  FRANCOIS-BENARD, Marie -> 3129 Marie François-Bénard
-  FREDERIC-DUPONT, Edouard -> 3144 Edouard Frédéric-Dupont
   Fabius, Laurent -> 2876 Laurent Fabius
+  Faggianelli, Jacques -> 2888 Jacques Faggianelli
   Falco, Hubert -> 2898 Hubert Falco
   Fanton, André -> 2904 André Fanton
   Faure, Dominique -> 19643 Dominique Faure
@@ -341,8 +320,10 @@ Rattachements :
   Ferracci, Marc -> 19645 Marc Ferracci
   Ferrand, Richard -> 18423 Richard Ferrand
   Ferrari, Marina -> 19646 Marina Ferrari
+  Ferri, Pierre -> 2978 Pierre Ferri
   Fesneau, Marc -> 19152 Marc Fesneau
   Filippetti, Aurélie -> 17302 Aurélie Filippetti
+  Filippi, Jean -> S000135 Jean Filippi
   Fillioud, Georges -> 3007 Georges Fillioud
   Fillon, François -> 3009 François Fillon
   Fioraso, Geneviève -> 17303 Geneviève Fioraso
@@ -353,31 +334,25 @@ Rattachements :
   Fléchet, Max -> S000043 Max Flechet
   Fontanet, Joseph -> 3047 Joseph Fontanet
   Fontes, Georges -> 3050 Georges Fontes
+  Forcinal, Albert -> 3051 Albert Forcinal
   Forissier, Nicolas -> 3059 Nicolas Forissier
   Fosset, André -> S59521M André Fosset
   Fouchet, Christian -> 3073 Christian Fouchet
   Fouchier, Jacques -> 3074 Jacques Fouchier
+  Fouques-Duparc, Henri -> 3083 Henri, Marie, Arthur Fouques-Duparc
   Fourcade, Jean-Pierre -> S77019E Jean-Pierre Fourcade
   Fourneyron, Valérie -> 17305 Valérie Fourneyron
   Foyer, Jean -> 3110 Jean Foyer
   Franceschi, Joseph -> 3119 Joseph Franceschi
+  Francois-Benard, Marie -> 3129 Marie François-Bénard
   François-Poncet, Jean -> S83033Q Jean François-Poncet
+  Frederic-Dupont, Edouard -> 3144 Edouard Frédéric-Dupont
   Frey, Roger -> 3154 Roger Frey
-  GAILLARD, Félix -> 3200 Félix Gaillard
-  GALY-GASPARROU, Georges -> 3233 Georges Galy-Gasparrou
-  GARET, Pierre -> 3256 Pierre Garet
-  GAY, Francisque -> 3319 Francisque Gay
-  GAZIER, Albert -> 3327 Albert Gazier
-  GIACOBBI, François -> 3397 François Giacobbi
-  GIACOBBI, Paul -> 3399 Paul Giacobbi
-  GORSE, Georges -> 3486 Georges Gorse
-  GOSNAT, Georges -> 3487 Georges, Raoul Gosnat
-  GOUIN, Félix -> 3496 Félix, Jean Gouin
-  GUILLANT, André -> 3670 André Guillant
-  GUILLE, Georges -> 3673 Georges Guille
-  GUYON, Jean-Raymond -> 3708 Jean-Raymond Guyon
+  Gaillard, Félix -> 3200 Félix Gaillard
   Galley, Robert -> 3219 Robert Galley
   Gallo, Max -> 3223 Max Gallo
+  Galy-Gasparrou, Georges -> 3233 Georges Galy-Gasparrou
+  Garet, Pierre -> 3256 Pierre Garet
   Garnier, Laurence -> S20172F Laurence Garnier
   Garot, Guillaume -> 17309 Guillaume Garot
   Gatel, Françoise -> S14231L Françoise Gatel
@@ -385,10 +360,14 @@ Rattachements :
   Gaudin, Jean-Claude -> 3293 Jean-Claude Gaudin
   Gaymard, Hervé -> 3322 Hervé Gaymard
   Gayssot, Jean-Claude -> 3326 Jean-Claude Gayssot
+  Gay, Francisque -> 3319 Francisque Gay
+  Gazier, Albert -> 3327 Albert Gazier
   Genetet, Anne -> 19169 Anne Genetet
   Genevard, Annie -> 18430 Annie Genevard
   Geoffroy, Hélène -> 18431 Hélène Geoffroy
   Germain, Hubert -> 3377 Hubert Germain
+  Giacobbi, François -> 3397 François Giacobbi
+  Giacobbi, Paul -> 3399 Paul Giacobbi
   Gillot, Dominique -> 3410 Dominique Gillot
   Girardin, Annick -> 17313 Annick Girardin
   Giraud, Joël -> 10685 Joël Giraud
@@ -400,6 +379,8 @@ Rattachements :
   Goasguen, Claude -> 3456 Claude Goasguen
   Godfrain, Jacques -> 3464 Jacques Godfrain
   Gorse, Georges -> 3486 Georges Gorse
+  Gosnat, Georges -> 3487 Georges, Raoul Gosnat
+  Gouin, Félix -> 3496 Félix, Jean Gouin
   Goulard, François -> 3503 François Goulard
   Gourault, Jacqueline -> S01007L Jacqueline Gourault
   Grandjean, Carole -> 19177 Carole Grandjean
@@ -413,14 +394,14 @@ Rattachements :
   Guerini, Stanislas -> 19184 Stanislas Guerini
   Guichard, Olivier -> 3652 Olivier Guichard
   Guigou, Élisabeth -> 3662 Élisabeth Guigou
+  Guillant, André -> 3670 André Guillant
   Guillaume, Didier -> S08016S Didier Guillaume
   Guillaume, François -> 3671 François Guillaume
+  Guille, Georges -> 3673 Georges Guille
   Guyard, Jacques -> 3705 Jacques Guyard
+  Guyon, Jean-Raymond -> 3708 Jean-Raymond Guyon
   Guéna, Yves -> 3621 Yves Guéna
   Guévenoux, Marie -> 19185 Marie Guévenoux
-  HOUDET, Roger -> S000732 Roger Houdet
-  HOUPHOUET-BOIGNY, Félix -> 3874 Félix Houphouët-Boigny
-  HUGUES, Emile -> 3897 Emile Hugues
   Habib-Deloncle, Michel -> 3717 Michel Habib-Deloncle
   Haby, René -> 3721 René Haby
   Haddad, Benjamin -> 19674 Benjamin Haddad
@@ -436,74 +417,63 @@ Rattachements :
   Hollande, François -> 3853 François Hollande
   Hostalier, Françoise -> 3865 Françoise Hostalier
   Houdet, Roger -> S000732 Roger Houdet
+  Houphouet-Boigny, Félix -> 3874 Félix Houphouët-Boigny
   Houphouët-Boigny, Félix -> 3874 Félix Houphouët-Boigny
   Hubert, Élisabeth -> 3883 Elisabeth Hubert
+  Hugues, Emile -> 3897 Emile Hugues
   Huwart, François -> 3916 François Huwart
   Hénart, Laurent -> 14448 Laurent, Emile, Michel Hénart
-  IHUEL, Paul -> 3928 Paul Ihuel
   Icart, Fernand -> 3922 Fernand Icart
   Idrac, Anne-Marie -> 3925 Anne-Marie Idrac
+  Ihuel, Paul -> 3928 Paul Ihuel
   Inchauspé, Michel -> 3931 Michel Inchauspé
-  JACQUET, Marc -> 3967 Marc Jacquet
-  JACQUINOT, Louis -> 3971 Louis Jacquinot
-  JAQUET, Gérard -> 4000 Gérard Jaquet
-  JEANNENEY, Jules-Emile -> 4024 Jules, Emile Jeanneney
-  JUGLAS, Jean-Jacques -> 4088 Jean-Jacques Juglas
-  JULY, Pierre -> 4100 Pierre July
   Jacob, Christian -> 3953 Christian Jacob
   Jacquet, Marc -> 3967 Marc Jacquet
   Jacquinot, Louis -> 3971 Louis Jacquinot
+  Jaquet, Gérard -> 4000 Gérard Jaquet
   Jarrot, André -> 4007 André Jarrot
   Jeanneney, Jean-Marcel -> 4023 Jean-Marcel Jeanneney
+  Jeanneney, Jules-Emile -> 4024 Jules, Emile Jeanneney
   Jospin, Lionel -> 4052 Lionel Jospin
   Josselin, Charles -> 4054 Charles Josselin
   Jouanno, Chantal -> S09001P Chantal Jouanno
   Joxe, Louis -> 4081 Louis Joxe
   Joxe, Pierre -> 4082 Pierre Joxe
   Joyandet, Alain -> 10705 Alain Joyandet
+  Juglas, Jean-Jacques -> 4088 Jean-Jacques Juglas
+  July, Pierre -> 4100 Pierre July
   Juppé, Alain -> 4104 Alain Juppé
   Jégo, Yves -> 10703 Yves Jégo
-  KEITA, Modibo -> 4120 Modibo Keita
   Kanner, Patrick -> S14021P Patrick Kanner
   Karoutchi, Roger -> S99004R Roger Karoutchi
   Kasbarian, Guillaume -> 19209 Guillaume Kasbarian
   Kaspereit, Gabriel -> 4117 Gabriel Kaspereit
+  Keita, Modibo -> 4120 Modibo Keita
   Khattabi, Fadila -> 19213 Fadila Khattabi
   Klinkert, Brigitte -> 19689 Brigitte Klinkert
   Kosciusko-Morizet, Nathalie -> 11040 Nathalie Kosciusko-Morizet
-  LA CHAMBRE, Guy -> 4175 Guy La Chambre
-  LACOSTE, Robert -> 4229 Robert Lacoste
-  LAFAY, Bernard -> 4246 [décision]
-  LAFOREST, Henri -> 4261 Henri Laforest
-  LAMINE-GUEYE, Amadou -> 4314 Amadou Lamine-Guèye
-  LANET, Joseph -> 4329 Joseph Lanet
-  LANIEL, Joseph -> 4338 Joseph Laniel
-  LAPIE, Pierre-Olivier -> 4344 Pierre-Olivier Lapie
-  LAURENS, Camille -> 7497 Camille Laurens
-  LAURENT, Augustin -> 7502 Augustin Laurent
-  LE COUTALLER, Jean -> 7564 Jean Le Coutaller
-  LE TROQUER, André -> 7629 André Le Troquer
-  LECANUET, Jean -> 7655 Jean Lecanuet
-  LECOEUR, Auguste -> 7662 Auguste Lecoeur
-  LECOURT, Robert -> 7668 Robert Lecourt
-  LEJEUNE, Max -> 7738 Max, Marius, Achille Lejeune
-  LEMAIRE, Maurice -> 7744 Maurice Lemaire
-  LETOURNEAU, Jean -> 7821 Jean, Emmanuel Letourneau
-  LONGCHAMBON, Henri -> S000017 Henri Longchambon
-  LOUSTAU, Kléber -> 4832 Kléber, Georges Loustau
-  LOUVEL, Jean-Marie -> 4834 Jean-Marie Louvel
+  La Chambre, Guy -> 4175 Guy La Chambre
   Labarrère, André -> 4193 André Labarrère
+  Lacoste, Robert -> 4229 Robert Lacoste
   Lafay, Bernard -> 4246 [décision]
   Laffineur, Marc -> 4250 Marc Laffineur
+  Laforest, Henri -> 4261 Henri Laforest
   Laignel, André -> 4276 André Laignel
   Lalumière, Catherine -> 4293 Catherine Lalumière
   Lamassoure, Alain -> 4299 Alain Lamassoure
   Lambert, Alain -> S92029V Alain Lambert
+  Lamine-Gueye, Amadou -> 4314 Amadou Lamine-Guèye
   Lamour, Jean-François -> 17336 Jean-François Lamour
   Lamy, François -> 4321 François Lamy
+  Lanet, Joseph -> 4329 Joseph Lanet
   Lang, Jack -> 4331 Jack Lang
+  Laniel, Joseph -> 4338 Joseph Laniel
+  Lapie, Pierre-Olivier -> 4344 Pierre-Olivier Lapie
   Larcher, Gérard -> S86034E Gérard Larcher
   Laurain, Jean -> 7492 Jean Laurain
+  Laurens, Camille -> 7497 Camille Laurens
+  Laurent, Augustin -> 7502 Augustin Laurent
+  Le Coutaller, Jean -> 7564 Jean Le Coutaller
   Le Drian, Jean-Yves -> 7570 Jean-Yves Le Drian
   Le Foll, Stéphane -> 18463 Stéphane Le Foll
   Le Garrec, Jean -> 7582 Jean Le Garrec
@@ -513,17 +483,21 @@ Rattachements :
   Le Pors, Anicet -> S58652T Anicet Le Pors
   Le Roux, Bruno -> 7614 Bruno Le Roux
   Le Theule, Joël -> 7627 Joël Le Theule
+  Le Troquer, André -> 7629 André Le Troquer
   Lebec, Marie -> 19234 Marie Lebec
   Lebranchu, Marylise -> 7649 Marylise Lebranchu
   Lecanuet, Jean -> 7655 Jean Lecanuet
   Lecat, Jean-Philippe -> 7656 Jean-Philippe Lecat
+  Lecoeur, Auguste -> 7662 Auguste Lecoeur
   Lecornu, Sébastien -> S19265T Sébastien Lecornu
   Lecourt, Robert -> 7668 Robert Lecourt
   Lefebvre, Frédéric -> 17394 Frédéric Lefebvre
   Legendre, Jacques -> 7710 Jacques Legendre
+  Lejeune, Max -> 7738 Max, Marius, Achille Lejeune
   Lellouche, Pierre -> 7741 Pierre Lellouche
   Lelong, Pierre -> 7743 Pierre Lelong
   Lemaire, Axelle -> 18465 Axelle Lemaire
+  Lemaire, Maurice -> 7744 Maurice Lemaire
   Lemoine, Georges -> 7753 Georges Lemoine
   Lemoyne, Jean-Baptiste -> S14037X Jean-Baptiste Lemoyne
   Lengagne, Guy -> 7760 Guy Lengagne
@@ -531,47 +505,23 @@ Rattachements :
   Lepeltier, Serge -> 7779 Serge Lepeltier
   Leroy, Maurice -> 7800 Maurice Leroy
   Lescure, Roland -> 19250 Roland Lescure
+  Letourneau, Jean -> 7821 Jean, Emmanuel Letourneau
   Lienemann, Marie-Noëlle -> 7849 Marie-Noëlle Lienemann
   Ligot, Maurice -> 7852 Maurice Ligot
   Limouzy, Jacques -> 7856 Jacques Limouzy
   Lisette, Gabriel -> 7866 Gabriel, Francisco Lisette
   Loncle, François -> 7883 François Loncle
+  Longchambon, Henri -> S000017 Henri Longchambon
   Longuet, Gérard -> 7886 Gérard Longuet
   Loos, François -> 7891 François Loos
+  Loustau, Kléber -> 4832 Kléber, Georges Loustau
+  Louvel, Jean-Marie -> 4834 Jean-Marie Louvel
   Louwagie, Véronique -> 18473 Véronique Louwagie
   Lurel, Victorin -> 10726 Victorin Lurel
   Léotard, François -> 7773 François Léotard
   Létard, Valérie -> 19965 Valérie Létard
-  MAGA-COUTOUCOU, Hubert -> 9033 Hubert, Coutoucou Maga
-  MARCELLIN, Raymond -> 4967 Raymond Marcellin
-  MARIE, André -> 4997 André Marie
-  MAROSELLI, Andre -> 5012 André Maroselli
-  MAROSELLI, André -> 5012 André Maroselli
-  MARRANE, Georges -> 5022 Georges Marrane
-  MARTINAUD-DEPLAT, Léon -> 5049 Léon, Jean Martinaud-Déplat
-  MASSON, Jean -> 5083 Jean Masson
-  MAYER, Daniel -> 5136 Daniel Mayer
-  MAYER, René -> 5138 René Mayer
-  MEDECIN, Jean -> 5157 Jean Médecin
-  MENDES FRANCE, Pierre -> 5176 Pierre, Isaac, Isidore Mendès France
-  MENDES-FRANCE, Pierre -> 5176 Pierre, Isaac, Isidore Mendès France
-  METAYER, Pierre -> 5226 Pierre Métayer
-  MEUNIER, Jean -> 5233 Jean Meunier
-  MICHELET, Edmond -> 5266 Edmond Michelet
-  MINJOZ, Jean -> 5295 Jean Minjoz
-  MITTERRAND, François -> 5312 François Mitterrand
-  MOCH, Jules -> 5316 Jules Moch
-  MOLLET, Guy -> 5333 Guy, Alcide Mollet
-  MONDON, Raymond -> 5336 Raymond, Joseph Mondon [décision]
-  MONIN, Philippe -> 5342 Philippe, Félicien, Léopold Monin
-  MONTEIL, André -> 5374 André Monteil
-  MONTEL, Pierre -> 5377 Pierre Montel
-  MOREAU, Jean -> 5406 Jean, Adrien, Edouard Moreau
-  MORICE, André -> 5418 André Morice
-  MOUTET, Marius -> 5466 Marius Moutet
-  MOYNET, André -> 5471 André, Rémy Moynet
-  MUTTER, André -> 5492 André Mutter
   Madelin, Alain -> 4872 Alain Madelin
+  Maga-Coutoucou, Hubert -> 9033 Hubert, Coutoucou Maga
   Mahjoubi, Mounir -> 19260 Mounir Mahjoubi
   Malaud, Philippe -> 4918 Philippe Malaud
   Malhuret, Claude -> 4928 Claude Malhuret
@@ -582,46 +532,71 @@ Rattachements :
   Marchand, Philippe -> 4974 Philippe Marchand
   Marette, Jacques -> 4989 Jacques Marette
   Mariani, Thierry -> 4994 Thierry Mariani
+  Marie, André -> 4997 André Marie
   Mariton, Hervé -> 5006 Hervé Mariton
   Marleix, Alain -> 5008 Alain Marleix
+  Maroselli, Andre -> 5012 André Maroselli
+  Maroselli, André -> 5012 André Maroselli
+  Marrane, Georges -> 5022 Georges Marrane
+  Martinaud-Deplat, Léon -> 5049 Léon, Jean Martinaud-Déplat
   Martin, Philippe -> 10731 Philippe Martin [décision]
   Masseret, Jean-Pierre -> S83042R Jean-Pierre Masseret
+  Masson, Jean -> 5083 Jean Masson
   Mattei, Jean-François -> 5107 Jean-François Mattei
   Maurice-Bokanowski, Michel -> 5127 Michel, Alfred Maurice-Bokanowski
   Mauroy, Pierre -> 5131 Pierre Mauroy
+  Mayer, Daniel -> 5136 Daniel Mayer
+  Mayer, René -> 5138 René Mayer
   Mazeaud, Pierre -> 5144 Pierre Mazeaud
   Maziol, Jacques -> 5149 Jacques Maziol
+  Medecin, Jean -> 5157 Jean Médecin
   Mellick, Jacques -> 5170 Jacques Mellick
+  Mendes France, Pierre -> 5176 Pierre, Isaac, Isidore Mendès France
+  Mendes-France, Pierre -> 5176 Pierre, Isaac, Isidore Mendès France
   Mercier, Michel -> 5197 Michel Mercier
   Mermaz, Louis -> 5210 Louis Mermaz
   Messmer, Pierre -> 5220 Pierre Messmer
   Mestre, Philippe -> 5222 Philippe Mestre
+  Metayer, Pierre -> 5226 Pierre Métayer
+  Meunier, Jean -> 5233 Jean Meunier
   Mexandeau, Louis -> 5238 Louis Mexandeau
   Michaux-Chevry, Lucette -> 5254 Lucette Michaux-Chevry
+  Michel Baylet, Jean -> 512 Jean-Michel Baylet
   Michelet, Edmond -> 5266 Edmond Michelet
   Migaud, Didier -> 5273 Didier Migaud
   Mignola, Patrick -> 19288 Patrick Mignola
   Millon, Charles -> 5290 Charles Millon
+  Minjoz, Jean -> 5295 Jean Minjoz
   Mirallès, Patricia -> 19291 Patricia Mirallès
   Missoffe, François -> 5307 François Missoffe
   Missoffe, Hélène -> 5308 Hélène Missoffe
   Mitterrand, François -> 5312 François Mitterrand
+  Moch, Jules -> 5316 Jules Moch
   Mohamed Soilihi, Thani -> S11072N Thani Mohamed Soilihi
+  Mollet, Guy -> 5333 Guy, Alcide Mollet
   Mondon, Raymond -> 5336 Raymond, Joseph Mondon [décision]
+  Monin, Philippe -> 5342 Philippe, Félicien, Léopold Monin
   Monory, René -> S68036E René Monory
   Montchamp, Marie-Anne -> 10739 Marie-Anne Montchamp
   Montebourg, Arnaud -> 5373 Arnaud Montebourg
+  Monteil, André -> 5374 André Monteil
+  Montel, Pierre -> 5377 Pierre Montel
   Morano, Nadine -> 10740 Nadine Morano
+  Moreau, Jean -> 5406 Jean, Adrien, Edouard Moreau
+  Morice, André -> 5418 André Morice
   Morin, Hervé -> 5422 Hervé Morin
   Moscovici, Pierre -> 5437 Pierre Moscovici
   Mourot, Jean-Paul -> 5458 Jean-Paul Mourot
+  Moutet, Marius -> 5466 Marius Moutet
+  Moynet, André -> 5471 André, Rémy Moynet
   Muselier, Renaud -> 5489 Renaud Muselier
+  Mutter, André -> 5492 André Mutter
   Médecin, Jacques -> 5156 Jacques Médecin
   Méhaignerie, Pierre -> 5162 Pierre Méhaignerie
   Mélenchon, Jean-Luc -> 19278 Jean-Luc Mélenchon
   Méric, André -> S000323 André Meric
   Mézard, Jacques -> S08051V Jacques Mézard
-  NAEGELEN, Marcel-Edmond -> 5500 Marcel-Edmond Naegelen
+  Naegelen, Marcel-Edmond -> 5500 Marcel-Edmond Naegelen
   Nallet, Henri -> 5503 Henri Nallet
   Neiertz, Véronique -> 5524 Véronique Neiertz
   Neuder, Yannick -> 19751 Yannick Neuder
@@ -630,25 +605,10 @@ Rattachements :
   Novelli, Hervé -> 5585 Hervé Novelli
   Nucci, Christian -> 5586 Christian Nucci
   Nungesser, Roland -> 5588 Roland Nungesser
-  OLMI, Philippe -> 5605 Philippe Olmi
   Olin, Nelly -> S95051G Nelly Olin
   Ollier, Patrick -> 5600 Patrick Ollier
+  Olmi, Philippe -> 5605 Philippe Olmi
   Ortoli, François -> 5618 François Ortoli
-  PALEWSKI, Gaston -> 5658 Gaston Palewski
-  PATINAUD, Marius -> 5710 Marius Patinaud
-  PAUL, Marcel -> 5723 Marcel Paul
-  PETIT, Guy -> 5845 Guy, Jacques, Joseph Petit
-  PETSCHE, Maurice -> 5854 Maurice Petsche
-  PFLIMLIN, Pierre -> 5881 Pierre, Eugène, Jean Pflimlin
-  PHILIP, André -> 5885 André, Louis Philip
-  PIC, Maurice -> 5895 Maurice Pic
-  PINAY, Antoine -> 5942 Antoine Pinay
-  PINEAU, Christian -> 5945 Christian Pineau
-  PINTON, Auguste -> S000052 Auguste Pinton
-  PLEVEN, René -> 5980 René Pleven
-  POHER, Alain -> S000211 Alain Poher
-  POINSO-CHAPUIS, Germaine -> 5995 Germaine Poinso-Chapuis
-  PRIGENT, Robert -> 6499 Robert Prigent
   Palewski, Gaston -> 5658 Gaston Palewski
   Pandraud, Robert -> 5667 Robert Pandraud
   Pannier-Runacher, Agnès -> 19984 Agnès Pannier-Runacher
@@ -658,19 +618,27 @@ Rattachements :
   Parmentier-Lecocq, Charlotte -> 19238 Charlotte Parmentier-Lecocq
   Pasqua, Charles -> 5698 Charles Pasqua
   Pasquini, Pierre -> 5701 Pierre Pasquini
+  Patinaud, Marius -> 5710 Marius Patinaud
   Patriat, François -> 5715 François Patriat
   Pau-Langevin, George -> 17365 George Pau-Langevin
   Paul, Christian -> 5720 Christian Paul
+  Paul, Marcel -> 5723 Marcel Paul
   Peillon, Vincent -> 5750 Vincent Peillon
   Pelletier, Jacques -> S66002K Jacques Pelletier
   Perben, Dominique -> 5772 Dominique Perben
+  Petit, Guy -> 5845 Guy, Jacques, Joseph Petit
+  Petsche, Maurice -> 5854 Maurice Petsche
   Peyrefitte, Alain -> 5862 Alain Peyrefitte
   Pflimlin, Pierre -> 5881 Pierre, Eugène, Jean Pflimlin
   Philippe, Édouard -> 18496 Edouard Philippe
+  Philip, André -> 5885 André, Louis Philip
+  Pic, Maurice -> 5895 Maurice Pic
   Pierret, Christian -> 5923 Christian Pierret
   Pietraszewski, Laurent -> 19330 Laurent Pietraszewski
   Pinay, Antoine -> 5942 Antoine Pinay
+  Pineau, Christian -> 5945 Christian Pineau
   Pinel, Sylvia -> 17367 Sylvia Pinel
+  Pinton, Auguste -> S000052 Auguste Pinton
   Pisani, Edgard -> 5959 Edgard Pisani
   Placé, Jean-Vincent -> S11069T Jean-Vincent Placé
   Plagnol, Henri -> 5963 Henri Plagnol
@@ -678,6 +646,7 @@ Rattachements :
   Pleven, René -> 5980 René Pleven
   Ploux, Suzanne -> 5984 Suzanne Ploux
   Poher, Alain -> S000211 Alain Poher
+  Poinso-Chapuis, Germaine -> 5995 Germaine Poinso-Chapuis
   Poirson, Brune -> 19333 Brune Poirson
   Pompidou, Georges -> 6410 Georges Pompidou
   Pompili, Barbara -> 18500 Barbara Pompili
@@ -689,41 +658,42 @@ Rattachements :
   Poudonson, Roger -> S59242H Roger Poudonson
   Poujade, Robert -> 6448 Robert Poujade
   Poussier-Winsback, Marie-Agnès -> 19775 Marie-Agnès Poussier-Winsback
+  Prigent, Robert -> 6499 Robert Prigent
   Primas, Sophie -> 18564 Sophie Primas
   Puech, Jean -> S80035E Jean Puech
   Pécresse, Valérie -> 10745 Valérie Pecresse
   Périssol, Pierre-André -> 5794 Pierre-André Périssol
   Péronnet, Gabriel -> 5805 Gabriel Peronnet
   Péry, Nicole -> 5832 Nicole Péry
-  QUEUILLE, Henri -> 6554 Henri Queuille
-  QUINSON, Antoine -> 6563 Antoine Quinson
   Questiaux, Nicole -> 6552 Nicole Questiaux
+  Queuille, Henri -> 6554 Henri Queuille
   Queyranne, Jean-Jack -> 6555 Jean-Jack Queyranne
   Quilliot, Roger -> 6560 Roger Quilliot
   Quilès, Paul -> 6557 Paul Quilès
-  RAFFARIN, Jean -> 6575 Jean, Marcel Raffarin
-  RAMADIER, Paul -> 6588 Paul Ramadier
-  RAMARONY, Jules -> 6589 Jules Ramarony
-  RAMONET, Edouard -> 6596 Edouard Ramonet
-  RAYMOND-LAURENT, Jean -> 6630 Jean Raymond-Laurent
-  REYNAUD, Paul -> 6710 Paul Reynaud
-  RIBEYRE, Paul -> 6722 [décision]
-  ROCLORE, Marcel -> 6042 Marcel Roclore
+  Quinson, Antoine -> 6563 Antoine Quinson
+  Raffarin, Jean -> 6575 Jean, Marcel Raffarin
   Raffarin, Jean-Pierre -> S95059Q Jean-Pierre Raffarin
   Raimond, Jean-Bernard -> 6583 Jean-Bernard Raimond
   Ralite, Jack -> 6587 Jack Ralite
+  Ramadier, Paul -> 6588 Paul Ramadier
+  Ramarony, Jules -> 6589 Jules Ramarony
+  Ramonet, Edouard -> 6596 Edouard Ramonet
   Raoult, Éric -> 6601 Eric Raoult
   Rausch, Jean-Marie -> S74042Q Jean-Marie Rausch
+  Raymond-Laurent, Jean -> 6630 Jean Raymond-Laurent
   Rebsamen, François -> S08070Y François Rebsamen
   Repentin, Thierry -> S04090L Thierry Repentin
   Retailleau, Bruno -> 6689 Bruno Retailleau
+  Reynaud, Paul -> 6710 Paul Reynaud
   Rey, Henri -> 6702 Henri Rey
+  Ribeyre, Paul -> 6722 [décision]
   Richard, Alain -> 6731 Alain Richard
   Richert, Philippe -> S92005M Philippe Richert
   Riester, Franck -> 17373 Franck Riester
   Rigout, Marcel -> 6769 Marcel Rigout
   Rocard, Michel -> 6024 Michel Rocard
   Rochereau, Henri -> S56305S Henri Rochereau
+  Roclore, Marcel -> 6042 Marcel Roclore
   Romani, Roger -> S59312E Roger Romani
   Rossignol, Laurence -> S11045K Laurence Rossignol
   Rossinot, André -> 6099 André Rossinot
@@ -735,20 +705,6 @@ Rattachements :
   Royal, Ségolène -> 6174 Ségolène Royal
   Royer, Jean -> 6176 Jean Royer
   Rufenacht, Antoine -> 6189 Antoine Rufenacht
-  SAVARY, Alain -> 6323 Alain Savary
-  SCHLEITER, François -> S000278 François Schleiter
-  SCHMITTLEIN, Raymond -> 6347 Raymond, Antoine Schmittlein
-  SCHMITT, René -> 6346 René Schmitt
-  SCHNEITER, Pierre -> 6353 Pierre Schneiter
-  SCHUMANN, Maurice -> 6359 Maurice Schumann
-  SCHUMAN, Robert -> 6358 Robert Schuman
-  SEGELLE, Pierre -> 6369 Pierre Ségelle
-  SID CARA, Chérif -> 6828 Chérif Sid Cara
-  SIMONNET, Maurice -> 6852 Maurice Simonnet
-  SOULIE, Michel -> 6882 Michel Soulié
-  SOURBET, Jean -> 6886 Jean Sourbet
-  SOUSTELLE, Jacques -> 6892 Jacques, Emile, Yves Soustelle
-  SUDREAU, Pierre -> 6918 Pierre Sudreau
   Saint-Martin, Laurent -> 19371 Laurent Saint-Martin
   Sainteny, Jean -> 6236 Jean Sainteny
   Sanguinetti, Alexandre -> 6274 Alexandre Sanguinetti
@@ -758,14 +714,24 @@ Rattachements :
   Sarre, Georges -> 6295 Georges Sarre
   Sauvadet, François -> 6312 François Sauvadet
   Savary, Alain -> 6323 Alain Savary
+  Schleiter, François -> S000278 François Schleiter
+  Schmittlein, Raymond -> 6347 Raymond, Antoine Schmittlein
+  Schmitt, René -> 6346 René Schmitt
+  Schneiter, Pierre -> 6353 Pierre Schneiter
   Schumann, Maurice -> 6359 Maurice Schumann
+  Schuman, Robert -> 6358 Robert Schuman
   Schwartzenberg, Roger-Gérard -> 6362 Roger-Gérard Schwartzenberg
+  Segelle, Pierre -> 6369 Pierre Ségelle
   Servan-Schreiber, Jean-Jacques -> 6807 Jean-Jacques Servan-Schreiber
+  Sid Cara, Chérif -> 6828 Chérif Sid Cara
   Sid Cara, Nafissa -> 6829 Nafissa Sid Cara
+  Simonnet, Maurice -> 6852 Maurice Simonnet
   Sirugue, Christophe -> 17378 Christophe Sirugue
   Soisson, Jean-Pierre -> 6866 Jean-Pierre Soisson
   Souchon, René -> 6878 René Souchon
   Soufflet, Jacques -> S000298 Jacques Soufflet
+  Soulie, Michel -> 6882 Michel Soulié
+  Sourbet, Jean -> 6886 Jean Sourbet
   Sourdille, Jacques -> 6887 Jacques Sourdille
   Soustelle, Jacques -> 6892 Jacques, Emile, Yves Soustelle
   Stasi, Bernard -> 6902 Bernard Stasi
@@ -778,15 +744,6 @@ Rattachements :
   Ségard, Norbert -> 6368 Norbert Ségard
   Séguin, Philippe -> 6371 Philippe Séguin
   Séjourné, Stéphane -> 20002 Stéphane Séjourné
-  TEITGEN, Pierre-Henri -> 6979 Pierre-Henri Teitgen
-  TEMPLE, Emmanuel -> 6982 Emmanuel, Jacques, Marie Temple
-  THIBAULT, Edouard -> 7022 Edouard Thibault
-  THOMAS, Eugène -> 7046 Eugène Thomas
-  THOME-PATENOTRE, Jacqueline -> 7054 Jacqueline Thome-Patenôtre
-  THOREZ, Maurice -> 7063 Maurice Thorez
-  TILLON, Charles -> 7076 Charles, Joseph Tillon
-  TIXIER, Adrien -> 7092 Adrien, Pierre Tixier
-  TRIBOULET, Raymond -> 7151 Raymond Triboulet
   Tabarot, Philippe -> S20136B Philippe Tabarot
   Taittinger, Jean -> 6940 Jean Taittinger
   Taittinger, Pierre-Christian -> S59560U Pierre-Christian Taittinger
@@ -794,13 +751,21 @@ Rattachements :
   Taquet, Adrien -> 19391 Adrien Taquet
   Tasca, Catherine -> 6958 Catherine Tasca
   Taubira, Christiane -> 6964 Christiane Taubira-Delannon
+  Teitgen, Pierre-Henri -> 6979 Pierre-Henri Teitgen
+  Temple, Emmanuel -> 6982 Emmanuel, Jacques, Marie Temple
   Terrenoire, Louis -> 6994 Louis Terrenoire
   Teulade, René -> S08046Y René Teulade
   Thevenot, Prisca -> 19816 Prisca Thevenot
+  Thibault, Edouard -> 7022 Edouard Thibault
   Thiériot, Jean-Louis -> 19467 Jean-Louis Thiériot
+  Thomas, Eugène -> 7046 Eugène Thomas
+  Thome-Patenotre, Jacqueline -> 7054 Jacqueline Thome-Patenôtre
+  Thorez, Maurice -> 7063 Maurice Thorez
   Thévenoud, Thomas -> 18536 Thomas Thévenoud
   Tiberi, Jean -> 7071 Jean Tiberi
+  Tillon, Charles -> 7076 Charles, Joseph Tillon
   Tinaud, Jean-Louis -> 7078 Jean-Louis Tinaud
+  Tixier, Adrien -> 7092 Adrien, Pierre Tixier
   Todeschini, Jean-Marc -> S01062T Jean-Marc Todeschini
   Tomasini, René -> 7096 René, François Tomasini
   Torre, Henri -> 7103 Henri Torre
@@ -812,23 +777,23 @@ Rattachements :
   Tron, Georges -> 7161 Georges Tron
   Trorial, Jacques -> 7162 Jacques Trorial
   Tsiranana, Philibert -> 7169 Philibert Tsiranana
-  ULVER, Henri -> 7187 Henri Ulver
+  Ulver, Henri -> 7187 Henri Ulver
   Urvoas, Jean-Jacques -> 17382 Jean-Jacques Urvoas
-  VALAY, Gabriel -> 7204 Gabriel, Louis, Joseph Valay
-  VARENNE, Alexandre -> 7210 Alexandre, Claude Varenne
-  VIENOT, Andrée -> 7232 Andrée, Marie, Mathilde Viénot Née Mayrisch
   Vaillant, Daniel -> 7200 Daniel Vaillant
   Valade, Jacques -> 15286 Jacques Valade
+  Valay, Gabriel -> 7204 Gabriel, Louis, Joseph Valay
   Valletoux, Frédéric -> 19822 Frédéric Valletoux
   Vallini, André -> 7480 André Vallini
   Valls, Manuel -> 10782 Manuel Valls
   Valter, Clotilde -> 18541 Clotilde Valter
+  Varenne, Alexandre -> 7210 Alexandre, Claude Varenne
   Vasseur, Philippe -> 7402 Philippe Vasseur
   Vautrin, Catherine -> 10783 Catherine Vautrin
   Vauzelle, Michel -> 7397 Michel Vauzelle
   Veran, Olivier -> 19414 Olivier Véran
   Vertadier, Pierre -> 7318 Pierre Vertadier
   Vidalies, Alain -> 7407 Alain Vidalies
+  Vienot, Andrée -> 7232 Andrée, Marie, Mathilde Viénot Née Mayrisch
   Vigier, Philippe -> 17214 Philippe Vigier
   Vivien, Alain -> 7347 Alain Vivien
   Vivien, Robert-André -> 7317 Robert-André Vivien
@@ -841,12 +806,12 @@ Rattachements :
   Zeller, Adrien -> 7345 Adrien Zeller
   Zuccarelli, Émile -> 7399 Emile Zuccarelli
   de Broglie, Jean -> 1250 Jean de Broglie
-  de CHEVIGNE, Pierre -> 1781 Pierre, Gabriel, Adhéaume de Chevigné
-  de FELICE, Pierre -> 2952 Pierre, Henry, Rodolphe de Felice
-  de MENTHON, François -> 5183 François de Menthon
-  de MOUSTIER, Roland -> 5464 Roland, François, Roger de Moustier
+  de Chevigne, Pierre -> 1781 Pierre, Gabriel, Adhéaume de Chevigné
+  de Felice, Pierre -> 2952 Pierre, Henry, Rodolphe de Felice
+  de Menthon, François -> 5183 François de Menthon
   de Montchalin, Amélie -> 19293 Amélie De Montchalin
-  de TINGUY DU POUET, Lionel -> 7079 Lionel de Tinguy du Pouët
+  de Moustier, Roland -> 5464 Roland, François, Roger de Moustier
+  de Tinguy Du Pouet, Lionel -> 7079 Lionel de Tinguy du Pouët
   de la Malène, Christian -> 4924 Christian Lunet de La Malène
-  le TROQUER, André -> 7629 André Le Troquer
+  le Troquer, André -> 7629 André Le Troquer
   Évin, Claude -> 2868 Claude Evin
