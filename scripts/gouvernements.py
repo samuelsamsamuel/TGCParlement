@@ -116,7 +116,8 @@ def age_plausible(c, debut):
     """Vivant à la date de nomination et âgé de 21 à 90 ans (exclut les homonymes d'autres siècles)."""
     if not debut:
         return True
-    if c["deces"] and c["deces"] < debut:
+    incoherent = c["deces"] and c["naissance"] and c["deces"] < c["naissance"]
+    if c["deces"] and not incoherent and c["deces"] < debut:
         return False
     if c["naissance"]:
         age = int(debut[:4]) - int(c["naissance"][:4])
@@ -144,7 +145,9 @@ def main():
         for w in mots(nom_usage(c["nom"])):
             index[w].append(c)
     decisions = {}
-    if os.path.exists(F_DECISIONS):
+    if not os.path.exists(F_DECISIONS):
+        print(f"Fichier de décisions absent : {F_DECISIONS}")
+    else:
         with open(F_DECISIONS, encoding="utf-8") as f:
             decisions = {d["cle"]: d for d in json.load(f)["decisions"]}
 
@@ -227,6 +230,8 @@ def main():
         json.dump(sorted(personnes.values(), key=lambda x: x["id"]), f, ensure_ascii=False, indent=1)
 
     sans_carte = sorted(personnes[i]["nom"] for i in personnes)
+    if not decisions:
+        rapport.insert(0, f"FICHIER DE DÉCISIONS ABSENT OU VIDE : {F_DECISIONS}")
     rapport.insert(0, "Rattachés : " + ", ".join(f"{k} {len(v)}" for k, v in membres.items())
                    + f" ; hors catégorie : {len(sans_carte)}")
     if DATES_ILLISIBLES:
