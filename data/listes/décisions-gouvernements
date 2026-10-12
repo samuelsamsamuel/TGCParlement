@@ -1,0 +1,11 @@
+{
+ "mode_d_emploi": "Clé « Nom|Prénom » telle qu'écrite dans le jeu de données. « departement » : la carte retenue est celle dont un mandat porte ce département ; « id » : carte désignée directement ; « motif » obligatoire.",
+ "decisions": [
+  {"cle": "Dumas|Pierre", "departement": "Savoie", "motif": "Deux Pierre Dumas députés, nés en 1891 et en 1924 ; le membre des gouvernements Pompidou est le député de la Savoie."},
+  {"cle": "De Chambrun|Charles", "departement": "Lozère", "motif": "Deux Pineton de Chambrun parlementaires en 1966 ; le secrétaire d'État au commerce extérieur est Charles, député de la Lozère."},
+  {"cle": "Mondon|Raymond", "departement": "Moselle", "motif": "Deux fiches Raymond Mondon (1914 et 1917) ; le ministre des transports de 1969 est le député de la Moselle, maire de Metz."},
+  {"cle": "Lafay|Bernard", "id": 4246, "motif": "Bernard Lafay, député de Paris (fiche Sycomore 4246) ; la fiche sénatoriale S000086 décrit la même personne avec une autre année de naissance (voir decisions-senateurs.json)."},
+  {"cle": "Boucheron|Jean-Michel", "departement": "Charente", "motif": "Deux députés Jean-Michel Boucheron en 1988 (Charente et Ille-et-Vilaine) ; le secrétaire d'État aux collectivités territoriales est le député de la Charente, maire d'Angoulême."},
+  {"cle": "Martin|Philippe", "departement": "Gers", "motif": "Deux députés Philippe Martin en 2013 (Marne et Gers) ; le ministre de l'Écologie est le député du Gers."}
+ ]
+}
