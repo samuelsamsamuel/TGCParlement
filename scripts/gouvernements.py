@@ -55,11 +55,7 @@ DECISIONS_INTEGREES = [
   "departement": "Savoie",
   "motif": "Deux Pierre Dumas députés, nés en 1891 et en 1924 ; le membre des gouvernements Pompidou est le député de la Savoie."
  },
- {
-  "cle": "De Chambrun|Charles",
-  "departement": "Lozère",
-  "motif": "Deux Pineton de Chambrun parlementaires en 1966 ; le secrétaire d'État au commerce extérieur est Charles, député de la Lozère."
- },
+ {"cle": "De Chambrun|Charles", "id": 1621, "motif": "Deux Pineton de Chambrun élus de la Lozère en 1966 : Charles (fiche 1621, né en 1930), dont c'est le premier prénom, et Gilbert (fiche 1622, né en 1909), qui ne porte Charles qu'en troisième prénom. Le secrétaire d'État au commerce extérieur est Charles."},
  {
   "cle": "Mondon|Raymond",
   "departement": "Moselle",
