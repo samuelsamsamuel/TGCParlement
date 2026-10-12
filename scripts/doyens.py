@@ -198,7 +198,17 @@ def main():
         annee = int(r["ouverture"][:4])
         controle = ""
         if annee <= FIN_TABLEAU:
-            entrees = [(n, d) for n, d, annees in TABLEAU if annee in annees or annee + 1 in annees]
+            # Entrées de l'année d'ouverture ; si l'année en compte plusieurs (« 1815 (1) », « 1815 (2) »),
+            # elles sont attribuées dans l'ordre aux législatures ouvertes cette année-là. L'année suivante
+            # n'est retenue que pour une Chambre élue en fin d'année, qui siège l'année d'après (1827 -> 1828).
+            exactes = [(n, d) for n, d, annees in TABLEAU if annee in annees]
+            rang = sum(1 for x in calcul if x["ouverture"][:4] == r["ouverture"][:4] and x["ouverture"] < r["ouverture"])
+            if exactes:
+                entrees = [exactes[min(rang, len(exactes) - 1)]]
+            elif int(r["ouverture"][5:7]) >= 10:
+                entrees = [(n, d) for n, d, annees in TABLEAU if annee + 1 in annees][:1]
+            else:
+                entrees = []
             if not entrees:
                 controle = "  [année absente du tableau : calcul conservé]"
             else:
