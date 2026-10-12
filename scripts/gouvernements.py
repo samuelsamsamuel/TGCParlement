@@ -50,6 +50,7 @@ LISTES = {
 # Décisions motivées sur les homonymes, intégrées au script (un fichier
 # data/listes/decisions-gouvernements.json, s'il existe, les complète ou les remplace).
 DECISIONS_INTEGREES = [
+ {"cle": "TANGUY-PRIGENT|François", "id": 6948, "motif": "La liste officielle des Quatre-vingts publiée par l'Assemblée nationale renvoie, pour François Tanguy-Prigent, à la fiche Sycomore 6948."},
  {"cle": "RIBEYRE|Paul", "id": 6722, "motif": "Deux fiches Paul Ribeyre (nés en 1885 et en 1906) ; le membre des gouvernements de la IVe République est le député né en 1906."},
  {
   "cle": "Dumas|Pierre",
