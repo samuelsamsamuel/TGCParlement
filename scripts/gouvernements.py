@@ -50,6 +50,7 @@ LISTES = {
 # Décisions motivées sur les homonymes, intégrées au script (un fichier
 # data/listes/decisions-gouvernements.json, s'il existe, les complète ou les remplace).
 DECISIONS_INTEGREES = [
+ {"cle": "RIBEYRE|Paul", "id": 6722, "motif": "Deux fiches Paul Ribeyre (nés en 1885 et en 1906) ; le membre des gouvernements de la IVe République est le député né en 1906."},
  {
   "cle": "Dumas|Pierre",
   "departement": "Savoie",
@@ -120,6 +121,34 @@ def prenoms_carte(nom):
 DATES_ILLISIBLES = []
 
 
+def premier_prenom(nom):
+    return norme((nom or "").split(",")[0].split(" ")[0])
+
+
+def rapprochement_souple(nf, pr, debut, index_large):
+    """Dernier recours, une seule fiche admise et signalée : nom écrit autrement (« Tanguy Prigent »,
+    « Maga » pour « Maga-Coutoucou »), prénom composé (« Jules-Emile ») ou voisin (« Edward »/« Édouard »)."""
+    parts = set(pr.split("-"))
+    vus, retenus = set(), []
+    for w in nf:
+        for c in index_large.get(w, []):
+            if c["id"] in vus or not age_plausible(c, debut):
+                continue
+            vus.add(c["id"])
+            nom_c = mots(nom_usage(c["nom"]))
+            segment = mots((c["nom"] or "").split(",")[-1])
+            prenoms = prenoms_carte(c["nom"])
+            tous_prenoms = set(x for p in prenoms for x in p.split("-"))
+            nom_ok = nf <= segment or (nom_c and nom_c <= nf)
+            prenom_ok = (pr in prenoms or parts <= tous_prenoms
+                         or any(SequenceMatcher(None, pr, p).ratio() >= 0.75 for p in prenoms))
+            if nom_ok and prenom_ok:
+                retenus.append(c)
+    if len(retenus) == 1:
+        return retenus[0], "rapprochement souple"
+    return None
+
+
 def iso(valeur):
     """Accepte AAAA-MM-JJ, AAAA/MM/JJ, JJ/MM/AAAA, JJ-MM-AAAA, JJ.MM.AAAA (heure éventuelle ignorée)."""
     v = (valeur or "").strip()
@@ -176,10 +205,10 @@ def main():
     for c in cartes:
         for w in mots(nom_usage(c["nom"])):
             index[w].append(c)
-    decisions = {d["cle"]: d for d in DECISIONS_INTEGREES}
+    decisions = {norme(d["cle"]): d for d in DECISIONS_INTEGREES}
     if os.path.exists(F_DECISIONS):
         with open(F_DECISIONS, encoding="utf-8") as f:
-            decisions.update({d["cle"]: d for d in json.load(f)["decisions"]})
+            decisions.update({norme(d["cle"]): d for d in json.load(f)["decisions"]})
 
     lignes = []  # (liste, prénom, nom, début, fonction)
     for r in telecharger(FICHIERS["presidents"]):
@@ -203,15 +232,30 @@ def main():
                 lignes.append((r["liste"], r["prenom"], r["nom"], r["debut"], r["fonction"], None))
                 nb_ive += 1
 
-    rapport, membres, vus, ecartes = [], defaultdict(set), {}, []
+    rapport, membres, vus, ecartes, souples = [], defaultdict(set), {}, [], []
+    index_large = defaultdict(list)  # tous les mots du dernier segment du nom (prénom compris)
+    for c in cartes:
+        for w in mots((c["nom"] or "").split(",")[-1]):
+            index_large[w].append(c)
     for liste, prenom, nom, debut, fonction, fin in lignes:
         cle = f"{nom}|{prenom}"
         nf, pr = mots(nom), norme((prenom or "").split(" ")[0])
         homonymes = {c["id"]: c for w in nf for c in index.get(w, [])
                      if nf <= mots(nom_usage(c["nom"])) and pr and pr in prenoms_carte(c["nom"])}
         candidats = {i: c for i, c in homonymes.items() if age_plausible(c, debut)}
-        if cle in decisions:
-            dec = decisions[cle]
+        if len(candidats) > 1:
+            # Plusieurs fiches portent ce prénom : on retient celle dont c'est le premier prénom
+            premiers = {i: c for i, c in candidats.items() if premier_prenom(c["nom"]) == pr}
+            if len(premiers) == 1:
+                candidats = premiers
+        souple = None
+        if not homonymes and pr:
+            souple = rapprochement_souple(nf, pr, debut, index_large)
+            if souple:
+                candidats = {souple[0]["id"]: souple[0]}
+                souples.append(f"{prenom} {nom} -> {souple[0]['id']} {souple[0]['nom']} ({souple[1]})")
+        if norme(cle) in decisions:
+            dec = decisions[norme(cle)]
             if dec.get("departement"):
                 # Désignation par le département d'élection, lu dans les mandats de la carte
                 retenus = [c for c in candidats.values()
@@ -277,6 +321,7 @@ def main():
     rapport.append("\nFonctions non comptées : " + "; ".join(f"{k} ({v})" for k, v in sorted(non_comptees.items())))
     rapport.append("\nCartes « hors catégorie » (membres du Gouvernement sans mandat parlementaire) : "
                    + "; ".join(sans_carte))
+    rapport.append("\nRapprochements souples (graphie ou prénom différents, à vérifier) : " + " ; ".join(souples))
     rapport.append("\nHomonymes écartés par le contrôle d'âge (vérifier les dates) : " + " ; ".join(ecartes))
     rapport.append("\nCoquilles de la source rapportées à un membre déjà rattaché : " + "; ".join(coquilles))
     rapport.append("\nRattachements :")
