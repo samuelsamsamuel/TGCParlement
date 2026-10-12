@@ -180,6 +180,24 @@
   ]
  },
  {
+  "id": "G-barakrok-abdelkader",
+  "nom": "Abdelkader BARAKROK",
+  "fonctions": [
+   {
+    "liste": "secretaire-etat",
+    "fonction": "SE (à compter du 19 juin 1957)",
+    "debut": "1957-06-19",
+    "fin": null
+   },
+   {
+    "liste": "secretaire-etat",
+    "fonction": "SE (Algérie) (à compter du 18 novembre 1957)",
+    "debut": "1957-11-18",
+    "fin": null
+   }
+  ]
+ },
+ {
   "id": "G-barsacq-marie",
   "nom": "Marie Barsacq",
   "fonctions": [
@@ -248,6 +266,18 @@
     "fonction": "Ministre déléguée auprès du Ministre des Affaires étrangères, chargée de la Francophonie",
     "debut": "2012-06-21",
     "fin": "2014-03-31"
+   }
+  ]
+ },
+ {
+  "id": "G-bergasse-henri",
+  "nom": "Henri BERGASSE",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre des Anciens combattants et victimes de guerre",
+    "debut": "1953-01-08",
+    "fin": null
    }
   ]
  },
@@ -384,6 +414,18 @@
   ]
  },
  {
+  "id": "G-bougenot-andre",
+  "nom": "André BOUGENOT",
+  "fonctions": [
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Sous-SE (Présidence du Conseil) (à compter du 13 août 1953)",
+    "debut": "1953-08-13",
+    "fin": null
+   }
+  ]
+ },
+ {
   "id": "G-bougrab-jeannette",
   "nom": "Jeannette Bougrab",
   "fonctions": [
@@ -434,6 +476,60 @@
     "fonction": "Ministre de l'économie, des finances et de l'industrie",
     "debut": "2005-06-02",
     "fin": "2007-05-15"
+   }
+  ]
+ },
+ {
+  "id": "G-brune-charles",
+  "nom": "Charles BRUNE",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre des PTT",
+    "debut": "1950-02-07",
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre des Postes, Télégraphes et Téléphones",
+    "debut": "1950-07-02",
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre des Postes, Télégraphes et Téléphones",
+    "debut": "1950-07-12",
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre des Postes, Télégraphes et Téléphones",
+    "debut": "1951-03-10",
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de l'Intérieur",
+    "debut": "1951-08-11",
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de l'Intérieur",
+    "debut": "1952-01-20",
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de l'Intérieur",
+    "debut": "1952-03-08",
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de l'Intérieur",
+    "debut": "1953-01-08",
+    "fin": null
    }
   ]
  },
@@ -569,6 +665,12 @@
   "fonctions": [
    {
     "liste": "ministre",
+    "fonction": "Ministre de la Santé publique et de la Population (à compter du 7 juillet 1958)",
+    "debut": "1958-07-07",
+    "fin": null
+   },
+   {
+    "liste": "ministre",
     "fonction": "Ministre de la santé publique et de la population",
     "debut": "1959-01-08",
     "fin": "1961-08-24"
@@ -684,6 +786,36 @@
   ]
  },
  {
+  "id": "G-corniglion-molinier-edward",
+  "nom": "Edward CORNIGLION-MOLINIER",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre d'Etat",
+    "debut": "1953-06-28",
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre des Travaux publics, des transports et du tourisme",
+    "debut": "1955-02-23",
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Garde des Sceaux, Ministre de la Justice",
+    "debut": "1956-02-01",
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre d'Etat, chargé du Sahara",
+    "debut": "1958-05-14",
+    "fin": null
+   }
+  ]
+ },
+ {
   "id": "G-cosse-emmanuelle",
   "nom": "Emmanuelle Cosse",
   "fonctions": [
@@ -738,6 +870,18 @@
   ]
  },
  {
+  "id": "G-dabo-sissoko-fily",
+  "nom": "Fily DABO SISSOKO",
+  "fonctions": [
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Sous-SE (industrie, commerce)",
+    "debut": "1948-09-05",
+    "fin": null
+   }
+  ]
+ },
+ {
   "id": "G-daragon-nicolas",
   "nom": "Nicolas Daragon",
   "fonctions": [
@@ -786,6 +930,24 @@
   ]
  },
  {
+  "id": "G-dautry-raoul",
+  "nom": "Raoul DAUTRY",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de la Reconstruction et de l'urbanisme (à compter du 16 novembre 1944)",
+    "debut": "1944-11-16",
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de la Reconstruction et de l'urbanisme",
+    "debut": "1945-11-21",
+    "fin": null
+   }
+  ]
+ },
+ {
   "id": "G-de-beauce-thierry",
   "nom": "Thierry De Beaucé",
   "fonctions": [
@@ -807,6 +969,24 @@
   "id": "G-de-gaulle-charles",
   "nom": "Charles de Gaulle",
   "fonctions": [
+   {
+    "liste": "chef-gouvernement",
+    "fonction": "Président du Conseil",
+    "debut": "1944-09-10",
+    "fin": null
+   },
+   {
+    "liste": "chef-gouvernement",
+    "fonction": "Président du Gouvernement provisoire de la République française et ministre de la Défense nationale",
+    "debut": "1945-11-21",
+    "fin": null
+   },
+   {
+    "liste": "chef-gouvernement",
+    "fonction": "Président du Conseil des Ministres et ministre de la Défense nationale puis (à compter du 12 juin 1958) également chargé des attributions exercées par le ministre de l'Algérie dans le précédent gouvernement",
+    "debut": "1958-06-12",
+    "fin": null
+   },
    {
     "liste": "chef-etat",
     "fonction": "Président de la République",
@@ -972,6 +1152,36 @@
   ]
  },
  {
+  "id": "G-dicko-hammadoun",
+  "nom": "Hammadoun DICKO",
+  "fonctions": [
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Sous-SE (industrie, commerce)",
+    "debut": "1956-02-01",
+    "fin": null
+   },
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Sous-SE (Présidence du Conseil) (à compter du 17 mars 1956)",
+    "debut": "1956-03-17",
+    "fin": null
+   },
+   {
+    "liste": "secretaire-etat",
+    "fonction": "SE (à compter du 17 juin 1957)",
+    "debut": "1957-06-17",
+    "fin": null
+   },
+   {
+    "liste": "secretaire-etat",
+    "fonction": "SE (éducation nationale) (à compter du 18 novembre 1957)",
+    "debut": "1957-11-18",
+    "fin": null
+   }
+  ]
+ },
+ {
   "id": "G-dorlhac-helene",
   "nom": "Hélène Dorlhac",
   "fonctions": [
@@ -1104,6 +1314,48 @@
   ]
  },
  {
+  "id": "G-dupraz-johannes",
+  "nom": "Johannès DUPRAZ",
+  "fonctions": [
+   {
+    "liste": "secretaire-etat",
+    "fonction": "SE (armement) (à partir du 31 octobre 1947)",
+    "debut": "1947-10-22",
+    "fin": null
+   },
+   {
+    "liste": "secretaire-etat",
+    "fonction": "SE (marine)",
+    "debut": "1947-11-24",
+    "fin": null
+   },
+   {
+    "liste": "secretaire-etat",
+    "fonction": "SE (forces armées,marine)",
+    "debut": "1948-07-26",
+    "fin": null
+   },
+   {
+    "liste": "secretaire-etat",
+    "fonction": "SE (forces armées,marine)",
+    "debut": "1948-09-05",
+    "fin": null
+   },
+   {
+    "liste": "secretaire-etat",
+    "fonction": "SE (forces armées,marine)",
+    "debut": "1948-09-11",
+    "fin": null
+   },
+   {
+    "liste": "secretaire-etat",
+    "fonction": "SE (Présidence du Conseil) (à compter du 10 janvier 1953)",
+    "debut": "1953-01-10",
+    "fin": null
+   }
+  ]
+ },
+ {
   "id": "G-durovray-francois",
   "nom": "François Durovray",
   "fonctions": [
@@ -1182,6 +1434,18 @@
   ]
  },
  {
+  "id": "G-farge-yves",
+  "nom": "Yves FARGE",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre du Ravitaillement",
+    "debut": "1946-06-24",
+    "fin": null
+   }
+  ]
+ },
+ {
   "id": "G-fauroux-roger",
   "nom": "Roger Fauroux",
   "fonctions": [
@@ -1248,6 +1512,18 @@
   ]
  },
  {
+  "id": "G-frenay-henri",
+  "nom": "Henri FRENAY",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre des Prisonniers, déportés et réfugiés",
+    "debut": "1944-09-10",
+    "fin": null
+   }
+  ]
+ },
+ {
   "id": "G-galland-yves",
   "nom": "Yves Galland",
   "fonctions": [
@@ -1272,6 +1548,42 @@
   ]
  },
  {
+  "id": "G-gavini-joseph",
+  "nom": "Joseph GAVINI",
+  "fonctions": [
+   {
+    "liste": "secretaire-etat",
+    "fonction": "SE (marine)",
+    "debut": "1951-08-11",
+    "fin": null
+   },
+   {
+    "liste": "secretaire-etat",
+    "fonction": "SE (marine)",
+    "debut": "1952-01-20",
+    "fin": null
+   },
+   {
+    "liste": "secretaire-etat",
+    "fonction": "SE (marine)",
+    "debut": "1952-03-08",
+    "fin": null
+   },
+   {
+    "liste": "secretaire-etat",
+    "fonction": "SE (marine)",
+    "debut": "1953-01-08",
+    "fin": null
+   },
+   {
+    "liste": "secretaire-etat",
+    "fonction": "SE (marine)  (à compter du 2 juillet 1953)",
+    "debut": "1953-07-02",
+    "fin": null
+   }
+  ]
+ },
+ {
   "id": "G-geny-stephann-delphine",
   "nom": "Delphine Gény-Stephann",
   "fonctions": [
@@ -1280,6 +1592,36 @@
     "fonction": "Secrétaire d'État auprès du ministre de l'économie et des finances",
     "debut": "2017-11-24",
     "fin": "2018-10-16"
+   }
+  ]
+ },
+ {
+  "id": "G-gilbert-jules-jean",
+  "nom": "Jean GILBERT-JULES",
+  "fonctions": [
+   {
+    "liste": "secretaire-etat",
+    "fonction": "SE (finances et affaires économiques) (à compter du 3 septembre 1954)",
+    "debut": "1954-09-03",
+    "fin": null
+   },
+   {
+    "liste": "secretaire-etat",
+    "fonction": "SE",
+    "debut": "1955-02-23",
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de l'Intérieur",
+    "debut": "1956-02-01",
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de l'Intérieur",
+    "debut": "1956-02-01",
+    "fin": null
    }
   ]
  },
@@ -1458,9 +1800,39 @@
   ]
  },
  {
+  "id": "G-guerin-du-pabst-de-beaumont-jean-michel",
+  "nom": "Jean-Michel GUERIN DU PABST DE BEAUMONT",
+  "fonctions": [
+   {
+    "liste": "secretaire-etat",
+    "fonction": "SE",
+    "debut": "1954-06-19",
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Garde des Sceaux, Ministre de la Justice",
+    "debut": "1954-06-19",
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre d'Etat (à compter du 20 janvier 1955)",
+    "debut": "1955-01-20",
+    "fin": null
+   }
+  ]
+ },
+ {
   "id": "G-guillaumat-pierre",
   "nom": "Pierre Guillaumat",
   "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre des Armées",
+    "debut": "1958-06-01",
+    "fin": null
+   },
    {
     "liste": "ministre",
     "fonction": "Ministre des armées",
@@ -1668,6 +2040,18 @@
   ]
  },
  {
+  "id": "G-jeanneney-jules-emile",
+  "nom": "Jules-Emile JEANNENEY",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre d'Etat",
+    "debut": "1944-09-10",
+    "fin": null
+   }
+  ]
+ },
+ {
   "id": "G-jobert-michel",
   "nom": "Michel Jobert",
   "fonctions": [
@@ -1716,6 +2100,18 @@
   ]
  },
  {
+  "id": "G-julien-jules",
+  "nom": "Jules JULIEN",
+  "fonctions": [
+   {
+    "liste": "secretaire-etat",
+    "fonction": "SE",
+    "debut": "1948-09-11",
+    "fin": null
+   }
+  ]
+ },
+ {
   "id": "G-kiejman-georges",
   "nom": "Georges Kiejman",
   "fonctions": [
@@ -1748,6 +2144,18 @@
     "fonction": "Ministre délégué auprès du ministre de la transition écologique et de la cohésion des territoires, chargé de la ville et du logement",
     "debut": "2022-07-04",
     "fin": "2023-07-20"
+   }
+  ]
+ },
+ {
+  "id": "G-koenig-gerard",
+  "nom": "Gérard KOENIG",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de la Défense nationale et des Forces armées",
+    "debut": "1954-06-19",
+    "fin": null
    }
   ]
  },
@@ -1808,6 +2216,18 @@
     "fonction": "Ministre des affaires étrangères et européennes",
     "debut": "2007-06-19",
     "fin": "2010-11-13"
+   }
+  ]
+ },
+ {
+  "id": "G-laffargue-georges",
+  "nom": "Georges LAFFARGUE",
+  "fonctions": [
+   {
+    "liste": "secretaire-etat",
+    "fonction": "SE (budget, réforme fiscale)",
+    "debut": "1952-01-20",
+    "fin": null
    }
   ]
  },
@@ -1908,6 +2328,18 @@
   ]
  },
  {
+  "id": "G-lemaitre-claude",
+  "nom": "Claude LEMAITRE",
+  "fonctions": [
+   {
+    "liste": "secretaire-etat",
+    "fonction": "SE (Enseignement technique, la jeunesse et les sports)",
+    "debut": "1951-09-26",
+    "fin": null
+   }
+  ]
+ },
+ {
   "id": "G-lenoir-noelle",
   "nom": "Noëlle Lenoir",
   "fonctions": [
@@ -1958,6 +2390,18 @@
     "fonction": "Ministre de l'environnement",
     "debut": "1995-11-07",
     "fin": "1997-06-02"
+   }
+  ]
+ },
+ {
+  "id": "G-lepercq-aime",
+  "nom": "Aimé LEPERCQ",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre des Finances",
+    "debut": "1944-09-10",
+    "fin": null
    }
   ]
  },
@@ -2034,9 +2478,33 @@
   ]
  },
  {
+  "id": "G-maga-coutoucou-hubert",
+  "nom": "Hubert MAGA-COUTOUCOU",
+  "fonctions": [
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Sous-SE (à compter du 18 novembre 1957)",
+    "debut": "1957-11-18",
+    "fin": null
+   }
+  ]
+ },
+ {
   "id": "G-malraux-andre",
   "nom": "André Malraux",
   "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de l'Information",
+    "debut": "1945-11-21",
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre délégué à la Présidence du Conseil",
+    "debut": "1958-06-01",
+    "fin": null
+   },
    {
     "liste": "ministre",
     "fonction": "Ministre d'État",
@@ -2364,6 +2832,18 @@
   ]
  },
  {
+  "id": "G-parodi-alexandre",
+  "nom": "Alexandre PARODI",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre du Travail et de la Sécurité sociale",
+    "debut": "1944-09-10",
+    "fin": null
+   }
+  ]
+ },
+ {
   "id": "G-pasquier-nicole",
   "nom": "Nicole Pasquier",
   "fonctions": [
@@ -2414,6 +2894,18 @@
     "fonction": "Ministre de la Culture et de la Communication",
     "debut": "2014-08-26",
     "fin": "2016-02-11"
+   }
+  ]
+ },
+ {
+  "id": "G-pelletier-emile",
+  "nom": "Emile PELLETIER",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de l'Intérieur",
+    "debut": "1958-06-01",
+    "fin": null
    }
   ]
  },
@@ -2480,6 +2972,30 @@
     "fonction": "Ministre du Travail",
     "debut": "2017-06-21",
     "fin": "2020-07-03"
+   }
+  ]
+ },
+ {
+  "id": "G-perier-jacques",
+  "nom": "Jacques PERIER",
+  "fonctions": [
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Sous-SE (Présidence du Conseil) (à compter du 17 juin 1957)",
+    "debut": "1957-06-17",
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-pineau-francois",
+  "nom": "François PINEAU",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre du Ravitaillement",
+    "debut": "1945-05-30",
+    "fin": null
    }
   ]
  },
@@ -2766,6 +3282,30 @@
   ]
  },
  {
+  "id": "G-se-aviation-civile-a-compter-du-17-juin-1957-sous",
+  "nom": "Sous- SE (aviation civile) (à compter du 17 juin 1957)",
+  "fonctions": [
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Sous-SE (reconstruction, logement) (à compter du 17 juin 1957)",
+    "debut": "1956-02-01",
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-se-marine-marchande-sous",
+  "nom": "Sous- SE (marine marchande)",
+  "fonctions": [
+   {
+    "liste": "secretaire-etat",
+    "fonction": "Sous-SE (reconstruction, logement) (à compter du 17 juin 1957)",
+    "debut": "1956-02-01",
+    "fin": null
+   }
+  ]
+ },
+ {
   "id": "G-sudre-margie",
   "nom": "Margie Sudre",
   "fonctions": [
@@ -2784,6 +3324,60 @@
   ]
  },
  {
+  "id": "G-tanguy-prigent-francis",
+  "nom": "Francis TANGUY-PRIGENT",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre des anciens combattants et victimes de guerre",
+    "debut": "1956-02-01",
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-tanguy-prigent-francois",
+  "nom": "François TANGUY-PRIGENT",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de l'Agriculture",
+    "debut": "1944-09-10",
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de l'Agriculture et du Ravitaillement",
+    "debut": "1945-11-21",
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de l'Agriculture (et sous-SE économie et finances)",
+    "debut": "1946-01-26",
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de l'Agriculture",
+    "debut": "1946-06-24",
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de l'Agriculture",
+    "debut": "1946-12-16",
+    "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de l'Agriculture",
+    "debut": "1947-01-22",
+    "fin": null
+   }
+  ]
+ },
+ {
   "id": "G-tazieff-haroun",
   "nom": "Haroun Tazieff",
   "fonctions": [
@@ -2792,6 +3386,30 @@
     "fonction": "Secrétaire d'État auprès du Premier ministre, chargé de la prévention des risques naturels et technologiques majeurs",
     "debut": "1984-07-19",
     "fin": "1986-03-20"
+   }
+  ]
+ },
+ {
+  "id": "G-tony-revillon-michel",
+  "nom": "Michel TONY-REVILLON",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de l'Education nationale",
+    "debut": "1948-09-05",
+    "fin": null
+   },
+   {
+    "liste": "secretaire-etat",
+    "fonction": "SE",
+    "debut": "1948-09-11",
+    "fin": null
+   },
+   {
+    "liste": "secretaire-etat",
+    "fonction": "SE (affaires économiques) (à compter du 14 mars 1952)",
+    "debut": "1952-03-14",
+    "fin": null
    }
   ]
  },

@@ -1,5 +1,6 @@
 Octets téléchargés : 1431703 ; lignes de texte : 1942 ; lignes avec une date 194x/195x : 271
 Nombre de cellules par ligne : 1 : 1869, 2 : 7, 3 : 66
+Fonctions lues : chef-gouvernement 27, ministre 553, secretaire-etat 330 ; personnes distinctes : 257
 
 --- 120 premières lignes ---
 Composition des gouvernements provisoires

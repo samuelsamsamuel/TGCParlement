@@ -1,0 +1,6372 @@
+[
+{
+"liste": "chef-gouvernement",
+"prenom": "Charles",
+"nom": "de GAULLE",
+"debut": "1944-09-10",
+"fonction": "Président du Conseil"
+},
+{
+"liste": "ministre",
+"prenom": "Jules-Emile",
+"nom": "JEANNENEY",
+"debut": "1944-09-10",
+"fonction": "Ministre d'Etat"
+},
+{
+"liste": "ministre",
+"prenom": "François",
+"nom": "de MENTHON",
+"debut": "1944-09-10",
+"fonction": "Ministre de la Justice"
+},
+{
+"liste": "ministre",
+"prenom": "Pierre-Henri",
+"nom": "TEITGEN",
+"debut": "1945-05-30",
+"fonction": "Ministre de la Justice"
+},
+{
+"liste": "ministre",
+"prenom": "Georges",
+"nom": "BIDAULT",
+"debut": "1944-09-10",
+"fonction": "Ministre des Affaires étrangères"
+},
+{
+"liste": "ministre",
+"prenom": "Adrien",
+"nom": "TIXIER",
+"debut": "1944-09-10",
+"fonction": "Ministre de l'Intérieur"
+},
+{
+"liste": "ministre",
+"prenom": "André",
+"nom": "DIETHELM",
+"debut": "1944-09-10",
+"fonction": "Ministre de la Guerre"
+},
+{
+"liste": "ministre",
+"prenom": "Louis",
+"nom": "JACQUINOT",
+"debut": "1944-09-10",
+"fonction": "Ministre de la Marine"
+},
+{
+"liste": "ministre",
+"prenom": "Charles",
+"nom": "TILLON",
+"debut": "1944-09-10",
+"fonction": "Ministre de lAir"
+},
+{
+"liste": "ministre",
+"prenom": "Pierre",
+"nom": "MENDES-FRANCE",
+"debut": "1944-09-10",
+"fonction": "Ministre de l'Economie nationale"
+},
+{
+"liste": "ministre",
+"prenom": "René",
+"nom": "PLEVEN",
+"debut": "1945-04-06",
+"fonction": "Ministre de l'Economie nationale"
+},
+{
+"liste": "ministre",
+"prenom": "Aimé",
+"nom": "LEPERCQ",
+"debut": "1944-09-10",
+"fonction": "Ministre des Finances"
+},
+{
+"liste": "ministre",
+"prenom": "René",
+"nom": "PLEVEN",
+"debut": "1944-11-16",
+"fonction": "Ministre des Finances"
+},
+{
+"liste": "ministre",
+"prenom": "Robert",
+"nom": "LACOSTE",
+"debut": "1944-09-10",
+"fonction": "Ministre de la Production industrielle"
+},
+{
+"liste": "ministre",
+"prenom": "François",
+"nom": "TANGUY-PRIGENT",
+"debut": "1944-09-10",
+"fonction": "Ministre de l'Agriculture"
+},
+{
+"liste": "ministre",
+"prenom": "Paul",
+"nom": "GIACOBBI",
+"debut": "1944-09-10",
+"fonction": "Ministre du Ravitaillement"
+},
+{
+"liste": "ministre",
+"prenom": "Paul",
+"nom": "RAMADIER",
+"debut": "1944-11-16",
+"fonction": "Ministre du Ravitaillement"
+},
+{
+"liste": "ministre",
+"prenom": "François",
+"nom": "PINEAU",
+"debut": "1945-05-30",
+"fonction": "Ministre du Ravitaillement"
+},
+{
+"liste": "ministre",
+"prenom": "René",
+"nom": "PLEVEN",
+"debut": "1944-09-10",
+"fonction": "Ministre des Colonies"
+},
+{
+"liste": "ministre",
+"prenom": "Paul",
+"nom": "GIACOBBI",
+"debut": "1944-11-16",
+"fonction": "Ministre des Colonies"
+},
+{
+"liste": "ministre",
+"prenom": "René",
+"nom": "CAPITANT",
+"debut": "1944-09-10",
+"fonction": "Ministre de l'Education nationale"
+},
+{
+"liste": "ministre",
+"prenom": "Alexandre",
+"nom": "PARODI",
+"debut": "1944-09-10",
+"fonction": "Ministre du Travail et de la Sécurité sociale"
+},
+{
+"liste": "ministre",
+"prenom": "René",
+"nom": "MAYER",
+"debut": "1944-09-10",
+"fonction": "Ministre des Transports et Travaux publics"
+},
+{
+"liste": "ministre",
+"prenom": "Augustin",
+"nom": "LAURENT",
+"debut": "1944-09-10",
+"fonction": "Ministre des PTT"
+},
+{
+"liste": "ministre",
+"prenom": "Eugène",
+"nom": "THOMAS",
+"debut": "1945-06-27",
+"fonction": "Ministre des PTT"
+},
+{
+"liste": "ministre",
+"prenom": "Pierre-Henri",
+"nom": "TEITGEN",
+"debut": "1944-09-10",
+"fonction": "Ministre de l'Information"
+},
+{
+"liste": "ministre",
+"prenom": "Jacques",
+"nom": "SOUSTELLE",
+"debut": "1945-05-30",
+"fonction": "Ministre de l'Information"
+},
+{
+"liste": "ministre",
+"prenom": "Henri",
+"nom": "FRENAY",
+"debut": "1944-09-10",
+"fonction": "Ministre des Prisonniers, déportés et réfugiés"
+},
+{
+"liste": "ministre",
+"prenom": "François",
+"nom": "BILLOUX",
+"debut": "1944-09-10",
+"fonction": "Ministre de la Santé publique"
+},
+{
+"liste": "ministre",
+"prenom": "Diomède",
+"nom": "CATROUX",
+"debut": "1944-09-10",
+"fonction": "Ministre de l'Afrique du Nord"
+},
+{
+"liste": "ministre",
+"prenom": "Raoul",
+"nom": "DAUTRY",
+"debut": "1944-11-16",
+"fonction": "Ministre de la Reconstruction et de l'urbanisme (à compter du 16 novembre 1944)"
+},
+{
+"liste": "chef-gouvernement",
+"prenom": "Charles",
+"nom": "de GAULLE",
+"debut": "1945-11-21",
+"fonction": "Président du Gouvernement provisoire de la République française et ministre de la Défense nationale"
+},
+{
+"liste": "ministre",
+"prenom": "Edmond",
+"nom": "MICHELET",
+"debut": "1945-11-21",
+"fonction": "Ministre des Armées"
+},
+{
+"liste": "ministre",
+"prenom": "Charles",
+"nom": "TILLON",
+"debut": "1945-11-21",
+"fonction": "Ministre de l'Armement"
+},
+{
+"liste": "ministre",
+"prenom": "Vincent",
+"nom": "AURIOL",
+"debut": "1945-11-21",
+"fonction": "Ministres d'Etat"
+},
+{
+"liste": "ministre",
+"prenom": "Francisque",
+"nom": "GAY",
+"debut": "1945-11-21",
+"fonction": "Ministres d'Etat"
+},
+{
+"liste": "ministre",
+"prenom": "Louis",
+"nom": "JACQUINOT",
+"debut": "1945-11-21",
+"fonction": "Ministres d'Etat"
+},
+{
+"liste": "ministre",
+"prenom": "Maurice",
+"nom": "THOREZ",
+"debut": "1945-11-21",
+"fonction": "Ministres d'Etat"
+},
+{
+"liste": "ministre",
+"prenom": "Pierre-Henri",
+"nom": "TEITGEN",
+"debut": "1945-11-21",
+"fonction": "Ministre de la Justice"
+},
+{
+"liste": "ministre",
+"prenom": "Adrien",
+"nom": "TIXIER",
+"debut": "1945-11-21",
+"fonction": "Ministre de l'Intérieur"
+},
+{
+"liste": "ministre",
+"prenom": "Georges",
+"nom": "BIDAULT",
+"debut": "1945-11-21",
+"fonction": "Ministre des Affaires étrangères"
+},
+{
+"liste": "ministre",
+"prenom": "François",
+"nom": "TANGUY-PRIGENT",
+"debut": "1945-11-21",
+"fonction": "Ministre de l'Agriculture et du Ravitaillement"
+},
+{
+"liste": "ministre",
+"prenom": "Raoul",
+"nom": "DAUTRY",
+"debut": "1945-11-21",
+"fonction": "Ministre de la Reconstruction et de l'urbanisme"
+},
+{
+"liste": "ministre",
+"prenom": "Jules",
+"nom": "MOCH",
+"debut": "1945-11-21",
+"fonction": "Ministre des Travaux publics et des Transports"
+},
+{
+"liste": "ministre",
+"prenom": "Paul",
+"nom": "GIACOBBI",
+"debut": "1945-11-21",
+"fonction": "Ministre de l'Education nationale"
+},
+{
+"liste": "ministre",
+"prenom": "Jacques",
+"nom": "SOUSTELLE",
+"debut": "1945-11-21",
+"fonction": "Ministre des Colonies"
+},
+{
+"liste": "ministre",
+"prenom": "René",
+"nom": "PLEVEN",
+"debut": "1945-11-21",
+"fonction": "Ministre des Finances"
+},
+{
+"liste": "ministre",
+"prenom": "Ambroise",
+"nom": "CROIZAT",
+"debut": "1945-11-21",
+"fonction": "Ministre du Travail"
+},
+{
+"liste": "ministre",
+"prenom": "Eugène",
+"nom": "THOMAS",
+"debut": "1945-11-21",
+"fonction": "Ministre des PTT"
+},
+{
+"liste": "ministre",
+"prenom": "André",
+"nom": "MALRAUX",
+"debut": "1945-11-21",
+"fonction": "Ministre de l'Information"
+},
+{
+"liste": "ministre",
+"prenom": "Marcel",
+"nom": "PAUL",
+"debut": "1945-11-21",
+"fonction": "Ministre de la Production industrielle"
+},
+{
+"liste": "ministre",
+"prenom": "Robert",
+"nom": "PRIGENT",
+"debut": "1945-11-21",
+"fonction": "Ministre de la Population"
+},
+{
+"liste": "ministre",
+"prenom": "François",
+"nom": "BILLOUX",
+"debut": "1945-11-21",
+"fonction": "Ministre de l'Economie nationale"
+},
+{
+"liste": "chef-gouvernement",
+"prenom": "Félix",
+"nom": "GOUIN",
+"debut": "1946-01-26",
+"fonction": "Président du Gouvernement provisoire de la République française et ministre de la Défense nationale"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Gaston",
+"nom": "DEFFERRE",
+"debut": "1946-01-26",
+"fonction": "SE (présidence du Conseil, Information)"
+},
+{
+"liste": "ministre",
+"prenom": "Francisque",
+"nom": "GAY",
+"debut": "1946-01-26",
+"fonction": "Vice-Président du Conseil"
+},
+{
+"liste": "ministre",
+"prenom": "Maurice",
+"nom": "THOREZ",
+"debut": "1946-01-26",
+"fonction": "Vice-Président du Conseil"
+},
+{
+"liste": "ministre",
+"prenom": "Pierre-Henri",
+"nom": "TEITGEN",
+"debut": "1946-01-26",
+"fonction": "Ministre de la Justice"
+},
+{
+"liste": "ministre",
+"prenom": "Georges",
+"nom": "BIDAULT",
+"debut": "1946-01-26",
+"fonction": "Ministre des Affaires étrangères"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Pierre",
+"nom": "SCHNEITER",
+"debut": "1946-02-08",
+"fonction": "Sous-SE (à compter du 8 février 1946)"
+},
+{
+"liste": "ministre",
+"prenom": "André",
+"nom": "le TROQUER",
+"debut": "1946-01-26",
+"fonction": "Ministre de l'Intérieur"
+},
+{
+"liste": "ministre",
+"prenom": "Edmond",
+"nom": "MICHELET",
+"debut": "1946-01-26",
+"fonction": "Ministre des Armées"
+},
+{
+"liste": "ministre",
+"prenom": "Charles",
+"nom": "TILLON",
+"debut": "1946-01-26",
+"fonction": "Ministre de l'Armement"
+},
+{
+"liste": "ministre",
+"prenom": "André",
+"nom": "PHILIP",
+"debut": "1946-01-26",
+"fonction": "Ministre de l'Economie nationale et des Finances"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Albert",
+"nom": "GAZIER",
+"debut": "1946-01-26",
+"fonction": "Sous-SE (économie)"
+},
+{
+"liste": "ministre",
+"prenom": "François",
+"nom": "TANGUY-PRIGENT",
+"debut": "1946-01-26",
+"fonction": "Ministre de l'Agriculture (et sous-SE économie et finances)"
+},
+{
+"liste": "ministre",
+"prenom": "Marcel",
+"nom": "PAUL",
+"debut": "1946-01-26",
+"fonction": "Ministre de la Production industrielle"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Auguste",
+"nom": "LECOEUR",
+"debut": "1946-01-26",
+"fonction": "Sous-SE (charbon)"
+},
+{
+"liste": "ministre",
+"prenom": "Marcel-Edmond",
+"nom": "NAEGELEN",
+"debut": "1946-01-26",
+"fonction": "Ministre de l'Education nationale"
+},
+{
+"liste": "ministre",
+"prenom": "Jules",
+"nom": "MOCH",
+"debut": "1946-01-26",
+"fonction": "Ministre des Travaux publics et des Transports"
+},
+{
+"liste": "ministre",
+"prenom": "Jean",
+"nom": "LETOURNEAU",
+"debut": "1946-01-26",
+"fonction": "Ministre des Postes, Télégraphes et Téléphones"
+},
+{
+"liste": "ministre",
+"prenom": "Marius",
+"nom": "MOUTET",
+"debut": "1946-01-26",
+"fonction": "Ministre de la France d'Outre-Mer"
+},
+{
+"liste": "ministre",
+"prenom": "Ambroise",
+"nom": "CROIZAT",
+"debut": "1946-01-26",
+"fonction": "Ministre du Travail et de la Sécurité Sociale"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Marius",
+"nom": "PATINAUD",
+"debut": "1946-01-26",
+"fonction": "Sous-SE (travail, sécurité sociale)"
+},
+{
+"liste": "ministre",
+"prenom": "Robert",
+"nom": "PRIGENT",
+"debut": "1946-01-26",
+"fonction": "Ministre de la Santé publique et de la Population"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Pierre",
+"nom": "PFLIMLIN",
+"debut": "1946-02-06",
+"fonction": "Sous-SE (santé publique) (à compter du 6 février 1946)"
+},
+{
+"liste": "ministre",
+"prenom": "François",
+"nom": "BILLOUX",
+"debut": "1946-01-26",
+"fonction": "Ministre de la Reconstruction et de l'urbanisme"
+},
+{
+"liste": "ministre",
+"prenom": "Laurent",
+"nom": "CASANOVA",
+"debut": "1946-01-26",
+"fonction": "Ministre des Anciens combattants et victimes de guerre"
+},
+{
+"liste": "ministre",
+"prenom": "Henri",
+"nom": "LONGCHAMBON",
+"debut": "1946-01-26",
+"fonction": "Ministre du Ravitaillement"
+},
+{
+"liste": "chef-gouvernement",
+"prenom": "Georges",
+"nom": "BIDAULT",
+"debut": "1946-06-24",
+"fonction": "Président du Gouvernement provisoire de la République française, ministre des Affaires étrangères"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "André",
+"nom": "COLIN",
+"debut": "1946-06-24",
+"fonction": "SE (présidence du Conseil)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Robert",
+"nom": "BICHET",
+"debut": "1946-06-24",
+"fonction": "SE (présidence du Conseil, information)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Pierre",
+"nom": "SCHNEITER",
+"debut": "1946-06-24",
+"fonction": "SE (présidence du Conseil, affaires étrangères)"
+},
+{
+"liste": "ministre",
+"prenom": "Félix",
+"nom": "GOUIN",
+"debut": "1946-06-24",
+"fonction": "Vice-Président du Conseil"
+},
+{
+"liste": "ministre",
+"prenom": "Maurice",
+"nom": "THOREZ",
+"debut": "1946-06-24",
+"fonction": "Vice-Président du Conseil"
+},
+{
+"liste": "ministre",
+"prenom": "Francisque",
+"nom": "GAY",
+"debut": "1946-06-24",
+"fonction": "Ministre d'Etat"
+},
+{
+"liste": "ministre",
+"prenom": "Alexandre",
+"nom": "VARENNE",
+"debut": "1946-06-24",
+"fonction": "Ministre d'Etat"
+},
+{
+"liste": "ministre",
+"prenom": "Pierre-Henri",
+"nom": "TEITGEN",
+"debut": "1946-06-24",
+"fonction": "Garde des Sceaux, Ministre de la Justice"
+},
+{
+"liste": "ministre",
+"prenom": "Edouard",
+"nom": "DEPREUX",
+"debut": "1946-06-24",
+"fonction": "Ministre de l'Intérieur"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Jean",
+"nom": "BIONDI",
+"debut": "1946-06-24",
+"fonction": "Sous-SE"
+},
+{
+"liste": "ministre",
+"prenom": "Edmond",
+"nom": "MICHELET",
+"debut": "1946-06-24",
+"fonction": "Ministre des Armées"
+},
+{
+"liste": "ministre",
+"prenom": "Charles",
+"nom": "TILLON",
+"debut": "1946-06-24",
+"fonction": "Ministre de l'Armement"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Georges",
+"nom": "GOSNAT",
+"debut": "1946-06-24",
+"fonction": "Sous-SE"
+},
+{
+"liste": "ministre",
+"prenom": "Robert",
+"nom": "SCHUMAN",
+"debut": "1946-06-24",
+"fonction": "Ministre des Finances"
+},
+{
+"liste": "ministre",
+"prenom": "François",
+"nom": "de MENTHON",
+"debut": "1946-06-24",
+"fonction": "Ministre de l'Economie nationale"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Pierre",
+"nom": "PFLIMLIN",
+"debut": "1946-06-24",
+"fonction": "Sous-SE"
+},
+{
+"liste": "ministre",
+"prenom": "François",
+"nom": "TANGUY-PRIGENT",
+"debut": "1946-06-24",
+"fonction": "Ministre de l'Agriculture"
+},
+{
+"liste": "ministre",
+"prenom": "Marcel",
+"nom": "PAUL",
+"debut": "1946-06-24",
+"fonction": "Ministre de la Production industrielle"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Auguste",
+"nom": "LECOEUR",
+"debut": "1946-06-24",
+"fonction": "Sous-SE (charbon)"
+},
+{
+"liste": "ministre",
+"prenom": "Marcel-Edmond",
+"nom": "NAEGELEN",
+"debut": "1946-06-24",
+"fonction": "Ministre de l'Education nationale"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Andrée",
+"nom": "VIENOT",
+"debut": "1946-06-24",
+"fonction": "Sous-SE (jeunesse et sport)"
+},
+{
+"liste": "ministre",
+"prenom": "Jules",
+"nom": "MOCH",
+"debut": "1946-06-24",
+"fonction": "Ministre des Travaux publics et des Transports"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Albert",
+"nom": "GAZIER",
+"debut": "1946-06-24",
+"fonction": "Sous-SE"
+},
+{
+"liste": "ministre",
+"prenom": "Marius",
+"nom": "MOUTET",
+"debut": "1946-06-24",
+"fonction": "Ministre de la France d'Outre-Mer"
+},
+{
+"liste": "ministre",
+"prenom": "Ambroise",
+"nom": "CROIZAT",
+"debut": "1946-06-24",
+"fonction": "Ministre du Travail et de la Sécurité Sociale"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Marius",
+"nom": "PATINAUD",
+"debut": "1946-06-24",
+"fonction": "Sous-SE (travail)"
+},
+{
+"liste": "ministre",
+"prenom": "Jean",
+"nom": "LETOURNEAU",
+"debut": "1946-06-24",
+"fonction": "Ministre des Postes, Télégraphes et Téléphones"
+},
+{
+"liste": "ministre",
+"prenom": "François",
+"nom": "BILLOUX",
+"debut": "1946-06-24",
+"fonction": "Ministre de la Reconstruction et de l'urbanisme"
+},
+{
+"liste": "ministre",
+"prenom": "René",
+"nom": "ARTHAUD",
+"debut": "1946-06-24",
+"fonction": "Ministre de la Santé publique"
+},
+{
+"liste": "ministre",
+"prenom": "Robert",
+"nom": "PRIGENT",
+"debut": "1946-06-24",
+"fonction": "Ministre de la population"
+},
+{
+"liste": "ministre",
+"prenom": "Laurent",
+"nom": "CASANOVA",
+"debut": "1946-06-24",
+"fonction": "Ministre des Anciens combattants et victimes de guerre"
+},
+{
+"liste": "ministre",
+"prenom": "Yves",
+"nom": "FARGE",
+"debut": "1946-06-24",
+"fonction": "Ministre du Ravitaillement"
+},
+{
+"liste": "chef-gouvernement",
+"prenom": "Léon",
+"nom": "BLUM",
+"debut": "1946-12-16",
+"fonction": "Président du Gouvernement provisoire de la République française, ministre des Affaires étrangères"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Albert",
+"nom": "GAZIER",
+"debut": "1946-12-16",
+"fonction": "SE (présidence du Conseil)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Amadou",
+"nom": "LAMINE-GUEYE",
+"debut": "1946-12-16",
+"fonction": "Sous-SE (présidence du Conseil)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Pierre-Olivier",
+"nom": "LAPIE",
+"debut": "1946-12-16",
+"fonction": "Sous-SE (affaires étrangères)"
+},
+{
+"liste": "ministre",
+"prenom": "Félix",
+"nom": "GOUIN",
+"debut": "1946-12-16",
+"fonction": "Ministre d'Etat chargé des travaux du commissariat général au Plan"
+},
+{
+"liste": "ministre",
+"prenom": "Guy",
+"nom": "MOLLET",
+"debut": "1946-12-16",
+"fonction": "Ministre d'Etat"
+},
+{
+"liste": "ministre",
+"prenom": "Augustin",
+"nom": "LAURENT",
+"debut": "1946-12-16",
+"fonction": "Ministre d'Etat"
+},
+{
+"liste": "ministre",
+"prenom": "Paul",
+"nom": "RAMADIER",
+"debut": "1946-12-16",
+"fonction": "Ministre de la Justice"
+},
+{
+"liste": "ministre",
+"prenom": "Edouard",
+"nom": "DEPREUX",
+"debut": "1946-12-16",
+"fonction": "Ministre de l'Intérieur"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Jean",
+"nom": "BIONDI",
+"debut": "1946-12-16",
+"fonction": "Sous-SE"
+},
+{
+"liste": "ministre",
+"prenom": "André",
+"nom": "LE TROQUER",
+"debut": "1946-12-16",
+"fonction": "Ministre de la Défense nationale"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Pierre",
+"nom": "METAYER",
+"debut": "1946-12-16",
+"fonction": "Sous-SE (armées)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Paul",
+"nom": "BECHARD",
+"debut": "1946-12-16",
+"fonction": "Sous-SE (armement)"
+},
+{
+"liste": "ministre",
+"prenom": "André",
+"nom": "PHILIP",
+"debut": "1946-12-16",
+"fonction": "Ministre de l'Economie nationale et des finances"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Jean-Raymond",
+"nom": "GUYON",
+"debut": "1946-12-16",
+"fonction": "Sous-SE (finances)"
+},
+{
+"liste": "ministre",
+"prenom": "François",
+"nom": "TANGUY-PRIGENT",
+"debut": "1946-12-16",
+"fonction": "Ministre de l'Agriculture"
+},
+{
+"liste": "ministre",
+"prenom": "Robert",
+"nom": "LACOSTE",
+"debut": "1946-12-16",
+"fonction": "Ministre de la Production industrielle"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Jean",
+"nom": "MINJOZ",
+"debut": "1946-12-16",
+"fonction": "Sous-SE (commerce et distribution)"
+},
+{
+"liste": "ministre",
+"prenom": "Marcel-Edmond",
+"nom": "NAEGELEN",
+"debut": "1946-12-16",
+"fonction": "Ministre de l'Education nationale"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Andrée",
+"nom": "VIENOT",
+"debut": "1946-12-16",
+"fonction": "Sous-SE (jeunesse et sport)"
+},
+{
+"liste": "ministre",
+"prenom": "Jules",
+"nom": "MOCH",
+"debut": "1946-12-16",
+"fonction": "Ministre des Travaux publics, des Transports et de la Reconstruction"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Jean",
+"nom": "MEUNIER",
+"debut": "1946-12-16",
+"fonction": "Sous-SE (travaux publics et transports)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "René",
+"nom": "SCHMITT",
+"debut": "1946-12-16",
+"fonction": "Sous-SE (reconstruction)"
+},
+{
+"liste": "ministre",
+"prenom": "Marius",
+"nom": "MOUTET",
+"debut": "1946-12-16",
+"fonction": "Ministre de la France d'Outre-Mer"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Gaston",
+"nom": "DEFFERRE",
+"debut": "1946-12-16",
+"fonction": "Sous-SE (France d'Outre-mer)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Georges",
+"nom": "GORSE",
+"debut": "1946-12-16",
+"fonction": "Sous-SE (Affaires musulmanes)"
+},
+{
+"liste": "ministre",
+"prenom": "Daniel",
+"nom": "MAYER",
+"debut": "1946-12-16",
+"fonction": "Ministre du Travail et de la Sécurité Sociale"
+},
+{
+"liste": "ministre",
+"prenom": "Eugène",
+"nom": "THOMAS",
+"debut": "1946-12-16",
+"fonction": "Ministre des Postes, Télégraphes et Téléphones"
+},
+{
+"liste": "ministre",
+"prenom": "Pierre",
+"nom": "SEGELLE",
+"debut": "1946-12-16",
+"fonction": "Ministre de la Santé publique et de la population"
+},
+{
+"liste": "ministre",
+"prenom": "Max",
+"nom": "LEJEUNE",
+"debut": "1946-12-16",
+"fonction": "Ministre des Anciens combattants et victimes de guerre"
+},
+{
+"liste": "chef-gouvernement",
+"prenom": "Paul",
+"nom": "RAMADIER",
+"debut": "1947-01-22",
+"fonction": "Président du Conseil des Ministres"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Paul",
+"nom": "BECHARD",
+"debut": "1947-01-22",
+"fonction": "SE (défense nationale, radiodiffusion)"
+},
+{
+"liste": "ministre",
+"prenom": "Maurice",
+"nom": "THOREZ",
+"debut": "1947-01-22",
+"fonction": "Ministre d'Etat, Vice-President du Conseil"
+},
+{
+"liste": "ministre",
+"prenom": "Pierre-Henri",
+"nom": "TEITGEN",
+"debut": "1947-01-22",
+"fonction": "Ministre d'Etat, Vice-Président du conseil, chargé de la Fonction publique et de la Réforme administrative"
+},
+{
+"liste": "ministre",
+"prenom": "Félix",
+"nom": "GOUIN",
+"debut": "1947-01-22",
+"fonction": "Ministre d'Etat, Président du conseil du Plan, délégué du Président du Conseil pour les Postes, Télégraphes et Téléphones"
+},
+{
+"liste": "ministre",
+"prenom": "Yvon",
+"nom": "DELBOS",
+"debut": "1947-01-22",
+"fonction": "Ministre d'Etat"
+},
+{
+"liste": "ministre",
+"prenom": "Marcel",
+"nom": "ROCLORE",
+"debut": "1947-01-22",
+"fonction": "Ministre d'Etat"
+},
+{
+"liste": "ministre",
+"prenom": "André",
+"nom": "MARIE",
+"debut": "1947-01-22",
+"fonction": "Garde des Sceaux, Ministre de la Justice"
+},
+{
+"liste": "ministre",
+"prenom": "Georges",
+"nom": "BIDAULT",
+"debut": "1947-01-22",
+"fonction": "Ministre des Affaires étrangères"
+},
+{
+"liste": "ministre",
+"prenom": "Edouard",
+"nom": "DEPREUX",
+"debut": "1947-01-22",
+"fonction": "Ministre de l'Intérieur"
+},
+{
+"liste": "ministre",
+"prenom": "François",
+"nom": "BILLOUX",
+"debut": "1947-01-22",
+"fonction": "Ministre de la Défense nationale"
+},
+{
+"liste": "ministre",
+"prenom": "Yvon",
+"nom": "DELBOS",
+"debut": "1947-01-22",
+"fonction": "Ministre de la Défense nationale"
+},
+{
+"liste": "ministre",
+"prenom": "Paul",
+"nom": "COSTE-FLORET",
+"debut": "1947-01-22",
+"fonction": "Ministre de la Guerre"
+},
+{
+"liste": "ministre",
+"prenom": "Louis",
+"nom": "JACQUINOT",
+"debut": "1947-01-22",
+"fonction": "Ministre de la Marine"
+},
+{
+"liste": "ministre",
+"prenom": "Andre",
+"nom": "MAROSELLI",
+"debut": "1947-01-22",
+"fonction": "Ministre de l'Air"
+},
+{
+"liste": "ministre",
+"prenom": "Robert",
+"nom": "SCHUMAN",
+"debut": "1947-01-22",
+"fonction": "Ministre des Finances"
+},
+{
+"liste": "ministre",
+"prenom": "André",
+"nom": "PHILIP",
+"debut": "1947-01-22",
+"fonction": "Ministre de l'Economie nationale"
+},
+{
+"liste": "ministre",
+"prenom": "François",
+"nom": "TANGUY-PRIGENT",
+"debut": "1947-01-22",
+"fonction": "Ministre de l'Agriculture"
+},
+{
+"liste": "ministre",
+"prenom": "Robert",
+"nom": "LACOSTE",
+"debut": "1947-01-22",
+"fonction": "Ministre de la Production industrielle, industrie et commerce"
+},
+{
+"liste": "ministre",
+"prenom": "Marcel-Edmond",
+"nom": "NAEGELEN",
+"debut": "1947-01-22",
+"fonction": "Ministre de l'Education nationale"
+},
+{
+"liste": "ministre",
+"prenom": "Jules",
+"nom": "MOCH",
+"debut": "1947-01-22",
+"fonction": "Ministre des Travaux publics et des Transports"
+},
+{
+"liste": "ministre",
+"prenom": "Marius",
+"nom": "MOUTET",
+"debut": "1947-01-22",
+"fonction": "Ministre de la France d'Outre-Mer"
+},
+{
+"liste": "ministre",
+"prenom": "Ambroise",
+"nom": "CROIZAT",
+"debut": "1947-01-22",
+"fonction": "Ministre du Travail et de la Sécurité Sociale"
+},
+{
+"liste": "ministre",
+"prenom": "Daniel",
+"nom": "MAYER",
+"debut": "1947-05-05",
+"fonction": "Ministre du Travail et de la Sécurité Sociale"
+},
+{
+"liste": "ministre",
+"prenom": "Georges",
+"nom": "MARRANE",
+"debut": "1947-01-22",
+"fonction": "Ministre de la Santé publique et de la population"
+},
+{
+"liste": "ministre",
+"prenom": "Robert",
+"nom": "PRIGENT",
+"debut": "1947-05-05",
+"fonction": "Ministre de la Santé publique et de la population"
+},
+{
+"liste": "ministre",
+"prenom": "Charles",
+"nom": "TILLON",
+"debut": "1947-01-22",
+"fonction": "Ministre de la Reconstruction et de l'Urbanisme"
+},
+{
+"liste": "ministre",
+"prenom": "Jean",
+"nom": "LETOURNEAU",
+"debut": "1947-05-05",
+"fonction": "Ministre de la Reconstruction et de l'Urbanisme"
+},
+{
+"liste": "ministre",
+"prenom": "Jean",
+"nom": "LETOURNEAU",
+"debut": "1947-01-22",
+"fonction": "Ministre du Commerce"
+},
+{
+"liste": "ministre",
+"prenom": "Pierre",
+"nom": "BOURDAN",
+"debut": "1947-01-22",
+"fonction": "Ministre de la Jeunesse, des Arts et des Lettres"
+},
+{
+"liste": "ministre",
+"prenom": "François",
+"nom": "MITTERRAND",
+"debut": "1947-01-22",
+"fonction": "Ministre des Anciens combattants et victimes de guerre"
+},
+{
+"liste": "ministre",
+"prenom": "Eugène",
+"nom": "THOMAS",
+"debut": "1947-01-22",
+"fonction": "Ministre des Postes, Télégraphes et Téléphones"
+},
+{
+"liste": "chef-gouvernement",
+"prenom": "Paul",
+"nom": "RAMADIER",
+"debut": "1947-10-22",
+"fonction": "Président du Conseil des Ministres puis à partir du 25 octobre 1947 : Ministre de la France d'Outre-Mer"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Paul",
+"nom": "BECHARD",
+"debut": "1947-10-22",
+"fonction": "SE (Présidence du Conseil, France d'Outre-Mer) (à partir du 25 octobre 1947)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Eugène",
+"nom": "THOMAS",
+"debut": "1947-10-22",
+"fonction": "SE (Présidence du Conseil, Postes, Télégraphes, Téléphone) (à partir du 25 octobre 1947)"
+},
+{
+"liste": "ministre",
+"prenom": "Yvon",
+"nom": "DELBOS",
+"debut": "1947-10-22",
+"fonction": "Ministre d'Etat"
+},
+{
+"liste": "ministre",
+"prenom": "André",
+"nom": "MARIE",
+"debut": "1947-10-22",
+"fonction": "Garde des Sceaux, Ministre de la Justice"
+},
+{
+"liste": "ministre",
+"prenom": "Georges",
+"nom": "BIDAULT",
+"debut": "1947-10-22",
+"fonction": "Ministre des Affaires étrangères"
+},
+{
+"liste": "ministre",
+"prenom": "Edouard",
+"nom": "DEPREUX",
+"debut": "1947-10-22",
+"fonction": "Ministre de l'Intérieur"
+},
+{
+"liste": "ministre",
+"prenom": "Pierre-Henri",
+"nom": "TEITGEN",
+"debut": "1947-10-22",
+"fonction": "Ministre des Forces Armées"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "André",
+"nom": "MAROSELLI",
+"debut": "1947-10-22",
+"fonction": "SE (forces armées) (à partir du 31 octobre 1947)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Johannès",
+"nom": "DUPRAZ",
+"debut": "1947-10-22",
+"fonction": "SE (armement) (à partir du 31 octobre 1947)"
+},
+{
+"liste": "ministre",
+"prenom": "Jules",
+"nom": "MOCH",
+"debut": "1947-10-22",
+"fonction": "Ministre des Affaires économiques, des travaux publics et des transports, de la reconstruction et de l'urbanisme puis à partir du 4 novembre 1947 : Président du Conseil du Plan"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Jean",
+"nom": "LETOURNEAU",
+"debut": "1947-10-22",
+"fonction": "SE (reconstruction et urbanisme)"
+},
+{
+"liste": "ministre",
+"prenom": "Robert",
+"nom": "SCHUMAN",
+"debut": "1947-10-22",
+"fonction": "Ministre des Finances"
+},
+{
+"liste": "ministre",
+"prenom": "Marcel",
+"nom": "ROCLORE",
+"debut": "1947-10-22",
+"fonction": "Ministre de l'Agriculture"
+},
+{
+"liste": "ministre",
+"prenom": "Robert",
+"nom": "LACOSTE",
+"debut": "1947-10-22",
+"fonction": "Ministre de l'Industrie et du Commerce"
+},
+{
+"liste": "ministre",
+"prenom": "Marcel-Edmond",
+"nom": "NAEGELEN",
+"debut": "1947-10-22",
+"fonction": "Ministre de l'Education nationale"
+},
+{
+"liste": "ministre",
+"prenom": "Daniel",
+"nom": "MAYER",
+"debut": "1947-10-22",
+"fonction": "Ministre des Affaires sociales et des anciens combattants"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Albert",
+"nom": "FORCINAL",
+"debut": "1947-10-22",
+"fonction": "SE (anciens combattants et victimes de guerre) (à partir du 31 octobre 1947)"
+},
+{
+"liste": "chef-gouvernement",
+"prenom": "Robert",
+"nom": "SCHUMAN",
+"debut": "1947-11-24",
+"fonction": "Président du Conseil des Ministres"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Pierre",
+"nom": "ABELIN",
+"debut": "1947-11-24",
+"fonction": "SE (Présidence du Conseil)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Jean",
+"nom": "BIONDI",
+"debut": "1947-11-24",
+"fonction": "SE (Fonction publique et réforme administrative) (à partir du 26 novembre 1947)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Eugène",
+"nom": "THOMAS",
+"debut": "1947-11-24",
+"fonction": "SE (Postes, Télégraphes, Téléphone) (à partir du 26 novembre 1947)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Jacques",
+"nom": "AUGARDE",
+"debut": "1947-11-24",
+"fonction": "Sous-SE (Affaires musulmanes) (à partir du 26 novembre 1947)"
+},
+{
+"liste": "ministre",
+"prenom": "André",
+"nom": "MARIE",
+"debut": "1947-11-24",
+"fonction": "Garde des Sceaux, Ministre de la Justice"
+},
+{
+"liste": "ministre",
+"prenom": "Georges",
+"nom": "BIDAULT",
+"debut": "1947-11-24",
+"fonction": "Ministre des Affaires étrangères"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Pierre",
+"nom": "SCHNEITER",
+"debut": "1947-11-24",
+"fonction": "SE (Affaires allemandes et autrichiennes)"
+},
+{
+"liste": "ministre",
+"prenom": "Jules",
+"nom": "MOCH",
+"debut": "1947-11-24",
+"fonction": "Ministre de l'Intérieur"
+},
+{
+"liste": "ministre",
+"prenom": "Pierre-Henri",
+"nom": "TEITGEN",
+"debut": "1947-11-24",
+"fonction": "Ministre des Forces Armées"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Paul",
+"nom": "BECHARD",
+"debut": "1947-11-24",
+"fonction": "SE (guerre)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Max",
+"nom": "LEJEUNE",
+"debut": "1948-02-12",
+"fonction": "SE (guerre)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Johannès",
+"nom": "DUPRAZ",
+"debut": "1947-11-24",
+"fonction": "SE (marine)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "André",
+"nom": "MAROSELLI",
+"debut": "1947-11-24",
+"fonction": "SE (air)"
+},
+{
+"liste": "ministre",
+"prenom": "René",
+"nom": "MAYER",
+"debut": "1947-11-24",
+"fonction": "Ministre des Finances et des Affaires économiques"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Maurice",
+"nom": "BOURGES-MAUNOURY",
+"debut": "1947-11-24",
+"fonction": "SE (budget) (à partir du 26 novembre 1947)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Félix",
+"nom": "GAILLARD",
+"debut": "1947-11-24",
+"fonction": "Sous-SE (Affaires économiques)"
+},
+{
+"liste": "ministre",
+"prenom": "Robert",
+"nom": "LACOSTE",
+"debut": "1947-11-24",
+"fonction": "Ministre de l'Industrie et du Commerce"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Jean",
+"nom": "MOREAU",
+"debut": "1947-11-24",
+"fonction": "Sous-SE (industrie et commerce) (à partir du 26 novembre 1947)"
+},
+{
+"liste": "ministre",
+"prenom": "Pierre",
+"nom": "PFLIMLIN",
+"debut": "1947-11-24",
+"fonction": "Ministre de l'Agriculture"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Yvon",
+"nom": "COUDE du FORESTO",
+"debut": "1947-11-24",
+"fonction": "Sous-SE (Ravitaillement) (à partir du 26 novembre 1947)"
+},
+{
+"liste": "ministre",
+"prenom": "Marcel-Edmond",
+"nom": "NAEGELEN",
+"debut": "1947-11-24",
+"fonction": "Ministre de l'Education nationale"
+},
+{
+"liste": "ministre",
+"prenom": "Edouard",
+"nom": "DEPREUX",
+"debut": "1948-02-12",
+"fonction": "Ministre de l'Education nationale"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "André",
+"nom": "MORICE",
+"debut": "1947-11-24",
+"fonction": "Sous-SE (Enseignement technique) (à partir du 26 novembre 1947)"
+},
+{
+"liste": "ministre",
+"prenom": "Paul",
+"nom": "COSTE-FLORET",
+"debut": "1947-11-24",
+"fonction": "Ministre de la France d'Outre-Mer"
+},
+{
+"liste": "ministre",
+"prenom": "Christian",
+"nom": "PINEAU",
+"debut": "1947-11-24",
+"fonction": "Ministre des Travaux publics et des transports (à partir du 24 novembre 1947)"
+},
+{
+"liste": "ministre",
+"prenom": "Daniel",
+"nom": "MAYER",
+"debut": "1947-11-24",
+"fonction": "Ministre du Travail"
+},
+{
+"liste": "ministre",
+"prenom": "Germaine",
+"nom": "POINSO-CHAPUIS",
+"debut": "1947-11-24",
+"fonction": "Ministre de la Santé publique et de la population"
+},
+{
+"liste": "ministre",
+"prenom": "René",
+"nom": "COTY",
+"debut": "1947-11-24",
+"fonction": "Ministre de la Reconstruction et de l'urbanisme"
+},
+{
+"liste": "ministre",
+"prenom": "François",
+"nom": "MITTERRAND",
+"debut": "1947-11-24",
+"fonction": "Ministre des Anciens combattants et victimes de guerre"
+},
+{
+"liste": "chef-gouvernement",
+"prenom": "André",
+"nom": "MARIE",
+"debut": "1948-07-26",
+"fonction": "Président du Conseil des Ministres"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "François",
+"nom": "MITTERRAND",
+"debut": "1948-07-26",
+"fonction": "SE (Présidence du Conseil, information)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "André",
+"nom": "MORICE",
+"debut": "1948-07-26",
+"fonction": "SE (Présidence du Conseil, Enseignement technique)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Jean",
+"nom": "BIONDI",
+"debut": "1948-07-26",
+"fonction": "SE (Fonction publique et réforme administrative)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Eugène",
+"nom": "THOMAS",
+"debut": "1948-07-26",
+"fonction": "SE (Postes, Télégraphes, Téléphone)"
+},
+{
+"liste": "ministre",
+"prenom": "Léon",
+"nom": "BLUM",
+"debut": "1948-07-26",
+"fonction": "Vice-Président du Conseil"
+},
+{
+"liste": "ministre",
+"prenom": "Pierre-Henri",
+"nom": "TEITGEN",
+"debut": "1948-07-26",
+"fonction": "Vice-Président du Conseil"
+},
+{
+"liste": "ministre",
+"prenom": "Paul",
+"nom": "RAMADIER",
+"debut": "1948-07-26",
+"fonction": "Ministre d'Etat"
+},
+{
+"liste": "ministre",
+"prenom": "Henri",
+"nom": "QUEUILLE",
+"debut": "1948-07-26",
+"fonction": "Ministre d'Etat"
+},
+{
+"liste": "ministre",
+"prenom": "Robert",
+"nom": "LECOURT",
+"debut": "1948-07-26",
+"fonction": "Garde des Sceaux, Ministre de la Justice"
+},
+{
+"liste": "ministre",
+"prenom": "Robert",
+"nom": "SCHUMAN",
+"debut": "1948-07-26",
+"fonction": "Ministre des Affaires étrangères"
+},
+{
+"liste": "ministre",
+"prenom": "Jules",
+"nom": "MOCH",
+"debut": "1948-07-26",
+"fonction": "Ministre de l'Intérieur"
+},
+{
+"liste": "ministre",
+"prenom": "Paul",
+"nom": "REYNAUD",
+"debut": "1948-07-26",
+"fonction": "Ministre des Finances et des Affaires économiques"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Maurice",
+"nom": "PETSCHE",
+"debut": "1948-07-26",
+"fonction": "Sous-SE (Finances)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Joseph",
+"nom": "LANIEL",
+"debut": "1948-07-26",
+"fonction": "Sous-SE (Finances et affaires économiques)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Yvon",
+"nom": "COUDE du FORESTO",
+"debut": "1948-07-26",
+"fonction": "Sous-SE (Ravitaillement)"
+},
+{
+"liste": "ministre",
+"prenom": "René",
+"nom": "MAYER",
+"debut": "1948-07-26",
+"fonction": "Ministre de la Défense nationale"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Maurice",
+"nom": "BOURGES-MAUNOURY",
+"debut": "1948-07-26",
+"fonction": "SE (forces armées, air)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Johannès",
+"nom": "DUPRAZ",
+"debut": "1948-07-26",
+"fonction": "SE (forces armées,marine)"
+},
+{
+"liste": "ministre",
+"prenom": "Yvon",
+"nom": "DELBOS",
+"debut": "1948-07-26",
+"fonction": "Ministre de l'Education nationale"
+},
+{
+"liste": "ministre",
+"prenom": "Christian",
+"nom": "PINEAU",
+"debut": "1948-07-26",
+"fonction": "Ministre des Travaux publics, des transports et du tourisme"
+},
+{
+"liste": "ministre",
+"prenom": "Robert",
+"nom": "LACOSTE",
+"debut": "1948-07-26",
+"fonction": "Ministre de l'Industrie et du Commerce"
+},
+{
+"liste": "ministre",
+"prenom": "Pierre",
+"nom": "PFLIMLIN",
+"debut": "1948-07-26",
+"fonction": "Ministre de l'Agriculture"
+},
+{
+"liste": "ministre",
+"prenom": "Paul",
+"nom": "COSTE-FLORET",
+"debut": "1948-07-26",
+"fonction": "Ministre de la France d'Outre-Mer"
+},
+{
+"liste": "ministre",
+"prenom": "Daniel",
+"nom": "MAYER",
+"debut": "1948-07-26",
+"fonction": "Ministre du Travail et de la Sécurité sociale"
+},
+{
+"liste": "ministre",
+"prenom": "René",
+"nom": "COTY",
+"debut": "1948-07-26",
+"fonction": "Ministre de la Reconstruction et de l'urbanisme"
+},
+{
+"liste": "ministre",
+"prenom": "André",
+"nom": "MAROSELLI",
+"debut": "1948-07-26",
+"fonction": "Ministre des Anciens combattants et victimes de guerre"
+},
+{
+"liste": "ministre",
+"prenom": "Pierre",
+"nom": "SCHNEITER",
+"debut": "1948-07-26",
+"fonction": "Ministre de la Santé publique et de la population"
+},
+{
+"liste": "chef-gouvernement",
+"prenom": "Robert",
+"nom": "SCHUMAN",
+"debut": "1948-09-05",
+"fonction": "Président du Conseil des Ministres, ministre des affaires étrangères"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Pierre",
+"nom": "ABELIN",
+"debut": "1948-09-05",
+"fonction": "SE (Présidence du Conseil)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Eugène",
+"nom": "THOMAS",
+"debut": "1948-09-05",
+"fonction": "SE (Postes, Télégraphes, Téléphone)"
+},
+{
+"liste": "ministre",
+"prenom": "André",
+"nom": "MARIE",
+"debut": "1948-09-05",
+"fonction": "Vice-Président du Conseil"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "François",
+"nom": "MITTERRAND",
+"debut": "1948-09-05",
+"fonction": "SE"
+},
+{
+"liste": "ministre",
+"prenom": "Robert",
+"nom": "LECOURT",
+"debut": "1948-09-05",
+"fonction": "Garde des Sceaux, Ministre de la Justice"
+},
+{
+"liste": "ministre",
+"prenom": "Jules",
+"nom": "MOCH",
+"debut": "1948-09-05",
+"fonction": "Ministre de l'Intérieur"
+},
+{
+"liste": "ministre",
+"prenom": "Christian",
+"nom": "PINEAU",
+"debut": "1948-09-05",
+"fonction": "Ministre des Finances et des Affaires économiques"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Alain",
+"nom": "POHER",
+"debut": "1948-09-05",
+"fonction": "SE (budget)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Yvon",
+"nom": "COUDE du FORESTO",
+"debut": "1948-09-05",
+"fonction": "SE (affaires économiques et ravitaillement)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Jean",
+"nom": "BIONDI",
+"debut": "1948-09-05",
+"fonction": "SE (Fonction publique et réforme administrative)"
+},
+{
+"liste": "ministre",
+"prenom": "René",
+"nom": "MAYER",
+"debut": "1948-09-05",
+"fonction": "Ministre de la Défense nationale"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Maurice",
+"nom": "BOURGES-MAUNOURY",
+"debut": "1948-09-05",
+"fonction": "SE (forces armées, air)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Johannès",
+"nom": "DUPRAZ",
+"debut": "1948-09-05",
+"fonction": "SE (forces armées,marine)"
+},
+{
+"liste": "ministre",
+"prenom": "Michel",
+"nom": "TONY-REVILLON",
+"debut": "1948-09-05",
+"fonction": "Ministre de l'Education nationale"
+},
+{
+"liste": "ministre",
+"prenom": "Henri",
+"nom": "QUEUILLE",
+"debut": "1948-09-05",
+"fonction": "Ministre des Travaux publics, des transports et du tourisme"
+},
+{
+"liste": "ministre",
+"prenom": "Robert",
+"nom": "LACOSTE",
+"debut": "1948-09-05",
+"fonction": "Ministre de l'Industrie et du Commerce"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Fily",
+"nom": "DABO SISSOKO",
+"debut": "1948-09-05",
+"fonction": "Sous-SE (industrie, commerce)"
+},
+{
+"liste": "ministre",
+"prenom": "Pierre",
+"nom": "PFLIMLIN",
+"debut": "1948-09-05",
+"fonction": "Ministre de l'Agriculture"
+},
+{
+"liste": "ministre",
+"prenom": "Paul",
+"nom": "COSTE-FLORET",
+"debut": "1948-09-05",
+"fonction": "Ministre de la France d'Outre-Mer"
+},
+{
+"liste": "ministre",
+"prenom": "Daniel",
+"nom": "MAYER",
+"debut": "1948-09-05",
+"fonction": "Ministre du Travail et de la Sécurité sociale"
+},
+{
+"liste": "ministre",
+"prenom": "René",
+"nom": "COTY",
+"debut": "1948-09-05",
+"fonction": "Ministre de la Reconstruction et de l'urbanisme"
+},
+{
+"liste": "ministre",
+"prenom": "Jules",
+"nom": "CATOIRE",
+"debut": "1948-09-05",
+"fonction": "Ministre des Anciens combattants et victimes de guerre"
+},
+{
+"liste": "ministre",
+"prenom": "Pierre",
+"nom": "SCHNEITER",
+"debut": "1948-09-05",
+"fonction": "Ministre de la Santé publique et de la population"
+},
+{
+"liste": "chef-gouvernement",
+"prenom": "Henri",
+"nom": "QUEUILLE",
+"debut": "1948-09-11",
+"fonction": "Président du Conseil des Ministres"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "François",
+"nom": "MITTERRAND",
+"debut": "1948-09-11",
+"fonction": "SE (information)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Paul",
+"nom": "DEVINAT",
+"debut": "1948-09-11",
+"fonction": "SE (Présidence du Conseil)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Jean",
+"nom": "BIONDI",
+"debut": "1948-09-11",
+"fonction": "SE (fonction publique et réforme administrative)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Eugène",
+"nom": "THOMAS",
+"debut": "1948-09-11",
+"fonction": "SE (Postes, Télégraphes, Téléphone)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Robert",
+"nom": "BRUYNEEL",
+"debut": "1949-02-13",
+"fonction": "Sous-SE (Vice-présidence du Conseil jusqu'au 13 février 1949) puis sous-SE (Présidence du Conseil à compter du 13 février 1949)"
+},
+{
+"liste": "ministre",
+"prenom": "André",
+"nom": "MARIE",
+"debut": "1948-09-11",
+"fonction": "Vice-Président du Conseil, Garde des Sceaux, Ministre de la Justice"
+},
+{
+"liste": "ministre",
+"prenom": "Robert",
+"nom": "LECOURT",
+"debut": "1948-09-11",
+"fonction": "Garde des Sceaux, Ministre de la Justice"
+},
+{
+"liste": "ministre",
+"prenom": "Robert",
+"nom": "SCHUMAN",
+"debut": "1948-09-11",
+"fonction": "Ministre des Affaires étrangères"
+},
+{
+"liste": "ministre",
+"prenom": "Jules",
+"nom": "MOCH",
+"debut": "1948-09-11",
+"fonction": "Ministre de l'Intérieur"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Raymond",
+"nom": "MARCELLIN",
+"debut": "1948-09-11",
+"fonction": "Sous-SE"
+},
+{
+"liste": "ministre",
+"prenom": "Paul",
+"nom": "RAMADIER",
+"debut": "1948-09-11",
+"fonction": "Ministre de la Défense nationale"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Max",
+"nom": "LEJEUNE",
+"debut": "1948-09-11",
+"fonction": "SE (forces armées, guerre)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Johannès",
+"nom": "DUPRAZ",
+"debut": "1948-09-11",
+"fonction": "SE (forces armées,marine)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Jean",
+"nom": "MOREAU",
+"debut": "1948-09-11",
+"fonction": "SE (forces armées,air)"
+},
+{
+"liste": "ministre",
+"prenom": "Henri",
+"nom": "QUEUILLE",
+"debut": "1948-09-11",
+"fonction": "Ministre des Finances et des Affaires économiques"
+},
+{
+"liste": "ministre",
+"prenom": "Maurice",
+"nom": "PETSCHE",
+"debut": "1949-01-12",
+"fonction": "Ministre des Finances et des Affaires économiques"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Maurice",
+"nom": "PETSCHE",
+"debut": "1948-09-11",
+"fonction": "SE (finances et affaires économiques )"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Antoine",
+"nom": "PINAY",
+"debut": "1948-09-11",
+"fonction": "SE (affaires économiques)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Alain",
+"nom": "POHER",
+"debut": "1948-09-11",
+"fonction": "SE (budget)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Edgar",
+"nom": "FAURE",
+"debut": "1949-02-13",
+"fonction": "SE (finances)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Yvon",
+"nom": "COUDE DU FORESTO",
+"debut": "1948-09-11",
+"fonction": "SE (affaires économiques et ravitaillement)"
+},
+{
+"liste": "ministre",
+"prenom": "Yvon",
+"nom": "DELBOS",
+"debut": "1948-09-11",
+"fonction": "Ministre de l'Education nationale"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "André",
+"nom": "MORICE",
+"debut": "1948-09-11",
+"fonction": "Sous-SE (Enseignement technique, jeunesse et sports)"
+},
+{
+"liste": "ministre",
+"prenom": "Christian",
+"nom": "PINEAU",
+"debut": "1948-09-11",
+"fonction": "Ministre des Travaux publics, des transports et du tourisme"
+},
+{
+"liste": "ministre",
+"prenom": "Robert",
+"nom": "LACOSTE",
+"debut": "1948-09-11",
+"fonction": "Ministre de l'Industrie et du Commerce"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Jules",
+"nom": "JULIEN",
+"debut": "1948-09-11",
+"fonction": "SE"
+},
+{
+"liste": "ministre",
+"prenom": "Pierre",
+"nom": "PFLIMLIN",
+"debut": "1948-09-11",
+"fonction": "Ministre de l'Agriculture"
+},
+{
+"liste": "ministre",
+"prenom": "Paul",
+"nom": "COSTE-FLORET",
+"debut": "1948-09-11",
+"fonction": "Ministre de la France d'Outre-Mer"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Michel",
+"nom": "TONY-REVILLON",
+"debut": "1948-09-11",
+"fonction": "SE"
+},
+{
+"liste": "ministre",
+"prenom": "Daniel",
+"nom": "MAYER",
+"debut": "1948-09-11",
+"fonction": "Ministre du Travail et de la Sécurité sociale"
+},
+{
+"liste": "ministre",
+"prenom": "Eugène",
+"nom": "CLAUDIUS-PETIT",
+"debut": "1948-09-11",
+"fonction": "Ministre de la Reconstruction et de l'urbanisme"
+},
+{
+"liste": "ministre",
+"prenom": "Robert",
+"nom": "BETOLAUD",
+"debut": "1948-09-11",
+"fonction": "Ministre des Anciens combattants et victimes de guerre"
+},
+{
+"liste": "ministre",
+"prenom": "Pierre",
+"nom": "SCHNEITER",
+"debut": "1948-09-11",
+"fonction": "Ministre de la Santé publique et de la population"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Jules",
+"nom": "CATOIRE",
+"debut": "1948-09-11",
+"fonction": "Sous-SE"
+},
+{
+"liste": "ministre",
+"prenom": "André",
+"nom": "COLIN",
+"debut": "1948-09-11",
+"fonction": "Ministre de la Marine marchande"
+},
+{
+"liste": "chef-gouvernement",
+"prenom": "Georges",
+"nom": "BIDAULT",
+"debut": "1949-10-28",
+"fonction": "Président du Conseil"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Paul",
+"nom": "BACON",
+"debut": "1949-10-28",
+"fonction": "SE (présidence du Conseil)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Robert",
+"nom": "PRIGENT",
+"debut": "1950-02-14",
+"fonction": "SE (présidence du Conseil)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Jean",
+"nom": "BIONDI",
+"debut": "1949-10-28",
+"fonction": "SE (fonction publique et réforme administrative)"
+},
+{
+"liste": "ministre",
+"prenom": "Henri",
+"nom": "QUEUILLE",
+"debut": "1949-10-28",
+"fonction": "Vice-Président du Conseil des Ministres"
+},
+{
+"liste": "ministre",
+"prenom": "Jules",
+"nom": "MOCH",
+"debut": "1949-10-28",
+"fonction": "Vice-Président du Conseil des Ministres"
+},
+{
+"liste": "ministre",
+"prenom": "Jules",
+"nom": "MOCH",
+"debut": "1949-10-28",
+"fonction": "Ministre de l'Intérieur"
+},
+{
+"liste": "ministre",
+"prenom": "Henri",
+"nom": "QUEUILLE",
+"debut": "1950-02-07",
+"fonction": "Ministre de l'Intérieur"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Jean",
+"nom": "MEUNIER",
+"debut": "1949-10-28",
+"fonction": "SE"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "André",
+"nom": "COLIN",
+"debut": "1950-02-07",
+"fonction": "SE"
+},
+{
+"liste": "ministre",
+"prenom": "Pierre-Henri",
+"nom": "TEITGEN",
+"debut": "1949-10-28",
+"fonction": "Ministre d'Etat, chargé de l'information"
+},
+{
+"liste": "ministre",
+"prenom": "René",
+"nom": "MAYER",
+"debut": "1949-10-28",
+"fonction": "Garde des Sceaux, Ministre de la Justice"
+},
+{
+"liste": "ministre",
+"prenom": "Robert",
+"nom": "SCHUMAN",
+"debut": "1949-10-28",
+"fonction": "Ministre des Affaires étrangères"
+},
+{
+"liste": "ministre",
+"prenom": "René",
+"nom": "PLEVEN",
+"debut": "1949-10-28",
+"fonction": "Ministre de la Défense nationale"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Max",
+"nom": "LEJEUNE",
+"debut": "1949-10-28",
+"fonction": "SE (forces armées)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Jean",
+"nom": "RAYMOND-LAURENT",
+"debut": "1949-10-28",
+"fonction": "SE (forces armées)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "André",
+"nom": "MAROSELLI",
+"debut": "1949-10-28",
+"fonction": "SE (forces armées)"
+},
+{
+"liste": "ministre",
+"prenom": "Maurice",
+"nom": "PETSCHE",
+"debut": "1949-10-28",
+"fonction": "Ministre des Finances et des Affaires économiques"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Edgar",
+"nom": "FAURE",
+"debut": "1949-10-28",
+"fonction": "SE (finances)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Robert",
+"nom": "BURON",
+"debut": "1949-10-28",
+"fonction": "SE (affaires économiques)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Lionel",
+"nom": "de TINGUY DU POUET",
+"debut": "1949-10-28",
+"fonction": "Sous-SE (finances et affaires économiques) puis à compter 17 février 1950 SE (finances et affaires économiques)"
+},
+{
+"liste": "ministre",
+"prenom": "Yvon",
+"nom": "DELBOS",
+"debut": "1949-10-28",
+"fonction": "Ministre de l'Education nationale"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "André",
+"nom": "MORICE",
+"debut": "1949-10-28",
+"fonction": "Sous-SE (enseignement technique, jeunesse et sport)"
+},
+{
+"liste": "ministre",
+"prenom": "Christian",
+"nom": "PINEAU",
+"debut": "1949-10-28",
+"fonction": "Ministre des Travaux publics, des Transports et du Tourisme"
+},
+{
+"liste": "ministre",
+"prenom": "Jacques",
+"nom": "CHASTELLAIN",
+"debut": "1950-02-07",
+"fonction": "Ministre des Travaux publics, des Transports et du Tourisme"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Jacques",
+"nom": "CHASTELLAIN",
+"debut": "1949-10-28",
+"fonction": "Sous-SE (marine marchande)"
+},
+{
+"liste": "ministre",
+"prenom": "Robert",
+"nom": "LACOSTE",
+"debut": "1949-10-28",
+"fonction": "Ministre de l'Industrie et du Commerce"
+},
+{
+"liste": "ministre",
+"prenom": "Jean-Marie",
+"nom": "LOUVEL",
+"debut": "1950-02-07",
+"fonction": "Ministre de l'Industrie et du Commerce"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Raymond",
+"nom": "MARCELLIN",
+"debut": "1950-02-17",
+"fonction": "Sous-SE puis à compter du 17 février 1950 SE"
+},
+{
+"liste": "ministre",
+"prenom": "Pierre",
+"nom": "PFLIMLIN",
+"debut": "1949-10-28",
+"fonction": "Ministre de l'Agriculture"
+},
+{
+"liste": "ministre",
+"prenom": "Gabriel",
+"nom": "VALAY",
+"debut": "1949-12-02",
+"fonction": "Ministre de l'Agriculture"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Paul",
+"nom": "IHUEL",
+"debut": "1950-02-17",
+"fonction": "Sous-SE puis à compter du 17 février 1950 SE"
+},
+{
+"liste": "ministre",
+"prenom": "Jean",
+"nom": "LETOURNEAU",
+"debut": "1949-10-28",
+"fonction": "Ministre de la France d'Outre-Mer"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Louis-Paul",
+"nom": "AUJOULAT",
+"debut": "1950-02-17",
+"fonction": "Sous-SE puis à compter du 17 février 1950 SE"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Georges",
+"nom": "GORSE",
+"debut": "1949-10-28",
+"fonction": "Sous-SE"
+},
+{
+"liste": "ministre",
+"prenom": "Pierre",
+"nom": "SEGELLE",
+"debut": "1949-10-28",
+"fonction": "Ministre du Travail et de la Sécurité Sociale"
+},
+{
+"liste": "ministre",
+"prenom": "Paul",
+"nom": "BACON",
+"debut": "1950-02-07",
+"fonction": "Ministre du Travail et de la Sécurité Sociale"
+},
+{
+"liste": "ministre",
+"prenom": "Eugène",
+"nom": "CLAUDIUS-PETIT",
+"debut": "1949-10-28",
+"fonction": "Ministre de la Reconstruction et de l'urbanisme"
+},
+{
+"liste": "ministre",
+"prenom": "Louis",
+"nom": "JACQUINOT",
+"debut": "1949-10-28",
+"fonction": "Ministre des Anciens combattants et victimes de guerre"
+},
+{
+"liste": "ministre",
+"prenom": "Pierre",
+"nom": "SCHNEITER",
+"debut": "1949-10-28",
+"fonction": "Ministre de la Santé publique et de la population"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Paul",
+"nom": "RIBEYRE",
+"debut": "1949-10-28",
+"fonction": "Sous-SE"
+},
+{
+"liste": "ministre",
+"prenom": "Eugène",
+"nom": "THOMAS",
+"debut": "1949-10-28",
+"fonction": "Ministre des PTT"
+},
+{
+"liste": "ministre",
+"prenom": "Charles",
+"nom": "BRUNE",
+"debut": "1950-02-07",
+"fonction": "Ministre des PTT"
+},
+{
+"liste": "chef-gouvernement",
+"prenom": "Henri",
+"nom": "QUEUILLE",
+"debut": "1950-07-02",
+"fonction": "Président du Conseil des Ministres, Ministre de l'Intérieur"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "François",
+"nom": "DELCOS",
+"debut": "1950-07-02",
+"fonction": "SE (Présidence du Conseil)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "André",
+"nom": "DULIN",
+"debut": "1950-07-02",
+"fonction": "SE (Présidence du Conseil"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Jean",
+"nom": "BERTHOIN",
+"debut": "1950-07-02",
+"fonction": "SE (Intérieur)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Robert",
+"nom": "PRIGENT",
+"debut": "1950-07-02",
+"fonction": "SE (Intérieur)"
+},
+{
+"liste": "ministre",
+"prenom": "Georges",
+"nom": "BIDAULT",
+"debut": "1950-07-02",
+"fonction": "Vice-Président du Conseil des Ministres"
+},
+{
+"liste": "ministre",
+"prenom": "Paul",
+"nom": "REYNAUD",
+"debut": "1950-07-02",
+"fonction": "Ministre d'Etat, chargé des relations avec les Etats associés et des affaires d'Extrême-Orient"
+},
+{
+"liste": "ministre",
+"prenom": "Jean",
+"nom": "LETOURNEAU",
+"debut": "1950-07-02",
+"fonction": "Ministre d'Etat, chargé de l'information"
+},
+{
+"liste": "ministre",
+"prenom": "Paul",
+"nom": "GIACOBBI",
+"debut": "1950-07-02",
+"fonction": "Ministre d'Etat, chargé de la Fonction publique et de la Réforme administrative"
+},
+{
+"liste": "ministre",
+"prenom": "René",
+"nom": "MAYER",
+"debut": "1950-07-02",
+"fonction": "Garde des Sceaux, Ministre de la Justice"
+},
+{
+"liste": "ministre",
+"prenom": "Robert",
+"nom": "SCHUMAN",
+"debut": "1950-07-02",
+"fonction": "Ministre des Affaires étrangères"
+},
+{
+"liste": "ministre",
+"prenom": "René",
+"nom": "PLEVEN",
+"debut": "1950-07-02",
+"fonction": "Ministre de la Défense nationale"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Pierre",
+"nom": "MONTEL",
+"debut": "1950-07-02",
+"fonction": "SE (forces armées, guerre)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Jean",
+"nom": "RAYMOND-LAURENT",
+"debut": "1950-07-02",
+"fonction": "SE (forces armées,marine)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "André",
+"nom": "MAROSELLI",
+"debut": "1950-07-02",
+"fonction": "SE (forces armées,air)"
+},
+{
+"liste": "ministre",
+"prenom": "Maurice",
+"nom": "PETSCHE",
+"debut": "1950-07-02",
+"fonction": "Ministre des Finances et des Affaires économiques"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Robert",
+"nom": "BURON",
+"debut": "1950-07-02",
+"fonction": "SE (affaires économiques )"
+},
+{
+"liste": "ministre",
+"prenom": "Edgar",
+"nom": "FAURE",
+"debut": "1950-07-02",
+"fonction": "Ministre du Budget"
+},
+{
+"liste": "ministre",
+"prenom": "André",
+"nom": "MORICE",
+"debut": "1950-07-02",
+"fonction": "Ministre de l'Education nationale"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Paul",
+"nom": "DEVINAT",
+"debut": "1950-07-02",
+"fonction": "SE"
+},
+{
+"liste": "ministre",
+"prenom": "Maurice",
+"nom": "BOURGES-MAUNOURY",
+"debut": "1950-07-02",
+"fonction": "Ministre des Travaux publics, des transports et du tourisme"
+},
+{
+"liste": "ministre",
+"prenom": "Jean-Marie",
+"nom": "LOUVEL",
+"debut": "1950-07-02",
+"fonction": "Ministre de l'Industrie et du Commerce"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "André",
+"nom": "GUILLANT",
+"debut": "1950-07-02",
+"fonction": "SE"
+},
+{
+"liste": "ministre",
+"prenom": "Paul",
+"nom": "COSTE-FLORET",
+"debut": "1950-07-02",
+"fonction": "Ministre de la France d'Outre-Mer"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Louis-Paul",
+"nom": "AUJOULAT",
+"debut": "1950-07-02",
+"fonction": "SE"
+},
+{
+"liste": "ministre",
+"prenom": "Paul",
+"nom": "BACON",
+"debut": "1950-07-02",
+"fonction": "Ministre du Travail et de la Sécurité sociale"
+},
+{
+"liste": "ministre",
+"prenom": "Eugène",
+"nom": "CLAUDIUS-PETIT",
+"debut": "1950-07-02",
+"fonction": "Ministre de la Reconstruction et de l'urbanisme"
+},
+{
+"liste": "ministre",
+"prenom": "Louis",
+"nom": "JACQUINOT",
+"debut": "1950-07-02",
+"fonction": "Ministre des Anciens combattants et victimes de guerre"
+},
+{
+"liste": "ministre",
+"prenom": "Pierre",
+"nom": "SCHNEITER",
+"debut": "1950-07-02",
+"fonction": "Ministre de la Santé publique et de la population"
+},
+{
+"liste": "ministre",
+"prenom": "Charles",
+"nom": "BRUNE",
+"debut": "1950-07-02",
+"fonction": "Ministre des Postes, Télégraphes et Téléphones"
+},
+{
+"liste": "ministre",
+"prenom": "Lionel",
+"nom": "de TINGUY DU POUET",
+"debut": "1950-07-02",
+"fonction": "Ministre de la Marine marchande"
+},
+{
+"liste": "ministre",
+"prenom": "Pierre",
+"nom": "PFLIMLIN",
+"debut": "1950-07-02",
+"fonction": "Ministre de l'Agriculture"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Paul",
+"nom": "ANTIER",
+"debut": "1950-07-02",
+"fonction": "SE"
+},
+{
+"liste": "chef-gouvernement",
+"prenom": "René",
+"nom": "PLEVEN",
+"debut": "1950-07-12",
+"fonction": "Président du Conseil"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Maurice",
+"nom": "BOURGES-MAUNOURY",
+"debut": "1950-07-12",
+"fonction": "SE (Présidence du Conseil)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Pierre",
+"nom": "METAYER",
+"debut": "1950-07-12",
+"fonction": "SE (Fonction publique et réforme administrative)"
+},
+{
+"liste": "ministre",
+"prenom": "Jean",
+"nom": "LETOURNEAU",
+"debut": "1950-07-12",
+"fonction": "Ministre d'Etat, chargé des relations avec les Etats associés"
+},
+{
+"liste": "ministre",
+"prenom": "Guy",
+"nom": "MOLLET",
+"debut": "1950-07-12",
+"fonction": "Ministre d'Etat, chargé du Conseil de l'Europe"
+},
+{
+"liste": "ministre",
+"prenom": "René",
+"nom": "MAYER",
+"debut": "1950-07-12",
+"fonction": "Garde des Sceaux, Ministre de la Justice"
+},
+{
+"liste": "ministre",
+"prenom": "Robert",
+"nom": "SCHUMAN",
+"debut": "1950-07-12",
+"fonction": "Ministre des Affaires étrangères"
+},
+{
+"liste": "ministre",
+"prenom": "Henri",
+"nom": "QUEUILLE",
+"debut": "1950-07-12",
+"fonction": "Ministre de l'Intérieur"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Eugène",
+"nom": "THOMAS",
+"debut": "1950-07-12",
+"fonction": "SE"
+},
+{
+"liste": "ministre",
+"prenom": "Jules",
+"nom": "MOCH",
+"debut": "1950-07-12",
+"fonction": "Ministre de la Défense nationale"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Max",
+"nom": "LEJEUNE",
+"debut": "1950-07-12",
+"fonction": "SE (forces armées, guerre)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "André",
+"nom": "MAROSELLI",
+"debut": "1950-07-12",
+"fonction": "SE (forces armées, air)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "André",
+"nom": "MONTEIL",
+"debut": "1950-07-12",
+"fonction": "SE (forces armées, marine)"
+},
+{
+"liste": "ministre",
+"prenom": "Maurice",
+"nom": "PETSCHE",
+"debut": "1950-07-12",
+"fonction": "Ministre des Finances et des Affaires économiques"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Robert",
+"nom": "BURON",
+"debut": "1950-07-12",
+"fonction": "SE (affaires économiques)"
+},
+{
+"liste": "ministre",
+"prenom": "Edgar",
+"nom": "FAURE",
+"debut": "1950-07-12",
+"fonction": "Ministre du Budget"
+},
+{
+"liste": "ministre",
+"prenom": "Pierre-Olivier",
+"nom": "LAPIE",
+"debut": "1950-07-12",
+"fonction": "Ministre de l'Education nationale"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "André",
+"nom": "MORICE",
+"debut": "1950-07-12",
+"fonction": "SE (Enseignement technique, la jeunesse et les sports)"
+},
+{
+"liste": "ministre",
+"prenom": "Antoine",
+"nom": "PINAY",
+"debut": "1950-07-12",
+"fonction": "Ministre des Travaux publics, des transports et du tourisme"
+},
+{
+"liste": "ministre",
+"prenom": "Jean-Marie",
+"nom": "LOUVEL",
+"debut": "1950-07-12",
+"fonction": "Ministre de l'Industrie et du Commerce"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "André",
+"nom": "GUILLANT",
+"debut": "1950-07-12",
+"fonction": "SE"
+},
+{
+"liste": "ministre",
+"prenom": "Pierre",
+"nom": "PFLIMLIN",
+"debut": "1950-07-12",
+"fonction": "Ministre de l'Agriculture"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Paul",
+"nom": "ANTIER",
+"debut": "1950-10-02",
+"fonction": "SE (à compter du 2 octobre 1950)"
+},
+{
+"liste": "ministre",
+"prenom": "François",
+"nom": "MITTERRAND",
+"debut": "1950-07-12",
+"fonction": "Ministre de la France d'Outre-Mer"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Lucien",
+"nom": "COFFIN",
+"debut": "1950-07-12",
+"fonction": "SE"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Louis-Paul",
+"nom": "AUJOULAT",
+"debut": "1950-07-12",
+"fonction": "SE"
+},
+{
+"liste": "ministre",
+"prenom": "Paul",
+"nom": "BACON",
+"debut": "1950-07-12",
+"fonction": "Ministre du Travail et de la Sécurité sociale"
+},
+{
+"liste": "ministre",
+"prenom": "Eugène",
+"nom": "CLAUDIUS-PETIT",
+"debut": "1950-07-12",
+"fonction": "Ministre de la Reconstruction et de l'urbanisme"
+},
+{
+"liste": "ministre",
+"prenom": "Louis",
+"nom": "JACQUINOT",
+"debut": "1950-07-12",
+"fonction": "Ministre des Anciens combattants et victimes de guerre"
+},
+{
+"liste": "ministre",
+"prenom": "Pierre",
+"nom": "SCHNEITER",
+"debut": "1950-07-12",
+"fonction": "Ministre de la Santé publique et de la population"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Jules",
+"nom": "CATOIRE",
+"debut": "1950-07-12",
+"fonction": "SE"
+},
+{
+"liste": "ministre",
+"prenom": "Charles",
+"nom": "BRUNE",
+"debut": "1950-07-12",
+"fonction": "Ministre des Postes, Télégraphes et Téléphones"
+},
+{
+"liste": "ministre",
+"prenom": "Gaston",
+"nom": "DEFERRE",
+"debut": "1950-07-12",
+"fonction": "Ministre de la Marine marchande"
+},
+{
+"liste": "ministre",
+"prenom": "Albert",
+"nom": "GAZIER",
+"debut": "1950-07-12",
+"fonction": "Ministre de l'Information"
+},
+{
+"liste": "ministre",
+"prenom": "Paul",
+"nom": "GIACOBBI",
+"debut": "1950-07-12",
+"fonction": "Ministre sans portefeuille"
+},
+{
+"liste": "chef-gouvernement",
+"prenom": "Henri",
+"nom": "QUEUILLE",
+"debut": "1951-03-10",
+"fonction": "Président du Conseil des Ministres, Ministre de l'Intérieur"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Maurice",
+"nom": "BOURGES-MAUNOURY",
+"debut": "1951-03-10",
+"fonction": "SE (Présidence du Conseil)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Pierre",
+"nom": "METAYER",
+"debut": "1951-03-10",
+"fonction": "SE (Fonction publique et réforme administrative)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Eugène",
+"nom": "THOMAS",
+"debut": "1951-03-10",
+"fonction": "SE (Intérieur)"
+},
+{
+"liste": "ministre",
+"prenom": "Georges",
+"nom": "BIDAULT",
+"debut": "1951-03-10",
+"fonction": "Vice-Président du Conseil des Ministres"
+},
+{
+"liste": "ministre",
+"prenom": "René",
+"nom": "PLEVEN",
+"debut": "1951-03-10",
+"fonction": "Vice-Président du Conseil des Ministres"
+},
+{
+"liste": "ministre",
+"prenom": "Guy",
+"nom": "MOLLET",
+"debut": "1951-03-10",
+"fonction": "Vice-Président du Conseil, chargé du Conseil de l'Europe"
+},
+{
+"liste": "ministre",
+"prenom": "Jean",
+"nom": "LETOURNEAU",
+"debut": "1951-03-10",
+"fonction": "Ministre d'Etat, chargé des relations avec les Etats associés"
+},
+{
+"liste": "ministre",
+"prenom": "René",
+"nom": "MAYER",
+"debut": "1951-03-10",
+"fonction": "Garde des Sceaux, Ministre de la Justice"
+},
+{
+"liste": "ministre",
+"prenom": "Robert",
+"nom": "SCHUMAN",
+"debut": "1951-03-10",
+"fonction": "Ministre des Affaires étrangères"
+},
+{
+"liste": "ministre",
+"prenom": "Jules",
+"nom": "MOCH",
+"debut": "1951-03-10",
+"fonction": "Ministre de la Défense nationale"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Max",
+"nom": "LEJEUNE",
+"debut": "1951-03-10",
+"fonction": "SE (forces armées, guerre)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "André",
+"nom": "MONTEIL",
+"debut": "1951-03-10",
+"fonction": "SE (forces armées, marine)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "André",
+"nom": "MAROSELLI",
+"debut": "1951-03-10",
+"fonction": "SE (forces armées, air)"
+},
+{
+"liste": "ministre",
+"prenom": "Maurice",
+"nom": "PETSCHE",
+"debut": "1951-03-10",
+"fonction": "Ministre des Finances et des Affaires économiques"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Robert",
+"nom": "BURON",
+"debut": "1951-03-10",
+"fonction": "SE (affaires économiques)"
+},
+{
+"liste": "ministre",
+"prenom": "Edgar",
+"nom": "FAURE",
+"debut": "1951-03-10",
+"fonction": "Ministre du Budget"
+},
+{
+"liste": "ministre",
+"prenom": "Pierre-Olivier",
+"nom": "LAPIE",
+"debut": "1951-03-10",
+"fonction": "Ministre de l'Education nationale"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "André",
+"nom": "MORICE",
+"debut": "1951-03-10",
+"fonction": "SE (Enseignement technique, jeunesse et sports)"
+},
+{
+"liste": "ministre",
+"prenom": "Antoine",
+"nom": "PINAY",
+"debut": "1951-03-10",
+"fonction": "Ministre des Travaux publics, des transports et du tourisme"
+},
+{
+"liste": "ministre",
+"prenom": "Jean-Marie",
+"nom": "LOUVEL",
+"debut": "1951-03-10",
+"fonction": "Ministre de l'Industrie et du Commerce"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "André",
+"nom": "GUILLANT",
+"debut": "1951-03-10",
+"fonction": "SE"
+},
+{
+"liste": "ministre",
+"prenom": "Pierre",
+"nom": "PFLIMLIN",
+"debut": "1951-03-10",
+"fonction": "Ministre de l'Agriculture"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Paul",
+"nom": "ANTIER",
+"debut": "1951-03-10",
+"fonction": "SE"
+},
+{
+"liste": "ministre",
+"prenom": "François",
+"nom": "MITTERRAND",
+"debut": "1951-03-10",
+"fonction": "Ministre de la France d'Outre-Mer"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Lucien",
+"nom": "COFFIN",
+"debut": "1951-03-10",
+"fonction": "SE"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Louis-Paul",
+"nom": "AUJOULAT",
+"debut": "1951-03-10",
+"fonction": "SE"
+},
+{
+"liste": "ministre",
+"prenom": "Paul",
+"nom": "BACON",
+"debut": "1951-03-10",
+"fonction": "Ministre du Travail et de la Sécurité sociale"
+},
+{
+"liste": "ministre",
+"prenom": "Eugène",
+"nom": "CLAUDIUS-PETIT",
+"debut": "1951-03-10",
+"fonction": "Ministre de la Reconstruction et de l'urbanisme"
+},
+{
+"liste": "ministre",
+"prenom": "Louis",
+"nom": "JACQUINOT",
+"debut": "1951-03-10",
+"fonction": "Ministre des Anciens combattants et victimes de guerre"
+},
+{
+"liste": "ministre",
+"prenom": "Pierre",
+"nom": "SCHNEITER",
+"debut": "1951-03-10",
+"fonction": "Ministre de la Santé publique et de la population"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Jules",
+"nom": "CATOIRE",
+"debut": "1951-03-10",
+"fonction": "SE"
+},
+{
+"liste": "ministre",
+"prenom": "Charles",
+"nom": "BRUNE",
+"debut": "1951-03-10",
+"fonction": "Ministre des Postes, Télégraphes et Téléphones"
+},
+{
+"liste": "ministre",
+"prenom": "Gaston",
+"nom": "DEFERRE",
+"debut": "1951-03-10",
+"fonction": "Ministre de la Marine marchande"
+},
+{
+"liste": "ministre",
+"prenom": "Albert",
+"nom": "GAZIER",
+"debut": "1951-03-10",
+"fonction": "Ministre de l'Information"
+},
+{
+"liste": "chef-gouvernement",
+"prenom": "René",
+"nom": "PLEVEN",
+"debut": "1951-08-11",
+"fonction": "Président du Conseil"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Félix",
+"nom": "GAILLARD",
+"debut": "1951-08-11",
+"fonction": "SE (Présidence du Conseil)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Robert",
+"nom": "BRUYNEEL",
+"debut": "1951-08-11",
+"fonction": "SE (Présidence du Conseil)"
+},
+{
+"liste": "ministre",
+"prenom": "Henri",
+"nom": "QUEUILLE",
+"debut": "1951-08-11",
+"fonction": "Ministre d'Etat"
+},
+{
+"liste": "ministre",
+"prenom": "Maurice",
+"nom": "PETSCHE",
+"debut": "1951-08-11",
+"fonction": "Ministre d'Etat"
+},
+{
+"liste": "ministre",
+"prenom": "Joseph",
+"nom": "LANIEL",
+"debut": "1951-10-04",
+"fonction": "Ministre d'Etat"
+},
+{
+"liste": "ministre",
+"prenom": "Jean",
+"nom": "LETOURNEAU",
+"debut": "1951-08-11",
+"fonction": "Ministre d'Etat, chargé des relations avec les Etats associés"
+},
+{
+"liste": "ministre",
+"prenom": "Georges",
+"nom": "BIDAULT",
+"debut": "1951-08-11",
+"fonction": "Vice-Président du Conseil des ministres, ministre de la Défense nationale"
+},
+{
+"liste": "ministre",
+"prenom": "Maurice",
+"nom": "BOURGES-MAUNOURY",
+"debut": "1951-08-11",
+"fonction": "Ministre-adjoint de la Défense nationale"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Pierre",
+"nom": "de CHEVIGNE",
+"debut": "1951-08-11",
+"fonction": "SE (guerre)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Joseph",
+"nom": "GAVINI",
+"debut": "1951-08-11",
+"fonction": "SE (marine)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Pierre",
+"nom": "MONTEL",
+"debut": "1951-08-11",
+"fonction": "SE (air)"
+},
+{
+"liste": "ministre",
+"prenom": "René",
+"nom": "MAYER",
+"debut": "1951-08-11",
+"fonction": "Vice-Président du Conseil des ministres, Ministre des Finances et des Affaires économiques"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Emile",
+"nom": "HUGUES",
+"debut": "1951-08-11",
+"fonction": "SE (finances et affaires économiques)"
+},
+{
+"liste": "ministre",
+"prenom": "Edgar",
+"nom": "FAURE",
+"debut": "1951-08-11",
+"fonction": "Garde des Sceaux, Ministre de la Justice"
+},
+{
+"liste": "ministre",
+"prenom": "Robert",
+"nom": "SCHUMAN",
+"debut": "1951-08-11",
+"fonction": "Ministre des Affaires étrangères"
+},
+{
+"liste": "ministre",
+"prenom": "Charles",
+"nom": "BRUNE",
+"debut": "1951-08-11",
+"fonction": "Ministre de l'Intérieur"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "André",
+"nom": "COLIN",
+"debut": "1951-08-11",
+"fonction": "SE"
+},
+{
+"liste": "ministre",
+"prenom": "Pierre",
+"nom": "COURANT",
+"debut": "1951-08-11",
+"fonction": "Ministre du Budget"
+},
+{
+"liste": "ministre",
+"prenom": "André",
+"nom": "MARIE",
+"debut": "1951-08-11",
+"fonction": "Ministre de l'Education nationale"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "André",
+"nom": "CORNU",
+"debut": "1951-08-11",
+"fonction": "SE (Beaux-arts)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Pierre",
+"nom": "CHEVALLIER",
+"debut": "1951-08-11",
+"fonction": "SE (Enseignement technique, la jeunesse et les sports)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Claude",
+"nom": "LEMAITRE",
+"debut": "1951-09-26",
+"fonction": "SE (Enseignement technique, la jeunesse et les sports)"
+},
+{
+"liste": "ministre",
+"prenom": "Antoine",
+"nom": "PINAY",
+"debut": "1951-08-11",
+"fonction": "Ministre des Travaux publics, des transports et du tourisme"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Roger",
+"nom": "DUCHET",
+"debut": "1951-08-11",
+"fonction": "SE"
+},
+{
+"liste": "ministre",
+"prenom": "Jean-Marie",
+"nom": "LOUVEL",
+"debut": "1951-08-11",
+"fonction": "Ministre de l'Industrie et de l'Energie"
+},
+{
+"liste": "ministre",
+"prenom": "Pierre",
+"nom": "PFLIMLIN",
+"debut": "1951-08-11",
+"fonction": "Ministre du Commerce et des Relations économiques extérieures"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "François",
+"nom": "DELCOS",
+"debut": "1951-08-11",
+"fonction": "SE (commerce)"
+},
+{
+"liste": "ministre",
+"prenom": "Paul",
+"nom": "ANTIER",
+"debut": "1951-08-11",
+"fonction": "Ministre de l'Agriculture"
+},
+{
+"liste": "ministre",
+"prenom": "Camille",
+"nom": "LAURENS",
+"debut": "1951-11-21",
+"fonction": "Ministre de l'Agriculture"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Camille",
+"nom": "LAURENS",
+"debut": "1951-08-11",
+"fonction": "SE"
+},
+{
+"liste": "ministre",
+"prenom": "Louis",
+"nom": "JACQUINOT",
+"debut": "1951-08-11",
+"fonction": "Ministre de la France d'Outre-Mer"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Louis-Paul",
+"nom": "AUJOULAT",
+"debut": "1951-09-26",
+"fonction": "SE (à compter du 26 septembre 1951)"
+},
+{
+"liste": "ministre",
+"prenom": "Paul",
+"nom": "BACON",
+"debut": "1951-08-11",
+"fonction": "Ministre du Travail et de la Sécurité sociale"
+},
+{
+"liste": "ministre",
+"prenom": "Eugène",
+"nom": "CLAUDIUS-PETIT",
+"debut": "1951-08-11",
+"fonction": "Ministre de la Reconstruction et de l'urbanisme"
+},
+{
+"liste": "ministre",
+"prenom": "Emmanuel",
+"nom": "TEMPLE",
+"debut": "1951-08-11",
+"fonction": "Ministre des Anciens combattants et victimes de guerre"
+},
+{
+"liste": "ministre",
+"prenom": "Paul",
+"nom": "RIBEYRE",
+"debut": "1951-08-11",
+"fonction": "Ministre de la Santé publique et de la population"
+},
+{
+"liste": "ministre",
+"prenom": "Joseph",
+"nom": "LANIEL",
+"debut": "1951-08-11",
+"fonction": "Ministre des Postes, Télégraphes et Téléphones"
+},
+{
+"liste": "ministre",
+"prenom": "Roger",
+"nom": "DUCHET",
+"debut": "1951-10-04",
+"fonction": "Ministre des Postes, Télégraphes et Téléphones"
+},
+{
+"liste": "ministre",
+"prenom": "André",
+"nom": "MORICE",
+"debut": "1951-08-11",
+"fonction": "Ministre de la Marine marchande"
+},
+{
+"liste": "ministre",
+"prenom": "Robert",
+"nom": "BURON",
+"debut": "1951-08-11",
+"fonction": "Ministre de l'Information"
+},
+{
+"liste": "chef-gouvernement",
+"prenom": "Edgar",
+"nom": "FAURE",
+"debut": "1952-01-20",
+"fonction": "Président du Conseil, Ministre des finances"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Félix",
+"nom": "GAILLARD",
+"debut": "1952-01-20",
+"fonction": "SE (Présidence du Conseil, finances)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Bernard",
+"nom": "LAFAY",
+"debut": "1952-01-20",
+"fonction": "SE (Présidence du Conseil, fonction publique)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Raymond",
+"nom": "MARCELLIN",
+"debut": "1952-01-20",
+"fonction": "SE (Présidence du Conseil)"
+},
+{
+"liste": "ministre",
+"prenom": "Henri",
+"nom": "QUEUILLE",
+"debut": "1952-01-20",
+"fonction": "Vice-Président du Conseil des Ministres, Ministre d'Etat"
+},
+{
+"liste": "ministre",
+"prenom": "Georges",
+"nom": "BIDAULT",
+"debut": "1952-01-20",
+"fonction": "Vice-Président du Conseil des Ministres, Ministre de la Défense nationale"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Pierre",
+"nom": "de CHEVIGNE",
+"debut": "1952-01-20",
+"fonction": "SE (guerre)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Joseph",
+"nom": "GAVINI",
+"debut": "1952-01-20",
+"fonction": "SE (marine)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Pierre",
+"nom": "MONTEL",
+"debut": "1952-01-20",
+"fonction": "SE (air)"
+},
+{
+"liste": "ministre",
+"prenom": "François",
+"nom": "MITTERRAND",
+"debut": "1952-01-20",
+"fonction": "Ministre d'Etat"
+},
+{
+"liste": "ministre",
+"prenom": "Joseph",
+"nom": "LANIEL",
+"debut": "1952-01-20",
+"fonction": "Ministre d'Etat"
+},
+{
+"liste": "ministre",
+"prenom": "Jean",
+"nom": "LETOURNEAU",
+"debut": "1952-01-20",
+"fonction": "Ministre d'Etat, chargé des relations avec les Etats associés"
+},
+{
+"liste": "ministre",
+"prenom": "Pierre",
+"nom": "PFLIMLIN",
+"debut": "1952-01-20",
+"fonction": "Ministre d'Etat, chargé du Conseil de l'Europe"
+},
+{
+"liste": "ministre",
+"prenom": "Léon",
+"nom": "MARTINAUD-DEPLAT",
+"debut": "1952-01-20",
+"fonction": "Garde des Sceaux, Ministre de la Justice"
+},
+{
+"liste": "ministre",
+"prenom": "Maurice",
+"nom": "SCHUMANN",
+"debut": "1952-01-20",
+"fonction": "Ministre des Affaires étrangères"
+},
+{
+"liste": "ministre",
+"prenom": "Charles",
+"nom": "BRUNE",
+"debut": "1952-01-20",
+"fonction": "Ministre de l'Intérieur"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "André",
+"nom": "COLIN",
+"debut": "1952-01-20",
+"fonction": "SE"
+},
+{
+"liste": "ministre",
+"prenom": "Robert",
+"nom": "BURON",
+"debut": "1952-01-20",
+"fonction": "Ministre des Affaires économiques"
+},
+{
+"liste": "ministre",
+"prenom": "Pierre",
+"nom": "COURANT",
+"debut": "1952-01-20",
+"fonction": "Ministre du Budget"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Georges",
+"nom": "LAFFARGUE",
+"debut": "1952-01-20",
+"fonction": "SE (budget, réforme fiscale)"
+},
+{
+"liste": "ministre",
+"prenom": "André",
+"nom": "MARIE",
+"debut": "1952-01-20",
+"fonction": "Ministre de l'Education nationale"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "André",
+"nom": "CORNU",
+"debut": "1952-01-20",
+"fonction": "SE (Beaux-arts)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Jean",
+"nom": "MASSON",
+"debut": "1952-01-20",
+"fonction": "SE (Enseignement technique, la jeunesse et les sports)"
+},
+{
+"liste": "ministre",
+"prenom": "Antoine",
+"nom": "PINAY",
+"debut": "1952-01-20",
+"fonction": "Ministre des Travaux publics, des transports et du tourisme"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Lucien",
+"nom": "BEGOUIN",
+"debut": "1952-01-20",
+"fonction": "SE (travaux publics)"
+},
+{
+"liste": "ministre",
+"prenom": "Jean-Marie",
+"nom": "LOUVEL",
+"debut": "1952-01-20",
+"fonction": "Ministre de l'Industrie et de l'Energie"
+},
+{
+"liste": "ministre",
+"prenom": "Edouard",
+"nom": "BONNEFOUS",
+"debut": "1952-01-20",
+"fonction": "Ministre du Commerce"
+},
+{
+"liste": "ministre",
+"prenom": "Camille",
+"nom": "LAURENS",
+"debut": "1952-01-20",
+"fonction": "Ministre de l'Agriculture"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Jean",
+"nom": "SOURBET",
+"debut": "1952-01-20",
+"fonction": "SE"
+},
+{
+"liste": "ministre",
+"prenom": "Louis",
+"nom": "JACQUINOT",
+"debut": "1952-01-20",
+"fonction": "Ministre de la France d'Outre-Mer"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Louis-Paul",
+"nom": "AUJOULAT",
+"debut": "1952-01-20",
+"fonction": "SE"
+},
+{
+"liste": "ministre",
+"prenom": "Paul",
+"nom": "BACON",
+"debut": "1952-01-20",
+"fonction": "Ministre du Travail et de la Sécurité sociale"
+},
+{
+"liste": "ministre",
+"prenom": "Eugène",
+"nom": "CLAUDIUS-PETIT",
+"debut": "1952-01-20",
+"fonction": "Ministre de la Reconstruction et de l'urbanisme"
+},
+{
+"liste": "ministre",
+"prenom": "Emmanuel",
+"nom": "TEMPLE",
+"debut": "1952-01-20",
+"fonction": "Ministre des Anciens combattants et victimes de guerre"
+},
+{
+"liste": "ministre",
+"prenom": "Paul",
+"nom": "RIBEYRE",
+"debut": "1952-01-20",
+"fonction": "Ministre de la Santé publique et de la population"
+},
+{
+"liste": "ministre",
+"prenom": "Roger",
+"nom": "DUCHET",
+"debut": "1952-01-20",
+"fonction": "Ministre des Postes, Télégraphes et Téléphones"
+},
+{
+"liste": "ministre",
+"prenom": "André",
+"nom": "MORICE",
+"debut": "1952-01-20",
+"fonction": "Ministre de la Marine marchande"
+},
+{
+"liste": "ministre",
+"prenom": "Paul",
+"nom": "COSTE-FLORET",
+"debut": "1952-01-20",
+"fonction": "Ministre de l'Information"
+},
+{
+"liste": "ministre",
+"prenom": "Maurice",
+"nom": "BOURGES-MAUNOURY",
+"debut": "1952-01-20",
+"fonction": "Ministre de l'Armement (coordination)"
+},
+{
+"liste": "chef-gouvernement",
+"prenom": "Antoine",
+"nom": "PINAY",
+"debut": "1952-03-08",
+"fonction": "Président du Conseil, Ministre des finances et des affaires économiques"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Félix",
+"nom": "GAILLARD",
+"debut": "1952-03-08",
+"fonction": "SE (Présidence du Conseil, finances)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Raymond",
+"nom": "MARCELLIN",
+"debut": "1952-03-08",
+"fonction": "SE (Présidence du Conseil)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Guy",
+"nom": "PETIT",
+"debut": "1952-03-14",
+"fonction": "SE (Présidence du Conseil) (à compter du 14 mars 1952)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Jean",
+"nom": "MOREAU",
+"debut": "1952-03-14",
+"fonction": "SE (budget) (à compter du 14 mars 1952)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Michel",
+"nom": "TONY-REVILLON",
+"debut": "1952-03-14",
+"fonction": "SE (affaires économiques) (à compter du 14 mars 1952)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Pierre",
+"nom": "ABELIN",
+"debut": "1952-09-18",
+"fonction": "SE (finances) (à compter du 18 septembre 1952)"
+},
+{
+"liste": "ministre",
+"prenom": "Henri",
+"nom": "QUEUILLE",
+"debut": "1952-03-08",
+"fonction": "Vice-Président du Conseil, Ministre d'Etat"
+},
+{
+"liste": "ministre",
+"prenom": "Jean",
+"nom": "LETOURNEAU",
+"debut": "1952-03-08",
+"fonction": "Ministre d'Etat, chargé des relations avec les Etats associés"
+},
+{
+"liste": "ministre",
+"prenom": "Léon",
+"nom": "MARTINAUD-DEPLAT",
+"debut": "1952-03-08",
+"fonction": "Garde des Sceaux, Ministre de la Justice"
+},
+{
+"liste": "ministre",
+"prenom": "Robert",
+"nom": "SCHUMAN",
+"debut": "1952-03-08",
+"fonction": "Ministre des Affaires étrangères"
+},
+{
+"liste": "ministre",
+"prenom": "Charles",
+"nom": "BRUNE",
+"debut": "1952-03-08",
+"fonction": "Ministre de l'Intérieur"
+},
+{
+"liste": "ministre",
+"prenom": "René",
+"nom": "PLEVEN",
+"debut": "1952-03-08",
+"fonction": "Ministre de la Défense nationale"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Pierre",
+"nom": "de CHEVIGNE",
+"debut": "1952-03-08",
+"fonction": "SE (guerre)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Joseph",
+"nom": "GAVINI",
+"debut": "1952-03-08",
+"fonction": "SE (marine)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Pierre",
+"nom": "MONTEL",
+"debut": "1952-03-08",
+"fonction": "SE (air)"
+},
+{
+"liste": "ministre",
+"prenom": "André",
+"nom": "MARIE",
+"debut": "1952-03-08",
+"fonction": "Ministre de l'Education nationale"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "André",
+"nom": "CORNU",
+"debut": "1952-03-14",
+"fonction": "SE (éducation nationale) (à compter du 14 mars 1952)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Jean",
+"nom": "MASSON",
+"debut": "1952-03-08",
+"fonction": "SE (enseignement technique, jeunesse et sports)"
+},
+{
+"liste": "ministre",
+"prenom": "André",
+"nom": "MORICE",
+"debut": "1952-03-08",
+"fonction": "Ministre des Travaux publics, des transports et du tourisme"
+},
+{
+"liste": "ministre",
+"prenom": "Jean-Marie",
+"nom": "LOUVEL",
+"debut": "1952-03-08",
+"fonction": "Ministre de l'Industrie et de l'Energie"
+},
+{
+"liste": "ministre",
+"prenom": "Camille",
+"nom": "LAURENS",
+"debut": "1952-03-08",
+"fonction": "Ministre de l'Agriculture"
+},
+{
+"liste": "ministre",
+"prenom": "Pierre",
+"nom": "PFLIMLIN",
+"debut": "1952-03-08",
+"fonction": "Ministre de la France d'Outre-Mer"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Louis-Paul",
+"nom": "AUJOULAT",
+"debut": "1952-03-14",
+"fonction": "SE (France d'Outre-Mer) (à compter du 14 mars 1952)"
+},
+{
+"liste": "ministre",
+"prenom": "Pierre",
+"nom": "GARET",
+"debut": "1952-03-08",
+"fonction": "Ministre du Travail et de la Sécurité sociale"
+},
+{
+"liste": "ministre",
+"prenom": "Eugène",
+"nom": "CLAUDIUS-PETIT",
+"debut": "1952-03-08",
+"fonction": "Ministre de la Reconstruction et de l'urbanisme"
+},
+{
+"liste": "ministre",
+"prenom": "Emmanuel",
+"nom": "TEMPLE",
+"debut": "1952-03-08",
+"fonction": "Ministre des Anciens combattants et victimes de guerre"
+},
+{
+"liste": "ministre",
+"prenom": "Paul",
+"nom": "RIBEYRE",
+"debut": "1952-03-08",
+"fonction": "Ministre de la Santé publique et de la population"
+},
+{
+"liste": "ministre",
+"prenom": "Roger",
+"nom": "DUCHET",
+"debut": "1952-03-08",
+"fonction": "Ministre des PTT"
+},
+{
+"liste": "chef-gouvernement",
+"prenom": "René",
+"nom": "MAYER",
+"debut": "1953-01-08",
+"fonction": "Président du Conseil des Ministres"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Félix",
+"nom": "GAILLARD",
+"debut": "1953-01-08",
+"fonction": "SE (Présidence du Conseil)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Emile",
+"nom": "HUGUES",
+"debut": "1953-01-08",
+"fonction": "SE (Présidence du Conseil, chargé de l'information)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Johannès",
+"nom": "DUPRAZ",
+"debut": "1953-01-10",
+"fonction": "SE (Présidence du Conseil) (à compter du 10 janvier 1953)"
+},
+{
+"liste": "ministre",
+"prenom": "Henri",
+"nom": "QUEUILLE",
+"debut": "1953-01-08",
+"fonction": "Vice-Président du Conseil"
+},
+{
+"liste": "ministre",
+"prenom": "Paul",
+"nom": "COSTE-FLORET",
+"debut": "1953-01-08",
+"fonction": "Ministre d'Etat"
+},
+{
+"liste": "ministre",
+"prenom": "Edouard",
+"nom": "BONNEFOUS",
+"debut": "1953-01-08",
+"fonction": "Ministre d'Etat"
+},
+{
+"liste": "ministre",
+"prenom": "Jean",
+"nom": "LETOURNEAU",
+"debut": "1953-01-08",
+"fonction": "Ministre chargé des relations avec les Etats associés"
+},
+{
+"liste": "ministre",
+"prenom": "Léon",
+"nom": "MARTINAUD-DEPLAT",
+"debut": "1953-01-08",
+"fonction": "Garde des Sceaux, Ministre de la Justice"
+},
+{
+"liste": "ministre",
+"prenom": "Georges",
+"nom": "BIDAULT",
+"debut": "1953-01-08",
+"fonction": "Ministre des Affaires étrangères"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Maurice",
+"nom": "SCHUMANN",
+"debut": "1953-01-10",
+"fonction": "SE (affaires étrangères) (à compter du 10 janvier 1953)"
+},
+{
+"liste": "ministre",
+"prenom": "Charles",
+"nom": "BRUNE",
+"debut": "1953-01-08",
+"fonction": "Ministre de l'Intérieur"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "André",
+"nom": "COLIN",
+"debut": "1953-01-10",
+"fonction": "SE (Intérieur) (à compter du 10 janvier 1953)"
+},
+{
+"liste": "ministre",
+"prenom": "René",
+"nom": "PLEVEN",
+"debut": "1953-05-19",
+"fonction": "Ministre de la Défense nationale et des Forces armées (et SE à l'air à compter du 19 mai 1953)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Pierre",
+"nom": "de CHEVIGNE",
+"debut": "1953-01-08",
+"fonction": "SE (guerre)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Joseph",
+"nom": "GAVINI",
+"debut": "1953-01-08",
+"fonction": "SE (marine)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Pierre",
+"nom": "MONTEL",
+"debut": "1953-01-08",
+"fonction": "SE (air)"
+},
+{
+"liste": "ministre",
+"prenom": "Maurice",
+"nom": "BOURGES-MAUNOURY",
+"debut": "1953-01-08",
+"fonction": "Ministre des Finances"
+},
+{
+"liste": "ministre",
+"prenom": "Jean",
+"nom": "MOREAU",
+"debut": "1953-01-08",
+"fonction": "Ministre du Budget"
+},
+{
+"liste": "ministre",
+"prenom": "Robert",
+"nom": "BURON",
+"debut": "1953-01-08",
+"fonction": "Ministre des Affaires économiques"
+},
+{
+"liste": "ministre",
+"prenom": "André",
+"nom": "MARIE",
+"debut": "1953-01-08",
+"fonction": "Ministre de l'Education nationale"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "André",
+"nom": "CORNU",
+"debut": "1953-01-10",
+"fonction": "SE (Beaux-arts) (à compter du 10 janvier 1953)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Jean",
+"nom": "MASSON",
+"debut": "1953-01-10",
+"fonction": "SE (enseignement technique, jeunesse et sports ) (à compter du 10 janvier 1953)"
+},
+{
+"liste": "ministre",
+"prenom": "André",
+"nom": "MORICE",
+"debut": "1953-01-08",
+"fonction": "Ministre des Travaux publics, des transports et du tourisme"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Jules",
+"nom": "RAMARONY",
+"debut": "1953-01-10",
+"fonction": "SE (Marine marchande) (à compter du 10 janvier 1953)"
+},
+{
+"liste": "ministre",
+"prenom": "Jean-Marie",
+"nom": "LOUVEL",
+"debut": "1953-01-08",
+"fonction": "Ministre de l'Industrie et de l'Energie"
+},
+{
+"liste": "ministre",
+"prenom": "Paul",
+"nom": "RIBEYRE",
+"debut": "1953-01-08",
+"fonction": "Ministre du commerce"
+},
+{
+"liste": "ministre",
+"prenom": "Guy",
+"nom": "PETIT",
+"debut": "1953-02-11",
+"fonction": "Ministre du commerce"
+},
+{
+"liste": "ministre",
+"prenom": "Camille",
+"nom": "LAURENS",
+"debut": "1953-01-08",
+"fonction": "Ministre de l'Agriculture"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Guy",
+"nom": "PETIT",
+"debut": "1953-01-08",
+"fonction": "SE (agriculture)"
+},
+{
+"liste": "ministre",
+"prenom": "Louis",
+"nom": "JACQUINOT",
+"debut": "1953-01-08",
+"fonction": "Ministre de la France d'Outre-Mer"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Henri",
+"nom": "CAILLAVET",
+"debut": "1953-01-10",
+"fonction": "SE (France d'Outre-Mer) (à compter du 10 janvier 1953)"
+},
+{
+"liste": "ministre",
+"prenom": "Paul",
+"nom": "BACON",
+"debut": "1953-01-08",
+"fonction": "Ministre du Travail et de la Sécurité sociale"
+},
+{
+"liste": "ministre",
+"prenom": "Pierre",
+"nom": "COURANT",
+"debut": "1953-01-08",
+"fonction": "Ministre de la Reconstruction et de l'urbanisme"
+},
+{
+"liste": "ministre",
+"prenom": "Henri",
+"nom": "BERGASSE",
+"debut": "1953-01-08",
+"fonction": "Ministre des Anciens combattants et victimes de guerre"
+},
+{
+"liste": "ministre",
+"prenom": "André",
+"nom": "BOUTEMY",
+"debut": "1953-01-08",
+"fonction": "Ministre de la Santé publique et de la population"
+},
+{
+"liste": "ministre",
+"prenom": "Paul",
+"nom": "RIBEYRE",
+"debut": "1953-02-11",
+"fonction": "Ministre de la Santé publique et de la population"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Pierre",
+"nom": "COUINAUD",
+"debut": "1953-01-08",
+"fonction": "SE (santé publique et de la population)"
+},
+{
+"liste": "ministre",
+"prenom": "Roger",
+"nom": "DUCHET",
+"debut": "1953-01-08",
+"fonction": "Ministre des Postes, Télégraphes, Téléphones"
+},
+{
+"liste": "chef-gouvernement",
+"prenom": "Joseph",
+"nom": "LANIEL",
+"debut": "1953-06-28",
+"fonction": "Président du Conseil"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Pierre",
+"nom": "JULY",
+"debut": "1953-07-02",
+"fonction": "SE (Présidence du Conseil) (à compter du 2 juillet 1953)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Emile",
+"nom": "HUGUES",
+"debut": "1953-07-02",
+"fonction": "SE (Présidence du Conseil, chargé de l'information) (à compter du 2 juillet 1953)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Marc",
+"nom": "JACQUET",
+"debut": "1953-06-28",
+"fonction": "SE (Présidence du Conseil, chargé des relations avec les Etats associés)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Raymond",
+"nom": "SCHMITTLEIN",
+"debut": "1954-05-31",
+"fonction": "SE (Présidence du Conseil, chargé des relations avec les Etats associés)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "André",
+"nom": "BOUGENOT",
+"debut": "1953-08-13",
+"fonction": "Sous-SE (Présidence du Conseil) (à compter du 13 août 1953)"
+},
+{
+"liste": "ministre",
+"prenom": "Paul",
+"nom": "REYNAUD",
+"debut": "1953-06-28",
+"fonction": "Vice-Président du Conseil"
+},
+{
+"liste": "ministre",
+"prenom": "Henri",
+"nom": "QUEUILLE",
+"debut": "1953-06-28",
+"fonction": "Vice-Président du Conseil"
+},
+{
+"liste": "ministre",
+"prenom": "Pierre-Henri",
+"nom": "TEITGEN",
+"debut": "1953-06-28",
+"fonction": "Vice-Président du Conseil"
+},
+{
+"liste": "ministre",
+"prenom": "François",
+"nom": "MITTERRAND",
+"debut": "1953-06-28",
+"fonction": "Ministre délégué au Conseil de l'Europe"
+},
+{
+"liste": "ministre",
+"prenom": "Edmond",
+"nom": "BARRACHIN",
+"debut": "1953-06-28",
+"fonction": "Ministre d'Etat chargé de la réforme constitutionnelle"
+},
+{
+"liste": "ministre",
+"prenom": "Edward",
+"nom": "CORNIGLION-MOLINIER",
+"debut": "1953-06-28",
+"fonction": "Ministre d'Etat"
+},
+{
+"liste": "ministre",
+"prenom": "Paul",
+"nom": "RIBEYRE",
+"debut": "1953-06-28",
+"fonction": "Garde des Sceaux, Ministre de la Justice"
+},
+{
+"liste": "ministre",
+"prenom": "Georges",
+"nom": "BIDAULT",
+"debut": "1953-06-28",
+"fonction": "Ministre des Affaires étrangères"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Maurice",
+"nom": "SCHUMANN",
+"debut": "1953-06-28",
+"fonction": "SE (affaires étrangères) (à compter du 2 juillet1953)"
+},
+{
+"liste": "ministre",
+"prenom": "Léon",
+"nom": "MARTINAUD-DEPLAT",
+"debut": "1953-06-28",
+"fonction": "Ministre de l'Intérieur"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Edouard",
+"nom": "THIBAULT",
+"debut": "1953-07-02",
+"fonction": "SE (Intérieur) (à compter du 2 juillet 1953)"
+},
+{
+"liste": "ministre",
+"prenom": "René",
+"nom": "PLEVEN",
+"debut": "1953-06-28",
+"fonction": "Ministre de la Défense nationale"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Pierre",
+"nom": "de CHEVIGNE",
+"debut": "1953-07-02",
+"fonction": "SE (guerre) (à compter du 2 juillet 1953)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Joseph",
+"nom": "GAVINI",
+"debut": "1953-07-02",
+"fonction": "SE (marine)  (à compter du 2 juillet 1953)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Louis",
+"nom": "CHRISTIAENS",
+"debut": "1953-07-02",
+"fonction": "SE (forces armées, air) (à compter du 2 juillet 1953)"
+},
+{
+"liste": "ministre",
+"prenom": "Edgar",
+"nom": "FAURE",
+"debut": "1953-06-28",
+"fonction": "Ministre des Finances et des affaires économiques"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Henri",
+"nom": "ULVER",
+"debut": "1953-07-02",
+"fonction": "SE (budget) (à compter du 2 juillet 1953)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Bernard",
+"nom": "LAFAY",
+"debut": "1953-07-02",
+"fonction": "SE (affaires économiques) (à compter du 2 juillet 1953)"
+},
+{
+"liste": "ministre",
+"prenom": "André",
+"nom": "MARIE",
+"debut": "1953-06-28",
+"fonction": "Ministre de l'Education nationale"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "André",
+"nom": "CORNU",
+"debut": "1953-07-02",
+"fonction": "SE (Beaux-arts) (à compter du 2 juillet 1953)"
+},
+{
+"liste": "ministre",
+"prenom": "Jacques",
+"nom": "CHASTELLAIN",
+"debut": "1953-06-28",
+"fonction": "Ministre des Travaux publics, des transports et du tourisme"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Paul",
+"nom": "DEVINAT",
+"debut": "1953-07-02",
+"fonction": "SE (travaux publics et aviation civile) (à compter du 2 juillet 1953)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Jules",
+"nom": "RAMARONY",
+"debut": "1953-07-02",
+"fonction": "SE (marine marchande) (à compter du 2 juillet 1953)"
+},
+{
+"liste": "ministre",
+"prenom": "Jean-Marie",
+"nom": "LOUVEL",
+"debut": "1953-06-28",
+"fonction": "Ministre de l'Industrie et du Commerce"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Raymond",
+"nom": "BOISDE",
+"debut": "1953-07-02",
+"fonction": "SE (commerce) (à compter du 2 juillet 1953)"
+},
+{
+"liste": "ministre",
+"prenom": "Roger",
+"nom": "HOUDET",
+"debut": "1953-06-28",
+"fonction": "Ministre de l'Agriculture"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Philippe",
+"nom": "OLMI",
+"debut": "1953-07-02",
+"fonction": "SE (agriculture) (à compter du 2 juillet 1953)"
+},
+{
+"liste": "ministre",
+"prenom": "Louis",
+"nom": "JACQUINOT",
+"debut": "1953-06-28",
+"fonction": "Ministre de la France d'Outre-Mer"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "François",
+"nom": "SCHLEITER",
+"debut": "1953-06-28",
+"fonction": "SE (France d'Outre-Mer)"
+},
+{
+"liste": "ministre",
+"prenom": "Paul",
+"nom": "BACON",
+"debut": "1953-06-28",
+"fonction": "Ministre du Travail et de la Sécurité sociale"
+},
+{
+"liste": "ministre",
+"prenom": "Maurice",
+"nom": "LEMAIRE",
+"debut": "1953-06-28",
+"fonction": "Ministre de la Reconstruction et du Logement"
+},
+{
+"liste": "ministre",
+"prenom": "André",
+"nom": "MUTTER",
+"debut": "1953-06-28",
+"fonction": "Ministre des Anciens combattants et victimes de guerre"
+},
+{
+"liste": "ministre",
+"prenom": "Paul",
+"nom": "COSTE-FLORET",
+"debut": "1953-06-28",
+"fonction": "Ministre de la Santé publique et de la population"
+},
+{
+"liste": "ministre",
+"prenom": "Pierre",
+"nom": "FERRI",
+"debut": "1953-06-28",
+"fonction": "Ministre des Postes, Télégraphes, Téléphones"
+},
+{
+"liste": "ministre",
+"prenom": "Edouard",
+"nom": "FREDERIC-DUPONT",
+"debut": "1954-06-03",
+"fonction": "Ministre des Relations avec les Etats associés (à compter du 3 juin 1954)"
+},
+{
+"liste": "chef-gouvernement",
+"prenom": "Pierre",
+"nom": "MENDES FRANCE",
+"debut": "1954-06-19",
+"fonction": "Président du Conseil des Ministres, ministre des Affaires étrangères"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "André",
+"nom": "BETTENCOURT",
+"debut": "1954-06-19",
+"fonction": "SE (Présidence du Conseil des Ministres)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Jean",
+"nom": "MASSON",
+"debut": "1954-06-19",
+"fonction": "SE (Présidence du Conseil, Fonction publique) (du 30 juin au 3 septembre 1954, par intérim du 3 septembre au 12 novembre 1954)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "René",
+"nom": "BILLERES",
+"debut": "1954-11-12",
+"fonction": "SE (Présidence du Conseil, relations avec les Assemblées et Fonction publique) (à compter du 12 novembre 1954)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "André",
+"nom": "MOYNET",
+"debut": "1954-11-12",
+"fonction": "SE (Présidence du Conseil) (à compter du 12 novembre 1954)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Henri",
+"nom": "LONGCHAMBON",
+"debut": "1954-06-19",
+"fonction": "SE (Recherche scientifique et progrès technique)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Georges",
+"nom": "GALY-GASPAROU",
+"debut": "1954-06-19",
+"fonction": "SE (information)"
+},
+{
+"liste": "ministre",
+"prenom": "Jean-Michel",
+"nom": "GUERIN DU PABST DE BEAUMONT",
+"debut": "1955-01-20",
+"fonction": "Ministre d'Etat (à compter du 20 janvier 1955)"
+},
+{
+"liste": "ministre",
+"prenom": "Edgar",
+"nom": "FAURE",
+"debut": "1955-01-20",
+"fonction": "Ministre des Affaires étrangères (à compter du 20 janvier 1955)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Jean-Michel",
+"nom": "GUERIN DU PABST DE BEAUMONT",
+"debut": "1954-06-19",
+"fonction": "SE"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Roland",
+"nom": "de MOUSTIER",
+"debut": "1954-06-19",
+"fonction": "SE"
+},
+{
+"liste": "ministre",
+"prenom": "Emile",
+"nom": "HUGUES",
+"debut": "1954-06-19",
+"fonction": "Garde des Sceaux, Ministre de la Justice"
+},
+{
+"liste": "ministre",
+"prenom": "Jean-Michel",
+"nom": "GUERIN DU PABST DE BEAUMONT",
+"debut": "1954-06-19",
+"fonction": "Garde des Sceaux, Ministre de la Justice"
+},
+{
+"liste": "ministre",
+"prenom": "Emmanuel",
+"nom": "TEMPLE",
+"debut": "1955-01-20",
+"fonction": "Garde des Sceaux, Ministre de la Justice"
+},
+{
+"liste": "ministre",
+"prenom": "François",
+"nom": "MITTERRAND",
+"debut": "1954-06-19",
+"fonction": "Ministre de l'Intérieur"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Joseph",
+"nom": "CONOMBO",
+"debut": "1954-06-19",
+"fonction": "SE"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Henri",
+"nom": "CAILLAVET",
+"debut": "1954-06-19",
+"fonction": "SE"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Raymond",
+"nom": "MONDON",
+"debut": "1955-01-20",
+"fonction": "SE"
+},
+{
+"liste": "ministre",
+"prenom": "Gérard",
+"nom": "KOENIG",
+"debut": "1954-06-19",
+"fonction": "Ministre de la Défense nationale et des Forces armées"
+},
+{
+"liste": "ministre",
+"prenom": "Emmanuel",
+"nom": "TEMPLE",
+"debut": "1954-06-19",
+"fonction": "Ministre de la Défense nationale et des Forces armées"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Jacques",
+"nom": "CHEVALLIER",
+"debut": "1954-06-19",
+"fonction": "SE (guerre)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "André",
+"nom": "MONTEIL",
+"debut": "1954-06-19",
+"fonction": "SE (marine)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Henri",
+"nom": "CAILLAVET",
+"debut": "1954-06-19",
+"fonction": "SE (marine)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Diomède",
+"nom": "CATROUX",
+"debut": "1954-06-19",
+"fonction": "SE (air)"
+},
+{
+"liste": "ministre",
+"prenom": "Jacques",
+"nom": "CHEVALLIER",
+"debut": "1955-01-20",
+"fonction": "Ministre de la Défense nationale  (à compter du 20 janvier 1955)"
+},
+{
+"liste": "ministre",
+"prenom": "Maurice",
+"nom": "BOURGES-MAUNOURY",
+"debut": "1955-01-20",
+"fonction": "Ministre des Forces armées  (à compter du 20 janvier 1955)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Diomède",
+"nom": "CATROUX",
+"debut": "1955-01-20",
+"fonction": "SE (armement)  (à compter du 20 janvier 1955)"
+},
+{
+"liste": "ministre",
+"prenom": "Jacques",
+"nom": "CHABAN-DELMAS",
+"debut": "1954-09-03",
+"fonction": "Ministre des Travaux publics, des transports et du tourisme"
+},
+{
+"liste": "ministre",
+"prenom": "Maurice",
+"nom": "BOURGES-MAUNOURY",
+"debut": "1954-06-19",
+"fonction": "Ministre des Travaux publics, des transports et du tourisme"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "André",
+"nom": "BARDON",
+"debut": "1954-06-19",
+"fonction": "SE (postes, télégraphes, téléphones)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Henri",
+"nom": "FOUQUES-DUPARC",
+"debut": "1955-01-20",
+"fonction": "SE (aviation civile) (à compter du 20 janvier 1955)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Raymond",
+"nom": "SCHMITTLEIN",
+"debut": "1955-01-20",
+"fonction": "SE (aviation civile) (à compter du 20 janvier 1955)"
+},
+{
+"liste": "ministre",
+"prenom": "Edgar",
+"nom": "FAURE",
+"debut": "1954-06-19",
+"fonction": "Ministre des Finances, des Affaires économiques et du Plan"
+},
+{
+"liste": "ministre",
+"prenom": "Robert",
+"nom": "BURON",
+"debut": "1955-01-20",
+"fonction": "Ministre des Finances, des Affaires économiques et du Plan"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Henri",
+"nom": "ULVER",
+"debut": "1954-06-19",
+"fonction": "SE (budget)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Henri",
+"nom": "CAILLAVET",
+"debut": "1954-06-19",
+"fonction": "SE (affaires économiques et plan)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Jean",
+"nom": "GILBERT-JULES",
+"debut": "1954-09-03",
+"fonction": "SE (finances et affaires économiques) (à compter du 3 septembre 1954)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Joseph",
+"nom": "CONOMBO",
+"debut": "1954-06-19",
+"fonction": "SE (affaires économiques, problèmes de l'Union française)"
+},
+{
+"liste": "ministre",
+"prenom": "Jean",
+"nom": "BERTHOIN",
+"debut": "1954-06-19",
+"fonction": "Ministre de l'Education nationale"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Joseph",
+"nom": "LANET",
+"debut": "1954-06-19",
+"fonction": "SE (enseignement technique)"
+},
+{
+"liste": "ministre",
+"prenom": "Maurice",
+"nom": "BOURGES-MAUNOURY",
+"debut": "1954-06-19",
+"fonction": "Ministre de l'Industrie et du Commerce"
+},
+{
+"liste": "ministre",
+"prenom": "Henri",
+"nom": "ULVER",
+"debut": "1954-09-03",
+"fonction": "Ministre de l'Industrie et du Commerce"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Philippe",
+"nom": "MONIN",
+"debut": "1954-11-12",
+"fonction": "SE (commerce) (à compter du 12 novembre 1954)"
+},
+{
+"liste": "ministre",
+"prenom": "Roger",
+"nom": "HOUDET",
+"debut": "1954-06-19",
+"fonction": "Ministre de l'Agriculture"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Jean",
+"nom": "RAFFARIN",
+"debut": "1954-06-19",
+"fonction": "SE"
+},
+{
+"liste": "ministre",
+"prenom": "Robert",
+"nom": "BURON",
+"debut": "1954-06-19",
+"fonction": "Ministre de la France d'Outre-Mer"
+},
+{
+"liste": "ministre",
+"prenom": "Jean-Jacques",
+"nom": "JUGLAS",
+"debut": "1955-01-20",
+"fonction": "Ministre de la France d'Outre-Mer"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Roger",
+"nom": "DUVEAU",
+"debut": "1954-06-19",
+"fonction": "SE"
+},
+{
+"liste": "ministre",
+"prenom": "Eugène",
+"nom": "CLAUDIUS-PETIT",
+"debut": "1954-06-19",
+"fonction": "Ministre du Travail et de la Sécurité sociale"
+},
+{
+"liste": "ministre",
+"prenom": "Louis-Paul",
+"nom": "AUJOULAT",
+"debut": "1954-09-03",
+"fonction": "Ministre du Travail et de la Sécurité sociale"
+},
+{
+"liste": "ministre",
+"prenom": "Maurice",
+"nom": "LEMAIRE",
+"debut": "1954-11-12",
+"fonction": "Ministre du Logement et de la Reconstruction"
+},
+{
+"liste": "ministre",
+"prenom": "Eugène",
+"nom": "CLAUDIUS-PETIT",
+"debut": "1954-06-19",
+"fonction": "Ministre du Logement et de la Reconstruction"
+},
+{
+"liste": "ministre",
+"prenom": "Jacques",
+"nom": "CHABAN-DELMAS",
+"debut": "1954-06-19",
+"fonction": "Ministre du Logement et de la Reconstruction"
+},
+{
+"liste": "ministre",
+"prenom": "Emmanuel",
+"nom": "TEMPLE",
+"debut": "1954-06-19",
+"fonction": "Ministre des Anciens Combattants et Victimes de Guerre"
+},
+{
+"liste": "ministre",
+"prenom": "Jean",
+"nom": "MASSON",
+"debut": "1954-09-03",
+"fonction": "Ministre des Anciens Combattants et Victimes de Guerre"
+},
+{
+"liste": "ministre",
+"prenom": "Louis-Paul",
+"nom": "AUJOULAT",
+"debut": "1954-06-19",
+"fonction": "Ministre de la Santé publique et de la Reconstruction"
+},
+{
+"liste": "ministre",
+"prenom": "André",
+"nom": "MONTEIL",
+"debut": "1954-09-03",
+"fonction": "Ministre de la Santé publique et de la Reconstruction"
+},
+{
+"liste": "ministre",
+"prenom": "Guy",
+"nom": "LA CHAMBRE",
+"debut": "1954-09-02",
+"fonction": "Ministre chargé des relations avec les Etats associés à compter du 2 septembre 1954 : Ministre d'Etat chargé des relations avec les Etats associés"
+},
+{
+"liste": "ministre",
+"prenom": "Christian",
+"nom": "FOUCHET",
+"debut": "1954-06-19",
+"fonction": "Ministre des Affaires marocaines et tunisiennes"
+},
+{
+"liste": "chef-gouvernement",
+"prenom": "Edgar",
+"nom": "FAURE",
+"debut": "1955-12-02",
+"fonction": "Président du Conseil, Ministre de l'Intérieur par intérim (à compter du 2 décembre 1955)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Jean",
+"nom": "MEDECIN",
+"debut": "1955-02-23",
+"fonction": "SE"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Léopold-Sédar",
+"nom": "SENGHOR",
+"debut": "1955-02-23",
+"fonction": "SE"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Henri",
+"nom": "LAFOREST",
+"debut": "1955-02-23",
+"fonction": "SE (relations avec les Etats associés)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Jean",
+"nom": "LECANUET",
+"debut": "1955-10-20",
+"fonction": "SE (relations avec les Etats associés)"
+},
+{
+"liste": "ministre",
+"prenom": "Gaston",
+"nom": "PALEWSKI",
+"debut": "1955-02-23",
+"fonction": "Ministre délégué à la Présidence du Conseil"
+},
+{
+"liste": "ministre",
+"prenom": "Pierre",
+"nom": "JULY",
+"debut": "1955-10-20",
+"fonction": "Ministre délégué à la Présidence du Conseil"
+},
+{
+"liste": "ministre",
+"prenom": "Robert",
+"nom": "SCHUMAN",
+"debut": "1955-02-23",
+"fonction": "Garde des Sceaux, Ministre de la"
+},
+{
+"liste": "ministre",
+"prenom": "Antoine",
+"nom": "PINAY",
+"debut": "1955-02-23",
+"fonction": "Ministre des Affaires étrangères"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Jean",
+"nom": "CHAMANT",
+"debut": "1955-10-20",
+"fonction": "SE (à compter du 20 octobre 1955)"
+},
+{
+"liste": "ministre",
+"prenom": "Maurice",
+"nom": "BOURGES-MAUNOURY",
+"debut": "1955-02-23",
+"fonction": "Ministre de l'Intérieur"
+},
+{
+"liste": "ministre",
+"prenom": "Pierre",
+"nom": "BILLOTTE",
+"debut": "1955-10-06",
+"fonction": "Ministre de la Défense nationale et des Forces armées"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Jean",
+"nom": "CROUZIER",
+"debut": "1955-03-01",
+"fonction": "SE (à compter du 1er mars 1955)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Henri",
+"nom": "LAFOREST",
+"debut": "1955-10-20",
+"fonction": "SE (à compter du 1er mars 1955)"
+},
+{
+"liste": "ministre",
+"prenom": "Pierre",
+"nom": "PFLIMLIN",
+"debut": "1955-02-23",
+"fonction": "Ministre des Finances et des Affaires économiques"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Jean",
+"nom": "GILBERT-JULES",
+"debut": "1955-02-23",
+"fonction": "SE"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Pierre",
+"nom": "ABELIN",
+"debut": "1955-03-01",
+"fonction": "SE (affaires économiques) (à compter du 1er mars 1955)"
+},
+{
+"liste": "ministre",
+"prenom": "Pierre-Henri",
+"nom": "TEITGEN",
+"debut": "1955-02-23",
+"fonction": "Ministre de la France d'Outre-Mer"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Maurice",
+"nom": "BAYROU",
+"debut": "1955-02-23",
+"fonction": "SE"
+},
+{
+"liste": "ministre",
+"prenom": "Jean",
+"nom": "BERTHOIN",
+"debut": "1955-02-23",
+"fonction": "Ministre de l'Education nationale"
+},
+{
+"liste": "ministre",
+"prenom": "Edward",
+"nom": "CORNIGLION-MOLINIER",
+"debut": "1955-02-23",
+"fonction": "Ministre des Travaux publics, des transports et du tourisme"
+},
+{
+"liste": "ministre",
+"prenom": "André",
+"nom": "MORICE",
+"debut": "1955-02-23",
+"fonction": "Ministre de l'Industrie et du Commerce"
+},
+{
+"liste": "ministre",
+"prenom": "Jean",
+"nom": "SOURBET",
+"debut": "1955-02-23",
+"fonction": "Ministre de l'Agriculture"
+},
+{
+"liste": "ministre",
+"prenom": "Paul",
+"nom": "BACON",
+"debut": "1955-02-23",
+"fonction": "Ministre du Travail et de la Sécurité sociale"
+},
+{
+"liste": "ministre",
+"prenom": "Roger",
+"nom": "DUCHET",
+"debut": "1955-02-23",
+"fonction": "Ministre de la Reconstruction et de l'urbanisme"
+},
+{
+"liste": "ministre",
+"prenom": "Bernard",
+"nom": "LAFAY",
+"debut": "1955-02-23",
+"fonction": "Ministre de la Santé publique et de la population"
+},
+{
+"liste": "ministre",
+"prenom": "Raymond",
+"nom": "TRIBOULET",
+"debut": "1955-02-23",
+"fonction": "Ministre des Anciens combattants et victimes de guerre"
+},
+{
+"liste": "ministre",
+"prenom": "Vincent",
+"nom": "BADIE",
+"debut": "1955-10-20",
+"fonction": "Ministre des Anciens combattants et victimes de guerre"
+},
+{
+"liste": "ministre",
+"prenom": "Pierre",
+"nom": "JULY",
+"debut": "1955-02-23",
+"fonction": "Ministre des Affaires marocaines et tunisiennes"
+},
+{
+"liste": "ministre",
+"prenom": "Paul",
+"nom": "ANTIER",
+"debut": "1955-02-23",
+"fonction": "Ministre de la Marine marchande"
+},
+{
+"liste": "ministre",
+"prenom": "Edouard",
+"nom": "BONNEFOUS",
+"debut": "1955-02-23",
+"fonction": "Ministre des Postes, Télégraphes et Téléphones"
+},
+{
+"liste": "chef-gouvernement",
+"prenom": "Guy",
+"nom": "MOLLET",
+"debut": "1956-02-01",
+"fonction": "Président du Conseil"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Georges",
+"nom": "GUILLE",
+"debut": "1956-03-17",
+"fonction": "SE (Présidence du Conseil, recherche scientifique et énergie atomique - jusqu'au 17 mars 1956) puis à compter du 17 mars 1956 SE (relations avec les Assemblées et énergie atomique)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Gérard",
+"nom": "JAQUET",
+"debut": "1956-02-01",
+"fonction": "SE (Présidence du Conseil, information)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Pierre",
+"nom": "METAYER",
+"debut": "1956-02-01",
+"fonction": "SE (Présidence du Conseil, fonction publique)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Hammadoun",
+"nom": "DICKO",
+"debut": "1956-03-17",
+"fonction": "Sous-SE (Présidence du Conseil) (à compter du 17 mars 1956)"
+},
+{
+"liste": "ministre",
+"prenom": "Jacques",
+"nom": "CHABAN-DELMAS",
+"debut": "1956-02-21",
+"fonction": "Ministre d'Etat"
+},
+{
+"liste": "ministre",
+"prenom": "François",
+"nom": "MITTERRAND",
+"debut": "1956-02-01",
+"fonction": "Ministre d'Etat, Garde des Sceaux, Ministre de la Justice"
+},
+{
+"liste": "ministre",
+"prenom": "René",
+"nom": "BILLERES",
+"debut": "1956-06-22",
+"fonction": "Ministre d'Etat, chargé de l'Education nationale, de la jeunesse et des sports (à compter du 22 juin 1956)"
+},
+{
+"liste": "ministre",
+"prenom": "Christian",
+"nom": "PINEAU",
+"debut": "1956-02-01",
+"fonction": "Ministre des Affaires étrangères"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Maurice",
+"nom": "FAURE",
+"debut": "1956-02-01",
+"fonction": "SE"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Alain",
+"nom": "SAVARY",
+"debut": "1956-02-01",
+"fonction": "SE (affaires marocaines et tunisiennes)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Pierre",
+"nom": "de FELICE",
+"debut": "1957-02-22",
+"fonction": "SE (à compter du 22 février 1957)"
+},
+{
+"liste": "ministre",
+"prenom": "Jean",
+"nom": "GILBERT-JULES",
+"debut": "1956-02-01",
+"fonction": "Ministre de l'Intérieur"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Maurice",
+"nom": "PIC",
+"debut": "1956-02-01",
+"fonction": "SE"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Marcel",
+"nom": "CHAMPEIX",
+"debut": "1956-02-01",
+"fonction": "SE (affaires algériennes)"
+},
+{
+"liste": "ministre",
+"prenom": "Maurice",
+"nom": "BOURGES-MAUNOURY",
+"debut": "1956-02-01",
+"fonction": "Ministre de la Défense nationale et des Forces armées"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Max",
+"nom": "LEJEUNE",
+"debut": "1956-02-01",
+"fonction": "SE (forces armées, terre, affaires algériennes)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Paul",
+"nom": "ANXIONNAZ",
+"debut": "1956-02-01",
+"fonction": "SE (forces armées, marine)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Henri",
+"nom": "LAFOREST",
+"debut": "1956-02-01",
+"fonction": "SE (forces armées, air)"
+},
+{
+"liste": "ministre",
+"prenom": "Robert",
+"nom": "LACOSTE",
+"debut": "1956-02-01",
+"fonction": "Ministre des affaires économiques et financières"
+},
+{
+"liste": "ministre",
+"prenom": "Paul",
+"nom": "RAMADIER",
+"debut": "1956-02-14",
+"fonction": "Ministre des affaires économiques et financières"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Jean",
+"nom": "FILIPPI",
+"debut": "1956-02-01",
+"fonction": "SE (budget)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Jean",
+"nom": "MASSON",
+"debut": "1956-02-01",
+"fonction": "SE (affaires économiques)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Auguste",
+"nom": "PINTON",
+"debut": "1956-02-01",
+"fonction": "SE (travaux publics, transports, tourisme)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Roger",
+"nom": "DUVEAU",
+"debut": "1956-02-01",
+"fonction": "Sous-SE (marine marchande)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "André",
+"nom": "DULIN",
+"debut": "1956-02-01",
+"fonction": "SE (agriculture)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Kléber",
+"nom": "LOUSTAU",
+"debut": "1956-02-01",
+"fonction": "Sous-SE (agriculture)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Bernard",
+"nom": "CHOCHOY",
+"debut": "1956-02-01",
+"fonction": "SE (reconstruction, logement, industrie, commerce)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Pierre",
+"nom": "de FELICE",
+"debut": "1956-02-01",
+"fonction": "Sous-SE (reconstruction, logement)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Pierre",
+"nom": "de FELICE",
+"debut": "1956-02-22",
+"fonction": "SE (reconstruction, logement)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Maurice",
+"nom": "LEMAIRE",
+"debut": "1956-02-21",
+"fonction": "SE (industrie, commerce)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Hammadoun",
+"nom": "DICKO",
+"debut": "1956-02-01",
+"fonction": "Sous-SE (industrie, commerce)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Eugène",
+"nom": "THOMAS",
+"debut": "1956-02-01",
+"fonction": "SE (postes, télégraphes, téléphones)"
+},
+{
+"liste": "ministre",
+"prenom": "René",
+"nom": "BILLERES",
+"debut": "1956-02-01",
+"fonction": "Ministre de l'Education nationale, de la jeunesse et des sports"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Jacques",
+"nom": "BORDENEUVE",
+"debut": "1956-02-01",
+"fonction": "SE (arts et lettres)"
+},
+{
+"liste": "ministre",
+"prenom": "Gaston",
+"nom": "DEFFERRE",
+"debut": "1956-02-01",
+"fonction": "Ministre de la France d'Outre-Mer"
+},
+{
+"liste": "ministre",
+"prenom": "Albert",
+"nom": "GAZIER",
+"debut": "1956-02-01",
+"fonction": "Ministre des Affaires sociales"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Jean",
+"nom": "MINJOZ",
+"debut": "1956-02-01",
+"fonction": "SE (travail, sécurité sociale)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "André",
+"nom": "MAROSELLI",
+"debut": "1956-02-01",
+"fonction": "SE (santé publique, population)"
+},
+{
+"liste": "ministre",
+"prenom": "Francis",
+"nom": "TANGUY-PRIGENT",
+"debut": "1956-02-01",
+"fonction": "Ministre des anciens combattants et victimes de guerre"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Jean",
+"nom": "LE COUTALLER",
+"debut": "1956-05-02",
+"fonction": "SE (à compter du 2 mai 1956)"
+},
+{
+"liste": "ministre",
+"prenom": "Diomède",
+"nom": "CATROUX",
+"debut": "1956-02-01",
+"fonction": "Ministre résidant en Algérie"
+},
+{
+"liste": "ministre",
+"prenom": "Robert",
+"nom": "LACOSTE",
+"debut": "1956-02-09",
+"fonction": "Ministre résidant en Algérie"
+},
+{
+"liste": "ministre",
+"prenom": "Félix",
+"nom": "HOUPHOUET-BOIGNY",
+"debut": "1956-02-01",
+"fonction": "Ministre délégué à la Présidence du Conseil des Ministres"
+},
+{
+"liste": "ministre",
+"prenom": "Maurice",
+"nom": "BOURGES-MAUNOURY",
+"debut": "1956-02-01",
+"fonction": "Ministre délégué à la Présidence du Conseil des Ministres"
+},
+{
+"liste": "chef-gouvernement",
+"prenom": "Maurice",
+"nom": "BOURGES-MAUNOURY",
+"debut": "1956-02-01",
+"fonction": "Président du Conseil des Ministres"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Georges",
+"nom": "GALY-GASPARROU",
+"debut": "1957-06-17",
+"fonction": "SE (Présidence du Conseil, relations avec les Assemblées) (à compter du 17 juin 1957)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Michel",
+"nom": "SOULIE",
+"debut": "1957-06-17",
+"fonction": "SE (Présidence du Conseil, information) (à compter du 17 juin 1957)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Jean",
+"nom": "MEUNIER",
+"debut": "1957-06-17",
+"fonction": "SE (Présidence du Conseil, fonction publique, réforme administrative) (à compter du 17 juin 1957)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "François",
+"nom": "GIACOBBI",
+"debut": "1957-06-17",
+"fonction": "Sous-SE (Présidence du Conseil) (à compter du 17 juin 1957)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Marie",
+"nom": "FRANCOIS-BENARD",
+"debut": "1957-06-17",
+"fonction": "Sous-SE (Présidence du Conseil) (à compter du 17 juin 1957)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Jacques",
+"nom": "PERIER",
+"debut": "1957-06-17",
+"fonction": "Sous-SE (Présidence du Conseil) (à compter du 17 juin 1957)"
+},
+{
+"liste": "ministre",
+"prenom": "Félix",
+"nom": "HOUPHOUET-BOIGNY",
+"debut": "1956-02-01",
+"fonction": "Ministre d'Etat"
+},
+{
+"liste": "ministre",
+"prenom": "Edward",
+"nom": "CORNIGLION-MOLINIER",
+"debut": "1956-02-01",
+"fonction": "Garde des Sceaux, Ministre de la Justice"
+},
+{
+"liste": "ministre",
+"prenom": "Christian",
+"nom": "PINEAU",
+"debut": "1956-02-01",
+"fonction": "Ministre des Affaires étrangères"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Maurice",
+"nom": "FAURE",
+"debut": "1957-06-17",
+"fonction": "SE (à compter du 17 juin 1957)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Emile",
+"nom": "CLAPAREDE",
+"debut": "1957-06-17",
+"fonction": "SE (affaires marocaines et tunisiennes) (à compter du 17 juin 1957)"
+},
+{
+"liste": "ministre",
+"prenom": "Jean",
+"nom": "GILBERT-JULES",
+"debut": "1956-02-01",
+"fonction": "Ministre de l'Intérieur"
+},
+{
+"liste": "ministre",
+"prenom": "André",
+"nom": "MORICE",
+"debut": "1956-02-01",
+"fonction": "Ministre de la Défense nationale et des Forces armées"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Pierre",
+"nom": "METAYER",
+"debut": "1956-02-01",
+"fonction": "SE (forces armées, terre)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Franck",
+"nom": "ARNAL",
+"debut": "1956-02-01",
+"fonction": "SE (forces armées, marine)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Henri",
+"nom": "LAFOREST",
+"debut": "1956-02-01",
+"fonction": "SE (forces armées, air)"
+},
+{
+"liste": "ministre",
+"prenom": "Félix",
+"nom": "GAILLARD",
+"debut": "1956-02-01",
+"fonction": "Ministre des Finances, des Affaires économiques et du Plan"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Jean-Raymond",
+"nom": "GUYON",
+"debut": "1957-06-17",
+"fonction": "SE (budget) (à compter du 17 juin 1957)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Emile",
+"nom": "HUGUES",
+"debut": "1957-06-17",
+"fonction": "SE (affaires économiques) (à compter du 17 juin 1957)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Edouard",
+"nom": "RAMONET",
+"debut": "1957-06-17",
+"fonction": "SE (énergie) (à compter du 17 juin 1957)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Arthur",
+"nom": "CONTE",
+"debut": "1956-02-01",
+"fonction": "SE (industrie, commerce)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Pierre",
+"nom": "de FELICE",
+"debut": "1957-06-17",
+"fonction": "SE (agriculture) (à compter du 17 juin 1957)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Kléber",
+"nom": "LOUSTAU",
+"debut": "1957-06-17",
+"fonction": "SE (équipement, plan) (à compter du 17 juin 1957)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Bernard",
+"nom": "CHOCHOY",
+"debut": "1957-06-17",
+"fonction": "SE (reconstruction, logement) (à compter du 17 juin 1957)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Eugène",
+"nom": "THOMAS",
+"debut": "1957-06-17",
+"fonction": "SE (postes, télégraphes, téléphones) (à compter du 17 juin 1957)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Jacqueline",
+"nom": "THOME-PATENOTRE",
+"debut": "1957-06-17",
+"fonction": "Sous-SE (reconstruction, logement) (à compter du 17 juin 1957)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Sous-",
+"nom": "SE (aviation civile) (à compter du 17 juin 1957)",
+"debut": "1956-02-01",
+"fonction": "Sous-SE (reconstruction, logement) (à compter du 17 juin 1957)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Achille",
+"nom": "AUBAN",
+"debut": "1956-02-01",
+"fonction": "Sous-SE (reconstruction, logement) (à compter du 17 juin 1957)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Sous-",
+"nom": "SE (marine marchande)",
+"debut": "1956-02-01",
+"fonction": "Sous-SE (reconstruction, logement) (à compter du 17 juin 1957)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Jacques",
+"nom": "FAGGIANELLI",
+"debut": "1956-02-01",
+"fonction": "Sous-SE (reconstruction, logement) (à compter du 17 juin 1957)"
+},
+{
+"liste": "ministre",
+"prenom": "René",
+"nom": "BILLERES",
+"debut": "1956-02-01",
+"fonction": "Ministre de l'Education nationale, de la jeunesse et des sports"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Jacques",
+"nom": "BORDENEUVE",
+"debut": "1957-06-17",
+"fonction": "SE (arts et lettres) (à compter du 17 juin 1957)"
+},
+{
+"liste": "ministre",
+"prenom": "Edouard",
+"nom": "BONNEFOUS",
+"debut": "1956-02-01",
+"fonction": "Ministre des Travaux publics, des Transports et du Tourisme"
+},
+{
+"liste": "ministre",
+"prenom": "Gérard",
+"nom": "JAQUET",
+"debut": "1956-02-01",
+"fonction": "Ministre de la France d'Outre-Mer"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Modibo",
+"nom": "KEITA",
+"debut": "1957-06-17",
+"fonction": "SE (à compter du 17 juin 1957)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Hammadoun",
+"nom": "DICKO",
+"debut": "1957-06-17",
+"fonction": "SE (à compter du 17 juin 1957)"
+},
+{
+"liste": "ministre",
+"prenom": "Albert",
+"nom": "GAZIER",
+"debut": "1956-02-01",
+"fonction": "Ministre des Affaires sociales"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Jean",
+"nom": "MINJOZ",
+"debut": "1957-06-17",
+"fonction": "SE (travail, sécurité sociale) (à compter du 17 juin 1957)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "André",
+"nom": "MAROSELLI",
+"debut": "1957-06-17",
+"fonction": "SE (santé publique, population) (à compter du 17 juin 1957)"
+},
+{
+"liste": "ministre",
+"prenom": "André",
+"nom": "DULIN",
+"debut": "1956-02-01",
+"fonction": "Ministre des anciens combattants et victimes de guerre"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Antoine",
+"nom": "QUINSON",
+"debut": "1957-06-17",
+"fonction": "Sous-SE (anciens combattants et victimes de guerre) (à compter du 17 juin 1957)"
+},
+{
+"liste": "ministre",
+"prenom": "Robert",
+"nom": "LACOSTE",
+"debut": "1956-02-01",
+"fonction": "Ministre de l'Algérie"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Marcel",
+"nom": "CHAMPEIX",
+"debut": "1957-06-19",
+"fonction": "SE (à compter du 19 juin 1957)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Chérif",
+"nom": "SID CARA",
+"debut": "1957-06-19",
+"fonction": "SE (à compter du 19 juin 1957)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Abdelkader",
+"nom": "BARAKROK",
+"debut": "1957-06-19",
+"fonction": "SE (à compter du 19 juin 1957)"
+},
+{
+"liste": "ministre",
+"prenom": "Max",
+"nom": "LEJEUNE",
+"debut": "1956-02-01",
+"fonction": "Ministre du Sahara"
+},
+{
+"liste": "chef-gouvernement",
+"prenom": "Félix",
+"nom": "GAILLARD",
+"debut": "1957-11-06",
+"fonction": "Président du Conseil"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Emile",
+"nom": "CLAPAREDE",
+"debut": "1957-11-11",
+"fonction": "SE (Présidence du Conseil, information) (à compter du 11 novembre 1957)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Raymond",
+"nom": "MARCELLIN",
+"debut": "1957-11-11",
+"fonction": "SE (Présidence du Conseil, fonction publique, réforme administrative) (à compter du 11 novembre 1957)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Modibo",
+"nom": "KEITA",
+"debut": "1957-11-11",
+"fonction": "Sous-SE (Présidence du Conseil) (à compter du 11 novembre 1957)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "François",
+"nom": "GIACOBBI",
+"debut": "1957-11-11",
+"fonction": "Sous-SE (Présidence du Conseil) (à compter du 11 novembre 1957)"
+},
+{
+"liste": "ministre",
+"prenom": "Robert",
+"nom": "LECOURT",
+"debut": "1957-11-06",
+"fonction": "Garde des Sceaux, Ministre de la Justice"
+},
+{
+"liste": "ministre",
+"prenom": "Christian",
+"nom": "PINEAU",
+"debut": "1957-11-06",
+"fonction": "Ministre des Affaires étrangères"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Maurice",
+"nom": "FAURE",
+"debut": "1957-11-11",
+"fonction": "SE (affaires étrangères)  (à compter du 11 novembre 1957)"
+},
+{
+"liste": "ministre",
+"prenom": "René",
+"nom": "BILLERES",
+"debut": "1957-11-06",
+"fonction": "Ministre de l'Education nationale, de la jeunesse et des sports"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Hammadoun",
+"nom": "DICKO",
+"debut": "1957-11-18",
+"fonction": "SE (éducation nationale) (à compter du 18 novembre 1957)"
+},
+{
+"liste": "ministre",
+"prenom": "Maurice",
+"nom": "BOURGES-MAUNOURY",
+"debut": "1957-11-06",
+"fonction": "Ministre de l'Intérieur"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Maurice",
+"nom": "PIC",
+"debut": "1957-11-11",
+"fonction": "SE (intérieur) (à compter du 11 novembre 1957)"
+},
+{
+"liste": "ministre",
+"prenom": "Jacques",
+"nom": "CHABAN-DELMAS",
+"debut": "1957-11-06",
+"fonction": "Ministre de la Défense nationale"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Pierre",
+"nom": "METAYER",
+"debut": "1957-11-11",
+"fonction": "SE (forces armées, terre) (à compter du 11 novembre 1957)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Alain",
+"nom": "POHER",
+"debut": "1957-11-11",
+"fonction": "SE (forces armées, marine) (à compter du 11 novembre 1957)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Louis",
+"nom": "CHRISTIAENS",
+"debut": "1957-11-11",
+"fonction": "SE (forces armées, air) (à compter du 11 novembre 1957)"
+},
+{
+"liste": "ministre",
+"prenom": "Pierre",
+"nom": "PFLIMLIN",
+"debut": "1957-11-06",
+"fonction": "Ministre des Finances, des Affaires économiques et du Plan"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Jean-Raymond",
+"nom": "GUYON",
+"debut": "1957-11-11",
+"fonction": "SE (budget) (à compter du 11 novembre 1957)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Emile",
+"nom": "HUGUES",
+"debut": "1957-11-11",
+"fonction": "SE (affaires économiques) (à compter du 11 novembre 1957)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Eugène",
+"nom": "THOMAS",
+"debut": "1957-11-11",
+"fonction": "SE (postes, télégraphes, téléphones) (à compter du 11 novembre 1957)"
+},
+{
+"liste": "ministre",
+"prenom": "Edouard",
+"nom": "BONNEFOUS",
+"debut": "1957-11-06",
+"fonction": "Ministre des Travaux publics, des Transports et du Tourisme"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Maurice",
+"nom": "SIMONNET",
+"debut": "1957-11-11",
+"fonction": "SE (marine marchande) (à compter du 11 novembre 1957)"
+},
+{
+"liste": "ministre",
+"prenom": "Paul",
+"nom": "RIBEYRE",
+"debut": "1957-11-06",
+"fonction": "Ministre de l'Industrie et du Commerce"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "François",
+"nom": "SCHLEITER",
+"debut": "1957-11-11",
+"fonction": "SE (commerce) (à compter du 11 novembre 1957)"
+},
+{
+"liste": "ministre",
+"prenom": "Roland",
+"nom": "BOSCARY-MONSSERVIN",
+"debut": "1957-11-06",
+"fonction": "Ministre de l'Agriculture"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Henri",
+"nom": "DOREY",
+"debut": "1957-11-11",
+"fonction": "SE  (à compter du 11 novembre 1957)"
+},
+{
+"liste": "ministre",
+"prenom": "Gérard",
+"nom": "JAQUET",
+"debut": "1957-11-06",
+"fonction": "Ministre de la France d'Outre-Mer"
+},
+{
+"liste": "ministre",
+"prenom": "Paul",
+"nom": "BACON",
+"debut": "1957-11-06",
+"fonction": "Ministre du Travail et de la Sécurité sociale"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Hubert",
+"nom": "MAGA-COUTOUCOU",
+"debut": "1957-11-18",
+"fonction": "Sous-SE (à compter du 18 novembre 1957)"
+},
+{
+"liste": "ministre",
+"prenom": "Félix",
+"nom": "HOUPHOUET-BOIGNY",
+"debut": "1957-11-06",
+"fonction": "Ministre de la Santé publique et de la population"
+},
+{
+"liste": "ministre",
+"prenom": "Pierre",
+"nom": "GARET",
+"debut": "1957-11-06",
+"fonction": "Ministre de la Reconstruction et du Logement"
+},
+{
+"liste": "ministre",
+"prenom": "Antoine",
+"nom": "QUINSON",
+"debut": "1957-11-06",
+"fonction": "Ministre des anciens combattants et victimes de guerre"
+},
+{
+"liste": "ministre",
+"prenom": "Robert",
+"nom": "LACOSTE",
+"debut": "1957-11-06",
+"fonction": "Ministre de l'Algérie"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Chérif",
+"nom": "SID CARA",
+"debut": "1957-11-18",
+"fonction": "SE (Algérie) (à compter du 18 novembre 1957)"
+},
+{
+"liste": "secretaire-etat",
+"prenom": "Abdelkader",
+"nom": "BARAKROK",
+"debut": "1957-11-18",
+"fonction": "SE (Algérie) (à compter du 18 novembre 1957)"
+},
+{
+"liste": "ministre",
+"prenom": "Max",
+"nom": "LEJEUNE",
+"debut": "1957-11-06",
+"fonction": "Ministre du Sahara"
+},
+{
+"liste": "chef-gouvernement",
+"prenom": "Pierre",
+"nom": "PFLIMLIN",
+"debut": "1958-05-14",
+"fonction": "Président du Conseil"
+},
+{
+"liste": "ministre",
+"prenom": "Guy",
+"nom": "MOLLET",
+"debut": "1958-05-15",
+"fonction": "Vice-Président du Conseil (à compter du 15 mai 1958)"
+},
+{
+"liste": "ministre",
+"prenom": "Edward",
+"nom": "CORNIGLION-MOLINIER",
+"debut": "1958-05-14",
+"fonction": "Ministre d'Etat, chargé du Sahara"
+},
+{
+"liste": "ministre",
+"prenom": "Félix",
+"nom": "HOUPHOUET-BOIGNY",
+"debut": "1958-05-14",
+"fonction": "Ministre d'Etat"
+},
+{
+"liste": "ministre",
+"prenom": "Max",
+"nom": "LEJEUNE",
+"debut": "1958-05-17",
+"fonction": "Ministre d'Etat (à compter du 17 mai 1958)"
+},
+{
+"liste": "ministre",
+"prenom": "Robert",
+"nom": "LECOURT",
+"debut": "1958-05-14",
+"fonction": "Garde des Sceaux, Ministre de la Justice"
+},
+{
+"liste": "ministre",
+"prenom": "Albert",
+"nom": "GAZIER",
+"debut": "1958-05-17",
+"fonction": "Ministre de l'Information (à compter du 17 mai 1958)"
+},
+{
+"liste": "ministre",
+"prenom": "René",
+"nom": "PLEVEN",
+"debut": "1958-05-14",
+"fonction": "Ministre des Affaires étrangères"
+},
+{
+"liste": "ministre",
+"prenom": "Maurice",
+"nom": "FAURE",
+"debut": "1958-05-14",
+"fonction": "Ministre de l'Intérieur"
+},
+{
+"liste": "ministre",
+"prenom": "Jules",
+"nom": "MOCH",
+"debut": "1958-05-16",
+"fonction": "Ministre de l'Intérieur"
+},
+{
+"liste": "ministre",
+"prenom": "Maurice",
+"nom": "FAURE",
+"debut": "1958-05-17",
+"fonction": "Ministre des Institutions européennes (à compter du 17 mai 1958)"
+},
+{
+"liste": "ministre",
+"prenom": "André",
+"nom": "MUTTER",
+"debut": "1958-05-14",
+"fonction": "Ministre de l'Algérie"
+},
+{
+"liste": "ministre",
+"prenom": "Pierre",
+"nom": "de CHEVIGNE",
+"debut": "1958-05-14",
+"fonction": "Ministre de la Défense nationale et des forces armées"
+},
+{
+"liste": "ministre",
+"prenom": "Edgar",
+"nom": "FAURE",
+"debut": "1958-05-14",
+"fonction": "Ministre des Finances, des Affaires économiques et du Plan"
+},
+{
+"liste": "ministre",
+"prenom": "Jacques",
+"nom": "BORDENEUVE",
+"debut": "1958-05-14",
+"fonction": "Ministre de l'Education nationale"
+},
+{
+"liste": "ministre",
+"prenom": "Edouard",
+"nom": "BONNEFOUS",
+"debut": "1958-05-14",
+"fonction": "Ministre des Travaux publics, des Transports et du Tourisme"
+},
+{
+"liste": "ministre",
+"prenom": "Paul",
+"nom": "RIBEYRE",
+"debut": "1958-05-14",
+"fonction": "Ministre de l'Industrie et du Commerce"
+},
+{
+"liste": "ministre",
+"prenom": "Roland",
+"nom": "BOSCARY-MONSSERVIN",
+"debut": "1958-05-14",
+"fonction": "Ministre de l'Agriculture"
+},
+{
+"liste": "ministre",
+"prenom": "André",
+"nom": "COLIN",
+"debut": "1958-05-14",
+"fonction": "Ministre de la France d'Outre-Mer"
+},
+{
+"liste": "ministre",
+"prenom": "Paul",
+"nom": "BACON",
+"debut": "1958-05-14",
+"fonction": "Ministre du Travail et de la Sécurité sociale"
+},
+{
+"liste": "ministre",
+"prenom": "André",
+"nom": "MAROSELLI",
+"debut": "1958-05-14",
+"fonction": "Ministre de la Santé publique et de la population"
+},
+{
+"liste": "ministre",
+"prenom": "Pierre",
+"nom": "GARET",
+"debut": "1958-05-14",
+"fonction": "Ministre de la Reconstruction et du Logement"
+},
+{
+"liste": "ministre",
+"prenom": "Vincent",
+"nom": "BADIE",
+"debut": "1958-05-14",
+"fonction": "Ministre des anciens combattants et victimes de guerre"
+},
+{
+"liste": "chef-gouvernement",
+"prenom": "Charles",
+"nom": "de GAULLE",
+"debut": "1958-06-12",
+"fonction": "Président du Conseil des Ministres et ministre de la Défense nationale puis (à compter du 12 juin 1958) également chargé des attributions exercées par le ministre de l'Algérie dans le précédent gouvernement"
+},
+{
+"liste": "ministre",
+"prenom": "Guy",
+"nom": "MOLLET",
+"debut": "1958-06-01",
+"fonction": "Ministre d'Etat, puis (à partir du 14 juin 1958) également chargé des attributions conférés au président du Conseil relatives au statut général des Fonctionnaires"
+},
+{
+"liste": "ministre",
+"prenom": "Pierre",
+"nom": "PFLIMLIN",
+"debut": "1958-06-01",
+"fonction": "Ministre d'Etat"
+},
+{
+"liste": "ministre",
+"prenom": "Félix",
+"nom": "HOUPHOUET-BOIGNY",
+"debut": "1958-06-01",
+"fonction": "Ministre d'Etat"
+},
+{
+"liste": "ministre",
+"prenom": "Louis",
+"nom": "JACQUINOT",
+"debut": "1958-06-01",
+"fonction": "Ministre d'Etat"
+},
+{
+"liste": "ministre",
+"prenom": "André",
+"nom": "MALRAUX",
+"debut": "1958-06-01",
+"fonction": "Ministre délégué à la Présidence du Conseil"
+},
+{
+"liste": "ministre",
+"prenom": "André",
+"nom": "BOULLOCHE",
+"debut": "1958-07-07",
+"fonction": "Ministre délégué à la Présidence du Conseil"
+},
+{
+"liste": "ministre",
+"prenom": "Michel",
+"nom": "DEBRE",
+"debut": "1958-06-01",
+"fonction": "Garde des Sceaux, Ministre de la Justice, également du 3 au 9 juin 1958 : Ministre de la Reconstruction et du Logement et Ministre des anciens combattants et victimes de guerre"
+},
+{
+"liste": "ministre",
+"prenom": "Jacques",
+"nom": "SOUSTELLE",
+"debut": "1958-06-01",
+"fonction": "Ministre de l'Information"
+},
+{
+"liste": "ministre",
+"prenom": "Maurice",
+"nom": "COUVE de MURVILLE",
+"debut": "1958-06-01",
+"fonction": "Ministre des Affaires étrangères"
+},
+{
+"liste": "ministre",
+"prenom": "Emile",
+"nom": "PELLETIER",
+"debut": "1958-06-01",
+"fonction": "Ministre de l'Intérieur"
+},
+{
+"liste": "ministre",
+"prenom": "Pierre",
+"nom": "GUILLAUMAT",
+"debut": "1958-06-01",
+"fonction": "Ministre des Armées"
+},
+{
+"liste": "ministre",
+"prenom": "Antoine",
+"nom": "PINAY",
+"debut": "1958-07-23",
+"fonction": "Ministre des Finances, des Affaires économiques à compter du 23 juillet 1958 (également du 3 au 9 juin 1958) : Ministre des Travaux publics, des Transports et du Tourisme et de l'Agriculture"
+},
+{
+"liste": "ministre",
+"prenom": "Eugène",
+"nom": "THOMAS",
+"debut": "1958-06-01",
+"fonction": "Ministre des PTT"
+},
+{
+"liste": "ministre",
+"prenom": "Jean",
+"nom": "BERTHOUIN",
+"debut": "1958-06-01",
+"fonction": "Ministre de l'Education nationale"
+},
+{
+"liste": "ministre",
+"prenom": "Robert",
+"nom": "BURON",
+"debut": "1958-06-09",
+"fonction": "Ministre des Travaux publics, des Transports et du Tourisme (à compter du 9 juin 1958)"
+},
+{
+"liste": "ministre",
+"prenom": "Edouard",
+"nom": "RAMONET",
+"debut": "1958-06-09",
+"fonction": "Ministre de l'Industrie et du Commerce (puis à compter du 9 juin 1958) SE (industrie, commerce)"
+},
+{
+"liste": "ministre",
+"prenom": "Roger",
+"nom": "HOUDET",
+"debut": "1958-06-09",
+"fonction": "Ministre de l'Agriculture (à compter du 9 juin 1958)"
+},
+{
+"liste": "ministre",
+"prenom": "Bernard",
+"nom": "CORNUT-GENTILLE",
+"debut": "1958-06-03",
+"fonction": "Ministre de la France d'Outre-Mer (à compter du 3 juin 1958)"
+},
+{
+"liste": "ministre",
+"prenom": "Paul",
+"nom": "BACON",
+"debut": "1958-06-01",
+"fonction": "Ministre du Travail (également du 3 au 7 juillet 1958) ministre de la Santé publique et de la Population"
+},
+{
+"liste": "ministre",
+"prenom": "Bernard",
+"nom": "CHENOT",
+"debut": "1958-07-07",
+"fonction": "Ministre de la Santé publique et de la Population (à compter du 7 juillet 1958)"
+},
+{
+"liste": "ministre",
+"prenom": "Pierre",
+"nom": "SUDREAU",
+"debut": "1958-06-09",
+"fonction": "Ministre de la Construction (à compter du 9 juin 1958)"
+},
+{
+"liste": "ministre",
+"prenom": "Edmond",
+"nom": "MICHELET",
+"debut": "1958-06-09",
+"fonction": "Ministre des anciens combattants et victimes de guerre (à compter du 9 juin 1958)"
+},
+{
+"liste": "ministre",
+"prenom": "Max",
+"nom": "LEJEUNE",
+"debut": "1958-06-03",
+"fonction": "Ministre du Sahara (à compter du 3 juin 1958)"
+}
+]
