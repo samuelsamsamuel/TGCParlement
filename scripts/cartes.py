@@ -81,8 +81,8 @@ PTS_1789 = 10          # États généraux ou Constituante de 1789
 PTS_CONVENTION = 10
 PTS_FEMMES_1945 = 20
 # Niveaux par rang : part cumulée des cartes, de la plus haute à la plus basse.
-NIVEAUX = [("legendaire", 0.03), ("epique", 0.10), ("rare", 0.25),
-           ("peu-commune", 0.50), ("commune", 1.00)]
+NIVEAUX = [("mythique", 0.005), ("legendaire", 0.025), ("epique", 0.08), ("rare", 0.20),
+           ("peu-commune", 0.50), ("commune", 1.0)]
 ORDRE = [n for n, _ in NIVEAUX]
 
 MOIS = {m: i + 1 for i, m in enumerate(
@@ -217,6 +217,18 @@ EPOQUES = [(1814, "Révolution et Empire"), (1848, "Monarchies constitutionnelle
            (1940, "IIIe République"), (1958, "Libération et IVe République"), (9999, "Ve République")]
 
 
+def groupe_principal(mandats):
+    """Groupe politique où le parlementaire a siégé le plus longtemps (somme des durées de mandat)."""
+    durees = Counter()
+    for m in mandats:
+        g = (m.get("groupe") or "").strip()
+        if not g or g.isdigit() or not m.get("debut"):
+            continue
+        fin = m.get("fin") or AUJOURDHUI.isoformat()
+        durees[g] += max(1, (date.fromisoformat(fin) - date.fromisoformat(m["debut"])).days)
+    return durees.most_common(1)[0][0] if durees else None
+
+
 def epoque(c):
     debuts = [m["debut"] for m in c.get("mandats", []) if m.get("debut")]
     if not debuts:
@@ -309,7 +321,7 @@ def cartes_senateurs(cartes, listes):
         annees = round(jours / 365.25, 1)
         distinctions = [{"code": l["code"], "points": l["points"], "libelle": l["libelle"],
                          "plancher": l.get("plancher")} for l in listes if ident in l["ids"]]
-        carte = {"id": ident, "nom": s["nom"], "sexe": s["sexe"], "naissance": s["naissance"],
+        carte = {"id": ident, "nom": s["nom"], "sexe": s["sexe"], "naissance": s["naissance"], "groupe": s.get("groupe"),
                  "lieu_naissance": None, "deces": s["deces"], "annees_mandat": annees,
                  "mandats": mandats, "distinctions": distinctions,
                  "score": score_carte(annees, distinctions),
@@ -484,6 +496,8 @@ def main():
     par_epoque = defaultdict(list)
     for c in cartes:
         c["epoque"] = epoque(c)
+        if not c.get("groupe"):
+            c["groupe"] = groupe_principal(c.get("mandats", []))
         c["en_exercice"] = c["id"] in actuels
         par_epoque[c["epoque"]].append(c)
     for groupe in par_epoque.values():
@@ -496,8 +510,9 @@ def main():
             p = d.get("plancher")
             if p and ORDRE.index(p) < ORDRE.index(c["rarete"]):
                 c["rarete"] = p
-        if c["en_exercice"] and c["rarete"] != ORDRE[0]:
-            c["rarete"] = ORDRE[ORDRE.index(c["rarete"]) - 1]  # un niveau de plus pour les élus en exercice
+        if c["en_exercice"] and ORDRE.index(c["rarete"]) > ORDRE.index("legendaire"):
+            # un niveau de plus pour les élus en exercice, sans jamais atteindre « mythique »
+            c["rarete"] = ORDRE[ORDRE.index(c["rarete"]) - 1]
     cartes.sort(key=lambda c: (-c["score"], str(c["id"])))
     total = len(cartes)
 
