@@ -1,0 +1,2814 @@
+{
+"10671": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2019-10-01",
+"fin": "2023-10-02"
+}
+],
+"18366": [
+{
+"fonction": "Président de la commission des affaires sociales",
+"liste": "presidence-commission",
+"debut": "2017-06-30",
+"fin": "2020-07-07"
+}
+],
+"19687": [
+{
+"fonction": "Président de la commission des affaires culturelles et de l'éducation",
+"liste": "presidence-commission",
+"debut": "2024-07-20",
+"fin": "2025-09-30"
+}
+],
+"19372": [
+{
+"fonction": "Vice-Président de l'Assemblée nationale",
+"liste": "bureau-vp-questeur",
+"debut": "2019-10-01",
+"fin": "2022-06-21"
+}
+],
+"19249": [
+{
+"fonction": "Président du groupe Rassemblement National",
+"liste": "presidence-groupe",
+"debut": "2022-06-29",
+"fin": null
+}
+],
+"19978": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2025-10-02",
+"fin": null
+}
+],
+"1358": [
+{
+"fonction": "Président de la commission des finances, de l'économie générale et du contrôle budgétaire",
+"liste": "presidence-commission",
+"debut": "2010-02-24",
+"fin": "2012-06-16"
+}
+],
+"19697": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2022-06-28",
+"fin": "2022-06-28"
+}
+],
+"19578": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2022-06-28",
+"fin": "2022-06-28"
+}
+],
+"2412": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2007-06-27",
+"fin": "2010-10-05"
+}
+],
+"19155": [
+{
+"fonction": "Président de la commission des affaires culturelles et de l'éducation",
+"liste": "presidence-commission",
+"debut": "2022-06-30",
+"fin": "2022-07-05"
+}
+],
+"6349": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2007-06-27",
+"fin": "2012-06-19"
+}
+],
+"19751": [
+{
+"fonction": "Rapporteur général (Conférence des Présidents)",
+"liste": "rapporteur-general",
+"debut": "2024-07-20",
+"fin": "2025-01-21"
+},
+{
+"fonction": "Rapporteur général (Commission des affaires sociales)",
+"liste": "rapporteur-general",
+"debut": "2024-07-20",
+"fin": "2025-01-21"
+}
+],
+"19745": [
+{
+"fonction": "Rapporteur général (Commission spéciale chargée d’examiner le projet de loi visant à sécuriser et réguler l’espace numérique)",
+"liste": "rapporteur-general",
+"debut": "2023-08-29",
+"fin": "2024-04-10"
+}
+],
+"6601": [
+{
+"fonction": "Vice-Président de l'Assemblée nationale",
+"liste": "bureau-vp-questeur",
+"debut": "2005-10-04",
+"fin": "2007-06-19"
+}
+],
+"10707": [
+{
+"fonction": "Président du groupe Nouveau Centre",
+"liste": "presidence-groupe",
+"debut": "2011-07-06",
+"fin": "2012-06-19"
+}
+],
+"10645": [
+{
+"fonction": "Président du groupe Gauche démocrate et républicaine",
+"liste": "presidence-groupe",
+"debut": "2012-06-26",
+"fin": "2022-06-21"
+},
+{
+"fonction": "Président du groupe Gauche démocrate et républicaine - NUPES",
+"liste": "presidence-groupe",
+"debut": "2022-06-29",
+"fin": "2024-06-09"
+},
+{
+"fonction": "Président du groupe Gauche Démocrate et Républicaine",
+"liste": "presidence-groupe",
+"debut": "2024-07-19",
+"fin": "2025-03-31"
+}
+],
+"17282": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2007-06-26",
+"fin": "2012-06-19"
+},
+{
+"fonction": "Président du groupe Écologiste",
+"liste": "presidence-groupe",
+"debut": "2012-06-26",
+"fin": "2015-10-13"
+},
+{
+"fonction": "Vice-Président de l'Assemblée nationale",
+"liste": "bureau-vp-questeur",
+"debut": "2016-05-18",
+"fin": "2017-06-20"
+}
+],
+"19242": [
+{
+"fonction": "Président du groupe La République en Marche",
+"liste": "presidence-groupe",
+"debut": "2018-09-18",
+"fin": "2020-09-09"
+}
+],
+"10690": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2008-10-01",
+"fin": "2017-06-20"
+}
+],
+"321": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2007-06-27",
+"fin": "2008-10-01"
+}
+],
+"19018": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2017-06-28",
+"fin": "2021-08-31"
+}
+],
+"10728": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2005-10-04",
+"fin": "2007-06-19"
+},
+{
+"fonction": "Questeur de l'Assemblée nationale",
+"liste": "bureau-vp-questeur",
+"debut": "2007-06-27",
+"fin": "2012-06-19"
+}
+],
+"1852": [
+{
+"fonction": "Questeur de l'Assemblée nationale",
+"liste": "bureau-vp-questeur",
+"debut": "2012-06-27",
+"fin": "2017-06-20"
+}
+],
+"19985": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2024-07-20",
+"fin": "2025-10-01"
+}
+],
+"7788": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2012-06-27",
+"fin": "2013-09-30"
+}
+],
+"19732": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2022-06-28",
+"fin": "2022-06-28"
+}
+],
+"1110": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2008-10-01",
+"fin": "2012-06-19"
+},
+{
+"fonction": "Vice-Président de l'Assemblée nationale",
+"liste": "bureau-vp-questeur",
+"debut": "2009-10-06",
+"fin": "2010-10-05"
+}
+],
+"19098": [
+{
+"fonction": "Président de la commission des finances, de l'économie générale et du contrôle budgétaire",
+"liste": "presidence-commission",
+"debut": "2022-06-30",
+"fin": null
+}
+],
+"7800": [
+{
+"fonction": "Vice-Président de l'Assemblée nationale",
+"liste": "bureau-vp-questeur",
+"debut": "2009-10-06",
+"fin": "2019-01-09"
+}
+],
+"17318": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2012-06-27",
+"fin": "2017-06-20"
+}
+],
+"19307": [
+{
+"fonction": "Président du groupe Écologie Démocratie Solidarité",
+"liste": "presidence-groupe",
+"debut": "2020-05-20",
+"fin": "2020-10-16"
+}
+],
+"19090": [
+{
+"fonction": "Vice-Président de l'Assemblée nationale",
+"liste": "bureau-vp-questeur",
+"debut": "2022-06-29",
+"fin": null
+}
+],
+"1950": [
+{
+"fonction": "Président du groupe Union pour un Mouvement Populaire",
+"liste": "presidence-groupe",
+"debut": "2007-06-27",
+"fin": "2010-11-23"
+}
+],
+"10619": [
+{
+"fonction": "Vice-Président de l'Assemblée nationale",
+"liste": "bureau-vp-questeur",
+"debut": "2011-07-07",
+"fin": "2012-06-19"
+}
+],
+"10785": [
+{
+"fonction": "Vice-Président de l'Assemblée nationale",
+"liste": "bureau-vp-questeur",
+"debut": "2019-01-15",
+"fin": "2019-09-30"
+}
+],
+"18352": [
+{
+"fonction": "Vice-Président de l'Assemblée nationale",
+"liste": "bureau-vp-questeur",
+"debut": "2012-06-27",
+"fin": "2016-05-09"
+}
+],
+"17290": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2019-10-01",
+"fin": "2021-01-21"
+}
+],
+"10689": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2007-06-27",
+"fin": "2014-09-30"
+}
+],
+"19785": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2022-06-28",
+"fin": "2022-06-28"
+}
+],
+"1291": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2002-06-26",
+"fin": "2007-06-19"
+}
+],
+"19354": [
+{
+"fonction": "Vice-Président de l'Assemblée nationale",
+"liste": "bureau-vp-questeur",
+"debut": "2017-06-28",
+"fin": "2022-06-21"
+}
+],
+"19196": [
+{
+"fonction": "Vice-Président de l'Assemblée nationale",
+"liste": "bureau-vp-questeur",
+"debut": "2017-06-28",
+"fin": "2018-01-16"
+},
+{
+"fonction": "Président de la commission des lois constitutionnelles, de la législation et de l'administration générale de la République",
+"liste": "presidence-commission",
+"debut": "2022-06-30",
+"fin": "2024-06-09"
+}
+],
+"19429": [
+{
+"fonction": "Président de la commission du développement durable et de l'aménagement du territoire",
+"liste": "presidence-commission",
+"debut": "2022-06-30",
+"fin": "2024-06-09"
+}
+],
+"19694": [
+{
+"fonction": "Vice-Président de l'Assemblée nationale",
+"liste": "bureau-vp-questeur",
+"debut": "2022-06-29",
+"fin": null
+}
+],
+"19112": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2017-06-21",
+"fin": "2022-06-21"
+}
+],
+"5520": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2008-10-01",
+"fin": "2009-10-06"
+}
+],
+"17275": [
+{
+"fonction": "Vice-Président de l'Assemblée nationale",
+"liste": "bureau-vp-questeur",
+"debut": "2024-07-19",
+"fin": "2025-09-30"
+},
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2025-10-02",
+"fin": null
+}
+],
+"19060": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2025-10-02",
+"fin": null
+}
+],
+"17213": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2007-06-26",
+"fin": "2012-06-19"
+}
+],
+"3341": [
+{
+"fonction": "Vice-Président de l'Assemblée nationale",
+"liste": "bureau-vp-questeur",
+"debut": "2007-06-27",
+"fin": "2008-10-01"
+}
+],
+"19069": [
+{
+"fonction": "Vice-Président de l'Assemblée nationale",
+"liste": "bureau-vp-questeur",
+"debut": "2017-06-28",
+"fin": "2019-09-30"
+}
+],
+"19820": [
+{
+"fonction": "Président de la commission des affaires économiques",
+"liste": "presidence-commission",
+"debut": "2024-10-09",
+"fin": "2025-09-30"
+}
+],
+"19775": [
+{
+"fonction": "Vice-Président de l'Assemblée nationale",
+"liste": "bureau-vp-questeur",
+"debut": "2025-10-01",
+"fin": null
+}
+],
+"19689": [
+{
+"fonction": "Questeur de l'Assemblée nationale",
+"liste": "bureau-vp-questeur",
+"debut": "2024-02-13",
+"fin": null
+}
+],
+"19735": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2022-06-28",
+"fin": "2022-06-28"
+}
+],
+"1466": [
+{
+"fonction": "Rapporteur général (Commission des finances, de l'économie générale et du contrôle budgétaire)",
+"liste": "rapporteur-general",
+"debut": "2005-10-04",
+"fin": "2012-06-19"
+},
+{
+"fonction": "Président de la commission des finances, de l'économie générale et du contrôle budgétaire",
+"liste": "presidence-commission",
+"debut": "2012-06-29",
+"fin": "2017-06-20"
+}
+],
+"19327": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2017-06-21",
+"fin": "2022-06-21"
+}
+],
+"4840": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2007-06-27",
+"fin": "2012-06-19"
+}
+],
+"19766": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2024-07-20",
+"fin": null
+}
+],
+"S08052W": [
+{
+"fonction": "Rapporteur général (Commission des affaires sociales)",
+"liste": "rapporteur-general",
+"debut": "2011-10-01",
+"fin": "2014-10-07"
+}
+],
+"19188": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2019-10-01",
+"fin": "2022-06-21"
+}
+],
+"18510": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2014-10-01",
+"fin": "2015-09-30"
+}
+],
+"1257": [
+{
+"fonction": "Président de la commission des affaires économiques",
+"liste": "presidence-commission",
+"debut": "2012-06-28",
+"fin": "2015-08-19"
+}
+],
+"19261": [
+{
+"fonction": "Président du groupe Renaissance",
+"liste": "presidence-groupe",
+"debut": "2023-07-26",
+"fin": "2024-06-09"
+}
+],
+"19393": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2023-05-10",
+"fin": "2024-06-09"
+}
+],
+"17341": [
+{
+"fonction": "Président de la commission des affaires sociales",
+"liste": "presidence-commission",
+"debut": "2012-06-28",
+"fin": "2017-06-20"
+}
+],
+"S19711U": [
+{
+"fonction": "Rapporteur général (Commission des finances)",
+"liste": "rapporteur-general",
+"debut": "2026-10-07",
+"fin": null
+}
+],
+"19557": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2024-07-20",
+"fin": "2025-10-01"
+}
+],
+"19295": [
+{
+"fonction": "Rapporteur général (Mission d'information commune sur la réglementation et l'impact des différents usages du cannabis)",
+"liste": "rapporteur-general",
+"debut": "2020-01-14",
+"fin": "2021-06-29"
+}
+],
+"20009": [
+{
+"fonction": "Rapporteur général (Commission spéciale chargée d'examiner la proposition de loi apportant une réponse intégrale au phénomène des violences sexuelles et sexistes contre les femmes et les enfants et la proposition de loi organique visant à adapter l'autorité judiciaire à la lutte contre les violences sexuelles et intrafamiliales)",
+"liste": "rapporteur-general",
+"debut": "2026-09-07",
+"fin": null
+}
+],
+"S19569H": [
+{
+"fonction": "Rapporteur général (Commission des affaires sociales)",
+"liste": "rapporteur-general",
+"debut": "2026-10-07",
+"fin": null
+}
+],
+"18507": [
+{
+"fonction": "Rapporteur général (Commission des finances, de l'économie générale et du contrôle budgétaire)",
+"liste": "rapporteur-general",
+"debut": "2014-04-23",
+"fin": "2017-06-20"
+},
+{
+"fonction": "Président du groupe Nouvelle Gauche",
+"liste": "presidence-groupe",
+"debut": "2018-04-12",
+"fin": "2018-09-11"
+},
+{
+"fonction": "Président du groupe Socialistes et apparentés",
+"liste": "presidence-groupe",
+"debut": "2018-09-12",
+"fin": "2022-06-21"
+},
+{
+"fonction": "Vice-Président de l'Assemblée nationale",
+"liste": "bureau-vp-questeur",
+"debut": "2022-06-29",
+"fin": "2024-06-09"
+}
+],
+"19262": [
+{
+"fonction": "Président de la commission du développement durable et de l'aménagement du territoire",
+"liste": "presidence-commission",
+"debut": "2020-10-01",
+"fin": "2022-06-21"
+}
+],
+"17214": [
+{
+"fonction": "Président du groupe Union des démocrates et indépendants",
+"liste": "presidence-groupe",
+"debut": "2014-04-15",
+"fin": "2017-06-20"
+},
+{
+"fonction": "Président du groupe Libertés et Territoires",
+"liste": "presidence-groupe",
+"debut": "2018-10-18",
+"fin": "2020-09-08"
+}
+],
+"18537": [
+{
+"fonction": "Président de la commission des affaires économiques",
+"liste": "presidence-commission",
+"debut": "2024-02-14",
+"fin": null
+}
+],
+"19153": [
+{
+"fonction": "Vice-Président de l'Assemblée nationale",
+"liste": "bureau-vp-questeur",
+"debut": "2022-06-29",
+"fin": "2024-06-09"
+}
+],
+"19418": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2023-05-10",
+"fin": "2024-06-09"
+}
+],
+"19290": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2023-10-02",
+"fin": "2024-06-09"
+}
+],
+"18500": [
+{
+"fonction": "Président du groupe Écologiste",
+"liste": "presidence-groupe",
+"debut": "2013-01-14",
+"fin": "2015-07-12"
+},
+{
+"fonction": "Président de la commission du développement durable et de l'aménagement du territoire",
+"liste": "presidence-commission",
+"debut": "2017-06-30",
+"fin": "2020-07-09"
+}
+],
+"10043": [
+{
+"fonction": "Président de la commission des lois constitutionnelles, de la législation et de l'administration générale de la République",
+"liste": "presidence-commission",
+"debut": "2016-02-03",
+"fin": "2017-06-20"
+}
+],
+"13402": [
+{
+"fonction": "Président du groupe Droite Républicaine",
+"liste": "presidence-groupe",
+"debut": "2024-07-19",
+"fin": null
+}
+],
+"5273": [
+{
+"fonction": "Questeur de l'Assemblée nationale",
+"liste": "bureau-vp-questeur",
+"debut": "2002-06-26",
+"fin": "2007-06-19"
+},
+{
+"fonction": "Président de la commission des finances, de l'économie générale et du contrôle budgétaire",
+"liste": "presidence-commission",
+"debut": "2007-06-28",
+"fin": "2010-02-23"
+}
+],
+"10751": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2011-07-07",
+"fin": "2017-06-20"
+}
+],
+"18372": [
+{
+"fonction": "Président de la commission de la défense nationale et des forces armées",
+"liste": "presidence-commission",
+"debut": "2017-06-30",
+"fin": "2019-09-30"
+}
+],
+"19200": [
+{
+"fonction": "Vice-Président de l'Assemblée nationale",
+"liste": "bureau-vp-questeur",
+"debut": "2022-06-29",
+"fin": "2024-06-09"
+}
+],
+"19757": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2024-07-20",
+"fin": "2025-10-01"
+},
+{
+"fonction": "Président du groupe Libertés, Indépendants, Outre-mer et Territoires",
+"liste": "presidence-groupe",
+"debut": "2025-03-01",
+"fin": "2025-10-28"
+}
+],
+"17297": [
+{
+"fonction": "Questeur de l'Assemblée nationale",
+"liste": "bureau-vp-questeur",
+"debut": "2018-01-17",
+"fin": "2024-06-09"
+},
+{
+"fonction": "Président du groupe À Droite",
+"liste": "presidence-groupe",
+"debut": "2024-07-19",
+"fin": "2024-09-11"
+},
+{
+"fonction": "Président du groupe UDR",
+"liste": "presidence-groupe",
+"debut": "2024-09-12",
+"fin": "2025-09-04"
+},
+{
+"fonction": "Président du groupe Union des droites pour la République",
+"liste": "presidence-groupe",
+"debut": "2025-09-05",
+"fin": null
+}
+],
+"18419": [
+{
+"fonction": "Rapporteur général (Commission spéciale pour l’examen du projet de loi relatif à l’accompagnement des malades et de la fin de vie)",
+"liste": "rapporteur-general",
+"debut": "2024-04-10",
+"fin": "2024-06-09"
+}
+],
+"19669": [
+{
+"fonction": "Vice-Président de l'Assemblée nationale",
+"liste": "bureau-vp-questeur",
+"debut": "2024-07-19",
+"fin": null
+}
+],
+"17367": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2007-06-26",
+"fin": "2012-06-16"
+}
+],
+"19304": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2023-05-10",
+"fin": "2024-06-09"
+}
+],
+"7589": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2004-10-01",
+"fin": "2007-06-19"
+},
+{
+"fonction": "Vice-Président de l'Assemblée nationale",
+"liste": "bureau-vp-questeur",
+"debut": "2007-06-27",
+"fin": "2008-10-01"
+}
+],
+"19209": [
+{
+"fonction": "Président de la commission des affaires économiques",
+"liste": "presidence-commission",
+"debut": "2022-06-30",
+"fin": "2024-02-09"
+},
+{
+"fonction": "Rapporteur général (Commission spéciale chargée d’examiner le projet de loi relatif à l'industrie verte)",
+"liste": "rapporteur-general",
+"debut": "2023-06-28",
+"fin": "2023-10-11"
+}
+],
+"19057": [
+{
+"fonction": "Président de la commission des lois constitutionnelles, de la législation et de l'administration générale de la République",
+"liste": "presidence-commission",
+"debut": "2017-06-30",
+"fin": "2022-06-20"
+}
+],
+"2031": [
+{
+"fonction": "Rapporteur général (Conférence des Présidents)",
+"liste": "rapporteur-general",
+"debut": "2024-07-20",
+"fin": "2025-09-30"
+},
+{
+"fonction": "Rapporteur général (Commission des finances, de l'économie générale et du contrôle budgétaire)",
+"liste": "rapporteur-general",
+"debut": "2024-07-20",
+"fin": "2025-09-30"
+}
+],
+"18476": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2012-06-26",
+"fin": "2017-06-20"
+},
+{
+"fonction": "Président du groupe Horizons et apparentés",
+"liste": "presidence-groupe",
+"debut": "2022-06-29",
+"fin": "2024-06-09"
+},
+{
+"fonction": "Président du groupe Horizons & Indépendants",
+"liste": "presidence-groupe",
+"debut": "2024-07-19",
+"fin": null
+}
+],
+"4397": [
+{
+"fonction": "Questeur de l'Assemblée nationale",
+"liste": "bureau-vp-questeur",
+"debut": "2016-09-27",
+"fin": "2017-06-20"
+}
+],
+"10621": [
+{
+"fonction": "Président de la commission de la défense nationale et des forces armées",
+"liste": "presidence-commission",
+"debut": "2012-06-28",
+"fin": "2017-06-20"
+}
+],
+"19080": [
+{
+"fonction": "Rapporteur général (Commission spéciale chargée d'examiner le projet de loi portant lutte contre le dérèglement climatique et renforcement de la résilience face à ses effets)",
+"liste": "rapporteur-general",
+"debut": "2021-02-16",
+"fin": "2021-08-22"
+},
+{
+"fonction": "Rapporteur général (Commission des finances, de l'économie générale et du contrôle budgétaire)",
+"liste": "rapporteur-general",
+"debut": "2022-06-30",
+"fin": "2024-06-09"
+}
+],
+"19353": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2017-06-21",
+"fin": "2022-06-21"
+}
+],
+"19246": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2017-06-28",
+"fin": "2019-09-30"
+}
+],
+"17345": [
+{
+"fonction": "Vice-Président de l'Assemblée nationale",
+"liste": "bureau-vp-questeur",
+"debut": "2011-10-03",
+"fin": "2012-06-19"
+}
+],
+"18477": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2012-06-26",
+"fin": "2017-06-20"
+}
+],
+"19282": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2017-06-28",
+"fin": "2022-06-21"
+}
+],
+"10691": [
+{
+"fonction": "Président de la commission du développement durable et de l'aménagement du territoire",
+"liste": "presidence-commission",
+"debut": "2010-12-01",
+"fin": "2012-06-19"
+}
+],
+"10776": [
+{
+"fonction": "Président de la commission des affaires culturelles et de l'éducation",
+"liste": "presidence-commission",
+"debut": "2009-07-01",
+"fin": "2012-06-19"
+},
+{
+"fonction": "Questeur de l'Assemblée nationale",
+"liste": "bureau-vp-questeur",
+"debut": "2024-07-19",
+"fin": null
+}
+],
+"19259": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2023-10-02",
+"fin": "2025-10-01"
+}
+],
+"17356": [
+{
+"fonction": "Vice-Président de l'Assemblée nationale",
+"liste": "bureau-vp-questeur",
+"debut": "2012-06-27",
+"fin": "2017-06-20"
+}
+],
+"2588": [
+{
+"fonction": "Vice-Président de l'Assemblée nationale",
+"liste": "bureau-vp-questeur",
+"debut": "2009-10-06",
+"fin": "2010-10-05"
+},
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2010-10-05",
+"fin": "2012-06-19"
+}
+],
+"19174": [
+{
+"fonction": "Rapporteur général (Commission spéciale chargée d'examiner le projet de loi instituant un système universel de retraite et le projet de loi organique relatif au système universel de retraite)",
+"liste": "rapporteur-general",
+"debut": "2020-01-28",
+"fin": "2022-06-21"
+}
+],
+"17382": [
+{
+"fonction": "Président de la commission des lois constitutionnelles, de la législation et de l'administration générale de la République",
+"liste": "presidence-commission",
+"debut": "2012-06-28",
+"fin": "2016-02-03"
+}
+],
+"19859": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2024-07-20",
+"fin": null
+}
+],
+"6550": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2002-06-26",
+"fin": "2007-06-19"
+}
+],
+"17286": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2007-06-26",
+"fin": "2012-06-19"
+}
+],
+"19020": [
+{
+"fonction": "Questeur de l'Assemblée nationale",
+"liste": "bureau-vp-questeur",
+"debut": "2017-06-28",
+"fin": "2022-06-21"
+}
+],
+"19363": [
+{
+"fonction": "Questeur de l'Assemblée nationale",
+"liste": "bureau-vp-questeur",
+"debut": "2017-06-28",
+"fin": "2022-06-21"
+}
+],
+"1137": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2005-10-04",
+"fin": "2008-10-01"
+}
+],
+"19213": [
+{
+"fonction": "Président de la commission des affaires sociales",
+"liste": "presidence-commission",
+"debut": "2020-07-22",
+"fin": "2023-08-20"
+}
+],
+"S08011M": [
+{
+"fonction": "Rapporteur général (Commission des finances)",
+"liste": "rapporteur-general",
+"debut": "2014-10-09",
+"fin": "2020-10-05"
+}
+],
+"19276": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2019-10-01",
+"fin": "2022-06-21"
+}
+],
+"19927": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2024-07-18",
+"fin": null
+}
+],
+"19352": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2019-10-01",
+"fin": "2024-06-09"
+}
+],
+"19332": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2023-05-10",
+"fin": "2024-06-09"
+}
+],
+"18413": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2012-06-26",
+"fin": "2017-06-20"
+}
+],
+"19296": [
+{
+"fonction": "Vice-Président de l'Assemblée nationale",
+"liste": "bureau-vp-questeur",
+"debut": "2017-06-28",
+"fin": "2017-11-07"
+}
+],
+"19199": [
+{
+"fonction": "Président de la commission de la défense nationale et des forces armées",
+"liste": "presidence-commission",
+"debut": "2024-07-20",
+"fin": null
+}
+],
+"19414": [
+{
+"fonction": "Rapporteur général (Commission des affaires sociales)",
+"liste": "rapporteur-general",
+"debut": "2017-06-30",
+"fin": "2020-03-03"
+}
+],
+"S92045V": [
+{
+"fonction": "Rapporteur général (Commission des affaires sociales)",
+"liste": "rapporteur-general",
+"debut": "2009-07-08",
+"fin": "2011-09-30"
+}
+],
+"19092": [
+{
+"fonction": "Président de la commission des affaires sociales",
+"liste": "presidence-commission",
+"debut": "2024-07-20",
+"fin": "2024-09-26"
+},
+{
+"fonction": "Président du groupe Horizons & Indépendants",
+"liste": "presidence-groupe",
+"debut": "2025-01-25",
+"fin": "2026-03-31"
+}
+],
+"19551": [
+{
+"fonction": "Vice-Président de l'Assemblée nationale",
+"liste": "bureau-vp-questeur",
+"debut": "2024-07-19",
+"fin": null
+}
+],
+"10612": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2020-10-01",
+"fin": "2024-06-09"
+}
+],
+"10685": [
+{
+"fonction": "Rapporteur général (Commission des finances, de l'économie générale et du contrôle budgétaire)",
+"liste": "rapporteur-general",
+"debut": "2017-06-30",
+"fin": "2020-01-15"
+}
+],
+"19234": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2018-02-01",
+"fin": "2018-04-03"
+}
+],
+"17373": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2007-06-26",
+"fin": "2012-06-19"
+},
+{
+"fonction": "Président du groupe Les Constructifs : républicains, UDI, indépendants",
+"liste": "presidence-groupe",
+"debut": "2017-06-27",
+"fin": "2017-11-28"
+},
+{
+"fonction": "Président du groupe UDI, Agir et Indépendants",
+"liste": "presidence-groupe",
+"debut": "2017-11-29",
+"fin": "2018-10-16"
+}
+],
+"S92035T": [
+{
+"fonction": "Rapporteur général (Commission des finances)",
+"liste": "rapporteur-general",
+"debut": "2001-10-04",
+"fin": "2011-09-30"
+}
+],
+"353": [
+{
+"fonction": "Vice-Président de l'Assemblée nationale",
+"liste": "bureau-vp-questeur",
+"debut": "2010-10-05",
+"fin": "2011-10-02"
+},
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2011-10-03",
+"fin": "2012-06-19"
+}
+],
+"19003": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2019-10-01",
+"fin": "2020-08-26"
+}
+],
+"19044": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2023-05-10",
+"fin": "2024-06-09"
+},
+{
+"fonction": "Vice-Président de l'Assemblée nationale",
+"liste": "bureau-vp-questeur",
+"debut": "2025-10-01",
+"fin": null
+}
+],
+"17353": [
+{
+"fonction": "Président de la commission des affaires économiques",
+"liste": "presidence-commission",
+"debut": "2015-10-01",
+"fin": "2017-06-20"
+}
+],
+"19166": [
+{
+"fonction": "Président de la commission de la défense nationale et des forces armées",
+"liste": "presidence-commission",
+"debut": "2022-06-30",
+"fin": "2024-06-09"
+}
+],
+"7614": [
+{
+"fonction": "Président du groupe Socialiste, républicain et citoyen",
+"liste": "presidence-groupe",
+"debut": "2012-06-26",
+"fin": "2016-05-24"
+},
+{
+"fonction": "Président du groupe Socialiste, écologiste et républicain",
+"liste": "presidence-groupe",
+"debut": "2016-05-25",
+"fin": "2016-12-12"
+}
+],
+"6304": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2008-10-01",
+"fin": "2009-10-06"
+}
+],
+"19371": [
+{
+"fonction": "Rapporteur général (Commission des finances, de l'économie générale et du contrôle budgétaire)",
+"liste": "rapporteur-general",
+"debut": "2020-01-16",
+"fin": "2022-06-21"
+}
+],
+"19297": [
+{
+"fonction": "Vice-Président de l'Assemblée nationale",
+"liste": "bureau-vp-questeur",
+"debut": "2022-06-29",
+"fin": "2025-09-30"
+}
+],
+"19709": [
+{
+"fonction": "Président du groupe Libertés, Indépendants, Outre-mer et Territoires",
+"liste": "presidence-groupe",
+"debut": "2024-07-19",
+"fin": "2025-02-28"
+}
+],
+"19185": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2017-06-28",
+"fin": "2019-09-30"
+},
+{
+"fonction": "Questeur de l'Assemblée nationale",
+"liste": "bureau-vp-questeur",
+"debut": "2022-06-29",
+"fin": "2024-02-13"
+}
+],
+"10682": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2007-06-27",
+"fin": "2017-06-20"
+}
+],
+"19278": [
+{
+"fonction": "Président du groupe La France insoumise",
+"liste": "presidence-groupe",
+"debut": "2017-06-27",
+"fin": "2021-10-11"
+}
+],
+"19073": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2017-06-28",
+"fin": "2019-09-30"
+}
+],
+"17317": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2023-05-10",
+"fin": "2023-10-02"
+}
+],
+"18421": [
+{
+"fonction": "Président du groupe Socialiste, écologiste et républicain",
+"liste": "presidence-groupe",
+"debut": "2016-12-13",
+"fin": "2017-06-20"
+},
+{
+"fonction": "Président du groupe Nouvelle Gauche",
+"liste": "presidence-groupe",
+"debut": "2017-06-27",
+"fin": "2018-04-11"
+}
+],
+"19160": [
+{
+"fonction": "Président de la commission des affaires étrangères",
+"liste": "presidence-commission",
+"debut": "2024-10-09",
+"fin": null
+}
+],
+"18328": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2012-06-26",
+"fin": "2017-06-20"
+},
+{
+"fonction": "Président du groupe Les Républicains",
+"liste": "presidence-groupe",
+"debut": "2019-11-07",
+"fin": "2022-05-20"
+}
+],
+"19326": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2024-07-20",
+"fin": "2025-10-01"
+},
+{
+"fonction": "Président du groupe Gauche Démocrate et Républicaine",
+"liste": "presidence-groupe",
+"debut": "2025-04-01",
+"fin": null
+}
+],
+"10708": [
+{
+"fonction": "Vice-Président de l'Assemblée nationale",
+"liste": "bureau-vp-questeur",
+"debut": "2006-12-01",
+"fin": "2012-06-19"
+},
+{
+"fonction": "Président du groupe UDI, Agir et Indépendants",
+"liste": "presidence-groupe",
+"debut": "2018-10-17",
+"fin": "2020-05-25"
+},
+{
+"fonction": "Président du groupe UDI et Indépendants",
+"liste": "presidence-groupe",
+"debut": "2019-06-11",
+"fin": "2022-06-21"
+}
+],
+"19016": [
+{
+"fonction": "Président du groupe Ensemble pour la République",
+"liste": "presidence-groupe",
+"debut": "2024-07-19",
+"fin": null
+}
+],
+"350": [
+{
+"fonction": "Président de la commission des affaires étrangères",
+"liste": "presidence-commission",
+"debut": "2002-06-27",
+"fin": "2007-06-19"
+}
+],
+"2609": [
+{
+"fonction": "Président de la commission des affaires culturelles, familiales et sociales",
+"liste": "presidence-commission",
+"debut": "2002-06-27",
+"fin": "2007-06-19"
+}
+],
+"1642": [
+{
+"fonction": "Président de la commission du développement durable et de l'aménagement du territoire",
+"liste": "presidence-commission",
+"debut": "2012-06-28",
+"fin": "2017-06-20"
+}
+],
+"10791": [
+{
+"fonction": "Président de la commission des finances, de l'économie générale et du contrôle budgétaire",
+"liste": "presidence-commission",
+"debut": "2017-06-30",
+"fin": "2022-06-21"
+},
+{
+"fonction": "Questeur de l'Assemblée nationale",
+"liste": "bureau-vp-questeur",
+"debut": "2022-06-29",
+"fin": "2024-06-09"
+}
+],
+"18529": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2012-06-27",
+"fin": "2021-08-01"
+}
+],
+"19036": [
+{
+"fonction": "Président du groupe Renaissance",
+"liste": "presidence-groupe",
+"debut": "2022-06-29",
+"fin": "2023-07-26"
+}
+],
+"1223": [
+{
+"fonction": "Rapporteur général (Commission des finances)",
+"liste": "rapporteur-general",
+"debut": "2011-10-01",
+"fin": "2012-06-16"
+}
+],
+"3199": [
+{
+"fonction": "Questeur de l'Assemblée nationale",
+"liste": "bureau-vp-questeur",
+"debut": "2004-05-05",
+"fin": "2007-06-19"
+}
+],
+"10752": [
+{
+"fonction": "Président de la commission des affaires étrangères",
+"liste": "presidence-commission",
+"debut": "2007-06-28",
+"fin": "2012-06-19"
+}
+],
+"17378": [
+{
+"fonction": "Vice-Président de l'Assemblée nationale",
+"liste": "bureau-vp-questeur",
+"debut": "2012-06-27",
+"fin": "2014-12-31"
+}
+],
+"306": [
+{
+"fonction": "Président du groupe Socialiste",
+"liste": "presidence-groupe",
+"debut": "2002-06-25",
+"fin": "2007-06-19"
+},
+{
+"fonction": "Président du groupe Socialiste, radical, citoyen et divers gauche",
+"liste": "presidence-groupe",
+"debut": "2007-06-27",
+"fin": "2012-06-15"
+}
+],
+"19077": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2017-06-28",
+"fin": "2019-09-30"
+}
+],
+"6071": [
+{
+"fonction": "Questeur de l'Assemblée nationale",
+"liste": "bureau-vp-questeur",
+"debut": "2012-06-27",
+"fin": "2016-07-21"
+}
+],
+"19134": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2020-10-01",
+"fin": "2022-06-21"
+}
+],
+"19006": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2017-06-21",
+"fin": "2019-09-30"
+}
+],
+"19288": [
+{
+"fonction": "Président du groupe Mouvement Démocrate et apparentés",
+"liste": "presidence-groupe",
+"debut": "2018-10-17",
+"fin": "2020-09-23"
+},
+{
+"fonction": "Président du groupe Mouvement Démocrate (MoDem) et Démocrates apparentés",
+"liste": "presidence-groupe",
+"debut": "2020-09-24",
+"fin": "2022-06-21"
+}
+],
+"3389": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2008-10-01",
+"fin": "2010-10-05"
+}
+],
+"10697": [
+{
+"fonction": "Vice-Président de l'Assemblée nationale",
+"liste": "bureau-vp-questeur",
+"debut": "2008-10-01",
+"fin": "2009-10-06"
+},
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2009-10-06",
+"fin": "2012-06-19"
+}
+],
+"18382": [
+{
+"fonction": "Président du groupe La République en Marche",
+"liste": "presidence-groupe",
+"debut": "2020-09-10",
+"fin": "2022-06-21"
+}
+],
+"19410": [
+{
+"fonction": "Président du groupe Socialistes et apparentés (membre de l’intergroupe NUPES)",
+"liste": "presidence-groupe",
+"debut": "2022-06-29",
+"fin": "2023-10-18"
+},
+{
+"fonction": "Président du groupe Socialistes et apparentés",
+"liste": "presidence-groupe",
+"debut": "2023-10-19",
+"fin": null
+}
+],
+"6129": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2004-10-01",
+"fin": "2010-10-05"
+}
+],
+"19424": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2017-06-28",
+"fin": "2019-09-30"
+}
+],
+"19970": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2024-07-18",
+"fin": null
+}
+],
+"19192": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2017-06-21",
+"fin": null
+}
+],
+"18530": [
+{
+"fonction": "Questeur de l'Assemblée nationale",
+"liste": "bureau-vp-questeur",
+"debut": "2017-06-28",
+"fin": "2018-01-16"
+}
+],
+"10783": [
+{
+"fonction": "Vice-Président de l'Assemblée nationale",
+"liste": "bureau-vp-questeur",
+"debut": "2008-09-26",
+"fin": "2017-06-20"
+}
+],
+"19103": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2019-10-01",
+"fin": "2020-09-30"
+}
+],
+"19384": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2019-10-01",
+"fin": null
+}
+],
+"980": [
+{
+"fonction": "Président du groupe Union des démocrates et indépendants",
+"liste": "presidence-groupe",
+"debut": "2012-06-26",
+"fin": "2014-04-14"
+}
+],
+"19560": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2024-07-20",
+"fin": "2025-10-01"
+}
+],
+"19483": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2021-01-26",
+"fin": "2022-06-21"
+}
+],
+"4250": [
+{
+"fonction": "Vice-Président de l'Assemblée nationale",
+"liste": "bureau-vp-questeur",
+"debut": "2007-06-27",
+"fin": "2011-07-06"
+}
+],
+"10653": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2007-06-26",
+"fin": "2011-10-28"
+}
+],
+"17274": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2014-10-01",
+"fin": "2015-09-30"
+}
+],
+"S98046X": [
+{
+"fonction": "Rapporteur général (Commission des finances)",
+"liste": "rapporteur-general",
+"debut": "2012-06-20",
+"fin": "2014-10-07"
+}
+],
+"19301": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2024-07-20",
+"fin": "2025-10-01"
+},
+{
+"fonction": "Président du groupe Libertés, Indépendants, Outre-mer et Territoires",
+"liste": "presidence-groupe",
+"debut": "2025-10-29",
+"fin": null
+}
+],
+"19086": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2020-10-01",
+"fin": "2022-06-21"
+}
+],
+"19684": [
+{
+"fonction": "Rapporteur général (Commission des finances, de l'économie générale et du contrôle budgétaire)",
+"liste": "rapporteur-general",
+"debut": "2025-10-02",
+"fin": null
+}
+],
+"5800": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2006-10-04",
+"fin": "2008-10-01"
+}
+],
+"7453": [
+{
+"fonction": "Vice-Président de l'Assemblée nationale",
+"liste": "bureau-vp-questeur",
+"debut": "2005-10-04",
+"fin": "2007-06-19"
+},
+{
+"fonction": "Président de la commission des lois constitutionnelles, de la législation et de l'administration générale de la République",
+"liste": "presidence-commission",
+"debut": "2007-06-28",
+"fin": "2012-06-19"
+}
+],
+"19064": [
+{
+"fonction": "Vice-Président de l'Assemblée nationale",
+"liste": "bureau-vp-questeur",
+"debut": "2017-06-28",
+"fin": "2017-11-07"
+},
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2018-02-01",
+"fin": "2019-09-30"
+}
+],
+"18414": [
+{
+"fonction": "Président du groupe Écologiste",
+"liste": "presidence-groupe",
+"debut": "2015-10-14",
+"fin": "2016-05-19"
+}
+],
+"19676": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2025-10-02",
+"fin": null
+}
+],
+"5827": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2002-06-26",
+"fin": "2017-06-20"
+}
+],
+"18478": [
+{
+"fonction": "Président du groupe Les Républicains",
+"liste": "presidence-groupe",
+"debut": "2022-06-29",
+"fin": "2024-06-09"
+}
+],
+"19774": [
+{
+"fonction": "Président de la commission des affaires culturelles et de l'éducation",
+"liste": "presidence-commission",
+"debut": "2025-10-02",
+"fin": null
+}
+],
+"6267": [
+{
+"fonction": "Président du groupe Gauche démocrate et républicaine",
+"liste": "presidence-groupe",
+"debut": "2007-06-27",
+"fin": "2010-09-01"
+}
+],
+"1653": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2012-06-27",
+"fin": "2017-06-20"
+}
+],
+"5751": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2009-10-06",
+"fin": "2010-10-05"
+}
+],
+"19099": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2018-10-01",
+"fin": "2022-06-21"
+}
+],
+"19571": [
+{
+"fonction": "Président du groupe Écologiste - NUPES",
+"liste": "presidence-groupe",
+"debut": "2022-06-29",
+"fin": "2022-09-29"
+}
+],
+"19029": [
+{
+"fonction": "Rapporteur général (Commission des affaires sociales)",
+"liste": "rapporteur-general",
+"debut": "2025-01-22",
+"fin": null
+},
+{
+"fonction": "Rapporteur général (Conférence des Présidents)",
+"liste": "rapporteur-general",
+"debut": "2025-10-02",
+"fin": "2026-09-30"
+}
+],
+"19798": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2023-10-02",
+"fin": null
+}
+],
+"19591": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2022-06-28",
+"fin": null
+}
+],
+"5422": [
+{
+"fonction": "Président du groupe Union pour la Démocratie Française",
+"liste": "presidence-groupe",
+"debut": "2002-06-25",
+"fin": "2007-06-19"
+}
+],
+"6035": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2013-10-01",
+"fin": "2014-09-30"
+}
+],
+"19219": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2018-02-01",
+"fin": "2018-04-03"
+}
+],
+"19250": [
+{
+"fonction": "Président de la commission des affaires économiques",
+"liste": "presidence-commission",
+"debut": "2017-06-30",
+"fin": "2022-06-21"
+},
+{
+"fonction": "Rapporteur général (Commission spéciale chargée d'examiner le projet de loi relatif à la croissance et la transformation des entreprises)",
+"liste": "rapporteur-general",
+"debut": "2018-07-03",
+"fin": "2019-04-11"
+},
+{
+"fonction": "Vice-Président de l'Assemblée nationale",
+"liste": "bureau-vp-questeur",
+"debut": "2024-07-19",
+"fin": "2025-09-30"
+}
+],
+"19273": [
+{
+"fonction": "Président du groupe Démocrate (MoDem et Indépendants)",
+"liste": "presidence-groupe",
+"debut": "2022-06-29",
+"fin": "2024-06-09"
+}
+],
+"5990": [
+{
+"fonction": "Président de la commission des affaires économiques",
+"liste": "presidence-commission",
+"debut": "2010-11-24",
+"fin": "2012-06-19"
+}
+],
+"19201": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2023-05-10",
+"fin": "2024-06-09"
+}
+],
+"7649": [
+{
+"fonction": "Questeur de l'Assemblée nationale",
+"liste": "bureau-vp-questeur",
+"debut": "2007-06-27",
+"fin": "2012-06-16"
+}
+],
+"6312": [
+{
+"fonction": "Président du groupe Nouveau Centre",
+"liste": "presidence-groupe",
+"debut": "2007-06-27",
+"fin": "2011-07-05"
+}
+],
+"3953": [
+{
+"fonction": "Président de la commission du développement durable et de l'aménagement du territoire",
+"liste": "presidence-commission",
+"debut": "2009-07-01",
+"fin": "2010-12-01"
+},
+{
+"fonction": "Président du groupe Union pour un Mouvement Populaire",
+"liste": "presidence-groupe",
+"debut": "2010-11-23",
+"fin": "2015-06-01"
+},
+{
+"fonction": "Président du groupe Les Républicains",
+"liste": "presidence-groupe",
+"debut": "2015-06-02",
+"fin": "2019-11-06"
+}
+],
+"6257": [
+{
+"fonction": "Vice-Président de l'Assemblée nationale",
+"liste": "bureau-vp-questeur",
+"debut": "2007-06-27",
+"fin": "2009-10-06"
+},
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2012-06-27",
+"fin": "2013-09-30"
+}
+],
+"19811": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2025-10-02",
+"fin": null
+}
+],
+"7183": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2002-06-26",
+"fin": "2007-06-19"
+}
+],
+"17287": [
+{
+"fonction": "Rapporteur général (Commission des finances, de l'économie générale et du contrôle budgétaire)",
+"liste": "rapporteur-general",
+"debut": "2012-06-29",
+"fin": "2014-04-22"
+}
+],
+"17363": [
+{
+"fonction": "Président du groupe Libertés et Territoires",
+"liste": "presidence-groupe",
+"debut": "2020-09-15",
+"fin": "2022-06-21"
+},
+{
+"fonction": "Président du groupe Libertés, Indépendants, Outre-mer et Territoires",
+"liste": "presidence-groupe",
+"debut": "2022-06-29",
+"fin": "2024-06-09"
+}
+],
+"6513": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2002-06-26",
+"fin": "2007-06-19"
+}
+],
+"19924": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2025-10-02",
+"fin": null
+}
+],
+"5721": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2010-10-05",
+"fin": "2012-06-19"
+}
+],
+"10068": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2004-10-01",
+"fin": "2007-06-19"
+}
+],
+"2704": [
+{
+"fonction": "Vice-Président de l'Assemblée nationale",
+"liste": "bureau-vp-questeur",
+"debut": "2011-10-03",
+"fin": "2017-06-20"
+},
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2017-06-28",
+"fin": "2019-09-30"
+}
+],
+"19375": [
+{
+"fonction": "Président de la commission des affaires étrangères",
+"liste": "presidence-commission",
+"debut": "2017-06-30",
+"fin": "2021-01-13"
+}
+],
+"S01034P": [
+{
+"fonction": "Rapporteur général (Commission des affaires sociales)",
+"liste": "rapporteur-general",
+"debut": "2014-10-09",
+"fin": "2021-07-07"
+}
+],
+"19240": [
+{
+"fonction": "Président de la commission du développement durable et de l'aménagement du territoire",
+"liste": "presidence-commission",
+"debut": "2024-07-20",
+"fin": null
+}
+],
+"19358": [
+{
+"fonction": "Rapporteur général (Commission des affaires sociales)",
+"liste": "rapporteur-general",
+"debut": "2022-06-30",
+"fin": "2024-06-09"
+}
+],
+"19637": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2024-07-20",
+"fin": null
+}
+],
+"10649": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2012-06-27",
+"fin": "2017-06-20"
+}
+],
+"19313": [
+{
+"fonction": "Président du groupe La France insoumise",
+"liste": "presidence-groupe",
+"debut": "2021-10-12",
+"fin": "2022-06-21"
+},
+{
+"fonction": "Président du groupe La France insoumise - Nouvelle Union Populaire écologique et sociale",
+"liste": "presidence-groupe",
+"debut": "2022-06-29",
+"fin": "2024-06-09"
+},
+{
+"fonction": "Président du groupe La France insoumise - Nouveau Front Populaire",
+"liste": "presidence-groupe",
+"debut": "2024-07-19",
+"fin": null
+}
+],
+"18365": [
+{
+"fonction": "Rapporteur général (Commission spéciale chargée d'examiner le projet de loi confortant le respect des principes de la République)",
+"liste": "rapporteur-general",
+"debut": "2020-12-16",
+"fin": "2021-08-24"
+},
+{
+"fonction": "Président de la commission des lois constitutionnelles, de la législation et de l'administration générale de la République",
+"liste": "presidence-commission",
+"debut": "2024-07-20",
+"fin": "2026-07-19"
+}
+],
+"3009": [
+{
+"fonction": "Président du groupe Rassemblement - Union pour un Mouvement Populaire",
+"liste": "presidence-groupe",
+"debut": "2012-11-27",
+"fin": "2013-01-15"
+}
+],
+"18456": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2012-06-27",
+"fin": "2017-06-20"
+}
+],
+"1872": [
+{
+"fonction": "Président du groupe Gauche démocrate et républicaine",
+"liste": "presidence-groupe",
+"debut": "2010-09-01",
+"fin": "2011-12-06"
+}
+],
+"19033": [
+{
+"fonction": "Président du groupe Agir ensemble",
+"liste": "presidence-groupe",
+"debut": "2020-05-27",
+"fin": "2022-06-21"
+}
+],
+"10703": [
+{
+"fonction": "Vice-Président de l'Assemblée nationale",
+"liste": "bureau-vp-questeur",
+"debut": "2018-01-17",
+"fin": "2018-07-15"
+}
+],
+"19589": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2023-05-10",
+"fin": "2024-06-09"
+}
+],
+"19351": [
+{
+"fonction": "Président de la commission des affaires culturelles et de l'éducation",
+"liste": "presidence-commission",
+"debut": "2022-07-06",
+"fin": "2024-06-09"
+}
+],
+"19281": [
+{
+"fonction": "Rapporteur général (Commission des affaires sociales)",
+"liste": "rapporteur-general",
+"debut": "2020-05-27",
+"fin": "2022-06-21"
+}
+],
+"5600": [
+{
+"fonction": "Président de la commission des affaires économiques, de l'environnement et du territoire",
+"liste": "presidence-commission",
+"debut": "2002-06-27",
+"fin": "2009-06-30"
+},
+{
+"fonction": "Président de la commission des affaires économiques",
+"liste": "presidence-commission",
+"debut": "2009-07-01",
+"fin": "2010-11-14"
+}
+],
+"19898": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2024-07-18",
+"fin": null
+}
+],
+"19051": [
+{
+"fonction": "Rapporteur général (Commission spéciale chargée d'examiner le projet de loi relatif à la résilience des infrastructures critiques et au renforcement de la cybersécurité)",
+"liste": "rapporteur-general",
+"debut": "2025-04-08",
+"fin": null
+}
+],
+"19026": [
+{
+"fonction": "Président de la commission des affaires étrangères",
+"liste": "presidence-commission",
+"debut": "2024-07-20",
+"fin": "2024-10-04"
+}
+],
+"19238": [
+{
+"fonction": "Président de la commission des affaires sociales",
+"liste": "presidence-commission",
+"debut": "2023-09-18",
+"fin": "2024-06-09"
+}
+],
+"19017": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2019-10-01",
+"fin": "2020-09-30"
+}
+],
+"18524": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2024-07-20",
+"fin": "2025-10-01"
+}
+],
+"1213": [
+{
+"fonction": "Questeur de l'Assemblée nationale",
+"liste": "bureau-vp-questeur",
+"debut": "2007-06-27",
+"fin": "2017-06-20"
+}
+],
+"18498": [
+{
+"fonction": "Questeur de l'Assemblée nationale",
+"liste": "bureau-vp-questeur",
+"debut": "2024-07-19",
+"fin": null
+}
+],
+"3662": [
+{
+"fonction": "Vice-Président de l'Assemblée nationale",
+"liste": "bureau-vp-questeur",
+"debut": "2010-10-05",
+"fin": "2011-10-02"
+},
+{
+"fonction": "Président de la commission des affaires étrangères",
+"liste": "presidence-commission",
+"debut": "2012-06-28",
+"fin": "2017-06-20"
+}
+],
+"889": [
+{
+"fonction": "Président du groupe Député-e-s Communistes et Républicains",
+"liste": "presidence-groupe",
+"debut": "2002-06-25",
+"fin": "2007-06-19"
+}
+],
+"19008": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2017-06-28",
+"fin": "2019-09-30"
+}
+],
+"7578": [
+{
+"fonction": "Vice-Président de l'Assemblée nationale",
+"liste": "bureau-vp-questeur",
+"debut": "2007-06-27",
+"fin": "2022-06-21"
+}
+],
+"5274": [
+{
+"fonction": "Vice-Président de l'Assemblée nationale",
+"liste": "bureau-vp-questeur",
+"debut": "2006-01-01",
+"fin": "2007-06-19"
+}
+],
+"2604": [
+{
+"fonction": "Questeur de l'Assemblée nationale",
+"liste": "bureau-vp-questeur",
+"debut": "2004-05-05",
+"fin": "2007-06-19"
+}
+],
+"18401": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2012-06-26",
+"fin": "2016-01-27"
+}
+],
+"2535": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2012-06-27",
+"fin": "2017-06-20"
+}
+],
+"19822": [
+{
+"fonction": "Président de la commission des affaires sociales",
+"liste": "presidence-commission",
+"debut": "2024-10-09",
+"fin": null
+}
+],
+"19126": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2017-06-28",
+"fin": "2018-01-31"
+}
+],
+"5528": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2007-06-27",
+"fin": "2011-09-30"
+},
+{
+"fonction": "Vice-Président de l'Assemblée nationale",
+"liste": "bureau-vp-questeur",
+"debut": "2008-10-01",
+"fin": "2009-10-06"
+}
+],
+"1300": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2021-09-21",
+"fin": "2022-06-21"
+}
+],
+"18423": [
+{
+"fonction": "Rapporteur général (Commission spéciale chargée d'examiner le projet de loi pour la croissance, l'activité et l'égalité des chances économiques)",
+"liste": "rapporteur-general",
+"debut": "2014-12-16",
+"fin": "2015-08-07"
+},
+{
+"fonction": "Président du groupe La République en Marche",
+"liste": "presidence-groupe",
+"debut": "2017-06-27",
+"fin": "2018-09-17"
+},
+{
+"fonction": "Rapporteur général (Mission d’information sur l’impact, la gestion et les conséquences dans toutes ses dimensions de l’épidémie de Coronavirus-Covid 19)",
+"liste": "rapporteur-general",
+"debut": "2020-04-01",
+"fin": "2020-06-03"
+}
+],
+"19562": [
+{
+"fonction": "Président de la commission des affaires économiques",
+"liste": "presidence-commission",
+"debut": "2024-07-20",
+"fin": "2024-10-01"
+}
+],
+"872": [
+{
+"fonction": "Président de la commission des affaires culturelles et de l'éducation",
+"liste": "presidence-commission",
+"debut": "2012-06-28",
+"fin": "2017-06-20"
+}
+],
+"2563": [
+{
+"fonction": "Vice-Président de l'Assemblée nationale",
+"liste": "bureau-vp-questeur",
+"debut": "2005-06-09",
+"fin": "2007-06-19"
+}
+],
+"9494": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2006-12-01",
+"fin": "2017-06-20"
+}
+],
+"S11048N": [
+{
+"fonction": "Rapporteur général (Commission des finances)",
+"liste": "rapporteur-general",
+"debut": "2020-10-07",
+"fin": "2026-09-30"
+}
+],
+"18442": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2012-06-26",
+"fin": "2017-06-20"
+},
+{
+"fonction": "Rapporteur général (Commission spéciale chargée d'examiner le projet de loi Egalité et citoyenneté)",
+"liste": "rapporteur-general",
+"debut": "2016-05-11",
+"fin": "2017-02-20"
+}
+],
+"19385": [
+{
+"fonction": "Président de la commission des affaires culturelles et de l'éducation",
+"liste": "presidence-commission",
+"debut": "2017-06-30",
+"fin": "2022-06-21"
+}
+],
+"19680": [
+{
+"fonction": "Vice-Président de l'Assemblée nationale",
+"liste": "bureau-vp-questeur",
+"debut": "2024-10-22",
+"fin": "2025-09-30"
+}
+],
+"19988": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2024-07-18",
+"fin": "2024-10-15"
+}
+],
+"4159": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2008-10-01",
+"fin": "2009-10-06"
+}
+],
+"19152": [
+{
+"fonction": "Président du groupe Mouvement Démocrate et apparentés",
+"liste": "presidence-groupe",
+"debut": "2017-06-27",
+"fin": "2018-10-16"
+},
+{
+"fonction": "Président du groupe Les Démocrates",
+"liste": "presidence-groupe",
+"debut": "2024-07-19",
+"fin": null
+}
+],
+"19425": [
+{
+"fonction": "Vice-Président de l'Assemblée nationale",
+"liste": "bureau-vp-questeur",
+"debut": "2017-06-28",
+"fin": "2022-06-21"
+}
+],
+"19206": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2023-05-10",
+"fin": "2023-10-02"
+}
+],
+"18430": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2015-10-01",
+"fin": "2017-06-20"
+},
+{
+"fonction": "Vice-Président de l'Assemblée nationale",
+"liste": "bureau-vp-questeur",
+"debut": "2017-11-07",
+"fin": "2024-10-21"
+}
+],
+"19053": [
+{
+"fonction": "Président de la commission des affaires étrangères",
+"liste": "presidence-commission",
+"debut": "2021-01-27",
+"fin": "2024-06-09"
+}
+],
+"19310": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2017-06-21",
+"fin": "2021-04-21"
+}
+],
+"19357": [
+{
+"fonction": "Président de la commission du développement durable et de l'aménagement du territoire",
+"liste": "presidence-commission",
+"debut": "2020-07-15",
+"fin": "2020-09-30"
+}
+],
+"18416": [
+{
+"fonction": "Président de la commission de la défense nationale et des forces armées",
+"liste": "presidence-commission",
+"debut": "2019-10-01",
+"fin": "2022-06-21"
+}
+],
+"3873": [
+{
+"fonction": "Président de la commission des lois constitutionnelles, de la législation et de l'administration générale de la République",
+"liste": "presidence-commission",
+"debut": "2005-06-08",
+"fin": "2007-06-19"
+}
+],
+"17360": [
+{
+"fonction": "Président du groupe Gauche démocrate et républicaine",
+"liste": "presidence-groupe",
+"debut": "2011-12-07",
+"fin": "2012-06-19"
+}
+],
+"28": [
+{
+"fonction": "Président du groupe Union pour un Mouvement Populaire",
+"liste": "presidence-groupe",
+"debut": "2004-05-05",
+"fin": "2007-06-19"
+}
+],
+"20007": [
+{
+"fonction": "Secrétaire de l'Assemblée nationale",
+"liste": "bureau-secretaire",
+"debut": "2024-07-18",
+"fin": "2024-10-04"
+}
+],
+"S14042U": [
+{
+"fonction": "Rapporteur général (Commission des affaires sociales)",
+"liste": "rapporteur-general",
+"debut": "2021-07-08",
+"fin": "2026-09-30"
+}
+],
+"5162": [
+{
+"fonction": "Président de la commission des finances, de l'économie générale et du contrôle budgétaire",
+"liste": "presidence-commission",
+"debut": "2002-06-27",
+"fin": "2007-06-19"
+},
+{
+"fonction": "Président de la commission des affaires culturelles, familiales et sociales",
+"liste": "presidence-commission",
+"debut": "2007-06-28",
+"fin": "2009-06-30"
+},
+{
+"fonction": "Président de la commission des affaires sociales",
+"liste": "presidence-commission",
+"debut": "2009-07-01",
+"fin": "2012-06-19"
+}
+],
+"10692": [
+{
+"fonction": "Vice-Président de l'Assemblée nationale",
+"liste": "bureau-vp-questeur",
+"debut": "2015-01-01",
+"fin": "2022-06-21"
+}
+],
+"2154": [
+{
+"fonction": "Vice-Président de l'Assemblée nationale",
+"liste": "bureau-vp-questeur",
+"debut": "2007-06-27",
+"fin": "2008-09-26"
+}
+],
+"19609": [
+{
+"fonction": "Président du groupe Écologiste - NUPES",
+"liste": "presidence-groupe",
+"debut": "2022-09-30",
+"fin": "2024-06-09"
+},
+{
+"fonction": "Président du groupe Écologiste et Social",
+"liste": "presidence-groupe",
+"debut": "2024-07-19",
+"fin": null
+}
+],
+"6977": [
+{
+"fonction": "Président de la commission de la défense nationale et des forces armées",
+"liste": "presidence-commission",
+"debut": "2002-06-27",
+"fin": "2012-06-19"
+}
+],
+"6362": [
+{
+"fonction": "Président du groupe Radical, républicain, démocrate et progressiste",
+"liste": "presidence-groupe",
+"debut": "2012-06-26",
+"fin": "2017-06-20"
+}
+],
+"19910": [
+{
+"fonction": "Président de la commission des lois constitutionnelles, de la législation et de l'administration générale de la République",
+"liste": "presidence-commission",
+"debut": "2026-07-21",
+"fin": null
+}
+]
+}
