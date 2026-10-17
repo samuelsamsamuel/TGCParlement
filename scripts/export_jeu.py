@@ -3,7 +3,7 @@
 
 Chaque carte : [id, nom affiché, rareté, score, époque, en exercice (1/0), première année, dernière année, source,
 portrait (fichier Commons ou null), distinctions (codes), chambres ("A" Assemblée, "S" Sénat, "G" Gouvernement), sexe,
-fonctions [intitulé, début, fin, rang], mandats regroupés [intitulé, département, [[début, fin], ...], nombre]].
+fonctions [intitulé, début, fin, rang], mandats regroupés [intitulé, département, [[début, fin], ...], nombre], groupe politique principal].
 Le nom affiché est le nom d'usage : premier prénom et nom de famille pour les fiches Sycomore
 (« Jacques, Michel, Pierre Chaban-Delmas » -> « Jacques Chaban-Delmas »).
 """
@@ -15,7 +15,7 @@ import sys
 sys.path.insert(0, os.path.dirname(__file__))
 from cartes import nom_famille_sycomore  # noqa: E402
 
-RARETES = ["legendaire", "epique", "rare", "peu-commune", "commune", "hors-categorie"]
+RARETES = ["mythique", "legendaire", "epique", "rare", "peu-commune", "commune", "hors-categorie"]
 
 
 NOMS_USAGE = {}
@@ -128,7 +128,7 @@ def main():
         sortie.append([c["id"], nom_affiche(c), RARETES.index(c["rarete"]), c["score"], c.get("epoque") or "",
                        1 if c.get("en_exercice") else 0, debut, fin, source(c),
                        portraits.get(str(c["id"])), codes, chambres, c.get("sexe"),
-                       fonctions_carte(c["id"], gouv, pres), mandats_carte(c)])
+                       fonctions_carte(c["id"], gouv, pres), mandats_carte(c), c.get("groupe")])
     os.makedirs("site", exist_ok=True)
     with open(os.path.join("site", "jeu.json"), "w", encoding="utf-8") as f:
         json.dump({"raretes": RARETES, "cartes": sortie}, f, ensure_ascii=False, separators=(",", ":"))
