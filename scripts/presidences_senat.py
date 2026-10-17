@@ -28,6 +28,10 @@ SORTIE = os.path.join("data", "listes")
 RAPPORTS = os.path.join("data", "listes", "rapports")
 
 
+LIBELLE_FONCTION = "Président de la seconde chambre"
+FICHIER_DETAIL = "presidences_senat.json"
+
+
 def main():
     with open(F_SOURCE, encoding="utf-8") as f:
         source = json.load(f)
@@ -80,14 +84,23 @@ def main():
                 sans_fiche.append(f"{cle} ({l['naissance']}-{l['deces'] or ''}, {l['chambre']}){proches}")
                 continue
             carte = retenus[0]
-        periodes[carte["id"]].append((d, f, annuel))
+        periodes[carte["id"]].append((d, f, annuel, l["chambre"]))
         noms[carte["id"]] = (nom, carte["nom"])
 
+    os.makedirs(os.path.join("data", "gouvernement"), exist_ok=True)
+    noms_chambres = {"Chambre des pairs": "Président de la Chambre des pairs", "Sénat": "Président du Sénat",
+                     "Conseil de la République": "Président du Conseil de la République",
+                     "Conseil de la République puis Sénat": "Président du Conseil de la République puis du Sénat"}
+    detail = {str(i): [{"fonction": noms_chambres.get(ps[k][3], LIBELLE_FONCTION), "debut": ps[k][0].isoformat(),
+                        "fin": ps[k][1].isoformat() if ps[k][1] else None, "annuel": bool(ps[k][2])}
+                       for k in range(len(ps))] for i, ps in periodes.items()}
+    with open(os.path.join("data", "gouvernement", FICHIER_DETAIL), "w", encoding="utf-8") as f:
+        json.dump(detail, f, ensure_ascii=False, indent=0)
     longue, courte = [], []
     rapport.append("\nRattachements (nom et années de naissance et de décès concordants) :")
     for ident, ps in sorted(periodes.items(), key=lambda x: str(x[0])):
-        jours = sum((f - d).days for d, f, a in ps if not a)
-        annees_pleines = any(a and f.year - d.year >= 2 for d, f, a in ps)
+        jours = sum((f - d).days for d, f, a, *_ in ps if not a)
+        annees_pleines = any(a and f.year - d.year >= 2 for d, f, a, *_ in ps)
         (longue if jours >= 365 or annees_pleines else courte).append(ident)
         officiel, fiche = noms[ident]
         rapport.append(f"  {str(ident):>8}  {jours:6d} j  {officiel}  ->  {fiche}"
