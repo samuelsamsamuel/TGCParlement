@@ -29,10 +29,11 @@ Cartes en exercice : 723
 Cartes par époque : Libération et IVe République 1274, Ve République 5776, IIIe République 4622, IIe République et Second Empire 1549, Monarchies constitutionnelles 2484, Révolution et Empire 3930, None 173
 
 Répartition des raretés :
-  legendaire : 633
-  epique : 1364
-  rare : 3043
-  peu-commune : 5267
+  mythique : 95
+  legendaire : 432
+  epique : 1074
+  rare : 2469
+  peu-commune : 6237
   commune : 9328
   hors-categorie : 173
 
@@ -169,13 +170,13 @@ Anomalies :
     21046E Corinne Bourcier (ACTIF)
 
 Dix premières cartes :
-   136.3  legendaire  Edgar Faure : Député (Jura, Doubs) de 1946 à 1980, 7 mandats (Quatrième République - Assemblée nationale ; Cinquième République - Assemblée nationale). Sénateur de 1959 à 1988. A siégé dans les deux chambres. A dirigé le Gouvernement. A été ministre. A présidé l'Assemblée au moins un an. A été secrétaire d'État.
-   131.2  legendaire  Jacques, Michel, Pierre Chaban-Delmas : Député (Gironde) de 1946 à 1997, 14 mandats (Quatrième République - Assemblée nationale ; Cinquième République - Assemblée nationale). A dirigé le Gouvernement. A été ministre. A présidé l'Assemblée au moins un an.
-   124.8  legendaire  Laurent Fabius : Député (Seine-Maritime) de 1978 à 2012, 9 mandats (Cinquième République - Assemblée nationale). A dirigé le Gouvernement. A été ministre. A présidé l'Assemblée au moins un an.
-   121.8  legendaire  Félix, Jean Gouin : Député (Bouches-du-Rhône) de 1924 à 1958, 9 mandats (Troisième République - Chambre des députés ; Gouvernement provisoire de la République française ; Quatrième République - Assemblée nationale). A dirigé le Gouvernement. A été ministre. A présidé l'Assemblée. Parmi les Quatre-vingts qui refusèrent les pleins pouvoirs à Pétain le 10 juillet 1940.
-   111.2  legendaire  François Mitterrand : Député (Nièvre) de 1946 à 1981, 8 mandats (Quatrième République - Assemblée nationale ; Cinquième République - Assemblée nationale). Sénateur de 1959 à 1962. A siégé dans les deux chambres. A été chef de l'État. A été ministre. A été secrétaire d'État.
-   109.5  legendaire  Jacques Chirac : Député (Corrèze) de 1967 à 1995, 9 mandats (Cinquième République - Assemblée nationale). A été chef de l'État. A dirigé le Gouvernement. A été ministre. A été secrétaire d'État.
-   102.6  legendaire  Paul Ramadier : Député (Aveyron) de 1928 à 1958, 7 mandats (Troisième République - Chambre des députés ; Gouvernement provisoire de la République française ; Quatrième République - Assemblée nationale). A dirigé le Gouvernement. A été ministre. Parmi les Quatre-vingts qui refusèrent les pleins pouvoirs à Pétain le 10 juillet 1940.
-   101.8  legendaire  Léon, André Blum : Député (Seine, Aude) de 1919 à 1941, 5 mandats (Troisième République - Chambre des députés). A dirigé le Gouvernement. A été ministre. Parmi les Quatre-vingts qui refusèrent les pleins pouvoirs à Pétain le 10 juillet 1940.
-   101.2  legendaire  François Fillon : Député (Sarthe, Paris) de 1981 à 2017, 8 mandats (Cinquième République - Assemblée nationale). Sénateur de 2004 à 2007. A siégé dans les deux chambres. A dirigé le Gouvernement. Doyen d'âge ou benjamin d'une législature. A été ministre. A présidé un groupe politique.
-   100.0  legendaire  Jules, Emile Jeanneney : Député (Haute-Saône) de 1902 à 1909, 2 mandats (Troisième République - Chambre des députés). Sénateur de 1909 à 1944. A siégé dans les deux chambres. A été ministre. A présidé la seconde chambre au moins un an.
+   136.3  mythique    Edgar Faure : Député (Jura, Doubs) de 1946 à 1980, 7 mandats (Quatrième République - Assemblée nationale ; Cinquième République - Assemblée nationale). Sénateur de 1959 à 1988. A siégé dans les deux chambres. A dirigé le Gouvernement. A été ministre. A présidé l'Assemblée au moins un an. A été secrétaire d'État.
+   131.2  mythique    Jacques, Michel, Pierre Chaban-Delmas : Député (Gironde) de 1946 à 1997, 14 mandats (Quatrième République - Assemblée nationale ; Cinquième République - Assemblée nationale). A dirigé le Gouvernement. A été ministre. A présidé l'Assemblée au moins un an.
+   124.8  mythique    Laurent Fabius : Député (Seine-Maritime) de 1978 à 2012, 9 mandats (Cinquième République - Assemblée nationale). A dirigé le Gouvernement. A été ministre. A présidé l'Assemblée au moins un an.
+   121.8  mythique    Félix, Jean Gouin : Député (Bouches-du-Rhône) de 1924 à 1958, 9 mandats (Troisième République - Chambre des députés ; Gouvernement provisoire de la République française ; Quatrième République - Assemblée nationale). A dirigé le Gouvernement. A été ministre. A présidé l'Assemblée. Parmi les Quatre-vingts qui refusèrent les pleins pouvoirs à Pétain le 10 juillet 1940.
+   111.2  mythique    François Mitterrand : Député (Nièvre) de 1946 à 1981, 8 mandats (Quatrième République - Assemblée nationale ; Cinquième République - Assemblée nationale). Sénateur de 1959 à 1962. A siégé dans les deux chambres. A été chef de l'État. A été ministre. A été secrétaire d'État.
+   109.5  mythique    Jacques Chirac : Député (Corrèze) de 1967 à 1995, 9 mandats (Cinquième République - Assemblée nationale). A été chef de l'État. A dirigé le Gouvernement. A été ministre. A été secrétaire d'État.
+   102.6  mythique    Paul Ramadier : Député (Aveyron) de 1928 à 1958, 7 mandats (Troisième République - Chambre des députés ; Gouvernement provisoire de la République française ; Quatrième République - Assemblée nationale). A dirigé le Gouvernement. A été ministre. Parmi les Quatre-vingts qui refusèrent les pleins pouvoirs à Pétain le 10 juillet 1940.
+   101.8  mythique    Léon, André Blum : Député (Seine, Aude) de 1919 à 1941, 5 mandats (Troisième République - Chambre des députés). A dirigé le Gouvernement. A été ministre. Parmi les Quatre-vingts qui refusèrent les pleins pouvoirs à Pétain le 10 juillet 1940.
+   101.2  mythique    François Fillon : Député (Sarthe, Paris) de 1981 à 2017, 8 mandats (Cinquième République - Assemblée nationale). Sénateur de 2004 à 2007. A siégé dans les deux chambres. A dirigé le Gouvernement. Doyen d'âge ou benjamin d'une législature. A été ministre. A présidé un groupe politique.
+   100.0  mythique    Jules, Emile Jeanneney : Député (Haute-Saône) de 1902 à 1909, 2 mandats (Troisième République - Chambre des députés). Sénateur de 1909 à 1944. A siégé dans les deux chambres. A été ministre. A présidé la seconde chambre au moins un an.
