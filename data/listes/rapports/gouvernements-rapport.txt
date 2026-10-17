@@ -1,5 +1,5 @@
 Rattachés : chef-etat-interim 1, chef-etat 8, chef-gouvernement 45, ministre 657, secretaire-etat 496 ; hors catégorie : 173
-Fonctions 1944-1959 reprises : 908
+Fonctions 1944-1959 reprises : 908 ; fonctions récentes (open data de l'Assemblée) : 0
 
 Fonctions non comptées : 
 
