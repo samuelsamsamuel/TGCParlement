@@ -41,11 +41,11 @@ SORTIE = os.path.join("data", "listes")
 RAPPORTS = os.path.join(SORTIE, "rapports")
 F_DECISIONS = os.path.join(SORTIE, "decisions-gouvernements.json")
 LISTES = {
-    "chef-etat": (50, "A été chef de l'État"),
-    "chef-etat-interim": (15, "A assuré l'intérim de la présidence de la République"),
-    "chef-gouvernement": (40, "A dirigé le Gouvernement"),
-    "ministre": (15, "A été ministre"),
-    "secretaire-etat": (6, "A été secrétaire d'État"),
+    "chef-etat": (70, "A été chef de l'État"),
+    "chef-etat-interim": (20, "A assuré l'intérim de la présidence de la République"),
+    "chef-gouvernement": (55, "A dirigé le Gouvernement"),
+    "ministre": (25, "A été ministre"),
+    "secretaire-etat": (12, "A été secrétaire d'État"),
 }
 
 
