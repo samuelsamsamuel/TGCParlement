@@ -292,6 +292,10 @@ def rattacher(nom, jour, cartes, index, fin=None):
     return c, "GRAPHIE VOISINE, à vérifier"
 
 
+LIBELLE_FONCTION = "Président de l'Assemblée (ou de la Chambre des députés)"
+FICHIER_DETAIL = "presidences_an.json"
+
+
 def main():
     with open(os.path.join("data", "cartes.json"), encoding="utf-8") as f:
         cartes = json.load(f)
@@ -416,6 +420,12 @@ def main():
 
     for cle in set(decisions) - appliquees:
         rapport.append(f"DÉCISION SANS LIGNE CORRESPONDANTE (vérifier la clé) : {cle}")
+    os.makedirs(os.path.join("data", "gouvernement"), exist_ok=True)
+    detail = {str(i): [{"fonction": LIBELLE_FONCTION, "debut": ps[k][0].isoformat(),
+                        "fin": ps[k][1].isoformat() if ps[k][1] else None, "annuel": bool(ps[k][2])}
+                       for k in range(len(ps))] for i, ps in periodes.items()}
+    with open(os.path.join("data", "gouvernement", FICHIER_DETAIL), "w", encoding="utf-8") as f:
+        json.dump(detail, f, ensure_ascii=False, indent=0)
     longue, courte = [], []
     rapport.append("\nRattachements (vérifier chaque ligne) :")
     indetermines = []
