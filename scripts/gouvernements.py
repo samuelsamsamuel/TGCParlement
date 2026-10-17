@@ -232,6 +232,16 @@ def main():
         elif not (r.get("fonction") or "").lower().startswith("premier ministre"):
             non_comptees[r.get("fonction")] += 1
 
+    # Gouvernements récents d'après l'open data de l'Assemblée (gouvernements_an.py), qui complète
+    # le jeu de données de la Ve République, arrêté en mars 2025
+    f_an = os.path.join("data", "gouvernement", "an_lignes.json")
+    nb_an = 0
+    if os.path.exists(f_an):
+        with open(f_an, encoding="utf-8") as f:
+            for r in json.load(f):
+                lignes.append((r["liste"], r["prenom"], r["nom"], r["debut"], r["fonction"], r["fin"]))
+                nb_an += 1
+
     # Gouvernements de la Libération et de la IVe République (lus par gouvernements_ive.py)
     f_ive = os.path.join("data", "gouvernement", "ive_lignes.json")
     nb_ive = 0
@@ -242,6 +252,7 @@ def main():
                 nb_ive += 1
 
     rapport, membres, vus, ecartes, souples = [], defaultdict(set), {}, [], []
+    detail = defaultdict(list)
     index_large = defaultdict(list)  # tous les mots du dernier segment du nom (prénom compris)
     for c in cartes:
         for w in mots((c["nom"] or "").split(",")[-1]):
@@ -274,11 +285,13 @@ def main():
                                   for m in c["mandats"])]
                 if len(retenus) == 1:
                     membres[liste].add(retenus[0]["id"])
+                    detail[retenus[0]["id"]].append((fonction, debut, fin, liste))
                     vus[cle] = (retenus[0]["id"], retenus[0]["nom"] + " [décision]")
                 else:
                     rapport.append(f"DÉCISION NON APPLICABLE ({len(retenus)} fiche(s) pour {dec['departement']}) : {cle}")
             elif dec.get("id") is not None:
                 membres[liste].add(dec["id"])
+                detail[dec["id"]].append((fonction, debut, fin, liste))
                 vus[cle] = (dec["id"], "[décision]")
             continue
         if homonymes and not candidats and cle not in vus:
@@ -287,6 +300,7 @@ def main():
         if len(candidats) == 1:
             c = next(iter(candidats.values()))
             membres[liste].add(c["id"])
+            detail[c["id"]].append((fonction, debut, fin, liste))
             vus[cle] = (c["id"], c["nom"])
         elif len(candidats) > 1 and cle not in vus:
             vus[cle] = None
@@ -326,13 +340,27 @@ def main():
         membres[liste].add(ident)
     for fiche in personnes.values():
         fiche["fonctions"].sort(key=lambda f: f["debut"] or "")
+    for ident, fiche in personnes.items():
+        for x in fiche["fonctions"]:
+            detail[ident].append((x["fonction"], x["debut"], x["fin"], x["liste"]))
     os.makedirs(os.path.join("data", "gouvernement"), exist_ok=True)
+    fusion = {}
+    for ident, fs in detail.items():
+        uniques = {}
+        for fonction, debut, fin, liste in fs:
+            cle = (fonction or "").strip().rstrip(".")
+            u = uniques.setdefault(cle, {"fonction": cle, "liste": liste, "debut": debut, "fin": fin})
+            u["debut"] = min(x for x in (u["debut"], debut) if x) if (u["debut"] or debut) else None
+            u["fin"] = None if not (u["fin"] and fin) else max(u["fin"], fin)
+        fusion[str(ident)] = sorted(uniques.values(), key=lambda x: x["debut"] or "")
+    with open(os.path.join("data", "gouvernement", "fonctions.json"), "w", encoding="utf-8") as f:
+        json.dump(fusion, f, ensure_ascii=False, indent=0)
     with open(os.path.join("data", "gouvernement", "hors_parlement.json"), "w", encoding="utf-8") as f:
         json.dump([{k: v for k, v in x.items() if k != "cle"} for x in sorted(personnes.values(), key=lambda x: x["id"])],
                   f, ensure_ascii=False, indent=1)
 
     sans_carte = sorted(personnes[i]["nom"] for i in personnes)
-    rapport.insert(0, f"Fonctions 1944-1959 reprises : {nb_ive}")
+    rapport.insert(0, f"Fonctions 1944-1959 reprises : {nb_ive} ; fonctions récentes (open data de l'Assemblée) : {nb_an}")
     rapport.insert(0, "Rattachés : " + ", ".join(f"{k} {len(v)}" for k, v in membres.items())
                    + f" ; hors catégorie : {len(sans_carte)}")
     if DATES_ILLISIBLES:
