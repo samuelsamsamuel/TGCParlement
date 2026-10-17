@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hémicycle — cartes des parlementaires depuis 1789</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --velours:#5c1020; --velours-fonce:#2e0710; --dorure:#c9a24a; --dorure-pale:#e6d29a;
+  --marbre:#efe9df; --encre:#21161a; --pierre:#8d8378;
+  --r-legendaire:#c9a24a; --r-epique:#8e4fa3; --r-rare:#3a6ea5; --r-peu-commune:#4f7a5a;
+  --r-commune:#8d8378; --r-hors-categorie:#efe9df;
+  --serif:"Libre Caslon Text",Georgia,"Times New Roman",serif;
+  --sans:"Instrument Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--velours-fonce);color:var(--marbre);font:16px/1.5 var(--sans);min-height:100vh}
+a{color:var(--dorure-pale)}
+button{font:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--dorure);outline-offset:3px}
+
+/* En-tête : l'hémicycle en gradins */
+header{background:radial-gradient(120% 140% at 50% 120%,var(--velours) 0%,var(--velours-fonce) 70%);padding:2.5rem 1.25rem 0;text-align:center;overflow:hidden}
+.gradins{display:block;margin:0 auto -1px;width:min(560px,100%);height:auto}
+h1{font:400 clamp(2.4rem,7vw,4.2rem)/1 var(--serif);letter-spacing:.01em;margin:0 0 .5rem;color:var(--marbre)}
+.chapeau{margin:0 auto 1.5rem;max-width:34rem;color:var(--dorure-pale);font-size:1.02rem}
+nav{display:flex;justify-content:center;gap:.25rem;border-top:1px solid rgba(201,162,74,.35)}
+nav button{background:none;border:0;color:var(--marbre);padding:.9rem 1.2rem;border-bottom:3px solid transparent;font-weight:500}
+nav button[aria-selected="true"]{border-bottom-color:var(--dorure);color:var(--dorure-pale)}
+
+main{max-width:1120px;margin:0 auto;padding:2rem 1.25rem 4rem}
+.vue[hidden]{display:none}
+
+/* Scrutin */
+.urne{display:flex;flex-direction:column;align-items:center;gap:1rem;text-align:center;margin-bottom:2rem}
+.urne p{margin:0;color:var(--dorure-pale)}
+.bouton{background:var(--dorure);color:var(--encre);border:0;border-radius:3px;padding:.85rem 1.6rem;font-weight:600;font-size:1.05rem}
+.bouton:disabled{background:var(--pierre);color:var(--velours-fonce);cursor:not-allowed}
+.bouton.discret{background:none;color:var(--dorure-pale);border:1px solid rgba(201,162,74,.5);font-weight:500;font-size:.95rem;padding:.55rem 1.1rem}
+
+.tirage{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1.1rem}
+.grille{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1.1rem}
+
+/* Carte */
+.carte{position:relative;perspective:1200px;min-height:300px;border:0;padding:0;background:none;text-align:left;color:inherit}
+.face{position:absolute;inset:0;border-radius:6px;backface-visibility:hidden;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.dos{background:repeating-linear-gradient(135deg,var(--velours) 0 10px,#651326 10px 20px);border:2px solid var(--dorure);display:grid;place-items:center}
+.dos span{font:italic 400 1.1rem var(--serif);color:var(--dorure-pale)}
+.recto{transform:rotateY(180deg);background:var(--marbre);color:var(--encre);border:3px solid var(--rarete);display:flex;flex-direction:column;padding:1rem 1rem .8rem;overflow:hidden}
+.carte.retournee .dos{transform:rotateY(-180deg)}
+.carte.retournee .recto{transform:rotateY(0)}
+.carte.statique .face{transition:none}
+.bandeau{display:flex;justify-content:space-between;align-items:baseline;font-size:.78rem;font-weight:600;color:var(--rarete-texte)}
+.score{font:700 1.5rem/1 var(--serif);color:var(--encre)}
+.nom{font:700 1.18rem/1.2 var(--serif);margin:.6rem 0 .15rem}
+.periode{font-size:.85rem;color:#6b5f55;margin:0 0 .6rem}
+.texte{font-size:.82rem;line-height:1.45;margin:0;flex:1;overflow:auto}
+.pied{display:flex;justify-content:space-between;align-items:center;margin-top:.6rem;font-size:.78rem}
+.pied a{color:var(--velours)}
+.exemplaires{background:var(--velours);color:var(--marbre);border-radius:10px;padding:0 .5rem}
+.nouvelle{color:var(--velours);font-weight:600}
+
+.r-legendaire{--rarete:var(--r-legendaire);--rarete-texte:#8a6a1c}
+.r-epique{--rarete:var(--r-epique);--rarete-texte:var(--r-epique)}
+.r-rare{--rarete:var(--r-rare);--rarete-texte:var(--r-rare)}
+.r-peu-commune{--rarete:var(--r-peu-commune);--rarete-texte:var(--r-peu-commune)}
+.r-commune{--rarete:var(--r-commune);--rarete-texte:#6b5f55}
+.r-hors-categorie{--rarete:var(--velours);--rarete-texte:var(--velours)}
+.r-legendaire .recto{box-shadow:0 0 0 1px var(--dorure-pale),0 0 28px rgba(201,162,74,.45)}
+
+/* Collection */
+.outils{display:flex;flex-wrap:wrap;gap:.75rem;align-items:center;margin-bottom:1.5rem}
+.outils input,.outils select{background:var(--velours-fonce);color:var(--marbre);border:1px solid rgba(201,162,74,.5);border-radius:3px;padding:.55rem .7rem;font:inherit}
+.outils input{flex:1;min-width:12rem}
+.progression{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:.5rem 1.5rem;margin:0 0 2rem;padding:0;list-style:none}
+.progression li{font-size:.9rem}
+.progression strong{font:700 1.3rem var(--serif);display:block;color:var(--dorure-pale)}
+.vide{color:var(--dorure-pale);text-align:center;padding:3rem 1rem}
+.message{min-height:1.5em;text-align:center;color:var(--dorure-pale)}
+
+footer{max-width:1120px;margin:0 auto;padding:0 1.25rem 3rem;font-size:.85rem;color:var(--pierre)}
+
+@media (prefers-reduced-motion:reduce){.face{transition:none}}
+</style>
+</head>
+<body>
+<header>
+  <h1>Hémicycle</h1>
+  <p class="chapeau">Collectionnez les parlementaires français, de la Constituante de 1789 à l'Assemblée d'aujourd'hui.</p>
+  <svg class="gradins" viewBox="0 0 560 120" aria-hidden="true">
+    <g fill="none" stroke="#c9a24a" stroke-opacity=".55">
+      <path d="M40 120 A240 240 0 0 1 520 120"/><path d="M80 120 A200 200 0 0 1 480 120"/>
+      <path d="M120 120 A160 160 0 0 1 440 120"/><path d="M160 120 A120 120 0 0 1 400 120"/>
+      <path d="M200 120 A80 80 0 0 1 360 120"/>
+    </g>
+    <rect x="262" y="100" width="36" height="20" fill="#c9a24a"/>
+  </svg>
+  <nav role="tablist" aria-label="Sections">
+    <button role="tab" aria-selected="true" data-vue="scrutin">Ouvrir un paquet</button>
+    <button role="tab" aria-selected="false" data-vue="collection">Ma collection</button>
+  </nav>
+</header>
+
+<main>
+  <section class="vue" id="vue-scrutin" aria-live="polite">
+    <div class="urne">
+      <p id="restants">Chargement des cartes…</p>
+      <button class="bouton" id="ouvrir" disabled>Ouvrir un paquet</button>
+      <button class="bouton discret" id="tout-reveler" hidden>Retourner toutes les cartes</button>
+    </div>
+    <div class="tirage" id="tirage"></div>
+  </section>
+
+  <section class="vue" id="vue-collection" hidden>
+    <ul class="progression" id="progression"></ul>
+    <div class="outils">
+      <input id="recherche" type="search" aria-label="Rechercher dans ma collection" placeholder="Rechercher un nom, un département, une fonction">
+      <select id="filtre" aria-label="Filtrer par rareté"><option value="">Toutes les raretés</option></select>
+      <select id="tri" aria-label="Trier">
+        <option value="score">Par score</option><option value="nom">Par nom</option><option value="annee">Par date</option>
+      </select>
+    </div>
+    <div class="grille" id="grille"></div>
+  </section>
+</main>
+
+<footer>
+  Données : Assemblée nationale (base Sycomore), Sénat (open data), data.gouv.fr. Chaque carte renvoie à sa fiche officielle.
+</footer>
+
+<script>
+const PAQUETS_PAR_JOUR = 3, CARTES_PAR_PAQUET = 5;
+const LIBELLES = {"legendaire":"Légendaire","epique":"Épique","rare":"Rare","peu-commune":"Peu commune","commune":"Commune","hors-categorie":"Hors catégorie"};
+const POIDS = {"legendaire":2,"epique":7,"rare":18,"peu-commune":30,"commune":40,"hors-categorie":3};
+const CLE = "hemicycle-collection";
+
+let raretes = [], cartes = [], parId = new Map(), parRarete = {};
+let etat = charger();
+
+function charger(){
+  try { const e = JSON.parse(localStorage.getItem(CLE)); if (e && e.possedees) return e; } catch(_) {}
+  return {possedees:{}, jour:"", ouverts:0};
+}
+function sauver(){ try { localStorage.setItem(CLE, JSON.stringify(etat)); } catch(_) {} }
+function aujourdhui(){ const d = new Date(); return d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate(); }
+function restants(){ if (etat.jour !== aujourdhui()) { etat.jour = aujourdhui(); etat.ouverts = 0; sauver(); } return PAQUETS_PAR_JOUR - etat.ouverts; }
+
+function tirerRarete(){
+  const total = Object.values(POIDS).reduce((a,b)=>a+b,0);
+  let x = Math.random()*total;
+  for (const [r,p] of Object.entries(POIDS)) { if ((x -= p) < 0 && parRarete[r]?.length) return r; }
+  return "commune";
+}
+function tirerCarte(){ const r = tirerRarete(); const l = parRarete[r]; return l[Math.floor(Math.random()*l.length)]; }
+
+function periode(c){
+  if (!c.debut) return "";
+  if (!c.fin) return "Depuis "+c.debut;
+  return c.debut === c.fin ? String(c.debut) : c.debut+" – "+c.fin;
+}
+function echapper(t){ return String(t ?? "").replace(/[&<>"]/g, s => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[s])); }
+
+function htmlCarte(c, {retournee=true, nouvelle=false}={}){
+  const n = etat.possedees[c.id] || 0;
+  return `<div class="carte r-${c.rarete} ${retournee?"retournee statique":""}" tabindex="${retournee?-1:0}" role="${retournee?"article":"button"}" aria-label="${retournee?echapper(c.nom):"Carte face cachée, retourner"}">
+    <div class="face dos"><span>Hémicycle</span></div>
+    <div class="face recto">
+      <div class="bandeau"><span>${LIBELLES[c.rarete]}</span><span class="score">${c.score.toLocaleString("fr-FR")}</span></div>
+      <h3 class="nom">${echapper(c.nom)}</h3>
+      <p class="periode">${periode(c)}</p>
+      <p class="texte">${echapper(c.texte)}</p>
+      <div class="pied">${c.source?`<a href="${echapper(c.source)}" target="_blank" rel="noopener">Fiche officielle</a>`:"<span></span>"}
+        ${nouvelle?'<span class="nouvelle">Nouvelle</span>':(n>1?`<span class="exemplaires" title="Exemplaires">×${n}</span>`:"")}</div>
+    </div></div>`;
+}
+
+function majCompteur(){
+  const r = restants();
+  document.getElementById("restants").textContent = r > 0
+    ? `${r} paquet${r>1?"s":""} disponible${r>1?"s":""} aujourd'hui, ${CARTES_PAR_PAQUET} cartes par paquet.`
+    : "Plus de paquet aujourd'hui. Revenez demain pour en ouvrir trois nouveaux.";
+  document.getElementById("ouvrir").disabled = r <= 0;
+}
+
+function ouvrir(){
+  if (restants() <= 0) return;
+  const tirage = Array.from({length:CARTES_PAR_PAQUET}, tirerCarte);
+  const nouvelles = new Set(tirage.filter(c => !etat.possedees[c.id]).map(c => c.id));
+  tirage.forEach(c => etat.possedees[c.id] = (etat.possedees[c.id]||0) + 1);
+  etat.ouverts += 1; sauver();
+  const zone = document.getElementById("tirage");
+  zone.innerHTML = tirage.map(c => htmlCarte(c, {retournee:false, nouvelle:nouvelles.has(c.id)})).join("");
+  zone.querySelectorAll(".carte").forEach(el => {
+    const retourner = () => { el.classList.add("retournee"); el.setAttribute("role","article"); el.tabIndex = -1; el.removeAttribute("aria-label"); };
+    el.addEventListener("click", retourner);
+    el.addEventListener("keydown", e => { if (e.key==="Enter"||e.key===" ") { e.preventDefault(); retourner(); } });
+  });
+  document.getElementById("tout-reveler").hidden = false;
+  zone.querySelector(".carte")?.focus();
+  majCompteur(); majCollection();
+}
+
+function majCollection(){
+  const possedees = cartes.filter(c => etat.possedees[c.id]);
+  const prog = document.getElementById("progression");
+  prog.innerHTML = `<li><strong>${possedees.length.toLocaleString("fr-FR")}</strong>cartes sur ${cartes.length.toLocaleString("fr-FR")}</li>` +
+    raretes.filter(r => parRarete[r]?.length).map(r => `<li><strong>${possedees.filter(c=>c.rarete===r).length}</strong>${LIBELLES[r].toLowerCase()} sur ${parRarete[r].length}</li>`).join("");
+  const q = document.getElementById("recherche").value.trim().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");
+  const f = document.getElementById("filtre").value, tri = document.getElementById("tri").value;
+  let liste = possedees.filter(c => (!f || c.rarete===f) && (!q || c.cherche.includes(q)));
+  liste.sort(tri==="nom" ? (a,b)=>a.nom.localeCompare(b.nom,"fr") : tri==="annee" ? (a,b)=>(a.debut||0)-(b.debut||0) : (a,b)=>b.score-a.score);
+  const grille = document.getElementById("grille");
+  grille.innerHTML = liste.length ? liste.slice(0,300).map(c => htmlCarte(c)).join("")
+    : `<p class="vide">${possedees.length ? "Aucune carte de votre collection ne correspond à cette recherche." : "Votre collection est vide. Ouvrez un paquet pour obtenir vos premières cartes."}</p>`;
+  if (liste.length > 300) grille.insertAdjacentHTML("beforeend", `<p class="vide">${liste.length-300} autres cartes : affinez la recherche pour les afficher.</p>`);
+}
+
+document.querySelectorAll("nav button").forEach(b => b.addEventListener("click", () => {
+  document.querySelectorAll("nav button").forEach(x => x.setAttribute("aria-selected", x===b));
+  document.querySelectorAll(".vue").forEach(v => v.hidden = v.id !== "vue-"+b.dataset.vue);
+}));
+document.getElementById("ouvrir").addEventListener("click", ouvrir);
+document.getElementById("tout-reveler").addEventListener("click", () => document.querySelectorAll("#tirage .carte").forEach(el => el.click()));
+["recherche","filtre","tri"].forEach(id => document.getElementById(id).addEventListener("input", majCollection));
+
+fetch("jeu.json").then(r => { if (!r.ok) throw new Error(r.status); return r.json(); }).then(d => {
+  raretes = d.raretes;
+  cartes = d.cartes.map(([id,nom,r,score,texte,debut,fin,source]) => ({id,nom,rarete:raretes[r],score,texte,debut,fin,source,
+    cherche:(nom+" "+texte).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"")}));
+  cartes.forEach(c => { parId.set(c.id,c); (parRarete[c.rarete] ||= []).push(c); });
+  const filtre = document.getElementById("filtre");
+  raretes.filter(r => parRarete[r]?.length).forEach(r => filtre.insertAdjacentHTML("beforeend", `<option value="${r}">${LIBELLES[r]}</option>`));
+  majCompteur(); majCollection();
+}).catch(() => {
+  document.getElementById("restants").textContent = "Les cartes n'ont pas pu être chargées. Vérifiez que le fichier jeu.json est publié à côté de cette page, puis rechargez.";
+});
+</script>
+</body>
+</html>
