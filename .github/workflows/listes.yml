@@ -25,6 +25,10 @@ jobs:
         continue-on-error: true
         run: python3 scripts/gouvernements_ive.py
 
+      - name: Gouvernements récents (open data de l'Assemblée)
+        continue-on-error: true
+        run: python3 scripts/gouvernements_an.py
+
       - name: Gouvernements (Libération, IVe et Ve Républiques)
         run: python3 scripts/gouvernements.py
 
