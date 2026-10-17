@@ -44,6 +44,10 @@ jobs:
       - name: Cartes, version finale
         run: python3 scripts/cartes.py
 
+      - name: Portraits (Wikidata)
+        continue-on-error: true
+        run: python3 scripts/portraits.py
+
       - name: Export pour l'application
         run: python3 scripts/export_jeu.py
 
