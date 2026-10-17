@@ -7,6 +7,7 @@ postérieures, on lit le fichier officiel « Députés, sénateurs et ministres 
 et leurs dates. Seules les fonctions commençant après le 13 mars 2025 sont reprises.
 Sorties : data/gouvernement/an_lignes.json et data/listes/rapports/gouvernements-an-rapport.txt
 """
+import http.client
 import io
 import json
 import os
@@ -25,19 +26,31 @@ RAPPORT = os.path.join("data", "listes", "rapports", "gouvernements-an-rapport.t
 
 
 def telecharger(rapport):
+    """Téléchargement par blocs, repris jusqu'à cinq fois si la connexion se coupe en cours de route."""
     for url in ADRESSES:
-        for attente in (0, 20):
+        for essai, attente in enumerate((0, 10, 30, 60, 120), 1):
             time.sleep(attente)
             try:
                 req = urllib.request.Request(url, headers={"User-Agent": "TGCParlement/1.0"})
                 with urllib.request.urlopen(req, timeout=180) as r:
-                    rapport.append(f"Fichier lu : {url}")
-                    return r.read()
+                    attendu = int(r.headers.get("Content-Length") or 0)
+                    morceaux = []
+                    while True:
+                        bloc = r.read(65536)
+                        if not bloc:
+                            break
+                        morceaux.append(bloc)
+                    brut = b"".join(morceaux)
+                if attendu and len(brut) < attendu:
+                    raise http.client.IncompleteRead(brut, attendu - len(brut))
+                zipfile.ZipFile(io.BytesIO(brut)).testzip()  # archive complète et lisible
+                rapport.append(f"Fichier lu : {url} ({len(brut)} octets, essai {essai})")
+                return brut
             except urllib.error.HTTPError as e:
                 rapport.append(f"{url} : {e}")
                 break
-            except urllib.error.URLError as e:
-                rapport.append(f"{url} : {e}")
+            except (urllib.error.URLError, http.client.HTTPException, zipfile.BadZipFile, OSError) as e:
+                rapport.append(f"{url} : essai {essai} interrompu ({type(e).__name__})")
     return None
 
 
