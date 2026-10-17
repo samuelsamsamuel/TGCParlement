@@ -41,6 +41,7 @@ PTS_PAR_AN, PLAFOND_ANS = 1, 30
 # Présidences : la meilleure compte en entier ; avoir présidé les deux chambres ajoute 10 points.
 FAMILLES = {
     "executif": ["chef-etat", "chef-gouvernement", "chef-etat-interim", "ministre", "secretaire-etat"],
+    "assemblee": ["presidence-commission", "rapporteur-general", "presidence-groupe", "bureau-vp-questeur", "bureau-secretaire"],
     "presidence": ["presidence-an-longue", "presidence-senat-longue", "presidence-an-courte", "presidence-senat-courte"],
 }
 PART_SECONDAIRE = 0.25
@@ -210,6 +211,30 @@ def noms_cles(nom):
     import unicodedata
     t = unicodedata.normalize("NFKD", nom or "").encode("ascii", "ignore").decode().lower()
     return set(w for w in re.findall(r"[a-z]+", t) if w not in PARTICULES)
+
+
+EPOQUES = [(1814, "Révolution et Empire"), (1848, "Monarchies constitutionnelles"), (1870, "IIe République et Second Empire"),
+           (1940, "IIIe République"), (1958, "Libération et IVe République"), (9999, "Ve République")]
+
+
+def epoque(c):
+    debuts = [m["debut"] for m in c.get("mandats", []) if m.get("debut")]
+    if not debuts:
+        return EPOQUES[-1][1]
+    annee = int(min(debuts)[:4])
+    return next(nom for borne, nom in EPOQUES if annee < borne)
+
+
+def elus_en_exercice(cartes):
+    """Parlementaires dont un mandat est en cours, et membres du Gouvernement en fonction."""
+    actuels = {c["id"] for c in cartes if any(m.get("en_cours") for m in c.get("mandats", []))}
+    f = os.path.join("data", "gouvernement", "fonctions.json")
+    if os.path.exists(f):
+        with open(f, encoding="utf-8") as fh:
+            for ident, fonctions in json.load(fh).items():
+                if any(x.get("fin") is None and (x.get("debut") or "") >= "2017" for x in fonctions):
+                    actuels.add(int(ident) if ident.isdigit() else ident)
+    return actuels
 
 
 def nom_famille_sycomore(nom):
@@ -453,16 +478,28 @@ def main():
     senateurs = cartes_senateurs(cartes, listes)
     cartes.extend(senateurs)
 
-    # Rareté par rang, puis planchers éventuels
-    cartes.sort(key=lambda c: (-c["score"], str(c["id"])))
-    total = len(cartes)
-    for rang, c in enumerate(cartes):
-        part = (rang + 1) / total if total else 1
-        c["rarete"] = next(n for n, seuil in NIVEAUX if part <= seuil)
+    # Rareté par rang à l'intérieur de chaque époque (les assemblées révolutionnaires et la IIIe République,
+    # très nombreuses, n'écrasent plus les autres périodes), puis planchers, puis bonus des élus en exercice
+    actuels = elus_en_exercice(cartes)
+    par_epoque = defaultdict(list)
+    for c in cartes:
+        c["epoque"] = epoque(c)
+        c["en_exercice"] = c["id"] in actuels
+        par_epoque[c["epoque"]].append(c)
+    for groupe in par_epoque.values():
+        groupe.sort(key=lambda c: (-c["score"], str(c["id"])))
+        for rang, c in enumerate(groupe):
+            part = (rang + 1) / len(groupe)
+            c["rarete"] = next(n for n, seuil in NIVEAUX if part <= seuil)
+    for c in cartes:
         for d in c["distinctions"]:
             p = d.get("plancher")
             if p and ORDRE.index(p) < ORDRE.index(c["rarete"]):
                 c["rarete"] = p
+        if c["en_exercice"] and c["rarete"] != ORDRE[0]:
+            c["rarete"] = ORDRE[ORDRE.index(c["rarete"]) - 1]  # un niveau de plus pour les élus en exercice
+    cartes.sort(key=lambda c: (-c["score"], str(c["id"])))
+    total = len(cartes)
 
     # Membres du Gouvernement sans mandat parlementaire : hors classement
     hors_categorie = cartes_hors_categorie(listes)
@@ -489,6 +526,8 @@ def main():
         egalite = sum(1 for x in scores if x == scores[0])
         f.write(f"Cartes à égalité au score maximal : {egalite} ; scores distincts parmi les 100 premières : "
                 f"{len(set(scores[:100]))}\n")
+        f.write(f"\nCartes en exercice : {sum(1 for c in cartes if c.get('en_exercice'))}\n")
+        f.write("Cartes par époque : " + ", ".join(f"{e} {n}" for e, n in Counter(c.get("epoque") for c in cartes).items()) + "\n")
         f.write("\nRépartition des raretés :\n")
         for n in ORDRE + ["hors-categorie"]:
             f.write(f"  {n} : {rar[n]}\n")
