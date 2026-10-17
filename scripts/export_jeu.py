@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Export des cartes pour l'application : site/jeu.json, format compact.
 
-Chaque carte : [id, nom affiché, rareté, score, texte, première année, dernière année, source,
+Chaque carte : [id, nom affiché, rareté, score, époque, en exercice (1/0), première année, dernière année, source,
 portrait (fichier Commons ou null), distinctions (codes), chambres ("A" Assemblée, "S" Sénat, "G" Gouvernement), sexe,
-fonctions [intitulé, début, fin, rang], mandats regroupés [intitulé, département, début, fin, nombre]].
+fonctions [intitulé, début, fin, rang], mandats regroupés [intitulé, département, [[début, fin], ...], nombre]].
 Le nom affiché est le nom d'usage : premier prénom et nom de famille pour les fiches Sycomore
 (« Jacques, Michel, Pierre Chaban-Delmas » -> « Jacques Chaban-Delmas »).
 """
@@ -18,7 +18,12 @@ from cartes import nom_famille_sycomore  # noqa: E402
 RARETES = ["legendaire", "epique", "rare", "peu-commune", "commune", "hors-categorie"]
 
 
+NOMS_USAGE = {}
+
+
 def nom_affiche(c):
+    if str(c["id"]) in NOMS_USAGE:
+        return NOMS_USAGE[str(c["id"])]
     nom = c["nom"] or ""
     if isinstance(c["id"], int) and "," in nom:
         return f"{nom.split(',')[0].strip()} {nom_famille_sycomore(nom)}"
@@ -35,7 +40,9 @@ def annees(c):
     return int(min(dates)[:4]), (None if en_cours else int(max(fins + dates)[:4]))
 
 
-RANG = {"chef-etat": 0, "chef-etat-interim": 1, "chef-gouvernement": 1, "presidence": 2, "ministre": 3, "secretaire-etat": 4}
+RANG = {"chef-etat": 0, "chef-etat-interim": 1, "chef-gouvernement": 1, "presidence": 2, "ministre": 3,
+        "secretaire-etat": 4, "presidence-commission": 5, "rapporteur-general": 5, "presidence-groupe": 6,
+        "bureau-vp-questeur": 6, "bureau-secretaire": 7}
 
 
 def an(d):
@@ -54,28 +61,35 @@ def fonctions_carte(ident, gouv, pres):
 
 
 def mandats_carte(c):
-    """Mandats regroupés par chambre et département : [intitulé, département, début, fin, nombre]."""
+    """Mandats regroupés par chambre et département, quelle que soit leur position dans la carrière :
+    [intitulé, département, [[début, fin], ...], nombre]. Les périodes contiguës (écart d'un an au plus)
+    sont fusionnées ; une interruption donne une seconde période sur la même ligne."""
     feminin = c.get("sexe") == "F"
-    groupes = []
+    groupes = {}
     for m in sorted(c.get("mandats", []), key=lambda m: m.get("debut") or ""):
         if not m.get("debut") and not m.get("non_date"):
             continue
         if m.get("chambre") == "AN":
             titre = "Députée" if feminin else "Député"
-            dep = m.get("departement")
         else:
             titre = "Sénatrice" if feminin else "Sénateur"
-            dep = m.get("departement")
-            if not dep and m.get("fonction") and "(" in m["fonction"]:
-                dep = m["fonction"].split("(", 1)[1].rstrip(")")
-        fin = None if m.get("en_cours") else an(m.get("fin"))
-        if groupes and groupes[-1][0] == titre and groupes[-1][1] == dep:
-            g = groupes[-1]
-            g[3] = None if fin is None or g[3] is None and m.get("en_cours") else max(g[3] or 0, fin or 0)
-            g[4] += 1
+        dep = m.get("departement")
+        if not dep and m.get("fonction") and "(" in m["fonction"]:
+            dep = m["fonction"].split("(", 1)[1].rstrip(")")
+        dep = (dep or "").strip() or None
+        g = groupes.setdefault((titre, (dep or "").lower().replace("-", " ")), [titre, dep, [], 0])
+        g[3] += 1
+        debut, fin = an(m.get("debut")), (None if m.get("en_cours") else an(m.get("fin")))
+        if debut is None:
+            continue
+        periodes = g[2]
+        if periodes and periodes[-1][1] is not None and debut <= periodes[-1][1] + 1:
+            periodes[-1][1] = None if fin is None else max(periodes[-1][1], fin)
+        elif periodes and periodes[-1][1] is None and not m.get("en_cours"):
+            periodes[-1][1] = fin
         else:
-            groupes.append([titre, dep, an(m.get("debut")), fin, 1])
-    return groupes
+            periodes.append([debut, fin])
+    return sorted(groupes.values(), key=lambda g: (g[2][0][0] if g[2] else 9999))
 
 
 def source(c):
@@ -92,7 +106,10 @@ def main():
             with open(chemin, encoding="utf-8") as f:
                 return json.load(f)
         return {}
+    NOMS_USAGE.update(lire(os.path.join("data", "noms_usage.json")))
     gouv = lire(os.path.join("data", "gouvernement", "fonctions.json"))
+    for k, v in lire(os.path.join("data", "gouvernement", "fonctions_assemblee.json")).items():
+        gouv.setdefault(k, []).extend(v)
     pres = lire(os.path.join("data", "gouvernement", "presidences_an.json"))
     for k, v in lire(os.path.join("data", "gouvernement", "presidences_senat.json")).items():
         pres.setdefault(k, []).extend(v)
@@ -108,13 +125,14 @@ def main():
         codes = [d["code"] for d in c.get("distinctions", [])]
         if any(x in codes for x in ("chef-etat", "chef-etat-interim", "chef-gouvernement", "ministre", "secretaire-etat")):
             chambres += "G"
-        sortie.append([c["id"], nom_affiche(c), RARETES.index(c["rarete"]), c["score"], texte, debut, fin, source(c),
+        sortie.append([c["id"], nom_affiche(c), RARETES.index(c["rarete"]), c["score"], c.get("epoque") or "",
+                       1 if c.get("en_exercice") else 0, debut, fin, source(c),
                        portraits.get(str(c["id"])), codes, chambres, c.get("sexe"),
                        fonctions_carte(c["id"], gouv, pres), mandats_carte(c)])
     os.makedirs("site", exist_ok=True)
     with open(os.path.join("site", "jeu.json"), "w", encoding="utf-8") as f:
         json.dump({"raretes": RARETES, "cartes": sortie}, f, ensure_ascii=False, separators=(",", ":"))
-    print(f"Cartes avec portrait : {sum(1 for x in sortie if x[8])}")
+    print(f"Cartes avec portrait : {sum(1 for x in sortie if x[9])}")
     print(f"Cartes exportées : {len(sortie)} ; taille : {os.path.getsize(os.path.join('site', 'jeu.json')) // 1024} Ko")
 
 
