@@ -45,6 +45,10 @@ jobs:
       - name: Présidences du Sénat
         run: python3 scripts/presidences_senat.py
 
+      - name: Distinctions (Libération, Académie, Nobel, Panthéon)
+        continue-on-error: true
+        run: python3 scripts/distinctions.py
+
       - name: Cartes, version finale
         run: python3 scripts/cartes.py
 
