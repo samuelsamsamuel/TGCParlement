@@ -5,13 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Hémicycle — cartes des parlementaires depuis 1789</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --velours:#5c1020; --velours-fonce:#2e0710; --dorure:#c9a24a; --dorure-pale:#e6d29a;
+  --velours:#5c1020; --velours-fonce:#2e0710; --velours-clair:#7a1a2e; --dorure:#c9a24a; --dorure-pale:#e6d29a;
   --marbre:#efe9df; --encre:#21161a; --pierre:#8d8378;
-  --r-legendaire:#c9a24a; --r-epique:#8e4fa3; --r-rare:#3a6ea5; --r-peu-commune:#4f7a5a;
-  --r-commune:#8d8378; --r-hors-categorie:#efe9df;
   --serif:"Libre Caslon Text",Georgia,"Times New Roman",serif;
   --sans:"Instrument Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
 }
@@ -22,68 +20,106 @@ a{color:var(--dorure-pale)}
 button{font:inherit;cursor:pointer}
 :focus-visible{outline:2px solid var(--dorure);outline-offset:3px}
 
-/* En-tête : l'hémicycle en gradins */
-header{background:radial-gradient(120% 140% at 50% 120%,var(--velours) 0%,var(--velours-fonce) 70%);padding:2.5rem 1.25rem 0;text-align:center;overflow:hidden}
-.gradins{display:block;margin:0 auto -1px;width:min(560px,100%);height:auto}
-h1{font:400 clamp(2.4rem,7vw,4.2rem)/1 var(--serif);letter-spacing:.01em;margin:0 0 .5rem;color:var(--marbre)}
-.chapeau{margin:0 auto 1.5rem;max-width:34rem;color:var(--dorure-pale);font-size:1.02rem}
+header{background:radial-gradient(120% 140% at 50% 120%,var(--velours) 0%,var(--velours-fonce) 70%);padding:2rem 1.25rem 0;text-align:center;overflow:hidden}
+.gradins{display:block;margin:0 auto -1px;width:min(480px,100%);height:auto}
+h1{font:400 clamp(2.2rem,6vw,3.6rem)/1 var(--serif);margin:0 0 .4rem}
+.chapeau{margin:0 auto 1.2rem;max-width:34rem;color:var(--dorure-pale)}
 nav{display:flex;justify-content:center;gap:.25rem;border-top:1px solid rgba(201,162,74,.35)}
 nav button{background:none;border:0;color:var(--marbre);padding:.9rem 1.2rem;border-bottom:3px solid transparent;font-weight:500}
 nav button[aria-selected="true"]{border-bottom-color:var(--dorure);color:var(--dorure-pale)}
-
 main{max-width:1120px;margin:0 auto;padding:2rem 1.25rem 4rem}
 .vue[hidden]{display:none}
-
-/* Scrutin */
-.urne{display:flex;flex-direction:column;align-items:center;gap:1rem;text-align:center;margin-bottom:2rem}
-.urne p{margin:0;color:var(--dorure-pale)}
 .bouton{background:var(--dorure);color:var(--encre);border:0;border-radius:3px;padding:.85rem 1.6rem;font-weight:600;font-size:1.05rem}
 .bouton:disabled{background:var(--pierre);color:var(--velours-fonce);cursor:not-allowed}
-.bouton.discret{background:none;color:var(--dorure-pale);border:1px solid rgba(201,162,74,.5);font-weight:500;font-size:.95rem;padding:.55rem 1.1rem}
+.bouton.discret{background:none;color:var(--dorure-pale);border:1px solid rgba(201,162,74,.5);font-weight:500}
+.message{color:var(--dorure-pale);text-align:center;margin:0 0 1.2rem}
 
-.tirage{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1.1rem}
-.grille{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1.1rem}
+/* ---------- Le paquet ---------- */
+.scene{display:flex;flex-direction:column;align-items:center;gap:1.2rem;min-height:520px}
+.paquet{width:240px;height:340px;border:0;padding:0;background:none;position:relative}
+.paquet .enveloppe{position:absolute;inset:0;border-radius:10px;
+  background:linear-gradient(160deg,#7a1a2e 0%,#4a0c19 60%,#2e0710 100%);
+  border:2px solid var(--dorure);box-shadow:0 18px 40px rgba(0,0,0,.45);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.6rem;overflow:hidden}
+.paquet .enveloppe::before{content:"";position:absolute;inset:10px;border:1px solid rgba(201,162,74,.45);border-radius:6px}
+.paquet .sceau{width:84px;height:84px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#e6d29a,#c9a24a 55%,#8a6a1c);
+  display:grid;place-items:center;font:700 2rem var(--serif);color:var(--velours-fonce);box-shadow:inset 0 0 0 3px rgba(46,7,16,.25)}
+.paquet .titre{font:400 1.5rem var(--serif);color:var(--marbre)}
+.paquet .sous{font-size:.85rem;color:var(--dorure-pale)}
+.paquet .rabat{position:absolute;left:0;right:0;top:0;height:22%;background:linear-gradient(#8b2236,#5c1020);border-bottom:2px dashed rgba(201,162,74,.7);transform-origin:top;transition:transform .5s ease}
+.paquet:hover .rabat{transform:rotateX(18deg)}
+.paquet.ouvert .rabat{transform:translateY(-140%) rotate(-8deg);opacity:0;transition:transform .45s ease,opacity .45s}
+.paquet.ouvert .enveloppe{transform:translateY(40px) scale(.96);opacity:0;transition:transform .5s .25s,opacity .5s .25s}
+.progres{font-size:.95rem;color:var(--dorure-pale)}
 
-/* Carte */
-.carte{position:relative;perspective:1200px;min-height:300px;border:0;padding:0;background:none;text-align:left;color:inherit}
-.face{position:absolute;inset:0;border-radius:6px;backface-visibility:hidden;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
-.dos{background:repeating-linear-gradient(135deg,var(--velours) 0 10px,#651326 10px 20px);border:2px solid var(--dorure);display:grid;place-items:center}
-.dos span{font:italic 400 1.1rem var(--serif);color:var(--dorure-pale)}
-.recto{transform:rotateY(180deg);background:var(--marbre);color:var(--encre);border:3px solid var(--rarete);display:flex;flex-direction:column;padding:1rem 1rem .8rem;overflow:hidden}
+/* ---------- La carte ---------- */
+.carte{--l:240px;width:var(--l);aspect-ratio:5/7.2;position:relative;perspective:1400px;border:0;padding:0;background:none;color:inherit;text-align:left;font-size:calc(var(--l) / 15)}
+.carte.grande{--l:min(300px,78vw)}
+.carte .face{position:absolute;inset:0;border-radius:4.5% / 3.2%;backface-visibility:hidden;transition:transform .7s cubic-bezier(.2,.75,.2,1)}
+.carte .dos{background:
+  radial-gradient(circle at 50% 50%,rgba(201,162,74,.25) 0 18%,transparent 19%),
+  repeating-linear-gradient(135deg,var(--velours) 0 9px,#651326 9px 18px);
+  border:.35em solid var(--dorure);display:grid;place-items:center}
+.carte .dos span{font:italic 400 1.15em var(--serif);color:var(--dorure-pale)}
+.carte .recto{transform:rotateY(180deg);background:var(--cadre);padding:.45em;display:flex;flex-direction:column;box-shadow:0 10px 26px rgba(0,0,0,.4)}
 .carte.retournee .dos{transform:rotateY(-180deg)}
 .carte.retournee .recto{transform:rotateY(0)}
 .carte.statique .face{transition:none}
-.bandeau{display:flex;justify-content:space-between;align-items:baseline;font-size:.78rem;font-weight:600;color:var(--rarete-texte)}
-.score{font:700 1.5rem/1 var(--serif);color:var(--encre)}
-.nom{font:700 1.18rem/1.2 var(--serif);margin:.6rem 0 .15rem}
-.periode{font-size:.85rem;color:#6b5f55;margin:0 0 .6rem}
-.texte{font-size:.82rem;line-height:1.45;margin:0;flex:1;overflow:auto}
-.pied{display:flex;justify-content:space-between;align-items:center;margin-top:.6rem;font-size:.78rem}
-.pied a{color:var(--velours)}
-.exemplaires{background:var(--velours);color:var(--marbre);border-radius:10px;padding:0 .5rem}
-.nouvelle{color:var(--velours);font-weight:600}
+.interieur{flex:1;background:var(--marbre);color:var(--encre);border-radius:3% / 2%;display:flex;flex-direction:column;overflow:hidden;position:relative}
+.entete{display:flex;justify-content:space-between;align-items:center;padding:.35em .5em .3em .6em;background:var(--cadre);color:var(--sur-cadre)}
+.entete .nom{font:700 .98em/1.15 var(--serif);margin:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.medaille{flex:none;min-width:2.3em;height:2.3em;border-radius:50%;display:grid;place-items:center;background:var(--marbre);color:var(--encre);font:700 .82em var(--serif);box-shadow:0 0 0 .14em var(--sur-cadre);margin-left:.4em}
+.portrait{position:relative;height:52%;background:linear-gradient(#d9cfc0,#bfb2a0);overflow:hidden;border-bottom:.18em solid var(--cadre)}
+.portrait img{width:100%;height:100%;object-fit:cover;object-position:50% 22%;filter:sepia(.18) contrast(1.02)}
+.portrait .initiales{position:absolute;inset:0;display:grid;place-items:center;font:400 2.6em var(--serif);color:rgba(46,7,16,.55)}
+.portrait .chambres{position:absolute;left:.4em;bottom:.4em;display:flex;gap:.25em}
+.portrait .chambres span{background:rgba(46,7,16,.85);color:var(--marbre);font-size:.58em;font-weight:600;padding:.15em .45em;border-radius:1em}
+.portrait .periode{position:absolute;right:.4em;bottom:.4em;background:rgba(239,233,223,.92);color:var(--encre);font-size:.62em;font-weight:600;padding:.15em .5em;border-radius:1em}
+.corps{padding:.45em .6em .3em;display:flex;flex-direction:column;gap:.35em;flex:1;min-height:0}
+.badges{display:flex;flex-wrap:wrap;gap:.25em}
+.badge{font-size:.6em;font-weight:600;line-height:1.25;padding:.2em .5em;border-radius:.3em;background:#e2d7c4;color:var(--velours-fonce)}
+.badge.fort{background:var(--velours);color:var(--marbre)}
+.resume{font:italic .66em/1.35 var(--serif);color:#5a4d44;margin:0;overflow:hidden;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical}
+.pied{display:flex;justify-content:space-between;align-items:center;padding:.25em .6em .35em;font-size:.58em;font-weight:600;color:var(--rarete-texte);border-top:1px solid #d8ccb8}
+.pied .double{background:var(--velours);color:var(--marbre);border-radius:1em;padding:0 .5em}
+.pied .neuve{color:var(--velours)}
 
-.r-legendaire{--rarete:var(--r-legendaire);--rarete-texte:#8a6a1c}
-.r-epique{--rarete:var(--r-epique);--rarete-texte:var(--r-epique)}
-.r-rare{--rarete:var(--r-rare);--rarete-texte:var(--r-rare)}
-.r-peu-commune{--rarete:var(--r-peu-commune);--rarete-texte:var(--r-peu-commune)}
-.r-commune{--rarete:var(--r-commune);--rarete-texte:#6b5f55}
-.r-hors-categorie{--rarete:var(--velours);--rarete-texte:var(--velours)}
-.r-legendaire .recto{box-shadow:0 0 0 1px var(--dorure-pale),0 0 28px rgba(201,162,74,.45)}
+.r-legendaire{--cadre:linear-gradient(145deg,#f1dc9a,#c9a24a 40%,#8a6a1c 70%,#e6d29a);--sur-cadre:#2e0710;--rarete-texte:#8a6a1c}
+.r-epique{--cadre:linear-gradient(145deg,#b07ac2,#6d3480);--sur-cadre:#fff;--rarete-texte:#6d3480}
+.r-rare{--cadre:linear-gradient(145deg,#6d9bcb,#2c5583);--sur-cadre:#fff;--rarete-texte:#2c5583}
+.r-peu-commune{--cadre:linear-gradient(145deg,#7fa487,#3e6447);--sur-cadre:#fff;--rarete-texte:#3e6447}
+.r-commune{--cadre:linear-gradient(145deg,#b3aa9e,#7c7368);--sur-cadre:#fff;--rarete-texte:#6b5f55}
+.r-hors-categorie{--cadre:linear-gradient(145deg,#2c3e7a 0 33%,#efe9df 33% 66%,#b8293a 66%);--sur-cadre:#21161a;--rarete-texte:#5c1020}
+.r-hors-categorie .entete{background:#efe9df}
+.r-legendaire.retournee .recto{box-shadow:0 0 0 1px #f1dc9a,0 0 40px rgba(201,162,74,.6),0 10px 26px rgba(0,0,0,.4)}
+.r-legendaire .recto::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  background:linear-gradient(115deg,transparent 35%,rgba(255,255,255,.35) 45%,transparent 55%);background-size:250% 100%;animation:reflet 3.5s linear infinite}
+@keyframes reflet{from{background-position:120% 0}to{background-position:-120% 0}}
 
-/* Collection */
+.recap{display:flex;flex-wrap:wrap;justify-content:center;gap:1rem}
+.recap .carte{--l:170px}
+
+/* ---------- Collection ---------- */
 .outils{display:flex;flex-wrap:wrap;gap:.75rem;align-items:center;margin-bottom:1.5rem}
 .outils input,.outils select{background:var(--velours-fonce);color:var(--marbre);border:1px solid rgba(201,162,74,.5);border-radius:3px;padding:.55rem .7rem;font:inherit}
 .outils input{flex:1;min-width:12rem}
-.progression{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:.5rem 1.5rem;margin:0 0 2rem;padding:0;list-style:none}
-.progression li{font-size:.9rem}
+.progression{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:.5rem 1.5rem;margin:0 0 2rem;padding:0;list-style:none}
 .progression strong{font:700 1.3rem var(--serif);display:block;color:var(--dorure-pale)}
-.vide{color:var(--dorure-pale);text-align:center;padding:3rem 1rem}
-.message{min-height:1.5em;text-align:center;color:var(--dorure-pale)}
+.grille{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:1.2rem;justify-items:center}
+.grille .carte{--l:180px;cursor:zoom-in}
+.vide{color:var(--dorure-pale);text-align:center;padding:3rem 1rem;grid-column:1/-1}
+
+/* ---------- Détail ---------- */
+dialog{border:0;padding:0;background:transparent;color:var(--marbre);max-width:min(760px,94vw)}
+dialog::backdrop{background:rgba(20,3,8,.82)}
+.detail{display:flex;flex-wrap:wrap;gap:1.5rem;align-items:flex-start;background:var(--velours-fonce);border:1px solid rgba(201,162,74,.5);border-radius:8px;padding:1.4rem}
+.detail .texte{flex:1;min-width:240px}
+.detail h2{font:700 1.5rem/1.2 var(--serif);margin:0 0 .3rem}
+.detail p{margin:.4rem 0 1rem;line-height:1.55}
+.detail .credit{font-size:.8rem;color:var(--pierre)}
 
 footer{max-width:1120px;margin:0 auto;padding:0 1.25rem 3rem;font-size:.85rem;color:var(--pierre)}
-
-@media (prefers-reduced-motion:reduce){.face{transition:none}}
+@media (prefers-reduced-motion:reduce){.carte .face,.paquet .rabat,.paquet .enveloppe{transition:none}.r-legendaire .recto::after{animation:none}}
 </style>
 </head>
 <body>
@@ -99,19 +135,15 @@ footer{max-width:1120px;margin:0 auto;padding:0 1.25rem 3rem;font-size:.85rem;co
     <rect x="262" y="100" width="36" height="20" fill="#c9a24a"/>
   </svg>
   <nav role="tablist" aria-label="Sections">
-    <button role="tab" aria-selected="true" data-vue="scrutin">Ouvrir un paquet</button>
+    <button role="tab" aria-selected="true" data-vue="paquet">Ouvrir un paquet</button>
     <button role="tab" aria-selected="false" data-vue="collection">Ma collection</button>
   </nav>
 </header>
 
 <main>
-  <section class="vue" id="vue-scrutin" aria-live="polite">
-    <div class="urne">
-      <p id="restants">Chargement des cartes…</p>
-      <button class="bouton" id="ouvrir" disabled>Ouvrir un paquet</button>
-      <button class="bouton discret" id="tout-reveler" hidden>Retourner toutes les cartes</button>
-    </div>
-    <div class="tirage" id="tirage"></div>
+  <section class="vue" id="vue-paquet">
+    <p class="message" id="restants" aria-live="polite">Chargement des cartes…</p>
+    <div class="scene" id="scene"></div>
   </section>
 
   <section class="vue" id="vue-collection" hidden>
@@ -119,121 +151,179 @@ footer{max-width:1120px;margin:0 auto;padding:0 1.25rem 3rem;font-size:.85rem;co
     <div class="outils">
       <input id="recherche" type="search" aria-label="Rechercher dans ma collection" placeholder="Rechercher un nom, un département, une fonction">
       <select id="filtre" aria-label="Filtrer par rareté"><option value="">Toutes les raretés</option></select>
-      <select id="tri" aria-label="Trier">
-        <option value="score">Par score</option><option value="nom">Par nom</option><option value="annee">Par date</option>
-      </select>
+      <select id="tri" aria-label="Trier"><option value="score">Par score</option><option value="nom">Par nom</option><option value="annee">Par date</option></select>
     </div>
     <div class="grille" id="grille"></div>
   </section>
 </main>
 
+<dialog id="detail" aria-label="Détail de la carte"></dialog>
+
 <footer>
-  Données : Assemblée nationale (base Sycomore), Sénat (open data), data.gouv.fr. Chaque carte renvoie à sa fiche officielle.
+  Données : Assemblée nationale (base Sycomore), Sénat (open data), data.gouv.fr. Portraits : Wikimedia Commons, crédits sur chaque carte.
 </footer>
 
 <script>
 const PAQUETS_PAR_JOUR = 3, CARTES_PAR_PAQUET = 5;
 const LIBELLES = {"legendaire":"Légendaire","epique":"Épique","rare":"Rare","peu-commune":"Peu commune","commune":"Commune","hors-categorie":"Hors catégorie"};
+const ORDRE = ["commune","peu-commune","rare","epique","hors-categorie","legendaire"];
 const POIDS = {"legendaire":2,"epique":7,"rare":18,"peu-commune":30,"commune":40,"hors-categorie":3};
+const BADGES = {
+  "chef-etat":["Chef de l'État",1],"chef-etat-interim":["Président par intérim",1],"chef-gouvernement":["Chef du Gouvernement",1],
+  "presidence-an-longue":["Président de l'Assemblée",1],"presidence-an-courte":["Président de l'Assemblée",1],
+  "presidence-senat-longue":["Président du Sénat",1],"presidence-senat-courte":["Président du Sénat",1],
+  "ministre":["Ministre",0],"secretaire-etat":["Secrétaire d'État",0],"quatre-vingts":["Les Quatre-vingts",1],
+  "femmes-1945":["Première élue, 1945",1],"1789":["Constituant de 1789",0],"convention":["Conventionnel",0],
+  "deux-chambres":["Deux chambres",0],"doyen-benjamin":["Doyen ou benjamin",0]
+};
+const CHAMBRES = {"A":"Assemblée","S":"Sénat","G":"Gouvernement"};
 const CLE = "hemicycle-collection";
 
-let raretes = [], cartes = [], parId = new Map(), parRarete = {};
+let raretes = [], cartes = [], parRarete = {};
 let etat = charger();
 
-function charger(){
-  try { const e = JSON.parse(localStorage.getItem(CLE)); if (e && e.possedees) return e; } catch(_) {}
-  return {possedees:{}, jour:"", ouverts:0};
-}
+function charger(){ try { const e = JSON.parse(localStorage.getItem(CLE)); if (e && e.possedees) return e; } catch(_) {} return {possedees:{}, jour:"", ouverts:0}; }
 function sauver(){ try { localStorage.setItem(CLE, JSON.stringify(etat)); } catch(_) {} }
 function aujourdhui(){ const d = new Date(); return d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate(); }
 function restants(){ if (etat.jour !== aujourdhui()) { etat.jour = aujourdhui(); etat.ouverts = 0; sauver(); } return PAQUETS_PAR_JOUR - etat.ouverts; }
+function echapper(t){ return String(t ?? "").replace(/[&<>"]/g, s => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[s])); }
 
 function tirerRarete(){
-  const total = Object.values(POIDS).reduce((a,b)=>a+b,0);
-  let x = Math.random()*total;
+  let x = Math.random() * Object.values(POIDS).reduce((a,b)=>a+b,0);
   for (const [r,p] of Object.entries(POIDS)) { if ((x -= p) < 0 && parRarete[r]?.length) return r; }
   return "commune";
 }
-function tirerCarte(){ const r = tirerRarete(); const l = parRarete[r]; return l[Math.floor(Math.random()*l.length)]; }
+function tirerCarte(){ const l = parRarete[tirerRarete()]; return l[Math.floor(Math.random()*l.length)]; }
 
-function periode(c){
-  if (!c.debut) return "";
-  if (!c.fin) return "Depuis "+c.debut;
-  return c.debut === c.fin ? String(c.debut) : c.debut+" – "+c.fin;
+function periode(c){ if (!c.debut) return ""; if (!c.fin) return "depuis "+c.debut; return c.debut===c.fin ? String(c.debut) : c.debut+"–"+c.fin; }
+function initiales(nom){ return nom.split(/[\s-]+/).filter(m => /^[A-ZÀ-Ý]/.test(m)).slice(0,1).concat(nom.split(" ").slice(-1)).map(m=>m[0]).join(""); }
+function urlPortrait(f, l=400){ return "https://commons.wikimedia.org/wiki/Special:FilePath/"+encodeURIComponent(f)+"?width="+l; }
+function badges(c){
+  const vus = new Set(), liste = [];
+  for (const code of c.distinctions) { const b = BADGES[code]; if (b && !vus.has(b[0])) { vus.add(b[0]); liste.push(b); } }
+  liste.sort((a,b)=>b[1]-a[1]);
+  return liste.slice(0,3).map(([t,f]) => `<span class="badge${f?" fort":""}">${t}</span>`).join("");
 }
-function echapper(t){ return String(t ?? "").replace(/[&<>"]/g, s => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[s])); }
+function resume(c){
+  // La première phrase du texte suffit au recto ; le texte complet est dans le détail
+  return (c.texte.match(/^[^.]*\./) || [c.texte])[0];
+}
 
-function htmlCarte(c, {retournee=true, nouvelle=false}={}){
+function htmlCarte(c, {retournee=true, neuve=false, classe=""}={}){
   const n = etat.possedees[c.id] || 0;
-  return `<div class="carte r-${c.rarete} ${retournee?"retournee statique":""}" tabindex="${retournee?-1:0}" role="${retournee?"article":"button"}" aria-label="${retournee?echapper(c.nom):"Carte face cachée, retourner"}">
+  const portrait = c.portrait
+    ? `<img src="${urlPortrait(c.portrait)}" alt="" loading="lazy" onerror="this.remove()">`
+    : `<span class="initiales">${echapper(initiales(c.nom))}</span>`;
+  return `<div class="carte r-${c.rarete} ${retournee?"retournee statique":""} ${classe}" data-id="${c.id}">
     <div class="face dos"><span>Hémicycle</span></div>
-    <div class="face recto">
-      <div class="bandeau"><span>${LIBELLES[c.rarete]}</span><span class="score">${c.score.toLocaleString("fr-FR")}</span></div>
-      <h3 class="nom">${echapper(c.nom)}</h3>
-      <p class="periode">${periode(c)}</p>
-      <p class="texte">${echapper(c.texte)}</p>
-      <div class="pied">${c.source?`<a href="${echapper(c.source)}" target="_blank" rel="noopener">Fiche officielle</a>`:"<span></span>"}
-        ${nouvelle?'<span class="nouvelle">Nouvelle</span>':(n>1?`<span class="exemplaires" title="Exemplaires">×${n}</span>`:"")}</div>
-    </div></div>`;
+    <div class="face recto"><div class="interieur">
+      <div class="entete"><h3 class="nom" title="${echapper(c.nom)}">${echapper(c.nom)}</h3><span class="medaille">${Math.round(c.score)}</span></div>
+      <div class="portrait">${portrait}
+        <div class="chambres">${[...c.chambres].map(x=>`<span>${CHAMBRES[x]}</span>`).join("")}</div>
+        ${periode(c)?`<span class="periode">${periode(c)}</span>`:""}</div>
+      <div class="corps"><div class="badges">${badges(c)}</div><p class="resume">${echapper(resume(c))}</p></div>
+      <div class="pied"><span>${LIBELLES[c.rarete]}</span>${neuve?'<span class="neuve">Nouvelle</span>':(n>1?`<span class="double">×${n}</span>`:"")}</div>
+    </div></div></div>`;
 }
 
+/* ---------- Ouverture d'un paquet ---------- */
 function majCompteur(){
   const r = restants();
   document.getElementById("restants").textContent = r > 0
-    ? `${r} paquet${r>1?"s":""} disponible${r>1?"s":""} aujourd'hui, ${CARTES_PAR_PAQUET} cartes par paquet.`
-    : "Plus de paquet aujourd'hui. Revenez demain pour en ouvrir trois nouveaux.";
-  document.getElementById("ouvrir").disabled = r <= 0;
+    ? `${r} paquet${r>1?"s":""} à ouvrir aujourd'hui.` : "Vous avez ouvert vos trois paquets du jour. Les suivants seront disponibles demain.";
 }
-
+function afficherPaquet(){
+  majCompteur();
+  const scene = document.getElementById("scene");
+  if (restants() <= 0) { scene.innerHTML = ""; return; }
+  scene.innerHTML = `<button class="paquet" id="paquet" aria-label="Ouvrir le paquet">
+      <div class="enveloppe"><div class="sceau">H</div><div class="titre">Hémicycle</div><div class="sous">${CARTES_PAR_PAQUET} cartes</div></div>
+      <div class="rabat"></div></button>
+    <p class="progres">Touchez le paquet pour l'ouvrir.</p>`;
+  document.getElementById("paquet").addEventListener("click", ouvrir);
+}
 function ouvrir(){
   if (restants() <= 0) return;
-  const tirage = Array.from({length:CARTES_PAR_PAQUET}, tirerCarte);
-  const nouvelles = new Set(tirage.filter(c => !etat.possedees[c.id]).map(c => c.id));
+  const tirage = Array.from({length:CARTES_PAR_PAQUET}, tirerCarte)
+    .sort((a,b) => ORDRE.indexOf(a.rarete) - ORDRE.indexOf(b.rarete) || a.score - b.score); // la plus rare en dernier
+  const neuves = new Set(tirage.filter(c => !etat.possedees[c.id]).map(c => c.id));
   tirage.forEach(c => etat.possedees[c.id] = (etat.possedees[c.id]||0) + 1);
-  etat.ouverts += 1; sauver();
-  const zone = document.getElementById("tirage");
-  zone.innerHTML = tirage.map(c => htmlCarte(c, {retournee:false, nouvelle:nouvelles.has(c.id)})).join("");
-  zone.querySelectorAll(".carte").forEach(el => {
-    const retourner = () => { el.classList.add("retournee"); el.setAttribute("role","article"); el.tabIndex = -1; el.removeAttribute("aria-label"); };
-    el.addEventListener("click", retourner);
-    el.addEventListener("keydown", e => { if (e.key==="Enter"||e.key===" ") { e.preventDefault(); retourner(); } });
+  etat.ouverts += 1; sauver(); majCompteur(); majCollection();
+  const paquet = document.getElementById("paquet");
+  paquet.classList.add("ouvert"); paquet.disabled = true;
+  const delai = matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : 750;
+  setTimeout(() => montrer(tirage, neuves, 0), delai);
+}
+function montrer(tirage, neuves, i){
+  const scene = document.getElementById("scene");
+  if (i >= tirage.length) {
+    scene.innerHTML = `<div class="recap">${tirage.map(c => htmlCarte(c, {neuve:neuves.has(c.id)})).join("")}</div>
+      <p class="progres">${neuves.size} nouvelle${neuves.size>1?"s":""} carte${neuves.size>1?"s":""} dans votre collection.</p>
+      ${restants()>0?'<button class="bouton" id="suivant">Ouvrir un autre paquet</button>':'<button class="bouton discret" id="voir">Voir ma collection</button>'}`;
+    document.getElementById("suivant")?.addEventListener("click", afficherPaquet);
+    document.getElementById("voir")?.addEventListener("click", () => document.querySelector('[data-vue="collection"]').click());
+    scene.querySelectorAll(".carte").forEach(el => el.addEventListener("click", () => ouvrirDetail(el.dataset.id)));
+    return;
+  }
+  const c = tirage[i];
+  scene.innerHTML = `<button class="carte grande r-${c.rarete}" id="courante" aria-label="Carte ${i+1} sur ${tirage.length}, face cachée. Retourner.">${htmlCarte(c,{retournee:false,neuve:neuves.has(c.id)}).replace(/^<div[^>]*>|<\/div>$/g,"")}</button>
+    <p class="progres">Carte ${i+1} sur ${tirage.length}</p>`;
+  const el = document.getElementById("courante");
+  el.focus();
+  let retournee = false;
+  el.addEventListener("click", () => {
+    if (!retournee) {
+      retournee = true; el.classList.add("retournee");
+      el.setAttribute("aria-label", `${c.nom}, ${LIBELLES[c.rarete]}. Carte suivante.`);
+      scene.querySelector(".progres").textContent = i+1 < tirage.length ? `Carte ${i+1} sur ${tirage.length}. Touchez la carte pour passer à la suivante.` : "Touchez la carte pour voir le paquet complet.";
+    } else montrer(tirage, neuves, i+1);
   });
-  document.getElementById("tout-reveler").hidden = false;
-  zone.querySelector(".carte")?.focus();
-  majCompteur(); majCollection();
 }
 
+/* ---------- Collection et détail ---------- */
 function majCollection(){
   const possedees = cartes.filter(c => etat.possedees[c.id]);
-  const prog = document.getElementById("progression");
-  prog.innerHTML = `<li><strong>${possedees.length.toLocaleString("fr-FR")}</strong>cartes sur ${cartes.length.toLocaleString("fr-FR")}</li>` +
-    raretes.filter(r => parRarete[r]?.length).map(r => `<li><strong>${possedees.filter(c=>c.rarete===r).length}</strong>${LIBELLES[r].toLowerCase()} sur ${parRarete[r].length}</li>`).join("");
+  document.getElementById("progression").innerHTML =
+    `<li><strong>${possedees.length.toLocaleString("fr-FR")}</strong>cartes sur ${cartes.length.toLocaleString("fr-FR")}</li>` +
+    ORDRE.slice().reverse().filter(r => parRarete[r]?.length).map(r => `<li><strong>${possedees.filter(c=>c.rarete===r).length}</strong>${LIBELLES[r].toLowerCase()} sur ${parRarete[r].length.toLocaleString("fr-FR")}</li>`).join("");
   const q = document.getElementById("recherche").value.trim().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");
   const f = document.getElementById("filtre").value, tri = document.getElementById("tri").value;
-  let liste = possedees.filter(c => (!f || c.rarete===f) && (!q || c.cherche.includes(q)));
-  liste.sort(tri==="nom" ? (a,b)=>a.nom.localeCompare(b.nom,"fr") : tri==="annee" ? (a,b)=>(a.debut||0)-(b.debut||0) : (a,b)=>b.score-a.score);
+  const liste = possedees.filter(c => (!f || c.rarete===f) && (!q || c.cherche.includes(q)))
+    .sort(tri==="nom" ? (a,b)=>a.nom.localeCompare(b.nom,"fr") : tri==="annee" ? (a,b)=>(a.debut||0)-(b.debut||0) : (a,b)=>b.score-a.score);
   const grille = document.getElementById("grille");
-  grille.innerHTML = liste.length ? liste.slice(0,300).map(c => htmlCarte(c)).join("")
+  grille.innerHTML = liste.length ? liste.slice(0,200).map(c => htmlCarte(c)).join("")
     : `<p class="vide">${possedees.length ? "Aucune carte de votre collection ne correspond à cette recherche." : "Votre collection est vide. Ouvrez un paquet pour obtenir vos premières cartes."}</p>`;
-  if (liste.length > 300) grille.insertAdjacentHTML("beforeend", `<p class="vide">${liste.length-300} autres cartes : affinez la recherche pour les afficher.</p>`);
+  if (liste.length > 200) grille.insertAdjacentHTML("beforeend", `<p class="vide">${liste.length-200} autres cartes : affinez la recherche pour les afficher.</p>`);
 }
+function ouvrirDetail(id){
+  const c = cartes.find(x => String(x.id) === String(id)); if (!c) return;
+  const d = document.getElementById("detail");
+  d.innerHTML = `<div class="detail">${htmlCarte(c)}
+    <div class="texte"><h2>${echapper(c.nom)}</h2><p>${echapper(c.texte)}</p>
+      <p>${c.source?`<a href="${echapper(c.source)}" target="_blank" rel="noopener">Fiche officielle</a>`:""}</p>
+      ${c.portrait?`<p class="credit">Portrait : <a href="https://commons.wikimedia.org/wiki/File:${encodeURIComponent(c.portrait)}" target="_blank" rel="noopener">Wikimedia Commons</a> (auteur et licence sur la page du fichier).</p>`:""}
+      <button class="bouton discret" id="fermer">Fermer</button></div></div>`;
+  d.querySelector("#fermer").addEventListener("click", () => d.close());
+  d.showModal();
+}
+document.getElementById("detail").addEventListener("click", e => { if (e.target.id === "detail") e.target.close(); });
+document.getElementById("grille").addEventListener("click", e => { const el = e.target.closest(".carte"); if (el) ouvrirDetail(el.dataset.id); });
 
 document.querySelectorAll("nav button").forEach(b => b.addEventListener("click", () => {
   document.querySelectorAll("nav button").forEach(x => x.setAttribute("aria-selected", x===b));
   document.querySelectorAll(".vue").forEach(v => v.hidden = v.id !== "vue-"+b.dataset.vue);
 }));
-document.getElementById("ouvrir").addEventListener("click", ouvrir);
-document.getElementById("tout-reveler").addEventListener("click", () => document.querySelectorAll("#tirage .carte").forEach(el => el.click()));
 ["recherche","filtre","tri"].forEach(id => document.getElementById(id).addEventListener("input", majCollection));
 
 fetch("jeu.json").then(r => { if (!r.ok) throw new Error(r.status); return r.json(); }).then(d => {
   raretes = d.raretes;
-  cartes = d.cartes.map(([id,nom,r,score,texte,debut,fin,source]) => ({id,nom,rarete:raretes[r],score,texte,debut,fin,source,
+  cartes = d.cartes.map(([id,nom,r,score,texte,debut,fin,source,portrait,distinctions,chambres,sexe]) => ({
+    id,nom,rarete:raretes[r],score,texte,debut,fin,source,portrait,distinctions:distinctions||[],chambres:chambres||"",sexe,
     cherche:(nom+" "+texte).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"")}));
-  cartes.forEach(c => { parId.set(c.id,c); (parRarete[c.rarete] ||= []).push(c); });
+  cartes.forEach(c => (parRarete[c.rarete] ||= []).push(c));
   const filtre = document.getElementById("filtre");
-  raretes.filter(r => parRarete[r]?.length).forEach(r => filtre.insertAdjacentHTML("beforeend", `<option value="${r}">${LIBELLES[r]}</option>`));
-  majCompteur(); majCollection();
+  ORDRE.slice().reverse().filter(r => parRarete[r]?.length).forEach(r => filtre.insertAdjacentHTML("beforeend", `<option value="${r}">${LIBELLES[r]}</option>`));
+  afficherPaquet(); majCollection();
 }).catch(() => {
   document.getElementById("restants").textContent = "Les cartes n'ont pas pu être chargées. Vérifiez que le fichier jeu.json est publié à côté de cette page, puis rechargez.";
 });
