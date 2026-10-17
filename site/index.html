@@ -90,7 +90,10 @@ main{max-width:1120px;margin:0 auto;padding:1.5rem 1rem 4rem}
 .portrait .chambres{position:absolute;left:.35em;bottom:.35em;display:flex;gap:.22em;flex-wrap:wrap}
 .portrait .actuel{position:absolute;right:.35em;top:.35em;background:#b8293a;color:#fff;font-size:.52em;font-weight:700;padding:.15em .5em;border-radius:1em}
 .epoque{font-size:.52em;font-weight:700;letter-spacing:.02em;text-transform:uppercase;padding:.25em .6em;color:#fff;background:var(--ep)}
-.principale{padding:.45em .55em .2em}
+.distinctions{display:flex;flex-wrap:wrap;gap:.2em;padding:.3em .5em 0}
+.distinctions span{font-size:.5em;font-weight:700;line-height:1.2;padding:.2em .5em;border-radius:.3em;background:var(--velours);color:var(--marbre)}
+.groupe{font-size:.54em;color:#6b5f55;padding:.2em .55em 0;font-style:italic}
+.principale{padding:.3em .55em .2em}
 .principale b{display:block;font:700 .74em/1.2 var(--serif);color:var(--velours)}
 .principale span{display:block;font-size:.56em;color:#6b5f55;margin-top:.1em}
 .portrait .chambres span{background:rgba(46,7,16,.86);color:var(--marbre);font-size:.52em;font-weight:600;padding:.12em .45em;border-radius:1em}
@@ -111,6 +114,10 @@ main{max-width:1120px;margin:0 auto;padding:1.5rem 1rem 4rem}
 .pied .double{background:var(--velours);color:var(--marbre);border-radius:1em;padding:0 .5em;font-weight:600}
 .pied .neuve{color:var(--velours);font-weight:700}
 
+.r-mythique{--cadre:conic-gradient(from 0deg,#e6d29a,#b8293a,#2c3e7a,#8ad0c8,#e6d29a,#c9a24a,#e6d29a);--sur-cadre:#2e0710;--rarete-texte:#7a1a2e}
+.r-mythique .entete{background:linear-gradient(90deg,#f1dc9a,#e6d29a)}
+.r-mythique.retournee .recto,.r-mythique.retournee .verso{box-shadow:0 0 0 1px #fff,0 0 50px rgba(184,41,58,.55),0 0 90px rgba(44,62,122,.45)}
+.r-mythique .recto::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.5) 45%,transparent 60%);background-size:250% 100%;animation:reflet 2.5s linear infinite}
 .r-legendaire{--cadre:linear-gradient(145deg,#f1dc9a,#c9a24a 40%,#8a6a1c 70%,#e6d29a);--sur-cadre:#2e0710;--rarete-texte:#8a6a1c}
 .r-epique{--cadre:linear-gradient(145deg,#b07ac2,#6d3480);--sur-cadre:#fff;--rarete-texte:#6d3480}
 .r-rare{--cadre:linear-gradient(145deg,#6d9bcb,#2c5583);--sur-cadre:#fff;--rarete-texte:#2c5583}
@@ -178,13 +185,19 @@ footer{max-width:1120px;margin:0 auto;padding:0 1rem 3rem;font-size:.85rem;color
 
 <script>
 const PAQUETS_PAR_JOUR = 3, CARTES_PAR_PAQUET = 5;
-const LIBELLES = {"legendaire":"Légendaire","epique":"Épique","rare":"Rare","peu-commune":"Peu commune","commune":"Commune","hors-categorie":"Hors catégorie"};
-const ORDRE = ["commune","peu-commune","rare","epique","hors-categorie","legendaire"];
-const POIDS = {"legendaire":2,"epique":7,"rare":18,"peu-commune":30,"commune":40,"hors-categorie":3};
+const LIBELLES = {"mythique":"Mythique","legendaire":"Légendaire","epique":"Épique","rare":"Rare","peu-commune":"Peu commune","commune":"Commune","hors-categorie":"Hors catégorie"};
+const ORDRE = ["commune","peu-commune","rare","epique","hors-categorie","legendaire","mythique"];
+// Probabilité de chaque rareté pour une carte tirée : les plus hautes restent rares, quel que soit leur nombre
+const POIDS = {"mythique":0.4,"legendaire":1.6,"epique":6,"rare":15,"peu-commune":30,"commune":46,"hors-categorie":1};
 const CHAMBRES = {"A":"Assemblée","S":"Sénat","G":"Gouvernement"};
 const EPOQUES = {"Révolution et Empire":"#6b4a2b","Monarchies constitutionnelles":"#3d5a73","IIe République et Second Empire":"#5b4b7a",
   "IIIe République":"#2f6b5a","Libération et IVe République":"#7a5a1e","Ve République":"#2c3e7a","":"#5c1020"};
+const COURTES = {"quatre-vingts":"Les Quatre-vingts","femmes-1945":"Première élue, 1945","compagnon-liberation":"Compagnon de la Libération",
+  "academie-francaise":"Académie française","prix-nobel":"Prix Nobel","pantheon":"Panthéon","1789":"Constituant de 1789",
+  "convention":"Conventionnel","doyen-benjamin":"Doyen ou benjamin"};
 const AUTRES = {"quatre-vingts":"Parmi les Quatre-vingts (10 juillet 1940)","femmes-1945":"Parmi les premières élues (1945)",
+  "compagnon-liberation":"Compagnon de la Libération","academie-francaise":"Membre de l'Académie française",
+  "prix-nobel":"Lauréat du prix Nobel","pantheon":"Inhumé au Panthéon",
   "1789":"Constituant de 1789","convention":"Membre de la Convention","doyen-benjamin":"Doyen d'âge ou benjamin d'une législature",
   "deux-chambres":"A siégé dans les deux chambres"};
 const CLE = "hemicycle-collection";
@@ -196,7 +209,14 @@ function sauver(){ try { localStorage.setItem(CLE, JSON.stringify(etat)); } catc
 function aujourdhui(){ const d = new Date(); return d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate(); }
 function restants(){ if (etat.jour !== aujourdhui()) { etat.jour = aujourdhui(); etat.ouverts = 0; sauver(); } return PAQUETS_PAR_JOUR - etat.ouverts; }
 function echapper(t){ return String(t ?? "").replace(/[&<>"]/g, s => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[s])); }
-function tirerRarete(pool){ let x = Math.random()*Object.values(POIDS).reduce((a,b)=>a+b,0); for (const [r,p] of Object.entries(POIDS)) if ((x -= p) < 0 && pool[r]?.length) return r; return Object.keys(pool).find(r => pool[r]?.length); }
+function tirerRarete(pool){
+  // Probabilités ramenées aux seules raretés présentes dans le vivier : une rareté absente
+  // (aucun élu en exercice « commun », par exemple) ne reporte jamais sa part sur les plus hautes
+  const dispo = Object.entries(POIDS).filter(([r]) => pool[r]?.length);
+  let x = Math.random() * dispo.reduce((a,[,p]) => a+p, 0);
+  for (const [r,p] of dispo) if ((x -= p) < 0) return r;
+  return dispo[dispo.length-1][0];
+}
 function tirerCarte(pool=parRarete){ const l = pool[tirerRarete(pool)]; return l[Math.floor(Math.random()*l.length)]; }
 function dates(d,f,enCours=true){ if (!d) return ""; if (f === null || f === undefined) return enCours ? "depuis "+d : String(d); return d===f ? String(d) : d+"–"+f; }
 function initiales(nom){ const m = nom.split(" ").filter(Boolean); return (m[0]?.[0]||"") + (m.length>1 ? m[m.length-1][0] : ""); }
@@ -226,6 +246,8 @@ function htmlCarte(c, {retournee=true, neuve=false, classe="", id=""}={}){
       <div class="entete"><h3 class="nom">${echapper(c.nom)}</h3><span class="rarete">${LIBELLES[c.rarete]}</span></div>
       <div class="portrait">${portrait}<div class="chambres">${[...c.chambres].map(x=>`<span>${CHAMBRES[x]}</span>`).join("")}</div>${c.actuel?'<span class="actuel">En exercice</span>':""}</div>
       <div class="epoque">${echapper(c.epoque || "Gouvernement")}</div>
+      ${c.distinctions.some(d => COURTES[d]) ? `<div class="distinctions">${c.distinctions.filter(d => COURTES[d]).map(d => `<span>${COURTES[d]}</span>`).join("")}</div>` : ""}
+      ${c.groupe ? `<div class="groupe">${echapper(c.groupe)}</div>` : ""}
       <div class="principale"><b>${echapper(pt)}</b><span>${pd}</span></div>
       <div class="corps"><ul class="lignes">${listeLignes(autresFonctions.concat(mandats).slice(0,3))}${autresFonctions.length+mandats.length>3?`<li class="mandat"><span>Toute la carrière au verso</span></li>`:""}</ul></div>
       ${pied}
@@ -235,6 +257,7 @@ function htmlCarte(c, {retournee=true, neuve=false, classe="", id=""}={}){
       <div class="corps">
         ${c.fonctions.length?`<h4>Fonctions</h4><ul class="lignes">${listeLignes(c.fonctions.map(f => ["fonction", f[0], dates(f[1], f[2], false)]))}</ul>`:""}
         ${c.mandats.length?`<h4>Mandats</h4><ul class="lignes">${listeLignes(c.mandats.map(m => ["mandat", ...mandatLigne(m)]))}</ul>`:""}
+        ${c.groupe?`<h4>Groupe politique</h4><ul class="lignes"><li><b>${echapper(c.groupe)}</b></li></ul>`:""}
         ${distinctions.length?`<h4>Distinctions</h4><ul class="lignes">${distinctions.map(d=>`<li><b>${d}</b></li>`).join("")}</ul>`:""}
       </div>
       <div class="lien">${c.source?`<a href="${echapper(c.source)}" target="_blank" rel="noopener">Fiche officielle</a>`:""}${c.portrait?` · <a href="https://commons.wikimedia.org/wiki/File:${encodeURIComponent(c.portrait)}" target="_blank" rel="noopener">crédit du portrait</a>`:""}</div>
@@ -323,10 +346,10 @@ document.querySelectorAll("nav button").forEach(b => b.addEventListener("click",
 ["recherche","filtre","tri"].forEach(id => document.getElementById(id).addEventListener("input", majCollection));
 
 fetch("jeu.json").then(r => { if (!r.ok) throw new Error(r.status); return r.json(); }).then(d => {
-  cartes = d.cartes.map(([id,nom,r,score,epoque,actuel,debut,fin,source,portrait,distinctions,chambres,sexe,fonctions,mandats]) => ({
+  cartes = d.cartes.map(([id,nom,r,score,epoque,actuel,debut,fin,source,portrait,distinctions,chambres,sexe,fonctions,mandats,groupe]) => ({
     id,nom,rarete:d.raretes[r],score,epoque,actuel:!!actuel,debut,fin,source,portrait,distinctions:distinctions||[],chambres:chambres||"",sexe,
-    fonctions:fonctions||[],mandats:mandats||[],
-    cherche:(nom+" "+epoque+" "+(fonctions||[]).map(f=>f[0]).join(" ")+" "+(mandats||[]).map(m=>m[1]).join(" ")).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"")}));
+    fonctions:fonctions||[],mandats:mandats||[],groupe,
+    cherche:(nom+" "+epoque+" "+(groupe||"")+" "+(fonctions||[]).map(f=>f[0]).join(" ")+" "+(mandats||[]).map(m=>m[1]).join(" ")).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"")}));
   cartes.forEach(c => { (parRarete[c.rarete] ||= []).push(c); if (c.actuel) (actuelsParRarete[c.rarete] ||= []).push(c); });
   if (!Object.keys(actuelsParRarete).length) actuelsParRarete = parRarete;
   const filtre = document.getElementById("filtre");
