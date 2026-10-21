@@ -253,7 +253,8 @@ function srcPortrait(c){ return c.photo || (c.portrait ? urlPortrait(c.portrait)
 function precharger(liste){ liste.forEach(c => { const u = srcPortrait(c); if (u) { const i = new Image(); i.src = u; } }); }
 function mandatLigne(m){
   const periodes = (m[2]||[]).map(p => dates(p[0], p[1])).join(", ");
-  const lieu = m[1] ? m[1] + (m[4] ? ", " + m[4] + (m[4] == "1" ? "re" : "e") + " circ." : "") : "";
+  const circ = Array.isArray(m[4]) ? m[4] : (m[4] ? [m[4], null] : null);
+  const lieu = m[1] ? m[1] + (circ ? ", " + circ[0] + (circ[0] == "1" ? "re" : "e") + " circ." + (circ[1] ? " : " + circ[1] : "") : "") : "";
   return [m[0] + (lieu ? " (" + lieu + ")" : ""), periodes + (m[3] > 1 ? ", " + m[3] + " mandats" : "")];
 }
 function principale(c){
