@@ -13063,7 +13063,9 @@
 "fin": "2023-10-01",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/sido_bruno01058x_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "01059Y",
@@ -13426,7 +13428,16 @@
 "deces": null,
 "circonscription": "Bouches-du-Rhône",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2026-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 2"
+}
+],
+"photo": "https://www.senat.fr/senimg/muselier_renaud02042t_carre.jpg",
+"groupe_actuel": "Groupe Union Centriste et Indépendants"
 },
 {
 "matricule": "02053W",
@@ -13545,7 +13556,9 @@
 "fin": "2023-10-01",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/daubresse_marc_philippe04008a_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "04016A",
@@ -13636,7 +13649,9 @@
 "fin": "2024-10-21",
 "motif_fin": "De droit (membre du Gouvernement)"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/retailleau_bruno04033b_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "04034C",
@@ -13742,7 +13757,7 @@
 "groupe": "CRCE",
 "sexe": "M",
 "naissance": "1945-07-18",
-"deces": null,
+"deces": "2026-10-17",
 "circonscription": "Var",
 "etat": "ANCIEN",
 "mandats": [
@@ -13857,7 +13872,9 @@
 "fin": "2023-10-01",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/cambon_christian04042c_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "04043D",
@@ -14529,7 +14546,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/morin_desailly_catherine04070g_carre.jpg",
+"groupe_actuel": "Groupe Union Centriste et Indépendants"
 },
 {
 "matricule": "04071H",
@@ -15549,7 +15568,9 @@
 "fin": "2023-10-01",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/goulet_nathalie07004j_carre.jpg",
+"groupe_actuel": "Groupe Union Centriste et Indépendants"
 },
 {
 "matricule": "07023M",
@@ -15717,7 +15738,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/lamenie_marc07029t_carre.jpg",
+"groupe_actuel": "Groupe Les Indépendants - République et Territoires"
 },
 {
 "matricule": "07030L",
@@ -15794,7 +15817,9 @@
 "fin": "2023-10-01",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/dumas_catherine07033p_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "07034Q",
@@ -15909,7 +15934,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/maurey_herve08009t_carre.jpg",
+"groupe_actuel": "Groupe Union Centriste et Indépendants"
 },
 {
 "matricule": "08010L",
@@ -15938,7 +15965,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/lefevre_antoine08010l_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "08011M",
@@ -15967,7 +15996,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/de_montgolfier_alberic08011m_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "08012N",
@@ -15996,7 +16027,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/lozach_jean_jacques08012n_carre.jpg",
+"groupe_actuel": "Groupe Socialiste, Écologiste et Républicain"
 },
 {
 "matricule": "08013P",
@@ -17008,7 +17041,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/goy_chavent_sylvie08056b_carre.jpg",
+"groupe_actuel": "Groupe Union Nationale pour les Territoires"
 },
 {
 "matricule": "08057C",
@@ -17099,7 +17134,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/bonnefoy_nicole08060w_carre.jpg",
+"groupe_actuel": "Groupe Socialiste, Écologiste et Républicain"
 },
 {
 "matricule": "08061X",
@@ -17310,7 +17347,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/houpert_alain08069g_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "08070Y",
@@ -17329,7 +17368,9 @@
 "fin": "2014-05-02",
 "motif_fin": "Membre Gouvernement"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/rebsamen_francois08070y_carre.jpg",
+"groupe_actuel": "Groupe Socialiste, Écologiste et Républicain"
 },
 {
 "matricule": "08071A",
@@ -17926,7 +17967,9 @@
 "fin": "2023-10-01",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/conway_mouret_helene11027h_carre.jpg",
+"groupe_actuel": "Groupe Socialiste, Écologiste et Républicain"
 },
 {
 "matricule": "11029K",
@@ -18270,7 +18313,9 @@
 "fin": "2023-10-01",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/rossignol_laurence11045k_carre.jpg",
+"groupe_actuel": "Groupe Socialiste, Écologiste et Républicain"
 },
 {
 "matricule": "11046L",
@@ -18313,7 +18358,9 @@
 "fin": "2023-10-01",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/husson_jean_francois11048n_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "11049P",
@@ -18380,7 +18427,9 @@
 "fin": "2023-10-01",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/capo_canellas_vincent11053k_carre.jpg",
+"groupe_actuel": "Groupe Union Centriste et Indépendants"
 },
 {
 "matricule": "11054L",
@@ -18447,7 +18496,9 @@
 "fin": "2023-10-01",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/cukierman_cecile11056n_carre.jpg",
+"groupe_actuel": "Groupe Communiste Républicain Citoyen et Écologiste - Kanaky"
 },
 {
 "matricule": "11057P",
@@ -18614,7 +18665,9 @@
 "fin": "2023-10-01",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/dantec_ronan11065p_carre.jpg",
+"groupe_actuel": "Groupe Écologiste - Solidarité et Territoires"
 },
 {
 "matricule": "11066Q",
@@ -18729,7 +18782,9 @@
 "fin": "2023-10-01",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/delahaye_vincent11070l_carre.jpg",
+"groupe_actuel": "Groupe Union Centriste et Indépendants"
 },
 {
 "matricule": "11071M",
@@ -18772,7 +18827,9 @@
 "fin": "2023-10-01",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/mohamed_soilihi_thani11072n_carre.jpg",
+"groupe_actuel": "Groupe Rassemblement des démocrates, progressistes et indépendants"
 },
 {
 "matricule": "11074Q",
@@ -18796,7 +18853,9 @@
 "fin": "2023-10-01",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/eble_vincent11074q_carre.jpg",
+"groupe_actuel": "Groupe Socialiste, Écologiste et Républicain"
 },
 {
 "matricule": "11076S",
@@ -18978,7 +19037,9 @@
 "fin": "2023-10-01",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/marseille_herve11085t_carre.jpg",
+"groupe_actuel": "Groupe Union Centriste et Indépendants"
 },
 {
 "matricule": "11088W",
@@ -19040,7 +19101,9 @@
 "fin": "2023-10-01",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/primas_sophie11090q_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "11091R",
@@ -19417,7 +19480,9 @@
 "fin": "2023-10-01",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/espagnac_frederique11110b_carre.jpg",
+"groupe_actuel": "Groupe Socialiste, Écologiste et Républicain"
 },
 {
 "matricule": "11111C",
@@ -19512,7 +19577,9 @@
 "fin": "2023-10-01",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/courtial_edouard11115u_carre.jpg",
+"groupe_actuel": "Groupe Union Centriste et Indépendants"
 },
 {
 "matricule": "12016W",
@@ -19531,7 +19598,9 @@
 "fin": "2023-10-01",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/lurel_victorin12016w_carre.jpg",
+"groupe_actuel": "Groupe Socialiste, Écologiste et Républicain"
 },
 {
 "matricule": "12028B",
@@ -19550,7 +19619,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/carlotti_marie_arlette12028b_carre.jpg",
+"groupe_actuel": "Groupe Socialiste, Écologiste et Républicain"
 },
 {
 "matricule": "12035A",
@@ -19912,7 +19983,9 @@
 "fin": "2023-10-01",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/kanner_patrick14021p_carre.jpg",
+"groupe_actuel": "Groupe Socialiste, Écologiste et Républicain"
 },
 {
 "matricule": "14026U",
@@ -19998,7 +20071,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/billon_annick14030q_carre.jpg",
+"groupe_actuel": "Groupe Union Centriste et Indépendants"
 },
 {
 "matricule": "14031R",
@@ -20046,7 +20121,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/gremillet_daniel14033t_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "14034U",
@@ -20094,7 +20171,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/lemoyne_jean_baptiste14037x_carre.jpg",
+"groupe_actuel": "Groupe Rassemblement des démocrates, progressistes et indépendants"
 },
 {
 "matricule": "14038Y",
@@ -20180,7 +20259,9 @@
 "fin": "2023-10-01",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/doineau_elisabeth14042u_carre.jpg",
+"groupe_actuel": "Groupe Union Centriste et Indépendants"
 },
 {
 "matricule": "14043V",
@@ -20261,7 +20342,9 @@
 "fin": "2024-10-21",
 "motif_fin": "De droit (membre du Gouvernement)"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/canayer_agnes14053l_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "14055N",
@@ -20390,7 +20473,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/bonhomme_francois14069u_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "14071N",
@@ -20414,7 +20499,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/mouiller_philippe14071n_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "14073Q",
@@ -20500,7 +20587,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/canevet_michel14083s_carre.jpg",
+"groupe_actuel": "Groupe Union Centriste et Indépendants"
 },
 {
 "matricule": "14085U",
@@ -20672,7 +20761,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/roux_jean_yves14107h_carre.jpg",
+"groupe_actuel": "Groupe du Rassemblement Démocratique et Social Européen"
 },
 {
 "matricule": "14109K",
@@ -20720,7 +20811,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/marc_alain14111d_carre.jpg",
+"groupe_actuel": "Groupe Union Centriste et Indépendants"
 },
 {
 "matricule": "14115H",
@@ -20806,7 +20899,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/grosperrin_jacques14123h_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "14129P",
@@ -20887,7 +20982,9 @@
 "fin": "2015-06-11",
 "motif_fin": "Démissionné d'office par le Conseil constitutionnel"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/aubey_francois14137p_carre.jpg",
+"groupe_actuel": "Groupe du Rassemblement Démocratique et Social Européen"
 },
 {
 "matricule": "14147R",
@@ -20911,7 +21008,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/mercier_marie14147r_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "14151M",
@@ -21040,7 +21139,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/vogel_jean_pierre14173t_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "14175V",
@@ -21083,7 +21184,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/herve_loic14179a_carre.jpg",
+"groupe_actuel": "Groupe Union Centriste et Indépendants"
 },
 {
 "matricule": "14187A",
@@ -21107,7 +21210,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/estrosi_sassone_dominique14187a_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "14189C",
@@ -21126,7 +21231,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/arnaud_jean_michel14189c_carre.jpg",
+"groupe_actuel": "Groupe Union Centriste et Indépendants"
 },
 {
 "matricule": "14191V",
@@ -21150,7 +21257,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/panunzi_jean_jacques14191v_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "14193X",
@@ -21174,7 +21283,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/perrin_cedric14193x_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "14195A",
@@ -21279,7 +21390,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/loisier_anne_catherine14205j_carre.jpg",
+"groupe_actuel": "Groupe Union Centriste et Indépendants"
 },
 {
 "matricule": "14207L",
@@ -21370,7 +21483,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/imbert_corinne14213j_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "14215L",
@@ -21394,7 +21509,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/di_folco_catherine14215l_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "14217N",
@@ -21442,7 +21559,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/longeot_jean_francois14219q_carre.jpg",
+"groupe_actuel": "Groupe Union Centriste et Indépendants"
 },
 {
 "matricule": "14221J",
@@ -21466,7 +21585,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/medevielle_pierre14221j_carre.jpg",
+"groupe_actuel": "Groupe Union Centriste et Indépendants"
 },
 {
 "matricule": "14223L",
@@ -21490,7 +21611,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/micouleau_brigitte14223l_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "14225N",
@@ -21557,7 +21680,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/robert_sylvie14229s_carre.jpg",
+"groupe_actuel": "Groupe Socialiste, Écologiste et Républicain"
 },
 {
 "matricule": "14231L",
@@ -21581,7 +21706,9 @@
 "fin": "2024-10-21",
 "motif_fin": "De droit (membre du Gouvernement)"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/gatel_francoise14231l_carre.jpg",
+"groupe_actuel": "Groupe Union Centriste et Indépendants"
 },
 {
 "matricule": "14233N",
@@ -21643,7 +21770,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/pellevat_cyril14237s_carre.jpg",
+"groupe_actuel": "Groupe Union Centriste et Indépendants"
 },
 {
 "matricule": "14239U",
@@ -21748,7 +21877,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/malhuret_claude14251q_carre.jpg",
+"groupe_actuel": "Groupe Les Indépendants - République et Territoires"
 },
 {
 "matricule": "14253S",
@@ -21796,7 +21927,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/cadic_olivier14255u_carre.jpg",
+"groupe_actuel": "Groupe Union Centriste et Indépendants"
 },
 {
 "matricule": "14257W",
@@ -21844,7 +21977,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/darnaud_mathieu14259y_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "14261S",
@@ -21925,7 +22060,9 @@
 "fin": "2023-10-01",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/cigolotti_olivier14267y_carre.jpg",
+"groupe_actuel": "Groupe Union Centriste et Indépendants"
 },
 {
 "matricule": "14269B",
@@ -22006,7 +22143,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/tetuanui_lana14275y_carre.jpg",
+"groupe_actuel": "Groupe Union Centriste et Indépendants"
 },
 {
 "matricule": "14277B",
@@ -22049,7 +22188,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/feret_corinne14281w_carre.jpg",
+"groupe_actuel": "Groupe Socialiste, Écologiste et Républicain"
 },
 {
 "matricule": "14327T",
@@ -22073,7 +22214,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/delcros_bernard14327t_carre.jpg",
+"groupe_actuel": "Groupe Union Centriste et Indépendants"
 },
 {
 "matricule": "14329V",
@@ -22097,7 +22240,9 @@
 "fin": "2023-10-01",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/chain_larche_anne14329v_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "14331P",
@@ -22121,7 +22266,9 @@
 "fin": "2023-10-01",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/rapin_jean_francois14331p_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "14355X",
@@ -22169,7 +22316,9 @@
 "fin": "2023-10-01",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/cuypers_pierre14357a_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "14361V",
@@ -22239,7 +22388,16 @@
 "deces": null,
 "circonscription": "Nord",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2023-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 1"
+}
+],
+"photo": "https://www.senat.fr/senimg/dhersin_franck15197g_carre.jpg",
+"groupe_actuel": "Groupe Union Centriste et Indépendants"
 },
 {
 "matricule": "1539R3",
@@ -22290,7 +22448,16 @@
 "deces": null,
 "circonscription": "Polynésie française",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2026-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 2"
+}
+],
+"photo": "https://www.senat.fr/senimg/fritch_edouard15689x_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "16431B",
@@ -22366,7 +22533,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/folliot_philippe17023s_carre.jpg",
+"groupe_actuel": "Groupe Union Centriste et Indépendants"
 },
 {
 "matricule": "17229F",
@@ -22385,7 +22554,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/demilly_stephane17229f_carre.jpg",
+"groupe_actuel": "Groupe Union Centriste et Indépendants"
 },
 {
 "matricule": "17305A",
@@ -22398,7 +22569,16 @@
 "deces": null,
 "circonscription": "Sarthe",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2026-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 2"
+}
+],
+"photo": "https://www.senat.fr/senimg/le_mener_dominique17305a_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "17331C",
@@ -22411,7 +22591,16 @@
 "deces": null,
 "circonscription": "Rhône",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2026-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 2"
+}
+],
+"photo": "https://www.senat.fr/senimg/guilloteau_christophe17331c_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "17367Q",
@@ -22506,7 +22695,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/boyer_valerie17737w_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "17779H",
@@ -22525,7 +22716,9 @@
 "fin": "2023-10-01",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/lubin_monique17779h_carre.jpg",
+"groupe_actuel": "Groupe Socialiste, Écologiste et Républicain"
 },
 {
 "matricule": "17965H",
@@ -22557,7 +22750,16 @@
 "deces": null,
 "circonscription": "Pas-de-Calais",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2023-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 1"
+}
+],
+"photo": "https://www.senat.fr/senimg/bourguignon_brigitte18045d_carre.jpg",
+"groupe_actuel": "Groupe Union Centriste et Indépendants"
 },
 {
 "matricule": "18083K",
@@ -22576,7 +22778,9 @@
 "fin": "2023-10-01",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/chevrollier_guillaume18083k_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "18127E",
@@ -22608,7 +22812,16 @@
 "deces": null,
 "circonscription": "Saint-Martin",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2026-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 2"
+}
+],
+"photo": "https://www.senat.fr/senimg/gibbs_daniel18153g_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "18193Q",
@@ -22627,7 +22840,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/le_houerou_annie18193q_carre.jpg",
+"groupe_actuel": "Groupe Socialiste, Écologiste et Républicain"
 },
 {
 "matricule": "18207D",
@@ -22640,7 +22855,16 @@
 "deces": null,
 "circonscription": "Nord",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2023-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 1"
+}
+],
+"photo": "https://www.senat.fr/senimg/linkenheld_audrey18207d_carre.jpg",
+"groupe_actuel": "Groupe Socialiste, Écologiste et Républicain"
 },
 {
 "matricule": "18231D",
@@ -22653,7 +22877,16 @@
 "deces": null,
 "circonscription": "Seine-Saint-Denis",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2023-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 1"
+}
+],
+"photo": "https://www.senat.fr/senimg/narassiguin_corinne18231d_carre.jpg",
+"groupe_actuel": "Groupe Socialiste, Écologiste et Républicain"
 },
 {
 "matricule": "18233F",
@@ -22666,7 +22899,16 @@
 "deces": null,
 "circonscription": "Drôme",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2026-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 2"
+}
+],
+"photo": "https://www.senat.fr/senimg/nieson_nathalie18233f_carre.jpg",
+"groupe_actuel": "Groupe Rassemblement des démocrates, progressistes et indépendants"
 },
 {
 "matricule": "18395Y",
@@ -22679,7 +22921,16 @@
 "deces": null,
 "circonscription": "Loire-Atlantique",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2023-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 1"
+}
+],
+"photo": "https://www.senat.fr/senimg/daniel_karine18395y_carre.jpg",
+"groupe_actuel": "Groupe Socialiste, Écologiste et Républicain"
 },
 {
 "matricule": "18503J",
@@ -22692,7 +22943,16 @@
 "deces": null,
 "circonscription": "Aube",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2026-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 2"
+}
+],
+"photo": "https://www.senat.fr/senimg/bazin_malgras_valerie18503j_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "18543S",
@@ -22705,7 +22965,16 @@
 "deces": null,
 "circonscription": "Cher",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2026-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 2"
+}
+],
+"photo": "https://www.senat.fr/senimg/kervran_loic18543s_carre.jpg",
+"groupe_actuel": "Groupe Les Indépendants - République et Territoires"
 },
 {
 "matricule": "19057M",
@@ -22737,7 +23006,16 @@
 "deces": null,
 "circonscription": "Hauts-de-Seine",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2023-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 1"
+}
+],
+"photo": "https://www.senat.fr/senimg/florennes_isabelle19111a_carre.jpg",
+"groupe_actuel": "Groupe Union Centriste et Indépendants"
 },
 {
 "matricule": "19251M",
@@ -22885,7 +23163,9 @@
 "fin": "2023-10-01",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/conconne_catherine19295a_carre.jpg",
+"groupe_actuel": "Groupe Socialiste, Écologiste et Républicain"
 },
 {
 "matricule": "19301E",
@@ -22904,7 +23184,9 @@
 "fin": "2023-10-01",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/theophile_dominique19301e_carre.jpg",
+"groupe_actuel": "Groupe du Rassemblement Démocratique et Social Européen"
 },
 {
 "matricule": "19319Q",
@@ -22955,7 +23237,16 @@
 "deces": null,
 "circonscription": "Mayotte",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2023-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 1"
+}
+],
+"photo": "https://www.senat.fr/senimg/omar_oili_said19331l_carre.jpg",
+"groupe_actuel": "Groupe Socialiste, Écologiste et Républicain"
 },
 {
 "matricule": "19333N",
@@ -22993,7 +23284,9 @@
 "fin": "2023-10-01",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/mizzon_jean_marie19335q_carre.jpg",
+"groupe_actuel": "Groupe Union Centriste et Indépendants"
 },
 {
 "matricule": "19347U",
@@ -23012,7 +23305,9 @@
 "fin": "2023-10-01",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/gontard_guillaume19347u_carre.jpg",
+"groupe_actuel": "Groupe Écologiste - Solidarité et Territoires"
 },
 {
 "matricule": "19349W",
@@ -23031,7 +23326,9 @@
 "fin": "2023-10-01",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/rambaud_didier19349w_carre.jpg",
+"groupe_actuel": "Groupe Rassemblement des démocrates, progressistes et indépendants"
 },
 {
 "matricule": "19367Y",
@@ -23050,7 +23347,9 @@
 "fin": "2023-10-01",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/bonfanti_dossat_christine19367y_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "19369B",
@@ -23088,7 +23387,9 @@
 "fin": "2023-10-01",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/boyer_jean_marc19383y_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "19387D",
@@ -23107,7 +23408,9 @@
 "fin": "2023-10-01",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/gold_eric19387d_carre.jpg",
+"groupe_actuel": "Groupe du Rassemblement Démocratique et Social Européen"
 },
 {
 "matricule": "19399H",
@@ -23126,7 +23429,9 @@
 "fin": "2023-10-01",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/hugonet_jean_raymond19399h_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "19413M",
@@ -23145,7 +23450,9 @@
 "fin": "2023-10-01",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/tissot_jean_claude19413m_carre.jpg",
+"groupe_actuel": "Groupe Socialiste, Écologiste et Républicain"
 },
 {
 "matricule": "19415P",
@@ -23183,7 +23490,9 @@
 "fin": "2023-10-01",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/saury_hugues19421m_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "19441R",
@@ -23240,7 +23549,9 @@
 "fin": "2023-10-01",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/jourda_muriel19447x_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "19467C",
@@ -23278,7 +23589,9 @@
 "fin": "2023-10-01",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/vermeillet_sylvie19479g_carre.jpg",
+"groupe_actuel": "Groupe Union Centriste et Indépendants"
 },
 {
 "matricule": "19483C",
@@ -23316,7 +23629,9 @@
 "fin": "2023-10-01",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/kerrouche_eric19489j_carre.jpg",
+"groupe_actuel": "Groupe Socialiste, Écologiste et Républicain"
 },
 {
 "matricule": "19503N",
@@ -23354,7 +23669,9 @@
 "fin": "2023-10-01",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/duplomb_laurent19507s_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "19511N",
@@ -23468,7 +23785,9 @@
 "fin": "2023-10-01",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/joly_patrice19531s_carre.jpg",
+"groupe_actuel": "Groupe Socialiste, Écologiste et Républicain"
 },
 {
 "matricule": "19533U",
@@ -23487,7 +23806,9 @@
 "fin": "2023-10-01",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/piednoir_stephane19533u_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "19543W",
@@ -23525,7 +23846,9 @@
 "fin": "2023-10-01",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/capus_emmanuel19545y_carre.jpg",
+"groupe_actuel": "Groupe Les Indépendants - République et Territoires"
 },
 {
 "matricule": "19549D",
@@ -23563,7 +23886,9 @@
 "fin": "2023-10-01",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/jacquin_olivier19551w_carre.jpg",
+"groupe_actuel": "Groupe Socialiste, Écologiste et Républicain"
 },
 {
 "matricule": "19553Y",
@@ -23601,7 +23926,9 @@
 "fin": "2023-10-01",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/menonville_franck19563b_carre.jpg",
+"groupe_actuel": "Groupe Union Centriste et Indépendants"
 },
 {
 "matricule": "19565D",
@@ -23620,7 +23947,9 @@
 "fin": "2023-10-01",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/greaume_michelle19565d_carre.jpg",
+"groupe_actuel": "Groupe Communiste Républicain Citoyen et Écologiste - Kanaky"
 },
 {
 "matricule": "19569H",
@@ -23639,7 +23968,9 @@
 "fin": "2023-10-01",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/henno_olivier19569h_carre.jpg",
+"groupe_actuel": "Groupe Union Centriste et Indépendants"
 },
 {
 "matricule": "19573D",
@@ -23658,7 +23989,9 @@
 "fin": "2023-10-01",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/paccaud_olivier19573d_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "19575F",
@@ -23682,7 +24015,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/berthet_martine19575f_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "19577H",
@@ -23758,7 +24093,9 @@
 "fin": "2023-10-01",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/wattebled_dany19585h_carre.jpg",
+"groupe_actuel": "Groupe du Rassemblement Démocratique et Social Européen"
 },
 {
 "matricule": "19591F",
@@ -23777,7 +24114,9 @@
 "fin": "2023-10-01",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/iacovelli_xavier19591f_carre.jpg",
+"groupe_actuel": "Groupe Rassemblement des démocrates, progressistes et indépendants"
 },
 {
 "matricule": "19593H",
@@ -23796,7 +24135,9 @@
 "fin": "2023-10-01",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/ouzoulias_pierre19593h_carre.jpg",
+"groupe_actuel": "Groupe Communiste Républicain Citoyen et Écologiste - Kanaky"
 },
 {
 "matricule": "19599P",
@@ -23834,7 +24175,9 @@
 "fin": "2023-10-01",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/lafon_laurent19611r_carre.jpg",
+"groupe_actuel": "Groupe Union Centriste et Indépendants"
 },
 {
 "matricule": "19619A",
@@ -23853,7 +24196,9 @@
 "fin": "2023-10-01",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/saint_pe_denise19619a_carre.jpg",
+"groupe_actuel": "Groupe Union Centriste et Indépendants"
 },
 {
 "matricule": "19621T",
@@ -23872,7 +24217,9 @@
 "fin": "2023-10-01",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/brisson_max19621t_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "19629C",
@@ -23891,7 +24238,9 @@
 "fin": "2023-10-01",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/carrere_maryse19629c_carre.jpg",
+"groupe_actuel": "Groupe du Rassemblement Démocratique et Social Européen"
 },
 {
 "matricule": "19631V",
@@ -23910,7 +24259,9 @@
 "fin": "2023-10-01",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/artigalas_viviane19631v_carre.jpg",
+"groupe_actuel": "Groupe Socialiste, Écologiste et Républicain"
 },
 {
 "matricule": "19637C",
@@ -23967,7 +24318,9 @@
 "fin": "2023-10-01",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/feraud_remi19647e_carre.jpg",
+"groupe_actuel": "Groupe Socialiste, Écologiste et Républicain"
 },
 {
 "matricule": "19649G",
@@ -23986,7 +24339,9 @@
 "fin": "2023-10-01",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/de_la_gontrie_marie_pierre19649g_carre.jpg",
+"groupe_actuel": "Groupe Socialiste, Écologiste et Républicain"
 },
 {
 "matricule": "19651A",
@@ -24024,7 +24379,9 @@
 "fin": "2023-10-01",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/malet_viviane19657g_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "19659J",
@@ -24081,7 +24438,9 @@
 "fin": "2023-10-01",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/bazin_arnaud19667j_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "19669L",
@@ -24100,7 +24459,9 @@
 "fin": "2023-10-01",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/temal_rachid19669l_carre.jpg",
+"groupe_actuel": "Groupe Socialiste, Écologiste et Républicain"
 },
 {
 "matricule": "19671E",
@@ -24138,7 +24499,9 @@
 "fin": "2023-10-01",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/eustache_brinio_jacqueline19673g_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "19675J",
@@ -24195,7 +24558,9 @@
 "fin": "2023-10-01",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/puissat_frederique19679n_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "19681G",
@@ -24214,7 +24579,9 @@
 "fin": "2023-10-01",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/corbisez_jean_pierre19681g_carre.jpg",
+"groupe_actuel": "Groupe Communiste Républicain Citoyen et Écologiste - Kanaky"
 },
 {
 "matricule": "19683J",
@@ -24233,7 +24600,9 @@
 "fin": "2023-10-01",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/jomier_bernard19683j_carre.jpg",
+"groupe_actuel": "Groupe Écologiste - Solidarité et Territoires"
 },
 {
 "matricule": "19685L",
@@ -24252,7 +24621,9 @@
 "fin": "2023-10-01",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/herzog_christine19685l_carre.jpg",
+"groupe_actuel": "Groupe Union Centriste et Indépendants"
 },
 {
 "matricule": "19687N",
@@ -24271,7 +24642,9 @@
 "fin": "2023-10-01",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/savoldelli_pascal19687n_carre.jpg",
+"groupe_actuel": "Groupe Communiste Républicain Citoyen et Écologiste - Kanaky"
 },
 {
 "matricule": "19689Q",
@@ -24309,7 +24682,9 @@
 "fin": "2023-10-01",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/guidez_jocelyne19691j_carre.jpg",
+"groupe_actuel": "Groupe Union Centriste et Indépendants"
 },
 {
 "matricule": "19693L",
@@ -24328,7 +24703,9 @@
 "fin": "2023-10-01",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/darcos_laure19693l_carre.jpg",
+"groupe_actuel": "Groupe Les Indépendants - République et Territoires"
 },
 {
 "matricule": "19695N",
@@ -24347,7 +24724,9 @@
 "fin": "2023-10-01",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/gay_fabien19695n_carre.jpg",
+"groupe_actuel": "Groupe Communiste Républicain Citoyen et Écologiste - Kanaky"
 },
 {
 "matricule": "19697Q",
@@ -24366,7 +24745,9 @@
 "fin": "2023-10-01",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/levrier_martin19697q_carre.jpg",
+"groupe_actuel": "Groupe Rassemblement des démocrates, progressistes et indépendants"
 },
 {
 "matricule": "19699S",
@@ -24385,7 +24766,9 @@
 "fin": "2023-10-01",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/laugier_michel19699s_carre.jpg",
+"groupe_actuel": "Groupe Union Centriste et Indépendants"
 },
 {
 "matricule": "19701S",
@@ -24404,7 +24787,9 @@
 "fin": "2023-10-01",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/de_cidrac_marta19701s_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "19703U",
@@ -24423,7 +24808,9 @@
 "fin": "2023-10-01",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/sol_jean19703u_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "19705W",
@@ -24442,7 +24829,9 @@
 "fin": "2023-10-01",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/renaud_garabedian_evelyne19705w_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "19707Y",
@@ -24485,7 +24874,9 @@
 "fin": "2023-10-01",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/le_gleut_ronan19709b_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "19711U",
@@ -24504,7 +24895,9 @@
 "fin": "2023-10-01",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/lavarde_christine19711u_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "19713W",
@@ -24523,7 +24916,9 @@
 "fin": "2023-10-01",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/sollogoub_nadia19713w_carre.jpg",
+"groupe_actuel": "Groupe Union Centriste et Indépendants"
 },
 {
 "matricule": "19715Y",
@@ -24585,7 +24980,9 @@
 "fin": "2024-10-21",
 "motif_fin": "De droit (membre du Gouvernement)"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/delattre_nathalie19719d_carre.jpg",
+"groupe_actuel": "Groupe du Rassemblement Démocratique et Social Européen"
 },
 {
 "matricule": "19721W",
@@ -24762,7 +25159,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/de_la_provote_sonia19735d_carre.jpg",
+"groupe_actuel": "Groupe Union Centriste et Indépendants"
 },
 {
 "matricule": "19737F",
@@ -24891,7 +25290,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/verien_dominique19749k_carre.jpg",
+"groupe_actuel": "Groupe Union Centriste et Indépendants"
 },
 {
 "matricule": "19758L",
@@ -24915,7 +25316,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/brulin_celine19758l_carre.jpg",
+"groupe_actuel": "Groupe Communiste Républicain Citoyen et Écologiste - Kanaky"
 },
 {
 "matricule": "19760E",
@@ -24934,7 +25337,9 @@
 "fin": "2023-10-01",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/apourceau_poly_cathy19760e_carre.jpg",
+"groupe_actuel": "Groupe Communiste Républicain Citoyen et Écologiste - Kanaky"
 },
 {
 "matricule": "19762G",
@@ -24996,7 +25401,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/noel_sylviane19768n_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "19782L",
@@ -25111,7 +25518,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/gille_herve19820y_carre.jpg",
+"groupe_actuel": "Groupe Socialiste, Écologiste et Républicain"
 },
 {
 "matricule": "19826F",
@@ -25135,7 +25544,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/martin_pascal19826f_carre.jpg",
+"groupe_actuel": "Groupe Union Centriste et Indépendants"
 },
 {
 "matricule": "19866P",
@@ -25154,7 +25565,9 @@
 "fin": "2023-10-01",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/pantel_guylene19866p_carre.jpg",
+"groupe_actuel": "Groupe du Rassemblement Démocratique et Social Européen"
 },
 {
 "matricule": "19912C",
@@ -25205,7 +25618,16 @@
 "deces": null,
 "circonscription": "Seine-Maritime",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2026-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 2"
+}
+],
+"photo": "https://www.senat.fr/senimg/coriton_bastien19916g_carre.jpg",
+"groupe_actuel": "Groupe Socialiste, Écologiste et Républicain"
 },
 {
 "matricule": "19920C",
@@ -25281,7 +25703,9 @@
 "fin": "2023-10-01",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/belrhiti_catherine19954n_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "19958S",
@@ -25400,7 +25824,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/michau_jean_jacques20018v_carre.jpg",
+"groupe_actuel": "Groupe du Rassemblement Démocratique et Social Européen"
 },
 {
 "matricule": "20020P",
@@ -25419,7 +25845,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/rojouan_bruno20020p_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "20022R",
@@ -25438,7 +25866,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/bellurot_nadine20022r_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "20024T",
@@ -25457,7 +25887,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/belin_bruno20024t_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "20026V",
@@ -25476,7 +25908,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/ventalon_anne20026v_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "20028X",
@@ -25495,7 +25929,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/merillou_serge20028x_carre.jpg",
+"groupe_actuel": "Groupe Socialiste, Écologiste et Républicain"
 },
 {
 "matricule": "20030R",
@@ -25514,7 +25950,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/pla_sebastien20030r_carre.jpg",
+"groupe_actuel": "Groupe Socialiste, Écologiste et Républicain"
 },
 {
 "matricule": "20032T",
@@ -25533,7 +25971,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/anglars_jean_claude20032t_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "20034V",
@@ -25552,7 +25992,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/jacques_micheline20034v_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "20036X",
@@ -25571,7 +26013,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/parigi_paul_toussaint20036x_carre.jpg",
+"groupe_actuel": "Groupe Union Centriste et Indépendants"
 },
 {
 "matricule": "20038A",
@@ -25609,7 +26053,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/duffourg_alain20040t_carre.jpg",
+"groupe_actuel": "Groupe Union Centriste et Indépendants"
 },
 {
 "matricule": "20042V",
@@ -25628,7 +26074,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/bonneau_francois20042v_carre.jpg",
+"groupe_actuel": "Groupe Union Centriste et Indépendants"
 },
 {
 "matricule": "20044X",
@@ -25647,7 +26095,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/sautarel_stephane20044x_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "20046A",
@@ -25666,7 +26116,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/varaillas_marie_claude20046a_carre.jpg",
+"groupe_actuel": "Groupe Communiste Républicain Citoyen et Écologiste - Kanaky"
 },
 {
 "matricule": "20048C",
@@ -25685,7 +26137,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/hingray_jean20048c_carre.jpg",
+"groupe_actuel": "Groupe Union Centriste et Indépendants"
 },
 {
 "matricule": "20050V",
@@ -25704,7 +26158,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/paoli_gagin_vanina20050v_carre.jpg",
+"groupe_actuel": "Groupe Les Indépendants - République et Territoires"
 },
 {
 "matricule": "20052X",
@@ -25723,7 +26179,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/levi_pierre_antoine20052x_carre.jpg",
+"groupe_actuel": "Groupe Union Centriste et Indépendants"
 },
 {
 "matricule": "20054A",
@@ -25742,7 +26200,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/rietmann_olivier20054a_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "20056C",
@@ -25761,7 +26221,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/joseph_else20056c_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "20058E",
@@ -25780,7 +26242,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/vial_cedric20058e_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "20060X",
@@ -25799,7 +26263,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/cardon_remi20060x_carre.jpg",
+"groupe_actuel": "Groupe Socialiste, Écologiste et Républicain"
 },
 {
 "matricule": "20062A",
@@ -25818,7 +26284,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/somon_laurent20062a_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "20064C",
@@ -25837,7 +26305,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/vallet_mickael20064c_carre.jpg",
+"groupe_actuel": "Groupe Socialiste, Écologiste et Républicain"
 },
 {
 "matricule": "20066E",
@@ -25894,7 +26364,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/cozic_thierry20070a_carre.jpg",
+"groupe_actuel": "Groupe Socialiste, Écologiste et Républicain"
 },
 {
 "matricule": "20072C",
@@ -25932,7 +26404,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/dumont_francoise20074e_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "20076G",
@@ -25989,7 +26463,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/briquet_isabelle20080c_carre.jpg",
+"groupe_actuel": "Groupe Socialiste, Écologiste et Républicain"
 },
 {
 "matricule": "20082E",
@@ -26008,7 +26484,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/redon_sarrazy_christian20082e_carre.jpg",
+"groupe_actuel": "Groupe Socialiste, Écologiste et Républicain"
 },
 {
 "matricule": "20084G",
@@ -26046,7 +26524,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/blanc_jean_baptiste20086j_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "20088L",
@@ -26065,7 +26545,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/bouad_denis20088l_carre.jpg",
+"groupe_actuel": "Groupe Socialiste, Écologiste et Républicain"
 },
 {
 "matricule": "20090E",
@@ -26084,7 +26566,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/burgoa_laurent20090e_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "20092G",
@@ -26103,7 +26587,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/salmon_daniel20092g_carre.jpg",
+"groupe_actuel": "Groupe Écologiste - Solidarité et Territoires"
 },
 {
 "matricule": "20094J",
@@ -26122,7 +26608,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/blatrix_contat_florence20094j_carre.jpg",
+"groupe_actuel": "Groupe Socialiste, Écologiste et Républicain"
 },
 {
 "matricule": "20096L",
@@ -26141,7 +26629,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/muller_bronn_laurence20096l_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "20098N",
@@ -26160,7 +26650,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/schalck_elsa20098n_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "20100N",
@@ -26198,7 +26690,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/lahellec_gerard20102q_carre.jpg",
+"groupe_actuel": "Groupe Communiste Républicain Citoyen et Écologiste - Kanaky"
 },
 {
 "matricule": "20104S",
@@ -26217,7 +26711,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/cadec_alain20104s_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "20106U",
@@ -26236,7 +26732,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/havet_nadege20106u_carre.jpg",
+"groupe_actuel": "Groupe Rassemblement des démocrates, progressistes et indépendants"
 },
 {
 "matricule": "20108W",
@@ -26274,7 +26772,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/benarroche_guy20110q_carre.jpg",
+"groupe_actuel": "Groupe Écologiste - Solidarité et Territoires"
 },
 {
 "matricule": "20112S",
@@ -26293,7 +26793,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/bacchi_jeremy20112s_carre.jpg",
+"groupe_actuel": "Groupe Communiste Républicain Citoyen et Écologiste - Kanaky"
 },
 {
 "matricule": "20114U",
@@ -26312,7 +26814,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/bourgi_hussein20114u_carre.jpg",
+"groupe_actuel": "Groupe Socialiste, Écologiste et Républicain"
 },
 {
 "matricule": "20116W",
@@ -26350,7 +26854,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/pluchet_kristina20118y_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "20120S",
@@ -26369,7 +26875,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/genet_fabien20120s_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "20122U",
@@ -26407,7 +26915,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/drexler_sabine20124w_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "20126Y",
@@ -26426,7 +26936,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/klinger_christian20126y_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "20128B",
@@ -26445,7 +26957,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/haye_ludovic20128b_carre.jpg",
+"groupe_actuel": "Groupe Union Centriste et Indépendants"
 },
 {
 "matricule": "20130U",
@@ -26483,7 +26997,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/fialaire_bernard20132w_carre.jpg",
+"groupe_actuel": "Groupe du Rassemblement Démocratique et Social Européen"
 },
 {
 "matricule": "20134Y",
@@ -26502,7 +27018,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/dossus_thomas20134y_carre.jpg",
+"groupe_actuel": "Groupe Écologiste - Solidarité et Territoires"
 },
 {
 "matricule": "20136B",
@@ -26540,7 +27058,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/borchio_fontimp_alexandra20138d_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "20140W",
@@ -26692,7 +27212,9 @@
 "fin": "2023-10-01",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/garnier_laurence20172f_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "20174H",
@@ -26768,7 +27290,9 @@
 "fin": "2023-10-01",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/gosselin_beatrice20180f_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "20248J",
@@ -26787,7 +27311,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/devesa_brigitte20248j_carre.jpg",
+"groupe_actuel": "Groupe Union Centriste et Indépendants"
 },
 {
 "matricule": "20252E",
@@ -26806,7 +27332,9 @@
 "fin": "2023-10-01",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/meignen_thierry20252e_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "20264J",
@@ -26825,7 +27353,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/chantrel_yan20264j_carre.jpg",
+"groupe_actuel": "Groupe Socialiste, Écologiste et Républicain"
 },
 {
 "matricule": "20266L",
@@ -26844,7 +27374,9 @@
 "fin": "2026-09-30",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/vogel_melanie20266l_carre.jpg",
+"groupe_actuel": "Groupe Écologiste - Solidarité et Territoires"
 },
 {
 "matricule": "20286Q",
@@ -26863,7 +27395,9 @@
 "fin": "2023-10-01",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/gacquerre_amel20286q_carre.jpg",
+"groupe_actuel": "Groupe Union Centriste et Indépendants"
 },
 {
 "matricule": "20298U",
@@ -26895,7 +27429,16 @@
 "deces": null,
 "circonscription": "Gironde",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2026-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 2"
+}
+],
+"photo": "https://www.senat.fr/senimg/diaz_edwige20390p_carre.jpg",
+"groupe_actuel": "Groupe Union Nationale pour les Territoires"
 },
 {
 "matricule": "20684B",
@@ -26908,7 +27451,16 @@
 "deces": null,
 "circonscription": "Rhône",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2026-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 2"
+}
+],
+"photo": "https://www.senat.fr/senimg/amard_gabriel20684b_carre.jpg",
+"groupe_actuel": "Réunion administrative des Sénateurs ne figurant sur la liste d'aucun groupe"
 },
 {
 "matricule": "20718T",
@@ -26921,7 +27473,16 @@
 "deces": null,
 "circonscription": "Charente-Maritime",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2026-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 2"
+}
+],
+"photo": "https://www.senat.fr/senimg/plassard_christophe20718t_carre.jpg",
+"groupe_actuel": "Groupe Les Indépendants - République et Territoires"
 },
 {
 "matricule": "20874F",
@@ -26934,7 +27495,16 @@
 "deces": null,
 "circonscription": "Var",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2026-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 2"
+}
+],
+"photo": "https://www.senat.fr/senimg/giletti_frank20874f_carre.jpg",
+"groupe_actuel": "Groupe Union Nationale pour les Territoires"
 },
 {
 "matricule": "20914V",
@@ -26985,7 +27555,16 @@
 "deces": null,
 "circonscription": "Nouvelle-Calédonie",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2023-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 1"
+}
+],
+"photo": "https://www.senat.fr/senimg/naturel_georges21029d_carre.jpg",
+"groupe_actuel": "Groupe Union Centriste et Indépendants"
 },
 {
 "matricule": "21030V",
@@ -26998,7 +27577,16 @@
 "deces": null,
 "circonscription": "Nouvelle-Calédonie",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2023-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 1"
+}
+],
+"photo": "https://www.senat.fr/senimg/xowie_robert_wienie21030v_carre.jpg",
+"groupe_actuel": "Groupe Communiste Républicain Citoyen et Écologiste - Kanaky"
 },
 {
 "matricule": "21031W",
@@ -27011,7 +27599,16 @@
 "deces": null,
 "circonscription": "Lot",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2023-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 1"
+}
+],
+"photo": "https://www.senat.fr/senimg/vayssouze_faure_jean_marc21031w_carre.jpg",
+"groupe_actuel": "Groupe Socialiste, Écologiste et Républicain"
 },
 {
 "matricule": "21032X",
@@ -27024,7 +27621,16 @@
 "deces": null,
 "circonscription": "Saint-Pierre-et-Miquelon",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2023-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 1"
+}
+],
+"photo": "https://www.senat.fr/senimg/girardin_annick21032x_carre.jpg",
+"groupe_actuel": "Groupe du Rassemblement Démocratique et Social Européen"
 },
 {
 "matricule": "21033Y",
@@ -27037,7 +27643,16 @@
 "deces": null,
 "circonscription": "La Réunion",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2023-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 1"
+}
+],
+"photo": "https://www.senat.fr/senimg/fouassin_stephane21033y_carre.jpg",
+"groupe_actuel": "Groupe Rassemblement des démocrates, progressistes et indépendants"
 },
 {
 "matricule": "21034A",
@@ -27050,7 +27665,16 @@
 "deces": null,
 "circonscription": "La Réunion",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2023-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 1"
+}
+],
+"photo": "https://www.senat.fr/senimg/corbiere_naminzo_evelyne21034a_carre.jpg",
+"groupe_actuel": "Groupe Communiste Républicain Citoyen et Écologiste - Kanaky"
 },
 {
 "matricule": "21035B",
@@ -27063,7 +27687,16 @@
 "deces": null,
 "circonscription": "La Réunion",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2023-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 1"
+}
+],
+"photo": "https://www.senat.fr/senimg/belim_audrey21035b_carre.jpg",
+"groupe_actuel": "Groupe Socialiste, Écologiste et Républicain"
 },
 {
 "matricule": "21036C",
@@ -27076,7 +27709,16 @@
 "deces": null,
 "circonscription": "Français établis hors de France",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2023-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 1"
+}
+],
+"photo": "https://www.senat.fr/senimg/ruelle_jean_luc21036c_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "21037D",
@@ -27089,7 +27731,16 @@
 "deces": null,
 "circonscription": "Français établis hors de France",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2023-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 1"
+}
+],
+"photo": "https://www.senat.fr/senimg/ollivier_mathilde21037d_carre.jpg",
+"groupe_actuel": "Groupe Écologiste - Solidarité et Territoires"
 },
 {
 "matricule": "21038E",
@@ -27102,7 +27753,16 @@
 "deces": null,
 "circonscription": "Français établis hors de France",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2023-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 1"
+}
+],
+"photo": "https://www.senat.fr/senimg/richard_olivia21038e_carre.jpg",
+"groupe_actuel": "Groupe Union Centriste et Indépendants"
 },
 {
 "matricule": "21039F",
@@ -27115,7 +27775,16 @@
 "deces": null,
 "circonscription": "Haute-Marne",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2023-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 1"
+}
+],
+"photo": "https://www.senat.fr/senimg/nedelec_anne_marie21039f_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "21040X",
@@ -27128,7 +27797,16 @@
 "deces": null,
 "circonscription": "Lot-et-Garonne",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2023-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 1"
+}
+],
+"photo": "https://www.senat.fr/senimg/masset_michel21040x_carre.jpg",
+"groupe_actuel": "Groupe du Rassemblement Démocratique et Social Européen"
 },
 {
 "matricule": "21041Y",
@@ -27141,7 +27819,16 @@
 "deces": null,
 "circonscription": "Lot",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2023-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 1"
+}
+],
+"photo": "https://www.senat.fr/senimg/daubet_raphael21041y_carre.jpg",
+"groupe_actuel": "Groupe du Rassemblement Démocratique et Social Européen"
 },
 {
 "matricule": "21042A",
@@ -27154,7 +27841,16 @@
 "deces": null,
 "circonscription": "Meuse",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2023-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 1"
+}
+],
+"photo": "https://www.senat.fr/senimg/antoine_jocelyne21042a_carre.jpg",
+"groupe_actuel": "Groupe Union Centriste et Indépendants"
 },
 {
 "matricule": "21043B",
@@ -27167,7 +27863,16 @@
 "deces": null,
 "circonscription": "Orne",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2023-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 1"
+}
+],
+"photo": "https://www.senat.fr/senimg/bitz_olivier21043b_carre.jpg",
+"groupe_actuel": "Groupe Union Centriste et Indépendants"
 },
 {
 "matricule": "21044C",
@@ -27180,7 +27885,16 @@
 "deces": null,
 "circonscription": "Pyrénées-Orientales",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2023-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 1"
+}
+],
+"photo": "https://www.senat.fr/senimg/josende_lauriane21044c_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "21045D",
@@ -27193,7 +27907,16 @@
 "deces": null,
 "circonscription": "Puy-de-Dôme",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2023-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 1"
+}
+],
+"photo": "https://www.senat.fr/senimg/canales_marion21045d_carre.jpg",
+"groupe_actuel": "Groupe Socialiste, Écologiste et Républicain"
 },
 {
 "matricule": "21046E",
@@ -27206,7 +27929,16 @@
 "deces": null,
 "circonscription": "Maine-et-Loire",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2023-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 1"
+}
+],
+"photo": "https://www.senat.fr/senimg/bourcier_corinne21046e_carre.jpg",
+"groupe_actuel": "Groupe Les Indépendants - République et Territoires"
 },
 {
 "matricule": "21047F",
@@ -27219,7 +27951,16 @@
 "deces": null,
 "circonscription": "Jura",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2023-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 1"
+}
+],
+"photo": "https://www.senat.fr/senimg/pernot_clement21047f_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "21048G",
@@ -27232,7 +27973,16 @@
 "deces": null,
 "circonscription": "Maine-et-Loire",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2023-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 1"
+}
+],
+"photo": "https://www.senat.fr/senimg/blanc_gregory21048g_carre.jpg",
+"groupe_actuel": "Groupe Écologiste - Solidarité et Territoires"
 },
 {
 "matricule": "21049H",
@@ -27245,7 +27995,16 @@
 "deces": null,
 "circonscription": "Meurthe-et-Moselle",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2023-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 1"
+}
+],
+"photo": "https://www.senat.fr/senimg/silvani_silvana21049h_carre.jpg",
+"groupe_actuel": "Groupe Communiste Républicain Citoyen et Écologiste - Kanaky"
 },
 {
 "matricule": "21050A",
@@ -27258,7 +28017,16 @@
 "deces": null,
 "circonscription": "Morbihan",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2023-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 1"
+}
+],
+"photo": "https://www.senat.fr/senimg/bleunven_yves21050a_carre.jpg",
+"groupe_actuel": "Groupe Union Centriste et Indépendants"
 },
 {
 "matricule": "21051B",
@@ -27271,7 +28039,16 @@
 "deces": null,
 "circonscription": "Morbihan",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2023-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 1"
+}
+],
+"photo": "https://www.senat.fr/senimg/uzenat_simon21051b_carre.jpg",
+"groupe_actuel": "Groupe Socialiste, Écologiste et Républicain"
 },
 {
 "matricule": "21052C",
@@ -27284,7 +28061,16 @@
 "deces": null,
 "circonscription": "Loir-et-Cher",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2023-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 1"
+}
+],
+"photo": "https://www.senat.fr/senimg/brault_jean_luc21052c_carre.jpg",
+"groupe_actuel": "Groupe Union Centriste et Indépendants"
 },
 {
 "matricule": "21053D",
@@ -27297,7 +28083,16 @@
 "deces": null,
 "circonscription": "Loir-et-Cher",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2023-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 1"
+}
+],
+"photo": "https://www.senat.fr/senimg/pillefer_bernard21053d_carre.jpg",
+"groupe_actuel": "Groupe Union Centriste et Indépendants"
 },
 {
 "matricule": "21054E",
@@ -27310,7 +28105,16 @@
 "deces": null,
 "circonscription": "Indre-et-Loire",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2023-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 1"
+}
+],
+"photo": "https://www.senat.fr/senimg/louault_vincent21054e_carre.jpg",
+"groupe_actuel": "Groupe Les Indépendants - République et Territoires"
 },
 {
 "matricule": "21055F",
@@ -27323,7 +28127,16 @@
 "deces": null,
 "circonscription": "Indre-et-Loire",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2023-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 1"
+}
+],
+"photo": "https://www.senat.fr/senimg/paumier_jean_gerard21055f_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "21056G",
@@ -27336,7 +28149,16 @@
 "deces": null,
 "circonscription": "Indre-et-Loire",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2023-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 1"
+}
+],
+"photo": "https://www.senat.fr/senimg/roiron_pierre_alain21056g_carre.jpg",
+"groupe_actuel": "Groupe Socialiste, Écologiste et Républicain"
 },
 {
 "matricule": "21057H",
@@ -27349,7 +28171,16 @@
 "deces": null,
 "circonscription": "Loiret",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2023-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 1"
+}
+],
+"photo": "https://www.senat.fr/senimg/chaillou_christophe21057h_carre.jpg",
+"groupe_actuel": "Groupe Socialiste, Écologiste et Républicain"
 },
 {
 "matricule": "21058J",
@@ -27362,7 +28193,16 @@
 "deces": null,
 "circonscription": "Loiret",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2023-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 1"
+}
+],
+"photo": "https://www.senat.fr/senimg/martin_pauline21058j_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "21059K",
@@ -27375,7 +28215,16 @@
 "deces": null,
 "circonscription": "Essonne",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2023-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 1"
+}
+],
+"photo": "https://www.senat.fr/senimg/ros_david21059k_carre.jpg",
+"groupe_actuel": "Groupe Socialiste, Écologiste et Républicain"
 },
 {
 "matricule": "21060C",
@@ -27388,7 +28237,16 @@
 "deces": null,
 "circonscription": "Oise",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2023-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 1"
+}
+],
+"photo": "https://www.senat.fr/senimg/ouizille_alexandre21060c_carre.jpg",
+"groupe_actuel": "Groupe Socialiste, Écologiste et Républicain"
 },
 {
 "matricule": "21061D",
@@ -27401,7 +28259,16 @@
 "deces": null,
 "circonscription": "Oise",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2023-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 1"
+}
+],
+"photo": "https://www.senat.fr/senimg/valente_le_hir_sylvie21061d_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "21062E",
@@ -27414,7 +28281,16 @@
 "deces": null,
 "circonscription": "Manche",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2023-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 1"
+}
+],
+"photo": "https://www.senat.fr/senimg/fagnen_sebastien21062e_carre.jpg",
+"groupe_actuel": "Groupe Socialiste, Écologiste et Républicain"
 },
 {
 "matricule": "21063F",
@@ -27427,7 +28303,16 @@
 "deces": null,
 "circonscription": "Marne",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2023-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 1"
+}
+],
+"photo": "https://www.senat.fr/senimg/bruyen_christian21063f_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "21064G",
@@ -27440,7 +28325,16 @@
 "deces": null,
 "circonscription": "Marne",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2023-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 1"
+}
+],
+"photo": "https://www.senat.fr/senimg/romagny_anne_sophie21064g_carre.jpg",
+"groupe_actuel": "Groupe Union Centriste et Indépendants"
 },
 {
 "matricule": "21065H",
@@ -27453,7 +28347,16 @@
 "deces": null,
 "circonscription": "Marne",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2023-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 1"
+}
+],
+"photo": "https://www.senat.fr/senimg/chevalier_cedric21065h_carre.jpg",
+"groupe_actuel": "Groupe Les Indépendants - République et Territoires"
 },
 {
 "matricule": "21066J",
@@ -27466,7 +28369,16 @@
 "deces": null,
 "circonscription": "Loire-Atlantique",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2023-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 1"
+}
+],
+"photo": "https://www.senat.fr/senimg/grosvalet_philippe21066j_carre.jpg",
+"groupe_actuel": "Groupe du Rassemblement Démocratique et Social Européen"
 },
 {
 "matricule": "21067K",
@@ -27479,7 +28391,16 @@
 "deces": null,
 "circonscription": "Pas-de-Calais",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2023-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 1"
+}
+],
+"photo": "https://www.senat.fr/senimg/darras_jerome21067k_carre.jpg",
+"groupe_actuel": "Groupe Socialiste, Écologiste et Républicain"
 },
 {
 "matricule": "21068L",
@@ -27492,7 +28413,16 @@
 "deces": null,
 "circonscription": "Loire",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2023-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 1"
+}
+],
+"photo": "https://www.senat.fr/senimg/reynaud_herve21068l_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "21069M",
@@ -27505,7 +28435,16 @@
 "deces": null,
 "circonscription": "Pas-de-Calais",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2023-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 1"
+}
+],
+"photo": "https://www.senat.fr/senimg/szczurek_christopher21069m_carre.jpg",
+"groupe_actuel": "Groupe Union Nationale pour les Territoires"
 },
 {
 "matricule": "21070E",
@@ -27518,7 +28457,16 @@
 "deces": null,
 "circonscription": "Loire",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2023-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 1"
+}
+],
+"photo": "https://www.senat.fr/senimg/rochette_pierre_jean21070e_carre.jpg",
+"groupe_actuel": "Groupe Les Indépendants - République et Territoires"
 },
 {
 "matricule": "21071F",
@@ -27531,7 +28479,16 @@
 "deces": null,
 "circonscription": "Hauts-de-Seine",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2023-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 1"
+}
+],
+"photo": "https://www.senat.fr/senimg/aeschlimann_marie_do21071f_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "21072G",
@@ -27544,7 +28501,16 @@
 "deces": null,
 "circonscription": "Val-de-Marne",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2023-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 1"
+}
+],
+"photo": "https://www.senat.fr/senimg/ciuntu_marie_carole21072g_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "21073H",
@@ -27557,7 +28523,16 @@
 "deces": null,
 "circonscription": "Val-de-Marne",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2023-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 1"
+}
+],
+"photo": "https://www.senat.fr/senimg/mellouli_akli21073h_carre.jpg",
+"groupe_actuel": "Groupe Écologiste - Solidarité et Territoires"
 },
 {
 "matricule": "21074J",
@@ -27570,7 +28545,16 @@
 "deces": null,
 "circonscription": "Seine-et-Marne",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2023-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 1"
+}
+],
+"photo": "https://www.senat.fr/senimg/durox_aymeric21074j_carre.jpg",
+"groupe_actuel": "Groupe Union Nationale pour les Territoires"
 },
 {
 "matricule": "21075K",
@@ -27583,7 +28567,16 @@
 "deces": null,
 "circonscription": "Seine-et-Marne",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2023-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 1"
+}
+],
+"photo": "https://www.senat.fr/senimg/margate_marianne21075k_carre.jpg",
+"groupe_actuel": "Groupe Communiste Républicain Citoyen et Écologiste - Kanaky"
 },
 {
 "matricule": "21076L",
@@ -27596,7 +28589,16 @@
 "deces": null,
 "circonscription": "Seine-et-Marne",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2023-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 1"
+}
+],
+"photo": "https://www.senat.fr/senimg/vogel_louis21076l_carre.jpg",
+"groupe_actuel": "Groupe Union Centriste et Indépendants"
 },
 {
 "matricule": "21077M",
@@ -27609,7 +28611,16 @@
 "deces": null,
 "circonscription": "Seine-Saint-Denis",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2023-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 1"
+}
+],
+"photo": "https://www.senat.fr/senimg/ziane_adel21077m_carre.jpg",
+"groupe_actuel": "Groupe Socialiste, Écologiste et Républicain"
 },
 {
 "matricule": "21078N",
@@ -27622,7 +28633,16 @@
 "deces": null,
 "circonscription": "Seine-Saint-Denis",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2023-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 1"
+}
+],
+"photo": "https://www.senat.fr/senimg/laouedj_ahmed21078n_carre.jpg",
+"groupe_actuel": "Groupe du Rassemblement Démocratique et Social Européen"
 },
 {
 "matricule": "21079P",
@@ -27635,7 +28655,16 @@
 "deces": null,
 "circonscription": "Yvelines",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2023-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 1"
+}
+],
+"photo": "https://www.senat.fr/senimg/senee_ghislaine21079p_carre.jpg",
+"groupe_actuel": "Groupe Écologiste - Solidarité et Territoires"
 },
 {
 "matricule": "21080G",
@@ -27648,7 +28677,16 @@
 "deces": null,
 "circonscription": "Isère",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2023-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 1"
+}
+],
+"photo": "https://www.senat.fr/senimg/michallet_damien21080g_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "21081H",
@@ -27661,7 +28699,16 @@
 "deces": null,
 "circonscription": "Moselle",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2023-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 1"
+}
+],
+"photo": "https://www.senat.fr/senimg/khalife_khalife21081h_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "21082J",
@@ -27674,7 +28721,16 @@
 "deces": null,
 "circonscription": "Moselle",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2023-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 1"
+}
+],
+"photo": "https://www.senat.fr/senimg/weber_michael21082j_carre.jpg",
+"groupe_actuel": "Groupe Socialiste, Écologiste et Républicain"
 },
 {
 "matricule": "21083K",
@@ -27687,7 +28743,16 @@
 "deces": null,
 "circonscription": "Nord",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2023-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 1"
+}
+],
+"photo": "https://www.senat.fr/senimg/cambier_guislain21083k_carre.jpg",
+"groupe_actuel": "Groupe Union Centriste et Indépendants"
 },
 {
 "matricule": "21084L",
@@ -27700,7 +28765,16 @@
 "deces": null,
 "circonscription": "Val-d'Oise",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2023-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 1"
+}
+],
+"photo": "https://www.senat.fr/senimg/barros_pierre21084l_carre.jpg",
+"groupe_actuel": "Groupe Communiste Républicain Citoyen et Écologiste - Kanaky"
 },
 {
 "matricule": "21085M",
@@ -27713,7 +28787,16 @@
 "deces": null,
 "circonscription": "Nord",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2023-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 1"
+}
+],
+"photo": "https://www.senat.fr/senimg/hochart_joshua21085m_carre.jpg",
+"groupe_actuel": "Groupe Union Nationale pour les Territoires"
 },
 {
 "matricule": "21086N",
@@ -27726,7 +28809,16 @@
 "deces": null,
 "circonscription": "Val-d'Oise",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2023-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 1"
+}
+],
+"photo": "https://www.senat.fr/senimg/fargeot_daniel21086n_carre.jpg",
+"groupe_actuel": "Groupe Union Centriste et Indépendants"
 },
 {
 "matricule": "21087P",
@@ -27739,7 +28831,16 @@
 "deces": null,
 "circonscription": "Nord",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2023-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 1"
+}
+],
+"photo": "https://www.senat.fr/senimg/lermytte_marie_claude21087p_carre.jpg",
+"groupe_actuel": "Groupe du Rassemblement Démocratique et Social Européen"
 },
 {
 "matricule": "21088Q",
@@ -27752,7 +28853,16 @@
 "deces": null,
 "circonscription": "Paris",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2023-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 1"
+}
+],
+"photo": "https://www.senat.fr/senimg/brossat_ian21088q_carre.jpg",
+"groupe_actuel": "Groupe Communiste Républicain Citoyen et Écologiste - Kanaky"
 },
 {
 "matricule": "21089R",
@@ -27765,7 +28875,16 @@
 "deces": null,
 "circonscription": "Paris",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2023-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 1"
+}
+],
+"photo": "https://www.senat.fr/senimg/brossel_colombe21089r_carre.jpg",
+"groupe_actuel": "Groupe Socialiste, Écologiste et Républicain"
 },
 {
 "matricule": "21090J",
@@ -27778,7 +28897,16 @@
 "deces": null,
 "circonscription": "Paris",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2023-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 1"
+}
+],
+"photo": "https://www.senat.fr/senimg/carrere_gee_marie_claire21090j_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "21091K",
@@ -27791,7 +28919,16 @@
 "deces": null,
 "circonscription": "Paris",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2023-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 1"
+}
+],
+"photo": "https://www.senat.fr/senimg/evren_agnes21091k_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "21092L",
@@ -27804,7 +28941,16 @@
 "deces": null,
 "circonscription": "Paris",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2023-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 1"
+}
+],
+"photo": "https://www.senat.fr/senimg/guhl_antoinette21092l_carre.jpg",
+"groupe_actuel": "Groupe Écologiste - Solidarité et Territoires"
 },
 {
 "matricule": "21093M",
@@ -27817,7 +28963,16 @@
 "deces": null,
 "circonscription": "Paris",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2023-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 1"
+}
+],
+"photo": "https://www.senat.fr/senimg/jadot_yannick21093m_carre.jpg",
+"groupe_actuel": "Groupe Écologiste - Solidarité et Territoires"
 },
 {
 "matricule": "21094N",
@@ -27830,7 +28985,16 @@
 "deces": null,
 "circonscription": "Paris",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2023-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 1"
+}
+],
+"photo": "https://www.senat.fr/senimg/souyris_anne21094n_carre.jpg",
+"groupe_actuel": "Groupe Écologiste - Solidarité et Territoires"
 },
 {
 "matricule": "21095P",
@@ -27843,7 +29007,16 @@
 "deces": null,
 "circonscription": "Paris",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2023-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 1"
+}
+],
+"photo": "https://www.senat.fr/senimg/szpiner_francis21095p_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "21096Q",
@@ -27856,7 +29029,16 @@
 "deces": null,
 "circonscription": "Martinique",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2023-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 1"
+}
+],
+"photo": "https://www.senat.fr/senimg/buval_frederic21096q_carre.jpg",
+"groupe_actuel": "Groupe Rassemblement des démocrates, progressistes et indépendants"
 },
 {
 "matricule": "21097R",
@@ -27869,7 +29051,16 @@
 "deces": null,
 "circonscription": "Guadeloupe",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2023-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 1"
+}
+],
+"photo": "https://www.senat.fr/senimg/nadille_solanges21097r_carre.jpg",
+"groupe_actuel": "Groupe Rassemblement des démocrates, progressistes et indépendants"
 },
 {
 "matricule": "21125C",
@@ -27882,7 +29073,16 @@
 "deces": null,
 "circonscription": "Vienne",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2026-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 2"
+}
+],
+"photo": "https://www.senat.fr/senimg/bellamy_marie_jeanne21125c_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "21217F",
@@ -27895,7 +29095,16 @@
 "deces": null,
 "circonscription": "Gard",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2026-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 2"
+}
+],
+"photo": "https://www.senat.fr/senimg/josserand_sylvie21217f_carre.jpg",
+"groupe_actuel": "Groupe Union Nationale pour les Territoires"
 },
 {
 "matricule": "21223D",
@@ -27908,7 +29117,16 @@
 "deces": null,
 "circonscription": "Hérault",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2026-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 2"
+}
+],
+"photo": "https://www.senat.fr/senimg/bouquin_manon21223d_carre.jpg",
+"groupe_actuel": "Groupe Union Nationale pour les Territoires"
 },
 {
 "matricule": "21404G",
@@ -27921,7 +29139,16 @@
 "deces": null,
 "circonscription": "Français établis hors de France",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2026-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 2"
+}
+],
+"photo": "https://www.senat.fr/senimg/briante_guillemont_sophie21404g_carre.jpg",
+"groupe_actuel": "Groupe du Rassemblement Démocratique et Social Européen"
 },
 {
 "matricule": "21415K",
@@ -27934,7 +29161,16 @@
 "deces": null,
 "circonscription": "Tarn",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2026-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 2"
+}
+],
+"photo": "https://www.senat.fr/senimg/housseau_marie_lise21415k_carre.jpg",
+"groupe_actuel": "Groupe Union Centriste et Indépendants"
 },
 {
 "matricule": "21416L",
@@ -28064,7 +29300,16 @@
 "deces": null,
 "circonscription": "Français établis hors de France",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2026-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 2"
+}
+],
+"photo": "https://www.senat.fr/senimg/rousselot_marie_ange21436q_carre.jpg",
+"groupe_actuel": "Groupe Rassemblement des démocrates, progressistes et indépendants"
 },
 {
 "matricule": "21460Q",
@@ -28077,7 +29322,16 @@
 "deces": null,
 "circonscription": "Nord",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2023-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 1"
+}
+],
+"photo": "https://www.senat.fr/senimg/basquin_alexandre21460q_carre.jpg",
+"groupe_actuel": "Groupe Communiste Républicain Citoyen et Écologiste - Kanaky"
 },
 {
 "matricule": "21461R",
@@ -28103,7 +29357,16 @@
 "deces": null,
 "circonscription": "Alpes-Maritimes",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2026-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 2"
+}
+],
+"photo": "https://www.senat.fr/senimg/delia_jean_marc21470s_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "21486B",
@@ -28116,7 +29379,16 @@
 "deces": null,
 "circonscription": "Manche",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2023-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 1"
+}
+],
+"photo": "https://www.senat.fr/senimg/margueritte_david21486b_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "21510H",
@@ -28129,7 +29401,16 @@
 "deces": null,
 "circonscription": "Bas-Rhin",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2026-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 2"
+}
+],
+"photo": "https://www.senat.fr/senimg/sene_marc21510h_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "21512K",
@@ -28142,7 +29423,16 @@
 "deces": null,
 "circonscription": "Saône-et-Loire",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2026-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 2"
+}
+],
+"photo": "https://www.senat.fr/senimg/matray_paulette21512k_carre.jpg",
+"groupe_actuel": "Groupe Socialiste, Écologiste et Républicain"
 },
 {
 "matricule": "21514M",
@@ -28155,7 +29445,16 @@
 "deces": null,
 "circonscription": "Loire-Atlantique",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2023-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 1"
+}
+],
+"photo": "https://www.senat.fr/senimg/bessin_guerin_marie_pierre21514m_carre.jpg",
+"groupe_actuel": "Groupe Les Indépendants - République et Territoires"
 },
 {
 "matricule": "21534R",
@@ -28168,7 +29467,16 @@
 "deces": null,
 "circonscription": "Drôme",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2026-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 2"
+}
+],
+"photo": "https://www.senat.fr/senimg/mouton_marie_pierre21534r_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "21584C",
@@ -28181,7 +29489,16 @@
 "deces": null,
 "circonscription": "Meurthe-et-Moselle",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2023-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 1"
+}
+],
+"photo": "https://www.senat.fr/senimg/boileau_pierre21584c_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "21592C",
@@ -28246,7 +29563,16 @@
 "deces": null,
 "circonscription": "Iles Wallis et Futuna",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2026-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 2"
+}
+],
+"photo": "https://www.senat.fr/senimg/tukumuli_lafaele21638y_carre.jpg",
+"groupe_actuel": "Groupe Rassemblement des démocrates, progressistes et indépendants"
 },
 {
 "matricule": "21640S",
@@ -28259,7 +29585,16 @@
 "deces": null,
 "circonscription": "Corrèze",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2026-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 2"
+}
+],
+"photo": "https://www.senat.fr/senimg/bounie_julien21640s_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "21642U",
@@ -28272,7 +29607,16 @@
 "deces": null,
 "circonscription": "Corrèze",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2026-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 2"
+}
+],
+"photo": "https://www.senat.fr/senimg/coste_pascal21642u_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "21644W",
@@ -28285,7 +29629,16 @@
 "deces": null,
 "circonscription": "Haute-Saône",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2026-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 2"
+}
+],
+"photo": "https://www.senat.fr/senimg/doussot_dimitri21644w_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "21646Y",
@@ -28298,7 +29651,16 @@
 "deces": null,
 "circonscription": "Aude",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2026-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 2"
+}
+],
+"photo": "https://www.senat.fr/senimg/faucon_mejean_claudie21646y_carre.jpg",
+"groupe_actuel": "Groupe Socialiste, Écologiste et Républicain"
 },
 {
 "matricule": "21648B",
@@ -28311,7 +29673,16 @@
 "deces": null,
 "circonscription": "Creuse",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2026-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 2"
+}
+],
+"photo": "https://www.senat.fr/senimg/labar_bertrand21648b_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "21650U",
@@ -28324,7 +29695,16 @@
 "deces": null,
 "circonscription": "Cher",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2026-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 2"
+}
+],
+"photo": "https://www.senat.fr/senimg/rhimini_samir21650u_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "21652W",
@@ -28337,7 +29717,16 @@
 "deces": null,
 "circonscription": "Indre",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2026-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 2"
+}
+],
+"photo": "https://www.senat.fr/senimg/blanchet_regis21652w_carre.jpg",
+"groupe_actuel": "Groupe Union Centriste et Indépendants"
 },
 {
 "matricule": "21654Y",
@@ -28350,7 +29739,16 @@
 "deces": null,
 "circonscription": "Gers",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2026-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 2"
+}
+],
+"photo": "https://www.senat.fr/senimg/rolando_carole21654y_carre.jpg",
+"groupe_actuel": "Groupe Socialiste, Écologiste et Républicain"
 },
 {
 "matricule": "21656B",
@@ -28363,7 +29761,16 @@
 "deces": null,
 "circonscription": "Deux-Sèvres",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2026-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 2"
+}
+],
+"photo": "https://www.senat.fr/senimg/missioux_marie_pierre21656b_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "21658D",
@@ -28376,7 +29783,16 @@
 "deces": null,
 "circonscription": "Eure-et-Loir",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2026-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 2"
+}
+],
+"photo": "https://www.senat.fr/senimg/quentin_virginie21658d_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "21660W",
@@ -28389,7 +29805,16 @@
 "deces": null,
 "circonscription": "Eure-et-Loir",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2026-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 2"
+}
+],
+"photo": "https://www.senat.fr/senimg/robin_alexis21660w_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "21662Y",
@@ -28402,7 +29827,16 @@
 "deces": null,
 "circonscription": "Haut-Rhin",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2026-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 2"
+}
+],
+"photo": "https://www.senat.fr/senimg/huin_benjamin21662y_carre.jpg",
+"groupe_actuel": "Groupe Rassemblement des démocrates, progressistes et indépendants"
 },
 {
 "matricule": "21664B",
@@ -28415,7 +29849,16 @@
 "deces": null,
 "circonscription": "Aisne",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2026-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 2"
+}
+],
+"photo": "https://www.senat.fr/senimg/fricoteaux_nicolas21664b_carre.jpg",
+"groupe_actuel": "Groupe Rassemblement des démocrates, progressistes et indépendants"
 },
 {
 "matricule": "21666D",
@@ -28428,7 +29871,16 @@
 "deces": null,
 "circonscription": "Aisne",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2026-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 2"
+}
+],
+"photo": "https://www.senat.fr/senimg/mougenot_paul21666d_carre.jpg",
+"groupe_actuel": "Réunion administrative des Sénateurs ne figurant sur la liste d'aucun groupe"
 },
 {
 "matricule": "21668F",
@@ -28441,7 +29893,16 @@
 "deces": null,
 "circonscription": "Bouches-du-Rhône",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2026-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 2"
+}
+],
+"photo": "https://www.senat.fr/senimg/callet_marie_pierre21668f_carre.jpg",
+"groupe_actuel": "Groupe Union Nationale pour les Territoires"
 },
 {
 "matricule": "21670Y",
@@ -28454,7 +29915,16 @@
 "deces": null,
 "circonscription": "Bouches-du-Rhône",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2026-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 2"
+}
+],
+"photo": "https://www.senat.fr/senimg/bravi_fabien21670y_carre.jpg",
+"groupe_actuel": "Groupe Union Nationale pour les Territoires"
 },
 {
 "matricule": "21672B",
@@ -28467,7 +29937,16 @@
 "deces": null,
 "circonscription": "Français établis hors de France",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2026-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 2"
+}
+],
+"photo": "https://www.senat.fr/senimg/dupont_bertrand21672b_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "21674D",
@@ -28480,7 +29959,16 @@
 "deces": null,
 "circonscription": "Ain",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2026-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 2"
+}
+],
+"photo": "https://www.senat.fr/senimg/baude_veronique21674d_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "21676F",
@@ -28493,7 +29981,16 @@
 "deces": null,
 "circonscription": "Vendée",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2026-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 2"
+}
+],
+"photo": "https://www.senat.fr/senimg/de_rugy_maxence21676f_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "21678H",
@@ -28506,7 +30003,16 @@
 "deces": null,
 "circonscription": "Bas-Rhin",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2026-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 2"
+}
+],
+"photo": "https://www.senat.fr/senimg/richardot_pernelle21678h_carre.jpg",
+"groupe_actuel": "Groupe Socialiste, Écologiste et Républicain"
 },
 {
 "matricule": "21680B",
@@ -28519,7 +30025,16 @@
 "deces": null,
 "circonscription": "Bas-Rhin",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2026-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 2"
+}
+],
+"photo": "https://www.senat.fr/senimg/dollinger_isabelle21680b_carre.jpg",
+"groupe_actuel": "Groupe Union Centriste et Indépendants"
 },
 {
 "matricule": "21682D",
@@ -28532,7 +30047,16 @@
 "deces": null,
 "circonscription": "Eure",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2026-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 2"
+}
+],
+"photo": "https://www.senat.fr/senimg/duche_frederic21682d_carre.jpg",
+"groupe_actuel": "Groupe Les Indépendants - République et Territoires"
 },
 {
 "matricule": "21684F",
@@ -28545,7 +30069,16 @@
 "deces": null,
 "circonscription": "Ille-et-Vilaine",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2026-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 2"
+}
+],
+"photo": "https://www.senat.fr/senimg/belloir_nicolas21684f_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "21686H",
@@ -28558,7 +30091,16 @@
 "deces": null,
 "circonscription": "Guyane",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2026-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 2"
+}
+],
+"photo": "https://www.senat.fr/senimg/alexandre_rodolphe21686h_carre.jpg",
+"groupe_actuel": "Groupe Rassemblement des démocrates, progressistes et indépendants"
 },
 {
 "matricule": "21688K",
@@ -28571,7 +30113,16 @@
 "deces": null,
 "circonscription": "Finistère",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2026-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 2"
+}
+],
+"photo": "https://www.senat.fr/senimg/leclerc_patrick21688k_carre.jpg",
+"groupe_actuel": "Groupe Les Indépendants - République et Territoires"
 },
 {
 "matricule": "21690D",
@@ -28584,7 +30135,16 @@
 "deces": null,
 "circonscription": "Finistère",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2026-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 2"
+}
+],
+"photo": "https://www.senat.fr/senimg/dadkhah_forough21690d_carre.jpg",
+"groupe_actuel": "Groupe Socialiste, Écologiste et Républicain"
 },
 {
 "matricule": "21692F",
@@ -28597,7 +30157,16 @@
 "deces": null,
 "circonscription": "Seine-Maritime",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2026-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 2"
+}
+],
+"photo": "https://www.senat.fr/senimg/levasseur_leon21692f_carre.jpg",
+"groupe_actuel": "Groupe Union Nationale pour les Territoires"
 },
 {
 "matricule": "21694H",
@@ -28610,7 +30179,16 @@
 "deces": null,
 "circonscription": "Drôme",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2026-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 2"
+}
+],
+"photo": "https://www.senat.fr/senimg/brunet_florent21694h_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "21696K",
@@ -28623,7 +30201,16 @@
 "deces": null,
 "circonscription": "Var",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2026-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 2"
+}
+],
+"photo": "https://www.senat.fr/senimg/simon_christian21696k_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "21698M",
@@ -28636,7 +30223,16 @@
 "deces": null,
 "circonscription": "Var",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2026-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 2"
+}
+],
+"photo": "https://www.senat.fr/senimg/leroy_carine21698m_carre.jpg",
+"groupe_actuel": "Groupe Union Nationale pour les Territoires"
 },
 {
 "matricule": "21700M",
@@ -28649,7 +30245,16 @@
 "deces": null,
 "circonscription": "Doubs",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2026-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 2"
+}
+],
+"photo": "https://www.senat.fr/senimg/marthey_arnaud21700m_carre.jpg",
+"groupe_actuel": "Groupe Socialiste, Écologiste et Républicain"
 },
 {
 "matricule": "21702P",
@@ -28662,7 +30267,16 @@
 "deces": null,
 "circonscription": "Vaucluse",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2026-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 2"
+}
+],
+"photo": "https://www.senat.fr/senimg/santoni_dominique21702p_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "21704R",
@@ -28675,7 +30289,16 @@
 "deces": null,
 "circonscription": "Vaucluse",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2026-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 2"
+}
+],
+"photo": "https://www.senat.fr/senimg/d_aigremont_thierry21704r_carre.jpg",
+"groupe_actuel": "Groupe Union Nationale pour les Territoires"
 },
 {
 "matricule": "21706T",
@@ -28688,7 +30311,16 @@
 "deces": null,
 "circonscription": "Hérault",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2026-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 2"
+}
+],
+"photo": "https://www.senat.fr/senimg/freche_julie21706t_carre.jpg",
+"groupe_actuel": "Groupe Socialiste, Écologiste et Républicain"
 },
 {
 "matricule": "21708V",
@@ -28701,7 +30333,16 @@
 "deces": null,
 "circonscription": "Hérault",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2026-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 2"
+}
+],
+"photo": "https://www.senat.fr/senimg/francis_joseph21708v_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "21710P",
@@ -28714,7 +30355,16 @@
 "deces": null,
 "circonscription": "Gironde",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2026-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 2"
+}
+],
+"photo": "https://www.senat.fr/senimg/bost_christine21710p_carre.jpg",
+"groupe_actuel": "Groupe Socialiste, Écologiste et Républicain"
 },
 {
 "matricule": "21712R",
@@ -28727,7 +30377,16 @@
 "deces": null,
 "circonscription": "Gironde",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2026-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 2"
+}
+],
+"photo": "https://www.senat.fr/senimg/breillat_jacques21712r_carre.jpg",
+"groupe_actuel": "Groupe Les Indépendants - République et Territoires"
 },
 {
 "matricule": "21714T",
@@ -28740,7 +30399,16 @@
 "deces": null,
 "circonscription": "Gironde",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2026-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 2"
+}
+],
+"photo": "https://www.senat.fr/senimg/amouroux_geraldine21714t_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "21716V",
@@ -28753,7 +30421,16 @@
 "deces": null,
 "circonscription": "Alpes-Maritimes",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2026-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 2"
+}
+],
+"photo": "https://www.senat.fr/senimg/castillo_laurent21716v_carre.jpg",
+"groupe_actuel": "Groupe Union Nationale pour les Territoires"
 },
 {
 "matricule": "21718X",
@@ -28766,7 +30443,16 @@
 "deces": null,
 "circonscription": "Alpes-Maritimes",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2026-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 2"
+}
+],
+"photo": "https://www.senat.fr/senimg/frontoni_gaelle21718x_carre.jpg",
+"groupe_actuel": "Groupe Union Nationale pour les Territoires"
 },
 {
 "matricule": "21720R",
@@ -28779,7 +30465,16 @@
 "deces": null,
 "circonscription": "Haute-Garonne",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2026-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 2"
+}
+],
+"photo": "https://www.senat.fr/senimg/suaud_thierry21720r_carre.jpg",
+"groupe_actuel": "Groupe Socialiste, Écologiste et Républicain"
 },
 {
 "matricule": "21722T",
@@ -28792,7 +30487,16 @@
 "deces": null,
 "circonscription": "Haute-Garonne",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2026-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 2"
+}
+],
+"photo": "https://www.senat.fr/senimg/gasto_oustric_magali21722t_carre.jpg",
+"groupe_actuel": "Groupe du Rassemblement Démocratique et Social Européen"
 },
 {
 "matricule": "21724V",
@@ -28805,7 +30509,16 @@
 "deces": null,
 "circonscription": "Haute-Garonne",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2026-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 2"
+}
+],
+"photo": "https://www.senat.fr/senimg/pere_marc21724v_carre.jpg",
+"groupe_actuel": "Groupe Écologiste - Solidarité et Territoires"
 },
 {
 "matricule": "21726X",
@@ -28818,7 +30531,16 @@
 "deces": null,
 "circonscription": "Rhône",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2026-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 2"
+}
+],
+"photo": "https://www.senat.fr/senimg/michel_sebastien21726x_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "21728A",
@@ -28831,7 +30553,16 @@
 "deces": null,
 "circonscription": "Rhône",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2026-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 2"
+}
+],
+"photo": "https://www.senat.fr/senimg/berard_serge21728a_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "21730T",
@@ -28844,7 +30575,16 @@
 "deces": null,
 "circonscription": "Guyane",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2026-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 2"
+}
+],
+"photo": "https://www.senat.fr/senimg/persaud_ryan21730t_carre.jpg",
+"groupe_actuel": "Groupe Rassemblement des démocrates, progressistes et indépendants"
 },
 {
 "matricule": "21732V",
@@ -28857,7 +30597,16 @@
 "deces": null,
 "circonscription": "Isère",
 "etat": "ACTIF",
-"mandats": []
+"mandats": [
+{
+"debut": "2023-10-01",
+"fin": null,
+"motif_fin": null,
+"deduit": "série 1"
+}
+],
+"photo": "https://www.senat.fr/senimg/merle_annick21732v_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "55510R",
@@ -38464,7 +40213,9 @@
 "fin": "2023-10-01",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/larcher_gerard86034e_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 },
 {
 "matricule": "86035F",
@@ -44740,6 +46491,8 @@
 "fin": "2023-10-01",
 "motif_fin": "Fin de mandat"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/karoutchi_roger99004r_carre.jpg",
+"groupe_actuel": "Groupe Les Républicains"
 }
 ]

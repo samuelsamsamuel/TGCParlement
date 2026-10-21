@@ -1,0 +1,14 @@
+{
+ "code": "prix-nobel",
+ "points": 20,
+ "plancher": null,
+ "libelle": "Lauréat du prix Nobel",
+ "source": "Wikidata, reprenant la liste officielle ; rattachement par identifiant Sycomore ou Sénat",
+ "ids": [
+  1083,
+  1211,
+  1306,
+  2856,
+  8021
+ ]
+}

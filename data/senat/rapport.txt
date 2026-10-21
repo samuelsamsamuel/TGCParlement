@@ -1,6 +1,6 @@
 Sénateurs : 2012 ; mandats : 3348 ; mandats sans fiche générale : 0
 Sans date de naissance : 0
-Sans aucun mandat : 165
+Sans aucun mandat : 14 ; début de mandat déduit de la série (sénateurs en fonction) : 151
 Décennie du premier mandat :
   1870s : 1
   1940s : 1
@@ -11,5 +11,5 @@ Décennie du premier mandat :
   1990s : 209
   2000s : 246
   2010s : 351
-  2020s : 103
-  sans mandat daté : 165
+  2020s : 254
+  sans mandat daté : 14

@@ -1,3 +1,4 @@
-Fichier lu : https://data.assemblee-nationale.fr/static/openData/repository/17/amo/tous_acteurs_mandats_organes_xi_legislature/AMO30_tous_acteurs_tous_mandats_tous_organes_historique.json.zip (13703948 octets, essai 1)
+Fichier lu : https://data.assemblee-nationale.fr/static/openData/repository/17/amo/tous_acteurs_mandats_organes_xi_legislature/AMO30_tous_acteurs_tous_mandats_tous_organes_historique.json.zip (13708479 octets, essai 1)
 Fonctions au sein de l'Assemblée : bureau-secretaire 128, presidence-commission 58, bureau-vp-questeur 68, presidence-groupe 52, rapporteur-general 35 ; non rattachées : 1
+Circonscriptions rattachées : 2094 députés
 Fonctions gouvernementales postérieures au 2025-03-13 : 0
