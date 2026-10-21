@@ -147,6 +147,9 @@ def main():
         return {}
     NOMS_USAGE.update(lire(os.path.join("data", "noms_usage.json")))
     CIRCOS.update(lire(os.path.join("data", "gouvernement", "circonscriptions.json")))
+    import unicodedata
+    simplifie = lambda t: unicodedata.normalize("NFKD", t or "").encode("ascii", "ignore").decode().lower().strip()
+    photos_gouv = {simplifie(k): v for k, v in lire(os.path.join("data", "gouvernement", "photos_gouvernement.json")).items()}
     VILLES.update(lire(os.path.join("data", "gouvernement", "villes_circonscriptions.json")))
     gouv = lire(os.path.join("data", "gouvernement", "fonctions.json"))
     for k, v in lire(os.path.join("data", "gouvernement", "fonctions_assemblee.json")).items():
@@ -170,7 +173,8 @@ def main():
                        1 if c.get("en_exercice") else 0, debut, fin, source(c),
                        portraits.get(str(c["id"])), codes, chambres, c.get("sexe"),
                        fonctions_carte(c["id"], gouv, pres), mandats_carte(c), c.get("groupe"),
-                       c.get("photo") or (vignette(portraits[str(c["id"])]) if portraits.get(str(c["id"])) else None)])
+                       c.get("photo") or (vignette(portraits[str(c["id"])]) if portraits.get(str(c["id"])) else None)
+                       or photos_gouv.get(simplifie(nom_affiche(c)))])
     os.makedirs("site", exist_ok=True)
     with open(os.path.join("site", "jeu.json"), "w", encoding="utf-8") as f:
         json.dump({"raretes": RARETES, "cartes": sortie}, f, ensure_ascii=False, separators=(",", ":"))
