@@ -1,4 +1,114 @@
 {
+"971-1": {
+"ville": "Les Abymes",
+"population": 51055,
+"partielle": false
+},
+"971-2": {
+"ville": "Le Gosier",
+"population": 27757,
+"partielle": false
+},
+"971-3": {
+"ville": "Baie-Mahault",
+"population": 30924,
+"partielle": false
+},
+"971-4": {
+"ville": "Capesterre-Belle-Eau",
+"population": 17684,
+"partielle": false
+},
+"972-2": {
+"ville": "Schœlcher",
+"population": 19478,
+"partielle": false
+},
+"972-4": {
+"ville": "Ducos",
+"population": 18105,
+"partielle": false
+},
+"972-3": {
+"ville": "Fort-de-France",
+"population": 75506,
+"partielle": false
+},
+"972-1": {
+"ville": "Le Lamentin",
+"population": 39400,
+"partielle": false
+},
+"973-1": {
+"ville": "Cayenne",
+"population": 62675,
+"partielle": false
+},
+"973-2": {
+"ville": "Saint-Laurent-du-Maroni",
+"population": 54429,
+"partielle": false
+},
+"974-7": {
+"ville": "Saint-Paul",
+"population": 108088,
+"partielle": true
+},
+"974-5": {
+"ville": "Saint-André",
+"population": 58885,
+"partielle": true
+},
+"974-3": {
+"ville": "Le Tampon",
+"population": 82579,
+"partielle": false
+},
+"974-4": {
+"ville": "Saint-Pierre",
+"population": 85038,
+"partielle": false
+},
+"974-2": {
+"ville": "Saint-Paul",
+"population": 108088,
+"partielle": true
+},
+"974-6": {
+"ville": "Saint-Denis",
+"population": 155634,
+"partielle": true
+},
+"974-1": {
+"ville": "Saint-Denis",
+"population": 155634,
+"partielle": true
+},
+"976-1": {
+"ville": "Saint-Pierre",
+"population": 5194,
+"partielle": true
+},
+"988-2": {
+"ville": "Dumbéa",
+"population": 34926,
+"partielle": false
+},
+"988-1": {
+"ville": "Nouméa",
+"population": 85976,
+"partielle": false
+},
+"975-1": {
+"ville": "Saint-Pierre",
+"population": 5194,
+"partielle": true
+},
+"977-1": {
+"ville": "Saint-Martin",
+"population": 31160,
+"partielle": false
+},
 "01-4": {
 "ville": "Bourg-en-Bresse",
 "population": 42372,

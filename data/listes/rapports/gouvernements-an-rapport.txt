@@ -1,16 +1,67 @@
-Fichier lu : https://data.assemblee-nationale.fr/static/openData/repository/17/amo/tous_acteurs_mandats_organes_xi_legislature/AMO30_tous_acteurs_tous_mandats_tous_organes_historique.json.zip (13708479 octets, essai 1)
+Composition officielle du Gouvernement indisponible : HTTP Error 403: Forbidden
 Fonctions au sein de l'Assemblée : bureau-secretaire 128, presidence-commission 58, bureau-vp-questeur 68, presidence-groupe 52, rapporteur-general 35 ; non rattachées : 1
+Fichier lu : https://data.assemblee-nationale.fr/static/openData/repository/17/amo/tous_acteurs_mandats_organes_xi_legislature/AMO30_tous_acteurs_tous_mandats_tous_organes_historique.json.zip (13708479 octets, essai 1)
 https://data.assemblee-nationale.fr/static/openData/repository/18/amo/deputes_senateurs_ministres_legislature/AMO20_dep_sen_min_tous_mandats_et_organes.json.zip : HTTP Error 404: Not Found
 Fichier lu : https://data.assemblee-nationale.fr/static/openData/repository/17/amo/deputes_senateurs_ministres_legislature/AMO20_dep_sen_min_tous_mandats_et_organes.json.zip (2655330 octets, essai 1)
 Circonscriptions rattachées : 2094 députés
 Mandats gouvernementaux présents dans les fichiers : 837 ; le plus récent commence le 2026-02-27
 Fonctions gouvernementales postérieures au 2025-03-13 : 0
-Exemples de mandats gouvernementaux récents (structure brute) :
-  Édouard Geffray : {"qualite": {"codeQualite": "membre", "libQualite": "membre", "libQualiteSex": "membre"}, "organe": ["GOUVERNEMENT", "Gouvernement"], "autres": {"@xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance", "@xsi:type": "MandatSimple_Type", "uid": "PM15873661", "acteurRef": "PA873627", "legislature": null, "typeOrgane": "GOUVERNEMENT", "dateDebut": "2025-10-13", "datePublication": null, "dateFin": null, "preseance": "50", "nominPrincipale": "1"}}
-  Laurent Nunez : {"qualite": {"codeQualite": "membre", "libQualite": "membre", "libQualiteSex": "membre"}, "organe": ["GOUVERNEMENT", "Gouvernement"], "autres": {"@xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance", "@xsi:type": "MandatSimple_Type", "uid": "PM15873646", "acteurRef": "PA759834", "legislature": null, "typeOrgane": "GOUVERNEMENT", "dateDebut": "2025-10-13", "datePublication": "2025-10-13", "dateFin": null, "preseance": "50", "nominPrincipale": "1"}}
-  Monique Barbut : {"qualite": {"codeQualite": "membre", "libQualite": "membre", "libQualiteSex": "membre"}, "organe": ["GOUVERNEMENT", "Gouvernement"], "autres": {"@xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance", "@xsi:type": "MandatSimple_Type", "uid": "PM15873681", "acteurRef": "PA873625", "legislature": null, "typeOrgane": "GOUVERNEMENT", "dateDebut": "2025-10-13", "datePublication": "2025-10-13", "dateFin": null, "preseance": "50", "nominPrincipale": "1"}}
-  Bruno Le Maire : {"qualite": {"codeQualite": "membre", "libQualite": "membre", "libQualiteSex": "membre"}, "organe": ["GOUVERNEMENT", "Gouvernement"], "autres": {"@xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance", "@xsi:type": "MandatSimple_Type", "uid": "PM15873436", "acteurRef": "PA331481", "legislature": null, "typeOrgane": "GOUVERNEMENT", "dateDebut": "2025-10-05", "datePublication": null, "dateFin": "2025-10-10", "preseance": "50", "nominPrincipale": "1"}}
-  Élisabeth Borne : {"qualite": {"codeQualite": "membre", "libQualite": "membre", "libQualiteSex": "membre"}, "organe": ["GOUVERNEMENT", "Gouvernement"], "autres": {"@xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance", "@xsi:type": "MandatSimple_Type", "uid": "PM15873424", "acteurRef": "PA717161", "legislature": null, "typeOrgane": "GOUVERNEMENT", "dateDebut": "2025-10-05", "datePublication": null, "dateFin": "2025-10-10", "preseance": "50", "nominPrincipale": "1"}}
-  Eléonore Caroit : {"qualite": {"codeQualite": "membre", "libQualite": "membre", "libQualiteSex": "membre"}, "organe": ["GOUVERNEMENT", "Gouvernement"], "autres": {"@xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance", "@xsi:type": "MandatSimple_Type", "uid": "PM15873730", "acteurRef": "PA795330", "legislature": null, "typeOrgane": "GOUVERNEMENT", "dateDebut": "2025-10-13", "datePublication": null, "dateFin": null, "preseance": "50", "nominPrincipale": "1"}}
-  Philippe Tabarot : {"qualite": {"codeQualite": "membre", "libQualite": "membre", "libQualiteSex": "membre"}, "organe": ["GOUVERNEMENT", "Gouvernement"], "autres": {"@xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance", "@xsi:type": "MandatSimple_Type", "uid": "PM15873689", "acteurRef": "PA775292", "legislature": null, "typeOrgane": "GOUVERNEMENT", "dateDebut": "2025-10-13", "datePublication": null, "dateFin": null, "preseance": "50", "nominPrincipale": "1"}}
-  Philippe Tabarot : {"qualite": {"codeQualite": "membre", "libQualite": "membre", "libQualiteSex": "membre"}, "organe": ["GOUVERNEMENT", "Gouvernement"], "autres": {"@xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance", "@xsi:type": "MandatSimple_Type", "uid": "PM15873468", "acteurRef": "PA775292", "legislature": null, "typeOrgane": "GOUVERNEMENT", "dateDebut": "2025-10-05", "datePublication": null, "dateFin": "2025-10-10", "preseance": "50", "nominPrincipale": "1"}}
+Fonctions récentes non reprises faute d'intitulé officiel (gouvernements terminés) : 116
+  Agnès Pannier-Runacher (2025-10-05 -> 2025-10-10)
+  Alice Rufo (2025-10-13 -> en cours)
+  Amélie de Montchalin (2025-10-05 -> 2025-10-10)
+  Amélie de Montchalin (2025-10-13 -> 2026-02-21)
+  Anne Le Hénanff (2025-10-13 -> en cours)
+  Annie Genevard (2025-10-05 -> 2025-10-10)
+  Annie Genevard (2025-10-13 -> en cours)
+  Aurore Bergé (2025-10-05 -> 2025-10-10)
+  Aurore Bergé (2025-10-13 -> en cours)
+  Benjamin Haddad (2025-10-13 -> en cours)
+  Bruno Le Maire (2025-10-05 -> 2025-10-10)
+  Bruno Retailleau (2025-10-05 -> 2025-10-10)
+  Camille Galliard-Minier (2026-02-27 -> en cours)
+  Catherine Chabaud (2025-10-13 -> en cours)
+  Catherine Pégard (2026-02-27 -> en cours)
+  Catherine Vautrin (2025-10-05 -> 2025-10-10)
+  Catherine Vautrin (2025-10-13 -> en cours)
+  Charlotte Parmentier-Lecocq (2025-10-13 -> 2026-02-26)
+  David Amiel (2025-10-13 -> en cours)
+  Eléonore Caroit (2025-10-13 -> en cours)
+  Françoise Gatel (2025-10-13 -> en cours)
+  Gérald Darmanin (2025-10-05 -> 2025-10-10)
+  Gérald Darmanin (2025-10-13 -> en cours)
+  Jean-Didier Berger (2026-02-27 -> en cours)
+  Jean-Noël Barrot (2025-10-05 -> 2025-10-10)
+  Jean-Noël Barrot (2025-10-13 -> en cours)
+  Jean-Pierre Farandou (2025-10-13 -> en cours)
+  Laurent Nunez (2025-10-13 -> en cours)
+  Laurent Panifous (2025-10-13 -> en cours)
+  Manuel Valls (2025-10-05 -> 2025-10-10)
+  Marie-Pierre Vedrenne (2025-10-13 -> en cours)
+  Marina Ferrari (2025-10-05 -> 2025-10-10)
+  Marina Ferrari (2025-10-13 -> en cours)
+  Mathieu Lefèvre (2025-10-05 -> 2025-10-10)
+  Mathieu Lefèvre (2025-10-13 -> en cours)
+  Maud Bregeon (2025-10-13 -> en cours)
+  Michel Fournier (2025-10-13 -> 2026-09-22)
+  Monique Barbut (2025-10-13 -> en cours)
+  Naïma Moutchou (2025-10-05 -> 2025-10-10)
+  Naïma Moutchou (2025-10-13 -> en cours)
+  Nicolas Forissier (2025-10-13 -> en cours)
+  Philippe Baptiste (2025-10-13 -> en cours)
+  Philippe Tabarot (2025-10-05 -> 2025-10-10)
+  Philippe Tabarot (2025-10-13 -> en cours)
+  Rachida Dati (2025-10-05 -> 2025-10-10)
+  Rachida Dati (2025-10-13 -> 2026-02-26)
+  Roland Lescure (2025-10-05 -> 2025-10-10)
+  Roland Lescure (2025-10-13 -> en cours)
+  Sabrina Roubache (2026-02-27 -> en cours)
+  Serge Papin (2025-10-13 -> en cours)
+  Stéphanie Rist (2025-10-13 -> en cours)
+  Sébastien Lecornu (2025-09-10 -> 2025-10-10)
+  Sébastien Lecornu (2025-10-11 -> en cours)
+  Sébastien Martin (2025-10-13 -> en cours)
+  Vincent Jeanbrun (2025-10-13 -> en cours)
+  Édouard Geffray (2025-10-13 -> en cours)
+  Élisabeth Borne (2025-10-05 -> 2025-10-10)
+  Éric Woerth (2025-10-05 -> 2025-10-10)
