@@ -50,7 +50,9 @@ def main():
         ids, noms, entites, par_libelle = set(), [], set(), {}
         resultats, echec = [], None
         for filtre in ("?p wdt:P1045 ?syc .", "?p wdt:P1808 ?sen .",
-                       "FILTER NOT EXISTS { ?p wdt:P1045 ?x } FILTER NOT EXISTS { ?p wdt:P1808 ?y } ?p wdt:P27 wd:Q142 ."):
+                       "FILTER NOT EXISTS { ?p wdt:P1045 ?x } FILTER NOT EXISTS { ?p wdt:P1808 ?y } ?p wdt:P27 wd:Q142 . "
+                       "?p wdt:P39 ?pos . ?pos rdfs:label ?posl . FILTER(LANG(?posl) = 'fr' && (CONTAINS(LCASE(?posl), 'ministre') "
+                       "|| CONTAINS(LCASE(?posl), \"secrétaire d'état\") || CONTAINS(LCASE(?posl), 'président de la république')))"):
             requete = ("SELECT DISTINCT ?p ?syc ?sen ?libelle ?d WHERE { %s %s "
                        "OPTIONAL { ?p rdfs:label ?libelle FILTER(LANG(?libelle) = 'fr') } }" % (condition, filtre))
             try:
@@ -60,6 +62,10 @@ def main():
         if echec and not resultats:
             rapport.append(f"\n{libelle} : NON MISE À JOUR ({echec}) ; la liste précédente est conservée")
             continue
+        precedente = set()
+        if echec and os.path.exists(os.path.join("data", "listes", code + ".json")):
+            with open(os.path.join("data", "listes", code + ".json"), encoding="utf-8") as f:
+                precedente = set(json.load(f)["ids"])
         for b in resultats:
             entites.add(b["d"]["value"].rsplit("/", 1)[-1])
             nom = b.get("libelle", {}).get("value", "?")
@@ -72,6 +78,9 @@ def main():
         for nom, personnes in par_libelle.items():
             if len(personnes) == 1:  # un seul élément de ce nom : même personne que la carte hors catégorie
                 ids.add(hors[nom]); noms.append(f"{nom} (membre du Gouvernement, par le nom)")
+        if precedente:
+            ids |= precedente  # une requête a échoué : les rattachements précédents sont conservés
+            noms.append(f"(requête partielle : {len(precedente)} rattachements précédents conservés)")
         if code == "pantheon":
             for ident, motif in RETIRES_DU_PANTHEON.items():
                 if ident in ids:
