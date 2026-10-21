@@ -41,33 +41,88 @@ def norme(t):
     return unicodedata.normalize("NFKD", t or "").encode("ascii", "ignore").decode().lower()
 
 
+def lire_xlsx(brut):
+    """Première feuille d'un classeur .xlsx, lue sans bibliothèque externe (XML du format Office)."""
+    import xml.etree.ElementTree as ET
+    import zipfile
+    ns = {"m": "http://schemas.openxmlformats.org/spreadsheetml/2006/main"}
+    z = zipfile.ZipFile(io.BytesIO(brut))
+    partagees = []
+    if "xl/sharedStrings.xml" in z.namelist():
+        for si in ET.fromstring(z.read("xl/sharedStrings.xml")).findall("m:si", ns):
+            partagees.append("".join(t.text or "" for t in si.iter("{%s}t" % ns["m"])))
+    feuille = sorted(n for n in z.namelist() if n.startswith("xl/worksheets/sheet"))[0]
+    lignes = []
+    for row in ET.fromstring(z.read(feuille)).iter("{%s}row" % ns["m"]):
+        cellules = {}
+        for c in row.findall("m:c", ns):
+            ref = re.match(r"([A-Z]+)", c.get("r")).group(1)
+            col = 0
+            for ch in ref:
+                col = col * 26 + ord(ch) - 64
+            v = c.find("m:v", ns)
+            texte = (v.text if v is not None else "") or ""
+            if c.get("t") == "s" and texte:
+                texte = partagees[int(texte)]
+            elif c.get("t") == "inlineStr":
+                texte = "".join(t.text or "" for t in c.iter("{%s}t" % ns["m"]))
+            cellules[col] = texte
+        if cellules:
+            lignes.append([cellules.get(i, "") for i in range(1, max(cellules) + 1)])
+    return lignes
+
+
 def table_correspondance(rapport):
-    """Ressource CSV la plus récente du jeu de données du ministère de l'Intérieur."""
-    q = urllib.parse.quote("Table de correspondance des communes et des cantons pour les élections législatives")
-    resultats = json.loads(lire(f"https://www.data.gouv.fr/api/1/datasets/?q={q}&page_size=20"))["data"]
+    """Ressource la plus récente (CSV ou XLSX) du jeu de données du ministère de l'Intérieur."""
+    q = urllib.parse.quote("table de correspondance communes cantons élections législatives")
+    resultats = json.loads(lire(f"https://www.data.gouv.fr/api/1/datasets/?q={q}&page_size=30"))["data"]
     for d in resultats:
-        if "correspondance" in norme(d["title"]) and "legislatives" in norme(d["title"]) \
-                and "interieur" in norme((d.get("organization") or {}).get("name")):
-            csvs = [r for r in d["resources"] if (r.get("format") or "").lower() in ("csv", "txt") or r["url"].lower().endswith(".csv")]
-            csvs.sort(key=lambda r: r.get("last_modified") or "", reverse=True)
-            if csvs:
-                rapport.append(f"Jeu de données : {d['title']} ({d['page']}) ; ressource : {csvs[0]['title']}")
-                return lire(csvs[0]["url"], binaire=True)
+        titre = norme(d["title"])
+        if "correspondance" in titre and "legislatives" in titre:
+            rapport.append(f"Jeu de données : {d['title']} ({d.get('page')}) ; producteur : {(d.get('organization') or {}).get('name')}")
+            rapport += [f"  ressource : {r.get('title')} [{r.get('format')}] {r.get('url')}" for r in d["resources"]]
+            lisibles = [r for r in d["resources"] if (r.get("format") or "").lower() in ("csv", "txt", "xlsx")
+                        or r["url"].lower().rsplit(".", 1)[-1] in ("csv", "txt", "xlsx")]
+            lisibles.sort(key=lambda r: r.get("last_modified") or "", reverse=True)
+            if lisibles:
+                r = lisibles[0]
+                brut = lire(r["url"], binaire=True)
+                if brut[:2] == b"PK":
+                    return lire_xlsx(brut)
+                return brut
+            raise SystemExit("Aucune ressource lisible (CSV ou XLSX) dans le jeu de données")
     raise SystemExit("Table de correspondance introuvable sur data.gouv.fr")
 
 
 def main():
     rapport = []
+    try:
+        calculer(rapport)
+    except (SystemExit, Exception) as e:  # noqa: BLE001 — l'échec est consigné dans le rapport
+        rapport.append(f"ÉCHEC : {type(e).__name__} : {e}")
+    os.makedirs(os.path.dirname(RAPPORT), exist_ok=True)
+    with open(RAPPORT, "w", encoding="utf-8") as f:
+        f.write("\n".join(rapport) + "\n")
+    print("\n".join(rapport[:12]))
+
+
+def calculer(rapport):
     brut = table_correspondance(rapport)
-    texte = None
-    for enc in ("utf-8-sig", "cp1252"):
-        try:
-            texte = brut.decode(enc)
-            break
-        except UnicodeDecodeError:
-            continue
-    dialecte = csv.Sniffer().sniff(texte[:4000], delimiters=";,\t")
-    lignes = list(csv.reader(io.StringIO(texte), dialecte))
+    if isinstance(brut, list):
+        lignes = brut
+    else:
+        texte = None
+        for enc in ("utf-8-sig", "cp1252"):
+            try:
+                texte = brut.decode(enc)
+                break
+            except UnicodeDecodeError:
+                continue
+        separateur = max(";,\t", key=lambda x: texte[:4000].count(x))
+        lignes = list(csv.reader(io.StringIO(texte), delimiter=separateur))
+    # La ligne d'en-tête est la première qui mentionne une circonscription
+    debut = next((i for i, l in enumerate(lignes[:20]) if any("circ" in norme(x) for x in l)), 0)
+    lignes = lignes[debut:]
     entete = [norme(x) for x in lignes[0]]
     rapport.append("Colonnes : " + " | ".join(lignes[0]))
 
@@ -118,10 +173,6 @@ def main():
                    f"communes sans population connue : {sum(1 for c in circos_par_commune if c not in population)}")
     rapport += [f"  {k} : {v['ville']}{' (en partie)' if v['partielle'] else ''}"
                 for k, v in sorted(villes.items())[:40]]
-    os.makedirs(os.path.dirname(RAPPORT), exist_ok=True)
-    with open(RAPPORT, "w", encoding="utf-8") as f:
-        f.write("\n".join(rapport) + "\n")
-    print("\n".join(rapport[:4]))
 
 
 if __name__ == "__main__":
