@@ -16,14 +16,15 @@ import sys
 sys.path.insert(0, os.path.dirname(__file__))
 from portraits import interroger  # noqa: E402
 
-IDENTIFIANTS = "{ ?p wdt:P1045 ?syc } UNION { ?p wdt:P1808 ?sen } UNION { ?p rdfs:label ?libelle FILTER(LANG(?libelle) = 'fr') ?p wdt:P27 wd:Q142 }"
+IDENTIFIANTS = ("OPTIONAL { ?p wdt:P1045 ?syc } OPTIONAL { ?p wdt:P1808 ?sen } "
+                "OPTIONAL { ?p rdfs:label ?libelle FILTER(LANG(?libelle) = 'fr') }")
 CRITERES = {
     "compagnon-liberation": (15, "Compagnon de la Libération",
         "?p wdt:P166 ?d . ?d rdfs:label ?dl . FILTER(LCASE(STR(?dl)) = 'compagnon de la libération')"),
     "academie-francaise": (10, "Membre de l'Académie française",
         "?p wdt:P463 ?d . ?d rdfs:label ?dl . FILTER(STR(?dl) = 'Académie française' && LANG(?dl) = 'fr')"),
     "prix-nobel": (20, "Lauréat du prix Nobel",
-        "?p wdt:P166 ?d . ?d (wdt:P31|wdt:P279)* wd:Q7191 ."),
+        "?p wdt:P166 ?d . ?d wdt:P31|wdt:P279 wd:Q7191 ."),
     "pantheon": (20, "Inhumé au Panthéon",
         "?p wdt:P119 ?d . ?d rdfs:label ?dl . FILTER(STR(?dl) = 'Panthéon' && LANG(?dl) = 'fr') ?d wdt:P131* wd:Q90 ."),
 }
@@ -37,17 +38,21 @@ def main():
             hors = {p["nom"]: p["id"] for p in json.load(f)}
     rapport = []
     for code, (points, libelle, condition) in CRITERES.items():
-        requete = ("SELECT DISTINCT ?p ?syc ?sen ?libelle ?nom ?d WHERE { %s %s "
-                   "OPTIONAL { ?p rdfs:label ?nom FILTER(LANG(?nom) = 'fr') } }" % (condition, IDENTIFIANTS))
+        requete = "SELECT DISTINCT ?p ?syc ?sen ?libelle ?d WHERE { %s %s }" % (condition, IDENTIFIANTS)
         ids, noms, entites, par_libelle = set(), [], set(), {}
-        for b in interroger(requete):
+        try:
+            resultats = interroger(requete)
+        except SystemExit as e:
+            rapport.append(f"\n{libelle} : NON MISE À JOUR ({e}) ; la liste précédente est conservée")
+            continue
+        for b in resultats:
             entites.add(b["d"]["value"].rsplit("/", 1)[-1])
-            nom = b.get("nom", {}).get("value", "?")
+            nom = b.get("libelle", {}).get("value", "?")
             if "syc" in b and b["syc"]["value"].isdigit():
                 ids.add(int(b["syc"]["value"])); noms.append(f"{nom} (Sycomore {b['syc']['value']})")
             elif "sen" in b:
                 ids.add("S" + b["sen"]["value"][-6:].upper()); noms.append(f"{nom} (Sénat {b['sen']['value']})")
-            elif "libelle" in b and b["libelle"]["value"] in hors:
+            if "libelle" in b and b["libelle"]["value"] in hors and "syc" not in b and "sen" not in b:
                 par_libelle.setdefault(b["libelle"]["value"], set()).add(b["p"]["value"])
         for nom, personnes in par_libelle.items():
             if len(personnes) == 1:  # un seul élément de ce nom : même personne que la carte hors catégorie
