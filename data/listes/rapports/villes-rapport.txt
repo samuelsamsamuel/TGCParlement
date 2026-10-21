@@ -2,7 +2,8 @@ Jeu de données : Circonscriptions législatives  : Table de correspondance des 
   ressource : Tableau_de_correspondance_communes_cantons_circonscriptions_2012.xls [xls] https://static.data.gouv.fr/resources/circonscriptions-legislatives-table-de-correspondance-des-communes-et-des-cantons-pour-les-elections-legislatives-de-2012-et-sa-mise-a-jour-pour-les-elections-legislatives-2017/20170411-141945/Tableau_de_correspondance_communes_cantons_circonscriptions_2012.xls
   ressource : Table_de_correspondance_circo_legislatives2017-1.xlsx [xlsx] https://static.data.gouv.fr/resources/circonscriptions-legislatives-table-de-correspondance-des-communes-et-des-cantons-pour-les-elections-legislatives-de-2012-et-sa-mise-a-jour-pour-les-elections-legislatives-2017/20170411-141128/Table_de_correspondance_circo_legislatives2017-1.xlsx
 Colonnes : CODE DPT | NOM DPT | CODE COMMUNE | NOM COMMUNE | CODE CIRC LEGISLATIVE | CODE CANTON | NOM CANTON
-Circonscriptions : 577 ; avec une ville identifiée : 539 ; communes sans population connue : 991
+Circonscriptions : 577 ; avec une ville identifiée : 539 ; communes sans population connue : 553
+Circonscriptions sans ville : ZA-1, ZA-2, ZA-3, ZA-4, ZB-1, ZB-2, ZB-3, ZB-4, ZC-1, ZC-2, ZD-1, ZD-2, ZD-3, ZD-4, ZD-5, ZD-6, ZD-7, ZM-1, ZM-2, ZN-1, ZN-2, ZP-1, ZP-2, ZP-3, ZS-1, ZW-1, ZX-1, ZZ-1, ZZ-10, ZZ-11, ZZ-2, ZZ-3, ZZ-4, ZZ-5, ZZ-6, ZZ-7, ZZ-8, ZZ-9
   01-1 : Bourg-en-Bresse (en partie)
   01-2 : Miribel
   01-3 : Valserhône

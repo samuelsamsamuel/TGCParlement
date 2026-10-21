@@ -8,9 +8,9 @@ Distinctions calculées :
   secretaire-etat : 496
   presidence-an-courte : 205
   bureau-secretaire : 128
-  academie-francaise : 123
+  academie-francaise : 122
   doyen-benjamin : 110
-  compagnon-liberation : 83
+  compagnon-liberation : 78
   quatre-vingts : 70
   bureau-vp-questeur : 68
   presidence-commission : 58
