@@ -112,7 +112,7 @@ def fonction_assemblee(type_organe, qualite, libelle_organe):
 def main():
     rapport = []
     brut = telecharger(rapport)
-    lignes, assemblee = [], []
+    lignes, assemblee, circos = [], [], []
     if brut:
         with zipfile.ZipFile(io.BytesIO(brut)) as z:
             organes = {}
@@ -130,6 +130,14 @@ def main():
                 if isinstance(mandats, dict):
                     mandats = [mandats]
                 for m in mandats:
+                    if m.get("typeOrgane") == "ASSEMBLEE":
+                        lieu = (m.get("election") or {}).get("lieu") or {}
+                        if texte(lieu.get("numCirco")):
+                            circos.append({"prenom": ident.get("prenom"), "nom": ident.get("nom"), "naissance": naissance,
+                                           "departement": texte(lieu.get("departement")), "num": texte(lieu.get("numCirco")),
+                                           "code_dep": texte(lieu.get("numDepartement")),
+                                           "debut": texte(m.get("dateDebut"))[:10] or None,
+                                           "fin": texte(m.get("dateFin"))[:10] or None})
                     if True:
                         q = m.get("infosQualite") or {}
                         ref = (m.get("organes") or {}).get("organeRef")
@@ -157,7 +165,7 @@ def main():
     os.makedirs(os.path.dirname(SORTIE), exist_ok=True)
     with open(SORTIE, "w", encoding="utf-8") as f:
         json.dump(lignes, f, ensure_ascii=False, indent=0)
-    rattacher_assemblee(assemblee, rapport)
+    rattacher_assemblee(assemblee, rapport, circos)
     rapport.append(f"Fonctions gouvernementales postérieures au {DEPUIS} : {len(lignes)}")
     rapport += [f"  {l['prenom']} {l['nom']} : {l['fonction']} ({l['debut']} -> {l['fin'] or 'en cours'})"
                 for l in sorted(lignes, key=lambda x: x["debut"])]
@@ -167,7 +175,7 @@ def main():
     print("\n".join(rapport[:6]))
 
 
-def rattacher_assemblee(assemblee, rapport):
+def rattacher_assemblee(assemblee, rapport, circos=()):
     """Rattachement aux cartes : même date de naissance et même nom de famille (tous ses mots)."""
     if not assemblee or not os.path.exists(os.path.join("data", "cartes.json")):
         rapport.append("Fonctions au sein de l'Assemblée : aucune lue")
@@ -190,6 +198,15 @@ def rattacher_assemblee(assemblee, rapport):
         ident = candidats[0]["id"]
         membres[x["code"]].add(ident)
         detail[str(ident)].append({"fonction": x["fonction"], "liste": x["code"], "debut": x["debut"], "fin": x["fin"]})
+    # Numéros de circonscription des mandats de député (open data, depuis 1997)
+    par_carte = defaultdict(list)
+    for x in circos:
+        candidats = [c for c in par_date.get(x["naissance"], []) if mots(x["nom"]) and mots(x["nom"]) <= mots(c["nom"])]
+        if len(candidats) == 1:
+            par_carte[str(candidats[0]["id"])].append({k: x[k] for k in ("departement", "code_dep", "num", "debut", "fin")})
+    with open(os.path.join("data", "gouvernement", "circonscriptions.json"), "w", encoding="utf-8") as f:
+        json.dump(par_carte, f, ensure_ascii=False, indent=0)
+    rapport.append(f"Circonscriptions rattachées : {len(par_carte)} députés")
     for code, (points, libelle) in LISTES_ASSEMBLEE.items():
         with open(os.path.join("data", "listes", code + ".json"), "w", encoding="utf-8") as f:
             json.dump({"code": code, "points": points, "plancher": None, "libelle": libelle,
