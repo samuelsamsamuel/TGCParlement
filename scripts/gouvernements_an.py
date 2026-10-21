@@ -68,6 +68,36 @@ def texte(v):
     return v or ""
 
 
+def composition_officielle(rapport):
+    """Composition du Gouvernement publiée sur info.gouv.fr : {nom normalisé: (nom, intitulé, photo)}.
+    L'open data de l'Assemblée ne donne que « membre » comme qualité : l'intitulé vient de cette page."""
+    import html as h
+    import re
+    try:
+        req = urllib.request.Request("https://www.info.gouv.fr/composition-du-gouvernement", headers={"User-Agent": "TGCParlement/1.0"})
+        with urllib.request.urlopen(req, timeout=120) as r:
+            page = r.read().decode("utf-8", errors="replace")
+    except Exception as e:  # noqa: BLE001
+        rapport.append(f"Composition officielle du Gouvernement indisponible : {e}")
+        return {}, None
+    annonce = re.search(r"Annonc[ée] le\s*(\d{2})/(\d{2})/(\d{4})", page)
+    date_annonce = f"{annonce.group(3)}-{annonce.group(2)}-{annonce.group(1)}" if annonce else None
+    membres = {}
+    for m in re.finditer(r"<h3[^>]*>\s*<a[^>]*/personnalite/[^>]*>(.*?)</a>\s*</h3>(.*?)(?=<h3|<h2|</main|$)", page, re.S):
+        nom = h.unescape(re.sub(r"<[^>]+>", "", m.group(1))).strip()
+        bloc = m.group(2)
+        textes = [h.unescape(re.sub(r"\s+", " ", t)).strip() for t in re.findall(r">([^<>]+)<", bloc)]
+        intitule = next((t for t in textes if len(t) > 6), None)
+        img = re.search(r'<img[^>]+src="([^"]+)"', bloc)
+        photo = None
+        if img:
+            photo = img.group(1) if img.group(1).startswith("http") else "https://www.info.gouv.fr" + img.group(1)
+        if nom and intitule and norme(nom) not in membres:
+            membres[norme(nom)] = (nom, intitule, photo)
+    rapport.append(f"Composition officielle (info.gouv.fr, annoncée le {date_annonce or '?'}) : {len(membres)} membres")
+    return membres, date_annonce
+
+
 def categorie(code, libelle):
     t = f"{code} {libelle}".lower()
     if "premier ministre" in t:
@@ -111,7 +141,10 @@ def fonction_assemblee(type_organe, qualite, libelle_organe):
 
 def main():
     rapport = []
-    lignes, assemblee, circos, vus_gouv, exemples = [], [], [], [], []
+    lignes, assemblee, circos, vus_gouv, exemples, sans_intitule = [], [], [], [], [], []
+    composition, _ = composition_officielle(rapport)
+    with open(os.path.join("data", "gouvernement", "photos_gouvernement.json") if os.path.isdir(os.path.join("data", "gouvernement")) else os.devnull, "w", encoding="utf-8") as f:
+        json.dump({v[0]: v[2] for v in composition.values() if v[2]}, f, ensure_ascii=False, indent=0)
     # L'historique (AMO30) porte les fonctions au sein de l'Assemblée et les circonscriptions ; le fichier
     # de la législature (AMO20) porte en outre les membres du Gouvernement qui ne sont pas députés.
     archives = [telecharger(rapport, ADRESSES[:1]), telecharger(rapport, ADRESSES[1:])]
@@ -170,7 +203,15 @@ def main():
                     code, libelle = texte(q.get("codeQualite")), texte(q.get("libQualite"))
                     cat = categorie(code, libelle)
                     if not cat:
-                        continue
+                        # Qualité « membre » : intitulé repris de la composition officielle, pour les fonctions en cours
+                        officiel = composition.get(norme(f"{ident.get('prenom')} {ident.get('nom')}"))
+                        fin_m = texte(m.get("dateFin"))[:10]
+                        if officiel and not fin_m:
+                            libelle = officiel[1]
+                            cat = categorie("", libelle)
+                        if not cat:
+                            sans_intitule.append(f"{ident.get('prenom')} {ident.get('nom')} ({texte(m.get('dateDebut'))[:10]} -> {fin_m or 'en cours'})")
+                            continue
                     lignes.append({"liste": cat, "prenom": ident.get("prenom"), "nom": ident.get("nom"),
                                    "debut": debut, "fin": (texte(m.get("dateFin"))[:10] or None),
                                    "fonction": libelle or code})
@@ -185,9 +226,9 @@ def main():
     rapport.append(f"Mandats gouvernementaux présents dans les fichiers : {len(vus_gouv)} ; le plus récent commence le "
                    f"{max(vus_gouv) if vus_gouv else '—'}")
     rapport.append(f"Fonctions gouvernementales postérieures au {DEPUIS} : {len(lignes)}")
-    if exemples:
-        rapport.append("Exemples de mandats gouvernementaux récents (structure brute) :")
-        rapport += ["  " + e for e in exemples]
+    if sans_intitule:
+        rapport.append(f"Fonctions récentes non reprises faute d'intitulé officiel (gouvernements terminés) : {len(sans_intitule)}")
+        rapport += ["  " + e for e in sorted(set(sans_intitule))]
     rapport += [f"  {l['prenom']} {l['nom']} : {l['fonction']} ({l['debut']} -> {l['fin'] or 'en cours'})"
                 for l in sorted(lignes, key=lambda x: x["debut"])]
     os.makedirs(os.path.dirname(RAPPORT), exist_ok=True)
