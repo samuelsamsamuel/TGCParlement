@@ -111,7 +111,7 @@ def fonction_assemblee(type_organe, qualite, libelle_organe):
 
 def main():
     rapport = []
-    lignes, assemblee, circos, vus_gouv = [], [], [], []
+    lignes, assemblee, circos, vus_gouv, exemples = [], [], [], [], []
     # L'historique (AMO30) porte les fonctions au sein de l'Assemblée et les circonscriptions ; le fichier
     # de la législature (AMO20) porte en outre les membres du Gouvernement qui ne sont pas députés.
     archives = [telecharger(rapport, ADRESSES[:1]), telecharger(rapport, ADRESSES[1:])]
@@ -156,6 +156,13 @@ def main():
                     if m.get("typeOrgane") != "GOUVERNEMENT":
                         continue
                     vus_gouv.append(texte(m.get("dateDebut"))[:10])
+                    if texte(m.get("dateDebut"))[:10] > DEPUIS and len(exemples) < 8:
+                        q_ = m.get("infosQualite") or {}
+                        ref_ = (m.get("organes") or {}).get("organeRef")
+                        exemples.append(f"{ident.get('prenom')} {ident.get('nom')} : " + json.dumps(
+                            {"qualite": q_, "organe": organes.get(texte(ref_[0] if isinstance(ref_, list) else ref_)),
+                             "autres": {k: v for k, v in m.items() if k not in ("infosQualite", "organes", "suppleants", "collaborateurs")}},
+                            ensure_ascii=False)[:600])
                     debut = texte(m.get("dateDebut"))[:10]
                     if not debut or debut <= DEPUIS:
                         continue
@@ -178,6 +185,9 @@ def main():
     rapport.append(f"Mandats gouvernementaux présents dans les fichiers : {len(vus_gouv)} ; le plus récent commence le "
                    f"{max(vus_gouv) if vus_gouv else '—'}")
     rapport.append(f"Fonctions gouvernementales postérieures au {DEPUIS} : {len(lignes)}")
+    if exemples:
+        rapport.append("Exemples de mandats gouvernementaux récents (structure brute) :")
+        rapport += ["  " + e for e in exemples]
     rapport += [f"  {l['prenom']} {l['nom']} : {l['fonction']} ({l['debut']} -> {l['fin'] or 'en cours'})"
                 for l in sorted(lignes, key=lambda x: x["debut"])]
     os.makedirs(os.path.dirname(RAPPORT), exist_ok=True)
