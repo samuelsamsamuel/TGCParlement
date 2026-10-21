@@ -45,7 +45,23 @@ def jour(valeur):
     return (valeur or "").strip()[:10] or None
 
 
+# Renouvellement par moitié : dernière élection de chaque série (série 1 : septembre 2023 ; série 2 : septembre 2026)
+DEBUT_SERIE = {"1": "2023-10-01", "2": "2026-10-01"}
+
+
+def actifs():
+    """Sénateurs en fonction (www.senat.fr/api-senat/senateurs.json) : série, photo officielle, groupe."""
+    try:
+        req = urllib.request.Request("https://www.senat.fr/api-senat/senateurs.json", headers={"User-Agent": UA})
+        with urllib.request.urlopen(req, timeout=120) as r:
+            return {x["matricule"]: x for x in json.load(r)}
+    except (urllib.error.URLError, ValueError) as e:
+        print(f"Liste des sénateurs actifs indisponible : {e}")
+        return {}
+
+
 def main():
+    en_fonction = actifs()
     general = telecharger("ODSEN_GENERAL.csv")
     elusen = telecharger("ODSEN_ELUSEN.csv")
     cle = lambda r, debut: next(v for k, v in r.items() if k and k.startswith(debut))
@@ -76,6 +92,21 @@ def main():
             "fin": jour(cle(r, "Date de fin")),
             "motif_fin": cle(r, "Motif fin").strip() or None})
 
+    # Sénateurs en fonction : photo officielle et groupe actuel ; pour ceux dont l'export ne donne aucun
+    # mandat, début de mandat déduit de leur série (date du dernier renouvellement), signalé comme tel
+    deduits = 0
+    for mat, a in en_fonction.items():
+        s_ = senateurs.get(mat)
+        if not s_:
+            continue
+        if a.get("urlAvatar"):
+            s_["photo"] = "https://www.senat.fr" + a["urlAvatar"]
+        if a.get("groupe", {}).get("libelle"):
+            s_["groupe_actuel"] = a["groupe"]["libelle"]
+        if not any(m["debut"] for m in s_["mandats"]) and a.get("serie") in DEBUT_SERIE:
+            s_["mandats"].append({"debut": DEBUT_SERIE[a["serie"]], "fin": None, "motif_fin": None,
+                                  "deduit": f"série {a['serie']}"})
+            deduits += 1
     liste = sorted(senateurs.values(), key=lambda s: s["matricule"])
     os.makedirs(SORTIE, exist_ok=True)
     with open(os.path.join(SORTIE, "senateurs.json"), "w", encoding="utf-8") as f:
@@ -87,7 +118,8 @@ def main():
         debuts[(d[:3] + "0s") if d else "sans mandat daté"] += 1
     rapport = [f"Sénateurs : {len(liste)} ; mandats : {len(elusen)} ; mandats sans fiche générale : {orphelins}",
                f"Sans date de naissance : {sum(1 for s in liste if not s['naissance'])}",
-               f"Sans aucun mandat : {sum(1 for s in liste if not s['mandats'])}",
+               f"Sans aucun mandat : {sum(1 for s in liste if not s['mandats'])} ; "
+               f"début de mandat déduit de la série (sénateurs en fonction) : {deduits}",
                "Décennie du premier mandat :"]
     rapport += [f"  {k} : {v}" for k, v in sorted(debuts.items())]
     texte = "\n".join(rapport)
