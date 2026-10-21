@@ -33,9 +33,9 @@ SORTIE = os.path.join("data", "gouvernement", "an_lignes.json")
 RAPPORT = os.path.join("data", "listes", "rapports", "gouvernements-an-rapport.txt")
 
 
-def telecharger(rapport):
+def telecharger(rapport, adresses=None):
     """Téléchargement par blocs, repris jusqu'à cinq fois si la connexion se coupe en cours de route."""
-    for url in ADRESSES:
+    for url in (adresses or ADRESSES):
         for essai, attente in enumerate((0, 10, 30, 60, 120), 1):
             time.sleep(attente)
             try:
@@ -111,9 +111,13 @@ def fonction_assemblee(type_organe, qualite, libelle_organe):
 
 def main():
     rapport = []
-    brut = telecharger(rapport)
-    lignes, assemblee, circos = [], [], []
-    if brut:
+    lignes, assemblee, circos, vus_gouv = [], [], [], []
+    # L'historique (AMO30) porte les fonctions au sein de l'Assemblée et les circonscriptions ; le fichier
+    # de la législature (AMO20) porte en outre les membres du Gouvernement qui ne sont pas députés.
+    archives = [telecharger(rapport, ADRESSES[:1]), telecharger(rapport, ADRESSES[1:])]
+    for brut in archives:
+        if not brut:
+            continue
         with zipfile.ZipFile(io.BytesIO(brut)) as z:
             organes = {}
             for nom in z.namelist():
@@ -151,6 +155,7 @@ def main():
                                               "fin": texte(m.get("dateFin"))[:10] or None})
                     if m.get("typeOrgane") != "GOUVERNEMENT":
                         continue
+                    vus_gouv.append(texte(m.get("dateDebut"))[:10])
                     debut = texte(m.get("dateDebut"))[:10]
                     if not debut or debut <= DEPUIS:
                         continue
@@ -162,10 +167,16 @@ def main():
                     lignes.append({"liste": cat, "prenom": ident.get("prenom"), "nom": ident.get("nom"),
                                    "debut": debut, "fin": (texte(m.get("dateFin"))[:10] or None),
                                    "fonction": libelle or code})
+    vus = set()
+    lignes = [l for l in lignes if not ((k := (l["prenom"], l["nom"], l["debut"], l["fonction"])) in vus or vus.add(k))]
+    assemblee_vus = set()
+    assemblee = [x for x in assemblee if not ((k := (x["prenom"], x["nom"], x["debut"], x["fonction"])) in assemblee_vus or assemblee_vus.add(k))]
     os.makedirs(os.path.dirname(SORTIE), exist_ok=True)
     with open(SORTIE, "w", encoding="utf-8") as f:
         json.dump(lignes, f, ensure_ascii=False, indent=0)
     rattacher_assemblee(assemblee, rapport, circos)
+    rapport.append(f"Mandats gouvernementaux présents dans les fichiers : {len(vus_gouv)} ; le plus récent commence le "
+                   f"{max(vus_gouv) if vus_gouv else '—'}")
     rapport.append(f"Fonctions gouvernementales postérieures au {DEPUIS} : {len(lignes)}")
     rapport += [f"  {l['prenom']} {l['nom']} : {l['fonction']} ({l['debut']} -> {l['fin'] or 'en cours'})"
                 for l in sorted(lignes, key=lambda x: x["debut"])]
