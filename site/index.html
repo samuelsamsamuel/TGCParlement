@@ -23,8 +23,22 @@ header{background:radial-gradient(120% 140% at 50% 120%,var(--velours) 0%,var(--
 h1{font:400 clamp(2rem,6vw,3.4rem)/1 var(--serif);margin:0 0 .3rem}
 .chapeau{margin:0 auto 1rem;max-width:34rem;color:var(--dorure-pale);font-size:.95rem}
 nav{display:flex;justify-content:center;gap:.25rem;border-top:1px solid rgba(201,162,74,.35)}
-nav button{background:none;border:0;color:var(--marbre);padding:.85rem 1.1rem;border-bottom:3px solid transparent;font-weight:500}
+nav button{background:none;border:0;color:var(--marbre);padding:.75rem 1.1rem;border-bottom:3px solid transparent;font-weight:500;display:flex;align-items:center;gap:.45rem}
+nav button svg{width:1.25rem;height:1.25rem;flex:none}
 nav button[aria-selected="true"]{border-bottom-color:var(--dorure);color:var(--dorure-pale)}
+@media (max-width:700px){
+  header{padding-top:1rem}
+  .chapeau{display:none}
+  nav{position:fixed;left:0;right:0;bottom:0;z-index:20;background:rgba(46,7,16,.97);backdrop-filter:blur(8px);border-top:1px solid rgba(201,162,74,.45);padding-bottom:env(safe-area-inset-bottom);justify-content:space-around}
+  nav button{flex-direction:column;gap:.15rem;font-size:.72rem;padding:.55rem .4rem .5rem;border-bottom:0;border-top:3px solid transparent;flex:1}
+  nav button[aria-selected="true"]{border-top-color:var(--dorure)}
+  main{padding-bottom:6rem}
+  footer{padding-bottom:6rem}
+}
+.apropos{max-width:42rem;margin:0 auto;line-height:1.6}
+.apropos h2{font:400 1.6rem var(--serif);margin:0 0 .6rem}
+.apropos h3{font:600 1rem var(--sans);color:var(--dorure-pale);margin:1.4rem 0 .4rem}
+.apropos p{margin:.4rem 0}
 main{max-width:1120px;margin:0 auto;padding:1.5rem 1rem 4rem}
 .vue[hidden]{display:none}
 .bouton{background:var(--dorure);color:var(--encre);border:0;border-radius:3px;padding:.8rem 1.5rem;font-weight:600;font-size:1rem}
@@ -82,7 +96,9 @@ main{max-width:1120px;margin:0 auto;padding:1.5rem 1rem 4rem}
 .carte.statique .face{transition:none}
 .interieur{flex:1;background:var(--marbre);color:var(--encre);border-radius:3% / 2%;display:flex;flex-direction:column;overflow:hidden}
 .entete{display:flex;justify-content:space-between;align-items:flex-start;gap:.4em;padding:.38em .5em .32em .6em;background:var(--cadre);color:var(--sur-cadre)}
-.entete .nom{font:700 .9em/1.12 var(--serif);margin:0;overflow-wrap:anywhere;hyphens:auto}
+.entete .nom{font:700 .9em/1.12 var(--serif);margin:0;hyphens:none;overflow-wrap:normal;word-break:normal}
+.entete .nom.long{font-size:.78em}
+.entete .nom.tres-long{font-size:.68em}
 .entete .rarete{flex:none;font-size:.55em;font-weight:700;padding:.2em .55em;border-radius:1em;background:var(--marbre);color:var(--rarete-texte)}
 .portrait{position:relative;flex:0 0 40%;background:linear-gradient(#d9cfc0,#bfb2a0);overflow:hidden;border-bottom:.18em solid var(--rarete-texte)}
 .portrait img{width:100%;height:100%;object-fit:cover;object-position:50% 20%;filter:sepia(.15)}
@@ -162,8 +178,9 @@ footer{max-width:1120px;margin:0 auto;padding:0 1rem 3rem;font-size:.85rem;color
   <h1>Hémicycle</h1>
   <p class="chapeau">Collectionnez les parlementaires français, de la Constituante de 1789 à l'Assemblée d'aujourd'hui.</p>
   <nav role="tablist" aria-label="Sections">
-    <button role="tab" aria-selected="true" data-vue="paquet">Ouvrir un paquet</button>
-    <button role="tab" aria-selected="false" data-vue="collection">Ma collection</button>
+    <button role="tab" aria-selected="true" data-vue="paquet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M5 7h14M9 3l1 4M15 3l-1 4"/></svg>Paquets</button>
+    <button role="tab" aria-selected="false" data-vue="collection"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="4" width="8" height="11" rx="1.5"/><rect x="13" y="4" width="8" height="11" rx="1.5"/><path d="M3 19h18"/></svg>Collection</button>
+    <button role="tab" aria-selected="false" data-vue="apropos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/></svg>Règles</button>
   </nav>
 </header>
 <main>
@@ -171,6 +188,17 @@ footer{max-width:1120px;margin:0 auto;padding:0 1rem 3rem;font-size:.85rem;color
     <p class="message" id="restants" aria-live="polite">Chargement des cartes…</p>
     <div class="scene" id="scene"></div>
   </section>
+  <section class="vue apropos" id="vue-apropos" hidden>
+    <h2>Règles du jeu</h2>
+    <p>Chaque jour, trois paquets de cinq cartes sont à ouvrir. Chaque paquet contient au moins un parlementaire ou un ministre en exercice. Les cartes obtenues rejoignent votre collection, enregistrée dans ce navigateur.</p>
+    <h3>Raretés</h3>
+    <p>La rareté d'une carte dépend de son score, comparé à celui des autres parlementaires de la même époque. Par carte tirée : mythique 0,4 %, légendaire 1,6 %, épique 6 %, rare 15 %, peu commune 30 %, commune 46 %. Les élus en exercice gagnent un niveau de rareté.</p>
+    <h3>Score</h3>
+    <p>Le score additionne la durée des mandats (1 point par an jusqu'à 20 ans, puis 0,5 point jusqu'à 40 ans) et les fonctions exercées : chef de l'État, chef du Gouvernement, ministre, secrétaire d'État, présidence d'une assemblée, d'une commission ou d'un groupe, Bureau. Dans chaque famille de fonctions, la plus haute compte en entier et les autres pour un quart. S'y ajoutent les distinctions historiques : Constituante de 1789, Convention, Quatre-vingts, premières élues de 1945, Compagnons de la Libération, Académie française, prix Nobel, Panthéon.</p>
+    <h3>Sources</h3>
+    <p>Assemblée nationale (base Sycomore et open data), Sénat (open data), data.gouv.fr pour la composition des gouvernements, Wikidata pour les noms d'usage, les portraits et les distinctions complémentaires, rattachés par les identifiants officiels. Chaque carte renvoie à sa fiche officielle.</p>
+  </section>
+
   <section class="vue" id="vue-collection" hidden>
     <ul class="progression" id="progression"></ul>
     <div class="outils">
@@ -220,21 +248,28 @@ function tirerRarete(pool){
 function tirerCarte(pool=parRarete){ const l = pool[tirerRarete(pool)]; return l[Math.floor(Math.random()*l.length)]; }
 function dates(d,f,enCours=true){ if (!d) return ""; if (f === null || f === undefined) return enCours ? "depuis "+d : String(d); return d===f ? String(d) : d+"–"+f; }
 function initiales(nom){ const m = nom.split(" ").filter(Boolean); return (m[0]?.[0]||"") + (m.length>1 ? m[m.length-1][0] : ""); }
-function urlPortrait(f, l=420){ return "https://commons.wikimedia.org/wiki/Special:FilePath/"+encodeURIComponent(f)+"?width="+l; }
+function urlPortrait(f, l=320){ return "https://commons.wikimedia.org/wiki/Special:FilePath/"+encodeURIComponent(f)+"?width="+l; }
+function srcPortrait(c){ return c.photo || (c.portrait ? urlPortrait(c.portrait) : null); }
+function precharger(liste){ liste.forEach(c => { const u = srcPortrait(c); if (u) { const i = new Image(); i.src = u; } }); }
 function mandatLigne(m){
   const periodes = (m[2]||[]).map(p => dates(p[0], p[1])).join(", ");
-  return [m[0] + (m[1] ? " (" + m[1] + ")" : ""), periodes + (m[3] > 1 ? ", " + m[3] + " mandats" : "")];
+  const lieu = m[1] ? m[1] + (m[4] ? ", " + m[4] + (m[4] == "1" ? "re" : "e") + " circ." : "") : "";
+  return [m[0] + (lieu ? " (" + lieu + ")" : ""), periodes + (m[3] > 1 ? ", " + m[3] + " mandats" : "")];
 }
 function principale(c){
   if (c.fonctions.length) { const f = c.fonctions[0]; return [f[0], dates(f[1], f[2], false)]; }
   if (c.mandats.length) return mandatLigne(c.mandats[0]);
   return ["", ""];
 }
+// Trait d'union insécable : un nom composé passe à la ligne en entier, jamais coupé à son trait d'union
+function nomInsecable(n){ return echapper(n).replace(/-/g, "\u2011"); }
 function listeLignes(items){ return items.map(([k,t,d]) => `<li class="${k}"><b>${echapper(t)}</b><span>${d}</span></li>`).join(""); }
 
 function htmlCarte(c, {retournee=true, neuve=false, classe="", id=""}={}){
   const n = etat.possedees[c.id] || 0;
-  const portrait = c.portrait ? `<img src="${urlPortrait(c.portrait)}" alt="" loading="lazy" onerror="this.remove()">` : `<span class="initiales">${echapper(initiales(c.nom))}</span>`;
+  const src = srcPortrait(c);
+  const repli = c.portrait && c.photo ? `this.onerror=()=>this.remove();this.src='${urlPortrait(c.portrait)}'` : "this.remove()";
+  const portrait = src ? `<img src="${echapper(src)}" alt="" loading="lazy" decoding="async" onerror="${repli}">` : `<span class="initiales">${echapper(initiales(c.nom))}</span>`;
   const [pt, pd] = principale(c);
   const autresFonctions = c.fonctions.slice(1).map(f => ["fonction", f[0], dates(f[1], f[2], false)]);
   const mandats = c.mandats.map(m => ["mandat", ...mandatLigne(m)]).filter(x => !(c.fonctions.length === 0 && x[1] === pt));
@@ -243,7 +278,7 @@ function htmlCarte(c, {retournee=true, neuve=false, classe="", id=""}={}){
   return `<div class="carte r-${c.rarete} ${retournee?"retournee statique":""} ${classe}" data-id="${c.id}" ${id?`id="${id}"`:""} style="--ep:${EPOQUES[c.epoque]||EPOQUES[""]}">
     <div class="face dos"><span>Hémicycle</span></div>
     <div class="face recto"><div class="interieur">
-      <div class="entete"><h3 class="nom">${echapper(c.nom)}</h3><span class="rarete">${LIBELLES[c.rarete]}</span></div>
+      <div class="entete"><h3 class="nom${c.nom.length>34?" tres-long":c.nom.length>22?" long":""}">${nomInsecable(c.nom)}</h3><span class="rarete">${LIBELLES[c.rarete]}</span></div>
       <div class="portrait">${portrait}<div class="chambres">${[...c.chambres].map(x=>`<span>${CHAMBRES[x]}</span>`).join("")}</div>${c.actuel?'<span class="actuel">En exercice</span>':""}</div>
       <div class="epoque">${echapper(c.epoque || "Gouvernement")}</div>
       ${c.distinctions.some(d => COURTES[d]) ? `<div class="distinctions">${c.distinctions.filter(d => COURTES[d]).map(d => `<span>${COURTES[d]}</span>`).join("")}</div>` : ""}
@@ -260,7 +295,7 @@ function htmlCarte(c, {retournee=true, neuve=false, classe="", id=""}={}){
         ${c.groupe?`<h4>Groupe politique</h4><ul class="lignes"><li><b>${echapper(c.groupe)}</b></li></ul>`:""}
         ${distinctions.length?`<h4>Distinctions</h4><ul class="lignes">${distinctions.map(d=>`<li><b>${d}</b></li>`).join("")}</ul>`:""}
       </div>
-      <div class="lien">${c.source?`<a href="${echapper(c.source)}" target="_blank" rel="noopener">Fiche officielle</a>`:""}${c.portrait?` · <a href="https://commons.wikimedia.org/wiki/File:${encodeURIComponent(c.portrait)}" target="_blank" rel="noopener">crédit du portrait</a>`:""}</div>
+      <div class="lien">${c.source?`<a href="${echapper(c.source)}" target="_blank" rel="noopener">Fiche officielle</a>`:""}${c.photo&&c.photo.includes("senat.fr")?" · portrait : Sénat":c.portrait?` · <a href="https://commons.wikimedia.org/wiki/File:${encodeURIComponent(c.portrait)}" target="_blank" rel="noopener">crédit du portrait</a>`:""}</div>
       ${pied}
     </div></div></div>`;
 }
@@ -287,6 +322,7 @@ function ouvrir(){
   // Une carte au moins parmi les élus et ministres en exercice, les autres au hasard
   const tirage = [tirerCarte(actuelsParRarete)].concat(Array.from({length:CARTES_PAR_PAQUET-1}, () => tirerCarte()))
     .sort((a,b) => ORDRE.indexOf(a.rarete)-ORDRE.indexOf(b.rarete) || a.score-b.score);
+  precharger(tirage);
   const neuves = new Set(tirage.filter(c => !etat.possedees[c.id]).map(c => c.id));
   tirage.forEach(c => etat.possedees[c.id] = (etat.possedees[c.id]||0) + 1);
   etat.ouverts += 1; sauver(); majCompteur(); majCollection();
@@ -306,7 +342,7 @@ function montrer(tirage, neuves, i){
   }
   const c = tirage[i];
   scene.innerHTML = htmlCarte(c, {retournee:false, neuve:neuves.has(c.id), classe:"grande", id:"courante"})
-    + `<div class="actions"><button class="bouton discret" id="envers">Voir le verso</button><button class="bouton" id="suite">${i+1<tirage.length?`Carte suivante (${i+2}/${tirage.length})`:"Voir le paquet"}</button></div>`;
+    + `<div class="actions"><button class="bouton discret" id="envers">Voir le verso</button><button class="bouton" id="suite">${i+1<tirage.length?`Suivante (${i+2}/${tirage.length})`:"Voir le paquet"}</button></div>`;
   const el = document.getElementById("courante");
   requestAnimationFrame(() => requestAnimationFrame(() => el.classList.add("retournee")));
   const suivante = () => montrer(tirage, neuves, i+1);
@@ -346,9 +382,9 @@ document.querySelectorAll("nav button").forEach(b => b.addEventListener("click",
 ["recherche","filtre","tri"].forEach(id => document.getElementById(id).addEventListener("input", majCollection));
 
 fetch("jeu.json").then(r => { if (!r.ok) throw new Error(r.status); return r.json(); }).then(d => {
-  cartes = d.cartes.map(([id,nom,r,score,epoque,actuel,debut,fin,source,portrait,distinctions,chambres,sexe,fonctions,mandats,groupe]) => ({
+  cartes = d.cartes.map(([id,nom,r,score,epoque,actuel,debut,fin,source,portrait,distinctions,chambres,sexe,fonctions,mandats,groupe,photo]) => ({
     id,nom,rarete:d.raretes[r],score,epoque,actuel:!!actuel,debut,fin,source,portrait,distinctions:distinctions||[],chambres:chambres||"",sexe,
-    fonctions:fonctions||[],mandats:mandats||[],groupe,
+    fonctions:fonctions||[],mandats:mandats||[],groupe,photo,
     cherche:(nom+" "+epoque+" "+(groupe||"")+" "+(fonctions||[]).map(f=>f[0]).join(" ")+" "+(mandats||[]).map(m=>m[1]).join(" ")).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"")}));
   cartes.forEach(c => { (parRarete[c.rarete] ||= []).push(c); if (c.actuel) (actuelsParRarete[c.rarete] ||= []).push(c); });
   if (!Object.keys(actuelsParRarete).length) actuelsParRarete = parRarete;
