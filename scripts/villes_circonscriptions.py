@@ -37,6 +37,10 @@ def lire(url, binaire=False):
     raise SystemExit(f"Échec : {url} ({erreur})")
 
 
+OUTRE_MER = {"ZA": "971", "ZB": "972", "ZC": "973", "ZD": "974", "ZS": "975", "ZM": "976",
+             "ZX": "977", "ZW": "986", "ZP": "987", "ZN": "988"}
+
+
 def norme(t):
     return unicodedata.normalize("NFKD", t or "").encode("ascii", "ignore").decode().lower()
 
@@ -143,9 +147,14 @@ def calculer(rapport):
         dep = dep.zfill(2) if dep.isdigit() else dep
         com = re.sub(r"\D", "", l[i_com]) if l[i_com].strip().isdigit() else l[i_com].strip()
         circ = re.sub(r"\D", "", l[i_circ]).lstrip("0")
-        if not circ:
+        if not circ or dep == "ZZ":  # Français établis hors de France : pas de commune
             continue
-        code_insee = com if len(com) == 5 else dep + com.zfill(3) if len(dep) == 2 else dep + com.zfill(2)
+        if dep in OUTRE_MER:
+            # Codes du ministère (ZA = Guadeloupe…) : code Insee = préfixe 97 ou 98 suivi du code à trois chiffres
+            code_insee = ("98" if dep in ("ZN", "ZP", "ZW") else "97") + com.zfill(3)[-3:]
+            dep = OUTRE_MER[dep]
+        else:
+            code_insee = com if len(com) == 5 else dep + com.zfill(3) if len(dep) == 2 else dep + com.zfill(2)
         # Arrondissements municipaux de Paris, Lyon et Marseille : rapportés à leur commune
         if code_insee.startswith("751") and len(code_insee) == 5 and code_insee != "75056":
             code_insee = "75056"
