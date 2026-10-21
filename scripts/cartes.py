@@ -321,7 +321,8 @@ def cartes_senateurs(cartes, listes):
         annees = round(jours / 365.25, 1)
         distinctions = [{"code": l["code"], "points": l["points"], "libelle": l["libelle"],
                          "plancher": l.get("plancher")} for l in listes if ident in l["ids"]]
-        carte = {"id": ident, "nom": s["nom"], "sexe": s["sexe"], "naissance": s["naissance"], "groupe": s.get("groupe"),
+        carte = {"id": ident, "nom": s["nom"], "sexe": s["sexe"], "naissance": s["naissance"],
+                 "groupe": s.get("groupe_actuel") or s.get("groupe"), "photo": s.get("photo"),
                  "lieu_naissance": None, "deces": s["deces"], "annees_mandat": annees,
                  "mandats": mandats, "distinctions": distinctions,
                  "score": score_carte(annees, distinctions),
