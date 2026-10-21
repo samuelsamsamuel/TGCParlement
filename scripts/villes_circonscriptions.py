@@ -159,6 +159,19 @@ def calculer(rapport):
             noms[code_insee] = l[i_nomcom].strip()
     population = {c["code"]: (c.get("nom"), c.get("population") or 0)
                   for c in json.loads(lire("https://geo.api.gouv.fr/communes?fields=nom,code,population&format=json"))}
+    # Communes fusionnées depuis 2017 (devenues déléguées ou associées) : rapportées à leur commune nouvelle
+    try:
+        anciennes = json.loads(lire("https://geo.api.gouv.fr/communes_associees_deleguees?fields=code,chefLieu&format=json"))
+        nouvelle = {c["code"]: c.get("chefLieu") for c in anciennes if c.get("chefLieu")}
+    except SystemExit:
+        nouvelle = {}
+    for circo in list(communes_par_circo):
+        remplacees = {nouvelle.get(c, c) if c not in population else c for c in communes_par_circo[circo]}
+        communes_par_circo[circo] = remplacees
+    circos_par_commune = defaultdict(set)
+    for circo, communes in communes_par_circo.items():
+        for c in communes:
+            circos_par_commune[c].add(circo)
     villes = {}
     for circo, communes in communes_par_circo.items():
         connues = [(population[c][1], population[c][0], c) for c in communes if c in population]
@@ -171,6 +184,9 @@ def calculer(rapport):
         json.dump(villes, f, ensure_ascii=False, indent=0)
     rapport.append(f"Circonscriptions : {len(communes_par_circo)} ; avec une ville identifiée : {len(villes)} ; "
                    f"communes sans population connue : {sum(1 for c in circos_par_commune if c not in population)}")
+    sans = sorted(k for k in communes_par_circo if k not in villes)
+    if sans:
+        rapport.append("Circonscriptions sans ville : " + ", ".join(sans))
     rapport += [f"  {k} : {v['ville']}{' (en partie)' if v['partielle'] else ''}"
                 for k, v in sorted(villes.items())[:40]]
 
