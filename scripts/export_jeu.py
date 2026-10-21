@@ -3,13 +3,14 @@
 
 Chaque carte : [id, nom affiché, rareté, score, époque, en exercice (1/0), première année, dernière année, source,
 portrait (fichier Commons ou null), distinctions (codes), chambres ("A" Assemblée, "S" Sénat, "G" Gouvernement), sexe,
-fonctions [intitulé, début, fin, rang], mandats regroupés [intitulé, département, [[début, fin], ...], nombre], groupe politique principal].
+fonctions [intitulé, début, fin, rang], mandats regroupés [intitulé, département, [[début, fin], ...], nombre], groupe politique principal, adresse directe du portrait].
 Le nom affiché est le nom d'usage : premier prénom et nom de famille pour les fiches Sycomore
 (« Jacques, Michel, Pierre Chaban-Delmas » -> « Jacques Chaban-Delmas »).
 """
 import json
 import os
 import re
+import urllib.parse
 import sys
 
 sys.path.insert(0, os.path.dirname(__file__))
@@ -60,6 +61,25 @@ def fonctions_carte(ident, gouv, pres):
     return liste
 
 
+CIRCOS = {}
+VILLES = {}
+
+
+def numero_circo(ident, departement, debut):
+    """Numéro de circonscription du mandat commençant cette année-là dans ce département, s'il est connu,
+    suivi de la plus grande ville de la circonscription pour le découpage en vigueur depuis 2012."""
+    for x in CIRCOS.get(str(ident), []):
+        if (x.get("debut") or "")[:4] == str(debut) and (x.get("departement") or "").lower()[:6] == (departement or "").lower()[:6]:
+            num, ville = x.get("num"), None
+            dep = (x.get("code_dep") or "").upper()
+            dep = dep.zfill(2) if dep.isdigit() else dep
+            v = VILLES.get(f"{dep}-{(num or '').lstrip('0')}") if debut and debut >= 2012 else None
+            if v:
+                ville = v["ville"] + (" en partie" if v["partielle"] else "")
+            return [num, ville] if ville else num
+    return None
+
+
 def mandats_carte(c):
     """Mandats regroupés par chambre et département, quelle que soit leur position dans la carrière :
     [intitulé, département, [[début, fin], ...], nombre]. Les périodes contiguës (écart d'un an au plus)
@@ -82,6 +102,11 @@ def mandats_carte(c):
         debut, fin = an(m.get("debut")), (None if m.get("en_cours") else an(m.get("fin")))
         if debut is None:
             continue
+        num = numero_circo(c["id"], dep, debut) if titre.startswith("Dépu") else None
+        if num:
+            g.append(num) if len(g) == 4 else None
+            if len(g) == 5:
+                g[4] = num  # numéro le plus récent
         periodes = g[2]
         if periodes and periodes[-1][1] is not None and debut <= periodes[-1][1] + 1:
             periodes[-1][1] = None if fin is None else max(periodes[-1][1], fin)
@@ -90,6 +115,20 @@ def mandats_carte(c):
         else:
             periodes.append([debut, fin])
     return sorted(groupes.values(), key=lambda g: (g[2][0][0] if g[2] else 9999))
+
+
+def vignette(fichier, largeur=320):
+    """Adresse directe de la vignette Commons (sans la redirection de Special:FilePath, plus lente)."""
+    import hashlib
+    nom = fichier.replace(" ", "_")
+    h = hashlib.md5(nom.encode("utf-8")).hexdigest()
+    ext = nom.rsplit(".", 1)[-1].lower()
+    base = f"https://upload.wikimedia.org/wikipedia/commons/thumb/{h[0]}/{h[:2]}/{urllib.parse.quote(nom)}/{largeur}px-{urllib.parse.quote(nom)}"
+    if ext == "svg":
+        return base + ".png"
+    if ext in ("tif", "tiff", "pdf", "djvu"):
+        return f"https://commons.wikimedia.org/wiki/Special:FilePath/{urllib.parse.quote(nom)}?width={largeur}"
+    return base
 
 
 def source(c):
@@ -107,6 +146,8 @@ def main():
                 return json.load(f)
         return {}
     NOMS_USAGE.update(lire(os.path.join("data", "noms_usage.json")))
+    CIRCOS.update(lire(os.path.join("data", "gouvernement", "circonscriptions.json")))
+    VILLES.update(lire(os.path.join("data", "gouvernement", "villes_circonscriptions.json")))
     gouv = lire(os.path.join("data", "gouvernement", "fonctions.json"))
     for k, v in lire(os.path.join("data", "gouvernement", "fonctions_assemblee.json")).items():
         gouv.setdefault(k, []).extend(v)
@@ -128,7 +169,8 @@ def main():
         sortie.append([c["id"], nom_affiche(c), RARETES.index(c["rarete"]), c["score"], c.get("epoque") or "",
                        1 if c.get("en_exercice") else 0, debut, fin, source(c),
                        portraits.get(str(c["id"])), codes, chambres, c.get("sexe"),
-                       fonctions_carte(c["id"], gouv, pres), mandats_carte(c), c.get("groupe")])
+                       fonctions_carte(c["id"], gouv, pres), mandats_carte(c), c.get("groupe"),
+                       c.get("photo") or (vignette(portraits[str(c["id"])]) if portraits.get(str(c["id"])) else None)])
     os.makedirs("site", exist_ok=True)
     with open(os.path.join("site", "jeu.json"), "w", encoding="utf-8") as f:
         json.dump({"raretes": RARETES, "cartes": sortie}, f, ensure_ascii=False, separators=(",", ":"))
