@@ -8,7 +8,9 @@ Distinctions calculées :
   secretaire-etat : 496
   presidence-an-courte : 205
   bureau-secretaire : 128
+  academie-francaise : 123
   doyen-benjamin : 110
+  compagnon-liberation : 83
   quatre-vingts : 70
   bureau-vp-questeur : 68
   presidence-commission : 58
@@ -17,18 +19,18 @@ Distinctions calculées :
   presidence-an-longue : 35
   rapporteur-general : 35
   femmes-1945 : 33
-  pantheon : 32
+  pantheon : 28
   presidence-senat-longue : 21
   chef-etat : 8
   prix-nobel : 5
   presidence-senat-courte : 5
   chef-etat-interim : 1
 
-Scores (grille équilibrée) : maximum 136.3 ; 10e 101.2 ; 100e 61.2 ; 1000e 30.4 ; médiane 7.2
-Cartes à égalité au score maximal : 1 ; scores distincts parmi les 100 premières : 81
+Scores (grille équilibrée) : maximum 146.3 ; 10e 101.8 ; 100e 63.0 ; 1000e 30.7 ; médiane 7.3
+Cartes à égalité au score maximal : 1 ; scores distincts parmi les 100 premières : 83
 
 Cartes en exercice : 723
-Cartes par époque : Libération et IVe République 1274, Ve République 5776, IIIe République 4622, IIe République et Second Empire 1549, Monarchies constitutionnelles 2484, Révolution et Empire 3930, None 173
+Cartes par époque : Libération et IVe République 1274, Ve République 5776, IIIe République 4622, Monarchies constitutionnelles 2484, IIe République et Second Empire 1549, Révolution et Empire 3930, None 173
 
 Répartition des raretés :
   mythique : 95
@@ -166,13 +168,13 @@ Anomalies :
     21634U Didier Maingault (ANCIEN)
 
 Dix premières cartes :
-   136.3  mythique    Edgar Faure : Député (Jura, Doubs) de 1946 à 1980, 7 mandats (Quatrième République - Assemblée nationale ; Cinquième République - Assemblée nationale). Sénateur de 1959 à 1988. A siégé dans les deux chambres. A dirigé le Gouvernement. A été ministre. A présidé l'Assemblée au moins un an. A été secrétaire d'État.
-   131.2  mythique    Jacques, Michel, Pierre Chaban-Delmas : Député (Gironde) de 1946 à 1997, 14 mandats (Quatrième République - Assemblée nationale ; Cinquième République - Assemblée nationale). A dirigé le Gouvernement. A été ministre. A présidé l'Assemblée au moins un an.
+   146.3  mythique    Edgar Faure : Député (Jura, Doubs) de 1946 à 1980, 7 mandats (Quatrième République - Assemblée nationale ; Cinquième République - Assemblée nationale). Sénateur de 1959 à 1988. A siégé dans les deux chambres. Membre de l'Académie française. A dirigé le Gouvernement. A été ministre. A présidé l'Assemblée au moins un an. A été secrétaire d'État.
+   146.2  mythique    Jacques, Michel, Pierre Chaban-Delmas : Député (Gironde) de 1946 à 1997, 14 mandats (Quatrième République - Assemblée nationale ; Cinquième République - Assemblée nationale). A dirigé le Gouvernement. Compagnon de la Libération. A été ministre. A présidé l'Assemblée au moins un an.
    124.8  mythique    Laurent Fabius : Député (Seine-Maritime) de 1978 à 2012, 9 mandats (Cinquième République - Assemblée nationale). A dirigé le Gouvernement. A été ministre. A présidé l'Assemblée au moins un an.
    121.8  mythique    Félix, Jean Gouin : Député (Bouches-du-Rhône) de 1924 à 1958, 9 mandats (Troisième République - Chambre des députés ; Gouvernement provisoire de la République française ; Quatrième République - Assemblée nationale). A dirigé le Gouvernement. A été ministre. A présidé l'Assemblée. Parmi les Quatre-vingts qui refusèrent les pleins pouvoirs à Pétain le 10 juillet 1940.
    111.2  mythique    François Mitterrand : Député (Nièvre) de 1946 à 1981, 8 mandats (Quatrième République - Assemblée nationale ; Cinquième République - Assemblée nationale). Sénateur de 1959 à 1962. A siégé dans les deux chambres. A été chef de l'État. A été ministre. A été secrétaire d'État.
    109.5  mythique    Jacques Chirac : Député (Corrèze) de 1967 à 1995, 9 mandats (Cinquième République - Assemblée nationale). A été chef de l'État. A dirigé le Gouvernement. A été ministre. A été secrétaire d'État.
+   108.8  mythique    Valéry Giscard d'Estaing : Député (Puy-de-Dôme) de 1956 à 2002, 11 mandats (Quatrième République - Assemblée nationale ; Cinquième République - Assemblée nationale). Membre de l'Académie française. A été chef de l'État. A été ministre. A été secrétaire d'État.
    103.8  mythique    Léon, Victor, Auguste Bourgeois : Député (Marne) de 1888 à 1905, 5 mandats (Troisième République - Chambre des députés). Sénateur de 1905 à 1925. A siégé dans les deux chambres. A présidé l'Assemblée au moins un an. A présidé la seconde chambre au moins un an. Lauréat du prix Nobel.
    102.6  mythique    Paul Ramadier : Député (Aveyron) de 1928 à 1958, 7 mandats (Troisième République - Chambre des députés ; Gouvernement provisoire de la République française ; Quatrième République - Assemblée nationale). A dirigé le Gouvernement. A été ministre. Parmi les Quatre-vingts qui refusèrent les pleins pouvoirs à Pétain le 10 juillet 1940.
    101.8  mythique    Léon, André Blum : Député (Seine, Aude) de 1919 à 1941, 5 mandats (Troisième République - Chambre des députés). A dirigé le Gouvernement. A été ministre. Parmi les Quatre-vingts qui refusèrent les pleins pouvoirs à Pétain le 10 juillet 1940.
-   101.2  mythique    François Fillon : Député (Sarthe, Paris) de 1981 à 2017, 8 mandats (Cinquième République - Assemblée nationale). Sénateur de 2004 à 2007. A siégé dans les deux chambres. A dirigé le Gouvernement. Doyen d'âge ou benjamin d'une législature. A été ministre. A présidé un groupe politique.

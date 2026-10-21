@@ -1,0 +1,45 @@
+Jeu de données : Circonscriptions législatives  : Table de correspondance des communes et des cantons pour les élections législatives de 2012 et sa mise à jour pour les élections législatives 2017 (https://www.data.gouv.fr/datasets/circonscriptions-legislatives-table-de-correspondance-des-communes-et-des-cantons-pour-les-elections-legislatives-de-2012-et-sa-mise-a-jour-pour-les-elections-legislatives-2017) ; producteur : Ministère de l'intérieur
+  ressource : Tableau_de_correspondance_communes_cantons_circonscriptions_2012.xls [xls] https://static.data.gouv.fr/resources/circonscriptions-legislatives-table-de-correspondance-des-communes-et-des-cantons-pour-les-elections-legislatives-de-2012-et-sa-mise-a-jour-pour-les-elections-legislatives-2017/20170411-141945/Tableau_de_correspondance_communes_cantons_circonscriptions_2012.xls
+  ressource : Table_de_correspondance_circo_legislatives2017-1.xlsx [xlsx] https://static.data.gouv.fr/resources/circonscriptions-legislatives-table-de-correspondance-des-communes-et-des-cantons-pour-les-elections-legislatives-de-2012-et-sa-mise-a-jour-pour-les-elections-legislatives-2017/20170411-141128/Table_de_correspondance_circo_legislatives2017-1.xlsx
+Colonnes : CODE DPT | NOM DPT | CODE COMMUNE | NOM COMMUNE | CODE CIRC LEGISLATIVE | CODE CANTON | NOM CANTON
+Circonscriptions : 577 ; avec une ville identifiée : 539 ; communes sans population connue : 991
+  01-1 : Bourg-en-Bresse (en partie)
+  01-2 : Miribel
+  01-3 : Valserhône
+  01-4 : Bourg-en-Bresse (en partie)
+  01-5 : Oyonnax
+  02-1 : Laon
+  02-2 : Saint-Quentin
+  02-3 : Hirson
+  02-4 : Soissons
+  02-5 : Château-Thierry
+  03-1 : Moulins
+  03-2 : Montluçon
+  03-3 : Vichy
+  04-1 : Digne-les-Bains
+  04-2 : Manosque
+  05-1 : Gap
+  05-2 : Briançon
+  06-1 : Nice (en partie)
+  06-2 : Grasse (en partie)
+  06-3 : Nice (en partie)
+  06-4 : Menton
+  06-5 : Nice (en partie)
+  06-6 : Cagnes-sur-Mer
+  06-7 : Antibes
+  06-8 : Cannes
+  06-9 : Grasse (en partie)
+  07-1 : Le Teil
+  07-2 : Annonay
+  07-3 : Aubenas
+  08-1 : Charleville-Mézières (en partie)
+  08-2 : Charleville-Mézières (en partie)
+  08-3 : Sedan
+  09-1 : Foix
+  09-2 : Pamiers
+  10-1 : Troyes (en partie)
+  10-2 : Troyes (en partie)
+  10-3 : Troyes (en partie)
+  11-1 : Carcassonne (en partie)
+  11-2 : Narbonne
+  11-3 : Carcassonne (en partie)

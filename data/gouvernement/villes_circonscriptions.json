@@ -1,0 +1,2697 @@
+{
+"01-4": {
+"ville": "Bourg-en-Bresse",
+"population": 42372,
+"partielle": true
+},
+"01-5": {
+"ville": "Oyonnax",
+"population": 22480,
+"partielle": false
+},
+"01-3": {
+"ville": "Valserhône",
+"population": 16712,
+"partielle": false
+},
+"01-2": {
+"ville": "Miribel",
+"population": 10395,
+"partielle": false
+},
+"01-1": {
+"ville": "Bourg-en-Bresse",
+"population": 42372,
+"partielle": true
+},
+"02-4": {
+"ville": "Soissons",
+"population": 28046,
+"partielle": false
+},
+"02-1": {
+"ville": "Laon",
+"population": 24220,
+"partielle": false
+},
+"02-5": {
+"ville": "Château-Thierry",
+"population": 15097,
+"partielle": false
+},
+"02-3": {
+"ville": "Hirson",
+"population": 8469,
+"partielle": false
+},
+"02-2": {
+"ville": "Saint-Quentin",
+"population": 52813,
+"partielle": false
+},
+"03-3": {
+"ville": "Vichy",
+"population": 25115,
+"partielle": false
+},
+"03-1": {
+"ville": "Moulins",
+"population": 19206,
+"partielle": false
+},
+"03-2": {
+"ville": "Montluçon",
+"population": 33147,
+"partielle": false
+},
+"04-1": {
+"ville": "Digne-les-Bains",
+"population": 17979,
+"partielle": false
+},
+"04-2": {
+"ville": "Manosque",
+"population": 22718,
+"partielle": false
+},
+"05-2": {
+"ville": "Briançon",
+"population": 11411,
+"partielle": false
+},
+"05-1": {
+"ville": "Gap",
+"population": 41293,
+"partielle": false
+},
+"06-2": {
+"ville": "Grasse",
+"population": 50970,
+"partielle": true
+},
+"06-7": {
+"ville": "Antibes",
+"population": 77637,
+"partielle": false
+},
+"06-5": {
+"ville": "Nice",
+"population": 357737,
+"partielle": true
+},
+"06-9": {
+"ville": "Grasse",
+"population": 50970,
+"partielle": true
+},
+"06-4": {
+"ville": "Menton",
+"population": 30604,
+"partielle": false
+},
+"06-6": {
+"ville": "Cagnes-sur-Mer",
+"population": 53354,
+"partielle": false
+},
+"06-8": {
+"ville": "Cannes",
+"population": 74350,
+"partielle": false
+},
+"06-3": {
+"ville": "Nice",
+"population": 357737,
+"partielle": true
+},
+"06-1": {
+"ville": "Nice",
+"population": 357737,
+"partielle": true
+},
+"07-1": {
+"ville": "Le Teil",
+"population": 8726,
+"partielle": false
+},
+"07-3": {
+"ville": "Aubenas",
+"population": 12416,
+"partielle": false
+},
+"07-2": {
+"ville": "Annonay",
+"population": 17274,
+"partielle": false
+},
+"08-1": {
+"ville": "Charleville-Mézières",
+"population": 45560,
+"partielle": true
+},
+"08-3": {
+"ville": "Sedan",
+"population": 16667,
+"partielle": false
+},
+"08-2": {
+"ville": "Charleville-Mézières",
+"population": 45560,
+"partielle": true
+},
+"09-1": {
+"ville": "Foix",
+"population": 9934,
+"partielle": false
+},
+"09-2": {
+"ville": "Pamiers",
+"population": 16473,
+"partielle": false
+},
+"10-1": {
+"ville": "Troyes",
+"population": 62088,
+"partielle": true
+},
+"10-2": {
+"ville": "Troyes",
+"population": 62088,
+"partielle": true
+},
+"10-3": {
+"ville": "Troyes",
+"population": 62088,
+"partielle": true
+},
+"11-1": {
+"ville": "Carcassonne",
+"population": 46080,
+"partielle": true
+},
+"11-3": {
+"ville": "Carcassonne",
+"population": 46080,
+"partielle": true
+},
+"11-2": {
+"ville": "Narbonne",
+"population": 57587,
+"partielle": false
+},
+"12-3": {
+"ville": "Millau",
+"population": 22044,
+"partielle": false
+},
+"12-2": {
+"ville": "Villefranche-de-Rouergue",
+"population": 11271,
+"partielle": false
+},
+"12-1": {
+"ville": "Rodez",
+"population": 23981,
+"partielle": false
+},
+"13-11": {
+"ville": "Aix-en-Provence",
+"population": 149695,
+"partielle": true
+},
+"13-14": {
+"ville": "Aix-en-Provence",
+"population": 149695,
+"partielle": true
+},
+"13-10": {
+"ville": "Gardanne",
+"population": 21597,
+"partielle": false
+},
+"13-15": {
+"ville": "Châteaurenard",
+"population": 16545,
+"partielle": false
+},
+"13-16": {
+"ville": "Arles",
+"population": 51811,
+"partielle": false
+},
+"13-9": {
+"ville": "Aubagne",
+"population": 47529,
+"partielle": false
+},
+"13-8": {
+"ville": "Salon-de-Provence",
+"population": 44194,
+"partielle": false
+},
+"13-12": {
+"ville": "Vitrolles",
+"population": 36758,
+"partielle": false
+},
+"13-13": {
+"ville": "Martigues",
+"population": 48298,
+"partielle": false
+},
+"13-1": {
+"ville": "Marseille",
+"population": 886040,
+"partielle": true
+},
+"13-2": {
+"ville": "Marseille",
+"population": 886040,
+"partielle": true
+},
+"13-3": {
+"ville": "Marseille",
+"population": 886040,
+"partielle": true
+},
+"13-4": {
+"ville": "Marseille",
+"population": 886040,
+"partielle": true
+},
+"13-5": {
+"ville": "Marseille",
+"population": 886040,
+"partielle": true
+},
+"13-6": {
+"ville": "Marseille",
+"population": 886040,
+"partielle": true
+},
+"13-7": {
+"ville": "Marseille",
+"population": 886040,
+"partielle": true
+},
+"14-4": {
+"ville": "Ouistreham",
+"population": 9212,
+"partielle": false
+},
+"14-6": {
+"ville": "Vire Normandie",
+"population": 17457,
+"partielle": false
+},
+"14-5": {
+"ville": "Bayeux",
+"population": 12659,
+"partielle": false
+},
+"14-3": {
+"ville": "Lisieux",
+"population": 19645,
+"partielle": false
+},
+"14-2": {
+"ville": "Caen",
+"population": 109400,
+"partielle": true
+},
+"14-1": {
+"ville": "Caen",
+"population": 109400,
+"partielle": true
+},
+"15-2": {
+"ville": "Saint-Flour",
+"population": 6391,
+"partielle": false
+},
+"15-1": {
+"ville": "Aurillac",
+"population": 26214,
+"partielle": false
+},
+"16-3": {
+"ville": "Brie",
+"population": 4125,
+"partielle": false
+},
+"16-2": {
+"ville": "Cognac",
+"population": 18532,
+"partielle": false
+},
+"16-1": {
+"ville": "Angoulême",
+"population": 41908,
+"partielle": false
+},
+"17-4": {
+"ville": "Royan",
+"population": 19425,
+"partielle": true
+},
+"17-2": {
+"ville": "Rochefort",
+"population": 23460,
+"partielle": false
+},
+"17-3": {
+"ville": "Saintes",
+"population": 25363,
+"partielle": false
+},
+"17-1": {
+"ville": "La Rochelle",
+"population": 79851,
+"partielle": false
+},
+"17-5": {
+"ville": "Royan",
+"population": 19425,
+"partielle": true
+},
+"18-1": {
+"ville": "Bourges",
+"population": 64186,
+"partielle": true
+},
+"18-3": {
+"ville": "Bourges",
+"population": 64186,
+"partielle": true
+},
+"18-2": {
+"ville": "Bourges",
+"population": 64186,
+"partielle": true
+},
+"19-1": {
+"ville": "Tulle",
+"population": 13401,
+"partielle": false
+},
+"19-2": {
+"ville": "Brive-la-Gaillarde",
+"population": 47095,
+"partielle": false
+},
+"2A-1": {
+"ville": "Ajaccio",
+"population": 76320,
+"partielle": true
+},
+"2A-2": {
+"ville": "Ajaccio",
+"population": 76320,
+"partielle": true
+},
+"2B-2": {
+"ville": "Corte",
+"population": 7819,
+"partielle": false
+},
+"2B-1": {
+"ville": "Bastia",
+"population": 46867,
+"partielle": false
+},
+"21-5": {
+"ville": "Beaune",
+"population": 20352,
+"partielle": false
+},
+"21-4": {
+"ville": "Châtillon-sur-Seine",
+"population": 5443,
+"partielle": false
+},
+"21-1": {
+"ville": "Dijon",
+"population": 161830,
+"partielle": true
+},
+"21-3": {
+"ville": "Dijon",
+"population": 161830,
+"partielle": true
+},
+"21-2": {
+"ville": "Dijon",
+"population": 161830,
+"partielle": true
+},
+"22-3": {
+"ville": "Lamballe-Armor",
+"population": 17241,
+"partielle": false
+},
+"22-2": {
+"ville": "Dinan",
+"population": 14764,
+"partielle": false
+},
+"22-4": {
+"ville": "Guingamp",
+"population": 7111,
+"partielle": false
+},
+"22-5": {
+"ville": "Lannion",
+"population": 20315,
+"partielle": false
+},
+"22-1": {
+"ville": "Saint-Brieuc",
+"population": 44364,
+"partielle": false
+},
+"23-1": {
+"ville": "Guéret",
+"population": 12955,
+"partielle": false
+},
+"24-3": {
+"ville": "Bassillac et Auberoche",
+"population": 4361,
+"partielle": true
+},
+"24-4": {
+"ville": "Boulazac Isle Manoire",
+"population": 10759,
+"partielle": false
+},
+"24-2": {
+"ville": "Bergerac",
+"population": 27110,
+"partielle": false
+},
+"24-1": {
+"ville": "Périgueux",
+"population": 29055,
+"partielle": false
+},
+"25-1": {
+"ville": "Besançon",
+"population": 118489,
+"partielle": true
+},
+"25-3": {
+"ville": "Montbéliard",
+"population": 24672,
+"partielle": false
+},
+"25-4": {
+"ville": "Audincourt",
+"population": 14071,
+"partielle": false
+},
+"25-5": {
+"ville": "Pontarlier",
+"population": 18067,
+"partielle": false
+},
+"25-2": {
+"ville": "Besançon",
+"population": 118489,
+"partielle": true
+},
+"26-3": {
+"ville": "Saint-Paul-Trois-Châteaux",
+"population": 8981,
+"partielle": false
+},
+"26-4": {
+"ville": "Romans-sur-Isère",
+"population": 33464,
+"partielle": false
+},
+"26-2": {
+"ville": "Montélimar",
+"population": 40595,
+"partielle": false
+},
+"26-1": {
+"ville": "Valence",
+"population": 64458,
+"partielle": false
+},
+"27-2": {
+"ville": "Évreux",
+"population": 49360,
+"partielle": true
+},
+"27-1": {
+"ville": "Évreux",
+"population": 49360,
+"partielle": true
+},
+"27-4": {
+"ville": "Louviers",
+"population": 18705,
+"partielle": false
+},
+"27-3": {
+"ville": "Pont-Audemer",
+"population": 10023,
+"partielle": false
+},
+"27-5": {
+"ville": "Vernon",
+"population": 25290,
+"partielle": false
+},
+"28-2": {
+"ville": "Dreux",
+"population": 31543,
+"partielle": false
+},
+"28-4": {
+"ville": "Châteaudun",
+"population": 12830,
+"partielle": false
+},
+"28-3": {
+"ville": "Chartres",
+"population": 38324,
+"partielle": true
+},
+"28-1": {
+"ville": "Chartres",
+"population": 38324,
+"partielle": true
+},
+"29-6": {
+"ville": "Plougastel-Daoulas",
+"population": 13434,
+"partielle": false
+},
+"29-8": {
+"ville": "Concarneau",
+"population": 20845,
+"partielle": false
+},
+"29-7": {
+"ville": "Douarnenez",
+"population": 14068,
+"partielle": false
+},
+"29-1": {
+"ville": "Quimper",
+"population": 64385,
+"partielle": false
+},
+"29-5": {
+"ville": "Landerneau",
+"population": 16363,
+"partielle": false
+},
+"29-2": {
+"ville": "Brest",
+"population": 142346,
+"partielle": true
+},
+"29-4": {
+"ville": "Morlaix",
+"population": 15194,
+"partielle": false
+},
+"29-3": {
+"ville": "Brest",
+"population": 142346,
+"partielle": true
+},
+"30-6": {
+"ville": "Nîmes",
+"population": 151839,
+"partielle": true
+},
+"30-5": {
+"ville": "Alès",
+"population": 46125,
+"partielle": true
+},
+"30-2": {
+"ville": "Saint-Gilles",
+"population": 14734,
+"partielle": false
+},
+"30-4": {
+"ville": "Alès",
+"population": 46125,
+"partielle": true
+},
+"30-3": {
+"ville": "Bagnols-sur-Cèze",
+"population": 18112,
+"partielle": false
+},
+"30-1": {
+"ville": "Nîmes",
+"population": 151839,
+"partielle": true
+},
+"31-8": {
+"ville": "Saint-Gaudens",
+"population": 12139,
+"partielle": false
+},
+"31-7": {
+"ville": "Muret",
+"population": 26079,
+"partielle": false
+},
+"31-10": {
+"ville": "Castanet-Tolosan",
+"population": 15317,
+"partielle": false
+},
+"31-5": {
+"ville": "Castelginest",
+"population": 11271,
+"partielle": false
+},
+"31-2": {
+"ville": "Toulouse",
+"population": 514819,
+"partielle": true
+},
+"31-3": {
+"ville": "Toulouse",
+"population": 514819,
+"partielle": true
+},
+"31-1": {
+"ville": "Toulouse",
+"population": 514819,
+"partielle": true
+},
+"31-6": {
+"ville": "Colomiers",
+"population": 40882,
+"partielle": false
+},
+"31-9": {
+"ville": "Toulouse",
+"population": 514819,
+"partielle": true
+},
+"31-4": {
+"ville": "Toulouse",
+"population": 514819,
+"partielle": true
+},
+"32-1": {
+"ville": "Auch",
+"population": 22428,
+"partielle": false
+},
+"32-2": {
+"ville": "L'Isle-Jourdain",
+"population": 9537,
+"partielle": false
+},
+"33-11": {
+"ville": "Saint-André-de-Cubzac",
+"population": 12626,
+"partielle": false
+},
+"33-12": {
+"ville": "Créon",
+"population": 4950,
+"partielle": false
+},
+"33-4": {
+"ville": "Cenon",
+"population": 26834,
+"partielle": false
+},
+"33-8": {
+"ville": "La Teste-de-Buch",
+"population": 27566,
+"partielle": false
+},
+"33-9": {
+"ville": "Léognan",
+"population": 10670,
+"partielle": false
+},
+"33-5": {
+"ville": "Eysines",
+"population": 24825,
+"partielle": false
+},
+"33-10": {
+"ville": "Libourne",
+"population": 25036,
+"partielle": false
+},
+"33-3": {
+"ville": "Bordeaux",
+"population": 267991,
+"partielle": true
+},
+"33-1": {
+"ville": "Bordeaux",
+"population": 267991,
+"partielle": true
+},
+"33-2": {
+"ville": "Bordeaux",
+"population": 267991,
+"partielle": true
+},
+"33-7": {
+"ville": "Pessac",
+"population": 67339,
+"partielle": false
+},
+"33-6": {
+"ville": "Mérignac",
+"population": 78090,
+"partielle": false
+},
+"34-7": {
+"ville": "Sète",
+"population": 45337,
+"partielle": false
+},
+"34-5": {
+"ville": "Clermont-l'Hérault",
+"population": 9461,
+"partielle": false
+},
+"34-4": {
+"ville": "Mèze",
+"population": 12669,
+"partielle": false
+},
+"34-3": {
+"ville": "Montpellier",
+"population": 310240,
+"partielle": true
+},
+"34-8": {
+"ville": "Montpellier",
+"population": 310240,
+"partielle": true
+},
+"34-6": {
+"ville": "Béziers",
+"population": 81545,
+"partielle": false
+},
+"34-9": {
+"ville": "Montpellier",
+"population": 310240,
+"partielle": true
+},
+"34-1": {
+"ville": "Montpellier",
+"population": 310240,
+"partielle": true
+},
+"34-2": {
+"ville": "Montpellier",
+"population": 310240,
+"partielle": true
+},
+"35-2": {
+"ville": "Rennes",
+"population": 230890,
+"partielle": true
+},
+"35-5": {
+"ville": "Vitré",
+"population": 19365,
+"partielle": false
+},
+"35-6": {
+"ville": "Fougères",
+"population": 20307,
+"partielle": false
+},
+"35-7": {
+"ville": "Saint-Malo",
+"population": 47439,
+"partielle": false
+},
+"35-4": {
+"ville": "Redon",
+"population": 9542,
+"partielle": false
+},
+"35-3": {
+"ville": "Rennes",
+"population": 230890,
+"partielle": true
+},
+"35-1": {
+"ville": "Rennes",
+"population": 230890,
+"partielle": true
+},
+"35-8": {
+"ville": "Rennes",
+"population": 230890,
+"partielle": true
+},
+"36-2": {
+"ville": "Issoudun",
+"population": 11159,
+"partielle": false
+},
+"36-1": {
+"ville": "Châteauroux",
+"population": 42963,
+"partielle": false
+},
+"37-3": {
+"ville": "Saint-Pierre-des-Corps",
+"population": 15898,
+"partielle": false
+},
+"37-5": {
+"ville": "Tours",
+"population": 139259,
+"partielle": true
+},
+"37-2": {
+"ville": "Amboise",
+"population": 12937,
+"partielle": false
+},
+"37-4": {
+"ville": "Joué-lès-Tours",
+"population": 38423,
+"partielle": false
+},
+"37-1": {
+"ville": "Tours",
+"population": 139259,
+"partielle": true
+},
+"38-5": {
+"ville": "Saint-Égrève",
+"population": 17986,
+"partielle": false
+},
+"38-10": {
+"ville": "Bourgoin-Jallieu",
+"population": 30151,
+"partielle": true
+},
+"38-7": {
+"ville": "Roussillon",
+"population": 8595,
+"partielle": false
+},
+"38-9": {
+"ville": "Voiron",
+"population": 21847,
+"partielle": false
+},
+"38-4": {
+"ville": "Fontaine",
+"population": 22020,
+"partielle": true
+},
+"38-6": {
+"ville": "Bourgoin-Jallieu",
+"population": 30151,
+"partielle": true
+},
+"38-8": {
+"ville": "Vienne",
+"population": 31778,
+"partielle": false
+},
+"38-1": {
+"ville": "Grenoble",
+"population": 156140,
+"partielle": true
+},
+"38-2": {
+"ville": "Saint-Martin-d'Hères",
+"population": 37695,
+"partielle": false
+},
+"38-3": {
+"ville": "Grenoble",
+"population": 156140,
+"partielle": true
+},
+"39-3": {
+"ville": "Dole",
+"population": 23840,
+"partielle": false
+},
+"39-1": {
+"ville": "Lons-le-Saunier",
+"population": 16618,
+"partielle": false
+},
+"39-2": {
+"ville": "Saint-Claude",
+"population": 8386,
+"partielle": false
+},
+"40-3": {
+"ville": "Aire-sur-l'Adour",
+"population": 6211,
+"partielle": false
+},
+"40-2": {
+"ville": "Dax",
+"population": 22109,
+"partielle": false
+},
+"40-1": {
+"ville": "Mont-de-Marsan",
+"population": 31592,
+"partielle": false
+},
+"41-3": {
+"ville": "Vendôme",
+"population": 15758,
+"partielle": false
+},
+"41-1": {
+"ville": "Blois",
+"population": 47219,
+"partielle": false
+},
+"41-2": {
+"ville": "Romorantin-Lanthenay",
+"population": 18373,
+"partielle": false
+},
+"42-4": {
+"ville": "Firminy",
+"population": 17060,
+"partielle": false
+},
+"42-6": {
+"ville": "Montbrison",
+"population": 16123,
+"partielle": false
+},
+"42-5": {
+"ville": "Roanne",
+"population": 35409,
+"partielle": false
+},
+"42-3": {
+"ville": "Saint-Chamond",
+"population": 35646,
+"partielle": false
+},
+"42-1": {
+"ville": "Saint-Étienne",
+"population": 173136,
+"partielle": true
+},
+"42-2": {
+"ville": "Saint-Étienne",
+"population": 173136,
+"partielle": true
+},
+"43-2": {
+"ville": "Le Puy-en-Velay",
+"population": 18540,
+"partielle": true
+},
+"43-1": {
+"ville": "Le Puy-en-Velay",
+"population": 18540,
+"partielle": true
+},
+"44-6": {
+"ville": "Châteaubriant",
+"population": 12260,
+"partielle": false
+},
+"44-10": {
+"ville": "Vertou",
+"population": 26227,
+"partielle": false
+},
+"44-9": {
+"ville": "Pornic",
+"population": 18745,
+"partielle": false
+},
+"44-7": {
+"ville": "La Baule-Escoublac",
+"population": 16912,
+"partielle": false
+},
+"44-4": {
+"ville": "Nantes",
+"population": 327734,
+"partielle": true
+},
+"44-8": {
+"ville": "Saint-Nazaire",
+"population": 74568,
+"partielle": false
+},
+"44-5": {
+"ville": "Nantes",
+"population": 327734,
+"partielle": true
+},
+"44-3": {
+"ville": "Nantes",
+"population": 327734,
+"partielle": true
+},
+"44-1": {
+"ville": "Nantes",
+"population": 327734,
+"partielle": true
+},
+"44-2": {
+"ville": "Nantes",
+"population": 327734,
+"partielle": true
+},
+"45-3": {
+"ville": "Gien",
+"population": 13459,
+"partielle": false
+},
+"45-4": {
+"ville": "Montargis",
+"population": 14825,
+"partielle": false
+},
+"45-5": {
+"ville": "Fleury-les-Aubrais",
+"population": 21804,
+"partielle": false
+},
+"45-2": {
+"ville": "Orléans",
+"population": 116357,
+"partielle": true
+},
+"45-1": {
+"ville": "Orléans",
+"population": 116357,
+"partielle": true
+},
+"45-6": {
+"ville": "Orléans",
+"population": 116357,
+"partielle": true
+},
+"46-1": {
+"ville": "Cahors",
+"population": 20050,
+"partielle": false
+},
+"46-2": {
+"ville": "Figeac",
+"population": 9793,
+"partielle": false
+},
+"47-1": {
+"ville": "Agen",
+"population": 32801,
+"partielle": false
+},
+"47-2": {
+"ville": "Marmande",
+"population": 17328,
+"partielle": false
+},
+"47-3": {
+"ville": "Villeneuve-sur-Lot",
+"population": 22350,
+"partielle": false
+},
+"48-1": {
+"ville": "Mende",
+"population": 12464,
+"partielle": false
+},
+"49-3": {
+"ville": "Saumur",
+"population": 26241,
+"partielle": true
+},
+"49-4": {
+"ville": "Saumur",
+"population": 26241,
+"partielle": true
+},
+"49-1": {
+"ville": "Angers",
+"population": 159022,
+"partielle": true
+},
+"49-2": {
+"ville": "Angers",
+"population": 159022,
+"partielle": true
+},
+"49-6": {
+"ville": "Angers",
+"population": 159022,
+"partielle": true
+},
+"49-7": {
+"ville": "Angers",
+"population": 159022,
+"partielle": true
+},
+"49-5": {
+"ville": "Cholet",
+"population": 54404,
+"partielle": false
+},
+"50-1": {
+"ville": "Saint-Lô",
+"population": 19471,
+"partielle": false
+},
+"50-3": {
+"ville": "Coutances",
+"population": 8321,
+"partielle": false
+},
+"50-4": {
+"ville": "Cherbourg-en-Cotentin",
+"population": 78258,
+"partielle": false
+},
+"50-2": {
+"ville": "Granville",
+"population": 12510,
+"partielle": false
+},
+"51-5": {
+"ville": "Vitry-le-François",
+"population": 10996,
+"partielle": false
+},
+"51-3": {
+"ville": "Reims",
+"population": 177674,
+"partielle": true
+},
+"51-4": {
+"ville": "Reims",
+"population": 177674,
+"partielle": true
+},
+"51-2": {
+"ville": "Reims",
+"population": 177674,
+"partielle": true
+},
+"51-1": {
+"ville": "Reims",
+"population": 177674,
+"partielle": true
+},
+"52-1": {
+"ville": "Chaumont",
+"population": 20827,
+"partielle": false
+},
+"52-2": {
+"ville": "Saint-Dizier",
+"population": 22858,
+"partielle": false
+},
+"53-2": {
+"ville": "Laval",
+"population": 49400,
+"partielle": true
+},
+"53-3": {
+"ville": "Mayenne",
+"population": 12883,
+"partielle": false
+},
+"53-1": {
+"ville": "Laval",
+"population": 49400,
+"partielle": true
+},
+"54-6": {
+"ville": "Pont-à-Mousson",
+"population": 14190,
+"partielle": false
+},
+"54-5": {
+"ville": "Toul",
+"population": 15768,
+"partielle": false
+},
+"54-1": {
+"ville": "Nancy",
+"population": 103671,
+"partielle": true
+},
+"54-3": {
+"ville": "Longwy",
+"population": 15679,
+"partielle": false
+},
+"54-4": {
+"ville": "Lunéville",
+"population": 18262,
+"partielle": false
+},
+"54-2": {
+"ville": "Nancy",
+"population": 103671,
+"partielle": true
+},
+"55-1": {
+"ville": "Bar-le-Duc",
+"population": 14607,
+"partielle": false
+},
+"55-2": {
+"ville": "Verdun",
+"population": 16890,
+"partielle": false
+},
+"56-4": {
+"ville": "Ploërmel",
+"population": 10163,
+"partielle": false
+},
+"56-1": {
+"ville": "Vannes",
+"population": 55790,
+"partielle": false
+},
+"56-2": {
+"ville": "Auray",
+"population": 14207,
+"partielle": false
+},
+"56-3": {
+"ville": "Pontivy",
+"population": 14640,
+"partielle": false
+},
+"56-6": {
+"ville": "Hennebont",
+"population": 15910,
+"partielle": false
+},
+"56-5": {
+"ville": "Lorient",
+"population": 58329,
+"partielle": false
+},
+"57-9": {
+"ville": "Thionville",
+"population": 42658,
+"partielle": false
+},
+"57-4": {
+"ville": "Sarrebourg",
+"population": 12170,
+"partielle": false
+},
+"57-5": {
+"ville": "Sarreguemines",
+"population": 20143,
+"partielle": false
+},
+"57-7": {
+"ville": "Saint-Avold",
+"population": 14755,
+"partielle": false
+},
+"57-8": {
+"ville": "Hayange",
+"population": 15806,
+"partielle": false
+},
+"57-6": {
+"ville": "Forbach",
+"population": 20493,
+"partielle": false
+},
+"57-1": {
+"ville": "Metz",
+"population": 122572,
+"partielle": true
+},
+"57-3": {
+"ville": "Metz",
+"population": 122572,
+"partielle": true
+},
+"57-2": {
+"ville": "Metz",
+"population": 122572,
+"partielle": true
+},
+"58-2": {
+"ville": "Varennes-Vauzelles",
+"population": 9146,
+"partielle": false
+},
+"58-1": {
+"ville": "Nevers",
+"population": 33085,
+"partielle": false
+},
+"59-18": {
+"ville": "Cambrai",
+"population": 31134,
+"partielle": false
+},
+"59-19": {
+"ville": "Denain",
+"population": 20665,
+"partielle": false
+},
+"59-3": {
+"ville": "Maubeuge",
+"population": 28767,
+"partielle": false
+},
+"59-6": {
+"ville": "Orchies",
+"population": 8396,
+"partielle": false
+},
+"59-5": {
+"ville": "Wattignies",
+"population": 15525,
+"partielle": false
+},
+"59-16": {
+"ville": "Sin-le-Noble",
+"population": 16076,
+"partielle": false
+},
+"59-2": {
+"ville": "Lille",
+"population": 238246,
+"partielle": true
+},
+"59-20": {
+"ville": "Saint-Amand-les-Eaux",
+"population": 15974,
+"partielle": false
+},
+"59-17": {
+"ville": "Douai",
+"population": 40250,
+"partielle": false
+},
+"59-14": {
+"ville": "Dunkerque",
+"population": 86263,
+"partielle": true
+},
+"59-11": {
+"ville": "Lille",
+"population": 238246,
+"partielle": true
+},
+"59-15": {
+"ville": "Hazebrouck",
+"population": 21912,
+"partielle": false
+},
+"59-21": {
+"ville": "Valenciennes",
+"population": 43468,
+"partielle": false
+},
+"59-12": {
+"ville": "Hautmont",
+"population": 14152,
+"partielle": false
+},
+"59-9": {
+"ville": "Lille",
+"population": 238246,
+"partielle": true
+},
+"59-10": {
+"ville": "Tourcoing",
+"population": 98772,
+"partielle": true
+},
+"59-13": {
+"ville": "Dunkerque",
+"population": 86263,
+"partielle": true
+},
+"59-4": {
+"ville": "Lille",
+"population": 238246,
+"partielle": true
+},
+"59-7": {
+"ville": "Roubaix",
+"population": 98286,
+"partielle": true
+},
+"59-1": {
+"ville": "Lille",
+"population": 238246,
+"partielle": true
+},
+"59-8": {
+"ville": "Roubaix",
+"population": 98286,
+"partielle": true
+},
+"60-2": {
+"ville": "Beauvais",
+"population": 55550,
+"partielle": true
+},
+"60-1": {
+"ville": "Beauvais",
+"population": 55550,
+"partielle": true
+},
+"60-4": {
+"ville": "Senlis",
+"population": 15157,
+"partielle": false
+},
+"60-7": {
+"ville": "Creil",
+"population": 36301,
+"partielle": true
+},
+"60-3": {
+"ville": "Creil",
+"population": 36301,
+"partielle": true
+},
+"60-6": {
+"ville": "Compiègne",
+"population": 40761,
+"partielle": true
+},
+"60-5": {
+"ville": "Compiègne",
+"population": 40761,
+"partielle": true
+},
+"61-1": {
+"ville": "Alençon",
+"population": 25490,
+"partielle": false
+},
+"61-3": {
+"ville": "Flers",
+"population": 14432,
+"partielle": false
+},
+"61-2": {
+"ville": "L'Aigle",
+"population": 7663,
+"partielle": false
+},
+"62-2": {
+"ville": "Arras",
+"population": 42875,
+"partielle": false
+},
+"62-1": {
+"ville": "Brebières",
+"population": 5283,
+"partielle": false
+},
+"62-6": {
+"ville": "Guînes",
+"population": 5479,
+"partielle": false
+},
+"62-8": {
+"ville": "Saint-Omer",
+"population": 14382,
+"partielle": false
+},
+"62-4": {
+"ville": "Berck",
+"population": 12951,
+"partielle": false
+},
+"62-10": {
+"ville": "Bruay-la-Buissière",
+"population": 21424,
+"partielle": false
+},
+"62-9": {
+"ville": "Béthune",
+"population": 25224,
+"partielle": false
+},
+"62-12": {
+"ville": "Liévin",
+"population": 30063,
+"partielle": false
+},
+"62-3": {
+"ville": "Lens",
+"population": 32920,
+"partielle": false
+},
+"62-7": {
+"ville": "Calais",
+"population": 67571,
+"partielle": false
+},
+"62-5": {
+"ville": "Boulogne-sur-Mer",
+"population": 40539,
+"partielle": false
+},
+"62-11": {
+"ville": "Hénin-Beaumont",
+"population": 25688,
+"partielle": false
+},
+"63-2": {
+"ville": "Riom",
+"population": 18820,
+"partielle": false
+},
+"63-5": {
+"ville": "Pont-du-Château",
+"population": 12412,
+"partielle": false
+},
+"63-4": {
+"ville": "Clermont-Ferrand",
+"population": 146351,
+"partielle": true
+},
+"63-3": {
+"ville": "Clermont-Ferrand",
+"population": 146351,
+"partielle": true
+},
+"63-1": {
+"ville": "Clermont-Ferrand",
+"population": 146351,
+"partielle": true
+},
+"64-2": {
+"ville": "Pau",
+"population": 80441,
+"partielle": true
+},
+"64-3": {
+"ville": "Pau",
+"population": 80441,
+"partielle": true
+},
+"64-4": {
+"ville": "Oloron-Sainte-Marie",
+"population": 10684,
+"partielle": false
+},
+"64-6": {
+"ville": "Biarritz",
+"population": 26206,
+"partielle": false
+},
+"64-5": {
+"ville": "Bayonne",
+"population": 54306,
+"partielle": false
+},
+"64-1": {
+"ville": "Pau",
+"population": 80441,
+"partielle": true
+},
+"65-2": {
+"ville": "Tarbes",
+"population": 44399,
+"partielle": true
+},
+"65-1": {
+"ville": "Tarbes",
+"population": 44399,
+"partielle": true
+},
+"66-4": {
+"ville": "Argelès-sur-Mer",
+"population": 10616,
+"partielle": false
+},
+"66-2": {
+"ville": "Perpignan",
+"population": 121616,
+"partielle": true
+},
+"66-3": {
+"ville": "Perpignan",
+"population": 121616,
+"partielle": true
+},
+"66-1": {
+"ville": "Perpignan",
+"population": 121616,
+"partielle": true
+},
+"67-4": {
+"ville": "Lingolsheim",
+"population": 20826,
+"partielle": false
+},
+"67-7": {
+"ville": "Saverne",
+"population": 11460,
+"partielle": false
+},
+"67-5": {
+"ville": "Sélestat",
+"population": 19589,
+"partielle": false
+},
+"67-6": {
+"ville": "Obernai",
+"population": 12587,
+"partielle": false
+},
+"67-8": {
+"ville": "Wissembourg",
+"population": 7566,
+"partielle": false
+},
+"67-9": {
+"ville": "Haguenau",
+"population": 36391,
+"partielle": false
+},
+"67-3": {
+"ville": "Strasbourg",
+"population": 293771,
+"partielle": true
+},
+"67-2": {
+"ville": "Strasbourg",
+"population": 293771,
+"partielle": true
+},
+"67-1": {
+"ville": "Strasbourg",
+"population": 293771,
+"partielle": true
+},
+"68-1": {
+"ville": "Colmar",
+"population": 66970,
+"partielle": false
+},
+"68-3": {
+"ville": "Saint-Louis",
+"population": 22805,
+"partielle": false
+},
+"68-2": {
+"ville": "Guebwiller",
+"population": 11243,
+"partielle": false
+},
+"68-4": {
+"ville": "Cernay",
+"population": 12057,
+"partielle": false
+},
+"68-6": {
+"ville": "Mulhouse",
+"population": 104978,
+"partielle": true
+},
+"68-5": {
+"ville": "Mulhouse",
+"population": 104978,
+"partielle": true
+},
+"69-8": {
+"ville": "Écully",
+"population": 17944,
+"partielle": false
+},
+"69-9": {
+"ville": "Villefranche-sur-Saône",
+"population": 36172,
+"partielle": false
+},
+"69-5": {
+"ville": "Caluire-et-Cuire",
+"population": 43597,
+"partielle": false
+},
+"69-11": {
+"ville": "Givors",
+"population": 21379,
+"partielle": false
+},
+"69-10": {
+"ville": "Saint-Genis-Laval",
+"population": 21212,
+"partielle": false
+},
+"69-7": {
+"ville": "Vaulx-en-Velin",
+"population": 53069,
+"partielle": false
+},
+"69-12": {
+"ville": "Oullins-Pierre-Bénite",
+"population": 38168,
+"partielle": false
+},
+"69-1": {
+"ville": "Lyon",
+"population": 519127,
+"partielle": true
+},
+"69-2": {
+"ville": "Lyon",
+"population": 519127,
+"partielle": true
+},
+"69-3": {
+"ville": "Lyon",
+"population": 519127,
+"partielle": true
+},
+"69-4": {
+"ville": "Lyon",
+"population": 519127,
+"partielle": true
+},
+"69-14": {
+"ville": "Vénissieux",
+"population": 65502,
+"partielle": false
+},
+"69-6": {
+"ville": "Villeurbanne",
+"population": 163684,
+"partielle": false
+},
+"69-13": {
+"ville": "Saint-Priest",
+"population": 49229,
+"partielle": true
+},
+"70-2": {
+"ville": "Héricourt",
+"population": 10621,
+"partielle": false
+},
+"70-1": {
+"ville": "Vesoul",
+"population": 15078,
+"partielle": false
+},
+"71-4": {
+"ville": "Chalon-sur-Saône",
+"population": 45102,
+"partielle": true
+},
+"71-3": {
+"ville": "Le Creusot",
+"population": 20509,
+"partielle": false
+},
+"71-2": {
+"ville": "Paray-le-Monial",
+"population": 9291,
+"partielle": false
+},
+"71-1": {
+"ville": "Mâcon",
+"population": 35177,
+"partielle": false
+},
+"71-5": {
+"ville": "Chalon-sur-Saône",
+"population": 45102,
+"partielle": true
+},
+"72-1": {
+"ville": "Le Mans",
+"population": 146249,
+"partielle": true
+},
+"72-5": {
+"ville": "Le Mans",
+"population": 146249,
+"partielle": true
+},
+"72-4": {
+"ville": "Le Mans",
+"population": 146249,
+"partielle": true
+},
+"72-2": {
+"ville": "Le Mans",
+"population": 146249,
+"partielle": true
+},
+"72-3": {
+"ville": "La Flèche",
+"population": 14947,
+"partielle": false
+},
+"73-1": {
+"ville": "Aix-les-Bains",
+"population": 32406,
+"partielle": false
+},
+"73-3": {
+"ville": "La Ravoire",
+"population": 9332,
+"partielle": false
+},
+"73-2": {
+"ville": "Albertville",
+"population": 19978,
+"partielle": false
+},
+"73-4": {
+"ville": "Chambéry",
+"population": 59964,
+"partielle": false
+},
+"74-5": {
+"ville": "Thonon-les-Bains",
+"population": 37928,
+"partielle": false
+},
+"74-2": {
+"ville": "Annecy",
+"population": 132117,
+"partielle": true
+},
+"74-1": {
+"ville": "Annecy",
+"population": 132117,
+"partielle": true
+},
+"74-3": {
+"ville": "Bonneville",
+"population": 13335,
+"partielle": false
+},
+"74-4": {
+"ville": "Annemasse",
+"population": 37628,
+"partielle": false
+},
+"74-6": {
+"ville": "Cluses",
+"population": 17795,
+"partielle": false
+},
+"75-1": {
+"ville": "Paris",
+"population": 2103778,
+"partielle": true
+},
+"75-2": {
+"ville": "Paris",
+"population": 2103778,
+"partielle": true
+},
+"75-3": {
+"ville": "Paris",
+"population": 2103778,
+"partielle": true
+},
+"75-4": {
+"ville": "Paris",
+"population": 2103778,
+"partielle": true
+},
+"75-5": {
+"ville": "Paris",
+"population": 2103778,
+"partielle": true
+},
+"75-6": {
+"ville": "Paris",
+"population": 2103778,
+"partielle": true
+},
+"75-7": {
+"ville": "Paris",
+"population": 2103778,
+"partielle": true
+},
+"75-8": {
+"ville": "Paris",
+"population": 2103778,
+"partielle": true
+},
+"75-9": {
+"ville": "Paris",
+"population": 2103778,
+"partielle": true
+},
+"75-10": {
+"ville": "Paris",
+"population": 2103778,
+"partielle": true
+},
+"75-11": {
+"ville": "Paris",
+"population": 2103778,
+"partielle": true
+},
+"75-12": {
+"ville": "Paris",
+"population": 2103778,
+"partielle": true
+},
+"75-13": {
+"ville": "Paris",
+"population": 2103778,
+"partielle": true
+},
+"75-14": {
+"ville": "Paris",
+"population": 2103778,
+"partielle": true
+},
+"75-15": {
+"ville": "Paris",
+"population": 2103778,
+"partielle": true
+},
+"75-16": {
+"ville": "Paris",
+"population": 2103778,
+"partielle": true
+},
+"75-17": {
+"ville": "Paris",
+"population": 2103778,
+"partielle": true
+},
+"75-18": {
+"ville": "Paris",
+"population": 2103778,
+"partielle": true
+},
+"76-10": {
+"ville": "Yvetot",
+"population": 11438,
+"partielle": false
+},
+"76-9": {
+"ville": "Fécamp",
+"population": 17313,
+"partielle": false
+},
+"76-6": {
+"ville": "Dieppe",
+"population": 28496,
+"partielle": false
+},
+"76-2": {
+"ville": "Bois-Guillaume",
+"population": 14539,
+"partielle": false
+},
+"76-5": {
+"ville": "Barentin",
+"population": 12022,
+"partielle": false
+},
+"76-4": {
+"ville": "Le Grand-Quevilly",
+"population": 25789,
+"partielle": false
+},
+"76-7": {
+"ville": "Le Havre",
+"population": 166687,
+"partielle": true
+},
+"76-1": {
+"ville": "Rouen",
+"population": 117662,
+"partielle": true
+},
+"76-8": {
+"ville": "Le Havre",
+"population": 166687,
+"partielle": true
+},
+"76-3": {
+"ville": "Rouen",
+"population": 117662,
+"partielle": true
+},
+"77-2": {
+"ville": "Fontainebleau",
+"population": 15583,
+"partielle": false
+},
+"77-4": {
+"ville": "Provins",
+"population": 11632,
+"partielle": false
+},
+"77-3": {
+"ville": "Montereau-Fault-Yonne",
+"population": 22279,
+"partielle": false
+},
+"77-7": {
+"ville": "Villeparisis",
+"population": 26946,
+"partielle": false
+},
+"77-1": {
+"ville": "Melun",
+"population": 45995,
+"partielle": false
+},
+"77-6": {
+"ville": "Meaux",
+"population": 56905,
+"partielle": false
+},
+"77-5": {
+"ville": "Coulommiers",
+"population": 16374,
+"partielle": false
+},
+"77-11": {
+"ville": "Savigny-le-Temple",
+"population": 31148,
+"partielle": false
+},
+"77-9": {
+"ville": "Pontault-Combault",
+"population": 39096,
+"partielle": false
+},
+"77-10": {
+"ville": "Chelles",
+"population": 54620,
+"partielle": false
+},
+"77-8": {
+"ville": "Bussy-Saint-Georges",
+"population": 27498,
+"partielle": false
+},
+"78-10": {
+"ville": "Rambouillet",
+"population": 27724,
+"partielle": false
+},
+"78-6": {
+"ville": "Saint-Germain-en-Laye",
+"population": 45931,
+"partielle": false
+},
+"78-9": {
+"ville": "Les Mureaux",
+"population": 34632,
+"partielle": false
+},
+"78-12": {
+"ville": "Poissy",
+"population": 40983,
+"partielle": false
+},
+"78-7": {
+"ville": "Conflans-Sainte-Honorine",
+"population": 36958,
+"partielle": false
+},
+"78-3": {
+"ville": "Le Chesnay-Rocquencourt",
+"population": 30689,
+"partielle": false
+},
+"78-11": {
+"ville": "Trappes",
+"population": 34689,
+"partielle": false
+},
+"78-8": {
+"ville": "Mantes-la-Jolie",
+"population": 43526,
+"partielle": false
+},
+"78-2": {
+"ville": "Versailles",
+"population": 84095,
+"partielle": true
+},
+"78-4": {
+"ville": "Houilles",
+"population": 33983,
+"partielle": false
+},
+"78-1": {
+"ville": "Versailles",
+"population": 84095,
+"partielle": true
+},
+"78-5": {
+"ville": "Sartrouville",
+"population": 52763,
+"partielle": false
+},
+"79-3": {
+"ville": "Bressuire",
+"population": 19970,
+"partielle": false
+},
+"79-2": {
+"ville": "Parthenay",
+"population": 10140,
+"partielle": false
+},
+"79-1": {
+"ville": "Niort",
+"population": 59854,
+"partielle": false
+},
+"80-1": {
+"ville": "Amiens",
+"population": 136449,
+"partielle": true
+},
+"80-5": {
+"ville": "Albert",
+"population": 9521,
+"partielle": false
+},
+"80-3": {
+"ville": "Friville-Escarbotin",
+"population": 4306,
+"partielle": false
+},
+"80-4": {
+"ville": "Corbie",
+"population": 5982,
+"partielle": false
+},
+"80-2": {
+"ville": "Amiens",
+"population": 136449,
+"partielle": true
+},
+"81-3": {
+"ville": "Castres",
+"population": 42505,
+"partielle": true
+},
+"81-1": {
+"ville": "Albi",
+"population": 51290,
+"partielle": true
+},
+"81-2": {
+"ville": "Albi",
+"population": 51290,
+"partielle": true
+},
+"82-2": {
+"ville": "Castelsarrasin",
+"population": 14343,
+"partielle": false
+},
+"82-1": {
+"ville": "Montauban",
+"population": 62945,
+"partielle": false
+},
+"83-5": {
+"ville": "Fréjus",
+"population": 59719,
+"partielle": false
+},
+"83-8": {
+"ville": "Draguignan",
+"population": 40826,
+"partielle": false
+},
+"83-4": {
+"ville": "Sainte-Maxime",
+"population": 14118,
+"partielle": false
+},
+"83-7": {
+"ville": "La Seyne-sur-Mer",
+"population": 63732,
+"partielle": false
+},
+"83-6": {
+"ville": "Saint-Maximin-la-Sainte-Baume",
+"population": 17896,
+"partielle": false
+},
+"83-2": {
+"ville": "Toulon",
+"population": 179116,
+"partielle": true
+},
+"83-3": {
+"ville": "Hyères",
+"population": 55858,
+"partielle": false
+},
+"83-1": {
+"ville": "Toulon",
+"population": 179116,
+"partielle": true
+},
+"84-3": {
+"ville": "Carpentras",
+"population": 31619,
+"partielle": true
+},
+"84-5": {
+"ville": "Carpentras",
+"population": 31619,
+"partielle": true
+},
+"84-1": {
+"ville": "Avignon",
+"population": 92188,
+"partielle": false
+},
+"84-4": {
+"ville": "Orange",
+"population": 29706,
+"partielle": false
+},
+"84-2": {
+"ville": "Cavaillon",
+"population": 25636,
+"partielle": false
+},
+"85-5": {
+"ville": "Fontenay-le-Comte",
+"population": 14059,
+"partielle": false
+},
+"85-3": {
+"ville": "Les Sables-d'Olonne",
+"population": 49603,
+"partielle": false
+},
+"85-1": {
+"ville": "La Roche-sur-Yon",
+"population": 54849,
+"partielle": true
+},
+"85-2": {
+"ville": "La Roche-sur-Yon",
+"population": 54849,
+"partielle": true
+},
+"85-4": {
+"ville": "Montaigu-Vendée",
+"population": 21134,
+"partielle": false
+},
+"86-3": {
+"ville": "Chauvigny",
+"population": 7007,
+"partielle": false
+},
+"86-1": {
+"ville": "Poitiers",
+"population": 89916,
+"partielle": true
+},
+"86-4": {
+"ville": "Châtellerault",
+"population": 31003,
+"partielle": false
+},
+"86-2": {
+"ville": "Poitiers",
+"population": 89916,
+"partielle": true
+},
+"87-2": {
+"ville": "Limoges",
+"population": 129937,
+"partielle": true
+},
+"87-1": {
+"ville": "Limoges",
+"population": 129937,
+"partielle": true
+},
+"87-3": {
+"ville": "Limoges",
+"population": 129937,
+"partielle": true
+},
+"88-4": {
+"ville": "Neufchâteau",
+"population": 6732,
+"partielle": false
+},
+"88-2": {
+"ville": "Saint-Dié-des-Vosges",
+"population": 19251,
+"partielle": false
+},
+"88-1": {
+"ville": "Épinal",
+"population": 32251,
+"partielle": false
+},
+"88-3": {
+"ville": "Gérardmer",
+"population": 7581,
+"partielle": false
+},
+"89-2": {
+"ville": "Migennes",
+"population": 6688,
+"partielle": false
+},
+"89-1": {
+"ville": "Auxerre",
+"population": 35097,
+"partielle": false
+},
+"89-3": {
+"ville": "Sens",
+"population": 27106,
+"partielle": false
+},
+"90-1": {
+"ville": "Belfort",
+"population": 45912,
+"partielle": true
+},
+"90-2": {
+"ville": "Belfort",
+"population": 45912,
+"partielle": true
+},
+"91-2": {
+"ville": "Étampes",
+"population": 26857,
+"partielle": false
+},
+"91-3": {
+"ville": "Brétigny-sur-Orge",
+"population": 26658,
+"partielle": false
+},
+"91-7": {
+"ville": "Savigny-sur-Orge",
+"population": 37601,
+"partielle": false
+},
+"91-4": {
+"ville": "Longjumeau",
+"population": 21996,
+"partielle": false
+},
+"91-5": {
+"ville": "Les Ulis",
+"population": 25886,
+"partielle": false
+},
+"91-1": {
+"ville": "Évry-Courcouronnes",
+"population": 66919,
+"partielle": false
+},
+"91-9": {
+"ville": "Ris-Orangis",
+"population": 31189,
+"partielle": false
+},
+"91-8": {
+"ville": "Vigneux-sur-Seine",
+"population": 31466,
+"partielle": false
+},
+"91-6": {
+"ville": "Massy",
+"population": 51729,
+"partielle": false
+},
+"91-10": {
+"ville": "Sainte-Geneviève-des-Bois",
+"population": 35438,
+"partielle": false
+},
+"92-13": {
+"ville": "Antony",
+"population": 64263,
+"partielle": false
+},
+"92-2": {
+"ville": "Asnières-sur-Seine",
+"population": 93941,
+"partielle": false
+},
+"92-11": {
+"ville": "Montrouge",
+"population": 46324,
+"partielle": false
+},
+"92-3": {
+"ville": "Courbevoie",
+"population": 82902,
+"partielle": true
+},
+"92-9": {
+"ville": "Boulogne-Billancourt",
+"population": 119019,
+"partielle": true
+},
+"92-10": {
+"ville": "Boulogne-Billancourt",
+"population": 119019,
+"partielle": true
+},
+"92-12": {
+"ville": "Clamart",
+"population": 58576,
+"partielle": false
+},
+"92-8": {
+"ville": "Meudon",
+"population": 46334,
+"partielle": true
+},
+"92-5": {
+"ville": "Levallois-Perret",
+"population": 68092,
+"partielle": false
+},
+"92-1": {
+"ville": "Colombes",
+"population": 91053,
+"partielle": true
+},
+"92-6": {
+"ville": "Courbevoie",
+"population": 82902,
+"partielle": true
+},
+"92-7": {
+"ville": "Rueil-Malmaison",
+"population": 82874,
+"partielle": false
+},
+"92-4": {
+"ville": "Nanterre",
+"population": 97783,
+"partielle": false
+},
+"93-6": {
+"ville": "Aubervilliers",
+"population": 88365,
+"partielle": false
+},
+"93-10": {
+"ville": "Aulnay-sous-Bois",
+"population": 87599,
+"partielle": false
+},
+"93-7": {
+"ville": "Montreuil",
+"population": 111934,
+"partielle": false
+},
+"93-4": {
+"ville": "Le Blanc-Mesnil",
+"population": 62376,
+"partielle": false
+},
+"93-5": {
+"ville": "Drancy",
+"population": 72390,
+"partielle": false
+},
+"93-9": {
+"ville": "Bondy",
+"population": 50595,
+"partielle": true
+},
+"93-12": {
+"ville": "Livry-Gargan",
+"population": 47228,
+"partielle": false
+},
+"93-1": {
+"ville": "Saint-Denis",
+"population": 149077,
+"partielle": true
+},
+"93-8": {
+"ville": "Rosny-sous-Bois",
+"population": 47180,
+"partielle": false
+},
+"93-3": {
+"ville": "Noisy-le-Grand",
+"population": 72978,
+"partielle": false
+},
+"93-2": {
+"ville": "Saint-Denis",
+"population": 149077,
+"partielle": true
+},
+"93-11": {
+"ville": "Sevran",
+"population": 52535,
+"partielle": false
+},
+"94-3": {
+"ville": "Villeneuve-Saint-Georges",
+"population": 36221,
+"partielle": false
+},
+"94-9": {
+"ville": "Vitry-sur-Seine",
+"population": 93963,
+"partielle": true
+},
+"94-11": {
+"ville": "Villejuif",
+"population": 60183,
+"partielle": false
+},
+"94-1": {
+"ville": "Créteil",
+"population": 93397,
+"partielle": true
+},
+"94-5": {
+"ville": "Champigny-sur-Marne",
+"population": 78072,
+"partielle": true
+},
+"94-8": {
+"ville": "Maisons-Alfort",
+"population": 56799,
+"partielle": false
+},
+"94-4": {
+"ville": "Villiers-sur-Marne",
+"population": 33162,
+"partielle": false
+},
+"94-7": {
+"ville": "Thiais",
+"population": 32918,
+"partielle": false
+},
+"94-2": {
+"ville": "Créteil",
+"population": 93397,
+"partielle": true
+},
+"94-6": {
+"ville": "Fontenay-sous-Bois",
+"population": 53757,
+"partielle": false
+},
+"94-10": {
+"ville": "Vitry-sur-Seine",
+"population": 93963,
+"partielle": true
+},
+"95-1": {
+"ville": "Pontoise",
+"population": 31970,
+"partielle": false
+},
+"95-6": {
+"ville": "Sannois",
+"population": 26924,
+"partielle": false
+},
+"95-5": {
+"ville": "Argenteuil",
+"population": 106130,
+"partielle": false
+},
+"95-8": {
+"ville": "Sarcelles",
+"population": 59173,
+"partielle": true
+},
+"95-2": {
+"ville": "Cergy",
+"population": 70906,
+"partielle": true
+},
+"95-7": {
+"ville": "Sarcelles",
+"population": 59173,
+"partielle": true
+},
+"95-3": {
+"ville": "Herblay-sur-Seine",
+"population": 31779,
+"partielle": false
+},
+"95-9": {
+"ville": "Goussainville",
+"population": 31301,
+"partielle": false
+},
+"95-10": {
+"ville": "Cergy",
+"population": 70906,
+"partielle": true
+},
+"95-4": {
+"ville": "Franconville",
+"population": 37754,
+"partielle": false
+}
+}

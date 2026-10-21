@@ -22,6 +22,13 @@
 "num": "5",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Pas-de-Calais",
+"code_dep": "62",
+"num": "5",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "1825": [
@@ -214,6 +221,13 @@
 "num": "2",
 "debut": "2024-06-30",
 "fin": null
+},
+{
+"departement": "Hérault",
+"code_dep": "34",
+"num": "2",
+"debut": "2024-06-30",
+"fin": null
 }
 ],
 "19398": [
@@ -298,6 +312,13 @@
 "num": "17",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Nord",
+"code_dep": "59",
+"num": "17",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19274": [
@@ -362,6 +383,13 @@
 "num": "10",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Loire-Atlantique",
+"code_dep": "44",
+"num": "10",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "460": [
@@ -415,6 +443,13 @@
 "num": "3",
 "debut": "2007-06-20",
 "fin": "2012-06-19"
+},
+{
+"departement": "Mayenne",
+"code_dep": "53",
+"num": "3",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Mayenne",
@@ -557,6 +592,13 @@
 "num": "8",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Seine-Saint-Denis",
+"code_dep": "93",
+"num": "8",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19742": [
@@ -573,6 +615,13 @@
 "num": "2",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Nouvelle-Calédonie",
+"code_dep": "988",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19433": [
@@ -623,6 +672,13 @@
 "num": "4",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Vosges",
+"code_dep": "88",
+"num": "4",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "3617": [
@@ -662,6 +718,13 @@
 "num": "4",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Maine-et-Loire",
+"code_dep": "49",
+"num": "4",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19249": [
@@ -685,9 +748,23 @@
 "num": "11",
 "debut": "2017-06-18",
 "fin": "2022-06-21"
+},
+{
+"departement": "Pas-de-Calais",
+"code_dep": "62",
+"num": "11",
+"debut": "2024-06-30",
+"fin": null
 }
 ],
 "19978": [
+{
+"departement": "Marne",
+"code_dep": "51",
+"num": "3",
+"debut": "2024-07-07",
+"fin": null
+},
 {
 "departement": "Marne",
 "code_dep": "51",
@@ -760,6 +837,13 @@
 "num": "2",
 "debut": "2025-09-28",
 "fin": null
+},
+{
+"departement": "Paris",
+"code_dep": "75",
+"num": "2",
+"debut": "2025-09-28",
+"fin": null
 }
 ],
 "19175": [
@@ -783,6 +867,13 @@
 "num": "1",
 "debut": "2017-06-18",
 "fin": "2022-06-21"
+},
+{
+"departement": "Nièvre",
+"code_dep": "58",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19697": [
@@ -906,6 +997,13 @@
 "num": "7",
 "debut": "2024-06-30",
 "fin": null
+},
+{
+"departement": "Hauts-de-Seine",
+"code_dep": "92",
+"num": "7",
+"debut": "2024-06-30",
+"fin": null
 }
 ],
 "19155": [
@@ -936,6 +1034,13 @@
 "num": "7",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Seine-Maritime",
+"code_dep": "76",
+"num": "7",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "10673": [
@@ -991,6 +1096,13 @@
 "num": "2",
 "debut": "2002-06-19",
 "fin": "2007-06-19"
+},
+{
+"departement": "Savoie",
+"code_dep": "73",
+"num": "2",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19182": [
@@ -1051,6 +1163,13 @@
 }
 ],
 "19981": [
+{
+"departement": "Isère",
+"code_dep": "38",
+"num": "9",
+"debut": "2024-07-07",
+"fin": null
+},
 {
 "departement": "Isère",
 "code_dep": "38",
@@ -1160,9 +1279,30 @@
 "num": "3",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Ain",
+"code_dep": "01",
+"num": "3",
+"debut": "2024-07-07",
+"fin": "2024-10-21"
+},
+{
+"departement": "Ain",
+"code_dep": "01",
+"num": "3",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19945": [
+{
+"departement": "Côte-d'Or",
+"code_dep": "21",
+"num": "2",
+"debut": "2024-07-07",
+"fin": null
+},
 {
 "departement": "Côte-d'Or",
 "code_dep": "21",
@@ -1181,6 +1321,13 @@
 }
 ],
 "7481": [
+{
+"departement": "Doubs",
+"code_dep": "25",
+"num": "2",
+"debut": "2024-07-07",
+"fin": null
+},
 {
 "departement": "Doubs",
 "code_dep": "25",
@@ -1228,6 +1375,20 @@
 "num": "7",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Isère",
+"code_dep": "38",
+"num": "7",
+"debut": "2024-07-07",
+"fin": "2025-01-23"
+},
+{
+"departement": "Isère",
+"code_dep": "38",
+"num": "7",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19745": [
@@ -1237,6 +1398,13 @@
 "num": "5",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Essonne",
+"code_dep": "91",
+"num": "5",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Essonne",
@@ -1294,6 +1462,13 @@
 "num": "13",
 "debut": "2024-07-07",
 "fin": "2026-04-19"
+},
+{
+"departement": "Nord",
+"code_dep": "59",
+"num": "13",
+"debut": "2024-07-07",
+"fin": "2026-04-19"
 }
 ],
 "17343": [
@@ -1333,9 +1508,23 @@
 "num": "7",
 "debut": "2024-06-30",
 "fin": "2026-04-25"
+},
+{
+"departement": "Hérault",
+"code_dep": "34",
+"num": "7",
+"debut": "2024-06-30",
+"fin": "2026-04-25"
 }
 ],
 "20020": [
+{
+"departement": "Nord",
+"code_dep": "59",
+"num": "21",
+"debut": "2024-07-07",
+"fin": "2025-11-05"
+},
 {
 "departement": "Nord",
 "code_dep": "59",
@@ -1383,6 +1572,13 @@
 "num": "5",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Maine-et-Loire",
+"code_dep": "49",
+"num": "5",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Maine-et-Loire",
@@ -1479,6 +1675,13 @@
 "num": "3",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Seine-Saint-Denis",
+"code_dep": "93",
+"num": "3",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "10645": [
@@ -1523,6 +1726,13 @@
 "num": "5",
 "debut": "2012-06-20",
 "fin": "2017-06-20"
+},
+{
+"departement": "Puy-de-Dôme",
+"code_dep": "63",
+"num": "5",
+"debut": "2024-07-07",
+"fin": "2025-03-31"
 }
 ],
 "19806": [
@@ -1539,6 +1749,13 @@
 "num": "16",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Bouches-du-Rhône",
+"code_dep": "13",
+"num": "16",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "18383": [
@@ -1667,6 +1884,13 @@
 "num": "4",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Morbihan",
+"code_dep": "56",
+"num": "4",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19782": [
@@ -1676,6 +1900,13 @@
 "num": "1",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Bas-Rhin",
+"code_dep": "67",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Bas-Rhin",
@@ -1708,6 +1939,13 @@
 "num": "3",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Calvados",
+"code_dep": "14",
+"num": "3",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19348": [
@@ -1724,6 +1962,13 @@
 "num": "6",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Loiret",
+"code_dep": "45",
+"num": "6",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Loiret",
@@ -1797,6 +2042,13 @@
 "num": "6",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Loire",
+"code_dep": "42",
+"num": "6",
+"debut": "2024-07-07",
+"fin": "2026-07-08"
 }
 ],
 "2967": [
@@ -1852,6 +2104,13 @@
 "num": "4",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Var",
+"code_dep": "83",
+"num": "4",
+"debut": "2024-06-30",
+"fin": null
 }
 ],
 "19018": [
@@ -1875,6 +2134,13 @@
 "num": "11",
 "debut": "2017-06-18",
 "fin": "2022-06-21"
+},
+{
+"departement": "Seine-Saint-Denis",
+"code_dep": "93",
+"num": "11",
+"debut": "2024-06-30",
+"fin": null
 }
 ],
 "1656": [
@@ -1955,6 +2221,13 @@
 "num": "10",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Gironde",
+"code_dep": "33",
+"num": "10",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19736": [
@@ -1964,6 +2237,13 @@
 "num": "3",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Eure",
+"code_dep": "27",
+"num": "3",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Eure",
@@ -2064,6 +2344,13 @@
 "num": "11",
 "debut": "2024-07-07",
 "fin": "2025-01-23"
+},
+{
+"departement": "Français établis hors de France",
+"code_dep": "099",
+"num": "11",
+"debut": "2024-07-07",
+"fin": "2025-01-23"
 }
 ],
 "19802": [
@@ -2073,6 +2360,13 @@
 "num": "5",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Bas-Rhin",
+"code_dep": "67",
+"num": "5",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Bas-Rhin",
@@ -2146,6 +2440,13 @@
 "num": "1",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Lozère",
+"code_dep": "48",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19746": [
@@ -2155,6 +2456,13 @@
 "num": "1",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Allier",
+"code_dep": "03",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Allier",
@@ -2285,6 +2593,13 @@
 "num": "10",
 "debut": "2024-06-30",
 "fin": null
+},
+{
+"departement": "Paris",
+"code_dep": "75",
+"num": "10",
+"debut": "2024-06-30",
+"fin": null
 }
 ],
 "10719": [
@@ -2333,6 +2648,13 @@
 "num": "9",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Bouches-du-Rhône",
+"code_dep": "13",
+"num": "9",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19732": [
@@ -2342,6 +2664,13 @@
 "num": "6",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Alpes-Maritimes",
+"code_dep": "06",
+"num": "6",
+"debut": "2024-06-30",
+"fin": "2026-04-01"
 },
 {
 "departement": "Alpes-Maritimes",
@@ -2422,6 +2751,13 @@
 "num": "5",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Morbihan",
+"code_dep": "56",
+"num": "5",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "18395": [
@@ -2486,6 +2822,13 @@
 "num": "2",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Yonne",
+"code_dep": "89",
+"num": "2",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19734": [
@@ -2520,6 +2863,13 @@
 "num": "2",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Nièvre",
+"code_dep": "58",
+"num": "2",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19665": [
@@ -2529,6 +2879,13 @@
 "num": "2",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Meuse",
+"code_dep": "55",
+"num": "2",
+"debut": "2024-06-30",
+"fin": null
 },
 {
 "departement": "Meuse",
@@ -2662,6 +3019,13 @@
 "num": "1",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Seine-Saint-Denis",
+"code_dep": "93",
+"num": "1",
+"debut": "2024-06-30",
+"fin": null
 }
 ],
 "7800": [
@@ -2729,6 +3093,20 @@
 "num": "6",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Calvados",
+"code_dep": "14",
+"num": "6",
+"debut": "2024-07-07",
+"fin": "2025-01-23"
+},
+{
+"departement": "Calvados",
+"code_dep": "14",
+"num": "6",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19447": [
@@ -2824,6 +3202,13 @@
 "num": "3",
 "debut": "2024-06-30",
 "fin": null
+},
+{
+"departement": "Nord",
+"code_dep": "59",
+"num": "3",
+"debut": "2024-06-30",
+"fin": null
 }
 ],
 "19193": [
@@ -2865,6 +3250,13 @@
 "num": "1",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Aube",
+"code_dep": "10",
+"num": "1",
+"debut": "2024-06-30",
+"fin": null
 },
 {
 "departement": "Aube",
@@ -3020,6 +3412,13 @@
 "num": "3",
 "debut": "2024-06-30",
 "fin": null
+},
+{
+"departement": "Rhône",
+"code_dep": "69",
+"num": "3",
+"debut": "2024-06-30",
+"fin": null
 }
 ],
 "19596": [
@@ -3029,6 +3428,13 @@
 "num": "4",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Bas-Rhin",
+"code_dep": "67",
+"num": "4",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Bas-Rhin",
@@ -3159,6 +3565,13 @@
 "num": "5",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Gironde",
+"code_dep": "33",
+"num": "5",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "10741": [
@@ -3241,6 +3654,13 @@
 "num": "2",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Loire",
+"code_dep": "42",
+"num": "2",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "10784": [
@@ -3314,6 +3734,13 @@
 "num": "1",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Vendée",
+"code_dep": "85",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19203": [
@@ -3330,6 +3757,13 @@
 "num": "1",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Indre",
+"code_dep": "36",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Indre",
@@ -3456,9 +3890,23 @@
 "num": "1",
 "debut": "2025-10-12",
 "fin": null
+},
+{
+"departement": "Tarn-et-Garonne",
+"code_dep": "82",
+"num": "1",
+"debut": "2025-10-12",
+"fin": null
 }
 ],
 "19888": [
+{
+"departement": "Meuse",
+"code_dep": "55",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
+},
 {
 "departement": "Meuse",
 "code_dep": "55",
@@ -3506,6 +3954,13 @@
 "num": "3",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Loire-Atlantique",
+"code_dep": "44",
+"num": "3",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19513": [
@@ -3525,6 +3980,13 @@
 }
 ],
 "19964": [
+{
+"departement": "Lot-et-Garonne",
+"code_dep": "47",
+"num": "3",
+"debut": "2024-07-07",
+"fin": "2026-04-20"
+},
 {
 "departement": "Lot-et-Garonne",
 "code_dep": "47",
@@ -3661,9 +4123,23 @@
 "num": "2",
 "debut": "2023-04-15",
 "fin": "2024-06-09"
+},
+{
+"departement": "Français établis hors de France",
+"code_dep": "099",
+"num": "2",
+"debut": "2024-07-07",
+"fin": "2025-11-12"
 }
 ],
 "20070": [
+{
+"departement": "Lot-et-Garonne",
+"code_dep": "47",
+"num": "3",
+"debut": "2024-07-07",
+"fin": null
+},
 {
 "departement": "Lot-et-Garonne",
 "code_dep": "47",
@@ -3800,6 +4276,13 @@
 "num": "1",
 "debut": "2024-07-07",
 "fin": "2026-04-26"
+},
+{
+"departement": "Aveyron",
+"code_dep": "12",
+"num": "1",
+"debut": "2024-07-07",
+"fin": "2026-04-26"
 }
 ],
 "3960": [
@@ -3825,6 +4308,13 @@
 "num": "5",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Loire",
+"code_dep": "42",
+"num": "5",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19503": [
@@ -3843,6 +4333,13 @@
 "num": "4",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Aisne",
+"code_dep": "02",
+"num": "4",
+"debut": "2024-06-30",
+"fin": null
 },
 {
 "departement": "Aisne",
@@ -3891,6 +4388,13 @@
 "num": "19",
 "debut": "2024-06-30",
 "fin": null
+},
+{
+"departement": "Nord",
+"code_dep": "59",
+"num": "19",
+"debut": "2024-06-30",
+"fin": null
 }
 ],
 "19817": [
@@ -3900,6 +4404,13 @@
 "num": "2",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Gironde",
+"code_dep": "33",
+"num": "2",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Gironde",
@@ -3939,6 +4450,13 @@
 "num": "3",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Yvelines",
+"code_dep": "78",
+"num": "3",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19961": [
@@ -3948,9 +4466,23 @@
 "num": "1",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Dordogne",
+"code_dep": "24",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "20021": [
+{
+"departement": "Ain",
+"code_dep": "01",
+"num": "3",
+"debut": "2024-07-07",
+"fin": "2025-01-23"
+},
 {
 "departement": "Ain",
 "code_dep": "01",
@@ -4062,6 +4594,13 @@
 "num": "1",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Alpes-de-Haute-Provence",
+"code_dep": "04",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19082": [
@@ -4096,6 +4635,13 @@
 "num": "1",
 "debut": "2017-06-18",
 "fin": "2022-06-21"
+},
+{
+"departement": "Moselle",
+"code_dep": "57",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Moselle",
@@ -4229,6 +4775,13 @@
 "num": "2",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Martinique",
+"code_dep": "972",
+"num": "2",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19207": [
@@ -4284,6 +4837,13 @@
 "num": "1",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Yvelines",
+"code_dep": "78",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Yvelines",
@@ -4353,6 +4913,20 @@
 "num": "2",
 "debut": "2017-06-18",
 "fin": "2022-06-21"
+},
+{
+"departement": "Jura",
+"code_dep": "39",
+"num": "2",
+"debut": "2024-07-07",
+"fin": "2025-02-13"
+},
+{
+"departement": "Jura",
+"code_dep": "39",
+"num": "2",
+"debut": "2025-04-06",
+"fin": null
 }
 ],
 "19354": [
@@ -4421,6 +4995,13 @@
 "num": "1",
 "debut": "2024-07-07",
 "fin": "2025-11-13"
+},
+{
+"departement": "Loiret",
+"code_dep": "45",
+"num": "1",
+"debut": "2024-07-07",
+"fin": "2025-11-13"
 }
 ],
 "18397": [
@@ -4439,6 +5020,13 @@
 "num": "2",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Haut-Rhin",
+"code_dep": "68",
+"num": "2",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Haut-Rhin",
@@ -4551,6 +5139,13 @@
 "num": "3",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Réunion",
+"code_dep": "974",
+"num": "3",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "17283": [
@@ -4581,6 +5176,13 @@
 "num": "1",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Cantal",
+"code_dep": "15",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "7582": [
@@ -4593,6 +5195,13 @@
 }
 ],
 "20024": [
+{
+"departement": "Bas-Rhin",
+"code_dep": "67",
+"num": "7",
+"debut": "2024-07-07",
+"fin": "2025-01-23"
+},
 {
 "departement": "Bas-Rhin",
 "code_dep": "67",
@@ -4622,6 +5231,13 @@
 "num": "2",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Vienne",
+"code_dep": "86",
+"num": "2",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "5794": [
@@ -4634,6 +5250,20 @@
 }
 ],
 "20027": [
+{
+"departement": "Nord",
+"code_dep": "59",
+"num": "14",
+"debut": "2024-07-07",
+"fin": null
+},
+{
+"departement": "Nord",
+"code_dep": "59",
+"num": "14",
+"debut": "2024-07-07",
+"fin": "2025-01-23"
+},
 {
 "departement": "Nord",
 "code_dep": "59",
@@ -4670,6 +5300,13 @@
 "num": "7",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Loire-Atlantique",
+"code_dep": "44",
+"num": "7",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "365": [
@@ -4696,6 +5333,13 @@
 }
 ],
 "19946": [
+{
+"departement": "Paris",
+"code_dep": "75",
+"num": "11",
+"debut": "2024-07-07",
+"fin": null
+},
 {
 "departement": "Paris",
 "code_dep": "75",
@@ -4859,6 +5503,13 @@
 "num": "15",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Paris",
+"code_dep": "75",
+"num": "15",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "10758": [
@@ -4950,6 +5601,13 @@
 "num": "1",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Meurthe-et-Moselle",
+"code_dep": "54",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "14360": [
@@ -4991,6 +5649,13 @@
 "num": "2",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Lot-et-Garonne",
+"code_dep": "47",
+"num": "2",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19835": [
@@ -5028,6 +5693,20 @@
 }
 ],
 "20037": [
+{
+"departement": "Orne",
+"code_dep": "61",
+"num": "2",
+"debut": "2024-07-07",
+"fin": null
+},
+{
+"departement": "Orne",
+"code_dep": "61",
+"num": "2",
+"debut": "2024-07-07",
+"fin": "2025-11-05"
+},
 {
 "departement": "Orne",
 "code_dep": "61",
@@ -5114,6 +5793,13 @@
 "num": "1",
 "debut": "2024-07-07",
 "fin": "2025-11-12"
+},
+{
+"departement": "Morbihan",
+"code_dep": "56",
+"num": "1",
+"debut": "2024-07-07",
+"fin": "2025-11-12"
 }
 ],
 "19818": [
@@ -5123,6 +5809,13 @@
 "num": "6",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Finistère",
+"code_dep": "29",
+"num": "6",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Finistère",
@@ -5190,6 +5883,13 @@
 "num": "1",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Ain",
+"code_dep": "01",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19060": [
@@ -5213,6 +5913,13 @@
 "num": "5",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Rhône",
+"code_dep": "69",
+"num": "5",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "17213": [
@@ -5275,6 +5982,13 @@
 "num": "2",
 "debut": "2017-06-18",
 "fin": "2022-06-21"
+},
+{
+"departement": "Gard",
+"code_dep": "30",
+"num": "2",
+"debut": "2024-06-30",
+"fin": null
 }
 ],
 "19615": [
@@ -5291,6 +6005,13 @@
 "num": "3",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Charente",
+"code_dep": "16",
+"num": "3",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19666": [
@@ -5300,6 +6021,13 @@
 "num": "4",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Doubs",
+"code_dep": "25",
+"num": "4",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Doubs",
@@ -5455,6 +6183,13 @@
 "num": "2",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Essonne",
+"code_dep": "91",
+"num": "2",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "17300": [
@@ -5489,6 +6224,13 @@
 "num": "2",
 "debut": "2024-07-07",
 "fin": "2025-07-11"
+},
+{
+"departement": "Paris",
+"code_dep": "75",
+"num": "2",
+"debut": "2024-07-07",
+"fin": "2025-07-11"
 }
 ],
 "19820": [
@@ -5505,6 +6247,13 @@
 "num": "9",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Seine-Saint-Denis",
+"code_dep": "93",
+"num": "9",
+"debut": "2024-06-30",
+"fin": null
 }
 ],
 "19710": [
@@ -5521,6 +6270,13 @@
 "num": "3",
 "debut": "2024-06-30",
 "fin": null
+},
+{
+"departement": "Vaucluse",
+"code_dep": "84",
+"num": "3",
+"debut": "2024-06-30",
+"fin": null
 }
 ],
 "19775": [
@@ -5530,6 +6286,20 @@
 "num": "9",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Seine-Maritime",
+"code_dep": "76",
+"num": "9",
+"debut": "2024-07-07",
+"fin": null
+},
+{
+"departement": "Seine-Maritime",
+"code_dep": "76",
+"num": "9",
+"debut": "2024-07-07",
+"fin": "2024-10-21"
 },
 {
 "departement": "Seine-Maritime",
@@ -5565,6 +6335,13 @@
 }
 ],
 "19879": [
+{
+"departement": "Pas-de-Calais",
+"code_dep": "62",
+"num": "3",
+"debut": "2024-06-30",
+"fin": null
+},
 {
 "departement": "Pas-de-Calais",
 "code_dep": "62",
@@ -5610,9 +6387,23 @@
 "num": "6",
 "debut": "2024-06-30",
 "fin": "2026-09-30"
+},
+{
+"departement": "Var",
+"code_dep": "83",
+"num": "6",
+"debut": "2024-06-30",
+"fin": "2026-09-30"
 }
 ],
 "20034": [
+{
+"departement": "Nord",
+"code_dep": "59",
+"num": "6",
+"debut": "2024-07-07",
+"fin": "2026-03-26"
+},
 {
 "departement": "Nord",
 "code_dep": "59",
@@ -5642,6 +6433,13 @@
 "num": "1",
 "debut": "2017-06-18",
 "fin": "2020-07-29"
+},
+{
+"departement": "Haut-Rhin",
+"code_dep": "68",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19714": [
@@ -5651,6 +6449,13 @@
 "num": "1",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Eure",
+"code_dep": "27",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Eure",
@@ -5674,6 +6479,13 @@
 "num": "6",
 "debut": "2024-06-30",
 "fin": null
+},
+{
+"departement": "Paris",
+"code_dep": "75",
+"num": "6",
+"debut": "2024-06-30",
+"fin": null
 }
 ],
 "19688": [
@@ -5683,6 +6495,13 @@
 "num": "2",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Loire-Atlantique",
+"code_dep": "44",
+"num": "2",
+"debut": "2024-06-30",
+"fin": null
 },
 {
 "departement": "Loire-Atlantique",
@@ -5706,9 +6525,23 @@
 "num": "1",
 "debut": "2025-01-19",
 "fin": "2026-03-26"
+},
+{
+"departement": "Isère",
+"code_dep": "38",
+"num": "1",
+"debut": "2025-01-19",
+"fin": "2026-03-26"
 }
 ],
 "19911": [
+{
+"departement": "Haute-Corse",
+"code_dep": "2B",
+"num": "2",
+"debut": "2024-07-07",
+"fin": null
+},
 {
 "departement": "Haute-Corse",
 "code_dep": "2B",
@@ -5724,6 +6557,13 @@
 "num": "8",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Val-d'Oise",
+"code_dep": "95",
+"num": "8",
+"debut": "2024-06-30",
+"fin": null
 },
 {
 "departement": "Val-d'Oise",
@@ -5754,9 +6594,23 @@
 "num": "8",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Finistère",
+"code_dep": "29",
+"num": "8",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19982": [
+{
+"departement": "Haute-Garonne",
+"code_dep": "31",
+"num": "10",
+"debut": "2024-07-07",
+"fin": null
+},
 {
 "departement": "Haute-Garonne",
 "code_dep": "31",
@@ -5847,6 +6701,13 @@
 "num": "1",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Haute-Vienne",
+"code_dep": "87",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "17288": [
@@ -5900,6 +6761,13 @@
 }
 ],
 "19992": [
+{
+"departement": "Vaucluse",
+"code_dep": "84",
+"num": "5",
+"debut": "2024-07-07",
+"fin": null
+},
 {
 "departement": "Vaucluse",
 "code_dep": "84",
@@ -6002,6 +6870,13 @@
 "num": "4",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Côtes-d'Armor",
+"code_dep": "22",
+"num": "4",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "11035": [
@@ -6088,6 +6963,13 @@
 "num": "4",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Dordogne",
+"code_dep": "24",
+"num": "4",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Dordogne",
@@ -6204,6 +7086,13 @@
 "num": "4",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Ain",
+"code_dep": "01",
+"num": "4",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Ain",
@@ -6366,6 +7255,13 @@
 "num": "2",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Aude",
+"code_dep": "11",
+"num": "2",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "5772": [
@@ -6426,6 +7322,13 @@
 }
 ],
 "19894": [
+{
+"departement": "Martinique",
+"code_dep": "972",
+"num": "3",
+"debut": "2024-07-07",
+"fin": null
+},
 {
 "departement": "Martinique",
 "code_dep": "972",
@@ -6574,6 +7477,13 @@
 "num": "2",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Ardennes",
+"code_dep": "08",
+"num": "2",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19071": [
@@ -6590,6 +7500,13 @@
 "num": "5",
 "debut": "2017-06-18",
 "fin": "2022-06-21"
+},
+{
+"departement": "Hauts-de-Seine",
+"code_dep": "92",
+"num": "5",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Hauts-de-Seine",
@@ -6631,6 +7548,13 @@
 "num": "1",
 "debut": "2017-06-11",
 "fin": "2022-06-21"
+},
+{
+"departement": "Paris",
+"code_dep": "75",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Paris",
@@ -6720,6 +7644,13 @@
 "num": "1",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Calvados",
+"code_dep": "14",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "18576": [
@@ -6768,6 +7699,13 @@
 "num": "3",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Tarn",
+"code_dep": "81",
+"num": "3",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19441": [
@@ -6786,6 +7724,13 @@
 "num": "9",
 "debut": "2024-07-07",
 "fin": "2024-11-30"
+},
+{
+"departement": "Hauts-de-Seine",
+"code_dep": "92",
+"num": "9",
+"debut": "2024-07-07",
+"fin": "2024-11-30"
 }
 ],
 "19487": [
@@ -6798,6 +7743,13 @@
 }
 ],
 "20065": [
+{
+"departement": "Gard",
+"code_dep": "30",
+"num": "3",
+"debut": "2024-07-07",
+"fin": null
+},
 {
 "departement": "Gard",
 "code_dep": "30",
@@ -6852,6 +7804,13 @@
 "num": "3",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Morbihan",
+"code_dep": "56",
+"num": "3",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19223": [
@@ -6875,6 +7834,13 @@
 "num": "10",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Français établis hors de France",
+"code_dep": "099",
+"num": "10",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19825": [
@@ -6884,6 +7850,13 @@
 "num": "11",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Nord",
+"code_dep": "59",
+"num": "11",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Nord",
@@ -6964,6 +7937,13 @@
 "num": "5",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Hérault",
+"code_dep": "34",
+"num": "5",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Hérault",
@@ -7062,6 +8042,13 @@
 "num": "8",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Nord",
+"code_dep": "59",
+"num": "8",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "4375": [
@@ -7119,6 +8106,13 @@
 "num": "2",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Guyane",
+"code_dep": "973",
+"num": "2",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "2902": [
@@ -7162,6 +8156,13 @@
 "num": "4",
 "debut": "2024-06-30",
 "fin": null
+},
+{
+"departement": "Alpes-Maritimes",
+"code_dep": "06",
+"num": "4",
+"debut": "2024-06-30",
+"fin": null
 }
 ],
 "18385": [
@@ -7194,9 +8195,23 @@
 "num": "1",
 "debut": "2024-06-30",
 "fin": null
+},
+{
+"departement": "Pas-de-Calais",
+"code_dep": "62",
+"num": "1",
+"debut": "2024-06-30",
+"fin": null
 }
 ],
 "19919": [
+{
+"departement": "Loiret",
+"code_dep": "45",
+"num": "3",
+"debut": "2024-07-07",
+"fin": null
+},
 {
 "departement": "Loiret",
 "code_dep": "45",
@@ -7258,6 +8273,13 @@
 "num": "6",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Rhône",
+"code_dep": "69",
+"num": "6",
+"debut": "2024-07-07",
+"fin": "2026-09-30"
 }
 ],
 "19581": [
@@ -7267,6 +8289,13 @@
 "num": "1",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Pyrénées-Orientales",
+"code_dep": "66",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Pyrénées-Orientales",
@@ -7324,6 +8353,13 @@
 "num": "2",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Aisne",
+"code_dep": "02",
+"num": "2",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Aisne",
@@ -7484,6 +8520,20 @@
 "num": "21",
 "debut": "2024-07-07",
 "fin": "2024-10-21"
+},
+{
+"departement": "Nord",
+"code_dep": "59",
+"num": "21",
+"debut": "2024-07-07",
+"fin": null
+},
+{
+"departement": "Nord",
+"code_dep": "59",
+"num": "21",
+"debut": "2024-07-07",
+"fin": "2024-10-21"
 }
 ],
 "18337": [
@@ -7496,6 +8546,13 @@
 }
 ],
 "20015": [
+{
+"departement": "Oise",
+"code_dep": "60",
+"num": "5",
+"debut": "2024-07-07",
+"fin": null
+},
 {
 "departement": "Oise",
 "code_dep": "60",
@@ -7534,6 +8591,20 @@
 "num": "1",
 "debut": "2022-06-19",
 "fin": "2024-03-08"
+},
+{
+"departement": "Savoie",
+"code_dep": "73",
+"num": "1",
+"debut": "2024-07-07",
+"fin": "2025-11-12"
+},
+{
+"departement": "Savoie",
+"code_dep": "73",
+"num": "1",
+"debut": "2024-07-07",
+"fin": "2024-10-21"
 }
 ],
 "20009": [
@@ -7543,9 +8614,23 @@
 "num": "9",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Seine-et-Marne",
+"code_dep": "77",
+"num": "9",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19917": [
+{
+"departement": "Loire",
+"code_dep": "42",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
+},
 {
 "departement": "Loire",
 "code_dep": "42",
@@ -7595,6 +8680,13 @@
 "num": "12",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Hauts-de-Seine",
+"code_dep": "92",
+"num": "12",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19563": [
@@ -7604,6 +8696,13 @@
 "num": "9",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Haute-Garonne",
+"code_dep": "31",
+"num": "9",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Haute-Garonne",
@@ -7693,6 +8792,13 @@
 "num": "1",
 "debut": "2023-04-02",
 "fin": "2024-06-09"
+},
+{
+"departement": "Ariège",
+"code_dep": "09",
+"num": "1",
+"debut": "2024-06-30",
+"fin": null
 }
 ],
 "19302": [
@@ -7745,6 +8851,13 @@
 "num": "7",
 "debut": "2024-07-07",
 "fin": "2025-11-12"
+},
+{
+"departement": "Val-de-Marne",
+"code_dep": "94",
+"num": "7",
+"debut": "2024-07-07",
+"fin": "2025-11-12"
 }
 ],
 "19617": [
@@ -7761,9 +8874,23 @@
 "num": "4",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Savoie",
+"code_dep": "73",
+"num": "4",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "20055": [
+{
+"departement": "Val-de-Marne",
+"code_dep": "94",
+"num": "7",
+"debut": "2024-07-07",
+"fin": null
+},
 {
 "departement": "Val-de-Marne",
 "code_dep": "94",
@@ -7832,6 +8959,20 @@
 "num": "7",
 "debut": "2024-07-07",
 "fin": "2024-10-21"
+},
+{
+"departement": "Bas-Rhin",
+"code_dep": "67",
+"num": "7",
+"debut": "2024-07-07",
+"fin": null
+},
+{
+"departement": "Bas-Rhin",
+"code_dep": "67",
+"num": "7",
+"debut": "2024-07-07",
+"fin": "2024-10-21"
 }
 ],
 "19651": [
@@ -7866,6 +9007,13 @@
 "num": "6",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Bas-Rhin",
+"code_dep": "67",
+"num": "6",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19644": [
@@ -7875,6 +9023,13 @@
 "num": "2",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Bas-Rhin",
+"code_dep": "67",
+"num": "2",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Bas-Rhin",
@@ -7937,6 +9092,13 @@
 "num": "1",
 "debut": "2017-06-18",
 "fin": "2022-06-21"
+},
+{
+"departement": "Orne",
+"code_dep": "61",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "9621": [
@@ -8022,6 +9184,13 @@
 "num": "12",
 "debut": "2024-06-30",
 "fin": null
+},
+{
+"departement": "Pas-de-Calais",
+"code_dep": "62",
+"num": "12",
+"debut": "2024-06-30",
+"fin": null
 }
 ],
 "2358": [
@@ -8072,6 +9241,13 @@
 "num": "2",
 "debut": "2024-07-07",
 "fin": "2025-11-12"
+},
+{
+"departement": "Pas-de-Calais",
+"code_dep": "62",
+"num": "2",
+"debut": "2024-07-07",
+"fin": "2025-11-12"
 }
 ],
 "19726": [
@@ -8081,6 +9257,13 @@
 "num": "8",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Alpes-Maritimes",
+"code_dep": "06",
+"num": "8",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Alpes-Maritimes",
@@ -8143,6 +9326,13 @@
 "num": "2",
 "debut": "2024-06-30",
 "fin": null
+},
+{
+"departement": "Haute-Saône",
+"code_dep": "70",
+"num": "2",
+"debut": "2024-06-30",
+"fin": null
 }
 ],
 "5212": [
@@ -8161,6 +9351,13 @@
 "num": "1",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Haute-Marne",
+"code_dep": "52",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Haute-Marne",
@@ -8234,9 +9431,23 @@
 "num": "4",
 "debut": "2024-07-07",
 "fin": "2026-09-30"
+},
+{
+"departement": "Hérault",
+"code_dep": "34",
+"num": "4",
+"debut": "2024-07-07",
+"fin": "2026-09-30"
 }
 ],
 "19878": [
+{
+"departement": "Aisne",
+"code_dep": "02",
+"num": "3",
+"debut": "2024-06-30",
+"fin": null
+},
 {
 "departement": "Aisne",
 "code_dep": "02",
@@ -8321,9 +9532,23 @@
 "num": "4",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Eure-et-Loir",
+"code_dep": "28",
+"num": "4",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19952": [
+{
+"departement": "Gard",
+"code_dep": "30",
+"num": "6",
+"debut": "2024-07-07",
+"fin": "2026-09-30"
+},
 {
 "departement": "Gard",
 "code_dep": "30",
@@ -8360,6 +9585,20 @@
 "num": "3",
 "debut": "2017-06-18",
 "fin": "2022-06-21"
+},
+{
+"departement": "Seine-et-Marne",
+"code_dep": "77",
+"num": "3",
+"debut": "2024-07-07",
+"fin": "2024-10-27"
+},
+{
+"departement": "Seine-et-Marne",
+"code_dep": "77",
+"num": "3",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "3292": [
@@ -8422,9 +9661,23 @@
 "num": "3",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Manche",
+"code_dep": "50",
+"num": "3",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19942": [
+{
+"departement": "Val-d'Oise",
+"code_dep": "95",
+"num": "2",
+"debut": "2024-07-07",
+"fin": null
+},
 {
 "departement": "Val-d'Oise",
 "code_dep": "95",
@@ -8456,6 +9709,13 @@
 "num": "1",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Saint-Barthélemy et Saint-Martin",
+"code_dep": "977",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "17331": [
@@ -8513,6 +9773,13 @@
 "num": "8",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Yvelines",
+"code_dep": "78",
+"num": "8",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19048": [
@@ -8536,6 +9803,13 @@
 "num": "3",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Savoie",
+"code_dep": "73",
+"num": "3",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19787": [
@@ -8545,6 +9819,13 @@
 "num": "6",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Seine-et-Marne",
+"code_dep": "77",
+"num": "6",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Seine-et-Marne",
@@ -8570,6 +9851,13 @@
 "num": "5",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Var",
+"code_dep": "83",
+"num": "5",
+"debut": "2024-06-30",
+"fin": null
 },
 {
 "departement": "Var",
@@ -8659,6 +9947,13 @@
 "num": "1",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Hautes-Alpes",
+"code_dep": "05",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "17953": [
@@ -8684,6 +9979,13 @@
 "num": "1",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Haute-Saône",
+"code_dep": "70",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19803": [
@@ -8693,6 +9995,13 @@
 "num": "7",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Seine-et-Marne",
+"code_dep": "77",
+"num": "7",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Seine-et-Marne",
@@ -8741,6 +10050,13 @@
 "num": "2",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Aveyron",
+"code_dep": "12",
+"num": "2",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Aveyron",
@@ -8806,6 +10122,13 @@
 }
 ],
 "20076": [
+{
+"departement": "Vendée",
+"code_dep": "85",
+"num": "2",
+"debut": "2024-07-07",
+"fin": null
+},
 {
 "departement": "Vendée",
 "code_dep": "85",
@@ -8945,6 +10268,13 @@
 "num": "13",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Bouches-du-Rhône",
+"code_dep": "13",
+"num": "13",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "3158": [
@@ -8977,6 +10307,20 @@
 "num": "1",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Savoie",
+"code_dep": "73",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
+},
+{
+"departement": "Savoie",
+"code_dep": "73",
+"num": "1",
+"debut": "2024-07-07",
+"fin": "2025-01-23"
 },
 {
 "departement": "Savoie",
@@ -9123,6 +10467,13 @@
 "num": "11",
 "debut": "2024-06-30",
 "fin": null
+},
+{
+"departement": "Hauts-de-Seine",
+"code_dep": "92",
+"num": "11",
+"debut": "2024-06-30",
+"fin": null
 }
 ],
 "19397": [
@@ -9146,6 +10497,13 @@
 "num": "5",
 "debut": "2017-06-18",
 "fin": "2022-06-21"
+},
+{
+"departement": "Indre-et-Loire",
+"code_dep": "37",
+"num": "5",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "7200": [
@@ -9210,6 +10568,13 @@
 "num": "4",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Français établis hors de France",
+"code_dep": "099",
+"num": "4",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "5720": [
@@ -9265,9 +10630,23 @@
 "num": "6",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Haute-Savoie",
+"code_dep": "74",
+"num": "6",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "20062": [
+{
+"departement": "Alpes-Maritimes",
+"code_dep": "06",
+"num": "6",
+"debut": "2024-06-30",
+"fin": null
+},
 {
 "departement": "Alpes-Maritimes",
 "code_dep": "06",
@@ -9304,6 +10683,13 @@
 "num": "1",
 "debut": "2007-06-20",
 "fin": "2007-07-19"
+},
+{
+"departement": "Haute-Loire",
+"code_dep": "43",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19210": [
@@ -9386,9 +10772,23 @@
 "num": "1",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Seine-et-Marne",
+"code_dep": "77",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19971": [
+{
+"departement": "Oise",
+"code_dep": "60",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
+},
 {
 "departement": "Oise",
 "code_dep": "60",
@@ -9404,6 +10804,13 @@
 "num": "8",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Ille-et-Vilaine",
+"code_dep": "35",
+"num": "8",
+"debut": "2024-06-30",
+"fin": null
 },
 {
 "departement": "Ille-et-Vilaine",
@@ -9450,6 +10857,13 @@
 "num": "4",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Manche",
+"code_dep": "50",
+"num": "4",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Manche",
@@ -9528,6 +10942,13 @@
 "num": "2",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Indre-et-Loire",
+"code_dep": "37",
+"num": "2",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "5428": [
@@ -9576,6 +10997,13 @@
 "num": "4",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Vienne",
+"code_dep": "86",
+"num": "4",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19350": [
@@ -9592,6 +11020,13 @@
 "num": "5",
 "debut": "2017-06-18",
 "fin": "2022-06-21"
+},
+{
+"departement": "Réunion",
+"code_dep": "974",
+"num": "5",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Réunion",
@@ -9679,6 +11114,13 @@
 "num": "6",
 "debut": "2007-06-20",
 "fin": "2012-06-19"
+},
+{
+"departement": "Ille-et-Vilaine",
+"code_dep": "35",
+"num": "6",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Ille-et-Vilaine",
@@ -9787,6 +11229,13 @@
 "num": "1",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Creuse",
+"code_dep": "23",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19613": [
@@ -9803,6 +11252,13 @@
 "num": "2",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Loir-et-Cher",
+"code_dep": "41",
+"num": "2",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19699": [
@@ -9812,6 +11268,13 @@
 "num": "10",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Essonne",
+"code_dep": "91",
+"num": "10",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Essonne",
@@ -9858,6 +11321,13 @@
 "num": "2",
 "debut": "2024-07-07",
 "fin": "2025-11-12"
+},
+{
+"departement": "Ariège",
+"code_dep": "09",
+"num": "2",
+"debut": "2024-07-07",
+"fin": "2025-11-12"
 }
 ],
 "3602": [
@@ -9897,6 +11367,13 @@
 "num": "2",
 "debut": "2024-07-07",
 "fin": "2026-09-30"
+},
+{
+"departement": "Aube",
+"code_dep": "10",
+"num": "2",
+"debut": "2024-07-07",
+"fin": "2026-09-30"
 }
 ],
 "18351": [
@@ -9913,6 +11390,13 @@
 "num": "4",
 "debut": "2012-06-20",
 "fin": "2017-06-20"
+},
+{
+"departement": "Indre-et-Loire",
+"code_dep": "37",
+"num": "4",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19364": [
@@ -9938,6 +11422,13 @@
 "num": "1",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Deux-Sèvres",
+"code_dep": "79",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19777": [
@@ -9954,6 +11445,13 @@
 "num": "3",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Var",
+"code_dep": "83",
+"num": "3",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19805": [
@@ -9963,6 +11461,13 @@
 "num": "2",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Haute-Garonne",
+"code_dep": "31",
+"num": "2",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Haute-Garonne",
@@ -10011,6 +11516,13 @@
 "num": "1",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Gironde",
+"code_dep": "33",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19390": [
@@ -10027,6 +11539,13 @@
 "num": "7",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Finistère",
+"code_dep": "29",
+"num": "7",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Finistère",
@@ -10098,6 +11617,13 @@
 "num": "1",
 "debut": "2007-06-20",
 "fin": "2012-06-19"
+},
+{
+"departement": "Alpes-Maritimes",
+"code_dep": "06",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "3785": [
@@ -10155,6 +11681,13 @@
 "num": "1",
 "debut": "2024-07-07",
 "fin": "2026-04-26"
+},
+{
+"departement": "Charente-Maritime",
+"code_dep": "17",
+"num": "1",
+"debut": "2024-07-07",
+"fin": "2026-04-26"
 }
 ],
 "19258": [
@@ -10173,6 +11706,13 @@
 "num": "14",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Rhône",
+"code_dep": "69",
+"num": "14",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Rhône",
@@ -10271,6 +11811,13 @@
 "num": "2",
 "debut": "2024-06-30",
 "fin": null
+},
+{
+"departement": "Val-de-Marne",
+"code_dep": "94",
+"num": "2",
+"debut": "2024-06-30",
+"fin": null
 }
 ],
 "526": [
@@ -10303,6 +11850,13 @@
 "num": "4",
 "debut": "2017-06-18",
 "fin": "2022-06-21"
+},
+{
+"departement": "Vaucluse",
+"code_dep": "84",
+"num": "4",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19135": [
@@ -10420,6 +11974,13 @@
 "num": "4",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Martinique",
+"code_dep": "972",
+"num": "4",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19141": [
@@ -10452,6 +12013,13 @@
 "num": "3",
 "debut": "2024-07-07",
 "fin": "2026-04-14"
+},
+{
+"departement": "Orne",
+"code_dep": "61",
+"num": "3",
+"debut": "2024-07-07",
+"fin": "2026-04-14"
 }
 ],
 "19304": [
@@ -10475,6 +12043,13 @@
 "num": "17",
 "debut": "2024-06-30",
 "fin": null
+},
+{
+"departement": "Paris",
+"code_dep": "75",
+"num": "17",
+"debut": "2024-06-30",
+"fin": null
 }
 ],
 "19638": [
@@ -10484,6 +12059,13 @@
 "num": "6",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Pas-de-Calais",
+"code_dep": "62",
+"num": "6",
+"debut": "2024-06-30",
+"fin": null
 },
 {
 "departement": "Pas-de-Calais",
@@ -10573,6 +12155,13 @@
 "num": "5",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Haute-Savoie",
+"code_dep": "74",
+"num": "5",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19209": [
@@ -10596,6 +12185,20 @@
 "num": "1",
 "debut": "2017-06-18",
 "fin": "2022-06-21"
+},
+{
+"departement": "Eure-et-Loir",
+"code_dep": "28",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
+},
+{
+"departement": "Eure-et-Loir",
+"code_dep": "28",
+"num": "1",
+"debut": "2024-07-07",
+"fin": "2024-10-21"
 },
 {
 "departement": "Eure-et-Loir",
@@ -10678,6 +12281,13 @@
 "num": "4",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Drôme",
+"code_dep": "26",
+"num": "4",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19831": [
@@ -10687,6 +12297,13 @@
 "num": "1",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Martinique",
+"code_dep": "972",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Martinique",
@@ -10726,6 +12343,13 @@
 "num": "1",
 "debut": "2024-12-08",
 "fin": null
+},
+{
+"departement": "Ardennes",
+"code_dep": "08",
+"num": "1",
+"debut": "2024-12-08",
+"fin": null
 }
 ],
 "19013": [
@@ -10745,6 +12369,13 @@
 }
 ],
 "19938": [
+{
+"departement": "Bouches-du-Rhône",
+"code_dep": "13",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
+},
 {
 "departement": "Bouches-du-Rhône",
 "code_dep": "13",
@@ -10783,6 +12414,13 @@
 "num": "5",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Yvelines",
+"code_dep": "78",
+"num": "5",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19622": [
@@ -10799,6 +12437,13 @@
 "num": "5",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Alpes-Maritimes",
+"code_dep": "06",
+"num": "5",
+"debut": "2024-06-30",
+"fin": null
 }
 ],
 "2031": [
@@ -10843,6 +12488,13 @@
 "num": "5",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Marne",
+"code_dep": "51",
+"num": "5",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "18315": [
@@ -10868,6 +12520,20 @@
 "num": "1",
 "debut": "2012-06-20",
 "fin": "2017-06-20"
+},
+{
+"departement": "Corse-du-Sud",
+"code_dep": "2A",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
+},
+{
+"departement": "Corse-du-Sud",
+"code_dep": "2A",
+"num": "1",
+"debut": "2024-07-07",
+"fin": "2025-01-23"
 },
 {
 "departement": "Corse-du-Sud",
@@ -11017,6 +12683,13 @@
 "num": "3",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Haute-Garonne",
+"code_dep": "31",
+"num": "3",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "17623": [
@@ -11070,6 +12743,13 @@
 }
 ],
 "20011": [
+{
+"departement": "Bouches-du-Rhône",
+"code_dep": "13",
+"num": "8",
+"debut": "2024-07-07",
+"fin": null
+},
 {
 "departement": "Bouches-du-Rhône",
 "code_dep": "13",
@@ -11247,6 +12927,13 @@
 "num": "1",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Gers",
+"code_dep": "32",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19677": [
@@ -11274,6 +12961,13 @@
 "num": "1",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Aude",
+"code_dep": "11",
+"num": "1",
+"debut": "2024-07-07",
+"fin": "2026-04-20"
 },
 {
 "departement": "Aude",
@@ -11351,6 +13045,13 @@
 "num": "16",
 "debut": "2024-06-30",
 "fin": null
+},
+{
+"departement": "Paris",
+"code_dep": "75",
+"num": "16",
+"debut": "2024-06-30",
+"fin": null
 }
 ],
 "19177": [
@@ -11397,6 +13098,13 @@
 "num": "5",
 "debut": "2020-09-20",
 "fin": "2022-06-21"
+},
+{
+"departement": "Seine-Maritime",
+"code_dep": "76",
+"num": "5",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19353": [
@@ -11438,6 +13146,13 @@
 "num": "1",
 "debut": "2017-06-18",
 "fin": "2022-06-21"
+},
+{
+"departement": "Lot-et-Garonne",
+"code_dep": "47",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Lot-et-Garonne",
@@ -11495,6 +13210,13 @@
 "num": "1",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Côtes-d'Armor",
+"code_dep": "22",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19658": [
@@ -11511,9 +13233,23 @@
 "num": "7",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Nord",
+"code_dep": "59",
+"num": "7",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19887": [
+{
+"departement": "Hérault",
+"code_dep": "34",
+"num": "9",
+"debut": "2024-07-07",
+"fin": null
+},
 {
 "departement": "Hérault",
 "code_dep": "34",
@@ -11592,6 +13328,13 @@
 "num": "8",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Essonne",
+"code_dep": "91",
+"num": "8",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "2088": [
@@ -11635,6 +13378,13 @@
 "num": "1",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Drôme",
+"code_dep": "26",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "17351": [
@@ -11667,6 +13417,13 @@
 "num": "1",
 "debut": "2017-06-18",
 "fin": "2022-06-21"
+},
+{
+"departement": "Finistère",
+"code_dep": "29",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Finistère",
@@ -11788,6 +13545,13 @@
 "num": "9",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Gironde",
+"code_dep": "33",
+"num": "9",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "7478": [
@@ -11845,6 +13609,13 @@
 "num": "2",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Ariège",
+"code_dep": "09",
+"num": "2",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19791": [
@@ -11854,6 +13625,13 @@
 "num": "2",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Pyrénées-Orientales",
+"code_dep": "66",
+"num": "2",
+"debut": "2024-06-30",
+"fin": null
 },
 {
 "departement": "Pyrénées-Orientales",
@@ -11969,6 +13747,13 @@
 "num": "9",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Français établis hors de France",
+"code_dep": "099",
+"num": "9",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19725": [
@@ -11985,6 +13770,13 @@
 "num": "3",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Loir-et-Cher",
+"code_dep": "41",
+"num": "3",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "18496": [
@@ -12049,6 +13841,13 @@
 "num": "1",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Hautes-Pyrénées",
+"code_dep": "65",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "18518": [
@@ -12058,6 +13857,13 @@
 "num": "1",
 "debut": "2012-06-20",
 "fin": "2017-06-20"
+},
+{
+"departement": "Hérault",
+"code_dep": "34",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Hérault",
@@ -12081,6 +13887,13 @@
 "num": "1",
 "debut": "2017-06-18",
 "fin": "2022-06-21"
+},
+{
+"departement": "Vosges",
+"code_dep": "88",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Vosges",
@@ -12113,6 +13926,13 @@
 "num": "18",
 "debut": "2024-06-30",
 "fin": null
+},
+{
+"departement": "Paris",
+"code_dep": "75",
+"num": "18",
+"debut": "2024-06-30",
+"fin": null
 }
 ],
 "19110": [
@@ -12129,6 +13949,13 @@
 "num": "4",
 "debut": "2017-06-18",
 "fin": "2022-06-21"
+},
+{
+"departement": "Gironde",
+"code_dep": "33",
+"num": "4",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Gironde",
@@ -12207,6 +14034,13 @@
 "num": "9",
 "debut": "2017-06-18",
 "fin": "2022-06-21"
+},
+{
+"departement": "Alpes-Maritimes",
+"code_dep": "06",
+"num": "9",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19259": [
@@ -12230,9 +14064,23 @@
 "num": "4",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Marne",
+"code_dep": "51",
+"num": "4",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19904": [
+{
+"departement": "Meurthe-et-Moselle",
+"code_dep": "54",
+"num": "6",
+"debut": "2024-07-07",
+"fin": null
+},
 {
 "departement": "Meurthe-et-Moselle",
 "code_dep": "54",
@@ -12264,9 +14112,23 @@
 "num": "3",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Aude",
+"code_dep": "11",
+"num": "3",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19954": [
+{
+"departement": "Ille-et-Vilaine",
+"code_dep": "35",
+"num": "2",
+"debut": "2024-07-07",
+"fin": null
+},
 {
 "departement": "Ille-et-Vilaine",
 "code_dep": "35",
@@ -12303,6 +14165,20 @@
 "num": "11",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Français établis hors de France",
+"code_dep": "099",
+"num": "11",
+"debut": "2024-07-07",
+"fin": null
+},
+{
+"departement": "Français établis hors de France",
+"code_dep": "099",
+"num": "11",
+"debut": "2024-07-07",
+"fin": "2024-10-21"
 }
 ],
 "19846": [
@@ -12339,6 +14215,13 @@
 "num": "2",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Haute-Vienne",
+"code_dep": "87",
+"num": "2",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Haute-Vienne",
@@ -12410,6 +14293,13 @@
 "num": "18",
 "debut": "2024-06-30",
 "fin": null
+},
+{
+"departement": "Nord",
+"code_dep": "59",
+"num": "18",
+"debut": "2024-06-30",
+"fin": null
 }
 ],
 "2588": [
@@ -12458,6 +14348,13 @@
 "num": "6",
 "debut": "2017-06-18",
 "fin": "2022-06-21"
+},
+{
+"departement": "Val-de-Marne",
+"code_dep": "94",
+"num": "6",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Val-de-Marne",
@@ -12520,6 +14417,13 @@
 "num": "6",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Gironde",
+"code_dep": "33",
+"num": "6",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19286": [
@@ -12568,6 +14472,13 @@
 "num": "2",
 "debut": "2017-06-18",
 "fin": "2022-06-21"
+},
+{
+"departement": "Maine-et-Loire",
+"code_dep": "49",
+"num": "2",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19257": [
@@ -12616,6 +14527,13 @@
 "num": "3",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Polynésie Française",
+"code_dep": "987",
+"num": "3",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "6452": [
@@ -12680,6 +14598,13 @@
 "num": "7",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Yvelines",
+"code_dep": "78",
+"num": "7",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19366": [
@@ -12721,6 +14646,13 @@
 "num": "1",
 "debut": "2012-12-16",
 "fin": "2017-06-20"
+},
+{
+"departement": "Val-de-Marne",
+"code_dep": "94",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19686": [
@@ -12806,6 +14738,13 @@
 "num": "2",
 "debut": "2024-07-07",
 "fin": "2025-11-12"
+},
+{
+"departement": "Indre",
+"code_dep": "36",
+"num": "2",
+"debut": "2024-07-07",
+"fin": "2025-11-12"
 }
 ],
 "19138": [
@@ -12840,6 +14779,13 @@
 "num": "11",
 "debut": "2024-06-30",
 "fin": null
+},
+{
+"departement": "Val-de-Marne",
+"code_dep": "94",
+"num": "11",
+"debut": "2024-06-30",
+"fin": null
 }
 ],
 "19749": [
@@ -12849,6 +14795,13 @@
 "num": "2",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Dordogne",
+"code_dep": "24",
+"num": "2",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Dordogne",
@@ -12917,6 +14870,13 @@
 "num": "9",
 "debut": "2017-06-18",
 "fin": "2022-06-21"
+},
+{
+"departement": "Bas-Rhin",
+"code_dep": "67",
+"num": "9",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Bas-Rhin",
@@ -13050,6 +15010,13 @@
 "num": "6",
 "debut": "2024-06-30",
 "fin": null
+},
+{
+"departement": "Moselle",
+"code_dep": "57",
+"num": "6",
+"debut": "2024-06-30",
+"fin": null
 }
 ],
 "19213": [
@@ -13082,6 +15049,13 @@
 "num": "3",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Seine-Maritime",
+"code_dep": "76",
+"num": "3",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "5239": [
@@ -13109,6 +15083,13 @@
 "num": "4",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Sarthe",
+"code_dep": "72",
+"num": "4",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Sarthe",
@@ -13173,6 +15154,13 @@
 "num": "6",
 "debut": "2012-06-20",
 "fin": "2014-05-02"
+},
+{
+"departement": "Essonne",
+"code_dep": "91",
+"num": "6",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19966": [
@@ -13182,9 +15170,23 @@
 "num": "2",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Bouches-du-Rhône",
+"code_dep": "13",
+"num": "2",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19927": [
+{
+"departement": "Pas-de-Calais",
+"code_dep": "62",
+"num": "8",
+"debut": "2024-07-07",
+"fin": null
+},
 {
 "departement": "Pas-de-Calais",
 "code_dep": "62",
@@ -13273,6 +15275,13 @@
 "num": "4",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Haute-Garonne",
+"code_dep": "31",
+"num": "4",
+"debut": "2024-06-30",
+"fin": null
 },
 {
 "departement": "Haute-Garonne",
@@ -13385,6 +15394,13 @@
 "num": "3",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Orne",
+"code_dep": "61",
+"num": "3",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19149": [
@@ -13456,6 +15472,13 @@
 "num": "1",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Var",
+"code_dep": "83",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19158": [
@@ -13488,9 +15511,23 @@
 "num": "2",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Réunion",
+"code_dep": "974",
+"num": "2",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19968": [
+{
+"departement": "Côte-d'Or",
+"code_dep": "21",
+"num": "5",
+"debut": "2024-07-07",
+"fin": null
+},
 {
 "departement": "Côte-d'Or",
 "code_dep": "21",
@@ -13513,6 +15550,13 @@
 "num": "3",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Drôme",
+"code_dep": "26",
+"num": "3",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "18413": [
@@ -13543,6 +15587,13 @@
 "num": "4",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Haute-Savoie",
+"code_dep": "74",
+"num": "4",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19652": [
@@ -13552,6 +15603,13 @@
 "num": "10",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Pas-de-Calais",
+"code_dep": "62",
+"num": "10",
+"debut": "2024-06-30",
+"fin": null
 },
 {
 "departement": "Pas-de-Calais",
@@ -13598,6 +15656,13 @@
 "num": "1",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Wallis-et-Futuna",
+"code_dep": "986",
+"num": "1",
+"debut": "2024-06-30",
+"fin": null
 }
 ],
 "19871": [
@@ -13662,6 +15727,13 @@
 "num": "6",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Morbihan",
+"code_dep": "56",
+"num": "6",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19414": [
@@ -13708,6 +15780,13 @@
 "num": "9",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Val-d'Oise",
+"code_dep": "95",
+"num": "9",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "1684": [
@@ -13729,6 +15808,13 @@
 }
 ],
 "19969": [
+{
+"departement": "Oise",
+"code_dep": "60",
+"num": "7",
+"debut": "2024-07-07",
+"fin": null
+},
 {
 "departement": "Oise",
 "code_dep": "60",
@@ -13767,6 +15853,13 @@
 "num": "3",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Dordogne",
+"code_dep": "24",
+"num": "3",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19070": [
@@ -13792,6 +15885,20 @@
 "num": "14",
 "debut": "2017-06-18",
 "fin": "2022-06-21"
+},
+{
+"departement": "Nord",
+"code_dep": "59",
+"num": "14",
+"debut": "2024-07-07",
+"fin": "2026-04-06"
+},
+{
+"departement": "Nord",
+"code_dep": "59",
+"num": "14",
+"debut": "2024-07-07",
+"fin": "2024-10-21"
 },
 {
 "departement": "Nord",
@@ -13854,6 +15961,13 @@
 "num": "1",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Mayotte",
+"code_dep": "976",
+"num": "1",
+"debut": "2024-06-30",
+"fin": null
 }
 ],
 "17280": [
@@ -13952,6 +16066,13 @@
 "num": "3",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Val-d'Oise",
+"code_dep": "95",
+"num": "3",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "18388": [
@@ -13977,6 +16098,13 @@
 "num": "10",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Seine-Saint-Denis",
+"code_dep": "93",
+"num": "10",
+"debut": "2024-06-30",
+"fin": null
 }
 ],
 "18436": [
@@ -13995,6 +16123,13 @@
 "num": "5",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Bouches-du-Rhône",
+"code_dep": "13",
+"num": "5",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Bouches-du-Rhône",
@@ -14023,6 +16158,13 @@
 }
 ],
 "19935": [
+{
+"departement": "Côte-d'Or",
+"code_dep": "21",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
+},
 {
 "departement": "Côte-d'Or",
 "code_dep": "21",
@@ -14061,6 +16203,13 @@
 "num": "1",
 "debut": "2007-06-20",
 "fin": "2012-05-14"
+},
+{
+"departement": "Corrèze",
+"code_dep": "19",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19038": [
@@ -14171,6 +16320,13 @@
 "num": "2",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Vaucluse",
+"code_dep": "84",
+"num": "2",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "6920": [
@@ -14237,6 +16393,13 @@
 "num": "2",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Côtes-d'Armor",
+"code_dep": "22",
+"num": "2",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Côtes-d'Armor",
@@ -14345,6 +16508,13 @@
 "num": "4",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Yvelines",
+"code_dep": "78",
+"num": "4",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "5261": [
@@ -14423,6 +16593,13 @@
 "num": "5",
 "debut": "2017-06-18",
 "fin": "2018-11-16"
+},
+{
+"departement": "Seine-et-Marne",
+"code_dep": "77",
+"num": "5",
+"debut": "2024-07-07",
+"fin": "2026-04-16"
 }
 ],
 "19339": [
@@ -14455,6 +16632,13 @@
 "num": "4",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Gard",
+"code_dep": "30",
+"num": "4",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "18384": [
@@ -14467,6 +16651,13 @@
 }
 ],
 "20010": [
+{
+"departement": "Nouvelle-Calédonie",
+"code_dep": "988",
+"num": "2",
+"debut": "2024-07-07",
+"fin": null
+},
 {
 "departement": "Nouvelle-Calédonie",
 "code_dep": "988",
@@ -14498,6 +16689,13 @@
 "num": "10",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Yvelines",
+"code_dep": "78",
+"num": "10",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19790": [
@@ -14516,6 +16714,13 @@
 "num": "4",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Côte-d'Or",
+"code_dep": "21",
+"num": "4",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Côte-d'Or",
@@ -14578,6 +16783,13 @@
 "num": "4",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Calvados",
+"code_dep": "14",
+"num": "4",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "4956": [
@@ -14612,6 +16824,13 @@
 "num": "1",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Lot",
+"code_dep": "46",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Lot",
@@ -14665,6 +16884,13 @@
 "num": "3",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Vendée",
+"code_dep": "85",
+"num": "3",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19543": [
@@ -14690,6 +16916,20 @@
 "num": "6",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Français établis hors de France",
+"code_dep": "099",
+"num": "6",
+"debut": "2024-07-07",
+"fin": null
+},
+{
+"departement": "Français établis hors de France",
+"code_dep": "099",
+"num": "6",
+"debut": "2024-07-07",
+"fin": "2024-10-21"
 },
 {
 "departement": "Français établis hors de France",
@@ -14752,6 +16992,13 @@
 "num": "2",
 "debut": "2022-06-19",
 "fin": "2022-08-04"
+},
+{
+"departement": "Côtes-d'Armor",
+"code_dep": "22",
+"num": "2",
+"debut": "2024-07-07",
+"fin": "2026-08-04"
 }
 ],
 "11038": [
@@ -14823,6 +17070,13 @@
 "num": "10",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Rhône",
+"code_dep": "69",
+"num": "10",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "18492": [
@@ -14867,6 +17121,13 @@
 }
 ],
 "19998": [
+{
+"departement": "Rhône",
+"code_dep": "69",
+"num": "4",
+"debut": "2024-07-07",
+"fin": null
+},
 {
 "departement": "Rhône",
 "code_dep": "69",
@@ -14990,6 +17251,13 @@
 "num": "8",
 "debut": "2024-07-07",
 "fin": "2026-04-07"
+},
+{
+"departement": "Nord",
+"code_dep": "59",
+"num": "8",
+"debut": "2024-07-07",
+"fin": "2026-04-07"
 }
 ],
 "6304": [
@@ -15038,6 +17306,13 @@
 "num": "2",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Rhône",
+"code_dep": "69",
+"num": "2",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19579": [
@@ -15047,6 +17322,13 @@
 "num": "7",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Haute-Garonne",
+"code_dep": "31",
+"num": "7",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Haute-Garonne",
@@ -15084,9 +17366,30 @@
 "num": "1",
 "debut": "2012-06-20",
 "fin": "2017-06-17"
+},
+{
+"departement": "Réunion",
+"code_dep": "974",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19984": [
+{
+"departement": "Pas-de-Calais",
+"code_dep": "62",
+"num": "2",
+"debut": "2024-07-07",
+"fin": null
+},
+{
+"departement": "Pas-de-Calais",
+"code_dep": "62",
+"num": "2",
+"debut": "2024-07-07",
+"fin": "2024-10-21"
+},
 {
 "departement": "Pas-de-Calais",
 "code_dep": "62",
@@ -15116,6 +17419,13 @@
 "num": "3",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Hérault",
+"code_dep": "34",
+"num": "3",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19840": [
@@ -15125,6 +17435,13 @@
 "num": "3",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Français établis hors de France",
+"code_dep": "099",
+"num": "8",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Français établis hors de France",
@@ -15189,6 +17506,13 @@
 "num": "4",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Nord",
+"code_dep": "59",
+"num": "4",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19065": [
@@ -15212,6 +17536,13 @@
 "num": "3",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Ardèche",
+"code_dep": "07",
+"num": "3",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19346": [
@@ -15242,6 +17573,13 @@
 }
 ],
 "20039": [
+{
+"departement": "Hauts-de-Seine",
+"code_dep": "92",
+"num": "9",
+"debut": "2025-02-09",
+"fin": null
+},
 {
 "departement": "Hauts-de-Seine",
 "code_dep": "92",
@@ -15383,6 +17721,20 @@
 "num": "1",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Landes",
+"code_dep": "40",
+"num": "1",
+"debut": "2024-07-07",
+"fin": "2024-10-21"
+},
+{
+"departement": "Landes",
+"code_dep": "40",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19297": [
@@ -15399,6 +17751,13 @@
 "num": "4",
 "debut": "2017-06-18",
 "fin": "2022-06-21"
+},
+{
+"departement": "Val-d'Oise",
+"code_dep": "95",
+"num": "4",
+"debut": "2024-07-07",
+"fin": "2025-11-12"
 },
 {
 "departement": "Val-d'Oise",
@@ -15465,6 +17824,13 @@
 "num": "5",
 "debut": "2024-07-07",
 "fin": "2026-09-30"
+},
+{
+"departement": "Charente-Maritime",
+"code_dep": "17",
+"num": "5",
+"debut": "2024-07-07",
+"fin": "2026-09-30"
 }
 ],
 "19097": [
@@ -15488,6 +17854,13 @@
 "num": "2",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Corse-du-Sud",
+"code_dep": "2A",
+"num": "2",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19312": [
@@ -15504,6 +17877,13 @@
 "num": "8",
 "debut": "2017-06-18",
 "fin": "2022-06-21"
+},
+{
+"departement": "Gironde",
+"code_dep": "33",
+"num": "8",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Gironde",
@@ -15566,6 +17946,20 @@
 "num": "4",
 "debut": "2024-07-07",
 "fin": "2026-08-04"
+},
+{
+"departement": "Paris",
+"code_dep": "75",
+"num": "4",
+"debut": "2024-07-07",
+"fin": "2024-10-21"
+},
+{
+"departement": "Paris",
+"code_dep": "75",
+"num": "4",
+"debut": "2024-07-07",
+"fin": "2026-08-04"
 }
 ],
 "19291": [
@@ -15607,6 +18001,13 @@
 "num": "1",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Saint-Pierre-et-Miquelon",
+"code_dep": "975",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "18299": [
@@ -15653,6 +18054,13 @@
 "num": "8",
 "debut": "2012-06-20",
 "fin": "2015-07-17"
+},
+{
+"departement": "Haute-Garonne",
+"code_dep": "31",
+"num": "8",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19185": [
@@ -15694,6 +18102,13 @@
 "num": "1",
 "debut": "2023-01-29",
 "fin": "2024-06-09"
+},
+{
+"departement": "Charente",
+"code_dep": "16",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Charente",
@@ -15790,6 +18205,13 @@
 "num": "3",
 "debut": "2024-07-07",
 "fin": "2025-01-23"
+},
+{
+"departement": "Seine-et-Marne",
+"code_dep": "77",
+"num": "3",
+"debut": "2024-07-07",
+"fin": "2025-01-23"
 }
 ],
 "17359": [
@@ -15809,6 +18231,13 @@
 }
 ],
 "19891": [
+{
+"departement": "Mayotte",
+"code_dep": "976",
+"num": "2",
+"debut": "2024-07-07",
+"fin": null
+},
 {
 "departement": "Mayotte",
 "code_dep": "976",
@@ -15861,6 +18290,13 @@
 "num": "1",
 "debut": "2017-06-18",
 "fin": "2022-06-21"
+},
+{
+"departement": "Pyrénées-Atlantiques",
+"code_dep": "64",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "10644": [
@@ -15991,6 +18427,13 @@
 "num": "3",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Moselle",
+"code_dep": "57",
+"num": "3",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19457": [
@@ -16039,6 +18482,13 @@
 "num": "6",
 "debut": "2024-07-07",
 "fin": "2025-11-12"
+},
+{
+"departement": "Calvados",
+"code_dep": "14",
+"num": "6",
+"debut": "2024-07-07",
+"fin": "2025-11-12"
 }
 ],
 "19380": [
@@ -16055,6 +18505,13 @@
 "num": "1",
 "debut": "2017-06-18",
 "fin": "2022-06-21"
+},
+{
+"departement": "Guadeloupe",
+"code_dep": "971",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Guadeloupe",
@@ -16135,6 +18592,13 @@
 "num": "7",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Rhône",
+"code_dep": "69",
+"num": "7",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19342": [
@@ -16151,6 +18615,13 @@
 "num": "3",
 "debut": "2017-06-18",
 "fin": "2022-06-21"
+},
+{
+"departement": "Gironde",
+"code_dep": "33",
+"num": "3",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Gironde",
@@ -16199,6 +18670,13 @@
 "num": "12",
 "debut": "2024-06-30",
 "fin": null
+},
+{
+"departement": "Bouches-du-Rhône",
+"code_dep": "13",
+"num": "12",
+"debut": "2024-06-30",
+"fin": null
 }
 ],
 "14705": [
@@ -16220,6 +18698,13 @@
 }
 ],
 "20052": [
+{
+"departement": "Paris",
+"code_dep": "75",
+"num": "13",
+"debut": "2024-07-07",
+"fin": null
+},
 {
 "departement": "Paris",
 "code_dep": "75",
@@ -16475,6 +18960,13 @@
 "num": "1",
 "debut": "2024-06-30",
 "fin": null
+},
+{
+"departement": "Hauts-de-Seine",
+"code_dep": "92",
+"num": "1",
+"debut": "2024-06-30",
+"fin": null
 }
 ],
 "18339": [
@@ -16543,6 +19035,13 @@
 "num": "8",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Hauts-de-Seine",
+"code_dep": "92",
+"num": "8",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "17317": [
@@ -16580,9 +19079,23 @@
 "num": "1",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Manche",
+"code_dep": "50",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19956": [
+{
+"departement": "Hauts-de-Seine",
+"code_dep": "92",
+"num": "2",
+"debut": "2024-07-07",
+"fin": null
+},
 {
 "departement": "Hauts-de-Seine",
 "code_dep": "92",
@@ -16607,6 +19120,13 @@
 "num": "13",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Paris",
+"code_dep": "75",
+"num": "13",
+"debut": "2024-07-07",
+"fin": "2025-11-12"
 },
 {
 "departement": "Paris",
@@ -16717,6 +19237,13 @@
 "num": "11",
 "debut": "2024-06-30",
 "fin": null
+},
+{
+"departement": "Seine-et-Marne",
+"code_dep": "77",
+"num": "11",
+"debut": "2024-06-30",
+"fin": null
 }
 ],
 "758": [
@@ -16756,6 +19283,13 @@
 "num": "4",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Loire-Atlantique",
+"code_dep": "44",
+"num": "4",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19160": [
@@ -16772,6 +19306,13 @@
 "num": "6",
 "debut": "2017-06-18",
 "fin": "2022-06-21"
+},
+{
+"departement": "Haut-Rhin",
+"code_dep": "68",
+"num": "6",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Haut-Rhin",
@@ -16827,6 +19368,13 @@
 "num": "12",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Yvelines",
+"code_dep": "78",
+"num": "12",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "18511": [
@@ -16859,6 +19407,13 @@
 "num": "2",
 "debut": "2017-06-18",
 "fin": "2022-06-21"
+},
+{
+"departement": "Seine-Saint-Denis",
+"code_dep": "93",
+"num": "2",
+"debut": "2024-06-30",
+"fin": null
 }
 ],
 "18371": [
@@ -16987,6 +19542,13 @@
 "num": "5",
 "debut": "2024-07-07",
 "fin": "2025-11-12"
+},
+{
+"departement": "Val-de-Marne",
+"code_dep": "94",
+"num": "5",
+"debut": "2024-07-07",
+"fin": "2025-11-12"
 }
 ],
 "12832": [
@@ -17026,6 +19588,13 @@
 "num": "2",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Morbihan",
+"code_dep": "56",
+"num": "2",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19016": [
@@ -17049,6 +19618,13 @@
 "num": "10",
 "debut": "2017-06-18",
 "fin": "2018-11-16"
+},
+{
+"departement": "Hauts-de-Seine",
+"code_dep": "92",
+"num": "10",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "18446": [
@@ -17101,6 +19677,13 @@
 "num": "1",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Indre-et-Loire",
+"code_dep": "37",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Indre-et-Loire",
@@ -17174,6 +19757,13 @@
 }
 ],
 "20004": [
+{
+"departement": "Haute-Garonne",
+"code_dep": "31",
+"num": "6",
+"debut": "2024-07-07",
+"fin": null
+},
 {
 "departement": "Haute-Garonne",
 "code_dep": "31",
@@ -17301,6 +19891,13 @@
 "num": "5",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Val-de-Marne",
+"code_dep": "94",
+"num": "5",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "10791": [
@@ -17352,9 +19949,23 @@
 "num": "4",
 "debut": "2005-09-18",
 "fin": "2007-06-19"
+},
+{
+"departement": "Oise",
+"code_dep": "60",
+"num": "4",
+"debut": "2024-07-07",
+"fin": "2026-03-01"
 }
 ],
 "20040": [
+{
+"departement": "Puy-de-Dôme",
+"code_dep": "63",
+"num": "5",
+"debut": "2024-07-07",
+"fin": null
+},
 {
 "departement": "Puy-de-Dôme",
 "code_dep": "63",
@@ -17477,6 +20088,13 @@
 "num": "10",
 "debut": "2022-06-19",
 "fin": "2023-08-20"
+},
+{
+"departement": "Yvelines",
+"code_dep": "78",
+"num": "10",
+"debut": "2024-07-07",
+"fin": "2025-01-23"
 }
 ],
 "5783": [
@@ -17541,6 +20159,13 @@
 "num": "4",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Alpes-Maritimes",
+"code_dep": "06",
+"num": "4",
+"debut": "2024-06-30",
+"fin": "2026-04-21"
 },
 {
 "departement": "Alpes-Maritimes",
@@ -17642,6 +20267,13 @@
 "num": "2",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Landes",
+"code_dep": "40",
+"num": "2",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Landes",
@@ -17786,6 +20418,13 @@
 "num": "1",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Ille-et-Vilaine",
+"code_dep": "35",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19134": [
@@ -17843,6 +20482,13 @@
 "num": "12",
 "debut": "2022-06-19",
 "fin": "2022-07-22"
+},
+{
+"departement": "Paris",
+"code_dep": "75",
+"num": "12",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Paris",
@@ -17977,6 +20623,13 @@
 "num": "4",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Moselle",
+"code_dep": "57",
+"num": "4",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "17276": [
@@ -18002,6 +20655,13 @@
 "num": "3",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Meurthe-et-Moselle",
+"code_dep": "54",
+"num": "3",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19359": [
@@ -18018,6 +20678,13 @@
 "num": "4",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Essonne",
+"code_dep": "91",
+"num": "4",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Essonne",
@@ -18091,6 +20758,13 @@
 "num": "2",
 "debut": "2017-06-18",
 "fin": "2022-06-21"
+},
+{
+"departement": "Nord",
+"code_dep": "59",
+"num": "2",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Nord",
@@ -18203,6 +20877,13 @@
 "num": "4",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Ille-et-Vilaine",
+"code_dep": "35",
+"num": "4",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19553": [
@@ -18212,6 +20893,13 @@
 "num": "1",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Marne",
+"code_dep": "51",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Marne",
@@ -18265,6 +20953,13 @@
 "num": "2",
 "debut": "2022-10-09",
 "fin": "2024-06-09"
+},
+{
+"departement": "Yvelines",
+"code_dep": "78",
+"num": "2",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "7397": [
@@ -18347,6 +21042,13 @@
 "num": "10",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Seine-Maritime",
+"code_dep": "76",
+"num": "10",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19410": [
@@ -18363,6 +21065,13 @@
 "num": "3",
 "debut": "2017-06-18",
 "fin": "2022-06-21"
+},
+{
+"departement": "Landes",
+"code_dep": "40",
+"num": "3",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Landes",
@@ -18452,6 +21161,13 @@
 "num": "3",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Saône-et-Loire",
+"code_dep": "71",
+"num": "3",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19245": [
@@ -18493,6 +21209,13 @@
 "num": "3",
 "debut": "2024-07-07",
 "fin": "2026-09-30"
+},
+{
+"departement": "Cher",
+"code_dep": "18",
+"num": "3",
+"debut": "2024-07-07",
+"fin": "2026-09-30"
 }
 ],
 "19717": [
@@ -18502,6 +21225,13 @@
 "num": "7",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Moselle",
+"code_dep": "57",
+"num": "7",
+"debut": "2024-06-30",
+"fin": null
 },
 {
 "departement": "Moselle",
@@ -18534,6 +21264,13 @@
 "num": "6",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Isère",
+"code_dep": "38",
+"num": "6",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "6084": [
@@ -18552,6 +21289,13 @@
 "num": "1",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Aisne",
+"code_dep": "02",
+"num": "1",
+"debut": "2024-06-30",
+"fin": null
 },
 {
 "departement": "Aisne",
@@ -18607,6 +21351,13 @@
 "num": "4",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Puy-de-Dôme",
+"code_dep": "63",
+"num": "4",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19421": [
@@ -18641,6 +21392,13 @@
 "num": "1",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Guyane",
+"code_dep": "973",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Guyane",
@@ -18696,6 +21454,13 @@
 "num": "1",
 "debut": "2007-06-20",
 "fin": "2012-06-19"
+},
+{
+"departement": "Tarn-et-Garonne",
+"code_dep": "82",
+"num": "1",
+"debut": "2024-07-07",
+"fin": "2025-07-11"
 },
 {
 "departement": "Tarn-et-Garonne",
@@ -18785,6 +21550,13 @@
 "num": "1",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Charente-Maritime",
+"code_dep": "17",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19668": [
@@ -18801,6 +21573,13 @@
 "num": "3",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Jura",
+"code_dep": "39",
+"num": "3",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19633": [
@@ -18810,6 +21589,13 @@
 "num": "3",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Pyrénées-Orientales",
+"code_dep": "66",
+"num": "3",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Pyrénées-Orientales",
@@ -18931,6 +21717,13 @@
 "num": "5",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Finistère",
+"code_dep": "29",
+"num": "5",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19604": [
@@ -18956,6 +21749,13 @@
 "num": "2",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Marne",
+"code_dep": "51",
+"num": "2",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "20001": [
@@ -18965,9 +21765,23 @@
 "num": "5",
 "debut": "2024-07-07",
 "fin": "2025-03-07"
+},
+{
+"departement": "Saône-et-Loire",
+"code_dep": "71",
+"num": "5",
+"debut": "2024-07-07",
+"fin": "2025-03-07"
 }
 ],
 "20047": [
+{
+"departement": "Val-d'Oise",
+"code_dep": "95",
+"num": "4",
+"debut": "2024-07-07",
+"fin": null
+},
 {
 "departement": "Val-d'Oise",
 "code_dep": "95",
@@ -19015,6 +21829,13 @@
 "num": "5",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Meurthe-et-Moselle",
+"code_dep": "54",
+"num": "5",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Meurthe-et-Moselle",
@@ -19100,6 +21921,13 @@
 "num": "1",
 "debut": "2017-06-18",
 "fin": "2022-06-21"
+},
+{
+"departement": "Saône-et-Loire",
+"code_dep": "71",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19632": [
@@ -19116,9 +21944,23 @@
 "num": "11",
 "debut": "2024-06-30",
 "fin": "2026-09-30"
+},
+{
+"departement": "Gironde",
+"code_dep": "33",
+"num": "11",
+"debut": "2024-06-30",
+"fin": "2026-09-30"
 }
 ],
 "19970": [
+{
+"departement": "Isère",
+"code_dep": "38",
+"num": "8",
+"debut": "2024-07-07",
+"fin": null
+},
 {
 "departement": "Isère",
 "code_dep": "38",
@@ -19189,9 +22031,23 @@
 "num": "3",
 "debut": "2017-06-18",
 "fin": "2022-06-21"
+},
+{
+"departement": "Haute-Savoie",
+"code_dep": "74",
+"num": "3",
+"debut": "2024-07-07",
+"fin": "2025-11-06"
 }
 ],
 "20051": [
+{
+"departement": "Indre",
+"code_dep": "36",
+"num": "2",
+"debut": "2024-07-07",
+"fin": null
+},
 {
 "departement": "Indre",
 "code_dep": "36",
@@ -19248,9 +22104,23 @@
 "num": "5",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Eure",
+"code_dep": "27",
+"num": "5",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19994": [
+{
+"departement": "Hautes-Alpes",
+"code_dep": "05",
+"num": "2",
+"debut": "2024-07-07",
+"fin": null
+},
 {
 "departement": "Hautes-Alpes",
 "code_dep": "05",
@@ -19266,6 +22136,13 @@
 "num": "2",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Meurthe-et-Moselle",
+"code_dep": "54",
+"num": "2",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19575": [
@@ -19275,6 +22152,13 @@
 "num": "1",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Vienne",
+"code_dep": "86",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Vienne",
@@ -19330,6 +22214,13 @@
 "num": "7",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Français établis hors de France",
+"code_dep": "099",
+"num": "7",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "2562": [
@@ -19355,6 +22246,13 @@
 "num": "5",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Vendée",
+"code_dep": "85",
+"num": "5",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Vendée",
@@ -19490,6 +22388,13 @@
 "num": "4",
 "debut": "2024-06-30",
 "fin": null
+},
+{
+"departement": "Bouches-du-Rhône",
+"code_dep": "13",
+"num": "4",
+"debut": "2024-06-30",
+"fin": null
 }
 ],
 "19844": [
@@ -19526,9 +22431,23 @@
 "num": "3",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Alpes-Maritimes",
+"code_dep": "06",
+"num": "3",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19903": [
+{
+"departement": "Seine-et-Marne",
+"code_dep": "77",
+"num": "8",
+"debut": "2024-07-07",
+"fin": null
+},
 {
 "departement": "Seine-et-Marne",
 "code_dep": "77",
@@ -19551,6 +22470,13 @@
 "num": "9",
 "debut": "2012-06-20",
 "fin": "2017-06-20"
+},
+{
+"departement": "Paris",
+"code_dep": "75",
+"num": "5",
+"debut": "2024-06-30",
+"fin": null
 }
 ],
 "19055": [
@@ -19567,6 +22493,13 @@
 "num": "5",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Calvados",
+"code_dep": "14",
+"num": "5",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Calvados",
@@ -19693,6 +22626,13 @@
 "num": "2",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Charente",
+"code_dep": "16",
+"num": "2",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "3287": [
@@ -19757,6 +22697,13 @@
 "num": "4",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Guadeloupe",
+"code_dep": "971",
+"num": "4",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19473": [
@@ -19769,6 +22716,13 @@
 }
 ],
 "19972": [
+{
+"departement": "Charente-Maritime",
+"code_dep": "17",
+"num": "4",
+"debut": "2024-07-07",
+"fin": null
+},
 {
 "departement": "Charente-Maritime",
 "code_dep": "17",
@@ -19830,6 +22784,13 @@
 "num": "2",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Manche",
+"code_dep": "50",
+"num": "2",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19547": [
@@ -19853,6 +22814,13 @@
 "num": "5",
 "debut": "2018-04-22",
 "fin": "2022-06-21"
+},
+{
+"departement": "Français établis hors de France",
+"code_dep": "099",
+"num": "5",
+"debut": "2024-07-07",
+"fin": "2025-07-11"
 }
 ],
 "11026": [
@@ -19903,6 +22871,13 @@
 "num": "1",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Seine-Maritime",
+"code_dep": "76",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19621": [
@@ -19912,6 +22887,13 @@
 "num": "1",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Doubs",
+"code_dep": "25",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Doubs",
@@ -20045,6 +23027,13 @@
 "num": "1",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Essonne",
+"code_dep": "91",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "20030": [
@@ -20061,9 +23050,30 @@
 "num": "13",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Hauts-de-Seine",
+"code_dep": "92",
+"num": "13",
+"debut": "2024-07-07",
+"fin": "2025-01-13"
+},
+{
+"departement": "Hauts-de-Seine",
+"code_dep": "92",
+"num": "13",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "20032": [
+{
+"departement": "Français établis hors de France",
+"code_dep": "099",
+"num": "6",
+"debut": "2024-07-07",
+"fin": "2025-11-05"
+},
 {
 "departement": "Français établis hors de France",
 "code_dep": "099",
@@ -20152,6 +23162,13 @@
 "num": "2",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Var",
+"code_dep": "83",
+"num": "2",
+"debut": "2024-06-30",
+"fin": null
 }
 ],
 "19483": [
@@ -20175,6 +23192,13 @@
 "num": "5",
 "debut": "2017-06-18",
 "fin": "2022-06-21"
+},
+{
+"departement": "Seine-et-Marne",
+"code_dep": "77",
+"num": "5",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19075": [
@@ -20223,6 +23247,13 @@
 "num": "2",
 "debut": "2017-06-18",
 "fin": "2022-06-21"
+},
+{
+"departement": "Saône-et-Loire",
+"code_dep": "71",
+"num": "2",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19570": [
@@ -20239,6 +23270,13 @@
 "num": "15",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Bouches-du-Rhône",
+"code_dep": "13",
+"num": "15",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "10620": [
@@ -20324,6 +23362,13 @@
 "num": "1",
 "debut": "2022-06-19",
 "fin": "2023-08-20"
+},
+{
+"departement": "Landes",
+"code_dep": "40",
+"num": "1",
+"debut": "2024-07-07",
+"fin": "2025-01-23"
 }
 ],
 "10067": [
@@ -20404,6 +23449,13 @@
 "num": "3",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Gard",
+"code_dep": "30",
+"num": "3",
+"debut": "2024-07-07",
+"fin": "2026-04-13"
 },
 {
 "departement": "Gard",
@@ -20498,6 +23550,13 @@
 "num": "6",
 "debut": "2017-06-18",
 "fin": "2022-06-21"
+},
+{
+"departement": "Yvelines",
+"code_dep": "78",
+"num": "6",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Yvelines",
@@ -20620,6 +23679,13 @@
 "num": "3",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Vosges",
+"code_dep": "88",
+"num": "3",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "10683": [
@@ -20725,6 +23791,13 @@
 "num": "6",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Pyrénées-Atlantiques",
+"code_dep": "64",
+"num": "6",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "467": [
@@ -20773,6 +23846,13 @@
 "num": "7",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Réunion",
+"code_dep": "974",
+"num": "7",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "18485": [
@@ -20785,6 +23865,13 @@
 }
 ],
 "19920": [
+{
+"departement": "Yvelines",
+"code_dep": "78",
+"num": "9",
+"debut": "2024-07-07",
+"fin": null
+},
 {
 "departement": "Yvelines",
 "code_dep": "78",
@@ -20828,6 +23915,13 @@
 "num": "4",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Vendée",
+"code_dep": "85",
+"num": "4",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19684": [
@@ -20837,6 +23931,13 @@
 "num": "3",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Hauts-de-Seine",
+"code_dep": "92",
+"num": "3",
+"debut": "2024-06-30",
+"fin": null
 },
 {
 "departement": "Hauts-de-Seine",
@@ -20915,6 +24016,13 @@
 "num": "5",
 "debut": "2024-06-30",
 "fin": null
+},
+{
+"departement": "Aisne",
+"code_dep": "02",
+"num": "5",
+"debut": "2024-06-30",
+"fin": null
 }
 ],
 "19041": [
@@ -20956,6 +24064,13 @@
 "num": "3",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Vienne",
+"code_dep": "86",
+"num": "3",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "349": [
@@ -20982,6 +24097,13 @@
 }
 ],
 "19901": [
+{
+"departement": "Doubs",
+"code_dep": "25",
+"num": "3",
+"debut": "2024-07-07",
+"fin": null
+},
 {
 "departement": "Doubs",
 "code_dep": "25",
@@ -21191,6 +24313,13 @@
 "num": "3",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Ardennes",
+"code_dep": "08",
+"num": "3",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "11962": [
@@ -21230,9 +24359,23 @@
 "num": "1",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Sarthe",
+"code_dep": "72",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19928": [
+{
+"departement": "Bouches-du-Rhône",
+"code_dep": "13",
+"num": "6",
+"debut": "2024-07-07",
+"fin": null
+},
 {
 "departement": "Bouches-du-Rhône",
 "code_dep": "13",
@@ -21271,6 +24414,13 @@
 "num": "12",
 "debut": "2024-07-07",
 "fin": "2026-03-26"
+},
+{
+"departement": "Hauts-de-Seine",
+"code_dep": "92",
+"num": "12",
+"debut": "2024-07-07",
+"fin": "2026-03-26"
 }
 ],
 "19574": [
@@ -21287,6 +24437,13 @@
 "num": "2",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Vendée",
+"code_dep": "85",
+"num": "2",
+"debut": "2024-07-07",
+"fin": "2026-05-24"
 }
 ],
 "19378": [
@@ -21310,6 +24467,13 @@
 "num": "4",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Haut-Rhin",
+"code_dep": "68",
+"num": "4",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "18580": [
@@ -21322,6 +24486,13 @@
 }
 ],
 "19918": [
+{
+"departement": "Pas-de-Calais",
+"code_dep": "62",
+"num": "7",
+"debut": "2024-07-07",
+"fin": null
+},
 {
 "departement": "Pas-de-Calais",
 "code_dep": "62",
@@ -21376,6 +24547,13 @@
 "num": "1",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Jura",
+"code_dep": "39",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19727": [
@@ -21392,9 +24570,23 @@
 "num": "3",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Isère",
+"code_dep": "38",
+"num": "3",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "20041": [
+{
+"departement": "Saône-et-Loire",
+"code_dep": "71",
+"num": "5",
+"debut": "2025-05-25",
+"fin": "2025-11-12"
+},
 {
 "departement": "Saône-et-Loire",
 "code_dep": "71",
@@ -21442,6 +24634,13 @@
 "num": "1",
 "debut": "2017-06-18",
 "fin": "2022-06-21"
+},
+{
+"departement": "Ardèche",
+"code_dep": "07",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "18567": [
@@ -21467,9 +24666,23 @@
 "num": "9",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Nord",
+"code_dep": "59",
+"num": "9",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19885": [
+{
+"departement": "Gard",
+"code_dep": "30",
+"num": "5",
+"debut": "2024-07-07",
+"fin": null
+},
 {
 "departement": "Gard",
 "code_dep": "30",
@@ -21510,6 +24723,13 @@
 "num": "2",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Tarn-et-Garonne",
+"code_dep": "82",
+"num": "2",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Tarn-et-Garonne",
@@ -21572,6 +24792,13 @@
 "num": "6",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Oise",
+"code_dep": "60",
+"num": "6",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19590": [
@@ -21588,9 +24815,23 @@
 "num": "2",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Allier",
+"code_dep": "03",
+"num": "2",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19967": [
+{
+"departement": "Seine-et-Marne",
+"code_dep": "77",
+"num": "4",
+"debut": "2024-07-07",
+"fin": null
+},
 {
 "departement": "Seine-et-Marne",
 "code_dep": "77",
@@ -21650,6 +24891,13 @@
 "num": "2",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Eure-et-Loir",
+"code_dep": "28",
+"num": "2",
+"debut": "2024-07-07",
+"fin": "2025-07-07"
 }
 ],
 "10748": [
@@ -21711,6 +24959,13 @@
 "num": "11",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Bouches-du-Rhône",
+"code_dep": "13",
+"num": "11",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "4994": [
@@ -21764,6 +25019,20 @@
 "num": "9",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Rhône",
+"code_dep": "69",
+"num": "9",
+"debut": "2024-07-07",
+"fin": "2024-10-21"
+},
+{
+"departement": "Rhône",
+"code_dep": "69",
+"num": "9",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "10640": [
@@ -21800,9 +25069,23 @@
 "num": "5",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Loire-Atlantique",
+"code_dep": "44",
+"num": "5",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19989": [
+{
+"departement": "Côte-d'Or",
+"code_dep": "21",
+"num": "3",
+"debut": "2024-07-07",
+"fin": null
+},
 {
 "departement": "Côte-d'Or",
 "code_dep": "21",
@@ -21871,6 +25154,20 @@
 "num": "4",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Paris",
+"code_dep": "75",
+"num": "4",
+"debut": "2024-07-07",
+"fin": "2025-11-05"
+},
+{
+"departement": "Paris",
+"code_dep": "75",
+"num": "4",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "3580": [
@@ -21892,6 +25189,13 @@
 }
 ],
 "20075": [
+{
+"departement": "Maine-et-Loire",
+"code_dep": "49",
+"num": "7",
+"debut": "2024-07-07",
+"fin": null
+},
 {
 "departement": "Maine-et-Loire",
 "code_dep": "49",
@@ -21932,6 +25236,13 @@
 "num": "6",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Hérault",
+"code_dep": "34",
+"num": "6",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "1362": [
@@ -21957,6 +25268,13 @@
 "num": "2",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Calvados",
+"code_dep": "14",
+"num": "2",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Calvados",
@@ -21991,6 +25309,13 @@
 "num": "2",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Lot",
+"code_dep": "46",
+"num": "2",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19121": [
@@ -22014,6 +25339,13 @@
 "num": "4",
 "debut": "2024-07-07",
 "fin": "2026-04-20"
+},
+{
+"departement": "Moselle",
+"code_dep": "57",
+"num": "4",
+"debut": "2024-07-07",
+"fin": "2026-04-20"
 }
 ],
 "19797": [
@@ -22030,6 +25362,13 @@
 "num": "8",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Var",
+"code_dep": "83",
+"num": "8",
+"debut": "2024-06-30",
+"fin": null
 }
 ],
 "1653": [
@@ -22065,6 +25404,13 @@
 }
 ],
 "20049": [
+{
+"departement": "Morbihan",
+"code_dep": "56",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
+},
 {
 "departement": "Morbihan",
 "code_dep": "56",
@@ -22107,6 +25453,13 @@
 "num": "3",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Loire",
+"code_dep": "42",
+"num": "3",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Loire",
@@ -22208,6 +25561,13 @@
 "num": "4",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Saône-et-Loire",
+"code_dep": "71",
+"num": "4",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "10754": [
@@ -22275,6 +25635,13 @@
 }
 ],
 "20064": [
+{
+"departement": "Paris",
+"code_dep": "75",
+"num": "7",
+"debut": "2024-06-30",
+"fin": null
+},
 {
 "departement": "Paris",
 "code_dep": "75",
@@ -22370,6 +25737,13 @@
 "num": "7",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Essonne",
+"code_dep": "91",
+"num": "7",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "20012": [
@@ -22379,9 +25753,23 @@
 "num": "2",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Ardèche",
+"code_dep": "07",
+"num": "2",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "936": [
+{
+"departement": "Tarn",
+"code_dep": "81",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
+},
 {
 "departement": "Tarn",
 "code_dep": "81",
@@ -22427,6 +25815,13 @@
 "num": "7",
 "debut": "2022-06-12",
 "fin": "2024-06-09"
+},
+{
+"departement": "Seine-Saint-Denis",
+"code_dep": "93",
+"num": "7",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19324": [
@@ -22443,6 +25838,13 @@
 "num": "4",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Val-de-Marne",
+"code_dep": "94",
+"num": "4",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Val-de-Marne",
@@ -22486,6 +25888,13 @@
 "num": "2",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Eure-et-Loir",
+"code_dep": "28",
+"num": "2",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19105": [
@@ -22520,6 +25929,13 @@
 "num": "2",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Drôme",
+"code_dep": "26",
+"num": "2",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19029": [
@@ -22543,9 +25959,23 @@
 "num": "4",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Meurthe-et-Moselle",
+"code_dep": "54",
+"num": "4",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19926": [
+{
+"departement": "Val-d'Oise",
+"code_dep": "95",
+"num": "7",
+"debut": "2024-07-07",
+"fin": null
+},
 {
 "departement": "Val-d'Oise",
 "code_dep": "95",
@@ -22589,6 +26019,13 @@
 "num": "4",
 "debut": "2017-06-18",
 "fin": "2022-06-21"
+},
+{
+"departement": "Isère",
+"code_dep": "38",
+"num": "4",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19798": [
@@ -22605,6 +26042,13 @@
 "num": "4",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Hauts-de-Seine",
+"code_dep": "92",
+"num": "4",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19591": [
@@ -22614,6 +26058,13 @@
 "num": "3",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Val-de-Marne",
+"code_dep": "94",
+"num": "3",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Val-de-Marne",
@@ -22719,6 +26170,13 @@
 "num": "5",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Haute-Garonne",
+"code_dep": "31",
+"num": "5",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "5422": [
@@ -22792,6 +26250,13 @@
 "num": "1",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Puy-de-Dôme",
+"code_dep": "63",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Puy-de-Dôme",
@@ -22904,6 +26369,13 @@
 "num": "2",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Loiret",
+"code_dep": "45",
+"num": "2",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "2270": [
@@ -22943,6 +26415,13 @@
 "num": "5",
 "debut": "2007-06-20",
 "fin": "2012-06-19"
+},
+{
+"departement": "Nord",
+"code_dep": "59",
+"num": "5",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Nord",
@@ -23002,6 +26481,13 @@
 "num": "2",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Tarn",
+"code_dep": "81",
+"num": "2",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Tarn",
@@ -23128,6 +26614,20 @@
 "num": "2",
 "debut": "2024-07-07",
 "fin": "2026-04-21"
+},
+{
+"departement": "Orne",
+"code_dep": "61",
+"num": "2",
+"debut": "2024-07-07",
+"fin": "2025-01-23"
+},
+{
+"departement": "Orne",
+"code_dep": "61",
+"num": "2",
+"debut": "2024-07-07",
+"fin": "2026-04-21"
 }
 ],
 "19440": [
@@ -23146,6 +26646,13 @@
 "num": "7",
 "debut": "2024-06-30",
 "fin": null
+},
+{
+"departement": "Hérault",
+"code_dep": "34",
+"num": "7",
+"debut": "2024-06-30",
+"fin": null
 }
 ],
 "19729": [
@@ -23155,6 +26662,13 @@
 "num": "3",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Sarthe",
+"code_dep": "72",
+"num": "3",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Sarthe",
@@ -23237,6 +26751,13 @@
 "num": "1",
 "debut": "2024-07-07",
 "fin": "2025-11-12"
+},
+{
+"departement": "Français établis hors de France",
+"code_dep": "099",
+"num": "1",
+"debut": "2024-07-07",
+"fin": "2025-11-12"
 }
 ],
 "18481": [
@@ -23271,6 +26792,13 @@
 "num": "2",
 "debut": "2017-06-18",
 "fin": "2022-06-21"
+},
+{
+"departement": "Pyrénées-Atlantiques",
+"code_dep": "64",
+"num": "2",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Pyrénées-Atlantiques",
@@ -23410,6 +26938,13 @@
 "num": "3",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Yonne",
+"code_dep": "89",
+"num": "3",
+"debut": "2024-06-30",
+"fin": null
 }
 ],
 "2175": [
@@ -23465,6 +27000,13 @@
 "num": "3",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Indre-et-Loire",
+"code_dep": "37",
+"num": "3",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19283": [
@@ -23481,6 +27023,13 @@
 "num": "2",
 "debut": "2017-06-18",
 "fin": "2022-06-21"
+},
+{
+"departement": "Corrèze",
+"code_dep": "19",
+"num": "2",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Corrèze",
@@ -23516,6 +27065,13 @@
 }
 ],
 "19908": [
+{
+"departement": "Finistère",
+"code_dep": "29",
+"num": "2",
+"debut": "2024-07-07",
+"fin": null
+},
 {
 "departement": "Finistère",
 "code_dep": "29",
@@ -23570,9 +27126,23 @@
 "num": "1",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Cher",
+"code_dep": "18",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19883": [
+{
+"departement": "Polynésie Française",
+"code_dep": "987",
+"num": "1",
+"debut": "2024-06-30",
+"fin": null
+},
 {
 "departement": "Polynésie Française",
 "code_dep": "987",
@@ -23627,6 +27197,13 @@
 "num": "9",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Essonne",
+"code_dep": "91",
+"num": "9",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19052": [
@@ -23657,9 +27234,23 @@
 "num": "1",
 "debut": "2018-02-04",
 "fin": "2022-06-21"
+},
+{
+"departement": "Territoire de Belfort",
+"code_dep": "90",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "20028": [
+{
+"departement": "Eure-et-Loir",
+"code_dep": "28",
+"num": "1",
+"debut": "2024-07-07",
+"fin": "2025-01-23"
+},
 {
 "departement": "Eure-et-Loir",
 "code_dep": "28",
@@ -23796,6 +27387,13 @@
 "num": "13",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Rhône",
+"code_dep": "69",
+"num": "13",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "18564": [
@@ -23808,6 +27406,13 @@
 }
 ],
 "19882": [
+{
+"departement": "Nord",
+"code_dep": "59",
+"num": "20",
+"debut": "2024-06-30",
+"fin": null
+},
 {
 "departement": "Nord",
 "code_dep": "59",
@@ -23887,6 +27492,13 @@
 "num": "3",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Bas-Rhin",
+"code_dep": "67",
+"num": "3",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "17272": [
@@ -23913,6 +27525,13 @@
 }
 ],
 "20003": [
+{
+"departement": "Val-d'Oise",
+"code_dep": "95",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
+},
 {
 "departement": "Val-d'Oise",
 "code_dep": "95",
@@ -24008,9 +27627,23 @@
 "num": "2",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Gers",
+"code_dep": "32",
+"num": "2",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "20072": [
+{
+"departement": "Aveyron",
+"code_dep": "12",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
+},
 {
 "departement": "Aveyron",
 "code_dep": "12",
@@ -24042,6 +27675,13 @@
 "num": "2",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Alpes-de-Haute-Provence",
+"code_dep": "04",
+"num": "2",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19368": [
@@ -24065,6 +27705,13 @@
 "num": "1",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Somme",
+"code_dep": "80",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19164": [
@@ -24077,6 +27724,13 @@
 }
 ],
 "19929": [
+{
+"departement": "Hautes-Pyrénées",
+"code_dep": "65",
+"num": "2",
+"debut": "2024-07-07",
+"fin": null
+},
 {
 "departement": "Hautes-Pyrénées",
 "code_dep": "65",
@@ -24126,6 +27780,13 @@
 "num": "4",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Loiret",
+"code_dep": "45",
+"num": "4",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Loiret",
@@ -24197,6 +27858,13 @@
 "num": "4",
 "debut": "2023-12-01",
 "fin": "2024-06-09"
+},
+{
+"departement": "Loire",
+"code_dep": "42",
+"num": "4",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "10661": [
@@ -24300,6 +27968,13 @@
 "num": "6",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Réunion",
+"code_dep": "974",
+"num": "6",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "18373": [
@@ -24337,6 +28012,13 @@
 }
 ],
 "19884": [
+{
+"departement": "Paris",
+"code_dep": "75",
+"num": "7",
+"debut": "2024-06-30",
+"fin": "2026-04-09"
+},
 {
 "departement": "Paris",
 "code_dep": "75",
@@ -24388,6 +28070,13 @@
 "num": "2",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Français établis hors de France",
+"code_dep": "099",
+"num": "2",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19940": [
@@ -24397,9 +28086,23 @@
 "num": "3",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Essonne",
+"code_dep": "91",
+"num": "3",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19921": [
+{
+"departement": "Seine-Saint-Denis",
+"code_dep": "93",
+"num": "5",
+"debut": "2024-07-07",
+"fin": null
+},
 {
 "departement": "Seine-Saint-Denis",
 "code_dep": "93",
@@ -24443,6 +28146,13 @@
 }
 ],
 "19924": [
+{
+"departement": "Vosges",
+"code_dep": "88",
+"num": "2",
+"debut": "2024-07-07",
+"fin": null
+},
 {
 "departement": "Vosges",
 "code_dep": "88",
@@ -24586,6 +28296,13 @@
 "num": "5",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Moselle",
+"code_dep": "57",
+"num": "5",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19708": [
@@ -24595,6 +28312,13 @@
 "num": "3",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Haut-Rhin",
+"code_dep": "68",
+"num": "3",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Haut-Rhin",
@@ -24659,6 +28383,13 @@
 "num": "5",
 "debut": "2012-06-20",
 "fin": "2017-06-20"
+},
+{
+"departement": "Pyrénées-Atlantiques",
+"code_dep": "64",
+"num": "5",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "10627": [
@@ -24700,6 +28431,13 @@
 "num": "2",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Alpes-Maritimes",
+"code_dep": "06",
+"num": "2",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "17392": [
@@ -24748,6 +28486,13 @@
 "num": "6",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Val-d'Oise",
+"code_dep": "95",
+"num": "6",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19739": [
@@ -24757,6 +28502,13 @@
 "num": "5",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Somme",
+"code_dep": "80",
+"num": "5",
+"debut": "2024-06-30",
+"fin": null
 },
 {
 "departement": "Somme",
@@ -24844,6 +28596,20 @@
 "num": "2",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Haute-Savoie",
+"code_dep": "74",
+"num": "2",
+"debut": "2024-07-07",
+"fin": "2025-01-23"
+},
+{
+"departement": "Haute-Savoie",
+"code_dep": "74",
+"num": "2",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19094": [
@@ -24860,6 +28626,13 @@
 "num": "5",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Ille-et-Vilaine",
+"code_dep": "35",
+"num": "5",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Ille-et-Vilaine",
@@ -24942,6 +28715,13 @@
 "num": "13",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Nord",
+"code_dep": "59",
+"num": "13",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19685": [
@@ -24958,6 +28738,13 @@
 "num": "4",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Réunion",
+"code_dep": "974",
+"num": "4",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19823": [
@@ -24967,6 +28754,13 @@
 "num": "5",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Val-d'Oise",
+"code_dep": "95",
+"num": "5",
+"debut": "2024-06-30",
+"fin": null
 },
 {
 "departement": "Val-d'Oise",
@@ -25056,9 +28850,23 @@
 "num": "6",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Hauts-de-Seine",
+"code_dep": "92",
+"num": "6",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19892": [
+{
+"departement": "Charente-Maritime",
+"code_dep": "17",
+"num": "3",
+"debut": "2024-07-07",
+"fin": null
+},
 {
 "departement": "Charente-Maritime",
 "code_dep": "17",
@@ -25156,6 +28964,13 @@
 "num": "8",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Seine-Maritime",
+"code_dep": "76",
+"num": "8",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "1303": [
@@ -25197,6 +29012,13 @@
 "num": "9",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Pas-de-Calais",
+"code_dep": "62",
+"num": "9",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "16816": [
@@ -25231,6 +29053,13 @@
 "num": "1",
 "debut": "2022-06-19",
 "fin": "2023-08-20"
+},
+{
+"departement": "Gironde",
+"code_dep": "33",
+"num": "1",
+"debut": "2024-07-07",
+"fin": "2026-04-26"
 }
 ],
 "10652": [
@@ -25272,6 +29101,13 @@
 "num": "6",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Seine-Maritime",
+"code_dep": "76",
+"num": "6",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19608": [
@@ -25284,6 +29120,13 @@
 }
 ],
 "20045": [
+{
+"departement": "Français établis hors de France",
+"code_dep": "099",
+"num": "5",
+"debut": "2025-10-12",
+"fin": null
+},
 {
 "departement": "Français établis hors de France",
 "code_dep": "099",
@@ -25370,6 +29213,13 @@
 "num": "4",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Finistère",
+"code_dep": "29",
+"num": "4",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "3916": [
@@ -25434,6 +29284,13 @@
 "num": "6",
 "debut": "2017-06-18",
 "fin": "2022-06-21"
+},
+{
+"departement": "Seine-Saint-Denis",
+"code_dep": "93",
+"num": "6",
+"debut": "2024-06-30",
+"fin": null
 }
 ],
 "13156": [
@@ -25523,9 +29380,30 @@
 "num": "1",
 "debut": "2026-01-25",
 "fin": "2026-02-26"
+},
+{
+"departement": "Loiret",
+"code_dep": "45",
+"num": "1",
+"debut": "2024-07-07",
+"fin": "2025-11-12"
+},
+{
+"departement": "Loiret",
+"code_dep": "45",
+"num": "1",
+"debut": "2026-01-25",
+"fin": "2026-02-26"
 }
 ],
 "20050": [
+{
+"departement": "Saône-et-Loire",
+"code_dep": "71",
+"num": "5",
+"debut": "2025-05-25",
+"fin": null
+},
 {
 "departement": "Saône-et-Loire",
 "code_dep": "71",
@@ -25541,6 +29419,13 @@
 "num": "4",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Pyrénées-Atlantiques",
+"code_dep": "64",
+"num": "4",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Pyrénées-Atlantiques",
@@ -25590,6 +29475,13 @@
 }
 ],
 "20036": [
+{
+"departement": "Corse-du-Sud",
+"code_dep": "2A",
+"num": "1",
+"debut": "2024-07-07",
+"fin": "2025-11-05"
+},
 {
 "departement": "Corse-du-Sud",
 "code_dep": "2A",
@@ -25657,6 +29549,13 @@
 "num": "12",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Gironde",
+"code_dep": "33",
+"num": "12",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19171": [
@@ -25676,6 +29575,13 @@
 }
 ],
 "20069": [
+{
+"departement": "Aude",
+"code_dep": "11",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
+},
 {
 "departement": "Aude",
 "code_dep": "11",
@@ -25753,6 +29659,13 @@
 "num": "3",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Aveyron",
+"code_dep": "12",
+"num": "3",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Aveyron",
@@ -25913,6 +29826,13 @@
 "num": "10",
 "debut": "2024-06-30",
 "fin": null
+},
+{
+"departement": "Val-de-Marne",
+"code_dep": "94",
+"num": "10",
+"debut": "2024-06-30",
+"fin": null
 }
 ],
 "19046": [
@@ -25929,6 +29849,13 @@
 "num": "7",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Maine-et-Loire",
+"code_dep": "49",
+"num": "7",
+"debut": "2024-07-07",
+"fin": "2026-04-26"
 },
 {
 "departement": "Maine-et-Loire",
@@ -25966,6 +29893,13 @@
 "num": "10",
 "debut": "2017-06-18",
 "fin": "2022-06-21"
+},
+{
+"departement": "Gironde",
+"code_dep": "33",
+"num": "10",
+"debut": "2024-07-07",
+"fin": "2026-07-19"
 }
 ],
 "19872": [
@@ -26016,6 +29950,13 @@
 "num": "7",
 "debut": "2017-06-18",
 "fin": "2022-06-21"
+},
+{
+"departement": "Alpes-Maritimes",
+"code_dep": "06",
+"num": "7",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19178": [
@@ -26091,6 +30032,13 @@
 "num": "4",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Seine-Maritime",
+"code_dep": "76",
+"num": "4",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19792": [
@@ -26107,9 +30055,23 @@
 "num": "3",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Oise",
+"code_dep": "60",
+"num": "3",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19889": [
+{
+"departement": "Vaucluse",
+"code_dep": "84",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
+},
 {
 "departement": "Vaucluse",
 "code_dep": "84",
@@ -26132,9 +30094,23 @@
 "num": "16",
 "debut": "2024-06-30",
 "fin": null
+},
+{
+"departement": "Nord",
+"code_dep": "59",
+"num": "16",
+"debut": "2024-06-30",
+"fin": null
 }
 ],
 "19906": [
+{
+"departement": "Loire-Atlantique",
+"code_dep": "44",
+"num": "9",
+"debut": "2024-07-07",
+"fin": null
+},
 {
 "departement": "Loire-Atlantique",
 "code_dep": "44",
@@ -26203,6 +30179,13 @@
 "num": "8",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Val-de-Marne",
+"code_dep": "94",
+"num": "8",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19520": [
@@ -26230,6 +30213,13 @@
 "num": "2",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Oise",
+"code_dep": "60",
+"num": "2",
+"debut": "2024-06-30",
+"fin": null
 },
 {
 "departement": "Oise",
@@ -26283,6 +30273,13 @@
 "num": "2",
 "debut": "2007-06-20",
 "fin": "2010-12-14"
+},
+{
+"departement": "Cantal",
+"code_dep": "15",
+"num": "2",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "18572": [
@@ -26354,6 +30351,13 @@
 "num": "5",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Haut-Rhin",
+"code_dep": "68",
+"num": "5",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "18464": [
@@ -26432,6 +30436,13 @@
 "num": "3",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Ille-et-Vilaine",
+"code_dep": "35",
+"num": "3",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19667": [
@@ -26448,9 +30459,23 @@
 "num": "1",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Yonne",
+"code_dep": "89",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19890": [
+{
+"departement": "Paris",
+"code_dep": "75",
+"num": "3",
+"debut": "2024-07-07",
+"fin": null
+},
 {
 "departement": "Paris",
 "code_dep": "75",
@@ -26475,6 +30500,13 @@
 "num": "2",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Guadeloupe",
+"code_dep": "971",
+"num": "2",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Guadeloupe",
@@ -26553,6 +30585,13 @@
 "num": "3",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Haute-Vienne",
+"code_dep": "87",
+"num": "3",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19131": [
@@ -26569,6 +30608,13 @@
 "num": "6",
 "debut": "2017-06-18",
 "fin": "2022-06-21"
+},
+{
+"departement": "Maine-et-Loire",
+"code_dep": "49",
+"num": "6",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Maine-et-Loire",
@@ -26594,6 +30640,13 @@
 "num": "5",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Ain",
+"code_dep": "01",
+"num": "5",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19718": [
@@ -26606,6 +30659,13 @@
 }
 ],
 "19900": [
+{
+"departement": "Charente-Maritime",
+"code_dep": "17",
+"num": "2",
+"debut": "2024-07-07",
+"fin": null
+},
 {
 "departement": "Charente-Maritime",
 "code_dep": "17",
@@ -26665,6 +30725,13 @@
 "num": "2",
 "debut": "2007-06-20",
 "fin": "2012-06-16"
+},
+{
+"departement": "Deux-Sèvres",
+"code_dep": "79",
+"num": "2",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "18522": [
@@ -26681,6 +30748,13 @@
 "num": "2",
 "debut": "2012-06-20",
 "fin": "2017-06-20"
+},
+{
+"departement": "Cher",
+"code_dep": "18",
+"num": "2",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Cher",
@@ -26711,6 +30785,13 @@
 "num": "2",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Seine-Maritime",
+"code_dep": "76",
+"num": "2",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19589": [
@@ -26727,9 +30808,23 @@
 "num": "4",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Seine-Saint-Denis",
+"code_dep": "93",
+"num": "4",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "20022": [
+{
+"departement": "Seine-Maritime",
+"code_dep": "76",
+"num": "9",
+"debut": "2024-07-07",
+"fin": "2025-01-23"
+},
 {
 "departement": "Seine-Maritime",
 "code_dep": "76",
@@ -26809,6 +30904,13 @@
 "num": "6",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Loire-Atlantique",
+"code_dep": "44",
+"num": "6",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19351": [
@@ -26825,6 +30927,13 @@
 "num": "9",
 "debut": "2017-06-18",
 "fin": "2022-06-21"
+},
+{
+"departement": "Moselle",
+"code_dep": "57",
+"num": "9",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Moselle",
@@ -26905,6 +31014,13 @@
 "num": "8",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Bas-Rhin",
+"code_dep": "67",
+"num": "8",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "18536": [
@@ -26958,6 +31074,13 @@
 "num": "1",
 "debut": "2012-06-20",
 "fin": "2012-07-21"
+},
+{
+"departement": "Mayenne",
+"code_dep": "53",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19218": [
@@ -26997,6 +31120,13 @@
 "num": "2",
 "debut": "2007-06-20",
 "fin": "2012-06-19"
+},
+{
+"departement": "Sarthe",
+"code_dep": "72",
+"num": "2",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Sarthe",
@@ -27052,6 +31182,13 @@
 "num": "5",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Côtes-d'Armor",
+"code_dep": "22",
+"num": "5",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "18367": [
@@ -27084,6 +31221,13 @@
 "num": "2",
 "debut": "2022-06-19",
 "fin": "2022-08-04"
+},
+{
+"departement": "Yvelines",
+"code_dep": "78",
+"num": "2",
+"debut": "2024-07-07",
+"fin": "2024-10-21"
 },
 {
 "departement": "Yvelines",
@@ -27167,6 +31311,20 @@
 "num": "6",
 "debut": "2024-07-07",
 "fin": "2024-10-27"
+},
+{
+"departement": "Nord",
+"code_dep": "59",
+"num": "6",
+"debut": "2024-07-07",
+"fin": null
+},
+{
+"departement": "Nord",
+"code_dep": "59",
+"num": "6",
+"debut": "2024-07-07",
+"fin": "2024-10-27"
 }
 ],
 "476": [
@@ -27199,6 +31357,13 @@
 "num": "1",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Haute-Garonne",
+"code_dep": "31",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Haute-Garonne",
@@ -27249,6 +31414,20 @@
 "num": "13",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Hauts-de-Seine",
+"code_dep": "92",
+"num": "13",
+"debut": "2024-07-07",
+"fin": "2024-10-21"
+},
+{
+"departement": "Hauts-de-Seine",
+"code_dep": "92",
+"num": "13",
+"debut": "2024-07-07",
+"fin": "2025-11-12"
 },
 {
 "departement": "Hauts-de-Seine",
@@ -27361,6 +31540,13 @@
 "num": "8",
 "debut": "2024-06-30",
 "fin": null
+},
+{
+"departement": "Paris",
+"code_dep": "75",
+"num": "8",
+"debut": "2024-06-30",
+"fin": null
 }
 ],
 "1983": [
@@ -27409,6 +31595,13 @@
 "num": "2",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Territoire de Belfort",
+"code_dep": "90",
+"num": "2",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19682": [
@@ -27418,6 +31611,13 @@
 "num": "8",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Moselle",
+"code_dep": "57",
+"num": "8",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Moselle",
@@ -27459,6 +31659,13 @@
 "num": "1",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Français établis hors de France",
+"code_dep": "099",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "17329": [
@@ -27605,6 +31812,13 @@
 "num": "2",
 "debut": "2012-06-20",
 "fin": "2017-06-20"
+},
+{
+"departement": "Puy-de-Dôme",
+"code_dep": "63",
+"num": "2",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "17374": [
@@ -27640,6 +31854,13 @@
 }
 ],
 "19991": [
+{
+"departement": "Somme",
+"code_dep": "80",
+"num": "3",
+"debut": "2024-07-07",
+"fin": null
+},
 {
 "departement": "Somme",
 "code_dep": "80",
@@ -27704,6 +31925,13 @@
 }
 ],
 "20078": [
+{
+"departement": "Loire",
+"code_dep": "42",
+"num": "6",
+"debut": "2024-07-07",
+"fin": null
+},
 {
 "departement": "Loire",
 "code_dep": "42",
@@ -27869,6 +32097,13 @@
 "num": "4",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Oise",
+"code_dep": "60",
+"num": "4",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "10753": [
@@ -27974,6 +32209,13 @@
 "num": "8",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Rhône",
+"code_dep": "69",
+"num": "8",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19264": [
@@ -28018,6 +32260,13 @@
 }
 ],
 "20035": [
+{
+"departement": "Isère",
+"code_dep": "38",
+"num": "7",
+"debut": "2024-07-07",
+"fin": "2025-11-05"
+},
 {
 "departement": "Isère",
 "code_dep": "38",
@@ -28090,6 +32339,13 @@
 "num": "14",
 "debut": "2024-07-07",
 "fin": "2024-10-21"
+},
+{
+"departement": "Paris",
+"code_dep": "75",
+"num": "14",
+"debut": "2024-07-07",
+"fin": "2024-10-21"
 }
 ],
 "19008": [
@@ -28129,6 +32385,13 @@
 "num": "12",
 "debut": "2017-06-18",
 "fin": "2022-06-21"
+},
+{
+"departement": "Rhône",
+"code_dep": "69",
+"num": "12",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "7578": [
@@ -28189,6 +32452,13 @@
 "num": "5",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Sarthe",
+"code_dep": "72",
+"num": "5",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "5274": [
@@ -28207,6 +32477,13 @@
 "num": "2",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Eure",
+"code_dep": "27",
+"num": "2",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Eure",
@@ -28271,6 +32548,13 @@
 "num": "12",
 "debut": "2024-06-30",
 "fin": null
+},
+{
+"departement": "Nord",
+"code_dep": "59",
+"num": "12",
+"debut": "2024-06-30",
+"fin": null
 }
 ],
 "19226": [
@@ -28317,6 +32601,13 @@
 }
 ],
 "19960": [
+{
+"departement": "Côtes-d'Armor",
+"code_dep": "22",
+"num": "3",
+"debut": "2024-07-07",
+"fin": null
+},
 {
 "departement": "Côtes-d'Armor",
 "code_dep": "22",
@@ -28412,6 +32703,13 @@
 "num": "11",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Yvelines",
+"code_dep": "78",
+"num": "11",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "10709": [
@@ -28446,6 +32744,13 @@
 "num": "4",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Pyrénées-Orientales",
+"code_dep": "66",
+"num": "4",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Pyrénées-Orientales",
@@ -28528,6 +32833,13 @@
 "num": "10",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Isère",
+"code_dep": "38",
+"num": "10",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19381": [
@@ -28562,6 +32874,13 @@
 "num": "4",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Somme",
+"code_dep": "80",
+"num": "4",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Somme",
@@ -28610,6 +32929,13 @@
 "num": "7",
 "debut": "2024-06-30",
 "fin": null
+},
+{
+"departement": "Bouches-du-Rhône",
+"code_dep": "13",
+"num": "7",
+"debut": "2024-06-30",
+"fin": null
 }
 ],
 "18401": [
@@ -28633,6 +32959,13 @@
 "num": "10",
 "debut": "2022-06-19",
 "fin": "2022-07-22"
+},
+{
+"departement": "Nord",
+"code_dep": "59",
+"num": "10",
+"debut": "2024-07-07",
+"fin": "2025-01-23"
 }
 ],
 "6163": [
@@ -28681,6 +33014,13 @@
 "num": "10",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Nord",
+"code_dep": "59",
+"num": "10",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Nord",
@@ -28784,6 +33124,13 @@
 "num": "2",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Seine-et-Marne",
+"code_dep": "77",
+"num": "2",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19126": [
@@ -28848,6 +33195,13 @@
 "num": "3",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Puy-de-Dôme",
+"code_dep": "63",
+"num": "3",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19143": [
@@ -28880,6 +33234,13 @@
 "num": "7",
 "debut": "2017-06-18",
 "fin": "2022-06-21"
+},
+{
+"departement": "Ille-et-Vilaine",
+"code_dep": "35",
+"num": "7",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19083": [
@@ -28935,6 +33296,13 @@
 "num": "10",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Seine-et-Marne",
+"code_dep": "77",
+"num": "10",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "18521": [
@@ -28978,6 +33346,13 @@
 "num": "2",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Somme",
+"code_dep": "80",
+"num": "2",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "6705": [
@@ -29003,6 +33378,13 @@
 "num": "10",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Bouches-du-Rhône",
+"code_dep": "13",
+"num": "10",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19959": [
@@ -29012,9 +33394,23 @@
 "num": "1",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Nord",
+"code_dep": "59",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "20014": [
+{
+"departement": "Bouches-du-Rhône",
+"code_dep": "13",
+"num": "14",
+"debut": "2024-07-07",
+"fin": null
+},
 {
 "departement": "Bouches-du-Rhône",
 "code_dep": "13",
@@ -29051,6 +33447,13 @@
 "num": "2",
 "debut": "2012-06-20",
 "fin": "2017-06-20"
+},
+{
+"departement": "Haute-Loire",
+"code_dep": "43",
+"num": "2",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19582": [
@@ -29060,6 +33463,13 @@
 "num": "7",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Var",
+"code_dep": "83",
+"num": "7",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Var",
@@ -29079,6 +33489,13 @@
 }
 ],
 "19893": [
+{
+"departement": "Nord",
+"code_dep": "59",
+"num": "15",
+"debut": "2024-07-07",
+"fin": null
+},
 {
 "departement": "Nord",
 "code_dep": "59",
@@ -29129,6 +33546,13 @@
 }
 ],
 "19895": [
+{
+"departement": "Rhône",
+"code_dep": "69",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
+},
 {
 "departement": "Rhône",
 "code_dep": "69",
@@ -29265,6 +33689,13 @@
 "num": "9",
 "debut": "2024-07-07",
 "fin": "2025-01-23"
+},
+{
+"departement": "Rhône",
+"code_dep": "69",
+"num": "9",
+"debut": "2024-07-07",
+"fin": "2025-01-23"
 }
 ],
 "1300": [
@@ -29364,9 +33795,30 @@
 "num": "2",
 "debut": "2024-07-07",
 "fin": "2026-04-27"
+},
+{
+"departement": "Haute-Savoie",
+"code_dep": "74",
+"num": "2",
+"debut": "2024-07-07",
+"fin": "2024-10-21"
+},
+{
+"departement": "Haute-Savoie",
+"code_dep": "74",
+"num": "2",
+"debut": "2024-07-07",
+"fin": "2026-04-27"
 }
 ],
 "19896": [
+{
+"departement": "Loire-Atlantique",
+"code_dep": "44",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
+},
 {
 "departement": "Loire-Atlantique",
 "code_dep": "44",
@@ -29437,6 +33889,13 @@
 "num": "3",
 "debut": "2024-07-07",
 "fin": "2026-07-25"
+},
+{
+"departement": "Eure-et-Loir",
+"code_dep": "28",
+"num": "3",
+"debut": "2024-07-07",
+"fin": "2026-07-25"
 }
 ],
 "9494": [
@@ -29501,6 +33960,13 @@
 "num": "3",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Allier",
+"code_dep": "03",
+"num": "3",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19184": [
@@ -29529,6 +33995,13 @@
 }
 ],
 "20000": [
+{
+"departement": "Gironde",
+"code_dep": "33",
+"num": "7",
+"debut": "2024-07-07",
+"fin": null
+},
 {
 "departement": "Gironde",
 "code_dep": "33",
@@ -29622,6 +34095,13 @@
 "num": "14",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Paris",
+"code_dep": "75",
+"num": "14",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "17387": [
@@ -29656,6 +34136,13 @@
 "num": "2",
 "debut": "2024-06-30",
 "fin": null
+},
+{
+"departement": "Haute-Marne",
+"code_dep": "52",
+"num": "2",
+"debut": "2024-06-30",
+"fin": null
 }
 ],
 "18508": [
@@ -29683,6 +34170,13 @@
 "num": "5",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Isère",
+"code_dep": "38",
+"num": "5",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Isère",
@@ -29740,6 +34234,13 @@
 "num": "1",
 "debut": "2025-01-19",
 "fin": null
+},
+{
+"departement": "Isère",
+"code_dep": "38",
+"num": "1",
+"debut": "2025-01-19",
+"fin": null
 }
 ],
 "19208": [
@@ -29752,6 +34253,13 @@
 }
 ],
 "19988": [
+{
+"departement": "Isère",
+"code_dep": "38",
+"num": "1",
+"debut": "2024-07-07",
+"fin": "2024-10-15"
+},
 {
 "departement": "Isère",
 "code_dep": "38",
@@ -29852,6 +34360,13 @@
 "num": "1",
 "debut": "2022-06-19",
 "fin": "2022-07-22"
+},
+{
+"departement": "Loir-et-Cher",
+"code_dep": "41",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19425": [
@@ -29870,6 +34385,13 @@
 "num": "1",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Maine-et-Loire",
+"code_dep": "49",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Maine-et-Loire",
@@ -29934,6 +34456,13 @@
 "num": "1",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Gard",
+"code_dep": "30",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Gard",
@@ -30016,6 +34545,13 @@
 "num": "5",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Loiret",
+"code_dep": "45",
+"num": "5",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "18430": [
@@ -30046,6 +34582,13 @@
 "num": "5",
 "debut": "2024-07-07",
 "fin": "2024-10-21"
+},
+{
+"departement": "Doubs",
+"code_dep": "25",
+"num": "5",
+"debut": "2024-07-07",
+"fin": "2024-10-21"
 }
 ],
 "19280": [
@@ -30062,6 +34605,13 @@
 "num": "2",
 "debut": "2017-06-18",
 "fin": "2022-06-21"
+},
+{
+"departement": "Moselle",
+"code_dep": "57",
+"num": "2",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Moselle",
@@ -30108,9 +34658,23 @@
 "num": "3",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Guadeloupe",
+"code_dep": "971",
+"num": "3",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "20026": [
+{
+"departement": "Doubs",
+"code_dep": "25",
+"num": "5",
+"debut": "2024-07-07",
+"fin": null
+},
 {
 "departement": "Doubs",
 "code_dep": "25",
@@ -30277,6 +34841,13 @@
 "num": "4",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Eure",
+"code_dep": "27",
+"num": "4",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19310": [
@@ -30302,6 +34873,13 @@
 "num": "2",
 "debut": "2017-06-18",
 "fin": "2022-06-21"
+},
+{
+"departement": "Polynésie Française",
+"code_dep": "987",
+"num": "2",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19357": [
@@ -30325,6 +34903,13 @@
 "num": "1",
 "debut": "2017-06-18",
 "fin": "2022-06-21"
+},
+{
+"departement": "Haute-Savoie",
+"code_dep": "74",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "76": [
@@ -30343,6 +34928,13 @@
 "num": "12",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Seine-Saint-Denis",
+"code_dep": "93",
+"num": "12",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Seine-Saint-Denis",
@@ -30498,6 +35090,13 @@
 "num": "8",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Loire-Atlantique",
+"code_dep": "44",
+"num": "8",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "18394": [
@@ -30523,6 +35122,13 @@
 "num": "3",
 "debut": "2020-09-20",
 "fin": "2022-06-21"
+},
+{
+"departement": "Maine-et-Loire",
+"code_dep": "49",
+"num": "3",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Maine-et-Loire",
@@ -30594,6 +35200,13 @@
 "num": "3",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Finistère",
+"code_dep": "29",
+"num": "3",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Finistère",
@@ -30674,6 +35287,13 @@
 "num": "2",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Ain",
+"code_dep": "01",
+"num": "2",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "10611": [
@@ -30706,9 +35326,23 @@
 "num": "4",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Pas-de-Calais",
+"code_dep": "62",
+"num": "4",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "20007": [
+{
+"departement": "Ardennes",
+"code_dep": "08",
+"num": "1",
+"debut": "2024-07-07",
+"fin": "2024-10-04"
+},
 {
 "departement": "Ardennes",
 "code_dep": "08",
@@ -30779,6 +35413,13 @@
 "num": "9",
 "debut": "2020-09-20",
 "fin": "2022-06-21"
+},
+{
+"departement": "Val-de-Marne",
+"code_dep": "94",
+"num": "9",
+"debut": "2024-06-30",
+"fin": null
 }
 ],
 "19391": [
@@ -30820,6 +35461,13 @@
 "num": "3",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Aube",
+"code_dep": "10",
+"num": "3",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19401": [
@@ -30845,6 +35493,13 @@
 "num": "1",
 "debut": "2017-06-18",
 "fin": "2022-06-21"
+},
+{
+"departement": "Haute-Corse",
+"code_dep": "2B",
+"num": "1",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Haute-Corse",
@@ -30905,6 +35560,13 @@
 "num": "3",
 "debut": "2007-06-20",
 "fin": "2012-06-19"
+},
+{
+"departement": "Pyrénées-Atlantiques",
+"code_dep": "64",
+"num": "3",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "2154": [
@@ -30953,6 +35615,13 @@
 "num": "2",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Isère",
+"code_dep": "38",
+"num": "2",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Isère",
@@ -31072,6 +35741,13 @@
 "num": "9",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Paris",
+"code_dep": "75",
+"num": "9",
+"debut": "2024-06-30",
+"fin": null
 },
 {
 "departement": "Paris",
@@ -31277,6 +35953,13 @@
 "num": "2",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Mayenne",
+"code_dep": "53",
+"num": "2",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19707": [
@@ -31286,6 +35969,13 @@
 "num": "3",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Bouches-du-Rhône",
+"code_dep": "13",
+"num": "3",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Bouches-du-Rhône",
@@ -31316,6 +36006,13 @@
 "num": "11",
 "debut": "2017-06-18",
 "fin": "2022-06-21"
+},
+{
+"departement": "Rhône",
+"code_dep": "69",
+"num": "11",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "454": [
@@ -31465,6 +36162,13 @@
 "num": "10",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Val-d'Oise",
+"code_dep": "95",
+"num": "10",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19154": [
@@ -31488,6 +36192,13 @@
 "num": "3",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Deux-Sèvres",
+"code_dep": "79",
+"num": "3",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19028": [
@@ -31545,6 +36256,13 @@
 "num": "3",
 "debut": "2024-07-07",
 "fin": null
+},
+{
+"departement": "Français établis hors de France",
+"code_dep": "099",
+"num": "3",
+"debut": "2024-07-07",
+"fin": null
 }
 ],
 "19761": [
@@ -31588,6 +36306,13 @@
 "num": "8",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
+},
+{
+"departement": "Hérault",
+"code_dep": "34",
+"num": "8",
+"debut": "2024-07-07",
+"fin": null
 },
 {
 "departement": "Hérault",
