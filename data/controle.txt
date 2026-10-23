@@ -16,7 +16,7 @@ Distinctions calculées :
   quatre-vingts : 70
   bureau-vp-questeur : 68
   chef-gouvernement : 50
-  rapporteur-general : 41
+  rapporteur-general : 40
   presidence-an-longue : 35
   femmes-1945 : 33
   pantheon : 28
