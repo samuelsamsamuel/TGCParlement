@@ -22,7 +22,14 @@ body{background:var(--velours-fonce);color:var(--marbre);font:16px/1.5 var(--san
 a{color:var(--dorure-pale)}
 button{font:inherit;cursor:pointer}
 :focus-visible{outline:2px solid var(--dorure);outline-offset:3px}
-header{background:radial-gradient(120% 140% at 50% 120%,var(--velours) 0%,var(--velours-fonce) 70%);padding:1.6rem 1rem 0;text-align:center;overflow:hidden}
+header{position:relative;background:radial-gradient(120% 140% at 50% 120%,var(--velours) 0%,var(--velours-fonce) 70%);padding:1.6rem 1rem 0;text-align:center;overflow:hidden}
+/* Voix, toujours visibles en haut à droite */
+.voix-tete{position:absolute;top:.8rem;right:.9rem;display:flex;align-items:center;gap:.35rem;padding:.3rem .65rem .3rem .45rem;border-radius:2rem;
+  background:rgba(46,7,16,.75);border:1px solid rgba(201,162,74,.55);color:var(--dorure-pale);font-weight:700;font-size:.9rem;line-height:1}
+.voix-tete svg{width:1.15rem;height:1.15rem;flex:none}
+@media (max-width:700px){.voix-tete{top:.65rem;right:.6rem;font-size:.82rem}}
+/* Pas de zoom au double toucher : ouvrir un paquet, retourner une carte se font au toucher rapide */
+html,button,.carte,.paquet{touch-action:manipulation}
 h1{font:400 clamp(2rem,6vw,3.4rem)/1 var(--serif);margin:0 0 .3rem}
 .chapeau{margin:0 auto 1rem;max-width:34rem;color:var(--dorure-pale);font-size:.95rem}
 nav{display:flex;justify-content:center;gap:.25rem;border-top:1px solid rgba(201,162,74,.35)}
@@ -160,6 +167,7 @@ main{max-width:1120px;margin:0 auto;padding:1.5rem 1rem 4rem}
 .progression{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:.4rem 1.2rem;margin:0 0 1.5rem;padding:0;list-style:none;font-size:.9rem}
 .progression strong{font:700 1.25rem var(--serif);display:block;color:var(--dorure-pale)}
 .vide{color:var(--dorure-pale);text-align:center;padding:3rem 1rem;grid-column:1/-1}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 
 /* ---------- Détail ---------- */
 dialog{border:0;padding:0;background:transparent;color:var(--marbre);width:min(820px,94vw)}
@@ -267,6 +275,10 @@ footer a{color:var(--pierre)}
 <body>
 <header>
   <h1>Hémicycle</h1>
+  <div class="voix-tete" id="voix-tete" title="Vos voix, la monnaie du jeu" aria-live="polite">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 11h16v9H4z"/><path d="M8 11V6l4-3 4 3v5"/><path d="M10 7.5h4"/></svg>
+    <span><span id="voix-nombre">0</span> <span class="sr">voix</span></span>
+  </div>
   <p class="chapeau">Collectionnez les parlementaires français, de la Constituante de 1789 à l'Assemblée d'aujourd'hui.</p>
   <nav role="tablist" aria-label="Sections">
     <button role="tab" aria-selected="true" data-vue="paquet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M5 7h14M9 3l1 4M15 3l-1 4"/></svg>Séance <span class="pastille" id="pastille-seance" hidden></span></button>
@@ -288,7 +300,7 @@ footer a{color:var(--pierre)}
     <h2>Règlement du jeu</h2>
     <p>Toutes les heures, un paquet de cinq cartes s'ajoute à votre réserve, qui en garde huit au plus : en passant matin, midi et soir, on en ouvre une vingtaine par jour. Chaque paquet contient au moins un parlementaire ou un ministre en exercice. Les cartes obtenues prennent place dans votre hémicycle, votre collection.</p>
     <h3>Paquets offerts</h3>
-    <p>Des paquets supplémentaires se gagnent de deux façons. L'ordre du jour en donne à chaque objectif atteint : premiers pas (premier membre du Gouvernement, premier sénateur, première carte épique…), taille de l'hémicycle, Quatre-vingts, Compagnons de la Libération, présidents de l'Assemblée, députés d'une législature, élus d'un département. La dissolution des doubles en donne aussi : chaque exemplaire en trop dissous rapporte des voix selon sa rareté (commune 1, peu commune 2, rare 5, épique 15, légendaire et hors catégorie 40, mythique 100), et 25 voix s'échangent contre un paquet. Ici, acheter des voix est parfaitement réglementaire. Le premier exemplaire de chaque carte n'est jamais dissous. Les paquets offerts s'ouvrent une fois la réserve vide, sans limite de date.</p>
+    <p>L'ordre du jour récompense chaque objectif atteint. Les plus simples rapportent des voix pour lancer la partie : premiers pas (premier membre du Gouvernement, premier sénateur, première carte épique…) et premiers paliers de l'hémicycle. Les plus difficiles rapportent des paquets offerts : grands paliers de l'hémicycle, Quatre-vingts, Compagnons de la Libération, présidents de l'Assemblée, députés d'une législature, élus d'un département. La dissolution des doubles rapporte aussi des voix : chaque exemplaire en trop dissous rapporte des voix selon sa rareté (commune 1, peu commune 2, rare 5, épique 15, légendaire et hors catégorie 40, mythique 100), et 25 voix s'échangent contre un paquet. Ici, acheter des voix est parfaitement réglementaire. Le premier exemplaire de chaque carte n'est jamais dissous. Les paquets offerts s'ouvrent une fois la réserve vide, sans limite de date.</p>
     <h3>Questions au Gouvernement</h3>
     <p>Sous les paquets de la séance, cinq questions par jour, tirées des fiches officielles des cartes : département d'élection, fonction exercée, époque, année de début de carrière. Chaque bonne réponse rapporte 2 voix, et un sans-faute 5 de plus. Avec un compte, on peut aussi défier un autre joueur : les deux reçoivent les mêmes questions, pour la gloire.</p>
     <h3>Vitrine et classement</h3>
@@ -306,7 +318,7 @@ footer a{color:var(--pierre)}
 
   <section class="vue objectifs" id="vue-objectifs" hidden>
     <h2>Premiers pas</h2>
-    <p class="intro">Inscrits à l'ordre du jour : chaque objectif atteint donne des paquets offerts, à ouvrir quand vous voulez, en plus de la réserve. Les premiers se remplissent dès les premiers paquets.</p>
+    <p class="intro">Inscrits à l'ordre du jour : les objectifs les plus simples rapportent des voix, les plus difficiles des paquets offerts, à ouvrir quand vous voulez, en plus de la réserve. Les premiers se remplissent dès les premiers paquets.</p>
     <p id="tout-reclamer-zone"></p>
     <ul class="liste-objectifs" id="obj-premiers"></ul>
     <h2>Collections historiques</h2>
@@ -415,6 +427,8 @@ async function occupe(bouton, travail){
 }
 function echapper(t){ return String(t ?? "").replace(/[&<>"]/g, s => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[s])); }
 function pluriel(n, mot, mots = mot+"s"){ return n.toLocaleString("fr-FR")+" "+(n>1?mots:mot); }
+// Gain en paquets et en voix : « 2 paquets et 30 voix »
+function gainTexte(g){ return [g.paquets ? pluriel(g.paquets, "paquet") : "", g.voix ? pluriel(g.voix, "voix", "voix") : ""].filter(Boolean).join(" et "); }
 function dates(d,f,enCours=true){ if (!d) return ""; if (f === null || f === undefined) return enCours ? "depuis "+d : String(d); return d===f ? String(d) : d+"–"+f; }
 function initiales(nom){ const m = nom.split(" ").filter(Boolean); return (m[0]?.[0]||"") + (m.length>1 ? m[m.length-1][0] : ""); }
 // L'apostrophe est encodée aussi : l'adresse est reprise dans l'attribut onerror, entre apostrophes
@@ -480,12 +494,13 @@ function majCompteur(){
     : `Suspension de séance : la réserve est vide.${attendre}`;
   const infos = [];
   if (d.offerts) infos.push(`<span><b>${pluriel(d.offerts, "paquet offert", "paquets offerts")}</b></span>`);
-  if (etat.points) infos.push(`<span><b>${pluriel(etat.points, "voix", "voix")}</b>${d.echangeables ? ", de quoi échanger "+pluriel(d.echangeables, "paquet") : ""}</span>`);
-  const attente = cat ? Regles.recompensesEnAttente(etat, cat) : 0;
-  if (attente) infos.push(`<span><b>${pluriel(attente, "paquet")}</b> à réclamer à l'ordre du jour</span>`);
+  if (d.echangeables) infos.push(`<span>Vos voix permettent d'échanger <b>${pluriel(d.echangeables, "paquet")}</b></span>`);
+  document.getElementById("voix-nombre").textContent = etat.points.toLocaleString("fr-FR");
+  const attente = cat ? Regles.recompensesEnAttente(etat, cat) : {objectifs: 0};
+  if (attente.objectifs) infos.push(`<span><b>${gainTexte(attente)}</b> à réclamer à l'ordre du jour</span>`);
   document.getElementById("reserve").innerHTML = infos.join("");
   const pastille = document.getElementById("pastille");
-  pastille.hidden = !attente; pastille.textContent = attente;
+  pastille.hidden = !attente.objectifs; pastille.textContent = attente.objectifs;
 }
 function majTout(){ majCompteur(); majCollection(); majObjectifs(); majCompte(); majBuvette(); majQag(); }
 // Délai lisible : « 42 min », « 1 h 05 »
@@ -513,7 +528,7 @@ function afficherPaquet(){
   const d = Regles.paquetsDisponibles(etat);
   if (d.total <= 0) {
     const attente = Regles.recompensesEnAttente(etat, cat);
-    scene.innerHTML = (attente ? `<button class="bouton" id="vers-objectifs">Réclamer ${pluriel(attente, "paquet")} à l'ordre du jour</button>` : "")
+    scene.innerHTML = (attente.objectifs ? `<button class="bouton" id="vers-objectifs">Réclamer ${gainTexte(attente)} à l'ordre du jour</button>` : "")
       + (d.echangeables ? `<button class="bouton" id="echanger">Échanger ${PRIX_PAQUET} voix contre un paquet</button>` : "")
       + `<button class="bouton discret" id="voir">Voir mon hémicycle</button>`;
     document.getElementById("vers-objectifs")?.addEventListener("click", () => allerA("objectifs"));
@@ -540,29 +555,43 @@ async function ouvrir(){
   setTimeout(() => montrer(r.tirage, r.neuves, 0), reduit() ? 0 : 900);
 }
 function reduit(){ return matchMedia("(prefers-reduced-motion: reduce)").matches; }
-function montrer(tirage, neuves, i){
+// Découverte d'un paquet, carte par carte. Toucher la carte la retourne (recto, verso) ; « Précédente » et
+// « Suivante » naviguent. Une carte déjà vue revient sans l'animation de retournement.
+function montrer(tirage, neuves, i, vues = new Set()){
   const scene = document.getElementById("scene");
   if (i >= tirage.length) {
     scene.innerHTML = `<div class="grille recap">${tirage.map(c => htmlCarte(c,{neuve:neuves.has(c.id)})).join("")}</div>
       <p class="progres">${neuves.size} nouvelle${neuves.size>1?"s":""} carte${neuves.size>1?"s":""}. Touchez une carte pour la retourner.</p>
-      ${Regles.paquetsDisponibles(etat).total>0?'<button class="bouton" id="suivant">Ouvrir un autre paquet</button>':'<button class="bouton discret" id="voir">Voir mon hémicycle</button>'}`;
-    document.getElementById("suivant")?.addEventListener("click", afficherPaquet);
+      <div class="actions">${i > 0 ? '<button class="bouton discret" id="revoir">Revoir les cartes</button>' : ""}
+      ${Regles.paquetsDisponibles(etat).total>0?'<button class="bouton" id="suivant">Ouvrir un autre paquet</button>':'<button class="bouton discret" id="voir">Voir mon hémicycle</button>'}</div>`;
+    document.getElementById("revoir")?.addEventListener("click", () => montrer(tirage, neuves, tirage.length - 1, vues));
+    document.getElementById("suivant")?.addEventListener("click", () => { afficherPaquet(); recentrer(); });
     document.getElementById("voir")?.addEventListener("click", () => allerA("collection"));
     return;
   }
-  const c = tirage[i];
-  scene.innerHTML = htmlCarte(c, {retournee:false, neuve:neuves.has(c.id), classe:"grande", id:"courante"})
-    + `<div class="actions"><button class="bouton discret" id="envers">Voir le verso</button><button class="bouton" id="suite">${i+1<tirage.length?`Suivante (${i+2}/${tirage.length})`:"Voir le paquet"}</button></div>`;
-  const el = document.getElementById("courante");
-  requestAnimationFrame(() => requestAnimationFrame(() => el.classList.add("retournee")));
-  const suivante = () => montrer(tirage, neuves, i+1);
-  el.addEventListener("click", suivante);
-  document.getElementById("suite").addEventListener("click", suivante);
-  document.getElementById("suite").focus();
-  document.getElementById("envers").addEventListener("click", e => {
-    el.classList.toggle("envers");
-    e.target.textContent = el.classList.contains("envers") ? "Voir le recto" : "Voir le verso";
-  });
+  const c = tirage[i], dejaVue = vues.has(i);
+  vues.add(i);
+  scene.innerHTML = htmlCarte(c, {retournee: dejaVue, neuve:neuves.has(c.id), classe:"grande", id:"courante"})
+    + `<div class="actions">${i > 0 ? '<button class="bouton discret" id="precedente">Précédente</button>' : ""}<button class="bouton discret" id="envers">Verso</button>
+      <button class="bouton" id="suite">${i+1<tirage.length?`Suivante (${i+2}/${tirage.length})`:"Voir le paquet"}</button></div>
+      <p class="progres">Touchez la carte pour la retourner.</p>`;
+  const el = document.getElementById("courante"), envers = document.getElementById("envers");
+  if (!dejaVue) requestAnimationFrame(() => requestAnimationFrame(() => el.classList.add("retournee")));
+  const retourner = () => {
+    el.classList.remove("statique"); el.classList.toggle("envers");
+    envers.textContent = el.classList.contains("envers") ? "Recto" : "Verso";
+  };
+  el.addEventListener("click", e => { if (!e.target.closest("a")) retourner(); });
+  envers.addEventListener("click", retourner);
+  document.getElementById("precedente")?.addEventListener("click", () => montrer(tirage, neuves, i - 1, vues));
+  document.getElementById("suite").addEventListener("click", () => montrer(tirage, neuves, i + 1, vues));
+  document.getElementById("suite").focus({preventScroll: true});
+  recentrer();
+}
+// Ramène la scène au centre de l'écran (après « Ouvrir un autre paquet », à chaque carte)
+function recentrer(){
+  const scene = document.getElementById("scene");
+  requestAnimationFrame(() => scene.scrollIntoView({behavior: reduit() ? "auto" : "smooth", block: "center"}));
 }
 
 /* ---------- Recyclage ---------- */
@@ -605,14 +634,16 @@ function majAtelier(){
 /* ---------- Objectifs ---------- */
 function htmlObjectif(o){
   const a = Regles.avancement(etat, o);
-  const gain = a.aReclamer.reduce((n,e) => n+e.paquets, 0);
+  const gainObj = {paquets: a.aReclamer.reduce((n,e) => n+e.paquets, 0), voix: a.aReclamer.reduce((n,e) => n+e.voix, 0)};
+  const gain = gainObj.paquets + gainObj.voix;
+  const quantite = e => e.type === "voix" ? pluriel(e.quantite, "voix", "voix") : pluriel(e.quantite, "paquet");
   if (o.famille === "premier") {
     // Une seule carte suffit : trouvé ou à trouver, sans compteur
     const trouve = a.obtenues > 0, recu = a.etapes[0].reclame;
     return `<li class="objectif${gain?" pret":""}">
       <h3>${echapper(o.titre)}</h3>${o.sousTitre ? `<p class="sous">${echapper(o.sousTitre)}</p>` : ""}
-      <div class="compte"><span>${recu ? "Trouvé, paquet reçu" : trouve ? "Trouvé" : "À trouver"}</span><span>${pluriel(a.etapes[0].paquets, "paquet")}</span></div>
-      ${gain ? `<button class="bouton" data-reclamer="${echapper(o.id)}">Réclamer ${pluriel(gain, "paquet")}</button>` : ""}
+      <div class="compte"><span>${recu ? "Trouvé, récompense reçue" : trouve ? "Trouvé" : "À trouver"}</span><span>${quantite(a.etapes[0])}</span></div>
+      ${gain ? `<button class="bouton" data-reclamer="${echapper(o.id)}">Réclamer ${gainTexte(gainObj)}</button>` : ""}
     </li>`;
   }
   const part = Math.min(100, Math.round(100 * a.obtenues / (a.prochain ? a.prochain.seuil : o.total)));
@@ -620,8 +651,8 @@ function htmlObjectif(o){
     <h3>${echapper(o.titre)}</h3>${o.sousTitre ? `<p class="sous">${echapper(o.sousTitre)}</p>` : ""}
     <div class="compte"><span>${a.obtenues.toLocaleString("fr-FR")} sur ${o.total.toLocaleString("fr-FR")}</span><span>${a.prochain ? `prochain palier : ${a.prochain.seuil.toLocaleString("fr-FR")}` : "collection complète"}</span></div>
     <div class="jauge" aria-hidden="true"><i style="width:${part}%"></i></div>
-    <ul class="paliers">${a.etapes.map(e => `<li class="${e.reclame?"reclame":e.atteint?"atteint":""}">${e.seuil===o.total?"Complète":e.seuil.toLocaleString("fr-FR")} : ${pluriel(e.paquets, "paquet")}</li>`).join("")}</ul>
-    ${gain ? `<button class="bouton" data-reclamer="${echapper(o.id)}">Réclamer ${pluriel(gain, "paquet")}</button>` : ""}
+    <ul class="paliers">${a.etapes.map(e => `<li class="${e.reclame?"reclame":e.atteint?"atteint":""}">${e.seuil===o.total?"Complète":e.seuil.toLocaleString("fr-FR")} : ${quantite(e)}</li>`).join("")}</ul>
+    ${gain ? `<button class="bouton" data-reclamer="${echapper(o.id)}">Réclamer ${gainTexte(gainObj)}</button>` : ""}
   </li>`;
 }
 function majObjectifs(){
@@ -629,7 +660,7 @@ function majObjectifs(){
   const parFamille = f => cat.objectifs.filter(o => o.famille === f);
   const enAttente = cat.objectifs.filter(o => Regles.avancement(etat, o).aReclamer.length);
   document.getElementById("tout-reclamer-zone").innerHTML = enAttente.length > 1
-    ? `<button class="bouton" id="tout-reclamer">Tout réclamer : ${pluriel(Regles.recompensesEnAttente(etat, cat), "paquet")}</button>` : "";
+    ? `<button class="bouton" id="tout-reclamer">Tout réclamer : ${gainTexte(Regles.recompensesEnAttente(etat, cat))}</button>` : "";
   // Premiers pas : ceux à réclamer d'abord, puis ceux à trouver, puis ceux déjà reçus
   const rang = o => { const a = Regles.avancement(etat, o); return a.aReclamer.length ? 0 : a.prochain ? 1 : 2; };
   document.getElementById("obj-premiers").innerHTML = cat.objectifs.filter(o => o.famille==="premier" || o.famille==="collection")
@@ -646,15 +677,17 @@ function majObjectifs(){
 document.getElementById("vue-objectifs").addEventListener("click", e => {
   if (e.target.id === "tout-reclamer") {
     occupe(e.target, async () => {
-      let n = 0;
-      for (const o of cat.objectifs.filter(o => Regles.avancement(etat, o).aReclamer.length)) n += await actions.reclamer(o.id) || 0;
-      majTout(); afficherPaquet(); signaler(`${pluriel(n, "paquet offert", "paquets offerts")} à ouvrir dans l'onglet Séance.`);
+      const total = {paquets: 0, voix: 0};
+      for (const o of cat.objectifs.filter(o => Regles.avancement(etat, o).aReclamer.length)) {
+        const g = await actions.reclamer(o.id); total.paquets += g.paquets; total.voix += g.voix;
+      }
+      majTout(); afficherPaquet(); signaler(`Reçu : ${gainTexte(total)}.`);
     });
     return;
   }
   const b = e.target.closest("[data-reclamer]");
   if (!b) return;
-  occupe(b, async () => { if (await actions.reclamer(b.dataset.reclamer)) { majTout(); afficherPaquet(); } });
+  occupe(b, async () => { const g = await actions.reclamer(b.dataset.reclamer); if (g.paquets || g.voix) { majTout(); afficherPaquet(); signaler(`Reçu : ${gainTexte(g)}.`); } });
 });
 document.getElementById("recherche-dep").addEventListener("input", majObjectifs);
 

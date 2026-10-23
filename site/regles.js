@@ -123,10 +123,11 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
   function catalogueCompact(data) {
     const cartes = data.cartes.map(([id, r, actuel, score]) => ({id, rarete: data.raretes[r], actuel: !!actuel, score}));
     const cat = catalogue(cartes, [], []);
+    cat.indexDe = Object.fromEntries(cartes.map((c, i) => [c.id, i]));
     cat.objectifs = data.objectifs.map(([id, famille, titre, sous, plages]) => {
       let total = 0;
       for (let k = 1; k < plages.length; k += 2) total += plages[k];
-      const o = {id, famille, titre, sousTitre: sous, total, paliers: paliers(famille, total)};
+      const o = {id, famille, titre, sousTitre: sous, total, paliers: paliers(famille, total), plages};
       let ids = null;
       Object.defineProperty(o, "ids", {enumerable: true, get: () => ids ||= dePlages(plages, cartes)});
       return o;
@@ -222,9 +223,11 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
   const PALIERS = {
     // Premiers pas : une seule carte suffit (premier membre du Gouvernement, première sénatrice ou premier
     // sénateur, première carte épique...) ; de quoi gagner vite ses premiers paquets offerts
-    premier: [[1, 1]],
+    // Récompenses : [seuil, quantité] en paquets offerts, ou [seuil, quantité, "voix"] pour les tâches les plus
+    // simples, qui lancent la partie en voix ; les paquets restent aux tâches plus dures.
+    premier: [[1, 10, "voix"]],
     // Taille de l'hémicycle (cartes différentes) : 348 sénateurs, 577 députés
-    collection: [[10, 1], [25, 1], [50, 1], [100, 1], [250, 1], [348, 2], [577, 3], [1000, 3]],
+    collection: [[10, 10, "voix"], [25, 15, "voix"], [50, 20, "voix"], [100, 25, "voix"], [250, 1], [348, 2], [577, 3], [1000, 3]],
     historique: [[1, 1], [5, 1], [15, 2]],
     presidents: [[1, 1], [5, 1], [15, 2], [40, 2]],
     // Législatures et départements : paliers hauts et récompenses modestes. Les paquets gagnés donnent des
@@ -238,7 +241,7 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
   const ORDRE_EPOQUES = ["Révolution et Empire", "Monarchies constitutionnelles", "IIe République et Second Empire",
     "IIIe République", "Libération et IVe République", "Ve République"];
   function paliers(famille, total) {
-    if (famille === "premier") return [[1, 1]];
+    if (famille === "premier") return PALIERS.premier.slice();
     const p = PALIERS[famille].filter(([s]) => s < total);
     p.push([total, Math.max(COMPLETE, (p.length ? p[p.length - 1][1] : 0) + 1)]);
     return p;
@@ -288,28 +291,55 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
       .forEach(([cle, d]) => liste.push(objectif("departement:" + cle, "departement", d.titre, [...d.ids])));
     return liste;
   }
+  // La collection complète a sa propre clé : si l'objectif grandit avec les données, elle ne se réclame qu'une fois
+  function clePalier(obj, seuil) { return obj.id + "@" + (seuil === obj.total && obj.famille !== "premier" ? "complet" : seuil); }
   function avancement(etat, obj) {
     const obtenues = obj.ids.reduce((n, id) => n + (etat.possedees[id] ? 1 : 0), 0);
-    // La collection complète a sa propre clé : si l'objectif grandit avec les données, elle ne se réclame qu'une fois
-    const cle = seuil => obj.id + "@" + (seuil === obj.total ? "complet" : seuil);
-    const etapes = obj.paliers.map(([seuil, paquets]) => ({seuil, paquets, cle: cle(seuil), atteint: obtenues >= seuil, reclame: !!etat.objectifs[cle(seuil)]}));
+    const etapes = obj.paliers.map(([seuil, quantite, type = "paquets"]) => ({seuil, quantite, type, paquets: type === "paquets" ? quantite : 0,
+      voix: type === "voix" ? quantite : 0, cle: clePalier(obj, seuil), atteint: obtenues >= seuil, reclame: !!etat.objectifs[clePalier(obj, seuil)]}));
     return {obtenues, etapes, aReclamer: etapes.filter(e => e.atteint && !e.reclame), prochain: etapes.find(e => !e.atteint) || null};
   }
-  // Réclame tous les paliers atteints et non encore réclamés d'un objectif ; renvoie le nombre de paquets offerts
+  // Clés des paliers atteints par une collection (reprise d'une collection à l'inscription, côté serveur). Avec le
+  // catalogue du serveur, le compte se fait sur les plages des membres, sans décoder les listes : quelques ms.
+  function clesAtteintes(cat, possedees) {
+    const indices = cat.indexDe ? Object.keys(possedees).filter(id => possedees[id] > 0).map(id => cat.indexDe[id]).filter(i => i !== undefined).sort((a, b) => a - b) : null;
+    const cles = [];
+    for (const o of cat.objectifs) {
+      let n = 0;
+      if (indices && o.plages) {
+        let k = 0;
+        for (const i of indices) {
+          while (k < o.plages.length && o.plages[k] + o.plages[k + 1] <= i) k += 2;
+          if (k < o.plages.length && i >= o.plages[k]) n += 1;
+        }
+      } else n = o.ids.reduce((a, id) => a + (possedees[id] > 0 ? 1 : 0), 0);
+      for (const [seuil] of o.paliers) if (n >= seuil) cles.push(clePalier(o, seuil));
+    }
+    return cles;
+  }
+  // Réclame tous les paliers atteints et non encore réclamés d'un objectif ; renvoie {paquets, voix} gagnés
   function reclamer(etat, cat, id) {
     const obj = cat.objectifParId[id];
-    if (!obj) return 0;
-    let paquets = 0;
+    const gain = {paquets: 0, voix: 0};
+    if (!obj) return gain;
     for (const e of avancement(etat, obj).aReclamer) {
       etat.objectifs[e.cle] = new Date().toISOString();
-      paquets += e.paquets;
+      gain.paquets += e.paquets; gain.voix += e.voix;
     }
-    if (paquets) { etat.offerts += paquets; noter(etat, "objectif", {id, paquets}); }
-    return paquets;
+    if (gain.paquets || gain.voix) { etat.offerts += gain.paquets; etat.points += gain.voix; noter(etat, "objectif", {id, ...gain}); }
+    return gain;
   }
+  // Récompenses en attente : {paquets, voix, objectifs} (objectifs : nombre d'objectifs à réclamer)
   function recompensesEnAttente(etat, cat) {
-    return cat.objectifs.reduce((n, o) => n + avancement(etat, o).aReclamer.reduce((a, e) => a + e.paquets, 0), 0);
+    const r = {paquets: 0, voix: 0, objectifs: 0};
+    for (const o of cat.objectifs) {
+      const a = avancement(etat, o).aReclamer;
+      if (a.length) r.objectifs += 1;
+      for (const e of a) { r.paquets += e.paquets; r.voix += e.voix; }
+    }
+    return r;
   }
+
 
   /* ---------- Questions au Gouvernement ---------- */
   // Cinq questions tirées des fiches officielles des cartes : département d'élection, fonction exercée,
@@ -413,5 +443,5 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
 
   return {VERSION_ETAT, RECHARGE_MS, QUIZ_QUESTIONS, graineDe, questions, recompenseQuiz, validerQuiz, RESERVE_MAX, CARTES_PAR_PAQUET, reserveCourante, ORDRE, POIDS, VALEUR_RECYCLAGE, PRIX_PAQUET, PALIERS,
     etatVide, migrer, jourDuJeu, normer, cartesDeJeu, catalogue, compacter, catalogueCompact, paquetsDisponibles, ouvrirPaquet,
-    disponibles, recyclables, doubles, recycler, echangerPoints, avancement, reclamer, recompensesEnAttente};
+    disponibles, recyclables, doubles, recycler, echangerPoints, avancement, clesAtteintes, reclamer, recompensesEnAttente};
 });

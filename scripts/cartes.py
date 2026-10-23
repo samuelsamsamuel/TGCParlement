@@ -218,7 +218,13 @@ EPOQUES = [(1814, "Révolution et Empire"), (1848, "Monarchies constitutionnelle
 
 
 def groupe_principal(mandats):
-    """Groupe politique où le parlementaire a siégé le plus longtemps (somme des durées de mandat)."""
+    """Groupe affiché sur la carte : pour un élu en exercice, le groupe de son mandat en cours (un député passé
+    d'En Marche à Horizons doit apparaître à Horizons) ; sinon le groupe où il a siégé le plus longtemps (somme
+    des durées de mandat), plus fidèle à l'ensemble de la carrière."""
+    for m in sorted(mandats, key=lambda m: m.get("debut") or "", reverse=True):
+        g = (m.get("groupe") or "").strip()
+        if m.get("en_cours") and g and not g.isdigit():
+            return g
     durees = Counter()
     for m in mandats:
         g = (m.get("groupe") or "").strip()

@@ -37,6 +37,9 @@ Wikidata, sondés par reprise, 20 minutes par exécution), `villes_circonscripti
 
 ## Décisions de notation
 
+- Groupe affiché sur la carte (`groupe_principal`, `cartes.py`) : groupe du mandat en cours pour un élu en
+  exercice, sinon groupe où il a siégé le plus longtemps.
+
 - Symétrie des fonctions au sein des chambres (`DECISION_SYMETRIE`, `senat_fonctions.py`) : l'open data de
   l'Assemblée ne porte ces fonctions (Bureau, présidences de commission et de groupe, rapporteur général)
   qu'à partir de la XIIe législature (19 juin 2002 ; AMO30 n'a aucun mandat au Bureau avant). Aucune source
@@ -68,6 +71,9 @@ Wikidata, sondés par reprise, 20 minutes par exécution), `villes_circonscripti
 - Paliers (`PALIERS`) hauts et modestes pour les législatures (50, 150) et les départements (15, 40) : des
   paliers bas s'auto-entretenaient (simulation : la moitié des cartes dès le premier jour). Un test vérifie
   qu'un premier jour avec toutes les récompenses en cascade reste borné.
+- Récompenses : les tâches simples paient en voix (premiers pas, 10 voix chacun ; « Remplir l'hémicycle » à 10, 25,
+  50 et 100 cartes), les plus dures en paquets offerts (`PALIERS` : [seuil, quantité] ou [seuil, quantité, "voix"]).
+  `reclamer` et `recompensesEnAttente` renvoient {paquets, voix}.
 - Premiers pas, pour des récompenses rapides : premier membre du Gouvernement, premier député, premier sénateur,
   première femme parlementaire, premier élu en exercice, premier chef de l'État ou du Gouvernement, première
   carte de chaque rareté (rare à mythique), premier parlementaire de chaque époque (un paquet chacun) ; et
@@ -85,7 +91,9 @@ marché), Mon siège (compte), Règlement (règles). Dissoudre des doubles (recy
 monnaie du jeu (« acheter des voix est parfaitement réglementaire ») ; à la buvette, les joueurs échangent
 des cartes et se les vendent au comptoir. Pas plus de termes : compte, connexion et échanges gardent des mots
 simples (« prendre séance » et consorts ont été écartés). Les noms de code (fonctions, API, base, champ
-`points`) gardent les termes techniques.
+`points`) gardent les termes techniques. Les voix restent visibles en haut à droite. Pendant la découverte d'un
+paquet, toucher la carte la retourne ; « Précédente » et « Suivante » naviguent. Pas de zoom au double toucher
+(`touch-action: manipulation`).
 
 ## Serveur : comptes, échanges, marché
 
@@ -105,6 +113,9 @@ simples (« prendre séance » et consorts ont été écartés). Les noms de cod
 - Monnaie du marché : les voix (champ `points`), gagnées en dissolvant des doubles. Pas d'argent réel.
 - Catalogue du serveur : membres des objectifs codés en plages et décodés à la demande ; le catalogue n'est
   chargé que par les routes qui en ont besoin (environ 12 ms au premier chargement, en cache ensuite).
+- D1 accepte au plus 100 paramètres par requête (le serveur local n'a pas cette limite) : insertions groupées par
+  `insertionsGroupees`. L'inscription avec reprise part en un seul lot (transaction) ; un compte resté vide
+  (aucune possession, aucun journal) est repris par une nouvelle inscription avec le même mot de passe.
 - Concurrence des opérations des règles : version du joueur incrémentée dans le même lot ; une insertion dans la
   table `garde` (contrainte `ok = 0`) n'a lieu que si la version a changé (`changes() = 0`) et annule tout.
 - Colonnes ajoutées après la mise en service : déclarées dans `COLONNES` (worker), ajoutées à la volée.

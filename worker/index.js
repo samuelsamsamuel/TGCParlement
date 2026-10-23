@@ -247,6 +247,16 @@ function validerIdentifiants(c) {
   if (!/^[0-9a-f]{64}$/.test(String(c.preuve || ""))) throw new Refus(400, "Mot de passe illisible.");
   return {pseudo, preuve: c.preuve};
 }
+// D1 accepte au plus 100 paramètres par requête : insertions groupées par tranches qui restent en dessous
+const PARAMETRES_MAX = 100;
+function insertionsGroupees(env, debut, colonnes, lignes) {
+  const parTranche = Math.floor(PARAMETRES_MAX / colonnes), requetes = [];
+  for (let i = 0; i < lignes.length; i += parTranche) {
+    const tranche = lignes.slice(i, i + parTranche);
+    requetes.push(env.DB.prepare(`${debut} VALUES ${tranche.map(() => "(" + Array(colonnes).fill("?").join(", ") + ")").join(", ")}`).bind(...tranche.flat()));
+  }
+  return requetes;
+}
 async function inscription(env, requete, cat) {
   const c = await lireCorps(requete);
   const {pseudo, preuve} = validerIdentifiants(c);
@@ -258,29 +268,34 @@ async function inscription(env, requete, cat) {
   try {
     joueur = (await env.DB.prepare("INSERT INTO joueurs (pseudo, sel, empreinte, cree) VALUES (?, ?, ?, ?) RETURNING id")
       .bind(pseudo, sel, await sha256(sel + preuve), maintenant()).first()).id;
-  } catch (e) { if (contrainte(e)) throw new Refus(409, "Ce pseudo est déjà pris."); throw e; }
+  } catch (e) {
+    if (!contrainte(e)) throw e;
+    // Pseudo existant : si c'est un compte resté vide (inscription interrompue) et que le mot de passe est le
+    // même, l'inscription reprend dans ce compte ; sinon le pseudo est pris.
+    const ex = await env.DB.prepare(`SELECT id, sel, empreinte FROM joueurs WHERE pseudo = ?1
+      AND NOT EXISTS (SELECT 1 FROM possessions WHERE joueur = joueurs.id) AND NOT EXISTS (SELECT 1 FROM journal WHERE joueur = joueurs.id)`).bind(pseudo).first();
+    if (!ex || !egaux(await sha256(ex.sel + preuve), ex.empreinte)) throw new Refus(409, "Ce pseudo est déjà pris.");
+    joueur = ex.id;
+  }
   // Reprise de la collection du navigateur, une seule fois : les cartes comptent pour la collection et les
   // objectifs, mais restent verrouillées (ni recyclées, ni cédées), faute de pouvoir vérifier leur origine.
-  // Les paliers déjà atteints sont marqués comme réclamés : le navigateur les a déjà payés. Points et
-  // paquets offerts ne sont pas repris.
+  // Les paliers déjà atteints sont marqués comme réclamés : le navigateur les a déjà payés. Voix et paquets
+  // offerts ne sont pas repris. En cas d'échec, le compte reste vide et une nouvelle inscription le reprend.
   const repris = {};
   const brut = c.collection && typeof c.collection === "object" ? c.collection : {};
   for (const [id, n] of Object.entries(brut)) {
     const k = entier(n, 1, MAX_PAR_CARTE);
     if (k && cat.parId[id]) repris[id] = k;
   }
-  const ids = Object.keys(repris), requetes = [];
-  for (let i = 0; i < ids.length; i += 30) {
-    const tranche = ids.slice(i, i + 30);
-    requetes.push(env.DB.prepare(`INSERT INTO possessions (joueur, carte, n, importes) VALUES ${tranche.map(() => "(?, ?, ?, ?)").join(", ")}`)
-      .bind(...tranche.flatMap(id => [joueur, id, repris[id], repris[id]])));
-  }
-  const etat = Regles.etatVide(); etat.possedees = repris;
-  const date = maintenant();
-  for (const o of cat.objectifs) for (const e of Regles.avancement(etat, o).aReclamer)
-    requetes.push(env.DB.prepare("INSERT INTO reclames (joueur, cle, date) VALUES (?, ?, ?)").bind(joueur, e.cle, date));
+  const ids = Object.keys(repris), date = maintenant();
+  const requetes = [
+    ...insertionsGroupees(env, "INSERT INTO possessions (joueur, carte, n, importes)", 4, ids.map(id => [joueur, id, repris[id], repris[id]])),
+    ...insertionsGroupees(env, "INSERT OR IGNORE INTO reclames (joueur, cle, date)", 3, Regles.clesAtteintes(cat, repris).map(cle => [joueur, cle, date])),
+  ];
+  // Le journal en dernier : sa présence marque une reprise terminée
   if (ids.length) requetes.push(noterJournal(env, joueur, "reprise", {cartes: ids.length, exemplaires: ids.reduce((a, id) => a + repris[id], 0)}));
-  for (let i = 0; i < requetes.length; i += 50) await env.DB.batch(requetes.slice(i, i + 50));
+  // Un seul lot, exécuté comme une transaction : la reprise passe en entier ou pas du tout
+  if (requetes.length) await env.DB.batch(requetes);
   return json({connecte: true, ...(await chargerEtat(env, joueur))}, 201, {"set-cookie": await ouvrirSession(env, joueur)});
 }
 async function connexion(env, requete) {
