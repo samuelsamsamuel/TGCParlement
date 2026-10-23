@@ -64,6 +64,14 @@ Sénat, lu dans l'export complet `export_sens.zip`, tables `bur` et `senbur`) ; 
 - Tests : `node tests/regles.test.js` (sans installation) ; `tests/api.test.js` contre un serveur local
   (`npx wrangler dev`, mode d'emploi en tête du fichier).
 
+## Vocabulaire du jeu (références parlementaires)
+
+Onglets : Séance (paquets du jour), Hémicycle (collection), Ordre du jour (objectifs), Buvette (échanges et
+marché), Mon siège (compte), Règlement (règles). Dissoudre des doubles (recyclage) rapporte des jetons ; à la
+buvette, les tractations (échanges entre joueurs) s'adoptent, se rejettent ou se retirent, et les cartes se
+vendent au comptoir (marché). Créer un compte : se faire élire ; se connecter : prendre séance ; se
+déconnecter : quitter l'hémicycle. Les noms de code (fonctions, API, base) gardent les termes techniques.
+
 ## Serveur : comptes, échanges, marché
 
 - Gratuit dans les limites des plans de base de Workers et D1. Le serveur juge tout : tirages (aléa
@@ -85,10 +93,9 @@ Sénat, lu dans l'export complet `export_sens.zip`, tables `bur` et `senbur`) ; 
 
 ## Prochaines tâches
 
-1. Application : comptes, sauvegarde côté serveur, échanges et marché sont écrits et testés en local. Mise en
-   service : créer la base D1 « hemicycle » dans le tableau de bord Cloudflare et reporter son identifiant
-   dans `wrangler.jsonc` (valeur « A-RENSEIGNER »). Ensuite : récupération du compte par e-mail, modération,
-   lutte contre les comptes multiples, notifications d'échange.
+1. Application : comptes, sauvegarde côté serveur, buvette (tractations et comptoir) en service, base D1
+   « hemicycle » reliée dans `wrangler.jsonc`. Ensuite : adresse e-mail vérifiée (récupération du mot de
+   passe, frein aux comptes multiples), modération des pseudos, notifications de tractation.
 2. Lacunes connues, faute de source officielle structurée : sénateurs de la IIIe République et du Conseil
    de la République (1946-1948), gouvernements antérieurs à 1944, villes des circonscriptions avant 2012,
    fonctions au sein de l'Assemblée avant juin 2002 (seuls les comptes rendus de séance en PDF les portent ;
