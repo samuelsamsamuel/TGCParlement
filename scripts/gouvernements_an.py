@@ -68,13 +68,100 @@ def texte(v):
     return v or ""
 
 
+# Compositions officielles transcrites d'info.gouv.fr (pages « Composition du gouvernement » des 5 et
+# 12 octobre 2025 et « Composition du Gouvernement » annoncée le 26 février 2026). L'open data de
+# l'Assemblée ne porte que la qualité « membre » : l'intitulé de chaque fonction vient de ces pages,
+# selon la composition en vigueur à la date de nomination. La page actuelle est aussi lue en ligne
+# lorsqu'elle est accessible, pour suivre un éventuel remaniement ; à défaut, cette transcription fait foi.
+COMPOSITIONS = [
+    ("2025-09-09", "https://www.info.gouv.fr/actualite/la-composition-du-gouvernement-de-sebastien-lecornu", {
+        "Sébastien Lecornu": "Premier ministre"}),
+    ("2025-10-05", "https://www.info.gouv.fr/actualite/la-composition-du-gouvernement-de-sebastien-lecornu", {
+        "Élisabeth Borne": "Ministre d’État, ministre de l’Éducation nationale, de l’Enseignement supérieur et de la Recherche",
+        "Manuel Valls": "Ministre d’État, ministre des Outre-mer",
+        "Gérald Darmanin": "Ministre d’État, garde des Sceaux, ministre de la Justice",
+        "Bruno Retailleau": "Ministre d’État, ministre de l’Intérieur",
+        "Bruno Le Maire": "Ministre d’État, ministre des Armées et des Anciens combattants",
+        "Catherine Vautrin": "Ministre du Travail, de la Santé, des Solidarités, des Familles, de l’Autonomie et des Personnes handicapées",
+        "Rachida Dati": "Ministre de la Culture",
+        "Roland Lescure": "Ministre de l’Économie, des Finances et de la Souveraineté industrielle et énergétique",
+        "Jean-Noël Barrot": "Ministre de l’Europe et des Affaires étrangères",
+        "Éric Woerth": "Ministre de l’Aménagement du territoire, de la Décentralisation et du Logement",
+        "Agnès Pannier-Runacher": "Ministre de la Transition écologique, de la Biodiversité, de la Forêt, de la Mer et de la Pêche",
+        "Annie Genevard": "Ministre de l’Agriculture et de la Souveraineté alimentaire",
+        "Amélie de Montchalin": "Ministre des Comptes publics",
+        "Naïma Moutchou": "Ministre de la Transformation et de la Fonction publiques, de l’Intelligence artificielle et du Numérique",
+        "Philippe Tabarot": "Ministre des Transports",
+        "Marina Ferrari": "Ministre des Sports, de la Jeunesse et de la Vie associative",
+        "Aurore Bergé": "Ministre déléguée auprès du Premier ministre, chargée de l’Égalité entre les femmes et les hommes et de la Lutte contre les discriminations, porte-parole du Gouvernement",
+        "Mathieu Lefèvre": "Ministre délégué auprès du Premier ministre, chargé des Relations avec le Parlement"}),
+    ("2025-10-11", "https://www.info.gouv.fr/actualite/composition-du-gouvernement-du-sebastien-lecornu", {
+        "Sébastien Lecornu": "Premier ministre",
+        "Laurent Nunez": "Ministre de l’Intérieur",
+        "Catherine Vautrin": "Ministre des Armées et des Anciens combattants",
+        "Jean-Pierre Farandou": "Ministre du Travail et des Solidarités",
+        "Monique Barbut": "Ministre de la Transition écologique, de la Biodiversité et des Négociations internationales sur le climat et la nature",
+        "Gérald Darmanin": "Garde des Sceaux, ministre de la Justice",
+        "Roland Lescure": "Ministre de l’Économie, des Finances et de la Souveraineté industrielle, énergétique et numérique",
+        "Serge Papin": "Ministre des Petites et moyennes entreprises, du Commerce, de l’Artisanat, du Tourisme et du Pouvoir d’achat",
+        "Annie Genevard": "Ministre de l’Agriculture, de l’Agro-alimentaire et de la Souveraineté alimentaire",
+        "Édouard Geffray": "Ministre de l’Éducation nationale",
+        "Jean-Noël Barrot": "Ministre de l’Europe et des Affaires étrangères",
+        "Rachida Dati": "Ministre de la Culture",
+        "Stéphanie Rist": "Ministre de la Santé, des Familles, de l’Autonomie et des Personnes handicapées",
+        "Naïma Moutchou": "Ministre des Outre-mer",
+        "Françoise Gatel": "Ministre de l’Aménagement du territoire et de la Décentralisation",
+        "Amélie de Montchalin": "Ministre de l’Action et des Comptes publics",
+        "Philippe Baptiste": "Ministre de l’Enseignement supérieur, de la Recherche et de l’Espace",
+        "Marina Ferrari": "Ministre des Sports, de la Jeunesse et de la Vie associative",
+        "Philippe Tabarot": "Ministre des Transports",
+        "Vincent Jeanbrun": "Ministre de la Ville et du Logement",
+        "Laurent Panifous": "Ministre délégué auprès du Premier ministre, chargé des Relations avec le Parlement",
+        "Maud Bregeon": "Ministre déléguée auprès du Premier ministre, porte-parole du Gouvernement",
+        "Aurore Bergé": "Ministre déléguée auprès du Premier ministre, chargée de l’Égalité entre les femmes et les hommes et de la Lutte contre les discriminations",
+        "Marie-Pierre Vedrenne": "Ministre déléguée auprès du ministre de l’Intérieur",
+        "Alice Rufo": "Ministre déléguée auprès de la ministre des Armées et des Anciens combattants",
+        "Catherine Chabaud": "Ministre déléguée auprès de la ministre de la Transition écologique, de la Biodiversité et des Négociations internationales sur le climat et la nature, chargée de la Mer et de la Pêche",
+        "Mathieu Lefèvre": "Ministre délégué auprès de la ministre de la Transition écologique, de la Biodiversité et des Négociations internationales sur le climat et la nature, chargé de la Transition écologique",
+        "Sébastien Martin": "Ministre délégué auprès du ministre de l’Économie, des Finances et de la Souveraineté industrielle, énergétique et numérique, chargé de l’Industrie",
+        "Anne Le Hénanff": "Ministre déléguée auprès du ministre de l’Économie, des Finances et de la Souveraineté industrielle, énergétique et numérique, chargée de l’Intelligence artificielle et du Numérique",
+        "Benjamin Haddad": "Ministre délégué auprès du ministre de l’Europe et des Affaires étrangères, chargé de l’Europe",
+        "Nicolas Forissier": "Ministre délégué auprès du ministre de l’Europe et des Affaires étrangères, chargé du Commerce extérieur et de l’Attractivité",
+        "Éléonore Caroit": "Ministre déléguée auprès du ministre de l’Europe et des Affaires étrangères, chargée de la Francophonie, des Partenariats internationaux et des Français de l’étranger",
+        "Charlotte Parmentier-Lecocq": "Ministre déléguée auprès de la ministre de la Santé, des Familles, de l’Autonomie et des Personnes handicapées, chargée de l’Autonomie et des Personnes handicapées",
+        "Michel Fournier": "Ministre délégué auprès de la ministre de l’Aménagement du territoire et de la Décentralisation, chargé de la Ruralité",
+        "David Amiel": "Ministre délégué auprès de la ministre de l’Action et des Comptes publics, chargé de la Fonction publique et de la Réforme de l’État"}),
+    ("2026-02-26", "https://www.info.gouv.fr/composition-du-gouvernement", {
+        "Maud Bregeon": "Ministre déléguée, porte-parole du Gouvernement auprès du Premier ministre et ministre déléguée, chargée de l’Énergie auprès du ministre de l’Économie, des Finances et de la Souveraineté industrielle, énergétique et numérique",
+        "Jean-Didier Berger": "Ministre délégué auprès du ministre de l’Intérieur",
+        "Sabrina Roubache": "Ministre déléguée auprès du ministre du Travail et des Solidarités et du ministre de l’Éducation nationale, chargée de l’Enseignement et de la Formation professionnels et de l’Apprentissage",
+        "Camille Galliard-Minier": "Ministre déléguée auprès de la ministre de la Santé, des Familles, de l’Autonomie et des Personnes handicapées, chargée de l’Autonomie et des Personnes handicapées",
+        "Catherine Pégard": "Ministre de la Culture",
+        "David Amiel": "Ministre de l’Action et des Comptes publics"}),
+]
+
+
+def intitule_officiel(nom, debut):
+    """Intitulé de la fonction dans la composition en vigueur à la date de nomination."""
+    cle = norme(nom)
+    retenu = None
+    for date_c, _, membres in COMPOSITIONS:
+        if date_c <= (debut or ""):
+            for n, t in membres.items():
+                if norme(n) == cle:
+                    retenu = t
+    return retenu
+
+
 def composition_officielle(rapport):
     """Composition du Gouvernement publiée sur info.gouv.fr : {nom normalisé: (nom, intitulé, photo)}.
     L'open data de l'Assemblée ne donne que « membre » comme qualité : l'intitulé vient de cette page."""
     import html as h
     import re
     try:
-        req = urllib.request.Request("https://www.info.gouv.fr/composition-du-gouvernement", headers={"User-Agent": "TGCParlement/1.0"})
+        req = urllib.request.Request("https://www.info.gouv.fr/composition-du-gouvernement", headers={
+            "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36",
+            "Accept": "text/html,application/xhtml+xml", "Accept-Language": "fr-FR,fr;q=0.9"})
         with urllib.request.urlopen(req, timeout=120) as r:
             page = r.read().decode("utf-8", errors="replace")
     except Exception as e:  # noqa: BLE001
@@ -204,10 +291,13 @@ def main():
                     cat = categorie(code, libelle)
                     if not cat:
                         # Qualité « membre » : intitulé repris de la composition officielle, pour les fonctions en cours
-                        officiel = composition.get(norme(f"{ident.get('prenom')} {ident.get('nom')}"))
+                        nom_complet = f"{ident.get('prenom')} {ident.get('nom')}"
                         fin_m = texte(m.get("dateFin"))[:10]
-                        if officiel and not fin_m:
-                            libelle = officiel[1]
+                        libelle = intitule_officiel(nom_complet, debut)
+                        officiel = composition.get(norme(nom_complet))
+                        if officiel and not fin_m and (not libelle or debut >= "2026-02-26"):
+                            libelle = officiel[1]  # page en ligne, si accessible et plus récente
+                        if libelle:
                             cat = categorie("", libelle)
                         if not cat:
                             sans_intitule.append(f"{ident.get('prenom')} {ident.get('nom')} ({texte(m.get('dateDebut'))[:10]} -> {fin_m or 'en cours'})")
@@ -225,9 +315,9 @@ def main():
     rattacher_assemblee(assemblee, rapport, circos)
     rapport.append(f"Mandats gouvernementaux présents dans les fichiers : {len(vus_gouv)} ; le plus récent commence le "
                    f"{max(vus_gouv) if vus_gouv else '—'}")
-    rapport.append(f"Fonctions gouvernementales postérieures au {DEPUIS} : {len(lignes)}")
+    rapport.append(f"Fonctions gouvernementales postérieures au {DEPUIS} : {len(lignes)} (intitulés : compositions officielles d'info.gouv.fr)")
     if sans_intitule:
-        rapport.append(f"Fonctions récentes non reprises faute d'intitulé officiel (gouvernements terminés) : {len(sans_intitule)}")
+        rapport.append(f"Fonctions récentes non reprises faute d'intitulé officiel : {len(sans_intitule)}")
         rapport += ["  " + e for e in sorted(set(sans_intitule))]
     rapport += [f"  {l['prenom']} {l['nom']} : {l['fonction']} ({l['debut']} -> {l['fin'] or 'en cours'})"
                 for l in sorted(lignes, key=lambda x: x["debut"])]
