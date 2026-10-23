@@ -55,22 +55,6 @@
 "fin": "2012-06-16"
 }
 ],
-"19697": [
-{
-"fonction": "Secrétaire de l'Assemblée nationale",
-"liste": "bureau-secretaire",
-"debut": "2022-06-28",
-"fin": "2022-06-28"
-}
-],
-"19578": [
-{
-"fonction": "Secrétaire de l'Assemblée nationale",
-"liste": "bureau-secretaire",
-"debut": "2022-06-28",
-"fin": "2022-06-28"
-}
-],
 "2412": [
 {
 "fonction": "Secrétaire de l'Assemblée nationale",
@@ -97,24 +81,10 @@
 ],
 "19751": [
 {
-"fonction": "Rapporteur général (Conférence des Présidents)",
-"liste": "rapporteur-general",
-"debut": "2024-07-20",
-"fin": "2025-01-21"
-},
-{
 "fonction": "Rapporteur général (Commission des affaires sociales)",
 "liste": "rapporteur-general",
 "debut": "2024-07-20",
 "fin": "2025-01-21"
-}
-],
-"19745": [
-{
-"fonction": "Rapporteur général (Commission spéciale chargée d’examiner le projet de loi visant à sécuriser et réguler l’espace numérique)",
-"liste": "rapporteur-general",
-"debut": "2023-08-29",
-"fin": "2024-04-10"
 }
 ],
 "6601": [
@@ -157,7 +127,7 @@
 {
 "fonction": "Secrétaire de l'Assemblée nationale",
 "liste": "bureau-secretaire",
-"debut": "2007-06-26",
+"debut": "2007-06-27",
 "fin": "2012-06-19"
 },
 {
@@ -241,14 +211,6 @@
 "liste": "bureau-secretaire",
 "debut": "2012-06-27",
 "fin": "2013-09-30"
-}
-],
-"19732": [
-{
-"fonction": "Secrétaire de l'Assemblée nationale",
-"liste": "bureau-secretaire",
-"debut": "2022-06-28",
-"fin": "2022-06-28"
 }
 ],
 "1110": [
@@ -353,14 +315,6 @@
 "fin": "2014-09-30"
 }
 ],
-"19785": [
-{
-"fonction": "Secrétaire de l'Assemblée nationale",
-"liste": "bureau-secretaire",
-"debut": "2022-06-28",
-"fin": "2022-06-28"
-}
-],
 "1291": [
 {
 "fonction": "Secrétaire de l'Assemblée nationale",
@@ -407,14 +361,6 @@
 "fin": null
 }
 ],
-"19112": [
-{
-"fonction": "Secrétaire de l'Assemblée nationale",
-"liste": "bureau-secretaire",
-"debut": "2017-06-21",
-"fin": "2022-06-21"
-}
-],
 "5520": [
 {
 "fonction": "Secrétaire de l'Assemblée nationale",
@@ -443,14 +389,6 @@
 "liste": "bureau-secretaire",
 "debut": "2025-10-02",
 "fin": null
-}
-],
-"17213": [
-{
-"fonction": "Secrétaire de l'Assemblée nationale",
-"liste": "bureau-secretaire",
-"debut": "2007-06-26",
-"fin": "2012-06-19"
 }
 ],
 "3341": [
@@ -493,14 +431,6 @@
 "fin": null
 }
 ],
-"19735": [
-{
-"fonction": "Secrétaire de l'Assemblée nationale",
-"liste": "bureau-secretaire",
-"debut": "2022-06-28",
-"fin": "2022-06-28"
-}
-],
 "1466": [
 {
 "fonction": "Rapporteur général (Commission des finances, de l'économie générale et du contrôle budgétaire)",
@@ -513,14 +443,6 @@
 "liste": "presidence-commission",
 "debut": "2012-06-29",
 "fin": "2017-06-20"
-}
-],
-"19327": [
-{
-"fonction": "Secrétaire de l'Assemblée nationale",
-"liste": "bureau-secretaire",
-"debut": "2017-06-21",
-"fin": "2022-06-21"
 }
 ],
 "4840": [
@@ -537,26 +459,6 @@
 "liste": "bureau-secretaire",
 "debut": "2024-07-20",
 "fin": null
-}
-],
-"S08052W": [
-{
-"fonction": "Rapporteur général (Commission des affaires sociales)",
-"liste": "rapporteur-general",
-"debut": "2011-10-01",
-"fin": "2014-10-07"
-},
-{
-"fonction": "Rapporteur général de la commission des affaires sociales du Sénat",
-"liste": "rapporteur-general",
-"debut": "2011-10-01",
-"fin": "2014-10-07"
-},
-{
-"fonction": "Secrétaire du Sénat",
-"liste": "bureau-secretaire",
-"debut": "2017-10-04",
-"fin": "2020-09-30"
 }
 ],
 "19188": [
@@ -607,56 +509,12 @@
 "fin": "2017-06-20"
 }
 ],
-"S19711U": [
-{
-"fonction": "Rapporteur général (Commission des finances)",
-"liste": "rapporteur-general",
-"debut": "2026-10-07",
-"fin": null
-},
-{
-"fonction": "Rapporteur général de la commission des finances du Sénat",
-"liste": "rapporteur-general",
-"debut": "2026-10-07",
-"fin": null
-}
-],
 "19557": [
 {
 "fonction": "Secrétaire de l'Assemblée nationale",
 "liste": "bureau-secretaire",
 "debut": "2024-07-20",
 "fin": "2025-10-01"
-}
-],
-"19295": [
-{
-"fonction": "Rapporteur général (Mission d'information commune sur la réglementation et l'impact des différents usages du cannabis)",
-"liste": "rapporteur-general",
-"debut": "2020-01-14",
-"fin": "2021-06-29"
-}
-],
-"20009": [
-{
-"fonction": "Rapporteur général (Commission spéciale chargée d'examiner la proposition de loi apportant une réponse intégrale au phénomène des violences sexuelles et sexistes contre les femmes et les enfants et la proposition de loi organique visant à adapter l'autorité judiciaire à la lutte contre les violences sexuelles et intrafamiliales)",
-"liste": "rapporteur-general",
-"debut": "2026-09-07",
-"fin": null
-}
-],
-"S19569H": [
-{
-"fonction": "Rapporteur général (Commission des affaires sociales)",
-"liste": "rapporteur-general",
-"debut": "2026-10-07",
-"fin": null
-},
-{
-"fonction": "Rapporteur général de la commission des affaires sociales du Sénat",
-"liste": "rapporteur-general",
-"debut": "2026-10-07",
-"fin": null
 }
 ],
 "18507": [
@@ -847,28 +705,12 @@
 "fin": null
 }
 ],
-"18419": [
-{
-"fonction": "Rapporteur général (Commission spéciale pour l’examen du projet de loi relatif à l’accompagnement des malades et de la fin de vie)",
-"liste": "rapporteur-general",
-"debut": "2024-04-10",
-"fin": "2024-06-09"
-}
-],
 "19669": [
 {
 "fonction": "Vice-Président de l'Assemblée nationale",
 "liste": "bureau-vp-questeur",
 "debut": "2024-07-19",
 "fin": null
-}
-],
-"17367": [
-{
-"fonction": "Secrétaire de l'Assemblée nationale",
-"liste": "bureau-secretaire",
-"debut": "2007-06-26",
-"fin": "2012-06-16"
 }
 ],
 "19304": [
@@ -899,12 +741,6 @@
 "liste": "presidence-commission",
 "debut": "2022-06-30",
 "fin": "2024-02-09"
-},
-{
-"fonction": "Rapporteur général (Commission spéciale chargée d’examiner le projet de loi relatif à l'industrie verte)",
-"liste": "rapporteur-general",
-"debut": "2023-06-28",
-"fin": "2023-10-11"
 }
 ],
 "19057": [
@@ -917,12 +753,6 @@
 ],
 "2031": [
 {
-"fonction": "Rapporteur général (Conférence des Présidents)",
-"liste": "rapporteur-general",
-"debut": "2024-07-20",
-"fin": "2025-09-30"
-},
-{
 "fonction": "Rapporteur général (Commission des finances, de l'économie générale et du contrôle budgétaire)",
 "liste": "rapporteur-general",
 "debut": "2024-07-20",
@@ -930,12 +760,6 @@
 }
 ],
 "18476": [
-{
-"fonction": "Secrétaire de l'Assemblée nationale",
-"liste": "bureau-secretaire",
-"debut": "2012-06-26",
-"fin": "2017-06-20"
-},
 {
 "fonction": "Président du groupe Horizons et apparentés",
 "liste": "presidence-groupe",
@@ -967,24 +791,10 @@
 ],
 "19080": [
 {
-"fonction": "Rapporteur général (Commission spéciale chargée d'examiner le projet de loi portant lutte contre le dérèglement climatique et renforcement de la résilience face à ses effets)",
-"liste": "rapporteur-general",
-"debut": "2021-02-16",
-"fin": "2021-08-22"
-},
-{
 "fonction": "Rapporteur général (Commission des finances, de l'économie générale et du contrôle budgétaire)",
 "liste": "rapporteur-general",
 "debut": "2022-06-30",
 "fin": "2024-06-09"
-}
-],
-"19353": [
-{
-"fonction": "Secrétaire de l'Assemblée nationale",
-"liste": "bureau-secretaire",
-"debut": "2017-06-21",
-"fin": "2022-06-21"
 }
 ],
 "19246": [
@@ -1001,14 +811,6 @@
 "liste": "bureau-vp-questeur",
 "debut": "2011-10-03",
 "fin": "2012-06-19"
-}
-],
-"18477": [
-{
-"fonction": "Secrétaire de l'Assemblée nationale",
-"liste": "bureau-secretaire",
-"debut": "2012-06-26",
-"fin": "2017-06-20"
 }
 ],
 "19282": [
@@ -1071,14 +873,6 @@
 "fin": "2012-06-19"
 }
 ],
-"19174": [
-{
-"fonction": "Rapporteur général (Commission spéciale chargée d'examiner le projet de loi instituant un système universel de retraite et le projet de loi organique relatif au système universel de retraite)",
-"liste": "rapporteur-general",
-"debut": "2020-01-28",
-"fin": "2022-06-21"
-}
-],
 "17382": [
 {
 "fonction": "Président de la commission des lois constitutionnelles, de la législation et de l'administration générale de la République",
@@ -1107,8 +901,8 @@
 {
 "fonction": "Secrétaire de l'Assemblée nationale",
 "liste": "bureau-secretaire",
-"debut": "2007-06-26",
-"fin": "2012-06-19"
+"debut": "2007-06-27",
+"fin": "2008-10-01"
 }
 ],
 "19020": [
@@ -1143,40 +937,12 @@
 "fin": "2023-08-20"
 }
 ],
-"S08011M": [
-{
-"fonction": "Rapporteur général (Commission des finances)",
-"liste": "rapporteur-general",
-"debut": "2014-10-09",
-"fin": "2020-10-05"
-},
-{
-"fonction": "Rapporteur général de la commission des finances du Sénat",
-"liste": "rapporteur-general",
-"debut": "2014-10-09",
-"fin": "2017-10-03"
-},
-{
-"fonction": "Rapporteur général de la commission des finances du Sénat",
-"liste": "rapporteur-general",
-"debut": "2017-10-05",
-"fin": "2020-10-05"
-}
-],
 "19276": [
 {
 "fonction": "Secrétaire de l'Assemblée nationale",
 "liste": "bureau-secretaire",
 "debut": "2019-10-01",
 "fin": "2022-06-21"
-}
-],
-"19927": [
-{
-"fonction": "Secrétaire de l'Assemblée nationale",
-"liste": "bureau-secretaire",
-"debut": "2024-07-18",
-"fin": null
 }
 ],
 "19352": [
@@ -1193,14 +959,6 @@
 "liste": "bureau-secretaire",
 "debut": "2023-05-10",
 "fin": "2024-06-09"
-}
-],
-"18413": [
-{
-"fonction": "Secrétaire de l'Assemblée nationale",
-"liste": "bureau-secretaire",
-"debut": "2012-06-26",
-"fin": "2017-06-20"
 }
 ],
 "19296": [
@@ -1225,20 +983,6 @@
 "liste": "rapporteur-general",
 "debut": "2017-06-30",
 "fin": "2020-03-03"
-}
-],
-"S92045V": [
-{
-"fonction": "Rapporteur général (Commission des affaires sociales)",
-"liste": "rapporteur-general",
-"debut": "2009-07-08",
-"fin": "2011-09-30"
-},
-{
-"fonction": "Rapporteur général de la commission des affaires sociales du Sénat",
-"liste": "rapporteur-general",
-"debut": "2009-07-08",
-"fin": "2011-09-30"
 }
 ],
 "19092": [
@@ -1289,12 +1033,6 @@
 ],
 "17373": [
 {
-"fonction": "Secrétaire de l'Assemblée nationale",
-"liste": "bureau-secretaire",
-"debut": "2007-06-26",
-"fin": "2012-06-19"
-},
-{
 "fonction": "Président du groupe Les Constructifs : républicains, UDI, indépendants",
 "liste": "presidence-groupe",
 "debut": "2017-06-27",
@@ -1305,38 +1043,6 @@
 "liste": "presidence-groupe",
 "debut": "2017-11-29",
 "fin": "2018-10-16"
-}
-],
-"S92035T": [
-{
-"fonction": "Rapporteur général (Commission des finances)",
-"liste": "rapporteur-general",
-"debut": "2001-10-04",
-"fin": "2011-09-30"
-},
-{
-"fonction": "Rapporteur général de la commission des finances du Sénat",
-"liste": "rapporteur-general",
-"debut": "1998-10-07",
-"fin": "2001-10-03"
-},
-{
-"fonction": "Rapporteur général de la commission des finances du Sénat",
-"liste": "rapporteur-general",
-"debut": "2001-10-04",
-"fin": "2008-10-06"
-},
-{
-"fonction": "Rapporteur général de la commission des finances du Sénat",
-"liste": "rapporteur-general",
-"debut": "2008-10-07",
-"fin": "2011-09-30"
-},
-{
-"fonction": "Président de la commission des finances du Sénat",
-"liste": "presidence-commission",
-"debut": "2011-10-01",
-"fin": "2014-10-07"
 }
 ],
 "353": [
@@ -1515,8 +1221,8 @@
 {
 "fonction": "Secrétaire de l'Assemblée nationale",
 "liste": "bureau-secretaire",
-"debut": "2012-06-26",
-"fin": "2017-06-20"
+"debut": "2014-10-01",
+"fin": "2015-09-30"
 },
 {
 "fonction": "Président du groupe Les Républicains",
@@ -1621,20 +1327,6 @@
 "fin": "2023-07-26"
 }
 ],
-"1223": [
-{
-"fonction": "Rapporteur général (Commission des finances)",
-"liste": "rapporteur-general",
-"debut": "2011-10-01",
-"fin": "2012-06-16"
-},
-{
-"fonction": "Rapporteur général de la commission des finances du Sénat",
-"liste": "rapporteur-general",
-"debut": "2011-10-01",
-"fin": "2012-06-16"
-}
-],
 "3199": [
 {
 "fonction": "Questeur de l'Assemblée nationale",
@@ -1701,7 +1393,7 @@
 {
 "fonction": "Secrétaire de l'Assemblée nationale",
 "liste": "bureau-secretaire",
-"debut": "2017-06-21",
+"debut": "2017-06-28",
 "fin": "2019-09-30"
 }
 ],
@@ -1779,19 +1471,11 @@
 "fin": "2019-09-30"
 }
 ],
-"19970": [
-{
-"fonction": "Secrétaire de l'Assemblée nationale",
-"liste": "bureau-secretaire",
-"debut": "2024-07-18",
-"fin": null
-}
-],
 "19192": [
 {
 "fonction": "Secrétaire de l'Assemblée nationale",
 "liste": "bureau-secretaire",
-"debut": "2017-06-21",
+"debut": "2025-10-02",
 "fin": null
 }
 ],
@@ -1859,34 +1543,12 @@
 "fin": "2011-07-06"
 }
 ],
-"10653": [
-{
-"fonction": "Secrétaire de l'Assemblée nationale",
-"liste": "bureau-secretaire",
-"debut": "2007-06-26",
-"fin": "2011-10-28"
-}
-],
 "17274": [
 {
 "fonction": "Secrétaire de l'Assemblée nationale",
 "liste": "bureau-secretaire",
 "debut": "2014-10-01",
 "fin": "2015-09-30"
-}
-],
-"S98046X": [
-{
-"fonction": "Rapporteur général (Commission des finances)",
-"liste": "rapporteur-general",
-"debut": "2012-06-20",
-"fin": "2014-10-07"
-},
-{
-"fonction": "Rapporteur général de la commission des finances du Sénat",
-"liste": "rapporteur-general",
-"debut": "2012-06-20",
-"fin": "2014-10-07"
 }
 ],
 "19301": [
@@ -2041,12 +1703,6 @@
 "liste": "rapporteur-general",
 "debut": "2025-01-22",
 "fin": null
-},
-{
-"fonction": "Rapporteur général (Conférence des Présidents)",
-"liste": "rapporteur-general",
-"debut": "2025-10-02",
-"fin": "2026-09-30"
 }
 ],
 "19798": [
@@ -2054,14 +1710,6 @@
 "fonction": "Secrétaire de l'Assemblée nationale",
 "liste": "bureau-secretaire",
 "debut": "2023-10-02",
-"fin": null
-}
-],
-"19591": [
-{
-"fonction": "Secrétaire de l'Assemblée nationale",
-"liste": "bureau-secretaire",
-"debut": "2022-06-28",
 "fin": null
 }
 ],
@@ -2095,12 +1743,6 @@
 "liste": "presidence-commission",
 "debut": "2017-06-30",
 "fin": "2022-06-21"
-},
-{
-"fonction": "Rapporteur général (Commission spéciale chargée d'examiner le projet de loi relatif à la croissance et la transformation des entreprises)",
-"liste": "rapporteur-general",
-"debut": "2018-07-03",
-"fin": "2019-04-11"
 },
 {
 "fonction": "Vice-Président de l'Assemblée nationale",
@@ -2275,32 +1917,6 @@
 "fin": "2021-01-13"
 }
 ],
-"S01034P": [
-{
-"fonction": "Rapporteur général (Commission des affaires sociales)",
-"liste": "rapporteur-general",
-"debut": "2014-10-09",
-"fin": "2021-07-07"
-},
-{
-"fonction": "Rapporteur général de la commission des affaires sociales du Sénat",
-"liste": "rapporteur-general",
-"debut": "2014-10-09",
-"fin": "2017-10-04"
-},
-{
-"fonction": "Rapporteur général de la commission des affaires sociales du Sénat",
-"liste": "rapporteur-general",
-"debut": "2017-10-05",
-"fin": "2020-10-05"
-},
-{
-"fonction": "Rapporteur général de la commission des affaires sociales du Sénat",
-"liste": "rapporteur-general",
-"debut": "2020-10-07",
-"fin": "2021-07-07"
-}
-],
 "19240": [
 {
 "fonction": "Président de la commission du développement durable et de l'aménagement du territoire",
@@ -2354,12 +1970,6 @@
 }
 ],
 "18365": [
-{
-"fonction": "Rapporteur général (Commission spéciale chargée d'examiner le projet de loi confortant le respect des principes de la République)",
-"liste": "rapporteur-general",
-"debut": "2020-12-16",
-"fin": "2021-08-24"
-},
 {
 "fonction": "Président de la commission des lois constitutionnelles, de la législation et de l'administration générale de la République",
 "liste": "presidence-commission",
@@ -2443,22 +2053,6 @@
 "liste": "presidence-commission",
 "debut": "2009-07-01",
 "fin": "2010-11-14"
-}
-],
-"19898": [
-{
-"fonction": "Secrétaire de l'Assemblée nationale",
-"liste": "bureau-secretaire",
-"debut": "2024-07-18",
-"fin": null
-}
-],
-"19051": [
-{
-"fonction": "Rapporteur général (Commission spéciale chargée d'examiner le projet de loi relatif à la résilience des infrastructures critiques et au renforcement de la cybersécurité)",
-"liste": "rapporteur-general",
-"debut": "2025-04-08",
-"fin": null
 }
 ],
 "19026": [
@@ -2563,14 +2157,6 @@
 "fin": "2007-06-19"
 }
 ],
-"18401": [
-{
-"fonction": "Secrétaire de l'Assemblée nationale",
-"liste": "bureau-secretaire",
-"debut": "2012-06-26",
-"fin": "2016-01-27"
-}
-],
 "2535": [
 {
 "fonction": "Secrétaire de l'Assemblée nationale",
@@ -2619,22 +2205,10 @@
 ],
 "18423": [
 {
-"fonction": "Rapporteur général (Commission spéciale chargée d'examiner le projet de loi pour la croissance, l'activité et l'égalité des chances économiques)",
-"liste": "rapporteur-general",
-"debut": "2014-12-16",
-"fin": "2015-08-07"
-},
-{
 "fonction": "Président du groupe La République en Marche",
 "liste": "presidence-groupe",
 "debut": "2017-06-27",
 "fin": "2018-09-17"
-},
-{
-"fonction": "Rapporteur général (Mission d’information sur l’impact, la gestion et les conséquences dans toutes ses dimensions de l’épidémie de Coronavirus-Covid 19)",
-"liste": "rapporteur-general",
-"debut": "2020-04-01",
-"fin": "2020-06-03"
 }
 ],
 "19562": [
@@ -2669,40 +2243,6 @@
 "fin": "2017-06-20"
 }
 ],
-"S11048N": [
-{
-"fonction": "Rapporteur général (Commission des finances)",
-"liste": "rapporteur-general",
-"debut": "2020-10-07",
-"fin": "2026-09-30"
-},
-{
-"fonction": "Rapporteur général de la commission des finances du Sénat",
-"liste": "rapporteur-general",
-"debut": "2020-10-07",
-"fin": "2023-10-01"
-},
-{
-"fonction": "Rapporteur général de la commission des finances du Sénat",
-"liste": "rapporteur-general",
-"debut": "2023-10-05",
-"fin": "2026-09-30"
-}
-],
-"18442": [
-{
-"fonction": "Secrétaire de l'Assemblée nationale",
-"liste": "bureau-secretaire",
-"debut": "2012-06-26",
-"fin": "2017-06-20"
-},
-{
-"fonction": "Rapporteur général (Commission spéciale chargée d'examiner le projet de loi Egalité et citoyenneté)",
-"liste": "rapporteur-general",
-"debut": "2016-05-11",
-"fin": "2017-02-20"
-}
-],
 "19385": [
 {
 "fonction": "Président de la commission des affaires culturelles et de l'éducation",
@@ -2717,14 +2257,6 @@
 "liste": "bureau-vp-questeur",
 "debut": "2024-10-22",
 "fin": "2025-09-30"
-}
-],
-"19988": [
-{
-"fonction": "Secrétaire de l'Assemblée nationale",
-"liste": "bureau-secretaire",
-"debut": "2024-07-18",
-"fin": "2024-10-15"
 }
 ],
 "4159": [
@@ -2787,14 +2319,6 @@
 "fin": "2024-06-09"
 }
 ],
-"19310": [
-{
-"fonction": "Secrétaire de l'Assemblée nationale",
-"liste": "bureau-secretaire",
-"debut": "2017-06-21",
-"fin": "2021-04-21"
-}
-],
 "19357": [
 {
 "fonction": "Président de la commission du développement durable et de l'aménagement du territoire",
@@ -2833,34 +2357,6 @@
 "liste": "presidence-groupe",
 "debut": "2004-05-05",
 "fin": "2007-06-19"
-}
-],
-"20007": [
-{
-"fonction": "Secrétaire de l'Assemblée nationale",
-"liste": "bureau-secretaire",
-"debut": "2024-07-18",
-"fin": "2024-10-04"
-}
-],
-"S14042U": [
-{
-"fonction": "Rapporteur général (Commission des affaires sociales)",
-"liste": "rapporteur-general",
-"debut": "2021-07-08",
-"fin": "2026-09-30"
-},
-{
-"fonction": "Rapporteur général de la commission des affaires sociales du Sénat",
-"liste": "rapporteur-general",
-"debut": "2021-07-08",
-"fin": "2023-10-01"
-},
-{
-"fonction": "Rapporteur général de la commission des affaires sociales du Sénat",
-"liste": "rapporteur-general",
-"debut": "2023-10-05",
-"fin": "2026-09-30"
 }
 ],
 "5162": [
@@ -3051,6 +2547,14 @@
 "fin": "1971-10-01"
 }
 ],
+"1223": [
+{
+"fonction": "Rapporteur général de la commission des finances du Sénat",
+"liste": "rapporteur-general",
+"debut": "2011-10-01",
+"fin": "2012-06-16"
+}
+],
 "S04047H": [
 {
 "fonction": "Président de la commission des lois du Sénat",
@@ -3153,6 +2657,20 @@
 "fin": "1974-10-01"
 }
 ],
+"S08052W": [
+{
+"fonction": "Rapporteur général de la commission des affaires sociales du Sénat",
+"liste": "rapporteur-general",
+"debut": "2011-10-01",
+"fin": "2014-10-07"
+},
+{
+"fonction": "Secrétaire du Sénat",
+"liste": "bureau-secretaire",
+"debut": "2017-10-04",
+"fin": "2020-09-30"
+}
+],
 "S01059Y": [
 {
 "fonction": "Président de la commission des affaires sociales du Sénat",
@@ -3167,6 +2685,20 @@
 "liste": "presidence-commission",
 "debut": "1974-10-04",
 "fin": "1977-10-06"
+}
+],
+"S08011M": [
+{
+"fonction": "Rapporteur général de la commission des finances du Sénat",
+"liste": "rapporteur-general",
+"debut": "2014-10-09",
+"fin": "2017-10-03"
+},
+{
+"fonction": "Rapporteur général de la commission des finances du Sénat",
+"liste": "rapporteur-general",
+"debut": "2017-10-05",
+"fin": "2020-10-05"
 }
 ],
 "S83050R": [
@@ -3255,6 +2787,20 @@
 "liste": "presidence-commission",
 "debut": "2009-07-08",
 "fin": "2011-09-30"
+}
+],
+"S14042U": [
+{
+"fonction": "Rapporteur général de la commission des affaires sociales du Sénat",
+"liste": "rapporteur-general",
+"debut": "2021-07-08",
+"fin": "2023-10-01"
+},
+{
+"fonction": "Rapporteur général de la commission des affaires sociales du Sénat",
+"liste": "rapporteur-general",
+"debut": "2023-10-05",
+"fin": "2026-09-30"
 }
 ],
 "S95028H": [
@@ -3415,6 +2961,28 @@
 "fin": "1977-03-04"
 }
 ],
+"S19569H": [
+{
+"fonction": "Rapporteur général de la commission des affaires sociales du Sénat",
+"liste": "rapporteur-general",
+"debut": "2026-10-07",
+"fin": null
+}
+],
+"S11048N": [
+{
+"fonction": "Rapporteur général de la commission des finances du Sénat",
+"liste": "rapporteur-general",
+"debut": "2020-10-07",
+"fin": "2023-10-01"
+},
+{
+"fonction": "Rapporteur général de la commission des finances du Sénat",
+"liste": "rapporteur-general",
+"debut": "2023-10-05",
+"fin": "2026-09-30"
+}
+],
 "3918": [
 {
 "fonction": "Président de la commission des lois du Sénat",
@@ -3525,6 +3093,14 @@
 "fin": "2001-10-02"
 }
 ],
+"S19711U": [
+{
+"fonction": "Rapporteur général de la commission des finances du Sénat",
+"liste": "rapporteur-general",
+"debut": "2026-10-07",
+"fin": null
+}
+],
 "7655": [
 {
 "fonction": "Président de la commission des affaires étrangères du Sénat",
@@ -3581,6 +3157,40 @@
 "liste": "presidence-commission",
 "debut": "2023-10-05",
 "fin": "2026-09-30"
+}
+],
+"S98046X": [
+{
+"fonction": "Rapporteur général de la commission des finances du Sénat",
+"liste": "rapporteur-general",
+"debut": "2012-06-20",
+"fin": "2014-10-07"
+}
+],
+"S92035T": [
+{
+"fonction": "Rapporteur général de la commission des finances du Sénat",
+"liste": "rapporteur-general",
+"debut": "1998-10-07",
+"fin": "2001-10-03"
+},
+{
+"fonction": "Rapporteur général de la commission des finances du Sénat",
+"liste": "rapporteur-general",
+"debut": "2001-10-04",
+"fin": "2008-10-06"
+},
+{
+"fonction": "Rapporteur général de la commission des finances du Sénat",
+"liste": "rapporteur-general",
+"debut": "2008-10-07",
+"fin": "2011-09-30"
+},
+{
+"fonction": "Président de la commission des finances du Sénat",
+"liste": "presidence-commission",
+"debut": "2011-10-01",
+"fin": "2014-10-07"
 }
 ],
 "S19826F": [
@@ -3853,6 +3463,34 @@
 "liste": "presidence-commission",
 "debut": "2012-02-21",
 "fin": "2014-09-30"
+}
+],
+"S01034P": [
+{
+"fonction": "Rapporteur général de la commission des affaires sociales du Sénat",
+"liste": "rapporteur-general",
+"debut": "2014-10-09",
+"fin": "2017-10-04"
+},
+{
+"fonction": "Rapporteur général de la commission des affaires sociales du Sénat",
+"liste": "rapporteur-general",
+"debut": "2017-10-05",
+"fin": "2020-10-05"
+},
+{
+"fonction": "Rapporteur général de la commission des affaires sociales du Sénat",
+"liste": "rapporteur-general",
+"debut": "2020-10-07",
+"fin": "2021-07-07"
+}
+],
+"S92045V": [
+{
+"fonction": "Rapporteur général de la commission des affaires sociales du Sénat",
+"liste": "rapporteur-general",
+"debut": "2009-07-08",
+"fin": "2011-09-30"
 }
 ],
 "S89045V": [

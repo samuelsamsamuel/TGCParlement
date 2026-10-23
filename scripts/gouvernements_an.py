@@ -18,6 +18,7 @@ import http.client
 import io
 import json
 import os
+import re
 import time
 import urllib.error
 import urllib.request
@@ -225,13 +226,20 @@ def norme(t):
 
 def fonction_assemblee(type_organe, qualite, libelle_organe):
     q, o = norme(qualite), norme(libelle_organe)
+    # Rapporteur général du budget : commissions permanentes de l'Assemblée seulement (finances, affaires
+    # sociales). L'open data porte aussi des rapporteurs généraux de commissions spéciales et de missions
+    # d'information, ceux des commissions du Sénat (COMSENAT) et leur siège à la Conférence des présidents.
     if "rapporteur general" in q:
+        if type_organe != "COMPER":
+            return None, None
         return "rapporteur-general", f"Rapporteur général ({libelle_organe})"
     if type_organe == "GP" and q.startswith("president"):
         return "presidence-groupe", f"Président du groupe {libelle_organe}"
     if type_organe == "COMPER" and q.startswith("president"):
         return "presidence-commission", f"Président de la {libelle_organe[:1].lower() + libelle_organe[1:]}"
-    if "bureau" in o or type_organe == "BUREAU":
+    # Bureau de l'Assemblée : organe BUREAU, hors Bureau d'âge (président et secrétaires d'âge de la
+    # séance d'ouverture), et hors délégations du Bureau (DELEGBUREAU), dont les membres y siègent déjà
+    if type_organe == "BUREAU" and not re.search(r"d.age\b", o) and not re.search(r"d.age\b", q):
         if q.startswith("vice-president") or q.startswith("questeur"):
             return "bureau-vp-questeur", f"{qualite} de l'Assemblée nationale"
         if q.startswith("secretaire"):
