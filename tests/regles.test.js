@@ -74,4 +74,16 @@ v.verrous = {[com.id]: 2}; assert.strictEqual(R.recyclables(v, com.id), 0);
 // Jour du jeu : date de Paris ; l'ancien format est complété
 assert.strictEqual(R.jourDuJeu(new Date("2026-10-23T22:30:00Z")), "2026-10-24");
 assert.strictEqual(R.migrer({possedees: {}, jour: "2026-1-5"}).jour, "2026-01-05");
+// Premiers pas : une carte suffit, un paquet, une seule fois ; taille de l'hémicycle par paliers
+const pg = cat.objectifParId["premier:gouvernement"];
+assert.deepStrictEqual(pg.paliers, [[1, 1]]);
+const pp = R.etatVide(); pp.possedees[pg.ids[0]] = 1;
+assert.strictEqual(R.reclamer(pp, cat, "premier:gouvernement"), 1);
+assert.strictEqual(R.reclamer(pp, cat, "premier:gouvernement"), 0);
+const hem = cat.objectifParId["hemicycle"];
+assert.strictEqual(hem.total, cat.cartes.length); assert.deepStrictEqual(hem.paliers.slice(0, 2), [[10, 1], [25, 1]]);
+cat.cartes.slice(0, 10).forEach(c => pp.possedees[c.id] = 1);
+assert.strictEqual(R.reclamer(pp, cat, "hemicycle"), 1);
+// Catalogue du serveur : membres en plages, décodés à la demande, identiques au catalogue complet
+assert.deepStrictEqual(compact.objectifParId["premier:elue"].ids, cat.objectifParId["premier:elue"].ids);
 console.log("tous les tests passent");
