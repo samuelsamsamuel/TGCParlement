@@ -194,6 +194,11 @@ def main():
     if os.path.exists(os.path.join("data", "portraits.json")):
         with open(os.path.join("data", "portraits.json"), encoding="utf-8") as f:
             portraits = json.load(f)
+    # Portraits officiels de Sycomore (scripts/portraits_sycomore.py), pour les députés sans portrait Wikidata
+    sycomore = {}
+    if os.path.exists(os.path.join("data", "portraits_sycomore.json")):
+        with open(os.path.join("data", "portraits_sycomore.json"), encoding="utf-8") as f:
+            sycomore = json.load(f)
     assemblees, assemblees_carte = table_assemblees(cartes)
     sortie = []
     for c in cartes:
@@ -208,11 +213,13 @@ def main():
                        portraits.get(str(c["id"])), codes, chambres, c.get("sexe"),
                        fonctions_carte(c["id"], gouv, pres), mandats_carte(c), c.get("groupe"),
                        c.get("photo") or (vignette(portraits[str(c["id"])]) if portraits.get(str(c["id"])) else None)
-                       or photos_gouv.get(simplifie(nom_affiche(c))), assemblees_carte.get(str(c["id"]), [])])
+                       or photos_gouv.get(simplifie(nom_affiche(c)))
+                       or (f"https://www2.assemblee-nationale.fr/static/sycomore/jpg/{c['id']}.jpg" if sycomore.get(str(c["id"])) else None),
+                       assemblees_carte.get(str(c["id"]), [])])
     os.makedirs("site", exist_ok=True)
     with open(os.path.join("site", "jeu.json"), "w", encoding="utf-8") as f:
         json.dump({"raretes": RARETES, "assemblees": assemblees, "cartes": sortie}, f, ensure_ascii=False, separators=(",", ":"))
-    print(f"Cartes avec portrait : {sum(1 for x in sortie if x[9])}")
+    print(f"Cartes avec portrait : {sum(1 for x in sortie if x[9] or x[16])} (dont Sycomore : {sum(1 for x in sortie if x[16] and 'sycomore' in x[16])})")
     print(f"Assemblées (législatures) : {len(assemblees)} ; cartes rattachées : {len(assemblees_carte)}")
     print(f"Cartes exportées : {len(sortie)} ; taille : {os.path.getsize(os.path.join('site', 'jeu.json')) // 1024} Ko")
 

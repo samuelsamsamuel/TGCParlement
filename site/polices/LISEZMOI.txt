@@ -1,0 +1,5 @@
+Polices servies par le site, pour ne pas transmettre l'adresse des visiteurs à un tiers :
+- Libre Caslon Text (Impallari Type), SIL Open Font License 1.1
+- Instrument Sans (Instrument), SIL Open Font License 1.1
+Fichiers obtenus depuis Google Fonts (sous-ensembles latin et latin étendu).
+Texte de la licence : https://openfontlicense.org/open-font-license-official-text/
