@@ -56,11 +56,11 @@ assert.strictEqual(qv.total, 70); assert.deepStrictEqual(qv.paliers, [[1,1],[5,1
 const o = R.etatVide();
 qv.ids.slice(0, 5).forEach(id => o.possedees[id] = 1);
 assert.strictEqual(R.avancement(o, qv).aReclamer.length, 2);
-assert.strictEqual(R.reclamer(o, cat, "quatre-vingts"), 2);
-assert.strictEqual(R.reclamer(o, cat, "quatre-vingts"), 0);
+assert.deepStrictEqual(R.reclamer(o, cat, "quatre-vingts"), {paquets: 2, voix: 0});
+assert.deepStrictEqual(R.reclamer(o, cat, "quatre-vingts"), {paquets: 0, voix: 0});
 assert.strictEqual(o.offerts, 2);
 qv.ids.forEach(id => o.possedees[id] = 1);
-assert.strictEqual(R.reclamer(o, cat, "quatre-vingts"), 7);
+assert.deepStrictEqual(R.reclamer(o, cat, "quatre-vingts"), {paquets: 7, voix: 0});
 assert.ok(o.objectifs["quatre-vingts@complet"]);
 const fams = {}; cat.objectifs.forEach(x => fams[x.famille] = (fams[x.famille] || 0) + 1);
 console.log("objectifs par famille :", fams);
@@ -84,14 +84,14 @@ v.verrous = {[com.id]: 2}; assert.strictEqual(R.recyclables(v, com.id), 0);
 assert.strictEqual(R.jourDuJeu(new Date("2026-10-23T22:30:00Z")), "2026-10-24");
 // Premiers pas : une carte suffit, un paquet, une seule fois ; taille de l'hémicycle par paliers
 const pg = cat.objectifParId["premier:gouvernement"];
-assert.deepStrictEqual(pg.paliers, [[1, 1]]);
+assert.deepStrictEqual(pg.paliers, [[1, 10, "voix"]]);
 const pp = R.etatVide(); pp.possedees[pg.ids[0]] = 1;
-assert.strictEqual(R.reclamer(pp, cat, "premier:gouvernement"), 1);
-assert.strictEqual(R.reclamer(pp, cat, "premier:gouvernement"), 0);
+assert.deepStrictEqual(R.reclamer(pp, cat, "premier:gouvernement"), {paquets: 0, voix: 10}, "tâche simple : des voix");
+assert.deepStrictEqual(R.reclamer(pp, cat, "premier:gouvernement"), {paquets: 0, voix: 0});
 const hem = cat.objectifParId["hemicycle"];
-assert.strictEqual(hem.total, cat.cartes.length); assert.deepStrictEqual(hem.paliers.slice(0, 3), [[10, 1], [25, 1], [50, 1]]);
+assert.strictEqual(hem.total, cat.cartes.length); assert.deepStrictEqual(hem.paliers.slice(0, 3), [[10, 10, "voix"], [25, 15, "voix"], [50, 20, "voix"]]);
 cat.cartes.slice(0, 10).forEach(c => pp.possedees[c.id] = 1);
-assert.strictEqual(R.reclamer(pp, cat, "hemicycle"), 1);
+assert.deepStrictEqual(R.reclamer(pp, cat, "hemicycle"), {paquets: 0, voix: 10});
 // Catalogue du serveur : membres en plages, décodés à la demande, identiques au catalogue complet
 assert.deepStrictEqual(compact.objectifParId["premier:elue"].ids, cat.objectifParId["premier:elue"].ids);
 // Questions au Gouvernement : même graine, mêmes questions ; une bonne réponse par question, jamais deux
@@ -115,10 +115,17 @@ assert.strictEqual(quizEtat.points, 36);
   const j = R.etatVide(); let n = 24, ouverts = 0;
   while (n > 0 && ouverts < 2000) {
     for (let i = 0; i < n; i++) { j.offerts = 1; j.reserve = 0; j.ancre = Date.now(); R.ouvrirPaquet(j, cat, {aleatoire: al}); ouverts += 1; }
-    n = 0; for (const o of cat.objectifs) n += R.reclamer(j, cat, o.id);
+    n = 0; for (const o of cat.objectifs) n += R.reclamer(j, cat, o.id).paquets;
     j.offerts = 0; R.recycler(j, cat, R.ORDRE); while (j.points >= R.PRIX_PAQUET) { j.points -= R.PRIX_PAQUET; n += 1; }
   }
   console.log("premier jour en cascade :", ouverts, "paquets ouverts,", Object.keys(j.possedees).length, "cartes");
   assert.ok(ouverts < 60, "les récompenses ne doivent pas s'auto-entretenir");
+}
+// Reprise côté serveur : les paliers atteints comptés sur les plages, identiques au calcul complet
+{
+  const col = {}; cat.cartes.filter((c, i) => i % 37 === 0).forEach(c => col[c.id] = 1);
+  const e2 = R.etatVide(); e2.possedees = col;
+  const attendu = cat.objectifs.flatMap(o => R.avancement(e2, o).aReclamer.map(x => x.cle)).sort();
+  assert.deepStrictEqual(R.clesAtteintes(compact, col).sort(), attendu);
 }
 console.log("tous les tests passent");
