@@ -90,10 +90,13 @@ def main():
             permanente = ("permanente" in type_c) if type_c else (
                 o.startswith("commission") and not any(x in o for x in ("enquete", "speciale", "mixte"))
                 and not re.search(r"\bmission\b", o))  # mot entier : « commission » contient « mission »
+            if not permanente:
+                continue  # commissions mixtes paritaires, spéciales, d'enquête et missions : non retenues
+            nom_commission = organe[:1].lower() + organe[1:]
             if "rapporteur general" in fonction:
-                code, titre = "rapporteur-general", f"Rapporteur général ({organe} du Sénat)"
-            elif permanente and fonction.startswith("president"):
-                code, titre = "presidence-commission", f"Président de la {organe[:1].lower() + organe[1:]} du Sénat"
+                code, titre = "rapporteur-general", f"Rapporteur général de la {nom_commission} du Sénat"
+            elif fonction.startswith("president"):
+                code, titre = "presidence-commission", f"Président de la {nom_commission} du Sénat"
             else:
                 continue
             trouvees.append((code, l[c["matricule"]].strip(), titre, iso(l.get(c["debut"])), iso(l.get(c["fin"]))))
@@ -104,6 +107,7 @@ def main():
             fonction = norme(l[g["fonction"]])
             if fonction.startswith("president") and "vice" not in fonction:
                 organe = (l.get(g["organe"]) or "").strip() if g["organe"] else ""
+                organe = re.sub(r"^Groupe\s+", "", organe)  # « Groupe Les Républicains » -> « Les Républicains »
                 trouvees.append(("presidence-groupe", l[g["matricule"]].strip(), f"Président du groupe {organe} au Sénat",
                                  iso(l.get(g["debut"])), iso(l.get(g["fin"]))))
 
