@@ -5,7 +5,7 @@ Sources officielles (data.senat.fr) : ODSEN_COMS.csv (appartenances courantes et
 commissions, avec la fonction occupée) et ODSEN_HISTOGROUPES.csv (appartenances aux groupes politiques).
 Les fonctions sont ajoutées aux listes déjà établies pour l'Assemblée (mêmes codes, mêmes points) et au
 détail des fonctions de chaque carte. Le Bureau du Sénat (vice-présidents, questeurs, secrétaires) ne
-figure pas dans ces exports : il n'est pas couvert.
+figure pas dans ces exports : il est lu dans l'export complet de la base par senat_bureau.py.
 Rattachement : matricule du Sénat -> carte, d'après data/senat/correspondances.json (écrit par cartes.py).
 Sortie complémentaire : data/listes/rapports/senat-fonctions-rapport.txt
 """

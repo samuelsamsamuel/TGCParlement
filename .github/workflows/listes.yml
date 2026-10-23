@@ -33,7 +33,7 @@ jobs:
         continue-on-error: true
         run: python3 scripts/senat_fonctions.py
 
-      - name: Bureau du Sénat (mesure, export complet)
+      - name: Bureau du Sénat (export complet de la base)
         continue-on-error: true
         run: python3 scripts/senat_bureau.py
 

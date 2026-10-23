@@ -215,3 +215,19 @@ Archive https://data.senat.fr/data/senateurs/export_sens.zip : 8547551 octets ; 
 # Contrôle par ODSEN_GENERAL.csv (« Fonction au Bureau du Sénat », dernière fonction connue)
   colonne : Fonction au Bureau du Sénat ; valeurs : (vide) (1841), Secrétaire du Sénat (99), Vice-président du Sénat (33), Questeur du Sénat (25), Vice-présidente du Sénat (10), Président du Sénat (3), Questeure du Sénat (1)
   sénateurs actifs portant une fonction au Bureau : 26 ; Bureau en cours de senbur : 26 ; dans senbur seulement : [] ; dans ODSEN_GENERAL seulement : []
+
+# Lecture
+  DÉCISION (fin antérieure au début) : La fonction est retenue (la ligne l'atteste) mais ses deux dates sont omises : la source ne permet pas de dire laquelle est fausse. Cas relevés : François Monsarrat, secrétaire (1955-10-06 -> 1955-10-04), Catherine Lagatu, secrétaire (1974-10-03 -> 1972-10-02).
+  DÉCISION (sans date de début) : La fonction est retenue avec sa seule date de fin ; la date de début n'est pas reconstituée.
+  bureau-vp-questeur : 130 sénateurs ; liste 198 -> 198 cartes
+  bureau-secretaire : 210 sénateurs ; liste 338 -> 338 cartes
+  détail des fonctions : 369 périodes pour 312 cartes ; matricules sans carte : 0 []
+  exemples :
+    carte S92005M : Secrétaire du Sénat (1995-10-04 -> 2004-09-30) ; Questeur du Sénat (2008-10-07 -> 2010-11-25) ; Vice-président du Sénat (2004-10-06 -> 2004-11-26) ; Vice-président du Sénat (2005-03-02 -> 2008-10-06)
+    carte S000692 : Secrétaire du Sénat (1959-05-05 -> 1959-10-08) ; Secrétaire du Sénat (1961-10-03 -> 1962-10-03) ; Secrétaire du Sénat (1964-10-07 -> 1965-10-05) ; Secrétaire du Sénat (1967-10-11 -> 1968-10-04)
+    carte S83031N : Vice-président du Sénat (1992-10-07 -> 2001-10-02) ; Questeur du Sénat (2001-10-03 -> 2008-10-06) ; Secrétaire du Sénat (1989-10-30 -> 1992-10-07)
+    carte S92040Q : Secrétaire du Sénat (1998-10-06 -> 2001-10-03) ; Secrétaire du Sénat (2008-10-07 -> 2011-10-04) ; Secrétaire du Sénat (2014-10-08 -> 2017-10-03)
+    carte S000340 : Secrétaire du Sénat (1959-10-08 -> 1960-10-06) ; Secrétaire du Sénat (1962-10-03 -> 1963-10-03) ; Secrétaire du Sénat (1965-10-05 -> 1966-10-05)
+    carte S000083 : Secrétaire du Sénat (1965-10-05 -> 1966-10-05) ; Secrétaire du Sénat (1971-10-05 -> 1974-10-03) ; Secrétaire du Sénat (1977-10-05 -> 1980-10-02)
+    carte S95032D : Secrétaire du Sénat (2008-10-07 -> 2008-11-11) ; Vice-président du Sénat (2001-10-03 -> 2008-10-06) ; Vice-président du Sénat (2008-11-12 -> 2011-10-04)
+    carte S98042T : Vice-président du Sénat (2008-11-12 -> 2014-09-30) ; Secrétaire du Sénat (2004-10-06 -> 2008-11-11) ; Questeur du Sénat (2014-10-08 -> 2017-09-30)

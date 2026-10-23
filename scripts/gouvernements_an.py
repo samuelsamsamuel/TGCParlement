@@ -212,8 +212,8 @@ LISTES_ASSEMBLEE = {
     "presidence-commission": (10, "A présidé une commission permanente"),
     "rapporteur-general": (10, "A été rapporteur général du budget"),
     "presidence-groupe": (8, "A présidé un groupe politique"),
-    "bureau-vp-questeur": (8, "A été vice-président ou questeur de l'Assemblée"),
-    "bureau-secretaire": (3, "A été secrétaire de l'Assemblée"),
+    "bureau-vp-questeur": (8, "A été vice-président ou questeur de l'Assemblée ou du Sénat"),
+    "bureau-secretaire": (3, "A été secrétaire de l'Assemblée ou du Sénat"),
 }
 
 
