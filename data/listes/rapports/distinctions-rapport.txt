@@ -1,4 +1,4 @@
-Compagnon de la Libération : 94 cartes (éléments Wikidata de la distinction : Q2990283)
+Compagnon de la Libération : 88 cartes (éléments Wikidata de la distinction : Q2990283)
   Achille Peretti (Sycomore 5780)
   Aimé Lepercq (membre du Gouvernement, par le nom)
   Alain Savary (Sycomore 6323)
@@ -102,7 +102,7 @@ Compagnon de la Libération : 94 cartes (éléments Wikidata de la distinction :
   Édouard Corniglion-Molinier (Sénat senateur-communaute/corniglion_molinier_edouard0464r4)
   Émile Bollaert (Sénat senateur-4eme-republique/bollaert_emile0510r4)
 
-Membre de l'Académie française : 172 cartes (éléments Wikidata de la distinction : Q161806)
+Membre de l'Académie française : 169 cartes (éléments Wikidata de la distinction : Q161806)
   ? (Sycomore 10808)
   ? (Sycomore 8795)
   ? (Sénat senateur-3eme-republique/hugo_victor1354r3)

@@ -1,0 +1,7 @@
+Fonctions au sein du Sénat :  ; matricules sans carte : 0
+ODSEN_COMS.csv : 21213 lignes ; colonnes : Matricule | Qualité | Nom usuel | Prénom usuel | État Sénateur | Nom commission | Type commission | Id d'appartenance | Début d'appartenance | Fin d'appartenance | Id de fonction | Début de fonction | Fin de fonction | Fonction
+  colonnes retenues : {'matricule': 'Matricule', 'organe': 'Nom commission', 'fonction': 'Id de fonction', 'debut': "Début d'appartenance", 'fin': "Fin d'appartenance"}
+  fonctions les plus fréquentes : 2854 (1), 208 (1), 404 (1), 20150 (1), 12380 (1), 12802 (1), 12912 (1), 13010 (1), 12982 (1), 13439 (1), 13778 (1), 14067 (1), 14506 (1), 1607 (1), 411 (1)
+ODSEN_HISTOGROUPES.csv : 3747 lignes ; colonnes : Matricule | Id appartenance | Id fonction occupée | Nom | Prénom | Code du groupe politique | Nom court du groupe politique | Date de début d'appartenance | Date de fin d'appartenance | Nom court fonction | Date de début de la fonction | Date de fin de la fonction
+  colonnes retenues : {'matricule': 'Matricule', 'organe': 'Nom', 'fonction': 'Id fonction occupée', 'debut': "Date de début d'appartenance", 'fin': "Date de fin d'appartenance"}
+  fonctions les plus fréquentes : 208 (1), 2974 (1), 1178 (1), 632 (1), 793 (1), 1888 (1), 2356 (1), 289 (1), 1179 (1), 2173 (1), 2174 (1), 424 (1), 19 (1), 3826 (1), 3900 (1)
