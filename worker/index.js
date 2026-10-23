@@ -5,7 +5,7 @@ paquets, recyclage, objectifs, échanges entre joueurs et marché. Les règles s
 exécutées ici : le serveur est seul juge des tirages et des récompenses, le navigateur n'envoie que des demandes.
 
 Intégrité : chaque écriture est une variation (« n = n + d ») protégée par des contraintes de la base
-(possessions jamais négatives, exemplaires verrouillés jamais cédés, trois paquets du jour au plus, points
+(possessions jamais négatives, exemplaires verrouillés jamais cédés, version du joueur inchangée, points
 jamais négatifs, palier réclamé une seule fois, annonce ou échange clos une seule fois). Toutes les écritures
 d'une opération partent dans un même lot D1, exécuté comme une transaction : si deux demandes se croisent,
 la seconde viole une contrainte, rien n'est écrit et le joueur est invité à recommencer.
@@ -35,7 +35,7 @@ const SCHEMA = [
      points INTEGER NOT NULL DEFAULT 0 CHECK (points >= 0),
      offerts INTEGER NOT NULL DEFAULT 0 CHECK (offerts >= 0),
      jour TEXT NOT NULL DEFAULT '',
-     ouverts INTEGER NOT NULL DEFAULT 0 CHECK (ouverts BETWEEN 0 AND ${Regles.PAQUETS_PAR_JOUR}))`,
+     ouverts INTEGER NOT NULL DEFAULT 0 CHECK (ouverts BETWEEN 0 AND 3))`,  // jour, ouverts : ancienne règle (paquets du jour), inutilisés
   `CREATE TABLE IF NOT EXISTS possessions (
      joueur INTEGER NOT NULL, carte TEXT NOT NULL,
      n INTEGER NOT NULL CHECK (n >= 0),
@@ -60,6 +60,17 @@ const SCHEMA = [
      cree TEXT NOT NULL, maj TEXT NOT NULL)`,
   `CREATE INDEX IF NOT EXISTS annonces_statut ON annonces (statut, carte)`,
   `CREATE INDEX IF NOT EXISTS annonces_vendeur ON annonces (vendeur, statut)`,
+  // Duels de questions : mêmes questions (même graine) pour les deux joueurs, pour la gloire (pas de voix)
+  `CREATE TABLE IF NOT EXISTS duels (id INTEGER PRIMARY KEY, de INTEGER NOT NULL, vers INTEGER NOT NULL, graine INTEGER NOT NULL,
+     score_de INTEGER, score_vers INTEGER, cree TEXT NOT NULL, maj TEXT NOT NULL)`,
+  `CREATE INDEX IF NOT EXISTS duels_de ON duels (de)`,
+  `CREATE INDEX IF NOT EXISTS duels_vers ON duels (vers)`,
+  // Messages du formulaire de contact (exercice des droits, questions) et signalements de pseudos
+  `CREATE TABLE IF NOT EXISTS messages (id INTEGER PRIMARY KEY, joueur INTEGER, reponse TEXT, message TEXT NOT NULL, date TEXT NOT NULL)`,
+  `CREATE TABLE IF NOT EXISTS signalements (id INTEGER PRIMARY KEY, de INTEGER NOT NULL, cible INTEGER NOT NULL, motif TEXT, date TEXT NOT NULL)`,
+  // Garde de concurrence : une insertion n'y a lieu que lorsque la version du joueur a changé entre la lecture
+  // et l'écriture ; sa contrainte échoue alors et annule tout le lot (voir appliquer)
+  `CREATE TABLE IF NOT EXISTS garde (ok INTEGER NOT NULL CHECK (ok = 0))`,
   // Une annonce ou un échange ne se clôt qu'une fois : achat, retrait, acceptation, refus, annulation
   `CREATE TABLE IF NOT EXISTS clotures (nature TEXT NOT NULL, id INTEGER NOT NULL, PRIMARY KEY (nature, id)) WITHOUT ROWID`,
 ];
@@ -80,6 +91,19 @@ function egaux(a, b) { if (a.length !== b.length) return false; let d = 0; for (
 function entier(v, min, max) { const n = Number(v); return Number.isInteger(n) && n >= min && n <= max ? n : null; }
 function contrainte(e) { return /constraint|SQLITE_CONSTRAINT/i.test(String(e && (e.message || e.cause || e))); }
 const PSEUDO = /^[\p{L}\p{N}_.-]{3,20}$/u;
+// Modération des pseudos : mots injurieux ou haineux recherchés dans le pseudo (chiffres lus comme des lettres),
+// mots courts et noms réservés refusés seulement s'ils forment tout le pseudo (« pute » est dans « depute »,
+// « nique » dans « Monique »). Le reste passe par le signalement.
+const MOTS_INTERDITS = ["connard", "connasse", "salope", "salaud", "encule", "batard", "putain", "merde", "couille",
+  "negre", "negro", "bougnoul", "youpin", "youtre", "bicot", "chinetoque", "hitler", "pedophile", "violeur", "tapette",
+  "gouine", "fiotte", "branleur", "nazi"];
+const NOMS_RESERVES = ["admin", "administrateur", "administration", "moderateur", "moderation", "modo", "hemicycle", "support",
+  "officiel", "staff", "equipe", "systeme", "anonyme", "pd", "fdp", "ntm", "pute", "bite", "nique", "pedo"];
+function pseudoAutorise(pseudo) {
+  const n = Regles.normer(pseudo).replace(/[013457@$]/g, ch => ({0: "o", 1: "i", 3: "e", 4: "a", 5: "s", 7: "t", "@": "a", $: "s"})[ch]);
+  const lettres = n.replace(/[^a-z]/g, "");
+  return !NOMS_RESERVES.includes(lettres) && !MOTS_INTERDITS.some(m => lettres.includes(m));
+}
 
 /* ---------- Catalogue et base ---------- */
 let catalogue = null, schemaPret = null;
@@ -90,8 +114,27 @@ async function lireCatalogue(env, url) {
   }).then(Regles.catalogueCompact).catch(e => { catalogue = null; throw e; });
   return catalogue;
 }
+// Colonnes ajoutées après la mise en service : ajoutées à la volée si la table existante ne les a pas
+const COLONNES = {
+  joueurs: [
+    ["stock", `INTEGER NOT NULL DEFAULT ${Regles.RESERVE_MAX} CHECK (stock BETWEEN 0 AND ${Regles.RESERVE_MAX})`],  // réserve de paquets à l'ancre
+    ["ancre", "INTEGER NOT NULL DEFAULT 0"],      // instant (ms) depuis lequel la réserve se recharge ; 0 : pleine
+    ["version", "INTEGER NOT NULL DEFAULT 0"],    // incrémentée à chaque opération des règles (garde de concurrence)
+    ["vitrine", "TEXT NOT NULL DEFAULT '[]'"],    // cartes choisies pour la vitrine publique
+    ["quiz", "TEXT NOT NULL DEFAULT ''"],         // jour des dernières questions au Gouvernement récompensées
+  ],
+  annonces: [
+    ["rarete", "TEXT NOT NULL DEFAULT ''"],       // rareté de la carte, pour les prix médians par rareté
+  ],
+};
 async function preparerBase(env) {
-  schemaPret ||= env.DB.batch(SCHEMA.map(sql => env.DB.prepare(sql))).catch(e => { schemaPret = null; throw e; });
+  schemaPret ||= (async () => {
+    await env.DB.batch(SCHEMA.map(sql => env.DB.prepare(sql)));
+    for (const [table, colonnes] of Object.entries(COLONNES)) {
+      const existantes = new Set((await env.DB.prepare(`PRAGMA table_info(${table})`).all()).results.map(c => c.name));
+      for (const [nom, def] of colonnes) if (!existantes.has(nom)) await env.DB.prepare(`ALTER TABLE ${table} ADD COLUMN ${nom} ${def}`).run();
+    }
+  })().catch(e => { schemaPret = null; throw e; });
   return schemaPret;
 }
 // Lot D1 (transaction) ; une contrainte violée devient un refus « à recommencer »
@@ -109,6 +152,8 @@ async function limiter(env, cle, [max, fenetre]) {
     ON CONFLICT (cle) DO UPDATE SET n = CASE WHEN ?2 - debut < ?3 THEN n + 1 ELSE 1 END,
                                     debut = CASE WHEN ?2 - debut < ?3 THEN debut ELSE ?2 END`).bind(cle, t, fenetre).run();
 }
+// Les compteurs de tentatives (qui portent l'adresse IP) ne sont gardés qu'une journée
+async function purgerTentatives(env) { await env.DB.prepare("DELETE FROM tentatives WHERE debut < ?").bind(secondes() - 86400).run(); }
 async function oublier(env, cle) { await env.DB.prepare("DELETE FROM tentatives WHERE cle = ?").bind(cle).run(); }
 
 /* ---------- Sessions ---------- */
@@ -134,7 +179,7 @@ async function joueurConnecte(env, requete) {
 /* ---------- État d'un joueur ---------- */
 async function chargerEtat(env, joueur) {
   const [j, p, r, h] = await env.DB.batch([
-    env.DB.prepare("SELECT pseudo, points, offerts, jour, ouverts FROM joueurs WHERE id = ?").bind(joueur),
+    env.DB.prepare("SELECT pseudo, points, offerts, stock, ancre, version, quiz, vitrine FROM joueurs WHERE id = ?").bind(joueur),
     env.DB.prepare("SELECT carte, n, importes, reserve FROM possessions WHERE joueur = ? AND n > 0").bind(joueur),
     env.DB.prepare("SELECT cle, date FROM reclames WHERE joueur = ?").bind(joueur),
     env.DB.prepare("SELECT date, operation, detail FROM journal WHERE joueur = ? ORDER BY id DESC LIMIT 20").bind(joueur),
@@ -142,14 +187,14 @@ async function chargerEtat(env, joueur) {
   const ligne = j.results[0];
   if (!ligne) throw new Refus(401, "Compte introuvable.");
   const etat = Regles.etatVide();
-  Object.assign(etat, {points: ligne.points, offerts: ligne.offerts, jour: ligne.jour, ouverts: ligne.ouverts, verrous: {}});
+  Object.assign(etat, {points: ligne.points, offerts: ligne.offerts, reserve: ligne.stock, ancre: ligne.ancre, quiz: ligne.quiz, verrous: {}});
   for (const x of p.results) {
     etat.possedees[x.carte] = x.n;
     if (x.importes + x.reserve) etat.verrous[x.carte] = x.importes + x.reserve;
   }
   for (const x of r.results) etat.objectifs[x.cle] = x.date;
   etat.journal = h.results.reverse().map(x => [x.date, x.operation, x.detail ? JSON.parse(x.detail) : null]);
-  return {pseudo: ligne.pseudo, etat};
+  return {pseudo: ligne.pseudo, etat, version: ligne.version, vitrine: JSON.parse(ligne.vitrine || "[]")};
 }
 // Ajout : la ligne est créée au besoin. Retrait : simple mise à jour, car SQLite vérifie les contraintes CHECK
 // d'une insertion avant de résoudre le conflit (une insertion négative échouerait toujours). Les lignes de
@@ -164,11 +209,16 @@ const noterJournal = (env, joueur, operation, detail) => env.DB.prepare(
   "INSERT INTO journal (joueur, date, operation, detail) VALUES (?, ?, ?, ?)").bind(joueur, maintenant(), operation, JSON.stringify(detail));
 
 // Applique une opération des règles à l'état du joueur, puis écrit les seules variations, sous contraintes
+// La version du joueur, lue avec l'état, doit être inchangée au moment d'écrire : sinon une autre opération est
+// passée entre-temps (deux paquets ouverts à la même seconde, par exemple), la garde échoue et rien n'est écrit.
 async function appliquer(env, joueur, operation) {
-  const {etat: avant} = await chargerEtat(env, joueur);
+  const {etat: avant, version} = await chargerEtat(env, joueur);
   const apres = structuredClone(avant);
   const resultat = operation(apres);
-  const requetes = [];
+  const requetes = [
+    env.DB.prepare("UPDATE joueurs SET version = version + 1 WHERE id = ? AND version = ?").bind(joueur, version),
+    env.DB.prepare("INSERT INTO garde (ok) SELECT 1 WHERE changes() = 0"),
+  ];
   for (const id of new Set([...Object.keys(avant.possedees), ...Object.keys(apres.possedees)])) {
     const d = (apres.possedees[id] || 0) - (avant.possedees[id] || 0);
     if (d > 0) requetes.push(ajoutCartes(env, joueur, id, d));
@@ -176,15 +226,13 @@ async function appliquer(env, joueur, operation) {
   }
   const dPoints = apres.points - avant.points, dOfferts = apres.offerts - avant.offerts;
   if (dPoints || dOfferts) requetes.push(env.DB.prepare("UPDATE joueurs SET points = points + ?, offerts = offerts + ? WHERE id = ?").bind(dPoints, dOfferts, joueur));
-  if (apres.jour !== avant.jour || apres.ouverts !== avant.ouverts) {
-    const dOuverts = apres.ouverts - (avant.jour === apres.jour ? avant.ouverts : 0);
-    requetes.push(env.DB.prepare(`UPDATE joueurs SET ouverts = CASE WHEN jour = ?1 THEN ouverts + ?2 ELSE ?3 END, jour = ?1 WHERE id = ?4`)
-      .bind(apres.jour, dOuverts, apres.ouverts, joueur));
-  }
+  if (apres.quiz !== avant.quiz) requetes.push(env.DB.prepare("UPDATE joueurs SET quiz = ? WHERE id = ?").bind(apres.quiz, joueur));
+  if (apres.reserve !== avant.reserve || apres.ancre !== avant.ancre)
+    requetes.push(env.DB.prepare("UPDATE joueurs SET stock = ?, ancre = ? WHERE id = ?").bind(apres.reserve, apres.ancre, joueur));
   for (const cle of Object.keys(apres.objectifs)) if (!avant.objectifs[cle])
     requetes.push(env.DB.prepare("INSERT INTO reclames (joueur, cle, date) VALUES (?, ?, ?)").bind(joueur, cle, apres.objectifs[cle]));
   for (const [, op, detail] of apres.journal.slice(avant.journal.length)) requetes.push(noterJournal(env, joueur, op, detail));
-  if (requetes.length) await lot(env, requetes);
+  if (requetes.length > 2) await lot(env, requetes);
   return resultat;
 }
 
@@ -202,6 +250,8 @@ function validerIdentifiants(c) {
 async function inscription(env, requete, cat) {
   const c = await lireCorps(requete);
   const {pseudo, preuve} = validerIdentifiants(c);
+  if (!pseudoAutorise(pseudo)) throw new Refus(400, "Ce pseudo n'est pas accepté. Choisissez-en un autre.");
+  await purgerTentatives(env);
   await limiter(env, "inscription:" + (requete.headers.get("cf-connecting-ip") || "?"), LIMITES.inscriptionIp);
   const sel = aleatoireHex(16);
   let joueur;
@@ -236,6 +286,7 @@ async function inscription(env, requete, cat) {
 async function connexion(env, requete) {
   const {pseudo, preuve} = validerIdentifiants(await lireCorps(requete));
   const cle = "connexion:" + pseudo.toLowerCase();
+  await purgerTentatives(env);
   await limiter(env, cle, LIMITES.connexion);
   await limiter(env, "connexion-ip:" + (requete.headers.get("cf-connecting-ip") || "?"), LIMITES.connexionIp);
   const j = await env.DB.prepare("SELECT id, sel, empreinte FROM joueurs WHERE pseudo = ?").bind(pseudo).first();
@@ -343,7 +394,7 @@ async function vendre(env, requete, joueur, cat) {
   const date = maintenant();
   await lot(env, [
     env.DB.prepare("UPDATE possessions SET reserve = reserve + 1 WHERE joueur = ? AND carte = ?").bind(joueur, carte),
-    env.DB.prepare("INSERT INTO annonces (vendeur, carte, prix, statut, cree, maj) VALUES (?, ?, ?, 'ouverte', ?, ?)").bind(joueur, carte, prix, date, date),
+    env.DB.prepare("INSERT INTO annonces (vendeur, carte, prix, statut, cree, maj, rarete) VALUES (?, ?, ?, 'ouverte', ?, ?, ?)").bind(joueur, carte, prix, date, date, cat.parId[carte].rarete),
   ], "Vous n'avez plus d'exemplaire libre de cette carte.");
   return json({ok: true}, 201);
 }
@@ -371,6 +422,132 @@ async function cloreAnnonce(env, joueur, id, action) {
   return json({ok: true});
 }
 
+/* ---------- Prix du comptoir, attente, vitrine, classement, compte ---------- */
+async function prixComptoir(env, url, cat) {
+  const carte = String(url.searchParams.get("carte") || "");
+  if (!cat.parId[carte]) throw new Refus(400, "Carte inconnue.");
+  const rarete = cat.parId[carte].rarete;
+  const [ventes, parRarete] = await env.DB.batch([
+    env.DB.prepare("SELECT prix, maj AS date FROM annonces WHERE carte = ? AND statut = 'vendue' ORDER BY id DESC LIMIT 10").bind(carte),
+    env.DB.prepare("SELECT prix FROM annonces WHERE rarete = ? AND statut = 'vendue' ORDER BY id DESC LIMIT 50").bind(rarete),
+  ]);
+  const prix = parRarete.results.map(x => x.prix).sort((a, b) => a - b);
+  const mediane = prix.length ? (prix.length % 2 ? prix[(prix.length - 1) / 2] : Math.round((prix[prix.length / 2 - 1] + prix[prix.length / 2]) / 2)) : null;
+  return json({ventes: ventes.results, rarete, mediane, ventesRarete: prix.length});
+}
+async function attente(env, joueur) {
+  const [e, d] = await env.DB.batch([
+    env.DB.prepare("SELECT COUNT(*) AS n FROM echanges WHERE vers = ? AND statut = 'proposee'").bind(joueur),
+    env.DB.prepare("SELECT COUNT(*) AS n FROM duels WHERE (de = ?1 AND score_de IS NULL) OR (vers = ?1 AND score_vers IS NULL)").bind(joueur),
+  ]);
+  return json({echanges: e.results[0].n, duels: d.results[0].n});
+}
+const MAX_VITRINE = 6;
+async function changerVitrine(env, requete, joueur) {
+  const ids = [...new Set((await lireCorps(requete)).cartes || [])].map(String).slice(0, MAX_VITRINE);
+  if (ids.length) {
+    const r = await env.DB.prepare(`SELECT carte FROM possessions WHERE joueur = ? AND n > 0 AND carte IN (${ids.map(() => "?").join(",")})`).bind(joueur, ...ids).all();
+    if (r.results.length !== ids.length) throw new Refus(409, "La vitrine ne peut montrer que des cartes de votre collection.");
+  }
+  await env.DB.prepare("UPDATE joueurs SET vitrine = ? WHERE id = ?").bind(JSON.stringify(ids), joueur).run();
+  return json({ok: true, vitrine: ids});
+}
+async function profil(env, pseudo) {
+  const j = await env.DB.prepare("SELECT id, pseudo, cree, vitrine FROM joueurs WHERE pseudo = ?").bind(String(pseudo).normalize("NFC").trim()).first();
+  if (!j) throw new Refus(404, "Aucun joueur ne porte ce pseudo.");
+  const [c, p, d, v] = await env.DB.batch([
+    env.DB.prepare("SELECT COUNT(*) AS n FROM possessions WHERE joueur = ? AND n > 0").bind(j.id),
+    env.DB.prepare("SELECT COUNT(*) AS n FROM reclames WHERE joueur = ?").bind(j.id),
+    env.DB.prepare(`SELECT COUNT(*) AS joues, SUM(CASE WHEN (de = ?1 AND score_de > score_vers) OR (vers = ?1 AND score_vers > score_de) THEN 1 ELSE 0 END) AS gagnes
+      FROM duels WHERE (de = ?1 OR vers = ?1) AND score_de IS NOT NULL AND score_vers IS NOT NULL`).bind(j.id),
+    env.DB.prepare(`SELECT carte FROM possessions WHERE joueur = ? AND n > 0 AND carte IN (SELECT value FROM json_each(?))`).bind(j.id, j.vitrine),
+  ]);
+  const garde = new Set(v.results.map(x => x.carte));
+  return json({pseudo: j.pseudo, cree: j.cree, cartes: c.results[0].n, paliers: p.results[0].n,
+    duels: {joues: d.results[0].joues || 0, gagnes: d.results[0].gagnes || 0}, vitrine: JSON.parse(j.vitrine).filter(id => garde.has(id))});
+}
+let classementCache = null;   // {t, corps} : le classement est recalculé au plus toutes les cinq minutes
+async function classement(env) {
+  if (!classementCache || Date.now() - classementCache.t > 300000) {
+    const r = await env.DB.prepare(`SELECT j.pseudo, COUNT(p.carte) AS cartes FROM joueurs j JOIN possessions p ON p.joueur = j.id AND p.n > 0
+      GROUP BY j.id ORDER BY cartes DESC, j.id ASC LIMIT 20`).all();
+    classementCache = {t: Date.now(), corps: {classement: r.results}};
+  }
+  return json(classementCache.corps);
+}
+async function supprimerCompte(env, requete, joueur) {
+  const preuve = String((await lireCorps(requete)).preuve || "");
+  const j = await env.DB.prepare("SELECT sel, empreinte FROM joueurs WHERE id = ?").bind(joueur).first();
+  if (!j || !/^[0-9a-f]{64}$/.test(preuve) || !egaux(await sha256(j.sel + preuve), j.empreinte)) throw new Refus(401, "Mot de passe incorrect.");
+  const date = maintenant();
+  await env.DB.batch([
+    env.DB.prepare("UPDATE annonces SET statut = 'retiree', maj = ? WHERE vendeur = ? AND statut = 'ouverte'").bind(date, joueur),
+    env.DB.prepare("UPDATE echanges SET statut = 'annulee', maj = ? WHERE (de = ?2 OR vers = ?2) AND statut = 'proposee'").bind(date, joueur),
+    env.DB.prepare("DELETE FROM duels WHERE de = ?1 OR vers = ?1").bind(joueur),
+    env.DB.prepare("DELETE FROM possessions WHERE joueur = ?").bind(joueur),
+    env.DB.prepare("DELETE FROM reclames WHERE joueur = ?").bind(joueur),
+    env.DB.prepare("DELETE FROM journal WHERE joueur = ?").bind(joueur),
+    env.DB.prepare("DELETE FROM sessions WHERE joueur = ?").bind(joueur),
+    env.DB.prepare("DELETE FROM signalements WHERE de = ?1 OR cible = ?1").bind(joueur),
+    env.DB.prepare("UPDATE messages SET joueur = NULL WHERE joueur = ?").bind(joueur),
+    env.DB.prepare("DELETE FROM joueurs WHERE id = ?").bind(joueur),
+  ]);
+  return json({connecte: false}, 200, {"set-cookie": `${COOKIE}=; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=0`});
+}
+async function contact(env, requete, joueur) {
+  const c = await lireCorps(requete);
+  const message = String(c.message || "").trim().slice(0, 2000), reponse = String(c.reponse || "").trim().slice(0, 200);
+  if (message.length < 5) throw new Refus(400, "Écrivez votre message.");
+  await limiter(env, "contact:" + (requete.headers.get("cf-connecting-ip") || "?"), [5, 3600]);
+  // Les messages sont supprimés un an après leur réception (politique de confidentialité)
+  await env.DB.batch([
+    env.DB.prepare("DELETE FROM messages WHERE date < ?").bind(new Date(Date.now() - 365 * 86400000).toISOString()),
+    env.DB.prepare("INSERT INTO messages (joueur, reponse, message, date) VALUES (?, ?, ?, ?)").bind(joueur, reponse || null, message, maintenant()),
+  ]);
+  return json({ok: true}, 201);
+}
+async function signaler(env, requete, joueur) {
+  const c = await lireCorps(requete);
+  const cible = await idJoueur(env, c.pseudo);
+  await limiter(env, "signalement:" + joueur, [10, 3600]);
+  await env.DB.prepare("INSERT INTO signalements (de, cible, motif, date) VALUES (?, ?, ?, ?)").bind(joueur, cible.id, String(c.motif || "").slice(0, 300), maintenant()).run();
+  return json({ok: true}, 201);
+}
+
+/* ---------- Duels de questions ---------- */
+const MAX_DUELS_EN_COURS = 20;
+async function lancerDuel(env, requete, joueur) {
+  const c = await lireCorps(requete);
+  const adversaire = await idJoueur(env, c.vers);
+  if (adversaire.id === joueur) throw new Refus(400, "Vous ne pouvez pas vous défier vous-même.");
+  const enCours = await env.DB.prepare("SELECT COUNT(*) AS n FROM duels WHERE de = ? AND (score_de IS NULL OR score_vers IS NULL)").bind(joueur).first();
+  if (enCours.n >= MAX_DUELS_EN_COURS) throw new Refus(429, `Vous avez déjà ${MAX_DUELS_EN_COURS} duels en cours.`);
+  const date = maintenant(), graine = crypto.getRandomValues(new Uint32Array(1))[0];
+  const d = await env.DB.prepare("INSERT INTO duels (de, vers, graine, cree, maj) VALUES (?, ?, ?, ?, ?) RETURNING id")
+    .bind(joueur, adversaire.id, graine, date, date).first();
+  return json({id: d.id, graine, avec: adversaire.pseudo}, 201);
+}
+async function listeDuels(env, joueur) {
+  const r = await env.DB.prepare(`SELECT d.*, a.pseudo AS pseudo_de, b.pseudo AS pseudo_vers FROM duels d
+    JOIN joueurs a ON a.id = d.de JOIN joueurs b ON b.id = d.vers WHERE d.de = ?1 OR d.vers = ?1 ORDER BY d.id DESC LIMIT 30`).bind(joueur).all();
+  return json({duels: r.results.map(d => {
+    const moi = d.de === joueur;
+    const mien = moi ? d.score_de : d.score_vers, sien = moi ? d.score_vers : d.score_de;
+    // Le score de l'adversaire n'est montré qu'une fois les deux duellistes passés
+    return {id: d.id, graine: d.graine, avec: moi ? d.pseudo_vers : d.pseudo_de, lance: moi, mien, sien: mien === null ? null : sien,
+      termine: mien !== null && sien !== null, cree: d.cree};
+  })});
+}
+async function scoreDuel(env, requete, joueur, id) {
+  const bonnes = entier((await lireCorps(requete)).bonnes, 0, Regles.QUIZ_QUESTIONS);
+  if (bonnes === null) throw new Refus(400, "Résultat illisible.");
+  const r = await env.DB.prepare(`UPDATE duels SET score_de = CASE WHEN de = ?2 THEN ?3 ELSE score_de END,
+      score_vers = CASE WHEN vers = ?2 THEN ?3 ELSE score_vers END, maj = ?4
+    WHERE id = ?1 AND ((de = ?2 AND score_de IS NULL) OR (vers = ?2 AND score_vers IS NULL))`).bind(id, joueur, bonnes, maintenant()).run();
+  if (!r.meta.changes) throw new Refus(409, "Vous avez déjà joué ce duel.");
+  return json({ok: true});
+}
+
 /* ---------- Routage ---------- */
 async function api(requete, env, url) {
   const methode = requete.method, chemin = url.pathname.replace(/\/+$/, "");
@@ -387,12 +564,16 @@ async function api(requete, env, url) {
   if (methode === "POST" && chemin === "/api/connexion") return connexion(env, requete);
   if (methode === "POST" && chemin === "/api/deconnexion") return deconnexion(env, requete);
   const joueur = await joueurConnecte(env, requete);
+  if (methode === "POST" && chemin === "/api/contact") return contact(env, requete, joueur);
+  if (methode === "GET" && chemin === "/api/classement") return classement(env);
+  let p;
+  if (methode === "GET" && (p = chemin.match(/^\/api\/profil\/([^/]+)$/))) return profil(env, decodeURIComponent(p[1]));
   if (methode === "GET" && chemin === "/api/moi") return json(joueur ? {connecte: true, ...(await chargerEtat(env, joueur))} : {connecte: false});
   if (!joueur) throw new Refus(401, "Connectez-vous pour continuer.");
   const avecEtat = async resultat => json({resultat, ...(await chargerEtat(env, joueur))});
   if (methode === "POST" && chemin === "/api/paquet") {
     const cat = await catalogueDuJeu();
-    const r = await appliquer(env, joueur, e => Regles.ouvrirPaquet(e, cat, {jour: Regles.jourDuJeu(), aleatoire}));
+    const r = await appliquer(env, joueur, e => Regles.ouvrirPaquet(e, cat, {maintenant: Date.now(), aleatoire}));
     if (!r) throw new Refus(409, "Aucun paquet disponible pour l'instant.");
     return avecEtat({tirage: r.tirage.map(c => c.id), neuves: [...r.neuves], origine: r.origine});
   }
@@ -411,7 +592,22 @@ async function api(requete, env, url) {
     const cat = await catalogueDuJeu();
     return avecEtat(await appliquer(env, joueur, e => Regles.reclamer(e, cat, String(c.id || ""))));
   }
+  if (methode === "POST" && chemin === "/api/quiz") {
+    const c = await lireCorps(requete);
+    const bonnes = entier(c.bonnes, 0, Regles.QUIZ_QUESTIONS);
+    if (bonnes === null) throw new Refus(400, "Résultat illisible.");
+    const voix = await appliquer(env, joueur, e => Regles.validerQuiz(e, Regles.jourDuJeu(), bonnes));
+    return avecEtat(voix);
+  }
+  if (methode === "GET" && chemin === "/api/duels") return listeDuels(env, joueur);
+  if (methode === "GET" && chemin === "/api/attente") return attente(env, joueur);
+  if (methode === "GET" && chemin === "/api/prix") return prixComptoir(env, url, await catalogueDuJeu());
+  if (methode === "POST" && chemin === "/api/vitrine") return changerVitrine(env, requete, joueur);
+  if (methode === "POST" && chemin === "/api/supprimer-compte") return supprimerCompte(env, requete, joueur);
+  if (methode === "POST" && chemin === "/api/signaler") return signaler(env, requete, joueur);
+  if (methode === "POST" && chemin === "/api/duels") return lancerDuel(env, requete, joueur);
   let m;
+  if (methode === "POST" && (m = chemin.match(/^\/api\/duels\/(\d+)\/score$/))) return scoreDuel(env, requete, joueur, Number(m[1]));
   if (methode === "GET" && (m = chemin.match(/^\/api\/joueurs\/([^/]+)$/))) {
     const j = await idJoueur(env, decodeURIComponent(m[1]));
     return json({pseudo: j.pseudo, libres: await libres(env, j.id)});

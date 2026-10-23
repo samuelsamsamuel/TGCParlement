@@ -6,23 +6,32 @@ const cartes = R.cartesDeJeu(d);
 const cat = R.catalogue(cartes, d.assemblees);
 let graine = 42; const alea = () => (graine = (graine * 16807) % 2147483647) / 2147483647;
 
-// Migration de l'état v1
+// Migration des versions précédentes : collection gardée, réserve pleine
 const v1 = {possedees: {"2922": 3, "x": "abc"}, jour: "2026-10-23", ouverts: 2};
 const e = R.migrer(v1);
-assert.deepStrictEqual(e.possedees, {"2922": 3}); assert.strictEqual(e.version, 2); assert.strictEqual(e.ouverts, 2);
+assert.deepStrictEqual(e.possedees, {"2922": 3}); assert.strictEqual(e.version, 3);
+assert.strictEqual(R.paquetsDisponibles(e).reserve, R.RESERVE_MAX);
 assert.deepStrictEqual(R.migrer(null), R.etatVide());
 
-// Paquets : trois du jour, puis les offerts, puis plus rien
+// Réserve : pleine au départ, un paquet par heure, plafonnée à huit ; l'heure entamée reste acquise
+const H = R.RECHARGE_MS, t0 = Date.UTC(2026, 9, 24, 8, 0);
 const s = R.etatVide();
-for (let i = 0; i < 3; i++) assert.strictEqual(R.ouvrirPaquet(s, cat, {jour: "J1", aleatoire: alea}).origine, "jour");
-assert.strictEqual(R.ouvrirPaquet(s, cat, {jour: "J1", aleatoire: alea}), null);
-s.offerts = 1;
-assert.strictEqual(R.ouvrirPaquet(s, cat, {jour: "J1", aleatoire: alea}).origine, "offert");
-assert.strictEqual(s.offerts, 0);
-assert.strictEqual(R.paquetsDisponibles(s, "J2").duJour, 3);
-const p = R.ouvrirPaquet(s, cat, {jour: "J2", aleatoire: alea});
+for (let i = 0; i < 8; i++) assert.strictEqual(R.ouvrirPaquet(s, cat, {maintenant: t0, aleatoire: alea}).origine, "reserve");
+assert.strictEqual(R.ouvrirPaquet(s, cat, {maintenant: t0, aleatoire: alea}), null);
+assert.strictEqual(R.paquetsDisponibles(s, t0).prochain, t0 + H);
+assert.strictEqual(R.paquetsDisponibles(s, t0 + H - 1).reserve, 0);
+assert.strictEqual(R.paquetsDisponibles(s, t0 + 2.5 * H).reserve, 2);
+R.ouvrirPaquet(s, cat, {maintenant: t0 + 2.5 * H, aleatoire: alea});
+assert.strictEqual(R.paquetsDisponibles(s, t0 + 2.5 * H).reserve, 1);
+assert.strictEqual(R.paquetsDisponibles(s, t0 + 3 * H).reserve, 2, "la demi-heure entamée compte toujours");
+assert.strictEqual(R.paquetsDisponibles(s, t0 + 100 * H).reserve, 8, "plafond");
+// Réserve vide : les paquets offerts prennent le relais
+const s2 = R.etatVide(); s2.reserve = 0; s2.ancre = t0; s2.offerts = 1;
+assert.strictEqual(R.ouvrirPaquet(s2, cat, {maintenant: t0, aleatoire: alea}).origine, "offert");
+assert.strictEqual(s2.offerts, 0);
+const p = R.ouvrirPaquet(s, cat, {maintenant: t0 + 100 * H, aleatoire: alea});
 assert.strictEqual(p.tirage.length, 5); assert.ok(p.tirage.some(c => c.actuel));
-assert.strictEqual(Object.values(s.possedees).reduce((a, b) => a + b, 0), 25);
+assert.strictEqual(Object.values(s.possedees).reduce((a, b) => a + b, 0), 50);
 
 // Recyclage : garde un exemplaire, points selon la rareté, raretés non choisies intactes
 const r = R.etatVide();
@@ -43,15 +52,15 @@ assert.ok(moyenne * R.CARTES_PAR_PAQUET < R.PRIX_PAQUET);
 
 // Objectifs
 const qv = cat.objectifParId["quatre-vingts"];
-assert.strictEqual(qv.total, 70); assert.deepStrictEqual(qv.paliers, [[1,1],[5,2],[15,3],[70,5]]);
+assert.strictEqual(qv.total, 70); assert.deepStrictEqual(qv.paliers, [[1,1],[5,1],[15,2],[70,5]]);
 const o = R.etatVide();
 qv.ids.slice(0, 5).forEach(id => o.possedees[id] = 1);
 assert.strictEqual(R.avancement(o, qv).aReclamer.length, 2);
-assert.strictEqual(R.reclamer(o, cat, "quatre-vingts"), 3);
+assert.strictEqual(R.reclamer(o, cat, "quatre-vingts"), 2);
 assert.strictEqual(R.reclamer(o, cat, "quatre-vingts"), 0);
-assert.strictEqual(o.offerts, 3);
+assert.strictEqual(o.offerts, 2);
 qv.ids.forEach(id => o.possedees[id] = 1);
-assert.strictEqual(R.reclamer(o, cat, "quatre-vingts"), 8);
+assert.strictEqual(R.reclamer(o, cat, "quatre-vingts"), 7);
 assert.ok(o.objectifs["quatre-vingts@complet"]);
 const fams = {}; cat.objectifs.forEach(x => fams[x.famille] = (fams[x.famille] || 0) + 1);
 console.log("objectifs par famille :", fams);
@@ -73,7 +82,6 @@ v.verrous = {[com.id]: 2}; assert.strictEqual(R.recyclables(v, com.id), 0);
 
 // Jour du jeu : date de Paris ; l'ancien format est complété
 assert.strictEqual(R.jourDuJeu(new Date("2026-10-23T22:30:00Z")), "2026-10-24");
-assert.strictEqual(R.migrer({possedees: {}, jour: "2026-1-5"}).jour, "2026-01-05");
 // Premiers pas : une carte suffit, un paquet, une seule fois ; taille de l'hémicycle par paliers
 const pg = cat.objectifParId["premier:gouvernement"];
 assert.deepStrictEqual(pg.paliers, [[1, 1]]);
@@ -81,9 +89,36 @@ const pp = R.etatVide(); pp.possedees[pg.ids[0]] = 1;
 assert.strictEqual(R.reclamer(pp, cat, "premier:gouvernement"), 1);
 assert.strictEqual(R.reclamer(pp, cat, "premier:gouvernement"), 0);
 const hem = cat.objectifParId["hemicycle"];
-assert.strictEqual(hem.total, cat.cartes.length); assert.deepStrictEqual(hem.paliers.slice(0, 2), [[10, 1], [25, 1]]);
+assert.strictEqual(hem.total, cat.cartes.length); assert.deepStrictEqual(hem.paliers.slice(0, 3), [[10, 1], [25, 1], [50, 1]]);
 cat.cartes.slice(0, 10).forEach(c => pp.possedees[c.id] = 1);
 assert.strictEqual(R.reclamer(pp, cat, "hemicycle"), 1);
 // Catalogue du serveur : membres en plages, décodés à la demande, identiques au catalogue complet
 assert.deepStrictEqual(compact.objectifParId["premier:elue"].ids, cat.objectifParId["premier:elue"].ids);
+// Questions au Gouvernement : même graine, mêmes questions ; une bonne réponse par question, jamais deux
+const qa = R.questions(cat, 1234), qb = R.questions(cat, 1234);
+assert.deepStrictEqual(qa, qb); assert.strictEqual(qa.length, R.QUIZ_QUESTIONS);
+for (const q of qa) {
+  assert.strictEqual(new Set(q.choix).size, 4); assert.ok(q.bonne >= 0 && q.bonne < 4);
+  const c = cat.parId[q.carte];
+  if (q.texte.startsWith("Dans quel département")) for (const [k, x] of q.choix.entries()) if (k !== q.bonne) assert.ok(!c.mandats.some(m => m[1] === x));
+}
+const quizEtat = R.etatVide();
+assert.strictEqual(R.validerQuiz(quizEtat, "2026-10-24", 5), 15);
+assert.strictEqual(R.validerQuiz(quizEtat, "2026-10-24", 5), 0, "une fois par jour");
+assert.strictEqual(R.validerQuiz(quizEtat, "2026-10-25", 3), 6);
+assert.strictEqual(R.validerQuiz(quizEtat, "2026-10-26", 99), 15, "plafonné");
+assert.strictEqual(quizEtat.points, 36);
+// Économie : un premier jour de 24 paquets, avec toutes les récompenses réclamées en cascade et tous les doubles
+// dissous, ne doit pas emballer la collection (avant correction des paliers : la moitié des cartes en un jour)
+{
+  let g = 99; const al = () => (g = (g * 1664525 + 1013904223) >>> 0) / 4294967296;
+  const j = R.etatVide(); let n = 24, ouverts = 0;
+  while (n > 0 && ouverts < 2000) {
+    for (let i = 0; i < n; i++) { j.offerts = 1; j.reserve = 0; j.ancre = Date.now(); R.ouvrirPaquet(j, cat, {aleatoire: al}); ouverts += 1; }
+    n = 0; for (const o of cat.objectifs) n += R.reclamer(j, cat, o.id);
+    j.offerts = 0; R.recycler(j, cat, R.ORDRE); while (j.points >= R.PRIX_PAQUET) { j.points -= R.PRIX_PAQUET; n += 1; }
+  }
+  console.log("premier jour en cascade :", ouverts, "paquets ouverts,", Object.keys(j.possedees).length, "cartes");
+  assert.ok(ouverts < 60, "les récompenses ne doivent pas s'auto-entretenir");
+}
 console.log("tous les tests passent");

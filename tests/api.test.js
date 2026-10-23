@@ -38,18 +38,19 @@ const preuve = c => require("crypto").createHash("sha256").update(c).digest("hex
   // Recyclage : les exemplaires repris ne se recyclent pas
   r = await A("recycler", {raretes: ["commune"]});
   assert.deepStrictEqual(r.d.resultat, {exemplaires: 0, points: 0});
-  // Paquets : trois du jour, le quatrième refusé ; deux ouvertures simultanées n'en donnent pas plus
-  const ouvertures = await Promise.all([A("paquet", {}), A("paquet", {}), A("paquet", {}), A("paquet", {})]);
+  // Réserve pleine (huit paquets) ; neuf ouvertures simultanées : jamais plus de huit, chaque paquet compté une fois
+  const ouvertures = await Promise.all(Array.from({length: 9}, () => A("paquet", {})));
   const reussies = ouvertures.filter(x => x.statut === 200).length;
-  console.log("ouvertures simultanées réussies :", reussies, "sur 4 ;", ouvertures.map(x => x.statut).join(","));
-  assert.ok(reussies <= 3);
-  for (let i = reussies; i < 3; i++) assert.strictEqual((await A("paquet", {})).statut, 200);
+  console.log("ouvertures simultanées réussies :", reussies, "sur 9 ;", ouvertures.map(x => x.statut).join(","));
+  assert.ok(reussies <= 8);
+  for (let i = reussies; i < 8; i++) assert.strictEqual((await A("paquet", {})).statut, 200);
   r = await A("paquet", {});
   assert.strictEqual(r.statut, 409);
   r = await A("moi");
-  assert.strictEqual(r.d.etat.ouverts, 3);
+  assert.strictEqual(R.paquetsDisponibles(r.d.etat).reserve, 0);
+  assert.ok(R.paquetsDisponibles(r.d.etat).prochain > Date.now());
   const total = Object.values(r.d.etat.possedees).reduce((a, b) => a + b, 0);
-  assert.strictEqual(total, 3 + 15);
+  assert.strictEqual(total, 3 + 40);
   // Bob : compte sans reprise
   r = await Bc("inscription", {pseudo: "bob" + suffixe, preuve: preuve("b")}, {"cf-connecting-ip": "10.0.0." + (++ip)});
   assert.strictEqual(r.statut, 201);
@@ -119,6 +120,44 @@ const preuve = c => require("crypto").createHash("sha256").update(c).digest("hex
   r = await A("deconnexion", {}); assert.strictEqual((await A("moi")).d.connecte, false);
   r = await A("connexion", {pseudo: "Alice" + suffixe, preuve: preuve("a")});
   assert.strictEqual(r.statut, 200); assert.strictEqual((await A("moi")).d.connecte, true);
-  assert.strictEqual((await A("paquet", {})).statut, 409, "quota du jour conservé");
+  assert.strictEqual((await A("paquet", {})).statut, 409, "réserve conservée");
+  // Questions du jour : récompensées une fois par jour, au plus 15 voix
+  const avantQ = (await C("moi")).d.etat.points;
+  r = await C("quiz", {bonnes: 5}); assert.strictEqual(r.d.resultat, 15);
+  r = await C("quiz", {bonnes: 5}); assert.strictEqual(r.d.resultat, 0);
+  assert.strictEqual((await C("moi")).d.etat.points, avantQ + 15);
+  assert.strictEqual((await C("quiz", {bonnes: 9})).statut, 400);
+  // Duel : même graine pour les deux, score de l'adversaire caché tant qu'on n'a pas joué, une seule fois
+  r = await A("duels", {vers: "carole" + suffixe}); assert.strictEqual(r.statut, 201);
+  const duel = r.d.id, graine = r.d.graine;
+  assert.strictEqual((await C("attente")).d.duels, 1);
+  assert.strictEqual((await A("duels/" + duel + "/score", {bonnes: 4})).statut, 200);
+  assert.strictEqual((await A("duels/" + duel + "/score", {bonnes: 5})).statut, 409);
+  let vueC = (await C("duels")).d.duels.find(x => x.id === duel);
+  assert.strictEqual(vueC.graine, graine); assert.strictEqual(vueC.sien, null);
+  assert.strictEqual((await C("duels/" + duel + "/score", {bonnes: 2})).statut, 200);
+  vueC = (await C("duels")).d.duels.find(x => x.id === duel);
+  assert.ok(vueC.termine); assert.strictEqual(vueC.sien, 4);
+  // Vitrine et profil : seulement des cartes de la collection
+  const mienne = Object.keys((await A("moi")).d.etat.possedees)[0];
+  assert.strictEqual((await A("vitrine", {cartes: [mienne]})).statut, 200);
+  assert.strictEqual((await A("vitrine", {cartes: [cat.parRarete.mythique[90].id, mienne]})).statut === 409
+    || !(await A("moi")).d.etat.possedees[cat.parRarete.mythique[90].id], true);
+  const prof = (await C("profil/alice" + suffixe)).d;
+  assert.deepStrictEqual(prof.vitrine, [mienne]); assert.strictEqual(prof.duels.gagnes, 1);
+  assert.ok((await C("classement")).d.classement.length >= 1);
+  // Prix du comptoir et attente des échanges
+  r = await A("prix?carte=" + encodeURIComponent(libreA));
+  assert.strictEqual(r.statut, 200); assert.ok(r.d.ventes.some(v => v.prix === 7));
+  // Modération des pseudos et contact
+  assert.strictEqual((await client()("inscription", {pseudo: "c0nnard" + suffixe, preuve: preuve("z")}, {"cf-connecting-ip": "10.0.1.1"})).statut, 400);
+  assert.strictEqual((await client()("inscription", {pseudo: "Monique" + suffixe, preuve: preuve("m")}, {"cf-connecting-ip": "10.0.1.2"})).statut, 201);
+  assert.strictEqual((await client()("contact", {message: "Bonjour, une question."}, {"cf-connecting-ip": "10.0.1.3"})).statut, 201);
+  assert.strictEqual((await C("signaler", {pseudo: "bob" + suffixe, motif: "essai"})).statut, 201);
+  // Suppression du compte : mauvais mot de passe refusé, puis tout est effacé
+  assert.strictEqual((await C("supprimer-compte", {preuve: preuve("faux")})).statut, 401);
+  assert.strictEqual((await C("supprimer-compte", {preuve: preuve("c")})).statut, 200);
+  assert.strictEqual((await C("moi")).d.connecte, false);
+  assert.strictEqual((await C("connexion", {pseudo: "carole" + suffixe, preuve: preuve("c")})).statut, 401);
   console.log("API : tous les tests passent");
 })().catch(e => { console.error(e); process.exit(1); });

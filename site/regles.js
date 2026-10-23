@@ -8,12 +8,13 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
 
 État (version 2) :
   possedees  { id de carte: nombre d'exemplaires }
-  jour       date du dernier paquet du jour ouvert (AAAA-MM-JJ, jour de Paris, le même pour tous les joueurs)
-  ouverts    paquets du jour déjà ouverts ce jour-là
+  reserve    paquets en réserve à l'instant « ancre » ; un paquet s'y ajoute toutes les heures, jusqu'à huit
+  ancre      instant (millisecondes) depuis lequel la réserve se recharge ; 0 : réserve pleine
   points     points de recyclage non encore échangés
   offerts    paquets gagnés (objectifs, échanges de points), sans limite de jour
   objectifs  { "identifiant@seuil" ou "identifiant@complet": date de la réclamation }
   journal    dernières opérations [date, opération, détail], pour le suivi
+  quiz       jour (AAAA-MM-JJ, Paris) des dernières questions au Gouvernement récompensées
   verrous    { id de carte: exemplaires bloqués } (compte seulement, fourni par le serveur) : exemplaires repris
              du navigateur à la création du compte et exemplaires en vente. Ils restent dans la collection et
              comptent pour les objectifs, mais ne se recyclent pas et ne se cèdent pas.
@@ -25,8 +26,10 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
 })(typeof self !== "undefined" ? self : this, function () {
   "use strict";
 
-  const VERSION_ETAT = 2;
-  const PAQUETS_PAR_JOUR = 3, CARTES_PAR_PAQUET = 5;
+  const VERSION_ETAT = 3;
+  // Rythme des paquets : un paquet par heure, jusqu'à huit en réserve (un joueur qui passe matin, midi et soir
+  // en ouvre une vingtaine par jour ; un joueur absent ne perd que ce qui dépasse la réserve)
+  const RECHARGE_MS = 3600 * 1000, RESERVE_MAX = 8, CARTES_PAR_PAQUET = 5;
   const ORDRE = ["commune", "peu-commune", "rare", "epique", "hors-categorie", "legendaire", "mythique"];
   // Probabilité de chaque rareté pour une carte tirée : les plus hautes restent rares, quel que soit leur nombre
   const POIDS = {"mythique": 0.4, "legendaire": 1.6, "epique": 6, "rare": 15, "peu-commune": 30, "commune": 46, "hors-categorie": 1};
@@ -39,23 +42,23 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
 
   /* ---------- État ---------- */
   function etatVide() {
-    return {version: VERSION_ETAT, possedees: {}, jour: "", ouverts: 0, points: 0, offerts: 0, objectifs: {}, journal: []};
+    return {version: VERSION_ETAT, possedees: {}, reserve: RESERVE_MAX, ancre: 0, points: 0, offerts: 0, objectifs: {}, quiz: "", journal: []};
   }
   function entier(v) { v = Math.floor(Number(v)); return Number.isFinite(v) && v > 0 ? v : 0; }
-  // Accepte l'état de la première version (possedees, jour, ouverts) et tout état abîmé
+  // Accepte les états des versions précédentes (paquets du jour : jour, ouverts) et tout état abîmé ; le passage
+  // à la réserve horaire commence avec une réserve pleine
   function migrer(brut) {
     const e = etatVide();
     if (!brut || typeof brut !== "object" || !brut.possedees || typeof brut.possedees !== "object") return e;
     for (const [id, n] of Object.entries(brut.possedees)) if (entier(n)) e.possedees[id] = entier(n);
-    e.jour = typeof brut.jour === "string" ? brut.jour : "";
-    e.ouverts = entier(brut.ouverts);
+    if (Number.isFinite(Number(brut.ancre)) && brut.reserve !== undefined) {
+      e.reserve = Math.min(RESERVE_MAX, entier(brut.reserve)); e.ancre = Math.max(0, Math.floor(Number(brut.ancre)));
+    }
     e.points = entier(brut.points);
+    e.quiz = typeof brut.quiz === "string" ? brut.quiz : "";
     e.offerts = entier(brut.offerts);
     if (brut.objectifs && typeof brut.objectifs === "object") Object.assign(e.objectifs, brut.objectifs);
     if (Array.isArray(brut.journal)) e.journal = brut.journal.slice(-JOURNAL_MAX);
-    // Première version : jour au format AAAA-M-J
-    const m = /^(\d{4})-(\d{1,2})-(\d{1,2})$/.exec(e.jour);
-    if (m) e.jour = m[1] + "-" + m[2].padStart(2, "0") + "-" + m[3].padStart(2, "0");
     if (brut.verrous && typeof brut.verrous === "object")
       for (const [id, n] of Object.entries(brut.verrous)) if (entier(n)) (e.verrous ||= {})[id] = entier(n);
     return e;
@@ -133,9 +136,17 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
   }
 
   /* ---------- Paquets ---------- */
-  function paquetsDisponibles(etat, jour = jourDuJeu()) {
-    const duJour = etat.jour === jour ? Math.max(0, PAQUETS_PAR_JOUR - etat.ouverts) : PAQUETS_PAR_JOUR;
-    return {duJour, offerts: etat.offerts, echangeables: Math.floor(etat.points / PRIX_PAQUET), total: duJour + etat.offerts};
+  // Réserve à l'instant donné : la réserve de l'ancre plus un paquet par heure écoulée, plafonnée ;
+  // prochain : instant du prochain paquet (null si la réserve est pleine)
+  function reserveCourante(etat, maintenant = Date.now()) {
+    const heures = Math.floor(Math.max(0, maintenant - (etat.ancre || 0)) / RECHARGE_MS);
+    const n = Math.min(RESERVE_MAX, (etat.reserve || 0) + heures);
+    return {n, heures, pleine: n >= RESERVE_MAX, prochain: n >= RESERVE_MAX ? null : (etat.ancre || 0) + (heures + 1) * RECHARGE_MS};
+  }
+  function paquetsDisponibles(etat, maintenant = Date.now()) {
+    const r = reserveCourante(etat, maintenant);
+    return {reserve: r.n, max: RESERVE_MAX, prochain: r.prochain, offerts: etat.offerts,
+      echangeables: Math.floor(etat.points / PRIX_PAQUET), total: r.n + etat.offerts};
   }
   function tirerRarete(pool, aleatoire) {
     // Probabilités ramenées aux seules raretés présentes dans le vivier : une rareté absente
@@ -146,14 +157,15 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
     return dispo[dispo.length - 1][0];
   }
   function tirerCarte(pool, aleatoire) { const l = pool[tirerRarete(pool, aleatoire)]; return l[Math.floor(aleatoire() * l.length)]; }
-  // Consomme un paquet du jour s'il en reste, sinon un paquet offert. Renvoie null si aucun n'est disponible.
-  function ouvrirPaquet(etat, cat, {jour = jourDuJeu(), aleatoire = Math.random} = {}) {
-    const dispo = paquetsDisponibles(etat, jour);
-    if (dispo.total <= 0) return null;
+  // Consomme un paquet de la réserve s'il en reste, sinon un paquet offert. Renvoie null si aucun n'est disponible.
+  function ouvrirPaquet(etat, cat, {maintenant = Date.now(), aleatoire = Math.random} = {}) {
+    const r = reserveCourante(etat, maintenant);
+    if (r.n + etat.offerts <= 0) return null;
     let origine;
-    if (dispo.duJour > 0) {
-      if (etat.jour !== jour) { etat.jour = jour; etat.ouverts = 0; }
-      etat.ouverts += 1; origine = "jour";
+    if (r.n > 0) {
+      // Réserve pleine : la recharge repart de maintenant ; sinon l'heure entamée reste acquise
+      etat.ancre = r.pleine ? maintenant : (etat.ancre || 0) + r.heures * RECHARGE_MS;
+      etat.reserve = r.n - 1; origine = "reserve";
     } else { etat.offerts -= 1; origine = "offert"; }
     // Une carte au moins parmi les élus et ministres en exercice, les autres au hasard
     const tirage = [tirerCarte(cat.actuelsParRarete, aleatoire)]
@@ -203,7 +215,7 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
 
   /* ---------- Objectifs ---------- */
   // Paliers [nombre de cartes, paquets offerts]. Les collections historiques sont faites surtout de cartes
-  // épiques ou légendaires (une tous les quinze jours à trois semaines au rythme de trois paquets par jour) :
+  // épiques ou légendaires (une toutes les quelques semaines au rythme de la réserve) :
   // leurs premiers paliers sont bas. Les législatures et départements, faits surtout de cartes communes,
   // montent plus haut. Un palier au-delà de la taille de l'objectif est retiré ; la collection complète
   // donne toujours le dernier palier.
@@ -212,11 +224,15 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
     // sénateur, première carte épique...) ; de quoi gagner vite ses premiers paquets offerts
     premier: [[1, 1]],
     // Taille de l'hémicycle (cartes différentes) : 348 sénateurs, 577 députés
-    collection: [[10, 1], [25, 1], [50, 2], [100, 2], [250, 3], [348, 3], [577, 5], [1000, 5]],
-    historique: [[1, 1], [5, 2], [15, 3]],
-    presidents: [[1, 1], [5, 2], [15, 3], [40, 4]],
-    legislature: [[10, 1], [50, 2], [150, 3]],
-    departement: [[5, 1], [15, 2], [40, 3]],
+    collection: [[10, 1], [25, 1], [50, 1], [100, 1], [250, 1], [348, 2], [577, 3], [1000, 3]],
+    historique: [[1, 1], [5, 1], [15, 2]],
+    presidents: [[1, 1], [5, 1], [15, 2], [40, 2]],
+    // Législatures et départements : paliers hauts et récompenses modestes. Les paquets gagnés donnent des
+    // cartes qui font avancer d'autres objectifs ; des paliers bas (10 cartes par législature, 5 par
+    // département) relançaient la machine sans fin : en simulation, un joueur réunissait la moitié des cartes
+    // dès le premier jour. Avec ces paliers, les objectifs rapportent bien moins d'un paquet par paquet ouvert.
+    legislature: [[50, 1], [150, 2]],
+    departement: [[15, 1], [40, 1]],
   };
   const COMPLETE = 5;  // paquets offerts pour une collection complète
   const ORDRE_EPOQUES = ["Révolution et Empire", "Monarchies constitutionnelles", "IIe République et Second Empire",
@@ -295,7 +311,107 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
     return cat.objectifs.reduce((n, o) => n + avancement(etat, o).aReclamer.reduce((a, e) => a + e.paquets, 0), 0);
   }
 
-  return {VERSION_ETAT, PAQUETS_PAR_JOUR, CARTES_PAR_PAQUET, ORDRE, POIDS, VALEUR_RECYCLAGE, PRIX_PAQUET, PALIERS,
+  /* ---------- Questions au Gouvernement ---------- */
+  // Cinq questions tirées des fiches officielles des cartes : département d'élection, fonction exercée,
+  // « qui a été… », époque, année de première élection. Les mauvaises réponses ne sont jamais vraies elles
+  // aussi (département où la personne n'a pas été élue, fonction qu'elle n'a pas exercée...). Le tirage dépend
+  // d'une graine : les deux joueurs d'un duel reçoivent les mêmes questions.
+  const QUIZ_QUESTIONS = 5, VOIX_PAR_BONNE = 2, BONUS_SANS_FAUTE = 5, SCORE_QUIZ = 25;
+  function graineDe(texte) {  // FNV-1a 32 bits
+    let h = 2166136261;
+    for (const ch of String(texte)) { h ^= ch.codePointAt(0); h = Math.imul(h, 16777619) >>> 0; }
+    return h;
+  }
+  function hasard(graine) {  // mulberry32
+    let a = graine >>> 0;
+    return () => { a = (a + 0x6D2B79F5) >>> 0; let t = a; t = Math.imul(t ^ (t >>> 15), t | 1); t ^= t + Math.imul(t ^ (t >>> 7), t | 61); return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
+  }
+  const cleFonction = t => normer(String(t).split(",")[0]);
+  function preparerQuiz(cat) {
+    if (cat.quiz) return cat.quiz;
+    const vivier = cat.cartes.filter(c => c.score >= SCORE_QUIZ && c.mandats && (c.mandats.some(m => m[1]) || c.fonctions.length))
+      .sort((a, b) => String(a.id).localeCompare(String(b.id)));
+    const departements = [...new Set(cat.cartes.flatMap(c => (c.mandats || []).map(m => m[1]).filter(Boolean)))].sort();
+    const fonctions = [...new Set(vivier.flatMap(c => c.fonctions.map(f => f[0])))].sort();
+    const epoques = [...new Set(cat.cartes.map(c => c.epoque).filter(Boolean))].sort();
+    return cat.quiz = {vivier, departements, fonctions, epoques};
+  }
+  function question(cat, c, h) {
+    const q = preparerQuiz(cat), elle = c.sexe === "F";
+    const pris = (liste, exclus, n) => {  // n éléments distincts de la liste, hors exclus
+      const r = [], vus = new Set();
+      for (let essais = 0; r.length < n && essais < 200; essais++) {
+        const x = liste[Math.floor(h() * liste.length)];
+        if (x && !exclus(x) && !vus.has(x)) { vus.add(x); r.push(x); }
+      }
+      return r.length === n ? r : null;
+    };
+    const melanger = (bonne, autres, texte, explication) => {
+      const choix = [bonne, ...autres];
+      for (let i = choix.length - 1; i > 0; i--) { const j = Math.floor(h() * (i + 1)); [choix[i], choix[j]] = [choix[j], choix[i]]; }
+      return {carte: c.id, texte, choix, bonne: choix.indexOf(bonne), explication};
+    };
+    const types = [];
+    const deps = (c.mandats || []).map(m => m[1]).filter(Boolean);
+    // Département, fonction et « qui a été » comptent double : ce sont les questions les plus parlantes
+    if (deps.length) types.push("departement", "departement");
+    if (c.fonctions.length) types.push("fonction", "fonction", "qui", "qui");
+    if (c.epoque) types.push("epoque");
+    if (c.debut) types.push("annee");
+    const type = types[Math.floor(h() * types.length)];
+    if (type === "departement") {
+      const siens = new Set(deps.map(normer)), bonne = deps[0];
+      const autres = pris(q.departements, d => siens.has(normer(d)), 3);
+      if (autres) return melanger(bonne, autres, `Dans quel département ${c.nom} a-t-${elle ? "elle" : "il"} été ${elle ? "élue" : "élu"} ?`,
+        `${c.nom} a été ${elle ? "élue" : "élu"} : ${[...new Set(deps)].join(", ")}.`);
+    }
+    if (type === "fonction") {
+      const siennes = new Set(c.fonctions.map(f => cleFonction(f[0]))), bonne = c.fonctions[Math.floor(h() * c.fonctions.length)][0];
+      const autres = pris(q.fonctions, f => siennes.has(cleFonction(f)), 3);
+      if (autres) return melanger(bonne, autres, `Laquelle de ces fonctions ${c.nom} a-t-${elle ? "elle" : "il"} exercée ?`, `${c.nom} : ${bonne}.`);
+    }
+    if (type === "qui") {
+      const f = c.fonctions[Math.floor(h() * c.fonctions.length)][0], cle = cleFonction(f);
+      const autres = pris(q.vivier, x => x.id === c.id || x.fonctions.some(g => cleFonction(g[0]) === cle), 3);
+      if (autres) return melanger(c.nom, autres.map(x => x.nom), `Qui a exercé cette fonction : ${f} ?`, `C'était ${c.nom}.`);
+    }
+    if (type === "epoque") {
+      const autres = pris(q.epoques, e => e === c.epoque, 3);
+      if (autres) return melanger(c.epoque, autres, `À quelle époque ${c.nom} a-t-${elle ? "elle" : "il"} commencé sa carrière ?`, `${c.nom} : ${c.epoque}, à partir de ${c.debut}.`);
+    }
+    if (type === "annee") {
+      const ecarts = [-12, -8, -5, -3, 3, 5, 8, 12].map(d => c.debut + d).filter(a => a >= 1789 && a <= 2026);
+      const autres = pris(ecarts, () => false, 3);
+      if (autres) return melanger(c.debut, autres, `En quelle année commence la carrière de ${c.nom} ?`, `${c.nom} : premier mandat ou première fonction en ${c.debut}.`);
+    }
+    return null;
+  }
+  // Questions d'une graine ; collection : cartes du joueur, qui fournissent la moitié des questions s'il en a assez
+  function questions(cat, graine, collection = null) {
+    const q = preparerQuiz(cat), h = hasard(graine), liste = [], vues = new Set();
+    const siennes = collection ? q.vivier.filter(c => collection[c.id]) : [];
+    for (let essais = 0; liste.length < QUIZ_QUESTIONS && essais < 100; essais++) {
+      const source = siennes.length >= 10 && liste.length % 2 === 0 ? siennes : q.vivier;
+      const c = source[Math.floor(h() * source.length)];
+      if (vues.has(c.id)) continue;
+      const x = question(cat, c, h);
+      if (x) { vues.add(c.id); liste.push(x); }
+    }
+    return liste;
+  }
+  function recompenseQuiz(bonnes) { return bonnes * VOIX_PAR_BONNE + (bonnes === QUIZ_QUESTIONS ? BONUS_SANS_FAUTE : 0); }
+  // Questions du jour : récompensées une fois par jour (jour de Paris). Le navigateur connaît les réponses ;
+  // le gain est donc plafonné (15 voix par jour), qu'on triche ou non.
+  function validerQuiz(etat, jour, bonnes) {
+    const b = Math.max(0, Math.min(QUIZ_QUESTIONS, Math.floor(Number(bonnes)) || 0));
+    if (etat.quiz === jour) return 0;
+    const voix = recompenseQuiz(b);
+    etat.quiz = jour; etat.points += voix;
+    noter(etat, "quiz", {jour, bonnes: b, voix});
+    return voix;
+  }
+
+  return {VERSION_ETAT, RECHARGE_MS, QUIZ_QUESTIONS, graineDe, questions, recompenseQuiz, validerQuiz, RESERVE_MAX, CARTES_PAR_PAQUET, reserveCourante, ORDRE, POIDS, VALEUR_RECYCLAGE, PRIX_PAQUET, PALIERS,
     etatVide, migrer, jourDuJeu, normer, cartesDeJeu, catalogue, compacter, catalogueCompact, paquetsDisponibles, ouvrirPaquet,
     disponibles, recyclables, doubles, recycler, echangerPoints, avancement, reclamer, recompensesEnAttente};
 });

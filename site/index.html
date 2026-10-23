@@ -4,8 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Hémicycle — cartes des parlementaires depuis 1789</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#2e0710">
+<link rel="icon" href="icone-192.png" type="image/png">
+<link rel="apple-touch-icon" href="icone-192.png">
+<link href="polices/polices.css" rel="stylesheet">
 <style>
 :root{
   --velours:#5c1020; --velours-fonce:#2e0710; --dorure:#c9a24a; --dorure-pale:#e6d29a;
@@ -235,6 +238,28 @@ footer{max-width:1120px;margin:0 auto;padding:0 1rem 3rem;font-size:.85rem;color
 .toast[hidden]{display:none}
 @media (max-width:700px){.toast{bottom:5.5rem}#nav-compte{max-width:4.6rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}}
 #apercu .detail{grid-template-columns:1fr;justify-items:center}
+
+/* ---------- Questions au Gouvernement ---------- */
+.qag{max-width:46rem;margin:2.2rem auto 0;border-top:1px solid rgba(201,162,74,.35);padding-top:1.2rem}
+.qag h2{font:400 1.45rem var(--serif);margin:0 0 .4rem}
+.qag h3{font:600 1rem var(--sans);color:var(--dorure-pale);margin:1.1rem 0 .4rem}
+.question{border:1px solid rgba(201,162,74,.4);border-radius:6px;padding:1rem;background:rgba(92,16,32,.35)}
+.question .texte{font:700 1.1rem/1.35 var(--serif);margin:.3rem 0 .8rem}
+.choix-q{display:grid;gap:.45rem}
+.choix-q button{text-align:left;background:var(--velours-fonce);color:var(--marbre);border:1px solid rgba(201,162,74,.5);border-radius:4px;padding:.65rem .8rem}
+.choix-q button.bonne{background:#2f6b3a;border-color:#7fd08a}
+.choix-q button.mauvaise{background:#7a1a2e;border-color:#ff9a9a}
+.choix-q button:disabled{cursor:default;opacity:1}
+.question .apres{margin-top:.7rem;display:flex;flex-wrap:wrap;gap:.5rem;align-items:center}
+.vitrine{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.6rem;margin:.6rem 0}
+@media (min-width:640px){.vitrine{grid-template-columns:repeat(6,minmax(0,1fr))}}
+#apercu #apercu-carte{width:100%;display:flex;flex-direction:column;align-items:center}
+#apercu .vitrine{width:100%}
+#apercu .vitrine .carte{width:100%}
+.classement{list-style:none;margin:.4rem 0;padding:0;counter-reset:rang}
+.classement li{counter-increment:rang;display:flex;gap:.6rem;align-items:center;padding:.35rem 0;border-bottom:1px solid rgba(201,162,74,.2)}
+.classement li::before{content:counter(rang);min-width:1.6rem;color:var(--dorure-pale);font-weight:700}
+footer a{color:var(--pierre)}
 #apercu .carte{width:min(300px,78vw)}
 @media (prefers-reduced-motion:reduce){.face,.paquet *{transition:none!important;animation:none!important}.r-legendaire .recto::after{animation:none}}
 </style>
@@ -244,10 +269,10 @@ footer{max-width:1120px;margin:0 auto;padding:0 1rem 3rem;font-size:.85rem;color
   <h1>Hémicycle</h1>
   <p class="chapeau">Collectionnez les parlementaires français, de la Constituante de 1789 à l'Assemblée d'aujourd'hui.</p>
   <nav role="tablist" aria-label="Sections">
-    <button role="tab" aria-selected="true" data-vue="paquet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M5 7h14M9 3l1 4M15 3l-1 4"/></svg>Séance</button>
+    <button role="tab" aria-selected="true" data-vue="paquet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M5 7h14M9 3l1 4M15 3l-1 4"/></svg>Séance <span class="pastille" id="pastille-seance" hidden></span></button>
     <button role="tab" aria-selected="false" data-vue="collection"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="4" width="8" height="11" rx="1.5"/><rect x="13" y="4" width="8" height="11" rx="1.5"/><path d="M3 19h18"/></svg>Hémicycle</button>
     <button role="tab" aria-selected="false" data-vue="objectifs"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M8 4h8v5a4 4 0 0 1-8 0z"/><path d="M8 6H5a3 3 0 0 0 3 4M16 6h3a3 3 0 0 1-3 4M12 13v4M8 20h8"/></svg>Ordre du jour <span class="pastille" id="pastille" hidden></span></button>
-    <button role="tab" aria-selected="false" data-vue="buvette"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 8h13l-3-3M20 16H7l3 3"/></svg>Buvette</button>
+    <button role="tab" aria-selected="false" data-vue="buvette"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 8h13l-3-3M20 16H7l3 3"/></svg>Buvette <span class="pastille" id="pastille-buvette" hidden></span></button>
     <button role="tab" aria-selected="false" data-vue="compte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span id="nav-compte">Mon siège</span></button>
     <button role="tab" aria-selected="false" data-vue="apropos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/></svg>Règlement</button>
   </nav>
@@ -257,12 +282,17 @@ footer{max-width:1120px;margin:0 auto;padding:0 1rem 3rem;font-size:.85rem;color
     <p class="message" id="restants" aria-live="polite">Chargement des cartes…</p>
     <p class="reserve" id="reserve"></p>
     <div class="scene" id="scene"></div>
+    <section class="qag" id="qag" aria-live="polite"></section>
   </section>
   <section class="vue apropos" id="vue-apropos" hidden>
     <h2>Règlement du jeu</h2>
-    <p>Chaque jour de séance, trois paquets de cinq cartes sont à ouvrir. Chaque paquet contient au moins un parlementaire ou un ministre en exercice. Les cartes obtenues prennent place dans votre hémicycle, votre collection.</p>
+    <p>Toutes les heures, un paquet de cinq cartes s'ajoute à votre réserve, qui en garde huit au plus : en passant matin, midi et soir, on en ouvre une vingtaine par jour. Chaque paquet contient au moins un parlementaire ou un ministre en exercice. Les cartes obtenues prennent place dans votre hémicycle, votre collection.</p>
     <h3>Paquets offerts</h3>
-    <p>Des paquets supplémentaires se gagnent de deux façons. L'ordre du jour en donne à chaque objectif atteint : premiers pas (premier membre du Gouvernement, premier sénateur, première carte épique…), taille de l'hémicycle, Quatre-vingts, Compagnons de la Libération, présidents de l'Assemblée, députés d'une législature, élus d'un département. La dissolution des doubles en donne aussi : chaque exemplaire en trop dissous rapporte des voix selon sa rareté (commune 1, peu commune 2, rare 5, épique 15, légendaire et hors catégorie 40, mythique 100), et 25 voix s'échangent contre un paquet. Ici, acheter des voix est parfaitement réglementaire. Le premier exemplaire de chaque carte n'est jamais dissous. Les paquets offerts s'ouvrent après ceux du jour, sans limite de date.</p>
+    <p>Des paquets supplémentaires se gagnent de deux façons. L'ordre du jour en donne à chaque objectif atteint : premiers pas (premier membre du Gouvernement, premier sénateur, première carte épique…), taille de l'hémicycle, Quatre-vingts, Compagnons de la Libération, présidents de l'Assemblée, députés d'une législature, élus d'un département. La dissolution des doubles en donne aussi : chaque exemplaire en trop dissous rapporte des voix selon sa rareté (commune 1, peu commune 2, rare 5, épique 15, légendaire et hors catégorie 40, mythique 100), et 25 voix s'échangent contre un paquet. Ici, acheter des voix est parfaitement réglementaire. Le premier exemplaire de chaque carte n'est jamais dissous. Les paquets offerts s'ouvrent une fois la réserve vide, sans limite de date.</p>
+    <h3>Questions au Gouvernement</h3>
+    <p>Sous les paquets de la séance, cinq questions par jour, tirées des fiches officielles des cartes : département d'élection, fonction exercée, époque, année de début de carrière. Chaque bonne réponse rapporte 2 voix, et un sans-faute 5 de plus. Avec un compte, on peut aussi défier un autre joueur : les deux reçoivent les mêmes questions, pour la gloire.</p>
+    <h3>Vitrine et classement</h3>
+    <p>Avec un compte, vous choisissez six cartes de votre collection pour votre vitrine, visible des autres joueurs depuis le classement, qui range les joueurs par nombre de cartes différentes.</p>
     <h3>Compte, échanges et comptoir</h3>
     <p>Sans compte, la collection reste dans ce navigateur. Avec un compte (pseudo et mot de passe), la collection est gardée par le serveur et se retrouve sur tous vos appareils, et c'est alors le serveur qui tire les cartes. À la création du compte, la collection de ce navigateur est reprise une fois : ces exemplaires comptent pour la collection et l'ordre du jour, mais ne peuvent être ni dissous ni cédés. Les voix et paquets offerts du navigateur ne sont pas repris.</p>
     <p>À la buvette, on propose à un autre joueur un échange de cartes, qu'il accepte ou refuse. On y tient aussi le comptoir, où les joueurs se vendent et s'achètent des cartes contre des voix. Une carte posée au comptoir est réservée : elle ne peut être ni dissoute ni échangée tant qu'elle y reste.</p>
@@ -276,7 +306,7 @@ footer{max-width:1120px;margin:0 auto;padding:0 1rem 3rem;font-size:.85rem;color
 
   <section class="vue objectifs" id="vue-objectifs" hidden>
     <h2>Premiers pas</h2>
-    <p class="intro">Inscrits à l'ordre du jour : chaque objectif atteint donne des paquets offerts, à ouvrir quand vous voulez, en plus des trois paquets de la séance. Les premiers se remplissent dès les premiers paquets.</p>
+    <p class="intro">Inscrits à l'ordre du jour : chaque objectif atteint donne des paquets offerts, à ouvrir quand vous voulez, en plus de la réserve. Les premiers se remplissent dès les premiers paquets.</p>
     <p id="tout-reclamer-zone"></p>
     <ul class="liste-objectifs" id="obj-premiers"></ul>
     <h2>Collections historiques</h2>
@@ -299,12 +329,12 @@ footer{max-width:1120px;margin:0 auto;padding:0 1rem 3rem;font-size:.85rem;color
     </div>
     <div class="grille" id="grille"></div>
   </section>
-  <section class="vue panneau" id="vue-compte" hidden></section>
+  <section class="vue panneau" id="vue-compte" hidden><div id="compte-principal"></div><div id="compte-extras"></div></section>
   <section class="vue panneau" id="vue-buvette" hidden></section>
 </main>
 <dialog id="apercu"><div class="detail"><div id="apercu-carte"></div><button class="bouton discret" id="fermer-apercu">Fermer</button></div></dialog>
 <p class="toast" id="toast" role="status" aria-live="polite" hidden></p>
-<footer>Données : Assemblée nationale (Sycomore et open data), Sénat (open data), data.gouv.fr. Portraits : Wikimedia Commons, crédits dans le détail de chaque carte.</footer>
+<footer><a href="mentions.html">Mentions légales, conditions d'utilisation et confidentialité</a>. Données : Assemblée nationale (Sycomore et open data), Sénat (open data), data.gouv.fr. Portraits : Wikimedia Commons, crédits dans le détail de chaque carte.</footer>
 
 <script src="regles.js"></script>
 <script>
@@ -344,7 +374,7 @@ async function appel(chemin, corps){
   const d = await r.json().catch(() => null);
   if (!d) throw new Error("Le serveur n'est pas disponible pour l'instant.");
   if (!r.ok) throw new Error(d.erreur || "Erreur " + r.status);
-  if (d.etat) { etat = Regles.migrer(d.etat); compte = {pseudo: d.pseudo}; }
+  if (d.etat) { etat = Regles.migrer(d.etat); compte = {pseudo: d.pseudo, vitrine: d.vitrine || compte?.vitrine || []}; }
   return d;
 }
 const actions = {
@@ -360,6 +390,10 @@ const actions = {
   async echangerPoints(){
     if (!compte) { const ok = Regles.echangerPoints(etat); sauver(); return ok; }
     return (await appel("echanger-points", {})).resultat;
+  },
+  async validerQuiz(bonnes){
+    if (!compte) { const v = Regles.validerQuiz(etat, Regles.jourDuJeu(), bonnes); sauver(); return v; }
+    return (await appel("quiz", {bonnes})).resultat;
   },
   async reclamer(id){
     if (!compte) { const n = Regles.reclamer(etat, cat, id); sauver(); return n; }
@@ -432,7 +466,7 @@ function htmlCarte(c, {retournee=true, neuve=false, classe="", id=""}={}){
         ${c.groupe?`<h4>Groupe politique</h4><ul class="lignes"><li><b>${echapper(c.groupe)}</b></li></ul>`:""}
         ${distinctions.length?`<h4>Distinctions</h4><ul class="lignes">${distinctions.map(d=>`<li><b>${d}</b></li>`).join("")}</ul>`:""}
       </div>
-      <div class="lien">${c.source?`<a href="${echapper(c.source)}" target="_blank" rel="noopener">Fiche officielle</a>`:""}${c.photo&&c.photo.includes("senat.fr")?" · portrait : Sénat":c.portrait?` · <a href="https://commons.wikimedia.org/wiki/File:${encodeURIComponent(c.portrait)}" target="_blank" rel="noopener">crédit du portrait</a>`:""}</div>
+      <div class="lien">${c.source?`<a href="${echapper(c.source)}" target="_blank" rel="noopener">Fiche officielle</a>`:""}${c.photo&&c.photo.includes("senat.fr")?" · portrait : Sénat":c.photo&&c.photo.includes("assemblee-nationale.fr")?" · portrait : Assemblée nationale":c.portrait?` · <a href="https://commons.wikimedia.org/wiki/File:${encodeURIComponent(c.portrait)}" target="_blank" rel="noopener">crédit du portrait</a>`:""}</div>
       ${pied}
     </div></div></div>`;
 }
@@ -440,9 +474,10 @@ function htmlCarte(c, {retournee=true, neuve=false, classe="", id=""}={}){
 /* ---------- Paquet ---------- */
 function majCompteur(){
   const d = Regles.paquetsDisponibles(etat);
-  document.getElementById("restants").textContent = d.duJour > 0 ? `Séance du jour : ${pluriel(d.duJour, "paquet")} à ouvrir.`
-    : d.offerts > 0 ? "Les trois paquets de la séance sont ouverts. Il vous reste des paquets offerts."
-    : "La séance est levée : vos trois paquets du jour sont ouverts. Reprise des travaux demain.";
+  const attendre = d.prochain ? ` Prochain paquet dans ${delai(d.prochain - Date.now())}.` : "";
+  document.getElementById("restants").textContent = d.reserve > 0 ? `En séance : ${pluriel(d.reserve, "paquet")} en réserve sur ${d.max}.${attendre}`
+    : d.offerts > 0 ? `La réserve est vide, il vous reste des paquets offerts.${attendre}`
+    : `Suspension de séance : la réserve est vide.${attendre}`;
   const infos = [];
   if (d.offerts) infos.push(`<span><b>${pluriel(d.offerts, "paquet offert", "paquets offerts")}</b></span>`);
   if (etat.points) infos.push(`<span><b>${pluriel(etat.points, "voix", "voix")}</b>${d.echangeables ? ", de quoi échanger "+pluriel(d.echangeables, "paquet") : ""}</span>`);
@@ -452,7 +487,26 @@ function majCompteur(){
   const pastille = document.getElementById("pastille");
   pastille.hidden = !attente; pastille.textContent = attente;
 }
-function majTout(){ majCompteur(); majCollection(); majObjectifs(); majCompte(); majBuvette(); }
+function majTout(){ majCompteur(); majCollection(); majObjectifs(); majCompte(); majBuvette(); majQag(); }
+// Délai lisible : « 42 min », « 1 h 05 »
+function delai(ms){ const m = Math.max(1, Math.ceil(ms / 60000)); return m < 60 ? m + " min" : Math.floor(m / 60) + " h " + String(m % 60).padStart(2, "0"); }
+// Pastilles des onglets : échanges reçus (Buvette) et duels à jouer (Séance), relus toutes les deux minutes
+async function majAttente(){
+  const ps = document.getElementById("pastille-seance"), pb = document.getElementById("pastille-buvette");
+  if (!compte) { ps.hidden = pb.hidden = true; return; }
+  const a = await appel("attente").catch(() => null);
+  if (!a) return;
+  ps.hidden = !a.duels; ps.textContent = a.duels;
+  pb.hidden = !a.echanges; pb.textContent = a.echanges;
+}
+setInterval(majAttente, 120000);
+// La réserve se remplit d'elle-même : compteur tenu à jour, et paquet affiché dès qu'il arrive si la scène attend
+setInterval(() => {
+  if (!cat) return;
+  majCompteur();
+  const scene = document.getElementById("scene");
+  if (Regles.paquetsDisponibles(etat).total > 0 && !scene.querySelector("#paquet, #courante, .recap")) afficherPaquet();
+}, 30000);
 function afficherPaquet(){
   majCompteur();
   const scene = document.getElementById("scene");
@@ -467,7 +521,7 @@ function afficherPaquet(){
     document.getElementById("voir").addEventListener("click", () => allerA("collection"));
     return;
   }
-  const mention = d.duJour > 0 ? "" : `<div class="mention"><em>Offert</em></div>`;
+  const mention = d.reserve > 0 ? "" : `<div class="mention"><em>Offert</em></div>`;
   scene.innerHTML = `<button class="paquet" id="paquet" aria-label="Ouvrir le paquet">
       <div class="corps-paquet"><div class="bordure"></div>
         <div class="logo"><strong>Hémicycle</strong><span>Parlementaires de France<br>1789&nbsp;–&nbsp;2026</span></div>
@@ -604,6 +658,87 @@ document.getElementById("vue-objectifs").addEventListener("click", e => {
 });
 document.getElementById("recherche-dep").addEventListener("input", majObjectifs);
 
+/* ---------- Questions au Gouvernement ---------- */
+let quiz = null, duels = [];   // quiz en cours : {mode: "jour" | "duel", id, avec, liste, i, bonnes, repondu, fin}
+function demarrerQuiz(mode, graine, id = null, avec = ""){
+  const liste = Regles.questions(cat, graine, mode === "jour" ? etat.possedees : null);
+  quiz = {mode, id, avec, liste, i: 0, bonnes: 0, repondu: null, fin: null};
+  majQag();
+  document.getElementById("qag").scrollIntoView({behavior: reduit() ? "auto" : "smooth", block: "start"});
+}
+async function chargerDuels(){
+  if (!compte) { duels = []; return; }
+  const d = await appel("duels").catch(() => null);
+  if (d) { duels = d.duels; majQag(); }
+}
+function majQag(){
+  const zone = document.getElementById("qag");
+  if (!cat) return;
+  if (quiz) {
+    const q = quiz.liste[quiz.i];
+    if (quiz.fin) {
+      zone.innerHTML = `<h2>Questions au Gouvernement</h2><div class="question"><p class="texte">${quiz.bonnes} bonne${quiz.bonnes>1?"s":""} réponse${quiz.bonnes>1?"s":""} sur ${quiz.liste.length}.</p><p>${quiz.fin}</p>
+        <p><button class="bouton" id="qag-fermer">Revenir à la séance</button></p></div>`;
+      return;
+    }
+    zone.innerHTML = `<h2>Questions au Gouvernement</h2><div class="question">
+      <span class="note">${quiz.mode === "duel" ? "Duel contre " + echapper(quiz.avec) + " · " : ""}Question ${quiz.i + 1} sur ${quiz.liste.length}</span>
+      <p class="texte">${echapper(q.texte)}</p>
+      <div class="choix-q">${q.choix.map((c, k) => `<button data-choix="${k}" ${quiz.repondu !== null ? "disabled" : ""} class="${quiz.repondu === null ? "" : k === q.bonne ? "bonne" : k === quiz.repondu ? "mauvaise" : ""}">${echapper(c)}</button>`).join("")}</div>
+      ${quiz.repondu !== null ? `<div class="apres"><span>${quiz.repondu === q.bonne ? "Bonne réponse." : "Mauvaise réponse."} ${echapper(q.explication)}</span>
+        <button class="bouton discret" data-apercu="${echapper(q.carte)}">Voir la carte</button>
+        <button class="bouton" id="qag-suite">${quiz.i + 1 < quiz.liste.length ? "Question suivante" : "Voir le résultat"}</button></div>` : ""}
+    </div>`;
+    return;
+  }
+  const jour = Regles.jourDuJeu(), fait = etat.quiz === jour;
+  const aJouer = duels.filter(d => d.mien === null), enCours = duels.filter(d => d.mien !== null && !d.termine), finis = duels.filter(d => d.termine).slice(0, 8);
+  const issue = d => d.mien > d.sien ? "gagné" : d.mien < d.sien ? "perdu" : "égalité";
+  zone.innerHTML = `<h2>Questions au Gouvernement</h2>
+    <p>${fait ? "Vous avez répondu aux questions du jour. Les suivantes arrivent demain." : `Cinq questions tirées des fiches officielles : 2 voix par bonne réponse, et 5 de plus pour un sans-faute.`}</p>
+    ${fait ? "" : `<button class="bouton" id="qag-jour">Poser les questions du jour</button>`}
+    ${compte ? `<h3>Duels</h3>
+      <form class="formulaire" id="form-duel"><label>Défier un joueur (même questions pour les deux, pour la gloire)<input type="text" name="pseudo" required autocapitalize="off" spellcheck="false" placeholder="Pseudo"></label><button class="bouton discret" type="submit">Lancer le duel</button></form>
+      <ul class="lignes-buvette">${aJouer.map(d => `<li><span class="quoi">${d.lance ? "Votre duel contre" : "Défi de"} ${echapper(d.avec)}</span><button class="bouton" data-duel="${d.id}">Jouer</button></li>`).join("")}
+        ${enCours.map(d => `<li><span class="quoi">Contre ${echapper(d.avec)} : vous avez ${d.mien} sur 5, en attente de son score</span></li>`).join("")}
+        ${finis.map(d => `<li><span class="quoi">Contre ${echapper(d.avec)} : ${d.mien} à ${d.sien}, ${issue(d)}</span></li>`).join("")}
+        ${duels.length ? "" : `<li class="note">Aucun duel pour l'instant.</li>`}</ul>` : `<p class="note">Créez un compte pour défier d'autres joueurs.</p>`}`;
+}
+document.getElementById("qag").addEventListener("click", e => {
+  const t = e.target;
+  if (t.id === "qag-jour") demarrerQuiz("jour", Regles.graineDe(Regles.jourDuJeu() + "|" + (compte ? compte.pseudo.toLowerCase() : "navigateur")));
+  if (t.dataset.duel) { const d = duels.find(x => x.id === Number(t.dataset.duel)); if (d) demarrerQuiz("duel", d.graine, d.id, d.avec); }
+  if (t.dataset.choix !== undefined && quiz && quiz.repondu === null) {
+    quiz.repondu = Number(t.dataset.choix);
+    if (quiz.repondu === quiz.liste[quiz.i].bonne) quiz.bonnes += 1;
+    majQag();
+  }
+  if (t.id === "qag-suite") {
+    if (quiz.i + 1 < quiz.liste.length) { quiz.i += 1; quiz.repondu = null; majQag(); return; }
+    occupe(t, async () => {
+      if (quiz.mode === "jour") {
+        const v = await actions.validerQuiz(quiz.bonnes);
+        quiz.fin = v ? `${pluriel(v, "voix", "voix")} ${v > 1 ? "gagnées" : "gagnée"}.` : "Les questions du jour étaient déjà récompensées.";
+      } else {
+        await appel(`duels/${quiz.id}/score`, {bonnes: quiz.bonnes});
+        quiz.fin = `Score envoyé. Le résultat apparaîtra quand ${echapper(quiz.avec)} aura joué.`;
+        chargerDuels(); majAttente();
+      }
+      majCompteur(); majQag();
+    });
+  }
+  if (t.id === "qag-fermer") { quiz = null; majTout(); }
+});
+document.getElementById("qag").addEventListener("submit", e => {
+  if (e.target.id !== "form-duel") return;
+  e.preventDefault();
+  occupe(e.target.querySelector("button"), async () => {
+    const d = await appel("duels", {vers: e.target.pseudo.value.trim()});
+    await chargerDuels();
+    demarrerQuiz("duel", d.graine, d.id, d.avec);
+  });
+});
+
 /* ---------- Aperçu d'une carte ---------- */
 function apercu(id){
   const c = cat.parId[id]; if (!c) return;
@@ -631,8 +766,9 @@ function etirer(pseudo, motDePasse){
     .then(b => [...new Uint8Array(b)].map(x => x.toString(16).padStart(2, "0")).join(""));
 }
 function majCompte(){
-  const vue = document.getElementById("vue-compte");
+  const vue = document.getElementById("compte-principal");
   document.getElementById("nav-compte").textContent = compte ? compte.pseudo : "Mon siège";
+  construireExtras();
   if (!cat) return;
   if (compte) {
     const cartesTenues = Object.keys(etat.possedees).length;
@@ -641,7 +777,7 @@ function majCompte(){
       <p class="note">La collection de ce navigateur, sans compte, reste enregistrée ici à part ; elle réapparaît si vous vous déconnectez.</p>
       <button class="bouton discret" id="deconnexion">Se déconnecter</button>`;
     document.getElementById("deconnexion").addEventListener("click", e => occupe(e.target, async () => {
-      await appel("deconnexion", {}); compte = null; etat = depot.charger(); majTout(); afficherPaquet(); signaler("Vous êtes déconnecté.");
+      await appel("deconnexion", {}); compte = null; duels = []; etat = depot.charger(); majTout(); majAttente(); afficherPaquet(); signaler("Vous êtes déconnecté.");
     }));
     return;
   }
@@ -677,14 +813,80 @@ function majCompte(){
     bouton.disabled = true; bouton.textContent = "Vérification…";
     etirer(pseudo, mdp).then(preuve => appel(ongletCompte, {pseudo, preuve,
       ...(ongletCompte === "inscription" && f.reprise?.checked ? {collection: depot.charger().possedees} : {})}))
-      .then(() => { majTout(); afficherPaquet(); signaler(ongletCompte === "inscription" ? "Compte créé. Bienvenue dans l'hémicycle !" : "Vous êtes connecté."); })
+      .then(() => { majTout(); afficherPaquet(); majAttente(); chargerDuels(); signaler(ongletCompte === "inscription" ? "Compte créé. Bienvenue dans l'hémicycle !" : "Vous êtes connecté."); })
       .catch(x => { erreur.textContent = x.message; bouton.disabled = false; bouton.textContent = ongletCompte==="inscription" ? "Créer le compte" : "Se connecter"; });
   });
 }
 
+/* ---------- Mon siège : vitrine, classement, contact, suppression du compte ---------- */
+let extrasPour = undefined, selVitrine = null;
+function construireExtras(){
+  const cle = compte ? compte.pseudo : (serveur ? "" : null);
+  if (!cat || cle === extrasPour) return;
+  extrasPour = cle;
+  const zone = document.getElementById("compte-extras");
+  if (cle === null) { zone.innerHTML = ""; return; }
+  const tous = () => Object.fromEntries(Object.keys(etat.possedees).filter(id => etat.possedees[id] > 0).map(id => [id, 1]));
+  zone.innerHTML = `${compte ? `<h2>Ma vitrine</h2><p>Six cartes de votre collection, visibles des autres joueurs.</p>
+      <div class="vitrine" id="ma-vitrine"></div><div id="sel-vitrine"></div><p><button class="bouton" id="garder-vitrine">Enregistrer la vitrine</button></p>` : ""}
+    <h2>Classement</h2><p>Les joueurs qui ont le plus de cartes différentes. Touchez un pseudo pour voir sa vitrine.</p>
+    <ol class="classement" id="classement"><li class="note">Chargement…</li></ol>
+    <h2>Contact</h2>
+    <form class="formulaire" id="form-contact"><label>Votre message (question, signalement, exercice de vos droits sur vos données)<textarea class="champ" name="message" rows="4" maxlength="2000" required></textarea></label>
+      <label>Adresse pour vous répondre (facultatif)<input type="text" name="reponse" maxlength="200" autocomplete="email"></label><button class="bouton discret" type="submit">Envoyer</button></form>
+    ${compte ? `<h2>Supprimer mon compte</h2><form class="formulaire" id="form-suppression"><label>Mot de passe<input type="password" name="mdp" autocomplete="current-password" required></label>
+      <p class="note">La suppression efface définitivement votre collection, vos voix, vos échanges en attente et vos cartes au comptoir.</p><button class="bouton discret" type="submit">Supprimer définitivement</button></form>` : ""}`;
+  if (compte) {
+    const dessinerVitrine = () => { document.getElementById("ma-vitrine").innerHTML = (compte.vitrine || []).filter(id => cat.parId[id]).map(id => htmlCarte(cat.parId[id])).join("") || `<p class="note">Vitrine vide.</p>`; };
+    dessinerVitrine();
+    selVitrine = selecteur(document.getElementById("sel-vitrine"), tous, "Choisir les cartes (six au plus)");
+    document.getElementById("garder-vitrine").addEventListener("click", e => {
+      const ids = Object.keys(selVitrine.choix);
+      if (!ids.length || ids.length > 6) { signaler("Choisissez de une à six cartes."); return; }
+      occupe(e.target, async () => { const r = await appel("vitrine", {cartes: ids}); compte.vitrine = r.vitrine; selVitrine.vider(); dessinerVitrine(); signaler("Vitrine enregistrée."); });
+    });
+    document.getElementById("form-suppression").addEventListener("submit", e => {
+      e.preventDefault();
+      if (!confirm("Supprimer définitivement votre compte et toute votre collection ?")) return;
+      occupe(e.target.querySelector("button"), async () => {
+        const preuve = await etirer(compte.pseudo, e.target.mdp.value);
+        await appel("supprimer-compte", {preuve});
+        compte = null; etat = depot.charger(); majTout(); afficherPaquet(); majAttente(); signaler("Votre compte a été supprimé.");
+      });
+    });
+  }
+  document.getElementById("form-contact").addEventListener("submit", e => {
+    e.preventDefault();
+    occupe(e.target.querySelector("button"), async () => { await appel("contact", {message: e.target.message.value, reponse: e.target.reponse.value}); e.target.reset(); signaler("Message envoyé. Merci."); });
+  });
+  appel("classement").then(d => {
+    document.getElementById("classement").innerHTML = d.classement.length ? d.classement.map(x => `<li><button class="lien-carte" data-profil="${echapper(x.pseudo)}">${echapper(x.pseudo)}</button><span class="note">${pluriel(x.cartes, "carte")}</span></li>`).join("")
+      : `<li class="note">Aucun joueur pour l'instant.</li>`;
+  }).catch(() => { document.getElementById("classement").innerHTML = `<li class="note">Classement indisponible.</li>`; });
+}
+// Profil d'un joueur : statistiques et vitrine, dans la fenêtre d'aperçu
+document.addEventListener("click", e => {
+  const b = e.target.closest("[data-profil]");
+  if (!b) return;
+  appel("profil/" + encodeURIComponent(b.dataset.profil)).then(p => {
+    document.getElementById("apercu-carte").innerHTML = `<h2>${echapper(p.pseudo)}</h2>
+      <p>${pluriel(p.cartes, "carte différente", "cartes différentes")}, ${pluriel(p.paliers, "objectif atteint", "objectifs atteints")}, ${pluriel(p.duels.gagnes, "duel gagné", "duels gagnés")} sur ${p.duels.joues}.</p>
+      <div class="vitrine">${p.vitrine.filter(id => cat.parId[id]).map(id => htmlCarte(cat.parId[id])).join("") || `<p class="note">Vitrine vide.</p>`}</div>
+      ${compte && compte.pseudo !== p.pseudo ? `<p><button class="bouton discret" data-signaler="${echapper(p.pseudo)}">Signaler ce pseudo</button></p>` : ""}`;
+    document.getElementById("apercu").showModal();
+  }).catch(x => signaler(x.message));
+});
+document.addEventListener("click", e => {
+  const b = e.target.closest("[data-signaler]");
+  if (!b) return;
+  const motif = prompt(`Pourquoi signaler « ${b.dataset.signaler} » ?`);
+  if (motif === null) return;
+  occupe(b, async () => { await appel("signaler", {pseudo: b.dataset.signaler, motif}); signaler("Signalement envoyé. Merci."); });
+});
+
 /* ---------- Buvette : échanges entre joueurs et comptoir (marché) ---------- */
 // Sélecteur de cartes : recherche parmi une réserve (id -> exemplaires libres), choix des quantités
-function selecteur(conteneur, reserve, titre){
+function selecteur(conteneur, reserve, titre, quandChange = () => {}){
   const choix = {};
   conteneur.innerHTML = `<div class="selecteur"><b>${titre}</b><input class="champ" type="search" placeholder="Rechercher une carte" aria-label="${titre} : rechercher une carte">
     <ul class="lignes-buvette resultats"></ul><ul class="lignes-buvette choisies"></ul></div>`;
@@ -699,8 +901,8 @@ function selecteur(conteneur, reserve, titre){
   };
   conteneur.addEventListener("click", e => {
     const a = e.target.closest("[data-ajout]"), r = e.target.closest("[data-retrait]");
-    if (a) { choix[a.dataset.ajout] = (choix[a.dataset.ajout] || 0) + 1; dessiner(); }
-    if (r) { if (!--choix[r.dataset.retrait]) delete choix[r.dataset.retrait]; dessiner(); }
+    if (a) { choix[a.dataset.ajout] = (choix[a.dataset.ajout] || 0) + 1; dessiner(); quandChange(choix); }
+    if (r) { if (!--choix[r.dataset.retrait]) delete choix[r.dataset.retrait]; dessiner(); quandChange(choix); }
   });
   champ.addEventListener("input", dessiner);
   dessiner();
@@ -738,12 +940,21 @@ function construireBuvette(vue){
     <ul class="lignes-buvette" id="liste-marche"></ul>
     <h3>Poser une carte au comptoir</h3>
     <div id="sel-vente"></div>
+    <p class="note" id="prix-info" aria-live="polite"></p>
     <form class="formulaire" id="form-vente"><label>Prix en voix<input type="number" name="prix" min="1" max="100000" step="1" required></label><button class="bouton" type="submit">Poser au comptoir</button></form>
     <h3>Mes cartes au comptoir</h3>
     <ul class="lignes-buvette" id="mes-annonces"></ul>`;
   selDonne = selecteur(document.getElementById("sel-donne"), mesLibres, "Je donne");
   selRecoit = selecteur(document.getElementById("sel-recoit"), () => sesLibres, "Je demande");
-  selVente = selecteur(document.getElementById("sel-vente"), mesLibres, "Carte à poser au comptoir (une à la fois)");
+  selVente = selecteur(document.getElementById("sel-vente"), mesLibres, "Carte à poser au comptoir (une à la fois)", choix => {
+    const ids = Object.keys(choix), info = document.getElementById("prix-info");
+    if (ids.length !== 1) { info.textContent = ""; return; }
+    appel("prix?carte=" + encodeURIComponent(ids[0])).then(p => {
+      const ventes = p.ventes.length ? "Dernières ventes de cette carte : " + p.ventes.map(v => v.prix).join(", ") + " voix." : "Cette carte ne s'est encore jamais vendue.";
+      const med = p.mediane !== null ? ` Prix médian des cartes ${LIBELLES[p.rarete].toLowerCase()}s : ${pluriel(p.mediane, "voix", "voix")} (sur ${pluriel(p.ventesRarete, "vente")}).` : "";
+      info.textContent = ventes + med;
+    }).catch(() => { info.textContent = ""; });
+  });
   const majProposer = () => { document.getElementById("proposer").disabled = !partenaire || !Object.keys(selDonne.choix).length && !Object.keys(selRecoit.choix).length; };
   vue.addEventListener("click", majProposer);
   document.getElementById("form-partenaire").addEventListener("submit", e => {
@@ -777,6 +988,7 @@ function construireBuvette(vue){
       await appel(`${type}/${id}/${action}`, {});
       await appel("moi"); majTout();
       if (type === "echanges") chargerEchanges(); else { chargerMarche(); chargerAnnonces(); }
+      majAttente();
       signaler({accepter: "Échange accepté : les cartes ont changé de main.", refuser: "Échange refusé.", annuler: "Proposition retirée.",
         acheter: "Carte achetée : elle a pris place dans votre hémicycle.", retirer: "Carte retirée du comptoir."}[action]);
     });
@@ -861,10 +1073,12 @@ fetch("jeu.json").then(r => { if (!r.ok) throw new Error(r.status); return r.jso
   // Session ouverte sur le serveur ? Sinon, mode navigateur. Sans serveur (site statique seul), le jeu reste local.
   return fetch("/api/moi", {credentials: "same-origin"}).then(r => r.ok ? r.json() : null).catch(() => null).then(m => {
     serveur = !!(m && typeof m.connecte === "boolean");
-    if (m && m.connecte) { etat = Regles.migrer(m.etat); compte = {pseudo: m.pseudo}; }
-    afficherPaquet(); majTout();
+    if (m && m.connecte) { etat = Regles.migrer(m.etat); compte = {pseudo: m.pseudo, vitrine: m.vitrine || []}; }
+    afficherPaquet(); majTout(); majAttente(); chargerDuels();
   });
 }).catch(e => { console.error(e); document.getElementById("restants").textContent = "Les cartes n'ont pas pu être chargées. Vérifiez que le fichier jeu.json est publié à côté de cette page, puis rechargez."; });
+// Application installable : le service de travail garde le site et les cartes pour les visites suivantes
+if ("serviceWorker" in navigator) navigator.serviceWorker.register("sw.js").catch(() => {});
 </script>
 </body>
 </html>

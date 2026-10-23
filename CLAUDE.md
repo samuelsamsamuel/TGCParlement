@@ -30,7 +30,9 @@ Sénat, lu dans l'export complet `export_sens.zip`, tables `bur` et `senbur`) ; 
 (Ve République et rattachements) ;
 7. `quatre_vingts.py`, `doyens.py`, `presidences.py`, `presidences_senat.py`, `distinctions.py` ;
 8. `cartes.py` (version finale : score, rareté par époque, bonus des élus en exercice) ;
-9. `portraits.py`, `villes_circonscriptions.py`, `export_jeu.py` (écrit `site/jeu.json`), puis
+9. `portraits.py`, `portraits_sycomore.py` (portraits officiels de Sycomore pour les députés sans portrait
+Wikidata, sondés par reprise, 20 minutes par exécution), `villes_circonscriptions.py`, `export_jeu.py` (écrit
+`site/jeu.json`), puis
 `node scripts/catalogue_serveur.js` (écrit `site/serveur.json`).
 
 ## Décisions de notation
@@ -53,11 +55,19 @@ Sénat, lu dans l'export complet `export_sens.zip`, tables `bur` et `senbur`) ; 
   marché) le reprendra pour devenir seul juge des tirages et des récompenses.
 - L'état du joueur est versionné (`VERSION_ETAT`, `migrer`) et passe par l'objet `depot` d'`index.html`
   (navigateur aujourd'hui, serveur demain). Un journal des dernières opérations est tenu dans l'état.
-- Économie : 3 paquets par jour, puis les paquets offerts. Recyclage d'un exemplaire en trop : commune 1,
+- Rythme : un paquet par heure dans une réserve de huit (`RECHARGE_MS`, `RESERVE_MAX`, état `reserve` et
+  `ancre`), puis les paquets offerts. Questions au Gouvernement (sous les paquets de la Séance) : cinq
+  questions tirées des fiches (`questions`, graine déterministe), 2 voix par bonne réponse et 5 pour un
+  sans-faute, une fois par jour de Paris (`validerQuiz`) ; le navigateur connaît les réponses, d'où le plafond
+  de 15 voix par jour. Duels : mêmes questions pour deux joueurs, sans récompense.
+- Économie : Recyclage d'un exemplaire en trop : commune 1,
   peu commune 2, rare 5, épique 15, légendaire et hors catégorie 40, mythique 100 points ; 25 points font un
   paquet. Un paquet de doubles rapporte en moyenne 21 points : le prix doit rester au-dessus, sans quoi le
   recyclage créerait des paquets sans fin (vérifié par le test). Par défaut, seules les raretés commune à
   rare sont cochées pour le recyclage : les doubles plus rares serviront aux échanges entre joueurs.
+- Paliers (`PALIERS`) hauts et modestes pour les législatures (50, 150) et les départements (15, 40) : des
+  paliers bas s'auto-entretenaient (simulation : la moitié des cartes dès le premier jour). Un test vérifie
+  qu'un premier jour avec toutes les récompenses en cascade reste borné.
 - Premiers pas, pour des récompenses rapides : premier membre du Gouvernement, premier député, premier sénateur,
   première femme parlementaire, premier élu en exercice, premier chef de l'État ou du Gouvernement, première
   carte de chaque rareté (rare à mythique), premier parlementaire de chaque époque (un paquet chacun) ; et
@@ -95,14 +105,26 @@ simples (« prendre séance » et consorts ont été écartés). Les noms de cod
 - Monnaie du marché : les voix (champ `points`), gagnées en dissolvant des doubles. Pas d'argent réel.
 - Catalogue du serveur : membres des objectifs codés en plages et décodés à la demande ; le catalogue n'est
   chargé que par les routes qui en ont besoin (environ 12 ms au premier chargement, en cache ensuite).
+- Concurrence des opérations des règles : version du joueur incrémentée dans le même lot ; une insertion dans la
+  table `garde` (contrainte `ok = 0`) n'a lieu que si la version a changé (`changes() = 0`) et annule tout.
+- Colonnes ajoutées après la mise en service : déclarées dans `COLONNES` (worker), ajoutées à la volée.
+- Vitrine (six cartes), profil, classement (cartes différentes, cache de cinq minutes), prix du comptoir
+  (dernières ventes, médiane par rareté), compteur d'attente (échanges reçus, duels à jouer), suppression du
+  compte, formulaire de contact (table `messages`, effacée après un an), signalements (table `signalements`).
+  Modération des pseudos : `MOTS_INTERDITS` (cherchés dans le pseudo) et `NOMS_RESERVES` (pseudo entier).
+  Lire les messages et signalements : console D1 du tableau de bord Cloudflare.
+- Site : application installable (`manifest.webmanifest`, `sw.js` réseau d'abord, copie hors connexion),
+  polices servies par le site (`site/polices/`, licence OFL), page `mentions.html` (mentions légales,
+  conditions d'utilisation, confidentialité). `jeu.json` pèse 6,5 Mo mais 1 Mo compressé par Cloudflare.
 - Limites connues : un joueur peut ouvrir plusieurs comptes et faire passer leurs cartes vers un seul
   (inscriptions limitées à cinq par heure et par adresse IP, sans plus) ; pas de modération des pseudos.
 
 ## Prochaines tâches
 
-1. Application : comptes, sauvegarde côté serveur, buvette (tractations et comptoir) en service, base D1
-   « hemicycle » reliée dans `wrangler.jsonc`. Ensuite : adresse e-mail vérifiée (récupération du mot de
-   passe, frein aux comptes multiples) écartée pour l'instant ; modération des pseudos, notifications d'échange.
+1. Application en service. À confirmer par l'utilisateur : l'éditeur reste anonyme dans `mentions.html`
+   (article 1-1 de la loi du 21 juin 2004, texte officiel non consulté, Légifrance refusant les requêtes
+   automatiques), ce qui suppose que Cloudflare connaisse son identité. Écarté pour l'instant : adresse
+   e-mail vérifiée (récupération du mot de passe, frein aux comptes multiples).
 2. Lacunes connues, faute de source officielle structurée : sénateurs de la IIIe République et du Conseil
    de la République (1946-1948), gouvernements antérieurs à 1944, villes des circonscriptions avant 2012,
    fonctions au sein de l'Assemblée avant juin 2002 (seuls les comptes rendus de séance en PDF les portent ;
