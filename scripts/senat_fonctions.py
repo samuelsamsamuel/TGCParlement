@@ -53,14 +53,21 @@ def lire(nom, rapport):
         rapport.append(f"{nom} : fichier vide")
         return [], {}
     l0 = lignes[0]
-    cols = {"matricule": colonne(l0, "matricule"),
-            "organe": colonne(l0, "nom", exclure=("usuel", "prenom", "sexe")) or colonne(l0, "libelle"),
-            "fonction": colonne(l0, "fonction"),
-            "debut": colonne(l0, "debut") or colonne(l0, "date", "deb"),
-            "fin": colonne(l0, "fin")}
+
+    def premiere(*noms):
+        return next((n for n in noms if n in l0), None)
+    # Intitulés exacts des exports du Sénat (relevés sur les fichiers), puis repli par mots-clés
+    cols = {"matricule": premiere("Matricule") or colonne(l0, "matricule"),
+            "organe": premiere("Nom commission", "Nom court du groupe politique") or colonne(l0, "nom", "commission"),
+            "type": premiere("Type commission"),
+            "fonction": premiere("Fonction", "Nom court fonction") or colonne(l0, "fonction", exclure=("id", "date", "debut", "fin")),
+            "debut": premiere("Début de fonction", "Date de début de la fonction"),
+            "fin": premiere("Fin de fonction", "Date de fin de la fonction")}
     rapport.append(f"{nom} : {len(lignes)} lignes ; colonnes : {' | '.join(l0.keys())}")
     rapport.append(f"  colonnes retenues : {cols}")
     if cols["fonction"]:
+        if cols.get("type"):
+            rapport.append("  types de commission : " + ", ".join(f"{t} ({n})" for t, n in Counter((l[cols['type']] or '').strip() for l in lignes).most_common(10)))
         rapport.append("  fonctions les plus fréquentes : " + ", ".join(
             f"{f} ({n})" for f, n in Counter((l[cols['fonction']] or '').strip() for l in lignes).most_common(15)))
     return lignes, cols
@@ -73,12 +80,16 @@ def main():
     trouvees = []  # (code, carte, intitulé, début, fin)
 
     coms, c = lire("ODSEN_COMS.csv", rapport)
+    # Le type de commission ne sert que s'il nomme bien les commissions permanentes ; sinon, repli sur le nom
+    types_utiles = bool(c.get("type")) and any("permanente" in norme(l.get(c["type"])) for l in coms)
     if c.get("matricule") and c.get("fonction"):
         for l in coms:
             fonction, organe = norme(l[c["fonction"]]), (l.get(c["organe"]) or "").strip() if c["organe"] else ""
             o = norme(organe)
-            permanente = (o.startswith("commission") and not any(x in o for x in ("enquete", "speciale", "mixte"))
-                          and not re.search(r"\bmission\b", o))  # mot entier : « commission » contient « mission »
+            type_c = norme(l.get(c["type"])) if types_utiles else ""
+            permanente = ("permanente" in type_c) if type_c else (
+                o.startswith("commission") and not any(x in o for x in ("enquete", "speciale", "mixte"))
+                and not re.search(r"\bmission\b", o))  # mot entier : « commission » contient « mission »
             if "rapporteur general" in fonction:
                 code, titre = "rapporteur-general", f"Rapporteur général ({organe} du Sénat)"
             elif permanente and fonction.startswith("president"):
