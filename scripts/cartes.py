@@ -279,13 +279,17 @@ def cartes_senateurs(cartes, listes):
             par_date[c["naissance"]].append(c)
             par_annee[c["naissance"][:4]].append(c)
     nouvelles = []
+    correspondances = {}  # matricule du Sénat -> identifiant de carte (fiche Sycomore ou carte sénatoriale)
     for s in senateurs:
         if s["matricule"] in doublons:
+            correspondances[s["matricule"]] = doublons[s["matricule"]].get("sycomore")
             continue  # même personne qu'une fiche Sycomore, établie par décision motivée
         # Rapprochement sur le nom de famille entier (tous ses mots), jamais sur les prénoms
         cles = noms_cles(s.get("nom_famille") or s["nom"])
         meme_nom = lambda c: bool(cles) and cles <= noms_cles(nom_famille_sycomore(c["nom"]))
-        if s["naissance"] and any(meme_nom(c) for c in par_date[s["naissance"]]):
+        exacts = [c for c in par_date[s["naissance"]] if meme_nom(c)] if s["naissance"] else []
+        if exacts:
+            correspondances[s["matricule"]] = exacts[0]["id"]
             continue
         # Même année seulement : il faut aussi le même premier prénom, et une date qui ne diffère
         # que par le jour ou que par le mois (erreur de saisie plausible dans l'une des sources)
@@ -299,6 +303,7 @@ def cartes_senateurs(cartes, listes):
         if s["naissance"] and proches:
             anomalies["sénateur rapproché d'une fiche Sycomore par l'année seule"].append(
                 f"{s['matricule']} {s['nom']} ({s['naissance']}) -> {proches[0]['id']} {proches[0]['nom']} ({proches[0]['naissance']})")
+            correspondances[s["matricule"]] = proches[0]["id"]
             continue
         mandats = []
         fonction = (("Sénatrice" if s["sexe"] == "F" else "Sénateur")
@@ -317,6 +322,7 @@ def cartes_senateurs(cartes, listes):
             mandats.append({"chambre": "Sénat", "fonction": fonction,
                             "debut": m["debut"], "fin": None if en_cours else fin, "en_cours": en_cours})
         ident = "S" + s["matricule"]
+        correspondances[s["matricule"]] = ident
         jours = duree_jours(mandats)
         annees = round(jours / 365.25, 1)
         distinctions = [{"code": l["code"], "points": l["points"], "libelle": l["libelle"],
@@ -329,6 +335,8 @@ def cartes_senateurs(cartes, listes):
                  "source": f"https://data.senat.fr/les-senateurs/ (matricule {s['matricule']})"}
         carte["texte"] = texte_carte(carte)
         nouvelles.append(carte)
+    with open(os.path.join("data", "senat", "correspondances.json"), "w", encoding="utf-8") as f:
+        json.dump(correspondances, f, ensure_ascii=False, indent=0)
     return nouvelles
 
 
