@@ -8,12 +8,15 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
 
 État (version 2) :
   possedees  { id de carte: nombre d'exemplaires }
-  jour       date du dernier paquet du jour ouvert (AAAA-M-J, heure locale)
+  jour       date du dernier paquet du jour ouvert (AAAA-MM-JJ, jour de Paris, le même pour tous les joueurs)
   ouverts    paquets du jour déjà ouverts ce jour-là
   points     points de recyclage non encore échangés
   offerts    paquets gagnés (objectifs, échanges de points), sans limite de jour
   objectifs  { "identifiant@seuil" ou "identifiant@complet": date de la réclamation }
-  journal    dernières opérations [date, opération, détail], pour le suivi et une future reprise côté serveur
+  journal    dernières opérations [date, opération, détail], pour le suivi
+  verrous    { id de carte: exemplaires bloqués } (compte seulement, fourni par le serveur) : exemplaires repris
+             du navigateur à la création du compte et exemplaires en vente. Ils restent dans la collection et
+             comptent pour les objectifs, mais ne se recyclent pas et ne se cèdent pas.
 */
 (function (racine, fabrique) {
   const Regles = fabrique();
@@ -50,18 +53,26 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
     e.offerts = entier(brut.offerts);
     if (brut.objectifs && typeof brut.objectifs === "object") Object.assign(e.objectifs, brut.objectifs);
     if (Array.isArray(brut.journal)) e.journal = brut.journal.slice(-JOURNAL_MAX);
+    // Première version : jour au format AAAA-M-J
+    const m = /^(\d{4})-(\d{1,2})-(\d{1,2})$/.exec(e.jour);
+    if (m) e.jour = m[1] + "-" + m[2].padStart(2, "0") + "-" + m[3].padStart(2, "0");
+    if (brut.verrous && typeof brut.verrous === "object")
+      for (const [id, n] of Object.entries(brut.verrous)) if (entier(n)) (e.verrous ||= {})[id] = entier(n);
     return e;
   }
   function noter(etat, operation, detail) {
     etat.journal.push([new Date().toISOString(), operation, detail]);
     if (etat.journal.length > JOURNAL_MAX) etat.journal.splice(0, etat.journal.length - JOURNAL_MAX);
   }
-  function jourLocal(d = new Date()) { return d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate(); }
+  // Jour du jeu : date de Paris, pour que le navigateur et le serveur changent de jour au même moment
+  const FORMAT_JOUR = new Intl.DateTimeFormat("fr-CA", {timeZone: "Europe/Paris", year: "numeric", month: "2-digit", day: "2-digit"});
+  function jourDuJeu(d = new Date()) { return FORMAT_JOUR.format(d); }
 
   /* ---------- Catalogue ---------- */
   function normer(t) { return String(t || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/-/g, " ").trim(); }
-  // cartes : objets lus dans jeu.json (id, rarete, actuel, distinctions, mandats, assemblees) ; assemblees : table de jeu.json
-  function catalogue(cartes, assemblees = []) {
+  // cartes : objets lus dans jeu.json (id, rarete, actuel, distinctions, mandats, assemblees) ; assemblees : table de jeu.json.
+  // objectifsDonnes : objectifs déjà calculés [id, famille, titre, sous-titre, ids] (catalogue du serveur)
+  function catalogue(cartes, assemblees = [], objectifsDonnes = null) {
     const parRarete = {}, actuelsParRarete = {}, parId = {};
     for (const c of cartes) {
       parId[c.id] = c;
@@ -69,13 +80,33 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
       if (c.actuel) (actuelsParRarete[c.rarete] ||= []).push(c);
     }
     const cat = {cartes, parRarete, actuelsParRarete: Object.keys(actuelsParRarete).length ? actuelsParRarete : parRarete, parId, assemblees};
-    cat.objectifs = definirObjectifs(cat);
+    cat.objectifs = objectifsDonnes ? objectifsDonnes.map(([id, famille, titre, sous, ids]) => objectif(id, famille, titre, ids, sous)) : definirObjectifs(cat);
     cat.objectifParId = Object.fromEntries(cat.objectifs.map(o => [o.id, o]));
     return cat;
   }
 
+  // Cartes de jeu.json (tableaux compacts, voir scripts/export_jeu.py) en objets
+  function cartesDeJeu(d) {
+    return d.cartes.map(([id, nom, r, score, epoque, actuel, debut, fin, source, portrait, distinctions, chambres, sexe, fonctions, mandats, groupe, photo, assemblees]) => ({
+      id, nom, rarete: d.raretes[r], score, epoque, actuel: !!actuel, debut, fin, source, portrait, distinctions: distinctions || [],
+      chambres: chambres || "", sexe, fonctions: fonctions || [], mandats: mandats || [], groupe, photo, assemblees: assemblees || []}));
+  }
+
+  // Catalogue réduit pour le serveur (site/serveur.json) : seulement ce que les règles utilisent. Il est écrit
+  // à partir du catalogue complet par scripts/catalogue_serveur.js : les objectifs sont donc calculés une seule
+  // fois, par ce même fichier, et le serveur ne lit pas les 6 Mo de jeu.json.
+  function compacter(cat) {
+    const raretes = ORDRE.slice(), index = new Map(cat.cartes.map((c, i) => [c.id, i]));
+    return {raretes, cartes: cat.cartes.map(c => [c.id, raretes.indexOf(c.rarete), c.actuel ? 1 : 0, c.score]),
+      objectifs: cat.objectifs.map(o => [o.id, o.famille, o.titre, o.sousTitre, o.ids.map(id => index.get(id))])};
+  }
+  function catalogueCompact(data) {
+    const cartes = data.cartes.map(([id, r, actuel, score]) => ({id, rarete: data.raretes[r], actuel: !!actuel, score}));
+    return catalogue(cartes, [], data.objectifs.map(([id, f, t, s, idx]) => [id, f, t, s, idx.map(i => cartes[i].id)]));
+  }
+
   /* ---------- Paquets ---------- */
-  function paquetsDisponibles(etat, jour = jourLocal()) {
+  function paquetsDisponibles(etat, jour = jourDuJeu()) {
     const duJour = etat.jour === jour ? Math.max(0, PAQUETS_PAR_JOUR - etat.ouverts) : PAQUETS_PAR_JOUR;
     return {duJour, offerts: etat.offerts, echangeables: Math.floor(etat.points / PRIX_PAQUET), total: duJour + etat.offerts};
   }
@@ -89,7 +120,7 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
   }
   function tirerCarte(pool, aleatoire) { const l = pool[tirerRarete(pool, aleatoire)]; return l[Math.floor(aleatoire() * l.length)]; }
   // Consomme un paquet du jour s'il en reste, sinon un paquet offert. Renvoie null si aucun n'est disponible.
-  function ouvrirPaquet(etat, cat, {jour = jourLocal(), aleatoire = Math.random} = {}) {
+  function ouvrirPaquet(etat, cat, {jour = jourDuJeu(), aleatoire = Math.random} = {}) {
     const dispo = paquetsDisponibles(etat, jour);
     if (dispo.total <= 0) return null;
     let origine;
@@ -108,14 +139,18 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
   }
 
   /* ---------- Recyclage ---------- */
-  // Exemplaires en trop (au-delà du premier), regroupés par rareté
+  // Exemplaires libres : ni repris du navigateur, ni en vente
+  function disponibles(etat, id) { return Math.max(0, (etat.possedees[id] || 0) - ((etat.verrous && etat.verrous[id]) || 0)); }
+  // Exemplaires recyclables : libres et en trop (le premier exemplaire de chaque carte est gardé)
+  function recyclables(etat, id) { return Math.min(Math.max(0, (etat.possedees[id] || 0) - 1), disponibles(etat, id)); }
+  // Exemplaires en trop recyclables, regroupés par rareté
   function doubles(etat, cat) {
     const parRarete = {};
-    for (const [id, n] of Object.entries(etat.possedees)) {
-      const c = cat.parId[id];
-      if (!c || n < 2) continue;
+    for (const id of Object.keys(etat.possedees)) {
+      const c = cat.parId[id], k = recyclables(etat, id);
+      if (!c || !k) continue;
       const r = parRarete[c.rarete] ||= {cartes: 0, exemplaires: 0, points: 0};
-      r.cartes += 1; r.exemplaires += n - 1; r.points += (n - 1) * VALEUR_RECYCLAGE[c.rarete];
+      r.cartes += 1; r.exemplaires += k; r.points += k * VALEUR_RECYCLAGE[c.rarete];
     }
     return parRarete;
   }
@@ -123,11 +158,11 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
   function recycler(etat, cat, raretes) {
     const choisies = new Set(raretes);
     let exemplaires = 0, points = 0;
-    for (const [id, n] of Object.entries(etat.possedees)) {
-      const c = cat.parId[id];
-      if (!c || n < 2 || !choisies.has(c.rarete)) continue;
-      exemplaires += n - 1; points += (n - 1) * VALEUR_RECYCLAGE[c.rarete];
-      etat.possedees[id] = 1;
+    for (const id of Object.keys(etat.possedees)) {
+      const c = cat.parId[id], k = recyclables(etat, id);
+      if (!c || !k || !choisies.has(c.rarete)) continue;
+      exemplaires += k; points += k * VALEUR_RECYCLAGE[c.rarete];
+      etat.possedees[id] -= k;
     }
     if (exemplaires) { etat.points += points; noter(etat, "recyclage", {raretes: [...choisies], exemplaires, points}); }
     return {exemplaires, points};
@@ -211,6 +246,6 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
   }
 
   return {VERSION_ETAT, PAQUETS_PAR_JOUR, CARTES_PAR_PAQUET, ORDRE, POIDS, VALEUR_RECYCLAGE, PRIX_PAQUET, PALIERS,
-    etatVide, migrer, jourLocal, normer, catalogue, paquetsDisponibles, ouvrirPaquet, doubles, recycler, echangerPoints,
-    avancement, reclamer, recompensesEnAttente};
+    etatVide, migrer, jourDuJeu, normer, cartesDeJeu, catalogue, compacter, catalogueCompact, paquetsDisponibles, ouvrirPaquet,
+    disponibles, recyclables, doubles, recycler, echangerPoints, avancement, reclamer, recompensesEnAttente};
 });

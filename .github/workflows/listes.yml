@@ -71,6 +71,9 @@ jobs:
       - name: Export pour l'application
         run: python3 scripts/export_jeu.py
 
+      - name: Catalogue du serveur
+        run: node scripts/catalogue_serveur.js
+
       - name: Enregistrement
         if: always()
         run: |

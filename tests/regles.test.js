@@ -2,8 +2,7 @@
 const assert = require("assert");
 const R = require("../site/regles.js");
 const d = require("../site/jeu.json");
-const cartes = d.cartes.map(([id,nom,r,score,epoque,actuel,debut,fin,source,portrait,distinctions,chambres,sexe,fonctions,mandats,groupe,photo,assemblees]) =>
-  ({id,nom,rarete:d.raretes[r],score,actuel:!!actuel,distinctions:distinctions||[],mandats:mandats||[],assemblees:assemblees||[]}));
+const cartes = R.cartesDeJeu(d);
 const cat = R.catalogue(cartes, d.assemblees);
 let graine = 42; const alea = () => (graine = (graine * 16807) % 2147483647) / 2147483647;
 
@@ -58,4 +57,21 @@ const fams = {}; cat.objectifs.forEach(x => fams[x.famille] = (fams[x.famille] |
 console.log("objectifs par famille :", fams);
 const xvii = cat.objectifs.find(x => x.titre.startsWith("XVIIe législature"));
 console.log(xvii.id, xvii.total, JSON.stringify(xvii.paliers), "|", cat.objectifParId["departement:gironde"].total, JSON.stringify(cat.objectifParId["departement:gironde"].paliers));
+// Catalogue du serveur : mêmes cartes, mêmes objectifs que le catalogue complet
+const compact = R.catalogueCompact(JSON.parse(JSON.stringify(R.compacter(cat))));
+assert.strictEqual(compact.cartes.length, cat.cartes.length);
+assert.deepStrictEqual(compact.objectifs.map(o => [o.id, o.total, o.paliers]), cat.objectifs.map(o => [o.id, o.total, o.paliers]));
+assert.deepStrictEqual(Object.keys(compact.parRarete).sort(), Object.keys(cat.parRarete).sort());
+
+// Exemplaires verrouillés (repris ou en vente) : ni recyclés ni comptés comme doubles
+const v = R.etatVide();
+v.possedees[com.id] = 3; v.verrous = {[com.id]: 2};
+assert.strictEqual(R.disponibles(v, com.id), 1); assert.strictEqual(R.recyclables(v, com.id), 1);
+assert.deepStrictEqual(R.recycler(v, cat, ["commune"]), {exemplaires: 1, points: 1});
+assert.strictEqual(v.possedees[com.id], 2);
+v.verrous = {[com.id]: 2}; assert.strictEqual(R.recyclables(v, com.id), 0);
+
+// Jour du jeu : date de Paris ; l'ancien format est complété
+assert.strictEqual(R.jourDuJeu(new Date("2026-10-23T22:30:00Z")), "2026-10-24");
+assert.strictEqual(R.migrer({possedees: {}, jour: "2026-1-5"}).jour, "2026-01-05");
 console.log("tous les tests passent");
