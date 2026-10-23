@@ -196,8 +196,16 @@
 "prenom": "David",
 "nom": "Amiel",
 "debut": "2025-10-13",
-"fin": null,
+"fin": "2026-02-26",
 "fonction": "Ministre délégué auprès de la ministre de l’Action et des Comptes publics, chargé de la Fonction publique et de la Réforme de l’État"
+},
+{
+"liste": "ministre",
+"prenom": "David",
+"nom": "Amiel",
+"debut": "2026-02-26",
+"fin": null,
+"fonction": "Ministre de l’Action et des Comptes publics"
 },
 {
 "liste": "chef-gouvernement",
@@ -396,8 +404,16 @@
 "prenom": "Maud",
 "nom": "Bregeon",
 "debut": "2025-10-13",
-"fin": null,
+"fin": "2026-02-26",
 "fonction": "Ministre déléguée auprès du Premier ministre, porte-parole du Gouvernement"
+},
+{
+"liste": "chef-gouvernement",
+"prenom": "Maud",
+"nom": "Bregeon",
+"debut": "2026-02-26",
+"fin": null,
+"fonction": "Ministre déléguée, porte-parole du Gouvernement auprès du Premier ministre et ministre déléguée, chargée de l’Énergie auprès du ministre de l’Économie, des Finances et de la Souveraineté industrielle, énergétique et numérique"
 },
 {
 "liste": "ministre",

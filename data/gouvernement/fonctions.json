@@ -10482,6 +10482,12 @@
 "fonction": "Ministre déléguée auprès du Premier ministre, porte-parole du Gouvernement",
 "liste": "ministre",
 "debut": "2024-09-21",
+"fin": "2026-02-26"
+},
+{
+"fonction": "Ministre déléguée, porte-parole du Gouvernement auprès du Premier ministre et ministre déléguée, chargée de l’Énergie auprès du ministre de l’Économie, des Finances et de la Souveraineté industrielle, énergétique et numérique",
+"liste": "chef-gouvernement",
+"debut": "2026-02-26",
 "fin": null
 }
 ],
@@ -10730,6 +10736,12 @@
 "fonction": "Ministre délégué auprès de la ministre de l’Action et des Comptes publics, chargé de la Fonction publique et de la Réforme de l’État",
 "liste": "ministre",
 "debut": "2025-10-13",
+"fin": "2026-02-26"
+},
+{
+"fonction": "Ministre de l’Action et des Comptes publics",
+"liste": "ministre",
+"debut": "2026-02-26",
 "fin": null
 }
 ],
