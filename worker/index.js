@@ -140,7 +140,7 @@ async function chargerEtat(env, joueur) {
     env.DB.prepare("SELECT date, operation, detail FROM journal WHERE joueur = ? ORDER BY id DESC LIMIT 20").bind(joueur),
   ]);
   const ligne = j.results[0];
-  if (!ligne) throw new Refus(401, "Siège introuvable.");
+  if (!ligne) throw new Refus(401, "Compte introuvable.");
   const etat = Regles.etatVide();
   Object.assign(etat, {points: ligne.points, offerts: ligne.offerts, jour: ligne.jour, ouverts: ligne.ouverts, verrous: {}});
   for (const x of p.results) {
@@ -274,15 +274,15 @@ const somme = l => Object.values(l).reduce((a, b) => a + b, 0);
 async function proposerEchange(env, requete, joueur, cat) {
   const c = await lireCorps(requete);
   const dest = await idJoueur(env, c.vers);
-  if (dest.id === joueur) throw new Refus(400, "Vous ne pouvez pas mener une tractation avec vous-même.");
+  if (dest.id === joueur) throw new Refus(400, "Vous ne pouvez pas échanger avec vous-même.");
   const donne = lireLot(cat, c.donne), recoit = lireLot(cat, c.recoit);
   if (!somme(donne) && !somme(recoit)) throw new Refus(400, "Choisissez au moins une carte.");
-  if (somme(donne) + somme(recoit) > MAX_ECHANGE) throw new Refus(400, `Une tractation porte au plus sur ${MAX_ECHANGE} cartes.`);
+  if (somme(donne) + somme(recoit) > MAX_ECHANGE) throw new Refus(400, `Un échange porte au plus sur ${MAX_ECHANGE} cartes.`);
   const [mes, ses] = [await libres(env, joueur), await libres(env, dest.id)];
   for (const [id, q] of Object.entries(donne)) if ((mes[id] || 0) < q) throw new Refus(409, "Vous n'avez pas assez d'exemplaires libres de l'une des cartes proposées.");
   for (const [id, q] of Object.entries(recoit)) if ((ses[id] || 0) < q) throw new Refus(409, `${dest.pseudo} n'a pas assez d'exemplaires libres de l'une des cartes demandées.`);
   const enCours = await env.DB.prepare("SELECT COUNT(*) AS n FROM echanges WHERE de = ? AND statut = 'proposee'").bind(joueur).first();
-  if (enCours.n >= MAX_ECHANGES_EN_COURS) throw new Refus(429, `Vous avez déjà ${MAX_ECHANGES_EN_COURS} propositions en discussion.`);
+  if (enCours.n >= MAX_ECHANGES_EN_COURS) throw new Refus(429, `Vous avez déjà ${MAX_ECHANGES_EN_COURS} propositions en attente.`);
   const date = maintenant();
   await env.DB.prepare("INSERT INTO echanges (de, vers, donne, recoit, statut, cree, maj) VALUES (?, ?, ?, ?, 'proposee', ?, ?)")
     .bind(joueur, dest.id, JSON.stringify(donne), JSON.stringify(recoit), date, date).run();
@@ -297,9 +297,9 @@ async function listeEchanges(env, joueur) {
 }
 async function cloreEchange(env, joueur, id, action) {
   const e = await env.DB.prepare("SELECT * FROM echanges WHERE id = ?").bind(id).first();
-  if (!e || e.statut !== "proposee") throw new Refus(409, "Cette proposition n'est plus en discussion.");
+  if (!e || e.statut !== "proposee") throw new Refus(409, "Cet échange n'est plus en attente.");
   const permis = action === "annuler" ? e.de === joueur : e.vers === joueur;
-  if (!permis) throw new Refus(403, "Cette proposition ne vous est pas adressée.");
+  if (!permis) throw new Refus(403, "Cet échange ne vous est pas adressé.");
   const statut = {accepter: "acceptee", refuser: "refusee", annuler: "annulee"}[action];
   const requetes = [
     env.DB.prepare("INSERT INTO clotures (nature, id) VALUES ('echange', ?)").bind(id),
@@ -309,13 +309,13 @@ async function cloreEchange(env, joueur, id, action) {
     const donne = JSON.parse(e.donne), recoit = JSON.parse(e.recoit);
     const [libresDe, libresVers] = [await libres(env, e.de), await libres(env, e.vers)];
     const manque = Object.entries(donne).some(([c, q]) => (libresDe[c] || 0) < q) || Object.entries(recoit).some(([c, q]) => (libresVers[c] || 0) < q);
-    if (manque) throw new Refus(409, "La proposition ne peut plus être adoptée : l'un de vous n'a plus assez d'exemplaires libres.");
+    if (manque) throw new Refus(409, "L'échange n'est plus possible : l'un de vous n'a plus assez d'exemplaires libres.");
     for (const [carte, q] of Object.entries(donne)) requetes.push(retraitCartes(env, e.de, carte, q), ajoutCartes(env, e.vers, carte, q));
     for (const [carte, q] of Object.entries(recoit)) requetes.push(retraitCartes(env, e.vers, carte, q), ajoutCartes(env, e.de, carte, q));
     requetes.push(noterJournal(env, e.de, "echange", {id, avec: e.vers}), noterJournal(env, e.vers, "echange", {id, avec: e.de}));
   }
   await lot(env, requetes, action === "accepter"
-    ? "La proposition ne peut plus être adoptée : l'un de vous n'a plus assez d'exemplaires libres." : "Cette proposition n'est plus en discussion.");
+    ? "L'échange n'est plus possible : l'un de vous n'a plus assez d'exemplaires libres." : "Cet échange n'est plus en attente.");
   return json({ok: true});
 }
 async function marche(env, url) {
@@ -335,7 +335,7 @@ async function vendre(env, requete, joueur, cat) {
   const c = await lireCorps(requete);
   const carte = String(c.carte || ""), prix = entier(c.prix, 1, PRIX_MAX);
   if (!cat.parId[carte]) throw new Refus(400, "Carte inconnue.");
-  if (!prix) throw new Refus(400, `Le prix va de 1 à ${PRIX_MAX.toLocaleString("fr-FR")} jetons.`);
+  if (!prix) throw new Refus(400, `Le prix va de 1 à ${PRIX_MAX.toLocaleString("fr-FR")} voix.`);
   const p = await env.DB.prepare("SELECT n - importes - reserve AS libres FROM possessions WHERE joueur = ? AND carte = ?").bind(joueur, carte).first();
   if (!p || p.libres < 1) throw new Refus(409, "Vous n'avez pas d'exemplaire libre de cette carte.");
   const ouvertes = await env.DB.prepare("SELECT COUNT(*) AS n FROM annonces WHERE vendeur = ? AND statut = 'ouverte'").bind(joueur).first();
@@ -366,7 +366,7 @@ async function cloreAnnonce(env, joueur, id, action) {
       ajoutCartes(env, joueur, a.carte, 1),
       noterJournal(env, joueur, "achat", {annonce: id, carte: a.carte, prix: a.prix}),
       noterJournal(env, a.vendeur, "vente", {annonce: id, carte: a.carte, prix: a.prix}));
-    await lot(env, requetes, "Achat impossible : jetons insuffisants, ou carte déjà vendue ou retirée du comptoir.");
+    await lot(env, requetes, "Achat impossible : voix insuffisantes, ou carte déjà vendue ou retirée du comptoir.");
   }
   return json({ok: true});
 }
@@ -380,15 +380,18 @@ async function api(requete, env, url) {
     if (requete.headers.get("x-hemicycle") !== "1" || (origine && origine !== url.origin)) throw new Refus(403, "Demande refusée.");
   }
   await preparerBase(env);
-  const cat = await lireCatalogue(env, url);
-  if (methode === "POST" && chemin === "/api/inscription") return inscription(env, requete, cat);
+  // Catalogue chargé seulement par les opérations qui en ont besoin (tirage, recyclage, objectifs, contrôle
+  // des cartes) : l'état du joueur, la connexion, le comptoir et les échanges n'en dépendent pas
+  const catalogueDuJeu = () => lireCatalogue(env, url);
+  if (methode === "POST" && chemin === "/api/inscription") return inscription(env, requete, await catalogueDuJeu());
   if (methode === "POST" && chemin === "/api/connexion") return connexion(env, requete);
   if (methode === "POST" && chemin === "/api/deconnexion") return deconnexion(env, requete);
   const joueur = await joueurConnecte(env, requete);
   if (methode === "GET" && chemin === "/api/moi") return json(joueur ? {connecte: true, ...(await chargerEtat(env, joueur))} : {connecte: false});
-  if (!joueur) throw new Refus(401, "Prenez séance pour continuer.");
+  if (!joueur) throw new Refus(401, "Connectez-vous pour continuer.");
   const avecEtat = async resultat => json({resultat, ...(await chargerEtat(env, joueur))});
   if (methode === "POST" && chemin === "/api/paquet") {
+    const cat = await catalogueDuJeu();
     const r = await appliquer(env, joueur, e => Regles.ouvrirPaquet(e, cat, {jour: Regles.jourDuJeu(), aleatoire}));
     if (!r) throw new Refus(409, "Aucun paquet disponible pour l'instant.");
     return avecEtat({tirage: r.tirage.map(c => c.id), neuves: [...r.neuves], origine: r.origine});
@@ -396,14 +399,16 @@ async function api(requete, env, url) {
   if (methode === "POST" && chemin === "/api/recycler") {
     const c = await lireCorps(requete);
     const raretes = (Array.isArray(c.raretes) ? c.raretes : []).filter(r => Regles.ORDRE.includes(r));
+    const cat = await catalogueDuJeu();
     return avecEtat(await appliquer(env, joueur, e => Regles.recycler(e, cat, raretes)));
   }
   if (methode === "POST" && chemin === "/api/echanger-points") {
-    if (!(await appliquer(env, joueur, e => Regles.echangerPoints(e)))) throw new Refus(409, `Il faut ${Regles.PRIX_PAQUET} jetons pour un paquet.`);
+    if (!(await appliquer(env, joueur, e => Regles.echangerPoints(e)))) throw new Refus(409, `Il faut ${Regles.PRIX_PAQUET} voix pour un paquet.`);
     return avecEtat(true);
   }
   if (methode === "POST" && chemin === "/api/reclamer") {
     const c = await lireCorps(requete);
+    const cat = await catalogueDuJeu();
     return avecEtat(await appliquer(env, joueur, e => Regles.reclamer(e, cat, String(c.id || ""))));
   }
   let m;
@@ -412,11 +417,11 @@ async function api(requete, env, url) {
     return json({pseudo: j.pseudo, libres: await libres(env, j.id)});
   }
   if (methode === "GET" && chemin === "/api/echanges") return listeEchanges(env, joueur);
-  if (methode === "POST" && chemin === "/api/echanges") return proposerEchange(env, requete, joueur, cat);
+  if (methode === "POST" && chemin === "/api/echanges") return proposerEchange(env, requete, joueur, await catalogueDuJeu());
   if (methode === "POST" && (m = chemin.match(/^\/api\/echanges\/(\d+)\/(accepter|refuser|annuler)$/))) return cloreEchange(env, joueur, Number(m[1]), m[2]);
   if (methode === "GET" && chemin === "/api/marche") return marche(env, url);
   if (methode === "GET" && chemin === "/api/annonces") return mesAnnonces(env, joueur);
-  if (methode === "POST" && chemin === "/api/annonces") return vendre(env, requete, joueur, cat);
+  if (methode === "POST" && chemin === "/api/annonces") return vendre(env, requete, joueur, await catalogueDuJeu());
   if (methode === "POST" && (m = chemin.match(/^\/api\/annonces\/(\d+)\/(acheter|retirer)$/))) return cloreAnnonce(env, joueur, Number(m[1]), m[2]);
   throw new Refus(404, "Adresse inconnue.");
 }

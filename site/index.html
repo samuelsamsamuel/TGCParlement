@@ -262,10 +262,10 @@ footer{max-width:1120px;margin:0 auto;padding:0 1rem 3rem;font-size:.85rem;color
     <h2>Règlement du jeu</h2>
     <p>Chaque jour de séance, trois paquets de cinq cartes sont à ouvrir. Chaque paquet contient au moins un parlementaire ou un ministre en exercice. Les cartes obtenues prennent place dans votre hémicycle, votre collection.</p>
     <h3>Paquets offerts</h3>
-    <p>Des paquets supplémentaires se gagnent de deux façons. L'ordre du jour en donne à chaque palier atteint : Quatre-vingts, Compagnons de la Libération, présidents de l'Assemblée, députés d'une législature, élus d'un département. La dissolution des doubles en donne aussi : chaque exemplaire en trop dissous rapporte des jetons selon sa rareté (commune 1, peu commune 2, rare 5, épique 15, légendaire et hors catégorie 40, mythique 100), et 25 jetons s'échangent contre un paquet. Le premier exemplaire de chaque carte n'est jamais dissous. Les paquets offerts s'ouvrent après ceux du jour, sans limite de date.</p>
-    <h3>Siège, tractations et comptoir</h3>
-    <p>Sans siège, la collection reste dans ce navigateur. En vous faisant élire (pseudo et mot de passe), vous obtenez un siège : la collection est gardée par le serveur et se retrouve sur tous vos appareils, et c'est alors le serveur qui tire les cartes. À l'élection, la collection de ce navigateur est reprise une fois : ces exemplaires comptent pour la collection et l'ordre du jour, mais ne peuvent être ni dissous ni cédés. Les jetons et paquets offerts du navigateur ne sont pas repris.</p>
-    <p>À la buvette, on mène des tractations : proposer à un autre joueur un échange de cartes, qu'il adopte ou rejette. On y tient aussi le comptoir, où les cartes se vendent et s'achètent contre des jetons. Une carte posée au comptoir est réservée : elle ne peut être ni dissoute ni échangée tant qu'elle y reste.</p>
+    <p>Des paquets supplémentaires se gagnent de deux façons. L'ordre du jour en donne à chaque objectif atteint : premiers pas (premier membre du Gouvernement, premier sénateur, première carte épique…), taille de l'hémicycle, Quatre-vingts, Compagnons de la Libération, présidents de l'Assemblée, députés d'une législature, élus d'un département. La dissolution des doubles en donne aussi : chaque exemplaire en trop dissous rapporte des voix selon sa rareté (commune 1, peu commune 2, rare 5, épique 15, légendaire et hors catégorie 40, mythique 100), et 25 voix s'échangent contre un paquet. Ici, acheter des voix est parfaitement réglementaire. Le premier exemplaire de chaque carte n'est jamais dissous. Les paquets offerts s'ouvrent après ceux du jour, sans limite de date.</p>
+    <h3>Compte, échanges et comptoir</h3>
+    <p>Sans compte, la collection reste dans ce navigateur. Avec un compte (pseudo et mot de passe), la collection est gardée par le serveur et se retrouve sur tous vos appareils, et c'est alors le serveur qui tire les cartes. À la création du compte, la collection de ce navigateur est reprise une fois : ces exemplaires comptent pour la collection et l'ordre du jour, mais ne peuvent être ni dissous ni cédés. Les voix et paquets offerts du navigateur ne sont pas repris.</p>
+    <p>À la buvette, on propose à un autre joueur un échange de cartes, qu'il accepte ou refuse. On y tient aussi le comptoir, où les joueurs se vendent et s'achètent des cartes contre des voix. Une carte posée au comptoir est réservée : elle ne peut être ni dissoute ni échangée tant qu'elle y reste.</p>
     <h3>Raretés</h3>
     <p>La rareté d'une carte dépend de son score, comparé à celui des autres parlementaires de la même époque. Par carte tirée : mythique 0,4 %, légendaire 1,6 %, épique 6 %, rare 15 %, peu commune 30 %, commune 46 %. Les élus en exercice gagnent un niveau de rareté.</p>
     <h3>Score</h3>
@@ -275,8 +275,11 @@ footer{max-width:1120px;margin:0 auto;padding:0 1rem 3rem;font-size:.85rem;color
   </section>
 
   <section class="vue objectifs" id="vue-objectifs" hidden>
+    <h2>Premiers pas</h2>
+    <p class="intro">Inscrits à l'ordre du jour : chaque objectif atteint donne des paquets offerts, à ouvrir quand vous voulez, en plus des trois paquets de la séance. Les premiers se remplissent dès les premiers paquets.</p>
+    <p id="tout-reclamer-zone"></p>
+    <ul class="liste-objectifs" id="obj-premiers"></ul>
     <h2>Collections historiques</h2>
-    <p class="intro">Inscrits à l'ordre du jour : chaque palier atteint donne des paquets offerts, à ouvrir quand vous voulez, en plus des trois paquets de la séance.</p>
     <ul class="liste-objectifs" id="obj-historiques"></ul>
     <h2>Législatures</h2>
     <p class="intro">Les députés d'une même assemblée, de la Constituante de 1789 à la législature en cours.</p>
@@ -442,7 +445,7 @@ function majCompteur(){
     : "La séance est levée : vos trois paquets du jour sont ouverts. Reprise des travaux demain.";
   const infos = [];
   if (d.offerts) infos.push(`<span><b>${pluriel(d.offerts, "paquet offert", "paquets offerts")}</b></span>`);
-  if (etat.points) infos.push(`<span><b>${pluriel(etat.points, "jeton")}</b>${d.echangeables ? ", de quoi échanger "+pluriel(d.echangeables, "paquet") : ""}</span>`);
+  if (etat.points) infos.push(`<span><b>${pluriel(etat.points, "voix", "voix")}</b>${d.echangeables ? ", de quoi échanger "+pluriel(d.echangeables, "paquet") : ""}</span>`);
   const attente = cat ? Regles.recompensesEnAttente(etat, cat) : 0;
   if (attente) infos.push(`<span><b>${pluriel(attente, "paquet")}</b> à réclamer à l'ordre du jour</span>`);
   document.getElementById("reserve").innerHTML = infos.join("");
@@ -457,7 +460,7 @@ function afficherPaquet(){
   if (d.total <= 0) {
     const attente = Regles.recompensesEnAttente(etat, cat);
     scene.innerHTML = (attente ? `<button class="bouton" id="vers-objectifs">Réclamer ${pluriel(attente, "paquet")} à l'ordre du jour</button>` : "")
-      + (d.echangeables ? `<button class="bouton" id="echanger">Échanger ${PRIX_PAQUET} jetons contre un paquet</button>` : "")
+      + (d.echangeables ? `<button class="bouton" id="echanger">Échanger ${PRIX_PAQUET} voix contre un paquet</button>` : "")
       + `<button class="bouton discret" id="voir">Voir mon hémicycle</button>`;
     document.getElementById("vers-objectifs")?.addEventListener("click", () => allerA("objectifs"));
     document.getElementById("echanger")?.addEventListener("click", e => occupe(e.target, async () => { if (await actions.echangerPoints()) { majTout(); afficherPaquet(); } }));
@@ -521,20 +524,20 @@ function majAtelier(){
   const points = choisis.reduce((a,r) => a+dbl[r].points, 0), exemplaires = choisis.reduce((a,r) => a+dbl[r].exemplaires, 0);
   const echangeables = Math.floor(etat.points / PRIX_PAQUET);
   const verrouilles = Object.values(etat.verrous || {}).reduce((a,n) => a+n, 0);
-  atelier.innerHTML = `<div class="ligne"><p>${total ? `<b>${pluriel(total, "double")}</b> à dissoudre.` : "Aucun double à dissoudre pour l'instant."} ${etat.points ? `Jetons : <b>${etat.points.toLocaleString("fr-FR")}</b>.` : ""}${verrouilles ? ` ${pluriel(verrouilles, "exemplaire verrouillé", "exemplaires verrouillés")} (repris du navigateur ou au comptoir).` : ""}</p>
-      <div class="boutons">${echangeables ? `<button class="bouton" id="echanger-col">Échanger ${PRIX_PAQUET} jetons contre un paquet</button>` : ""}</div></div>
-    ${total ? `<ul class="choix">${ORDRE.filter(r => dbl[r]).map(r => `<li><label><input type="checkbox" value="${r}" ${recyclageChoisi.has(r)?"checked":""}> ${LIBELLES[r]} : ${pluriel(dbl[r].exemplaires, "double")}, ${pluriel(dbl[r].points, "jeton")}</label></li>`).join("")}</ul>
-      <div class="boutons"><button class="bouton discret" id="recycler" ${exemplaires?"":"disabled"}>${exemplaires ? `Dissoudre ${pluriel(exemplaires, "double")} contre ${pluriel(points, "jeton")}` : "Cochez une rareté à dissoudre"}</button></div>
-      <p class="aide">Le premier exemplaire de chaque carte est toujours gardé. ${PRIX_PAQUET} jetons donnent un paquet offert.</p>` : ""}
+  atelier.innerHTML = `<div class="ligne"><p>${total ? `<b>${pluriel(total, "double")}</b> à dissoudre.` : "Aucun double à dissoudre pour l'instant."} ${etat.points ? `Voix : <b>${etat.points.toLocaleString("fr-FR")}</b>.` : ""}${verrouilles ? ` ${pluriel(verrouilles, "exemplaire verrouillé", "exemplaires verrouillés")} (repris du navigateur ou au comptoir).` : ""}</p>
+      <div class="boutons">${echangeables ? `<button class="bouton" id="echanger-col">Échanger ${PRIX_PAQUET} voix contre un paquet</button>` : ""}</div></div>
+    ${total ? `<ul class="choix">${ORDRE.filter(r => dbl[r]).map(r => `<li><label><input type="checkbox" value="${r}" ${recyclageChoisi.has(r)?"checked":""}> ${LIBELLES[r]} : ${pluriel(dbl[r].exemplaires, "double")}, ${pluriel(dbl[r].points, "voix", "voix")}</label></li>`).join("")}</ul>
+      <div class="boutons"><button class="bouton discret" id="recycler" ${exemplaires?"":"disabled"}>${exemplaires ? `Dissoudre ${pluriel(exemplaires, "double")} contre ${pluriel(points, "voix", "voix")}` : "Cochez une rareté à dissoudre"}</button></div>
+      <p class="aide">Le premier exemplaire de chaque carte est toujours gardé. ${PRIX_PAQUET} voix donnent un paquet offert.</p>` : ""}
     <p class="annonce" aria-live="polite">${annonceRecyclage}</p>`;
   atelier.querySelectorAll("input[type=checkbox]").forEach(i => i.addEventListener("change", () => {
     i.checked ? recyclageChoisi.add(i.value) : recyclageChoisi.delete(i.value); annonceRecyclage = ""; majAtelier();
   }));
   document.getElementById("recycler")?.addEventListener("click", e => {
-    if (!confirm(`Dissoudre ${pluriel(exemplaires, "double")} contre ${pluriel(points, "jeton")} ? Le premier exemplaire de chaque carte est gardé.`)) return;
+    if (!confirm(`Dissoudre ${pluriel(exemplaires, "double")} contre ${pluriel(points, "voix", "voix")} ? Le premier exemplaire de chaque carte est gardé.`)) return;
     occupe(e.target, async () => {
       const r = await actions.recycler(choisis);
-      annonceRecyclage = `${pluriel(r.exemplaires, "double")} dissous : ${pluriel(r.points, "jeton")} ${r.points>1?"gagnés":"gagné"}.`;
+      annonceRecyclage = `${pluriel(r.exemplaires, "double")} dissous : ${pluriel(r.points, "voix", "voix")} ${r.points>1?"gagnées":"gagnée"}.`;
       majTout(); afficherPaquet();
     });
   });
@@ -549,6 +552,15 @@ function majAtelier(){
 function htmlObjectif(o){
   const a = Regles.avancement(etat, o);
   const gain = a.aReclamer.reduce((n,e) => n+e.paquets, 0);
+  if (o.famille === "premier") {
+    // Une seule carte suffit : trouvé ou à trouver, sans compteur
+    const trouve = a.obtenues > 0, recu = a.etapes[0].reclame;
+    return `<li class="objectif${gain?" pret":""}">
+      <h3>${echapper(o.titre)}</h3>${o.sousTitre ? `<p class="sous">${echapper(o.sousTitre)}</p>` : ""}
+      <div class="compte"><span>${recu ? "Trouvé, paquet reçu" : trouve ? "Trouvé" : "À trouver"}</span><span>${pluriel(a.etapes[0].paquets, "paquet")}</span></div>
+      ${gain ? `<button class="bouton" data-reclamer="${echapper(o.id)}">Réclamer ${pluriel(gain, "paquet")}</button>` : ""}
+    </li>`;
+  }
   const part = Math.min(100, Math.round(100 * a.obtenues / (a.prochain ? a.prochain.seuil : o.total)));
   return `<li class="objectif${gain?" pret":""}">
     <h3>${echapper(o.titre)}</h3>${o.sousTitre ? `<p class="sous">${echapper(o.sousTitre)}</p>` : ""}
@@ -561,6 +573,13 @@ function htmlObjectif(o){
 function majObjectifs(){
   if (!cat) return;
   const parFamille = f => cat.objectifs.filter(o => o.famille === f);
+  const enAttente = cat.objectifs.filter(o => Regles.avancement(etat, o).aReclamer.length);
+  document.getElementById("tout-reclamer-zone").innerHTML = enAttente.length > 1
+    ? `<button class="bouton" id="tout-reclamer">Tout réclamer : ${pluriel(Regles.recompensesEnAttente(etat, cat), "paquet")}</button>` : "";
+  // Premiers pas : ceux à réclamer d'abord, puis ceux à trouver, puis ceux déjà reçus
+  const rang = o => { const a = Regles.avancement(etat, o); return a.aReclamer.length ? 0 : a.prochain ? 1 : 2; };
+  document.getElementById("obj-premiers").innerHTML = cat.objectifs.filter(o => o.famille==="premier" || o.famille==="collection")
+    .map(o => [o, rang(o)]).sort((x, y) => x[1] - y[1]).map(([o]) => htmlObjectif(o)).join("");
   document.getElementById("obj-historiques").innerHTML = cat.objectifs.filter(o => o.famille==="historique" || o.famille==="presidents").map(htmlObjectif).join("");
   document.getElementById("obj-legislatures").innerHTML = parFamille("legislature").map(htmlObjectif).join("");
   // Départements : ceux à réclamer puis les plus avancés d'abord ; la recherche filtre par nom
@@ -571,6 +590,14 @@ function majObjectifs(){
   document.getElementById("obj-departements").innerHTML = deps.length ? deps.map(([o]) => htmlObjectif(o)).join("") : `<p class="vide">Aucun département ne correspond à cette recherche.</p>`;
 }
 document.getElementById("vue-objectifs").addEventListener("click", e => {
+  if (e.target.id === "tout-reclamer") {
+    occupe(e.target, async () => {
+      let n = 0;
+      for (const o of cat.objectifs.filter(o => Regles.avancement(etat, o).aReclamer.length)) n += await actions.reclamer(o.id) || 0;
+      majTout(); afficherPaquet(); signaler(`${pluriel(n, "paquet offert", "paquets offerts")} à ouvrir dans l'onglet Séance.`);
+    });
+    return;
+  }
   const b = e.target.closest("[data-reclamer]");
   if (!b) return;
   occupe(b, async () => { if (await actions.reclamer(b.dataset.reclamer)) { majTout(); afficherPaquet(); } });
@@ -610,31 +637,31 @@ function majCompte(){
   if (compte) {
     const cartesTenues = Object.keys(etat.possedees).length;
     vue.innerHTML = `<h2>${echapper(compte.pseudo)}</h2>
-      <p>Vous siégez. Votre hémicycle est gardé par le serveur : ${pluriel(cartesTenues, "carte différente", "cartes différentes")}, ${pluriel(etat.points, "jeton")}, ${pluriel(etat.offerts, "paquet offert", "paquets offerts")}. Vous le retrouvez sur tout appareil où vous prenez séance.</p>
-      <p class="note">La collection de ce navigateur, sans siège, reste enregistrée ici à part ; elle réapparaît si vous quittez l'hémicycle.</p>
-      <button class="bouton discret" id="deconnexion">Quitter l'hémicycle</button>`;
+      <p>Votre hémicycle est gardé par le serveur : ${pluriel(cartesTenues, "carte différente", "cartes différentes")}, ${pluriel(etat.points, "voix", "voix")}, ${pluriel(etat.offerts, "paquet offert", "paquets offerts")}. Vous le retrouvez sur tout appareil où vous vous connectez.</p>
+      <p class="note">La collection de ce navigateur, sans compte, reste enregistrée ici à part ; elle réapparaît si vous vous déconnectez.</p>
+      <button class="bouton discret" id="deconnexion">Se déconnecter</button>`;
     document.getElementById("deconnexion").addEventListener("click", e => occupe(e.target, async () => {
-      await appel("deconnexion", {}); compte = null; etat = depot.charger(); majTout(); afficherPaquet(); signaler("Vous avez quitté l'hémicycle.");
+      await appel("deconnexion", {}); compte = null; etat = depot.charger(); majTout(); afficherPaquet(); signaler("Vous êtes déconnecté.");
     }));
     return;
   }
   if (!serveur) {
-    vue.innerHTML = `<h2>Mon siège</h2><p>Les élections ne sont pas encore ouvertes sur ce site. Votre collection reste enregistrée dans ce navigateur.</p>`;
+    vue.innerHTML = `<h2>Mon siège</h2><p>Les comptes ne sont pas encore ouverts sur ce site. Votre collection reste enregistrée dans ce navigateur.</p>`;
     return;
   }
   const locales = Object.keys(depot.charger().possedees).length;
   const local = depot.charger();
   vue.innerHTML = `<h2>Mon siège</h2>
-    <p>Un siège garde votre collection sur le serveur, la rend disponible sur tous vos appareils et ouvre les portes de la buvette : tractations entre joueurs et comptoir.</p>
-    <div class="bascule" role="group" aria-label="Choix"><button aria-pressed="${ongletCompte==="inscription"}" data-onglet="inscription">Se faire élire</button><button aria-pressed="${ongletCompte==="connexion"}" data-onglet="connexion">Prendre séance</button></div>
+    <p>Un compte garde votre collection sur le serveur, la rend disponible sur tous vos appareils et ouvre les portes de la buvette : échanges entre joueurs et comptoir.</p>
+    <div class="bascule" role="group" aria-label="Choix"><button aria-pressed="${ongletCompte==="inscription"}" data-onglet="inscription">Créer un compte</button><button aria-pressed="${ongletCompte==="connexion"}" data-onglet="connexion">Se connecter</button></div>
     <form class="formulaire" id="form-compte" novalidate>
       <label>Pseudo<input type="text" name="pseudo" autocomplete="username" required minlength="3" maxlength="20" autocapitalize="off" spellcheck="false"></label>
       <label>Mot de passe<input type="password" name="mdp" autocomplete="${ongletCompte==="inscription"?"new-password":"current-password"}" required minlength="10"></label>
       ${ongletCompte==="inscription" ? `<label>Confirmation du mot de passe<input type="password" name="mdp2" autocomplete="new-password" required></label>
       ${locales ? `<label class="case"><input type="checkbox" name="reprise" checked> <span>Reprendre les ${pluriel(locales, "carte")} de ce navigateur. Elles compteront pour la collection et l'ordre du jour, sans pouvoir être dissoutes ni cédées.</span></label>` : ""}
-      ${local.points || local.offerts ? `<p class="note">Vos ${local.points ? pluriel(local.points, "jeton") : ""}${local.points && local.offerts ? " et " : ""}${local.offerts ? pluriel(local.offerts, "paquet offert", "paquets offerts") : ""} ne seront pas repris : utilisez-les avant de vous faire élire.</p>` : ""}
+      ${local.points || local.offerts ? `<p class="note">Vos ${local.points ? pluriel(local.points, "voix", "voix") : ""}${local.points && local.offerts ? " et " : ""}${local.offerts ? pluriel(local.offerts, "paquet offert", "paquets offerts") : ""} ne seront pas repris : utilisez-les avant de créer le compte.</p>` : ""}
       <p class="note">Le mot de passe doit faire au moins 10 caractères. Il ne peut pas encore être récupéré en cas d'oubli : notez-le.</p>` : ""}
-      <button class="bouton" type="submit">${ongletCompte==="inscription" ? "Se faire élire" : "Prendre séance"}</button>
+      <button class="bouton" type="submit">${ongletCompte==="inscription" ? "Créer le compte" : "Se connecter"}</button>
       <p class="erreur" id="erreur-compte" aria-live="polite"></p>
     </form>`;
   vue.querySelectorAll("[data-onglet]").forEach(b => b.addEventListener("click", () => { ongletCompte = b.dataset.onglet; majCompte(); }));
@@ -650,12 +677,12 @@ function majCompte(){
     bouton.disabled = true; bouton.textContent = "Vérification…";
     etirer(pseudo, mdp).then(preuve => appel(ongletCompte, {pseudo, preuve,
       ...(ongletCompte === "inscription" && f.reprise?.checked ? {collection: depot.charger().possedees} : {})}))
-      .then(() => { majTout(); afficherPaquet(); signaler(ongletCompte === "inscription" ? "Élection validée. Bienvenue dans l'hémicycle !" : "Vous avez pris séance."); })
-      .catch(x => { erreur.textContent = x.message; bouton.disabled = false; bouton.textContent = ongletCompte==="inscription" ? "Se faire élire" : "Prendre séance"; });
+      .then(() => { majTout(); afficherPaquet(); signaler(ongletCompte === "inscription" ? "Compte créé. Bienvenue dans l'hémicycle !" : "Vous êtes connecté."); })
+      .catch(x => { erreur.textContent = x.message; bouton.disabled = false; bouton.textContent = ongletCompte==="inscription" ? "Créer le compte" : "Se connecter"; });
   });
 }
 
-/* ---------- Buvette : tractations (échanges entre joueurs) et comptoir (marché) ---------- */
+/* ---------- Buvette : échanges entre joueurs et comptoir (marché) ---------- */
 // Sélecteur de cartes : recherche parmi une réserve (id -> exemplaires libres), choix des quantités
 function selecteur(conteneur, reserve, titre){
   const choix = {};
@@ -681,40 +708,40 @@ function selecteur(conteneur, reserve, titre){
 }
 const mesLibres = () => Object.fromEntries(Object.keys(etat.possedees).map(id => [id, Regles.disponibles(etat, id)]).filter(([, n]) => n > 0));
 let buvetteConstruite = false, partenaire = null, sesLibres = {}, selDonne, selRecoit, selVente;
-const STATUTS = {proposee: "en discussion", acceptee: "adoptée", refusee: "rejetée", annulee: "retirée", ouverte: "au comptoir", vendue: "vendue", retiree: "retirée"};
+const STATUTS = {proposee: "en attente", acceptee: "accepté", refusee: "refusé", annulee: "retiré", ouverte: "au comptoir", vendue: "vendue", retiree: "retirée"};
 function majBuvette(){
   const vue = document.getElementById("vue-buvette");
   if (!cat) return;
   if (!compte) {
     buvetteConstruite = false;
-    vue.innerHTML = `<h2>Buvette</h2><p>${serveur ? "La buvette est réservée aux élus : faites-vous élire ou prenez séance pour mener des tractations avec d'autres joueurs et tenir le comptoir." : "La buvette ouvrira avec les élections."}</p>
-      ${serveur ? `<button class="bouton" id="vers-compte">Se faire élire</button>` : ""}`;
+    vue.innerHTML = `<h2>Buvette</h2><p>${serveur ? "Créez un compte ou connectez-vous pour échanger des cartes avec d'autres joueurs et passer au comptoir." : "La buvette ouvrira avec les comptes."}</p>
+      ${serveur ? `<button class="bouton" id="vers-compte">Créer un compte</button>` : ""}`;
     document.getElementById("vers-compte")?.addEventListener("click", () => allerA("compte"));
     return;
   }
   if (!buvetteConstruite) construireBuvette(vue);
   selDonne.redessiner(); selRecoit.redessiner(); selVente.redessiner();
-  document.getElementById("jetons-buvette").textContent = pluriel(etat.points, "jeton");
+  document.getElementById("voix-buvette").textContent = pluriel(etat.points, "voix", "voix");
 }
 function construireBuvette(vue){
   buvetteConstruite = true;
-  vue.innerHTML = `<h2>Tractations</h2>
+  vue.innerHTML = `<h2>Échanges</h2>
     <ul class="lignes-buvette" id="liste-echanges"></ul>
-    <h3>Engager une tractation</h3>
+    <h3>Proposer un échange</h3>
     <form class="formulaire" id="form-partenaire"><label>Pseudo du joueur<input type="text" name="pseudo" required autocapitalize="off" spellcheck="false"></label><button class="bouton discret" type="submit">Voir ses cartes libres</button></form>
     <div class="colonnes"><div id="sel-donne"></div><div id="sel-recoit"></div></div>
-    <p><button class="bouton" id="proposer" disabled>Déposer la proposition</button></p>
+    <p><button class="bouton" id="proposer" disabled>Proposer l'échange</button></p>
     <h2>Le comptoir</h2>
-    <p>Vous avez <b id="jetons-buvette"></b> pour acheter.</p>
+    <p>Vous avez <b id="voix-buvette"></b> pour acheter.</p>
     <div class="outils"><input id="recherche-marche" type="search" placeholder="Rechercher une carte au comptoir" aria-label="Rechercher une carte au comptoir">
       <select id="tri-marche" aria-label="Trier le comptoir"><option value="recent">Les plus récentes</option><option value="prix">Les moins chères</option></select></div>
     <ul class="lignes-buvette" id="liste-marche"></ul>
     <h3>Poser une carte au comptoir</h3>
     <div id="sel-vente"></div>
-    <form class="formulaire" id="form-vente"><label>Prix en jetons<input type="number" name="prix" min="1" max="100000" step="1" required></label><button class="bouton" type="submit">Poser au comptoir</button></form>
+    <form class="formulaire" id="form-vente"><label>Prix en voix<input type="number" name="prix" min="1" max="100000" step="1" required></label><button class="bouton" type="submit">Poser au comptoir</button></form>
     <h3>Mes cartes au comptoir</h3>
     <ul class="lignes-buvette" id="mes-annonces"></ul>`;
-  selDonne = selecteur(document.getElementById("sel-donne"), mesLibres, "Je cède");
+  selDonne = selecteur(document.getElementById("sel-donne"), mesLibres, "Je donne");
   selRecoit = selecteur(document.getElementById("sel-recoit"), () => sesLibres, "Je demande");
   selVente = selecteur(document.getElementById("sel-vente"), mesLibres, "Carte à poser au comptoir (une à la fois)");
   const majProposer = () => { document.getElementById("proposer").disabled = !partenaire || !Object.keys(selDonne.choix).length && !Object.keys(selRecoit.choix).length; };
@@ -729,7 +756,7 @@ function construireBuvette(vue){
   });
   document.getElementById("proposer").addEventListener("click", e => occupe(e.target, async () => {
     await appel("echanges", {vers: partenaire, donne: selDonne.choix, recoit: selRecoit.choix});
-    selDonne.vider(); selRecoit.vider(); signaler(`Proposition déposée auprès de ${partenaire}.`); chargerEchanges();
+    selDonne.vider(); selRecoit.vider(); signaler(`Échange proposé à ${partenaire}.`); chargerEchanges();
   }));
   document.getElementById("form-vente").addEventListener("submit", e => {
     e.preventDefault();
@@ -750,7 +777,7 @@ function construireBuvette(vue){
       await appel(`${type}/${id}/${action}`, {});
       await appel("moi"); majTout();
       if (type === "echanges") chargerEchanges(); else { chargerMarche(); chargerAnnonces(); }
-      signaler({accepter: "Proposition adoptée : les cartes ont changé de main.", refuser: "Proposition rejetée.", annuler: "Proposition retirée.",
+      signaler({accepter: "Échange accepté : les cartes ont changé de main.", refuser: "Échange refusé.", annuler: "Proposition retirée.",
         acheter: "Carte achetée : elle a pris place dans votre hémicycle.", retirer: "Carte retirée du comptoir."}[action]);
     });
   });
@@ -762,10 +789,10 @@ async function chargerEchanges(){
   document.getElementById("liste-echanges").innerHTML = d.echanges.length ? d.echanges.map(x => {
     const vous = x.recu ? `${echapper(x.avec)} vous propose ${lotTexte(x.donne)} contre ${lotTexte(x.recoit)}` : `Vous proposez ${lotTexte(x.donne)} à ${echapper(x.avec)} contre ${lotTexte(x.recoit)}`;
     const boutons = x.statut !== "proposee" ? `<span class="note">${STATUTS[x.statut]}</span>` : x.recu
-      ? `<button class="bouton" data-action="echanges:${x.id}:accepter">Adopter</button><button class="bouton discret" data-action="echanges:${x.id}:refuser">Rejeter</button>`
-      : `<span class="note">en discussion</span><button class="bouton discret" data-action="echanges:${x.id}:annuler">Retirer</button>`;
+      ? `<button class="bouton" data-action="echanges:${x.id}:accepter">Accepter</button><button class="bouton discret" data-action="echanges:${x.id}:refuser">Refuser</button>`
+      : `<span class="note">en attente</span><button class="bouton discret" data-action="echanges:${x.id}:annuler">Retirer</button>`;
     return `<li><span class="quoi">${vous}</span><span class="actions-ligne">${boutons}</span></li>`;
-  }).join("") : `<li class="note">Aucune tractation pour l'instant.</li>`;
+  }).join("") : `<li class="note">Aucun échange pour l'instant.</li>`;
 }
 let annoncesMarche = [];
 async function chargerMarche(){
@@ -777,14 +804,14 @@ function dessinerMarche(){
   const liste = annoncesMarche.filter(a => cat.parId[a.carte] && (!q || cat.parId[a.carte].cherche.includes(q)));
   document.getElementById("liste-marche").innerHTML = liste.length ? liste.map(a => {
     const miennes = a.vendeur === compte.pseudo;
-    return `<li><span class="quoi">${nomCarte(a.carte)}</span><span>${pluriel(a.prix, "jeton")}</span><span class="note">${miennes ? "votre carte" : "par "+echapper(a.vendeur)}</span>
+    return `<li><span class="quoi">${nomCarte(a.carte)}</span><span>${pluriel(a.prix, "voix", "voix")}</span><span class="note">${miennes ? "votre carte" : "par "+echapper(a.vendeur)}</span>
       ${miennes ? "" : `<button class="bouton" data-action="annonces:${a.id}:acheter" ${etat.points < a.prix ? "disabled" : ""}>Acheter</button>`}</li>`;
   }).join("") : `<li class="note">${annoncesMarche.length ? "Aucune carte du comptoir ne correspond." : "Le comptoir est vide pour l'instant."}</li>`;
 }
 async function chargerAnnonces(){
   const d = await appel("annonces").catch(e => { signaler(e.message); return null; });
   if (!d) return;
-  document.getElementById("mes-annonces").innerHTML = d.annonces.length ? d.annonces.map(a => `<li><span class="quoi">${nomCarte(a.carte)}</span><span>${pluriel(a.prix, "jeton")}</span>
+  document.getElementById("mes-annonces").innerHTML = d.annonces.length ? d.annonces.map(a => `<li><span class="quoi">${nomCarte(a.carte)}</span><span>${pluriel(a.prix, "voix", "voix")}</span>
     <span class="note">${STATUTS[a.statut]}${a.acheteur ? " à "+echapper(a.acheteur) : ""}</span>${a.statut==="ouverte" ? `<button class="bouton discret" data-action="annonces:${a.id}:retirer">Retirer</button>` : ""}</li>`).join("")
     : `<li class="note">Aucune carte au comptoir.</li>`;
 }

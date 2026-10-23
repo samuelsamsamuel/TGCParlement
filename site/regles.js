@@ -95,14 +95,41 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
   // Catalogue réduit pour le serveur (site/serveur.json) : seulement ce que les règles utilisent. Il est écrit
   // à partir du catalogue complet par scripts/catalogue_serveur.js : les objectifs sont donc calculés une seule
   // fois, par ce même fichier, et le serveur ne lit pas les 6 Mo de jeu.json.
+  // Membres d'un objectif : index des cartes codés en plages contiguës [début, longueur, début, longueur...]
+  // (« Remplir l'hémicycle » couvre toutes les cartes : une seule plage)
+  function enPlages(indices) {
+    const tries = [...indices].sort((a, b) => a - b), plages = [];
+    for (const i of tries) {
+      const n = plages.length;
+      if (n && plages[n - 2] + plages[n - 1] === i) plages[n - 1] += 1; else plages.push(i, 1);
+    }
+    return plages;
+  }
+  function dePlages(plages, cartes) {
+    const ids = [];
+    for (let k = 0; k < plages.length; k += 2) for (let i = plages[k]; i < plages[k] + plages[k + 1]; i++) ids.push(cartes[i].id);
+    return ids;
+  }
   function compacter(cat) {
     const raretes = ORDRE.slice(), index = new Map(cat.cartes.map((c, i) => [c.id, i]));
     return {raretes, cartes: cat.cartes.map(c => [c.id, raretes.indexOf(c.rarete), c.actuel ? 1 : 0, c.score]),
-      objectifs: cat.objectifs.map(o => [o.id, o.famille, o.titre, o.sousTitre, o.ids.map(id => index.get(id))])};
+      objectifs: cat.objectifs.map(o => [o.id, o.famille, o.titre, o.sousTitre, enPlages(o.ids.map(id => index.get(id)))])};
   }
+  // Catalogue du serveur. Les membres d'un objectif ne sont décodés qu'à sa première évaluation (réclamation,
+  // reprise d'une collection) : le serveur reste ainsi sous la limite de calcul d'une requête du plan gratuit.
   function catalogueCompact(data) {
     const cartes = data.cartes.map(([id, r, actuel, score]) => ({id, rarete: data.raretes[r], actuel: !!actuel, score}));
-    return catalogue(cartes, [], data.objectifs.map(([id, f, t, s, idx]) => [id, f, t, s, idx.map(i => cartes[i].id)]));
+    const cat = catalogue(cartes, [], []);
+    cat.objectifs = data.objectifs.map(([id, famille, titre, sous, plages]) => {
+      let total = 0;
+      for (let k = 1; k < plages.length; k += 2) total += plages[k];
+      const o = {id, famille, titre, sousTitre: sous, total, paliers: paliers(famille, total)};
+      let ids = null;
+      Object.defineProperty(o, "ids", {enumerable: true, get: () => ids ||= dePlages(plages, cartes)});
+      return o;
+    });
+    cat.objectifParId = Object.fromEntries(cat.objectifs.map(o => [o.id, o]));
+    return cat;
   }
 
   /* ---------- Paquets ---------- */
@@ -181,13 +208,21 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
   // montent plus haut. Un palier au-delà de la taille de l'objectif est retiré ; la collection complète
   // donne toujours le dernier palier.
   const PALIERS = {
+    // Premiers pas : une seule carte suffit (premier membre du Gouvernement, première sénatrice ou premier
+    // sénateur, première carte épique...) ; de quoi gagner vite ses premiers paquets offerts
+    premier: [[1, 1]],
+    // Taille de l'hémicycle (cartes différentes) : 348 sénateurs, 577 députés
+    collection: [[10, 1], [25, 1], [50, 2], [100, 2], [250, 3], [348, 3], [577, 5], [1000, 5]],
     historique: [[1, 1], [5, 2], [15, 3]],
     presidents: [[1, 1], [5, 2], [15, 3], [40, 4]],
     legislature: [[10, 1], [50, 2], [150, 3]],
     departement: [[5, 1], [15, 2], [40, 3]],
   };
   const COMPLETE = 5;  // paquets offerts pour une collection complète
+  const ORDRE_EPOQUES = ["Révolution et Empire", "Monarchies constitutionnelles", "IIe République et Second Empire",
+    "IIIe République", "Libération et IVe République", "Ve République"];
   function paliers(famille, total) {
+    if (famille === "premier") return [[1, 1]];
     const p = PALIERS[famille].filter(([s]) => s < total);
     p.push([total, Math.max(COMPLETE, (p.length ? p[p.length - 1][1] : 0) + 1)]);
     return p;
@@ -197,13 +232,28 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
   }
   function definirObjectifs(cat) {
     const avec = code => cat.cartes.filter(c => c.distinctions.includes(code)).map(c => c.id);
-    const liste = [
+    const premier = (id, titre, test, sous = "") => {
+      const ids = cat.cartes.filter(test).map(c => c.id);
+      if (ids.length) liste.push(objectif("premier:" + id, "premier", titre, ids, sous));
+    };
+    const liste = [];
+    premier("gouvernement", "Premier membre du Gouvernement", c => c.chambres.includes("G"), "Un ministre ou un secrétaire d'État");
+    premier("depute", "Premier député", c => c.chambres.includes("A"));
+    premier("senateur", "Premier sénateur", c => c.chambres.includes("S"));
+    premier("elue", "Première femme parlementaire", c => c.sexe === "F");
+    premier("en-exercice", "Premier élu en exercice", c => c.actuel, "Un parlementaire ou un ministre d'aujourd'hui");
+    premier("chef", "Premier chef de l'État ou du Gouvernement", c => c.distinctions.some(d => d === "chef-etat" || d === "chef-gouvernement" || d === "chef-etat-interim"));
+    for (const [r, titre] of [["rare", "Première carte rare"], ["epique", "Première carte épique"], ["legendaire", "Première carte légendaire"], ["mythique", "Première carte mythique"]])
+      premier("rarete:" + r, titre, c => c.rarete === r);
+    for (const e of [...new Set(cat.cartes.map(c => c.epoque).filter(Boolean))].sort((a, b) => ORDRE_EPOQUES.indexOf(a) - ORDRE_EPOQUES.indexOf(b)))
+      premier("epoque:" + normer(e).replace(/ /g, "-"), "Premier parlementaire : " + e, c => c.epoque === e);
+    liste.push(objectif("hemicycle", "collection", "Remplir l'hémicycle", cat.cartes.map(c => c.id), "Cartes différentes de votre collection"));
+    liste.push(
       objectif("quatre-vingts", "historique", "Les Quatre-vingts", avec("quatre-vingts"), "Parlementaires qui refusèrent les pleins pouvoirs à Pétain le 10 juillet 1940"),
       objectif("compagnons", "historique", "Compagnons de la Libération", avec("compagnon-liberation"), "Parlementaires faits Compagnons de la Libération"),
       objectif("presidents-assemblee", "presidents", "Présidents de l'Assemblée",
         cat.cartes.filter(c => c.distinctions.includes("presidence-an-longue") || c.distinctions.includes("presidence-an-courte")).map(c => c.id),
-        "Présidents de l'Assemblée et des chambres qui l'ont précédée"),
-    ];
+        "Présidents de l'Assemblée et des chambres qui l'ont précédée"));
     // Une législature : cartes ayant siégé dans cette assemblée (index dans la table assemblees de jeu.json)
     const parAssemblee = cat.assemblees.map(() => []);
     for (const c of cat.cartes) for (const i of c.assemblees || []) if (parAssemblee[i]) parAssemblee[i].push(c.id);

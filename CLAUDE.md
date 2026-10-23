@@ -58,6 +58,10 @@ Sénat, lu dans l'export complet `export_sens.zip`, tables `bur` et `senbur`) ; 
   paquet. Un paquet de doubles rapporte en moyenne 21 points : le prix doit rester au-dessus, sans quoi le
   recyclage créerait des paquets sans fin (vérifié par le test). Par défaut, seules les raretés commune à
   rare sont cochées pour le recyclage : les doubles plus rares serviront aux échanges entre joueurs.
+- Premiers pas, pour des récompenses rapides : premier membre du Gouvernement, premier député, premier sénateur,
+  première femme parlementaire, premier élu en exercice, premier chef de l'État ou du Gouvernement, première
+  carte de chaque rareté (rare à mythique), premier parlementaire de chaque époque (un paquet chacun) ; et
+  « Remplir l'hémicycle » (10, 25, 50, 100, 250, 348, 577, 1000 cartes différentes). Bouton « Tout réclamer ».
 - Objectifs : Quatre-vingts, Compagnons de la Libération, présidents de l'Assemblée, chaque législature
   (table `assemblees` de `jeu.json`), chaque département d'au moins cinq cartes. Paliers dans `PALIERS` ;
   la collection complète donne 5 paquets et a sa propre clé (`@complet`), pour ne se réclamer qu'une fois.
@@ -67,10 +71,11 @@ Sénat, lu dans l'export complet `export_sens.zip`, tables `bur` et `senbur`) ; 
 ## Vocabulaire du jeu (références parlementaires)
 
 Onglets : Séance (paquets du jour), Hémicycle (collection), Ordre du jour (objectifs), Buvette (échanges et
-marché), Mon siège (compte), Règlement (règles). Dissoudre des doubles (recyclage) rapporte des jetons ; à la
-buvette, les tractations (échanges entre joueurs) s'adoptent, se rejettent ou se retirent, et les cartes se
-vendent au comptoir (marché). Créer un compte : se faire élire ; se connecter : prendre séance ; se
-déconnecter : quitter l'hémicycle. Les noms de code (fonctions, API, base) gardent les termes techniques.
+marché), Mon siège (compte), Règlement (règles). Dissoudre des doubles (recyclage) rapporte des voix, la
+monnaie du jeu (« acheter des voix est parfaitement réglementaire ») ; à la buvette, les joueurs échangent
+des cartes et se les vendent au comptoir. Pas plus de termes : compte, connexion et échanges gardent des mots
+simples (« prendre séance » et consorts ont été écartés). Les noms de code (fonctions, API, base, champ
+`points`) gardent les termes techniques.
 
 ## Serveur : comptes, échanges, marché
 
@@ -87,7 +92,9 @@ déconnecter : quitter l'hémicycle. Les noms de code (fonctions, API, base) gar
 - Reprise de la collection locale à l'inscription, une fois : exemplaires « importés », verrouillés (ni
   recyclés ni cédés), faute de pouvoir vérifier leur origine ; paliers déjà atteints marqués réclamés ; points
   et paquets offerts non repris. Une carte en vente est « réservée », verrouillée de même.
-- Monnaie du marché : les points de recyclage. Pas d'argent réel.
+- Monnaie du marché : les voix (champ `points`), gagnées en dissolvant des doubles. Pas d'argent réel.
+- Catalogue du serveur : membres des objectifs codés en plages et décodés à la demande ; le catalogue n'est
+  chargé que par les routes qui en ont besoin (environ 12 ms au premier chargement, en cache ensuite).
 - Limites connues : un joueur peut ouvrir plusieurs comptes et faire passer leurs cartes vers un seul
   (inscriptions limitées à cinq par heure et par adresse IP, sans plus) ; pas de modération des pseudos.
 
@@ -95,7 +102,7 @@ déconnecter : quitter l'hémicycle. Les noms de code (fonctions, API, base) gar
 
 1. Application : comptes, sauvegarde côté serveur, buvette (tractations et comptoir) en service, base D1
    « hemicycle » reliée dans `wrangler.jsonc`. Ensuite : adresse e-mail vérifiée (récupération du mot de
-   passe, frein aux comptes multiples), modération des pseudos, notifications de tractation.
+   passe, frein aux comptes multiples) écartée pour l'instant ; modération des pseudos, notifications d'échange.
 2. Lacunes connues, faute de source officielle structurée : sénateurs de la IIIe République et du Conseil
    de la République (1946-1948), gouvernements antérieurs à 1944, villes des circonscriptions avant 2012,
    fonctions au sein de l'Assemblée avant juin 2002 (seuls les comptes rendus de séance en PDF les portent ;
