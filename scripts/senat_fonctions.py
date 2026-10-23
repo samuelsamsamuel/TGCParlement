@@ -7,6 +7,8 @@ Les fonctions sont ajoutées aux listes déjà établies pour l'Assemblée (mêm
 détail des fonctions de chaque carte. Le Bureau du Sénat (vice-présidents, questeurs, secrétaires) ne
 figure pas dans ces exports : il est lu dans l'export complet de la base par senat_bureau.py.
 Rattachement : matricule du Sénat -> carte, d'après data/senat/correspondances.json (écrit par cartes.py).
+Symétrie avec l'Assemblée (DECISION_SYMETRIE) : le détail des cartes garde toute l'histoire, mais seules
+les fonctions exercées à partir du 19 juin 2002 donnent des points.
 Sortie complémentaire : data/listes/rapports/senat-fonctions-rapport.txt
 """
 import json
@@ -18,8 +20,61 @@ from collections import Counter, defaultdict
 
 sys.path.insert(0, os.path.dirname(__file__))
 from senateurs import telecharger  # noqa: E402
+from gouvernements_an import LISTES_ASSEMBLEE  # noqa: E402
 
 RAPPORT = os.path.join("data", "listes", "rapports", "senat-fonctions-rapport.txt")
+F_DETAIL = os.path.join("data", "gouvernement", "fonctions_assemblee.json")
+
+# Ouverture de la XIIe législature, d'après l'organe « Assemblée nationale de la 12ème législature »
+# d'AMO30 (data.assemblee-nationale.fr). C'est le début réel de la couverture de l'Assemblée.
+COUVERTURE_ASSEMBLEE = "2002-06-19"
+DECISION_SYMETRIE = (
+    "Les fonctions au sein de l'Assemblée (Bureau, présidences de commission et de groupe, rapporteur "
+    "général) ne sont connues par l'open data de l'Assemblée qu'à partir de la XIIe législature : "
+    "l'historique AMO30 ne porte aucun mandat au Bureau avant juin 2002, et aucune source officielle "
+    "structurée ne couvre 1958-2002 (le site de l'Assemblée n'offre que des listes partielles, comme celle "
+    "des femmes vice-présidentes, et les comptes rendus des séances en PDF). Le Sénat, lui, couvre ces "
+    "fonctions depuis 1959. Pour que députés et sénateurs d'une même époque soient notés de la même façon, "
+    f"une fonction du Sénat ne donne des points que si elle a été exercée le {COUVERTURE_ASSEMBLEE} ou "
+    "après (en cours, ou terminée à cette date ou plus tard). Les fonctions antérieures restent dans le "
+    "détail de la carte, sans points. Une fonction sans aucune date ne donne pas de points.")
+
+
+def compte_pour_les_points(debut, fin):
+    if fin:
+        return fin >= COUVERTURE_ASSEMBLEE
+    return debut is not None  # fonction en cours
+
+
+def est_du_senat(ligne):
+    return ligne["fonction"].endswith(" du Sénat") or ligne["fonction"].endswith(" au Sénat")
+
+
+def ecrire_listes(codes, senat, detail, source, libelles=None):
+    """Liste = membres de l'Assemblée (lus dans le détail, hors lignes du Sénat) + membres du Sénat retenus.
+
+    Reconstruite à chaque exécution : un sénateur qui ne remplit plus la règle en sort."""
+    bilan = {}
+    for code in codes:
+        assemblee = {k for k, v in detail.items() for x in v if x["liste"] == code and not est_du_senat(x)}
+        chemin = os.path.join("data", "listes", code + ".json")
+        liste = {"code": code, "points": None, "plancher": None, "libelle": code, "source": "", "ids": []}
+        if os.path.exists(chemin):
+            with open(chemin, encoding="utf-8") as f:
+                liste = json.load(f)
+        if libelles and code in libelles:
+            liste["points"], liste["libelle"] = libelles[code]
+        base = {i for i in liste["ids"] if str(i) in assemblee}
+        avant = len(liste["ids"])
+        liste["ids"] = sorted(base | senat.get(code, set()), key=str)
+        # Source : segments de l'Assemblée conservés ; chaque liste n'est complétée que par un script du Sénat,
+        # dont le segment est remplacé à chaque exécution
+        parties = [x for x in (liste.get("source") or "").split(" ; ") if x and not x.startswith("Sénat")]
+        liste["source"] = " ; ".join(parties + [source])
+        with open(chemin, "w", encoding="utf-8") as f:
+            json.dump(liste, f, ensure_ascii=False, indent=1)
+        bilan[code] = (len(base), len(senat.get(code, set())), avant, len(liste["ids"]))
+    return bilan
 
 
 def norme(t):
@@ -111,38 +166,36 @@ def main():
                 trouvees.append(("presidence-groupe", l[g["matricule"]].strip(), f"Président du groupe {organe} au Sénat",
                                  iso(l.get(g["debut"])), iso(l.get(g["fin"]))))
 
-    # Ajout aux listes et au détail des fonctions (établis pour l'Assemblée par gouvernements_an.py)
-    f_detail = os.path.join("data", "gouvernement", "fonctions_assemblee.json")
+    # Détail des fonctions (établi pour l'Assemblée par gouvernements_an.py) : les lignes de ce script
+    # sont remplacées à chaque exécution ; listes reconstruites selon DECISION_SYMETRIE
+    codes = ("presidence-commission", "rapporteur-general", "presidence-groupe")
     detail = defaultdict(list)
-    if os.path.exists(f_detail):
-        with open(f_detail, encoding="utf-8") as f:
+    if os.path.exists(F_DETAIL):
+        with open(F_DETAIL, encoding="utf-8") as f:
             detail.update(json.load(f))
-    ajouts, orphelins = defaultdict(set), set()
+    for ident in list(detail):
+        detail[ident] = [x for x in detail[ident] if not (x["liste"] in codes and est_du_senat(x))]
+    ajouts, sans_points, orphelins = defaultdict(set), defaultdict(set), set()
     for code, matricule, titre, debut, fin in trouvees:
         ident = carte_de.get(matricule)
         if ident is None:
             orphelins.add(matricule)
             continue
-        ajouts[code].add(ident)
+        (ajouts if compte_pour_les_points(debut, fin) else sans_points)[code].add(ident)
         ligne = {"fonction": titre, "liste": code, "debut": debut, "fin": fin}
         if ligne not in detail[str(ident)]:
             detail[str(ident)].append(ligne)
-    for code, ids in ajouts.items():
-        chemin = os.path.join("data", "listes", code + ".json")
-        if os.path.exists(chemin):
-            with open(chemin, encoding="utf-8") as f:
-                liste = json.load(f)
-        else:
-            liste = {"code": code, "points": {"presidence-commission": 10, "rapporteur-general": 10, "presidence-groupe": 8}[code],
-                     "plancher": None, "libelle": code, "ids": []}
-        liste["ids"] = sorted(set(liste["ids"]) | ids, key=str)
-        liste["source"] = (liste.get("source") or "") + " ; Sénat, open data (commissions et groupes)"
-        with open(chemin, "w", encoding="utf-8") as f:
-            json.dump(liste, f, ensure_ascii=False, indent=1)
-    with open(f_detail, "w", encoding="utf-8") as f:
-        json.dump(detail, f, ensure_ascii=False, indent=0)
-    rapport.insert(0, "Fonctions au sein du Sénat : " + ", ".join(f"{k} {len(v)}" for k, v in ajouts.items())
+    bilan = ecrire_listes(codes, ajouts, detail, "Sénat, open data (commissions et groupes), à partir de 2002",
+                          LISTES_ASSEMBLEE)
+    with open(F_DETAIL, "w", encoding="utf-8") as f:
+        json.dump({k: v for k, v in detail.items() if v}, f, ensure_ascii=False, indent=0)
+    rapport.insert(0, "Fonctions au sein du Sénat donnant des points : " + ", ".join(f"{k} {len(v)}" for k, v in ajouts.items())
                    + f" ; matricules sans carte : {len(orphelins)}")
+    rapport.insert(1, "  DÉCISION (symétrie avec l'Assemblée) : " + DECISION_SYMETRIE)
+    rapport.insert(2, "  cartes gardant ces fonctions sans points (exercées avant le " + COUVERTURE_ASSEMBLEE + ") : "
+                   + ", ".join(f"{k} {len(v - ajouts[k])}" for k, v in sans_points.items()))
+    rapport.insert(3, "  listes (membres de l'Assemblée + du Sénat ; taille avant -> après) : " + ", ".join(
+        f"{k} {a} + {s_} ; {av} -> {ap}" for k, (a, s_, av, ap) in bilan.items()))
     rapport += [f"  {t} ({d or '?'} -> {f_ or ''})" for _, _, t, d, f_ in sorted(trouvees, key=lambda x: x[3] or "")[-25:]]
     os.makedirs(os.path.dirname(RAPPORT), exist_ok=True)
     with open(RAPPORT, "w", encoding="utf-8") as f:

@@ -19,8 +19,10 @@ secrétariats la liste bureau-secretaire (3 points), établies pour l'Assemblée
 AUCUNSEN (simple sénateur) ne sont pas retenus. Les intitulés sont ceux de la table bur, au féminin pour
 les sénatrices. Les lignes successives d'une même fonction (un renouvellement du Bureau ouvre une nouvelle
 ligne) sont fusionnées quand l'écart ne dépasse pas 31 jours. Les dates incohérentes sont tranchées par
-DECISIONS_INTEGREES.
-Sorties : data/listes/{bureau-vp-questeur,bureau-secretaire}.json (complétées),
+DECISIONS_INTEGREES. Comme pour les autres fonctions du Sénat (DECISION_SYMETRIE, dans
+senat_fonctions.py), toute l'histoire reste dans le détail des cartes mais seules les fonctions exercées à
+partir du 19 juin 2002 donnent des points.
+Sorties : data/listes/{bureau-vp-questeur,bureau-secretaire}.json (reconstruites),
 data/gouvernement/fonctions_assemblee.json (complété), data/listes/rapports/senat-bureau-rapport.txt
 """
 import io
@@ -37,16 +39,17 @@ from datetime import date
 
 sys.path.insert(0, os.path.dirname(__file__))
 from senateurs import BASE, UA, telecharger  # noqa: E402
+from gouvernements_an import LISTES_ASSEMBLEE  # noqa: E402
+from senat_fonctions import (COUVERTURE_ASSEMBLEE, DECISION_SYMETRIE, F_DETAIL,  # noqa: E402
+                             compte_pour_les_points, ecrire_listes)
 
 ARCHIVE = "export_sens.zip"
 RAPPORT = os.path.join("data", "listes", "rapports", "senat-bureau-rapport.txt")
 NUL = "\\N"  # valeur nulle du format COPY de PostgreSQL
 
 LISTES = {"VICPDTSEN": "bureau-vp-questeur", "QUESTESEN": "bureau-vp-questeur", "SECRETSEN": "bureau-secretaire"}
-LIBELLES = {"bureau-vp-questeur": (8, "A été vice-président ou questeur de l'Assemblée ou du Sénat"),
-            "bureau-secretaire": (3, "A été secrétaire de l'Assemblée ou du Sénat")}
 ECART_FUSION = 31  # jours entre la fin d'une ligne et le début de la suivante pour une même fonction
-SOURCE = "Sénat, open data (export complet de la base Sénateurs, Bureau), depuis 1959"
+SOURCE = "Sénat, open data (export complet de la base Sénateurs, Bureau), à partir de 2002"
 # Décisions motivées sur les lignes de senbur aux dates incohérentes : (matricule, code, début lu, fin lue)
 DECISIONS_INTEGREES = {
     "fin antérieure au début": (
@@ -225,14 +228,13 @@ def lecture(tables, bureau, carte_de, noms, r):
             debut = fin = None  # DECISIONS_INTEGREES, « fin antérieure au début »
         periodes[(l["senmat"], l["burcod"])].append((debut, fin))
 
-    ajouts, orphelins, lignes = defaultdict(set), set(), defaultdict(list)
+    ajouts, sans_points, orphelins, lignes = defaultdict(set), defaultdict(set), set(), defaultdict(list)
     for (matricule, code), ps in periodes.items():
         ident = carte_de.get(matricule)
         if ident is None:
             orphelins.add(matricule)
             continue
         liste = LISTES[code]
-        ajouts[liste].add(ident)
         titre = (fem if matricule in femmes else masc)[code]
         datees = sorted((p for p in ps if p[0]), key=lambda p: p[0])
         fusion = []
@@ -246,28 +248,15 @@ def lecture(tables, bureau, carte_de, noms, r):
         fusion += [[None, fin] for debut, fin in ps if not debut]
         for debut, fin in fusion:
             lignes[str(ident)].append({"fonction": titre, "liste": liste, "debut": debut, "fin": fin})
-
-    # Listes : ajout aux membres établis pour l'Assemblée
-    for liste, (points, libelle) in LIBELLES.items():
-        chemin = os.path.join("data", "listes", liste + ".json")
-        contenu = {"code": liste, "points": points, "plancher": None, "libelle": libelle, "source": "", "ids": []}
-        if os.path.exists(chemin):
-            with open(chemin, encoding="utf-8") as f:
-                contenu = json.load(f)
-        avant = len(contenu["ids"])
-        contenu["ids"] = sorted(set(contenu["ids"]) | ajouts[liste], key=str)
-        contenu["libelle"], contenu["points"] = libelle, points
-        if SOURCE not in (contenu.get("source") or ""):
-            contenu["source"] = " ; ".join(x for x in (contenu.get("source"), SOURCE) if x)
-        with open(chemin, "w", encoding="utf-8") as f:
-            json.dump(contenu, f, ensure_ascii=False, indent=1)
-        r.append(f"  {liste} : {len(ajouts[liste])} sénateurs ; liste {avant} -> {len(contenu['ids'])} cartes")
+        if any(compte_pour_les_points(d, f) for d, f in fusion):
+            ajouts[liste].add(ident)
+        else:
+            sans_points[liste].add(ident)
 
     # Détail des fonctions : les lignes du Bureau du Sénat sont remplacées à chaque exécution
-    f_detail = os.path.join("data", "gouvernement", "fonctions_assemblee.json")
     detail = {}
-    if os.path.exists(f_detail):
-        with open(f_detail, encoding="utf-8") as f:
+    if os.path.exists(F_DETAIL):
+        with open(F_DETAIL, encoding="utf-8") as f:
             detail = json.load(f)
     titres = set(masc.values()) | set(fem.values())
     for ident in list(detail):
@@ -275,7 +264,15 @@ def lecture(tables, bureau, carte_de, noms, r):
     for ident, ls in lignes.items():
         detail.setdefault(ident, []).extend(sorted(ls, key=lambda x: x["debut"] or x["fin"] or ""))
     detail = {k: v for k, v in detail.items() if v}
-    with open(f_detail, "w", encoding="utf-8") as f:
+
+    # Listes : membres de l'Assemblée + sénateurs retenus (DECISION_SYMETRIE)
+    r.append(f"  DÉCISION (symétrie avec l'Assemblée) : {DECISION_SYMETRIE}")
+    bilan = ecrire_listes(sorted(set(LISTES.values())), ajouts, detail, SOURCE, LISTES_ASSEMBLEE)
+    for liste, (n_an, n_sen, avant, apres) in bilan.items():
+        r.append(f"  {liste} : {n_an} cartes de l'Assemblée + {n_sen} sénateurs ayant exercé à partir du "
+                 f"{COUVERTURE_ASSEMBLEE} (liste {avant} -> {apres} cartes) ; "
+                 f"{len(sans_points[liste] - ajouts[liste])} sénateurs gardent la fonction sans points")
+    with open(F_DETAIL, "w", encoding="utf-8") as f:
         json.dump(detail, f, ensure_ascii=False, indent=0)
     r.append(f"  détail des fonctions : {sum(map(len, lignes.values()))} périodes pour {len(lignes)} cartes ; "
              f"matricules sans carte : {len(orphelins)} {sorted(orphelins)[:10]}")
