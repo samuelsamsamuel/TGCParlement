@@ -33,6 +33,10 @@ jobs:
         continue-on-error: true
         run: python3 scripts/senat_fonctions.py
 
+      - name: Bureau du Sénat (mesure, export complet)
+        continue-on-error: true
+        run: python3 scripts/senat_bureau.py
+
       - name: Gouvernements (Libération, IVe et Ve Républiques)
         run: python3 scripts/gouvernements.py
 
