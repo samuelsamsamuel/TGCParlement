@@ -44,6 +44,11 @@ def main():
     if os.path.exists(f_hors):
         with open(f_hors, encoding="utf-8") as f:
             hors = {p["nom"]: p["id"] for p in json.load(f)}
+    correspondances = {}
+    f_corr = os.path.join("data", "senat", "correspondances.json")
+    if os.path.exists(f_corr):
+        with open(f_corr, encoding="utf-8") as f:
+            correspondances = json.load(f)
     rapport = []
     for code, (points, libelle, condition) in CRITERES.items():
         # Trois requêtes courtes plutôt qu'une longue : députés (Sycomore), sénateurs (Sénat), autres personnes
@@ -72,7 +77,8 @@ def main():
             if "syc" in b and b["syc"]["value"].isdigit():
                 ids.add(int(b["syc"]["value"])); noms.append(f"{nom} (Sycomore {b['syc']['value']})")
             elif "sen" in b:
-                ids.add("S" + b["sen"]["value"][-6:].upper()); noms.append(f"{nom} (Sénat {b['sen']['value']})")
+                mat = b["sen"]["value"][-6:].upper()
+                ids.add(correspondances.get(mat, "S" + mat)); noms.append(f"{nom} (Sénat {b['sen']['value']})")
             if "libelle" in b and b["libelle"]["value"] in hors and "syc" not in b and "sen" not in b:
                 par_libelle.setdefault(b["libelle"]["value"], set()).add(b["p"]["value"])
         for nom, personnes in par_libelle.items():
