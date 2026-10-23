@@ -7,17 +7,17 @@ Distinctions calculées :
   ministre : 679
   secretaire-etat : 496
   presidence-an-courte : 205
+  presidence-commission : 129
   bureau-secretaire : 128
   academie-francaise : 122
   doyen-benjamin : 110
+  presidence-groupe : 95
   compagnon-liberation : 78
   quatre-vingts : 70
   bureau-vp-questeur : 68
-  presidence-commission : 58
-  presidence-groupe : 52
   chef-gouvernement : 50
+  rapporteur-general : 41
   presidence-an-longue : 35
-  rapporteur-general : 35
   femmes-1945 : 33
   pantheon : 28
   presidence-senat-longue : 21
@@ -26,19 +26,19 @@ Distinctions calculées :
   presidence-senat-courte : 5
   chef-etat-interim : 1
 
-Scores (grille équilibrée) : maximum 146.3 ; 10e 101.8 ; 100e 64.1 ; 1000e 30.8 ; médiane 7.3
-Cartes à égalité au score maximal : 1 ; scores distincts parmi les 100 premières : 83
+Scores (grille équilibrée) : maximum 146.3 ; 10e 102.6 ; 100e 64.8 ; 1000e 31.0 ; médiane 7.4
+Cartes à égalité au score maximal : 1 ; scores distincts parmi les 100 premières : 82
 
 Cartes en exercice : 917
 Cartes par époque : Libération et IVe République 1274, Ve République 5776, IIIe République 4622, Monarchies constitutionnelles 2484, IIe République et Second Empire 1549, Révolution et Empire 3930, None 181
 
 Répartition des raretés :
   mythique : 95
-  legendaire : 442
-  epique : 1078
-  rare : 2542
-  peu-commune : 6227
-  commune : 9251
+  legendaire : 438
+  epique : 1092
+  rare : 2527
+  peu-commune : 6229
+  commune : 9254
   hors-categorie : 181
 
 Mandats de député par régime et législature :
@@ -161,5 +161,5 @@ Dix premières cartes :
    109.5  mythique    Jacques Chirac : Député (Corrèze) de 1967 à 1995, 9 mandats (Cinquième République - Assemblée nationale). A été chef de l'État. A dirigé le Gouvernement. A été ministre. A été secrétaire d'État.
    108.8  mythique    Valéry Giscard d'Estaing : Député (Puy-de-Dôme) de 1956 à 2002, 11 mandats (Quatrième République - Assemblée nationale ; Cinquième République - Assemblée nationale). Membre de l'Académie française. A été chef de l'État. A été ministre. A été secrétaire d'État.
    103.8  mythique    Léon, Victor, Auguste Bourgeois : Député (Marne) de 1888 à 1905, 5 mandats (Troisième République - Chambre des députés). Sénateur de 1905 à 1925. A siégé dans les deux chambres. A présidé l'Assemblée au moins un an. A présidé la seconde chambre au moins un an. Lauréat du prix Nobel.
+   103.3  mythique    Gérard Larcher : Sénateur (Yvelines) de 1986 à aujourd'hui. A été ministre. A présidé une commission permanente. A présidé la seconde chambre au moins un an.
    102.6  mythique    Paul Ramadier : Député (Aveyron) de 1928 à 1958, 7 mandats (Troisième République - Chambre des députés ; Gouvernement provisoire de la République française ; Quatrième République - Assemblée nationale). A dirigé le Gouvernement. A été ministre. Parmi les Quatre-vingts qui refusèrent les pleins pouvoirs à Pétain le 10 juillet 1940.
-   101.8  mythique    Léon, André Blum : Député (Seine, Aude) de 1919 à 1941, 5 mandats (Troisième République - Chambre des députés). A dirigé le Gouvernement. A été ministre. Parmi les Quatre-vingts qui refusèrent les pleins pouvoirs à Pétain le 10 juillet 1940.

@@ -545,6 +545,12 @@
 "liste": "rapporteur-general",
 "debut": "2011-10-01",
 "fin": "2014-10-07"
+},
+{
+"fonction": "Rapporteur général (commission des affaires sociales du Sénat)",
+"liste": "rapporteur-general",
+"debut": "2011-10-01",
+"fin": "2014-10-07"
 }
 ],
 "19188": [
@@ -601,6 +607,12 @@
 "liste": "rapporteur-general",
 "debut": "2026-10-07",
 "fin": null
+},
+{
+"fonction": "Rapporteur général (commission des finances du Sénat)",
+"liste": "rapporteur-general",
+"debut": "2026-10-07",
+"fin": null
 }
 ],
 "19557": [
@@ -630,6 +642,12 @@
 "S19569H": [
 {
 "fonction": "Rapporteur général (Commission des affaires sociales)",
+"liste": "rapporteur-general",
+"debut": "2026-10-07",
+"fin": null
+},
+{
+"fonction": "Rapporteur général (commission des affaires sociales du Sénat)",
 "liste": "rapporteur-general",
 "debut": "2026-10-07",
 "fin": null
@@ -1125,6 +1143,18 @@
 "liste": "rapporteur-general",
 "debut": "2014-10-09",
 "fin": "2020-10-05"
+},
+{
+"fonction": "Rapporteur général (commission des finances du Sénat)",
+"liste": "rapporteur-general",
+"debut": "2014-10-09",
+"fin": "2017-10-03"
+},
+{
+"fonction": "Rapporteur général (commission des finances du Sénat)",
+"liste": "rapporteur-general",
+"debut": "2017-10-05",
+"fin": "2020-10-05"
 }
 ],
 "19276": [
@@ -1194,6 +1224,12 @@
 "S92045V": [
 {
 "fonction": "Rapporteur général (Commission des affaires sociales)",
+"liste": "rapporteur-general",
+"debut": "2009-07-08",
+"fin": "2011-09-30"
+},
+{
+"fonction": "Rapporteur général (commission des affaires sociales du Sénat)",
 "liste": "rapporteur-general",
 "debut": "2009-07-08",
 "fin": "2011-09-30"
@@ -1271,6 +1307,30 @@
 "liste": "rapporteur-general",
 "debut": "2001-10-04",
 "fin": "2011-09-30"
+},
+{
+"fonction": "Rapporteur général (commission des finances du Sénat)",
+"liste": "rapporteur-general",
+"debut": "1998-10-07",
+"fin": "2001-10-03"
+},
+{
+"fonction": "Rapporteur général (commission des finances du Sénat)",
+"liste": "rapporteur-general",
+"debut": "2001-10-04",
+"fin": "2008-10-06"
+},
+{
+"fonction": "Rapporteur général (commission des finances du Sénat)",
+"liste": "rapporteur-general",
+"debut": "2008-10-07",
+"fin": "2011-09-30"
+},
+{
+"fonction": "Président de la commission des finances du Sénat",
+"liste": "presidence-commission",
+"debut": "2011-10-01",
+"fin": "2014-10-07"
 }
 ],
 "353": [
@@ -1555,6 +1615,12 @@
 "liste": "rapporteur-general",
 "debut": "2011-10-01",
 "fin": "2012-06-16"
+},
+{
+"fonction": "Rapporteur général (commission des finances du Sénat)",
+"liste": "rapporteur-general",
+"debut": "2011-10-01",
+"fin": "2012-06-16"
 }
 ],
 "3199": [
@@ -1803,6 +1869,18 @@
 "liste": "rapporteur-general",
 "debut": "2012-06-20",
 "fin": "2014-10-07"
+},
+{
+"fonction": "Rapporteur général (commission des finances du Sénat)",
+"liste": "rapporteur-general",
+"debut": "2012-06-20",
+"fin": "2014-10-07"
+},
+{
+"fonction": "Rapporteur général ( du Sénat)",
+"liste": "rapporteur-general",
+"debut": "2013-11-29",
+"fin": "2017-09-24"
 }
 ],
 "19301": [
@@ -2197,6 +2275,24 @@
 "liste": "rapporteur-general",
 "debut": "2014-10-09",
 "fin": "2021-07-07"
+},
+{
+"fonction": "Rapporteur général (commission des affaires sociales du Sénat)",
+"liste": "rapporteur-general",
+"debut": "2014-10-09",
+"fin": "2017-10-04"
+},
+{
+"fonction": "Rapporteur général (commission des affaires sociales du Sénat)",
+"liste": "rapporteur-general",
+"debut": "2017-10-05",
+"fin": "2020-10-05"
+},
+{
+"fonction": "Rapporteur général (commission des affaires sociales du Sénat)",
+"liste": "rapporteur-general",
+"debut": "2020-10-07",
+"fin": "2021-07-07"
 }
 ],
 "19240": [
@@ -2573,6 +2669,30 @@
 "liste": "rapporteur-general",
 "debut": "2020-10-07",
 "fin": "2026-09-30"
+},
+{
+"fonction": "Rapporteur général (commission des finances du Sénat)",
+"liste": "rapporteur-general",
+"debut": "2020-10-07",
+"fin": "2023-10-01"
+},
+{
+"fonction": "Rapporteur général (commission des finances du Sénat)",
+"liste": "rapporteur-general",
+"debut": "2023-10-05",
+"fin": "2026-09-30"
+},
+{
+"fonction": "Rapporteur général (PLFFG23 du Sénat)",
+"liste": "rapporteur-general",
+"debut": "2023-11-21",
+"fin": "2023-11-22"
+},
+{
+"fonction": "Rapporteur général (PLF2024 du Sénat)",
+"liste": "rapporteur-general",
+"debut": "2023-12-12",
+"fin": "2023-12-12"
 }
 ],
 "18442": [
@@ -2735,6 +2855,24 @@
 "liste": "rapporteur-general",
 "debut": "2021-07-08",
 "fin": "2026-09-30"
+},
+{
+"fonction": "Rapporteur général (commission des affaires sociales du Sénat)",
+"liste": "rapporteur-general",
+"debut": "2021-07-08",
+"fin": "2023-10-01"
+},
+{
+"fonction": "Rapporteur général (RETRAITES du Sénat)",
+"liste": "rapporteur-general",
+"debut": "2023-03-30",
+"fin": "2023-07-13"
+},
+{
+"fonction": "Rapporteur général (commission des affaires sociales du Sénat)",
+"liste": "rapporteur-general",
+"debut": "2023-10-05",
+"fin": "2026-09-30"
 }
 ],
 "5162": [
@@ -2809,6 +2947,1220 @@
 "liste": "presidence-commission",
 "debut": "2026-07-21",
 "fin": null
+}
+],
+"22": [
+{
+"fonction": "Président de la commission des affaires sociales du Sénat",
+"liste": "presidence-commission",
+"debut": "2001-10-04",
+"fin": "2008-10-06"
+},
+{
+"fonction": "Président de la commission des affaires sociales du Sénat",
+"liste": "presidence-commission",
+"debut": "2008-10-07",
+"fin": "2009-07-07"
+},
+{
+"fonction": "Président du groupe Groupe Union Centriste et Indépendants au Sénat",
+"liste": "presidence-groupe",
+"debut": "2009-07-07",
+"fin": "2011-01-23"
+}
+],
+"S01031L": [
+{
+"fonction": "Président de la commission des finances du Sénat",
+"liste": "presidence-commission",
+"debut": "2014-10-09",
+"fin": "2017-10-01"
+}
+],
+"S83011J": [
+{
+"fonction": "Président de la commission des finances du Sénat",
+"liste": "presidence-commission",
+"debut": "2002-07-17",
+"fin": "2008-10-06"
+},
+{
+"fonction": "Président de la commission des finances du Sénat",
+"liste": "presidence-commission",
+"debut": "2008-10-07",
+"fin": "2011-09-30"
+},
+{
+"fonction": "Président du groupe Groupe Union Centriste et Indépendants au Sénat",
+"liste": "presidence-groupe",
+"debut": "1998-09-29",
+"fin": "2002-07-16"
+}
+],
+"S05008E": [
+{
+"fonction": "Président de la commission des lois du Sénat",
+"liste": "presidence-commission",
+"debut": "2014-10-09",
+"fin": "2020-10-05"
+}
+],
+"S000701": [
+{
+"fonction": "Président de la commission de l'économie du Sénat",
+"liste": "presidence-commission",
+"debut": "1959-05-12",
+"fin": "1977-10-02"
+}
+],
+"S01044R": [
+{
+"fonction": "Président de la commission de la culture du Sénat",
+"liste": "presidence-commission",
+"debut": "2011-10-01",
+"fin": "2014-10-07"
+}
+],
+"869": [
+{
+"fonction": "Rapporteur général (commission des finances du Sénat)",
+"liste": "rapporteur-general",
+"debut": "1977-10-06",
+"fin": "1989-10-05"
+},
+{
+"fonction": "Président du groupe Groupe Union Centriste et Indépendants au Sénat",
+"liste": "presidence-groupe",
+"debut": null,
+"fin": "1998-10-04"
+}
+],
+"937": [
+{
+"fonction": "Président de la commission des finances du Sénat",
+"liste": "presidence-commission",
+"debut": "1972-11-09",
+"fin": "1986-10-01"
+}
+],
+"940": [
+{
+"fonction": "Président de la commission des lois du Sénat",
+"liste": "presidence-commission",
+"debut": "1959-05-06",
+"fin": "1971-10-01"
+}
+],
+"S04047H": [
+{
+"fonction": "Président de la commission des lois du Sénat",
+"liste": "presidence-commission",
+"debut": "2020-10-07",
+"fin": "2023-10-01"
+},
+{
+"fonction": "Président de la commission des lois du Sénat",
+"liste": "presidence-commission",
+"debut": "2023-10-05",
+"fin": "2024-10-21"
+}
+],
+"S04042C": [
+{
+"fonction": "Président de la commission des affaires étrangères du Sénat",
+"liste": "presidence-commission",
+"debut": "2017-07-12",
+"fin": "2017-10-04"
+},
+{
+"fonction": "Président de la commission des affaires étrangères du Sénat",
+"liste": "presidence-commission",
+"debut": "2017-10-05",
+"fin": "2020-10-05"
+},
+{
+"fonction": "Président de la commission des affaires étrangères du Sénat",
+"liste": "presidence-commission",
+"debut": "2020-10-07",
+"fin": "2023-10-01"
+}
+],
+"S92015P": [
+{
+"fonction": "Président de la commission des affaires étrangères du Sénat",
+"liste": "presidence-commission",
+"debut": "2011-10-01",
+"fin": "2014-10-07"
+}
+],
+"S59221C": [
+{
+"fonction": "Président de la commission de l'économie du Sénat",
+"liste": "presidence-commission",
+"debut": "1977-10-06",
+"fin": "1986-10-06"
+}
+],
+"1796": [
+{
+"fonction": "Rapporteur général (commission des finances du Sénat)",
+"liste": "rapporteur-general",
+"debut": "1989-10-05",
+"fin": "1992-10-07"
+}
+],
+"1894": [
+{
+"fonction": "Président de la commission des affaires étrangères du Sénat",
+"liste": "presidence-commission",
+"debut": "1973-04-04",
+"fin": "1978-08-29"
+}
+],
+"S000702": [
+{
+"fonction": "Rapporteur général (commission des finances du Sénat)",
+"liste": "rapporteur-general",
+"debut": "1971-10-06",
+"fin": "1976-10-02"
+}
+],
+"S20070A": [
+{
+"fonction": "Président de la commission des finances du Sénat",
+"liste": "presidence-commission",
+"debut": "2026-10-07",
+"fin": null
+}
+],
+"2137": [
+{
+"fonction": "Président de la commission des affaires sociales du Sénat",
+"liste": "presidence-commission",
+"debut": "1971-10-06",
+"fin": "1974-10-01"
+}
+],
+"S01059Y": [
+{
+"fonction": "Président de la commission des affaires sociales du Sénat",
+"liste": "presidence-commission",
+"debut": "2011-10-01",
+"fin": "2014-10-07"
+}
+],
+"S000016": [
+{
+"fonction": "Président de la commission de la culture du Sénat",
+"liste": "presidence-commission",
+"debut": "1974-10-04",
+"fin": "1977-10-06"
+}
+],
+"S83050R": [
+{
+"fonction": "Président de la commission des affaires étrangères du Sénat",
+"liste": "presidence-commission",
+"debut": "2008-01-16",
+"fin": "2008-10-06"
+},
+{
+"fonction": "Président de la commission des affaires étrangères du Sénat",
+"liste": "presidence-commission",
+"debut": "2008-10-07",
+"fin": "2011-09-30"
+},
+{
+"fonction": "Président du groupe Groupe Les Républicains au Sénat",
+"liste": "presidence-groupe",
+"debut": "2002-12-11",
+"fin": "2008-01-15"
+},
+{
+"fonction": "Président du groupe Groupe du RPR au Sénat",
+"liste": "presidence-groupe",
+"debut": "1993-04-06",
+"fin": "2002-12-10"
+}
+],
+"S86050E": [
+{
+"fonction": "Président de la commission des affaires étrangères du Sénat",
+"liste": "presidence-commission",
+"debut": "1993-04-14",
+"fin": "1998-10-06"
+},
+{
+"fonction": "Président de la commission des affaires étrangères du Sénat",
+"liste": "presidence-commission",
+"debut": "1998-10-07",
+"fin": "2001-10-03"
+},
+{
+"fonction": "Président de la commission des affaires étrangères du Sénat",
+"liste": "presidence-commission",
+"debut": "2001-10-04",
+"fin": "2002-07-10"
+},
+{
+"fonction": "Président du groupe Groupe Union Centriste et Indépendants au Sénat",
+"liste": "presidence-groupe",
+"debut": "2002-07-17",
+"fin": "2002-12-10"
+}
+],
+"2258": [
+{
+"fonction": "Président de la commission des affaires sociales du Sénat",
+"liste": "presidence-commission",
+"debut": "1998-10-07",
+"fin": "2001-09-30"
+}
+],
+"S10006L": [
+{
+"fonction": "Président de la commission des affaires sociales du Sénat",
+"liste": "presidence-commission",
+"debut": "2020-10-07",
+"fin": "2023-10-01"
+}
+],
+"S04051D": [
+{
+"fonction": "Président de la commission des affaires sociales du Sénat",
+"liste": "presidence-commission",
+"debut": "2009-07-08",
+"fin": "2011-09-30"
+}
+],
+"S95028H": [
+{
+"fonction": "Président de la commission des affaires étrangères du Sénat",
+"liste": "presidence-commission",
+"debut": "2002-07-10",
+"fin": "2004-10-07"
+}
+],
+"S000703": [
+{
+"fonction": "Président de la commission des affaires sociales du Sénat",
+"liste": "presidence-commission",
+"debut": "1959-05-12",
+"fin": "1959-10-08"
+}
+],
+"S11074Q": [
+{
+"fonction": "Président de la commission des finances du Sénat",
+"liste": "presidence-commission",
+"debut": "2017-10-05",
+"fin": "2020-10-05"
+}
+],
+"S58942B": [
+{
+"fonction": "Président de la commission de la culture du Sénat",
+"liste": "presidence-commission",
+"debut": "1977-10-06",
+"fin": "1986-10-06"
+}
+],
+"2825": [
+{
+"fonction": "Président de la commission de l'économie du Sénat",
+"liste": "presidence-commission",
+"debut": "2004-05-05",
+"fin": "2008-10-06"
+},
+{
+"fonction": "Président de la commission de l'économie du Sénat",
+"liste": "presidence-commission",
+"debut": "2008-10-07",
+"fin": "2011-09-30"
+}
+],
+"S14187A": [
+{
+"fonction": "Président de la commission des affaires économiques du Sénat",
+"liste": "presidence-commission",
+"debut": "2023-10-05",
+"fin": "2026-09-30"
+},
+{
+"fonction": "Président de la commission des affaires économiques du Sénat",
+"liste": "presidence-commission",
+"debut": "2026-10-07",
+"fin": null
+}
+],
+"S77019E": [
+{
+"fonction": "Président de la commission des affaires sociales du Sénat",
+"liste": "presidence-commission",
+"debut": null,
+"fin": "1998-10-06"
+}
+],
+"S83033Q": [
+{
+"fonction": "Président de la commission de l'économie du Sénat",
+"liste": "presidence-commission",
+"debut": "1986-10-08",
+"fin": "1998-10-06"
+},
+{
+"fonction": "Président de la commission de l'économie du Sénat",
+"liste": "presidence-commission",
+"debut": "1998-10-07",
+"fin": "2001-10-03"
+}
+],
+"3267": [
+{
+"fonction": "Président de la commission des lois du Sénat",
+"liste": "presidence-commission",
+"debut": "2001-10-04",
+"fin": "2004-10-07"
+}
+],
+"3347": [
+{
+"fonction": "Président de la commission des affaires étrangères du Sénat",
+"liste": "presidence-commission",
+"debut": "1986-04-02",
+"fin": "1986-10-08"
+}
+],
+"S78006D": [
+{
+"fonction": "Président de la commission de la culture du Sénat",
+"liste": "presidence-commission",
+"debut": "1995-10-11",
+"fin": "1998-10-06"
+},
+{
+"fonction": "Président de la commission de la culture du Sénat",
+"liste": "presidence-commission",
+"debut": "1998-10-07",
+"fin": "2001-10-03"
+}
+],
+"S000097": [
+{
+"fonction": "Président de la commission des affaires sociales du Sénat",
+"liste": "presidence-commission",
+"debut": "1968-10-08",
+"fin": "1971-10-06"
+}
+],
+"S000067": [
+{
+"fonction": "Président de la commission de la culture du Sénat",
+"liste": "presidence-commission",
+"debut": "1959-05-06",
+"fin": "1974-10-03"
+}
+],
+"3918": [
+{
+"fonction": "Président de la commission des lois du Sénat",
+"liste": "presidence-commission",
+"debut": "2004-10-07",
+"fin": "2008-10-06"
+},
+{
+"fonction": "Président de la commission des lois du Sénat",
+"liste": "presidence-commission",
+"debut": "2008-10-07",
+"fin": "2011-09-30"
+}
+],
+"S19447X": [
+{
+"fonction": "Président de la commission des lois du Sénat",
+"liste": "presidence-commission",
+"debut": "2024-10-23",
+"fin": "2026-09-30"
+},
+{
+"fonction": "Président de la commission des lois du Sénat",
+"liste": "presidence-commission",
+"debut": "2026-10-07",
+"fin": null
+}
+],
+"S58303Y": [
+{
+"fonction": "Président de la commission des lois du Sénat",
+"liste": "presidence-commission",
+"debut": "1971-10-06",
+"fin": "1983-03-03"
+}
+],
+"S19611R": [
+{
+"fonction": "Président de la commission de la culture du Sénat",
+"liste": "presidence-commission",
+"debut": "2020-10-07",
+"fin": "2023-10-01"
+},
+{
+"fonction": "Président de la commission de la culture du Sénat",
+"liste": "presidence-commission",
+"debut": "2023-10-05",
+"fin": "2026-09-30"
+}
+],
+"S92029V": [
+{
+"fonction": "Rapporteur général (commission des finances du Sénat)",
+"liste": "rapporteur-general",
+"debut": "1995-10-05",
+"fin": "1998-10-06"
+},
+{
+"fonction": "Président de la commission des finances du Sénat",
+"liste": "presidence-commission",
+"debut": "1998-10-07",
+"fin": "2001-10-02"
+},
+{
+"fonction": "Président de la commission des finances du Sénat",
+"liste": "presidence-commission",
+"debut": "2001-10-04",
+"fin": "2002-06-07"
+}
+],
+"S77033C": [
+{
+"fonction": "Président de la commission des lois du Sénat",
+"liste": "presidence-commission",
+"debut": "1983-04-20",
+"fin": "1998-10-06"
+},
+{
+"fonction": "Président de la commission des lois du Sénat",
+"liste": "presidence-commission",
+"debut": "1998-10-07",
+"fin": "2001-10-03"
+}
+],
+"S86034E": [
+{
+"fonction": "Président de la commission de l'économie du Sénat",
+"liste": "presidence-commission",
+"debut": "2001-10-04",
+"fin": "2004-04-30"
+}
+],
+"7512": [
+{
+"fonction": "Rapporteur général ( du Sénat)",
+"liste": "rapporteur-general",
+"debut": null,
+"fin": null
+}
+],
+"7655": [
+{
+"fonction": "Président de la commission des affaires étrangères du Sénat",
+"liste": "presidence-commission",
+"debut": "1971-10-06",
+"fin": "1973-03-11"
+},
+{
+"fonction": "Président de la commission des affaires étrangères du Sénat",
+"liste": "presidence-commission",
+"debut": "1978-10-19",
+"fin": "1986-04-02"
+},
+{
+"fonction": "Président de la commission des affaires étrangères du Sénat",
+"liste": "presidence-commission",
+"debut": "1986-10-06",
+"fin": "1993-02-22"
+}
+],
+"7710": [
+{
+"fonction": "Président de la commission de la culture du Sénat",
+"liste": "presidence-commission",
+"debut": "2008-10-07",
+"fin": "2011-09-30"
+}
+],
+"7763": [
+{
+"fonction": "Président de la commission des affaires économiques du Sénat",
+"liste": "presidence-commission",
+"debut": "2014-10-09",
+"fin": "2017-10-01"
+}
+],
+"S20052X": [
+{
+"fonction": "Président de la commission de la culture du Sénat",
+"liste": "presidence-commission",
+"debut": "2026-10-07",
+"fin": null
+}
+],
+"S14219Q": [
+{
+"fonction": "Président de la commission de l'aménagement du territoire et du développement durable du Sénat",
+"liste": "presidence-commission",
+"debut": "2020-10-07",
+"fin": "2023-10-01"
+},
+{
+"fonction": "Président de la commission de l'aménagement du territoire et du développement durable du Sénat",
+"liste": "presidence-commission",
+"debut": "2023-10-05",
+"fin": "2026-09-30"
+}
+],
+"S19826F": [
+{
+"fonction": "Président de la commission de l'aménagement du territoire et du développement durable du Sénat",
+"liste": "presidence-commission",
+"debut": "2026-10-07",
+"fin": null
+}
+],
+"S08009T": [
+{
+"fonction": "Président de la commission de l'aménagement du territoire et du développement durable du Sénat",
+"liste": "presidence-commission",
+"debut": "2014-10-09",
+"fin": "2017-10-04"
+},
+{
+"fonction": "Président de la commission de l'aménagement du territoire et du développement durable du Sénat",
+"liste": "presidence-commission",
+"debut": "2017-10-05",
+"fin": "2020-10-05"
+}
+],
+"S000233": [
+{
+"fonction": "Président de la commission des affaires sociales du Sénat",
+"liste": "presidence-commission",
+"debut": "1959-10-08",
+"fin": "1968-10-08"
+}
+],
+"S04092N": [
+{
+"fonction": "Président de la commission des affaires sociales du Sénat",
+"liste": "presidence-commission",
+"debut": "2014-10-09",
+"fin": "2017-10-04"
+},
+{
+"fonction": "Président de la commission des affaires sociales du Sénat",
+"liste": "presidence-commission",
+"debut": "2017-10-05",
+"fin": "2020-10-05"
+}
+],
+"5374": [
+{
+"fonction": "Président de la commission des affaires étrangères du Sénat",
+"liste": "presidence-commission",
+"debut": "1968-10-06",
+"fin": "1971-10-01"
+}
+],
+"S04070G": [
+{
+"fonction": "Président de la commission de la culture du Sénat",
+"liste": "presidence-commission",
+"debut": "2014-10-09",
+"fin": "2017-10-04"
+},
+{
+"fonction": "Président de la commission de la culture du Sénat",
+"liste": "presidence-commission",
+"debut": "2017-10-05",
+"fin": "2020-10-05"
+}
+],
+"S14071N": [
+{
+"fonction": "Président de la commission des affaires sociales du Sénat",
+"liste": "presidence-commission",
+"debut": "2023-10-05",
+"fin": "2026-09-30"
+},
+{
+"fonction": "Président de la commission des affaires sociales du Sénat",
+"liste": "presidence-commission",
+"debut": "2026-10-07",
+"fin": null
+}
+],
+"S000734": [
+{
+"fonction": "Rapporteur général (commission des finances du Sénat)",
+"liste": "rapporteur-general",
+"debut": "1959-05-12",
+"fin": "1971-10-06"
+},
+{
+"fonction": "Président de la commission des finances du Sénat",
+"liste": "presidence-commission",
+"debut": "1971-10-06",
+"fin": "1972-10-19"
+}
+],
+"S14193X": [
+{
+"fonction": "Président de la commission des affaires étrangères du Sénat",
+"liste": "presidence-commission",
+"debut": "2023-10-05",
+"fin": "2026-09-30"
+},
+{
+"fonction": "Président de la commission des affaires étrangères du Sénat",
+"liste": "presidence-commission",
+"debut": "2026-10-07",
+"fin": null
+}
+],
+"6412": [
+{
+"fonction": "Président de la commission des finances du Sénat",
+"liste": "presidence-commission",
+"debut": "1986-10-06",
+"fin": "1998-09-30"
+}
+],
+"18564": [
+{
+"fonction": "Président de la commission des affaires économiques du Sénat",
+"liste": "presidence-commission",
+"debut": "2017-10-05",
+"fin": "2020-10-05"
+},
+{
+"fonction": "Président de la commission des affaires économiques du Sénat",
+"liste": "presidence-commission",
+"debut": "2020-10-07",
+"fin": "2023-10-01"
+}
+],
+"S95059Q": [
+{
+"fonction": "Président de la commission des affaires étrangères du Sénat",
+"liste": "presidence-commission",
+"debut": "2014-10-09",
+"fin": "2017-07-11"
+}
+],
+"S01016M": [
+{
+"fonction": "Président de la commission de l'économie du Sénat",
+"liste": "presidence-commission",
+"debut": "2011-10-01",
+"fin": "2012-02-20"
+},
+{
+"fonction": "Président de la commission des affaires économiques du Sénat",
+"liste": "presidence-commission",
+"debut": "2012-02-21",
+"fin": "2014-10-07"
+}
+],
+"S14225N": [
+{
+"fonction": "Président de la commission des finances du Sénat",
+"liste": "presidence-commission",
+"debut": "2020-10-07",
+"fin": "2023-10-01"
+},
+{
+"fonction": "Président de la commission des finances du Sénat",
+"liste": "presidence-commission",
+"debut": "2023-10-05",
+"fin": "2026-09-30"
+}
+],
+"6103": [
+{
+"fonction": "Président de la commission des affaires étrangères du Sénat",
+"liste": "presidence-commission",
+"debut": "1959-05-12",
+"fin": "1968-10-08"
+}
+],
+"6108": [
+{
+"fonction": "Président de la commission des finances du Sénat",
+"liste": "presidence-commission",
+"debut": "1959-05-12",
+"fin": "1971-10-01"
+}
+],
+"6359": [
+{
+"fonction": "Président de la commission de la culture du Sénat",
+"liste": "presidence-commission",
+"debut": "1986-10-06",
+"fin": "1995-10-04"
+}
+],
+"6363": [
+{
+"fonction": "Président de la commission des affaires sociales du Sénat",
+"liste": "presidence-commission",
+"debut": "1977-10-06",
+"fin": "1983-10-06"
+}
+],
+"S000334": [
+{
+"fonction": "Président de la commission des affaires sociales du Sénat",
+"liste": "presidence-commission",
+"debut": "1974-10-04",
+"fin": "1977-10-06"
+}
+],
+"6919": [
+{
+"fonction": "Président de la commission des lois du Sénat",
+"liste": "presidence-commission",
+"debut": "2011-10-01",
+"fin": "2014-10-07"
+}
+],
+"15286": [
+{
+"fonction": "Président de la commission de la culture du Sénat",
+"liste": "presidence-commission",
+"debut": "2001-10-04",
+"fin": "2004-10-07"
+},
+{
+"fonction": "Président de la commission de la culture du Sénat",
+"liste": "presidence-commission",
+"debut": "2004-10-07",
+"fin": "2008-09-30"
+}
+],
+"S08049C": [
+{
+"fonction": "Président de la commission de l'aménagement du territoire et du développement durable du Sénat",
+"liste": "presidence-commission",
+"debut": "2012-02-21",
+"fin": "2014-09-30"
+}
+],
+"S89045V": [
+{
+"fonction": "Président de la commission des affaires étrangères du Sénat",
+"liste": "presidence-commission",
+"debut": "2004-10-07",
+"fin": "2007-12-16"
+}
+],
+"S04085P": [
+{
+"fonction": "Président du groupe Groupe CRCE - Kanaky au Sénat",
+"liste": "presidence-groupe",
+"debut": "2012-10-02",
+"fin": "2017-10-02"
+},
+{
+"fonction": "Président du groupe Groupe CRCE - Kanaky au Sénat",
+"liste": "presidence-groupe",
+"debut": "2017-10-03",
+"fin": "2023-10-01"
+}
+],
+"389": [
+{
+"fonction": "Président du groupe Groupe du RDSE au Sénat",
+"liste": "presidence-groupe",
+"debut": "2017-05-23",
+"fin": "2017-10-01"
+}
+],
+"S98006P": [
+{
+"fonction": "Président du groupe Groupe Socialiste, Écologiste et Républicain au Sénat",
+"liste": "presidence-groupe",
+"debut": "2004-10-05",
+"fin": "2011-09-30"
+}
+],
+"S95011X": [
+{
+"fonction": "Président du groupe Groupe CRCE - Kanaky au Sénat",
+"liste": "presidence-groupe",
+"debut": "2001-04-03",
+"fin": "2012-09-18"
+}
+],
+"S11029K": [
+{
+"fonction": "Président du groupe Groupe écologiste au Sénat",
+"liste": "presidence-groupe",
+"debut": "2015-11-06",
+"fin": "2015-12-13"
+},
+{
+"fonction": "Président du groupe Groupe écologiste au Sénat",
+"liste": "presidence-groupe",
+"debut": "2016-02-15",
+"fin": "2016-05-03"
+}
+],
+"1335": [
+{
+"fonction": "Président du groupe Groupe du RDSE au Sénat",
+"liste": "presidence-groupe",
+"debut": "1995-04-05",
+"fin": "2001-09-30"
+}
+],
+"S19629C": [
+{
+"fonction": "Président du groupe Groupe du RDSE au Sénat",
+"liste": "presidence-groupe",
+"debut": "2023-10-03",
+"fin": "2026-09-30"
+},
+{
+"fonction": "Président du groupe Groupe du RDSE au Sénat",
+"liste": "presidence-groupe",
+"debut": "2026-10-05",
+"fin": null
+}
+],
+"S88008L": [
+{
+"fonction": "Président du groupe Groupe du RDSE au Sénat",
+"liste": "presidence-groupe",
+"debut": "2008-10-02",
+"fin": "2011-10-03"
+}
+],
+"S11056N": [
+{
+"fonction": "Président du groupe Groupe CRCE - Kanaky au Sénat",
+"liste": "presidence-groupe",
+"debut": "2023-10-03",
+"fin": "2026-09-30"
+},
+{
+"fonction": "Président du groupe Groupe CRCE - Kanaky au Sénat",
+"liste": "presidence-groupe",
+"debut": "2026-10-05",
+"fin": null
+}
+],
+"S14259Y": [
+{
+"fonction": "Président du groupe Groupe Les Républicains au Sénat",
+"liste": "presidence-groupe",
+"debut": "2024-10-01",
+"fin": "2026-09-30"
+},
+{
+"fonction": "Président du groupe Groupe Les Républicains au Sénat",
+"liste": "presidence-groupe",
+"debut": "2026-10-05",
+"fin": null
+}
+],
+"S04067M": [
+{
+"fonction": "Président du groupe Groupe écologiste au Sénat",
+"liste": "presidence-groupe",
+"debut": "2016-05-04",
+"fin": "2017-06-29"
+}
+],
+"19632": [
+{
+"fonction": "Président du groupe Groupe Union Nationale pour les Territoires au Sénat",
+"liste": "presidence-groupe",
+"debut": "2026-10-05",
+"fin": null
+}
+],
+"2854": [
+{
+"fonction": "Président du groupe Groupe Socialiste, Écologiste et Républicain au Sénat",
+"liste": "presidence-groupe",
+"debut": "1988-07-05",
+"fin": "2004-09-30"
+}
+],
+"3293": [
+{
+"fonction": "Président du groupe Groupe Les Républicains au Sénat",
+"liste": "presidence-groupe",
+"debut": "2011-03-08",
+"fin": "2011-09-30"
+},
+{
+"fonction": "Président du groupe Groupe Les Républicains au Sénat",
+"liste": "presidence-groupe",
+"debut": "2011-10-01",
+"fin": "2014-10-06"
+}
+],
+"S19347U": [
+{
+"fonction": "Président du groupe Groupe Écologiste - Solidarité et Territoires au Sénat",
+"liste": "presidence-groupe",
+"debut": "2020-10-05",
+"fin": "2023-10-01"
+},
+{
+"fonction": "Président du groupe Groupe Écologiste - Solidarité et Territoires au Sénat",
+"liste": "presidence-groupe",
+"debut": "2023-10-03",
+"fin": "2026-09-30"
+}
+],
+"S08016S": [
+{
+"fonction": "Président du groupe Groupe Socialiste, Écologiste et Républicain au Sénat",
+"liste": "presidence-groupe",
+"debut": "2014-04-15",
+"fin": "2018-01-22"
+}
+],
+"S19591F": [
+{
+"fonction": "Président du groupe Groupe Rassemblement des démocrates, progressistes et indépendants au Sénat",
+"liste": "presidence-groupe",
+"debut": "2026-10-05",
+"fin": null
+}
+],
+"S14021P": [
+{
+"fonction": "Président du groupe Groupe Socialiste, Écologiste et Républicain au Sénat",
+"liste": "presidence-groupe",
+"debut": "2018-01-23",
+"fin": "2023-10-01"
+},
+{
+"fonction": "Président du groupe Groupe Socialiste, Écologiste et Républicain au Sénat",
+"liste": "presidence-groupe",
+"debut": "2023-10-03",
+"fin": "2026-09-30"
+},
+{
+"fonction": "Président du groupe Groupe Socialiste, Écologiste et Républicain au Sénat",
+"liste": "presidence-groupe",
+"debut": "2026-10-05",
+"fin": null
+}
+],
+"S85003S": [
+{
+"fonction": "Président du groupe Groupe du RDSE au Sénat",
+"liste": "presidence-groupe",
+"debut": "2007-09-19",
+"fin": "2008-09-30"
+}
+],
+"7779": [
+{
+"fonction": "Président du groupe Groupe du RPR au Sénat",
+"liste": "presidence-groupe",
+"debut": "2002-05-10",
+"fin": "2002-12-10"
+}
+],
+"7886": [
+{
+"fonction": "Président du groupe Groupe Les Républicains au Sénat",
+"liste": "presidence-groupe",
+"debut": "2009-07-07",
+"fin": "2011-03-07"
+}
+],
+"S77044F": [
+{
+"fonction": "Président du groupe Groupe CRCE - Kanaky au Sénat",
+"liste": "presidence-groupe",
+"debut": "1979-01-01",
+"fin": "2001-04-03"
+}
+],
+"S59549A": [
+{
+"fonction": "Président du groupe Groupe des RI au Sénat",
+"liste": "presidence-groupe",
+"debut": null,
+"fin": "1995-10-01"
+}
+],
+"4928": [
+{
+"fonction": "Président du groupe Groupe Les Indépendants - République et Territoires au Sénat",
+"liste": "presidence-groupe",
+"debut": "2017-10-03",
+"fin": "2026-09-30"
+},
+{
+"fonction": "Président du groupe Groupe Les Indépendants - République et Territoires au Sénat",
+"liste": "presidence-groupe",
+"debut": "2026-10-05",
+"fin": null
+}
+],
+"S11085T": [
+{
+"fonction": "Président du groupe Groupe Union Centriste et Indépendants au Sénat",
+"liste": "presidence-groupe",
+"debut": "2017-10-03",
+"fin": "2023-10-01"
+},
+{
+"fonction": "Président du groupe Groupe Union Centriste et Indépendants au Sénat",
+"liste": "presidence-groupe",
+"debut": "2023-10-03",
+"fin": "2026-09-30"
+},
+{
+"fonction": "Président du groupe Groupe Union Centriste et Indépendants au Sénat",
+"liste": "presidence-groupe",
+"debut": "2026-10-05",
+"fin": null
+}
+],
+"5197": [
+{
+"fonction": "Président du groupe Groupe Union Centriste et Indépendants au Sénat",
+"liste": "presidence-groupe",
+"debut": "2002-12-11",
+"fin": "2009-07-06"
+}
+],
+"S08051V": [
+{
+"fonction": "Président du groupe Groupe du RDSE au Sénat",
+"liste": "presidence-groupe",
+"debut": "2011-10-04",
+"fin": "2017-05-22"
+}
+],
+"S58914W": [
+{
+"fonction": "Président du groupe Rassemblement Démocratique et Européen au Sénat",
+"liste": "presidence-groupe",
+"debut": null,
+"fin": "1989-10-01"
+}
+],
+"5698": [
+{
+"fonction": "Président du groupe Groupe du RPR au Sénat",
+"liste": "presidence-groupe",
+"debut": null,
+"fin": "1999-12-16"
+}
+],
+"5715": [
+{
+"fonction": "Président du groupe Groupe Rassemblement des démocrates, progressistes et indépendants au Sénat",
+"liste": "presidence-groupe",
+"debut": "2017-06-28",
+"fin": "2017-10-02"
+},
+{
+"fonction": "Président du groupe Groupe Rassemblement des démocrates, progressistes et indépendants au Sénat",
+"liste": "presidence-groupe",
+"debut": "2017-10-03",
+"fin": "2026-08-19"
+}
+],
+"S66002K": [
+{
+"fonction": "Président du groupe Groupe du RDSE au Sénat",
+"liste": "presidence-groupe",
+"debut": "2001-10-02",
+"fin": "2007-09-03"
+}
+],
+"S11069T": [
+{
+"fonction": "Président du groupe Groupe écologiste au Sénat",
+"liste": "presidence-groupe",
+"debut": "2012-01-11",
+"fin": "2015-11-05"
+},
+{
+"fonction": "Président du groupe Groupe écologiste au Sénat",
+"liste": "presidence-groupe",
+"debut": "2015-12-14",
+"fin": "2016-02-14"
+}
+],
+"S86044G": [
+{
+"fonction": "Président du groupe Groupe des RI au Sénat",
+"liste": "presidence-groupe",
+"debut": "1995-11-14",
+"fin": "2002-12-10"
+},
+{
+"fonction": "Président du groupe Groupe Les Républicains au Sénat",
+"liste": "presidence-groupe",
+"debut": "2008-01-15",
+"fin": "2009-07-06"
+}
+],
+"S08070Y": [
+{
+"fonction": "Président du groupe Groupe Socialiste, Écologiste et Républicain au Sénat",
+"liste": "presidence-groupe",
+"debut": "2011-10-01",
+"fin": "2014-04-14"
+}
+],
+"S11012A": [
+{
+"fonction": "Président du groupe Groupe du RDSE au Sénat",
+"liste": "presidence-groupe",
+"debut": "2017-10-03",
+"fin": "2023-10-01"
+}
+],
+"6689": [
+{
+"fonction": "Président du groupe Groupe Les Républicains au Sénat",
+"liste": "presidence-groupe",
+"debut": "2014-10-07",
+"fin": "2024-09-30"
+}
+],
+"S20266L": [
+{
+"fonction": "Président du groupe Groupe Écologiste - Solidarité et Territoires au Sénat",
+"liste": "presidence-groupe",
+"debut": "2026-10-05",
+"fin": null
+}
+],
+"S01047U": [
+{
+"fonction": "Président du groupe Groupe Union Centriste et Indépendants au Sénat",
+"liste": "presidence-groupe",
+"debut": "2011-02-08",
+"fin": "2014-10-06"
+},
+{
+"fonction": "Président du groupe Groupe Union Centriste et Indépendants au Sénat",
+"liste": "presidence-groupe",
+"debut": "2014-10-07",
+"fin": "2017-10-01"
 }
 ]
 }

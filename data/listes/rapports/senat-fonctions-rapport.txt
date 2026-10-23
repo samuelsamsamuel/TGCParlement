@@ -1,7 +1,33 @@
-Fonctions au sein du Sénat :  ; matricules sans carte : 0
+Fonctions au sein du Sénat : presidence-commission 71, rapporteur-general 17, presidence-groupe 43 ; matricules sans carte : 0
 ODSEN_COMS.csv : 21213 lignes ; colonnes : Matricule | Qualité | Nom usuel | Prénom usuel | État Sénateur | Nom commission | Type commission | Id d'appartenance | Début d'appartenance | Fin d'appartenance | Id de fonction | Début de fonction | Fin de fonction | Fonction
-  colonnes retenues : {'matricule': 'Matricule', 'organe': 'Nom commission', 'fonction': 'Id de fonction', 'debut': "Début d'appartenance", 'fin': "Fin d'appartenance"}
-  fonctions les plus fréquentes : 2854 (1), 208 (1), 404 (1), 20150 (1), 12380 (1), 12802 (1), 12912 (1), 13010 (1), 12982 (1), 13439 (1), 13778 (1), 14067 (1), 14506 (1), 1607 (1), 411 (1)
+  colonnes retenues : {'matricule': 'Matricule', 'organe': 'Nom commission', 'type': 'Type commission', 'fonction': 'Fonction', 'debut': 'Début de fonction', 'fin': 'Fin de fonction'}
+  types de commission : Commission mixte paritaire (8374), Commission permanente (6549), Mission commune d'information (2709), Commission spéciale (1492), Commission d'enquête (1430), Commission européenne (312), Commission du Sénat de la Communauté (132), Commission spéciale chargée du contrôle des comptes et de l'évaluation interne (118), Commission en charge de l'application des lois (61), Mission commune (36)
+  fonctions les plus fréquentes :  (17083), Vice-Président (2173), Rapporteur (704), Secrétaire (702), Président (510), Rapporteur général (28), Premier Vice-Président (7), Président et rapporteur (3), Vice-Président d'honneur (1), Vice-Président et rapporteur (1), Secrétaire Rapporteur (1)
 ODSEN_HISTOGROUPES.csv : 3747 lignes ; colonnes : Matricule | Id appartenance | Id fonction occupée | Nom | Prénom | Code du groupe politique | Nom court du groupe politique | Date de début d'appartenance | Date de fin d'appartenance | Nom court fonction | Date de début de la fonction | Date de fin de la fonction
-  colonnes retenues : {'matricule': 'Matricule', 'organe': 'Nom', 'fonction': 'Id fonction occupée', 'debut': "Date de début d'appartenance", 'fin': "Date de fin d'appartenance"}
-  fonctions les plus fréquentes : 208 (1), 2974 (1), 1178 (1), 632 (1), 793 (1), 1888 (1), 2356 (1), 289 (1), 1179 (1), 2173 (1), 2174 (1), 424 (1), 19 (1), 3826 (1), 3900 (1)
+  colonnes retenues : {'matricule': 'Matricule', 'organe': 'Nom court du groupe politique', 'type': None, 'fonction': 'Nom court fonction', 'debut': 'Date de début de la fonction', 'fin': 'Date de fin de la fonction'}
+  fonctions les plus fréquentes : Membre (3625), Président (59), Vice-Président (45), Vice-Président délégué (12), Délégué (5), Président délégué (1)
+  Président de la commission des affaires sociales du Sénat (2023-10-05 -> 2026-09-30)
+  Président de la commission des affaires étrangères du Sénat (2023-10-05 -> 2026-09-30)
+  Président de la commission des finances du Sénat (2023-10-05 -> 2026-09-30)
+  Rapporteur général (PLFFG23 du Sénat) (2023-11-21 -> 2023-11-22)
+  Rapporteur général (PLF2024 du Sénat) (2023-12-12 -> 2023-12-12)
+  Président du groupe Groupe Les Républicains au Sénat (2024-10-01 -> 2026-09-30)
+  Président de la commission des lois du Sénat (2024-10-23 -> 2026-09-30)
+  Président du groupe Groupe du RDSE au Sénat (2026-10-05 -> )
+  Président du groupe Groupe CRCE - Kanaky au Sénat (2026-10-05 -> )
+  Président du groupe Groupe Les Républicains au Sénat (2026-10-05 -> )
+  Président du groupe Groupe Union Nationale pour les Territoires au Sénat (2026-10-05 -> )
+  Président du groupe Groupe Rassemblement des démocrates, progressistes et indépendants au Sénat (2026-10-05 -> )
+  Président du groupe Groupe Socialiste, Écologiste et Républicain au Sénat (2026-10-05 -> )
+  Président du groupe Groupe Les Indépendants - République et Territoires au Sénat (2026-10-05 -> )
+  Président du groupe Groupe Union Centriste et Indépendants au Sénat (2026-10-05 -> )
+  Président du groupe Groupe Écologiste - Solidarité et Territoires au Sénat (2026-10-05 -> )
+  Président de la commission des finances du Sénat (2026-10-07 -> )
+  Président de la commission des affaires économiques du Sénat (2026-10-07 -> )
+  Rapporteur général (commission des affaires sociales du Sénat) (2026-10-07 -> )
+  Président de la commission des lois du Sénat (2026-10-07 -> )
+  Rapporteur général (commission des finances du Sénat) (2026-10-07 -> )
+  Président de la commission de la culture du Sénat (2026-10-07 -> )
+  Président de la commission de l'aménagement du territoire et du développement durable du Sénat (2026-10-07 -> )
+  Président de la commission des affaires sociales du Sénat (2026-10-07 -> )
+  Président de la commission des affaires étrangères du Sénat (2026-10-07 -> )
