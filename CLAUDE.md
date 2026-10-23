@@ -1,8 +1,10 @@
 # TGCParlement — note de reprise
 
 Jeu de cartes à collectionner sur les parlementaires français depuis 1789 (« Hémicycle »).
-Site statique dans `site/` (HTML et JavaScript natifs, sans compilation), publié par Cloudflare depuis ce dépôt :
-`index.html` (interface), `regles.js` (règles du jeu), `jeu.json` (cartes, écrit par `export_jeu.py`).
+Site dans `site/` (HTML et JavaScript natifs, sans compilation) : `index.html` (interface), `regles.js` (règles
+du jeu), `jeu.json` (cartes, écrit par `export_jeu.py`), `serveur.json` (catalogue réduit du serveur, écrit par
+`scripts/catalogue_serveur.js`). Publié par Cloudflare Workers Builds à chaque commit sur main : le Worker
+`worker/index.js` (configuration `wrangler.jsonc`) sert le site et l'API `/api/`, avec la base D1 « hemicycle ».
 Données construites par les scripts Python de `scripts/` (bibliothèque standard uniquement), lancés par
 le workflow `.github/workflows/listes.yml` (« Listes fermées et cartes »), qui enregistre `data/` et `site/`.
 
@@ -28,7 +30,8 @@ Sénat, lu dans l'export complet `export_sens.zip`, tables `bur` et `senbur`) ; 
 (Ve République et rattachements) ;
 7. `quatre_vingts.py`, `doyens.py`, `presidences.py`, `presidences_senat.py`, `distinctions.py` ;
 8. `cartes.py` (version finale : score, rareté par époque, bonus des élus en exercice) ;
-9. `portraits.py`, `villes_circonscriptions.py`, `export_jeu.py` (écrit `site/jeu.json`).
+9. `portraits.py`, `villes_circonscriptions.py`, `export_jeu.py` (écrit `site/jeu.json`), puis
+`node scripts/catalogue_serveur.js` (écrit `site/serveur.json`).
 
 ## Décisions de notation
 
@@ -58,13 +61,34 @@ Sénat, lu dans l'export complet `export_sens.zip`, tables `bur` et `senbur`) ; 
 - Objectifs : Quatre-vingts, Compagnons de la Libération, présidents de l'Assemblée, chaque législature
   (table `assemblees` de `jeu.json`), chaque département d'au moins cinq cartes. Paliers dans `PALIERS` ;
   la collection complète donne 5 paquets et a sa propre clé (`@complet`), pour ne se réclamer qu'une fois.
-- Tests : `node tests/regles.test.js` (sans installation).
+- Tests : `node tests/regles.test.js` (sans installation) ; `tests/api.test.js` contre un serveur local
+  (`npx wrangler dev`, mode d'emploi en tête du fichier).
+
+## Serveur : comptes, échanges, marché
+
+- Gratuit dans les limites des plans de base de Workers et D1. Le serveur juge tout : tirages (aléa
+  cryptographique), recyclage, objectifs, échanges, marché. Le navigateur sans compte garde le mode local.
+- Intégrité : chaque écriture est une variation sous contraintes de la base (`CHECK` sur possessions, points,
+  paquets du jour ; clés uniques des paliers réclamés et des clôtures d'annonce ou d'échange), dans un lot D1
+  exécuté comme une transaction. Une demande croisée viole une contrainte et n'écrit rien (409). SQLite
+  vérifie les `CHECK` d'une insertion avant le conflit : un retrait de cartes est donc toujours un `UPDATE`
+  sur une ligne vérifiée au préalable (les lignes de possession ne sont jamais supprimées).
+- Mots de passe : étirés dans le navigateur (PBKDF2-SHA-256, 600 000 tours, sel « hemicycle|pseudo »), le
+  serveur ne garde que SHA-256(sel aléatoire + preuve) ; le calcul lent hors du Worker tient dans la limite de
+  10 ms de calcul du plan gratuit. Pas de récupération de mot de passe faute d'envoi d'e-mails.
+- Reprise de la collection locale à l'inscription, une fois : exemplaires « importés », verrouillés (ni
+  recyclés ni cédés), faute de pouvoir vérifier leur origine ; paliers déjà atteints marqués réclamés ; points
+  et paquets offerts non repris. Une carte en vente est « réservée », verrouillée de même.
+- Monnaie du marché : les points de recyclage. Pas d'argent réel.
+- Limites connues : un joueur peut ouvrir plusieurs comptes et faire passer leurs cartes vers un seul
+  (inscriptions limitées à cinq par heure et par adresse IP, sans plus) ; pas de modération des pseudos.
 
 ## Prochaines tâches
 
-1. Application : comptes, sauvegarde de la collection côté serveur (reprise de l'état local à la première
-   connexion), échanges entre joueurs, marché. Le partage de la collection par un lien n'a pas été fait :
-   les comptes le remplaceront.
+1. Application : comptes, sauvegarde côté serveur, échanges et marché sont écrits et testés en local. Mise en
+   service : créer la base D1 « hemicycle » dans le tableau de bord Cloudflare et reporter son identifiant
+   dans `wrangler.jsonc` (valeur « A-RENSEIGNER »). Ensuite : récupération du compte par e-mail, modération,
+   lutte contre les comptes multiples, notifications d'échange.
 2. Lacunes connues, faute de source officielle structurée : sénateurs de la IIIe République et du Conseil
    de la République (1946-1948), gouvernements antérieurs à 1944, villes des circonscriptions avant 2012,
    fonctions au sein de l'Assemblée avant juin 2002 (seuls les comptes rendus de séance en PDF les portent ;

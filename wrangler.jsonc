@@ -1,0 +1,24 @@
+// Hémicycle : Worker Cloudflare (site statique + API) et base D1.
+// Publié par Cloudflare Workers Builds à chaque commit sur main (commande « npx wrangler deploy »).
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "tgcparlement",
+  "main": "worker/index.js",
+  "compatibility_date": "2026-09-01",
+  "assets": {
+    "directory": "./site",
+    "binding": "ASSETS",
+    // Seules les adresses de l'API passent par le Worker ; le reste du site est servi directement
+    "run_worker_first": ["/api/*"]
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "hemicycle",
+      // Identifiant de la base D1 « hemicycle », à reporter depuis le tableau de bord Cloudflare
+      // (Stockage et bases de données > D1). Les tables sont créées par le Worker à la première requête.
+      "database_id": "A-RENSEIGNER"
+    }
+  ],
+  "observability": { "enabled": true }
+}
