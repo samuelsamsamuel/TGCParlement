@@ -153,6 +153,18 @@ def intitule_officiel(nom, debut):
     return retenu
 
 
+def changements_ulterieurs(nom, debut, libelle):
+    """Compositions postérieures à la nomination où la même personne porte un autre intitulé."""
+    cle, courant, liste = norme(nom), libelle, []
+    for date_c, _, membres in COMPOSITIONS:
+        if date_c > (debut or ""):
+            for n, t in membres.items():
+                if norme(n) == cle and t != courant:
+                    liste.append((date_c, t))
+                    courant = t
+    return liste
+
+
 def composition_officielle(rapport):
     """Composition du Gouvernement publiée sur info.gouv.fr : {nom normalisé: (nom, intitulé, photo)}.
     L'open data de l'Assemblée ne donne que « membre » comme qualité : l'intitulé vient de cette page."""
@@ -302,9 +314,16 @@ def main():
                         if not cat:
                             sans_intitule.append(f"{ident.get('prenom')} {ident.get('nom')} ({texte(m.get('dateDebut'))[:10]} -> {fin_m or 'en cours'})")
                             continue
-                    lignes.append({"liste": cat, "prenom": ident.get("prenom"), "nom": ident.get("nom"),
-                                   "debut": debut, "fin": (texte(m.get("dateFin"))[:10] or None),
-                                   "fonction": libelle or code})
+                    fin_mandat = texte(m.get("dateFin"))[:10] or None
+                    # Mandat en cours dont l'intitulé a changé lors d'un remaniement sans nouvelle nomination
+                    # dans l'open data (ex. : ministre délégué devenu ministre) : deux fonctions successives
+                    changements = [] if fin_mandat else changements_ulterieurs(f"{ident.get('prenom')} {ident.get('nom')}", debut, libelle)
+                    bornes = [debut] + [d for d, _ in changements]
+                    intitules = [libelle or code] + [t for _, t in changements]
+                    for k, (d_k, t_k) in enumerate(zip(bornes, intitules)):
+                        f_k = bornes[k + 1] if k + 1 < len(bornes) else fin_mandat
+                        lignes.append({"liste": categorie("", t_k) or cat, "prenom": ident.get("prenom"), "nom": ident.get("nom"),
+                                       "debut": d_k, "fin": f_k, "fonction": t_k})
     vus = set()
     lignes = [l for l in lignes if not ((k := (l["prenom"], l["nom"], l["debut"], l["fonction"])) in vus or vus.add(k))]
     assemblee_vus = set()
