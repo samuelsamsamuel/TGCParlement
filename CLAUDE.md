@@ -1,7 +1,8 @@
 # TGCParlement — note de reprise
 
 Jeu de cartes à collectionner sur les parlementaires français depuis 1789 (« Hémicycle »).
-Site statique dans `site/` (HTML et JavaScript natifs, sans compilation), publié par Cloudflare depuis ce dépôt.
+Site statique dans `site/` (HTML et JavaScript natifs, sans compilation), publié par Cloudflare depuis ce dépôt :
+`index.html` (interface), `regles.js` (règles du jeu), `jeu.json` (cartes, écrit par `export_jeu.py`).
 Données construites par les scripts Python de `scripts/` (bibliothèque standard uniquement), lancés par
 le workflow `.github/workflows/listes.yml` (« Listes fermées et cartes »), qui enregistre `data/` et `site/`.
 
@@ -40,11 +41,30 @@ Sénat, lu dans l'export complet `export_sens.zip`, tables `bur` et `senbur`) ; 
 - Libellés des listes du Bureau communs aux deux chambres (« de l'Assemblée ou du Sénat »), définis dans
   `LISTES_ASSEMBLEE` (`gouvernements_an.py`) et repris par les scripts du Sénat.
 
+## Jeu : règles et préparation d'une vraie application
+
+- `site/regles.js` porte toutes les règles, sans interface ni stockage : tirage des paquets, recyclage,
+  échange de points, objectifs. Chaque action est une opération nommée (`ouvrirPaquet`, `recycler`,
+  `echangerPoints`, `reclamer`) qui vérifie, modifie l'état et renvoie son résultat ; l'interface n'écrit
+  jamais l'état elle-même. Le fichier s'exécute aussi sous Node : le futur serveur (comptes, échanges,
+  marché) le reprendra pour devenir seul juge des tirages et des récompenses.
+- L'état du joueur est versionné (`VERSION_ETAT`, `migrer`) et passe par l'objet `depot` d'`index.html`
+  (navigateur aujourd'hui, serveur demain). Un journal des dernières opérations est tenu dans l'état.
+- Économie : 3 paquets par jour, puis les paquets offerts. Recyclage d'un exemplaire en trop : commune 1,
+  peu commune 2, rare 5, épique 15, légendaire et hors catégorie 40, mythique 100 points ; 25 points font un
+  paquet. Un paquet de doubles rapporte en moyenne 21 points : le prix doit rester au-dessus, sans quoi le
+  recyclage créerait des paquets sans fin (vérifié par le test). Par défaut, seules les raretés commune à
+  rare sont cochées pour le recyclage : les doubles plus rares serviront aux échanges entre joueurs.
+- Objectifs : Quatre-vingts, Compagnons de la Libération, présidents de l'Assemblée, chaque législature
+  (table `assemblees` de `jeu.json`), chaque département d'au moins cinq cartes. Paliers dans `PALIERS` ;
+  la collection complète donne 5 paquets et a sa propre clé (`@complet`), pour ne se réclamer qu'une fois.
+- Tests : `node tests/regles.test.js` (sans installation).
+
 ## Prochaines tâches
 
-1. Jeu : recyclage des doubles contre des paquets supplémentaires ; page d'objectifs de collection
-   (une législature, les Quatre-vingts, présidents de l'Assemblée, Compagnons de la Libération, département),
-   chaque objectif atteint donnant un paquet ; partage de la collection par un lien encodant son état.
+1. Application : comptes, sauvegarde de la collection côté serveur (reprise de l'état local à la première
+   connexion), échanges entre joueurs, marché. Le partage de la collection par un lien n'a pas été fait :
+   les comptes le remplaceront.
 2. Lacunes connues, faute de source officielle structurée : sénateurs de la IIIe République et du Conseil
    de la République (1946-1948), gouvernements antérieurs à 1944, villes des circonscriptions avant 2012,
    fonctions au sein de l'Assemblée avant juin 2002 (seuls les comptes rendus de séance en PDF les portent ;
