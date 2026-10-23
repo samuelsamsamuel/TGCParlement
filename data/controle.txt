@@ -6,18 +6,18 @@ Distinctions calculées :
   convention : 905
   ministre : 679
   secretaire-etat : 496
+  bureau-secretaire : 248
   presidence-an-courte : 205
-  presidence-commission : 129
-  bureau-secretaire : 128
+  bureau-vp-questeur : 147
   academie-francaise : 122
   doyen-benjamin : 110
-  presidence-groupe : 95
+  presidence-commission : 100
+  presidence-groupe : 89
   compagnon-liberation : 78
   quatre-vingts : 70
-  bureau-vp-questeur : 68
   chef-gouvernement : 50
-  rapporteur-general : 40
   presidence-an-longue : 35
+  rapporteur-general : 35
   femmes-1945 : 33
   pantheon : 28
   presidence-senat-longue : 21
@@ -26,19 +26,19 @@ Distinctions calculées :
   presidence-senat-courte : 5
   chef-etat-interim : 1
 
-Scores (grille équilibrée) : maximum 146.3 ; 10e 102.6 ; 100e 64.8 ; 1000e 31.0 ; médiane 7.4
-Cartes à égalité au score maximal : 1 ; scores distincts parmi les 100 premières : 82
+Scores (grille équilibrée) : maximum 146.3 ; 10e 102.6 ; 100e 64.6 ; 1000e 31.0 ; médiane 7.4
+Cartes à égalité au score maximal : 1 ; scores distincts parmi les 100 premières : 81
 
 Cartes en exercice : 917
 Cartes par époque : Libération et IVe République 1274, Ve République 5776, IIIe République 4622, Monarchies constitutionnelles 2484, IIe République et Second Empire 1549, Révolution et Empire 3930, None 181
 
 Répartition des raretés :
   mythique : 95
-  legendaire : 438
-  epique : 1092
-  rare : 2527
-  peu-commune : 6229
-  commune : 9254
+  legendaire : 442
+  epique : 1085
+  rare : 2541
+  peu-commune : 6208
+  commune : 9264
   hors-categorie : 181
 
 Mandats de député par régime et législature :

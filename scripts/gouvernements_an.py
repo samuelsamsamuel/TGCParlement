@@ -7,7 +7,8 @@ postérieures, on lit le fichier officiel « Députés, sénateurs et ministres 
 et leurs dates. Seules les fonctions commençant après le 13 mars 2025 sont reprises.
 Le même fichier sert aussi aux fonctions au sein de l'Assemblée (présidences de groupe et de commission,
 rapporteur général, vice-présidence, questure et secrétariat du Bureau), rattachées aux cartes par le nom
-et la date de naissance. L'historique officiel est privilégié (AMO30, depuis 1997) ; à défaut, le fichier
+et la date de naissance. L'historique officiel est privilégié (AMO30, dit « depuis la XIe législature », mais
+qui ne porte les fonctions au sein de l'Assemblée qu'à partir de la XIIe, en juin 2002) ; à défaut, le fichier
 de la législature (AMO20) ne couvre que les députés en fonction et leurs mandats antérieurs.
 Sorties : data/gouvernement/an_lignes.json, data/gouvernement/fonctions_assemblee.json,
 data/listes/{presidence-groupe,presidence-commission,rapporteur-general,bureau-vp-questeur,bureau-secretaire}.json
@@ -212,8 +213,8 @@ LISTES_ASSEMBLEE = {
     "presidence-commission": (10, "A présidé une commission permanente"),
     "rapporteur-general": (10, "A été rapporteur général du budget"),
     "presidence-groupe": (8, "A présidé un groupe politique"),
-    "bureau-vp-questeur": (8, "A été vice-président ou questeur de l'Assemblée"),
-    "bureau-secretaire": (3, "A été secrétaire de l'Assemblée"),
+    "bureau-vp-questeur": (8, "A été vice-président ou questeur de l'Assemblée ou du Sénat"),
+    "bureau-secretaire": (3, "A été secrétaire de l'Assemblée ou du Sénat"),
 }
 
 
@@ -381,7 +382,7 @@ def rattacher_assemblee(assemblee, rapport, circos=()):
     for code, (points, libelle) in LISTES_ASSEMBLEE.items():
         with open(os.path.join("data", "listes", code + ".json"), "w", encoding="utf-8") as f:
             json.dump({"code": code, "points": points, "plancher": None, "libelle": libelle,
-                       "source": "Assemblée nationale, open data (mandats au sein des organes), depuis 1997",
+                       "source": "Assemblée nationale, open data (mandats au sein des organes), depuis 2002 (XIIe législature)",
                        "ids": sorted(membres[code], key=str)}, f, ensure_ascii=False, indent=1)
     fusion = {}
     for ident, fs in detail.items():

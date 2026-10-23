@@ -1,0 +1,234 @@
+Archive https://data.senat.fr/data/senateurs/export_sens.zip : 8547551 octets ; export_sens.sql (60008917 octets, 2026-10-23)
+
+# 95 tables
+  activite                     42924 lignes  Table des activités des Sénateurs faisant l'objet d'un relevé de présences
+  activite_delegation           3155 lignes  Délégations au cours d'une activité faisant l'objet d'un relevé de présences.
+  activite_loi                  5333 lignes  Liens optionnels vers les textes examinés lors d'une activité.
+  activite_participant        680638 lignes  Participants à une activité.
+  activite_senateur            11174 lignes  Activité personnelles saisies par un Sénateur
+  activites_liees                326 lignes  Table de regroupement d'activités. Permet notamment de modéliser les réunions communes entre commissions.
+  actpro                          41 lignes  Activités socio-professionnelles
+  adresse                        288 lignes  Adresses de Point de contact similiare à ADR (adresses)
+  asster                          17 lignes  Assemblée territoriale
+  bur                              5 lignes  Fonctions au bureau du Sénat
+  categorie_activite              27 lignes  
+  com                            755 lignes  Commissions permanentes, spéciales, d'enquêtes, CMP, missions d'information.
+  csp                             42 lignes  Catégories Socio-professionnelles CSP de l'INSEE
+  delega                          30 lignes  Délégations parlementaires
+  design                          51 lignes  Désignataires
+  designoep                      651 lignes  
+  designorg                        6 lignes  Désignataires d'organismes
+  dpt                            168 lignes  Départements ou circonscriptions
+  dpttypman                      466 lignes  
+  ele                             23 lignes  Elections
+  eludep                         752 lignes  Elu député
+  eludiv                           3 lignes  Elus divers
+  elueur                          41 lignes  ELU européen
+  elusen                        3734 lignes  Mandats Sénateurs
+  elutit                       30802 lignes  Titres des élus
+  etadebman                       12 lignes  Etat début mandat
+  etafinman                       25 lignes  Etat fin de mandat
+  etasen                           8 lignes  Etat Sénateur
+  fonact_participant               4 lignes  
+  foncom                          12 lignes  Fonctions en commission
+  fondelega                       19 lignes  Fonctions dans les délégations
+  fongrppol                        6 lignes  Fonctions de groupe politique
+  fongrpsen                       16 lignes  Fonction dans le groupe sénatorial
+  fonmemcom                    21213 lignes  Fonctions des membres de Commission
+  fonmemdelega                  3753 lignes  Fonctions des membres de délégation
+  fonmemgrppol                  3747 lignes  Fonctions des membres de groupe politique
+  fonmemgrpsen                 39629 lignes  Fonction d'un membre d'un groupe sénatorial
+  fonmemorg                       17 lignes  Fonctions membres d'organisme
+  fonorg                          15 lignes  Fonctions dans les organismes
+  grppol                          29 lignes  Groupes Politiques
+  grpsenami                      171 lignes  Groupes sénatoriaux (anciennement d'amitié)
+  libcom                         571 lignes  Historique des libellés de Commission
+  libdelega                       36 lignes  Historique des libellés de délégation
+  libgrppol                       51 lignes  Libellés groupes politiques
+  libgrpsen                      115 lignes  Libellé groupe sénatorial
+  liborg                           8 lignes  Historique des libellés d'organisme
+  mandat_local                  5348 lignes  
+  mel                             86 lignes  Mels d'adresse de sénateurs
+  memcom                       17867 lignes  Membres de commission
+  memdelega                     2747 lignes  Membres de délégation
+  memextpar                     4533 lignes  Membre organisme extra-parlementaire
+  memgrppol                     3585 lignes  Membres de groupe politique
+  memgrpsen                    32360 lignes  Membre groupe sénatorial
+  memorg                          17 lignes  Membres d'organisme
+  minind                         396 lignes  Ministre
+  mismin                          40 lignes  Missions et Ministères
+  missen                         171 lignes  Missions et Sénateurs
+  moddes                          11 lignes  
+  nation                         215 lignes  Pays ou NATION
+  nationgrpsen                   199 lignes  Pays rattachés à un groupe
+  org                              7 lignes  Organismes
+  orgext                         450 lignes  Organisme extra_parlementaire
+  orgthe                         503 lignes  Organismes et thèmes
+  pcs                             70 lignes  Table INSEE Catégorie Socio-Professionnelle PCS
+  pcs24                           29 lignes  Table INSEE Catégorie Socio-Professionnelle PCS24
+  pcs42                           50 lignes  Table INSEE Catégorie Socio-Professionnelle PCS42
+  pcs8                             9 lignes  Table INSEE Catégorie Socio-Professionnelle PCS8
+  pcscatpro                       40 lignes  Catégories Socio-professionelles
+  poicon                        1040 lignes  Un point de contact est une adresse de sénateur comosée d'une adresse (postale) de numéros de tel et de mails
+  qua                              3 lignes  Qualités (M., Mme, Mlle)
+  reg                             49 lignes  Régions
+  sen                           2015 lignes  Sénateurs
+  senbur                        2749 lignes  Fonctions des Sénateurs au bureau du Sénat
+  sennom                        2048 lignes  Historique des noms d'une personne
+  senurl                        1320 lignes  URLs des Sénateurs
+  stajur                           4 lignes  
+  suspensiontravaux               50 lignes  
+  telephone                      122 lignes  N° de téléphone (tel, fax, portable)
+  temval                           3 lignes  Témoin de validité
+  territ                          12 lignes  Territoires
+  titele                          58 lignes  Titres électifs (Président , Maire, ...)
+  typadr                           3 lignes  Types d'adresse
+  typapppol                        3 lignes  Types d'appartenances aux groupes politiques
+  typbister                        4 lignes  Type Bis Ter pour la gestion des adresses
+  type_activite                   20 lignes  
+  type_activite_participant        2 lignes  
+  type_activite_senateur          12 lignes  
+  type_categorie                  68 lignes  
+  typele                           3 lignes  
+  typgrpsen                        4 lignes  
+  typman                          18 lignes  Types de mandat
+  typorg                          37 lignes  Types d'organismes
+  typurl                          13 lignes  
+  typvoi                           7 lignes  Type ou nature de voie
+  zongeo                           4 lignes  Zones géographique
+
+# Tables du Bureau (commentaire contenant « bureau ») : bur, senbur
+
+## Table bur : Fonctions au bureau du Sénat (5 lignes)
+  burcod (character varying(12) NOT NULL) : Code bureau 4e Rép.
+      5 valeurs distinctes, 0 nulles ; AUCUNSEN (1), PDTSEN (1), QUESTESEN (1), SECRETSEN (1), VICPDTSEN (1)
+  burlib (character varying(120)) : Libellé
+      5 valeurs distinctes, 1 nulles ; \N (1), Président du Sénat (1), Questeur du Sénat (1), Secrétaire du Sénat (1), Vice-président du Sénat (1)
+  burlic (character varying(60)) : Libellé court
+      5 valeurs distinctes, 0 nulles ; Sénateur (1), Président (1), Questeur (1), Secrétaire (1), Vice-président (1)
+  burnumtri (bigint) : Numéro de tri
+      5 valeurs distinctes, 0 nulles ; 5 (1), 1 (1), 3 (1), 4 (1), 2 (1)
+  burlil (character varying(255)) : Libellé long
+      5 valeurs distinctes, 0 nulles ; Sénateur (1), Président du Sénat (1), Questeur du Sénat (1), Secrétaire du Sénat (1), Vice-président du Sénat (1)
+  burlibhon (character varying(120)) : Libellé honorariat
+      5 valeurs distinctes, 1 nulles ; \N (1), Président honoraire du Sénat (1), Questeur honoraire du Sénat (1), Secrétaire honoraire du Sénat (1), Vice-président honoraire du Sénat (1)
+  burlicfem (character varying(60)) : Libellé court féminin
+      5 valeurs distinctes, 0 nulles ; Sénateur (1), Présidente (1), Questeure (1), Secrétaire (1), Vice-présidente (1)
+  burlibfem (character varying(120)) : Libellé féminin
+      5 valeurs distinctes, 1 nulles ; \N (1), Présidente du Sénat (1), Questeure du Sénat (1), Secrétaire du Sénat (1), Vice-présidente du Sénat (1)
+  burlilfem (character varying(255)) : Libellé long féminin
+      5 valeurs distinctes, 0 nulles ; Sénatrice (1), Présidente du Sénat (1), Questeure du Sénat (1), Secrétaire du Sénat (1), Vice-présidente du Sénat (1)
+  burlicplu (character varying(60)) : Libellé court pluriel
+      5 valeurs distinctes, 0 nulles ; Sénateurs (1), Présidents (1), Questeurs (1), Secrétaires (1), Vice-présidents (1)
+  burlibplu (character varying(120)) : Libellé pluriel
+      5 valeurs distinctes, 1 nulles ; \N (1), Présidents du Sénat (1), Questeurs du Sénat (1), Secrétaires du Sénat (1), Vice-présidents du Sénat (1)
+  burlilplu (character varying(255)) : Libellé long pluriel
+      5 valeurs distinctes, 0 nulles ; Sénateurs (1), Présidents du Sénat (1), Questeurs du Sénat (1), Secrétaires du Sénat (1), Vice-présidents du Sénat (1)
+  burlibhonfem (character varying(120)) : Libellé honorariat féminin
+      5 valeurs distinctes, 1 nulles ; \N (1), Présidente honoraire du Sénat (1), Questeure honoraire du Sénat (1), Secrétaire honoraire du Sénat (1), Vice-présidente honoraire du Sénat (1)
+  burlibhonplu (character varying(120)) : Libellé honorariat pluriel
+      5 valeurs distinctes, 1 nulles ; \N (1), Présidents honoraires du Sénat (1), Questeurs honoraires du Sénat (1), Secrétaires honoraires du Sénat (1), Vice-présidents honoraires du Sénat (1)
+  syscredat (timestamp without time zone) : Date système création
+      1 valeurs distinctes, 5 nulles ; \N (5)
+  sysmajdat (timestamp without time zone) : Date système modification
+      1 valeurs distinctes, 5 nulles ; \N (5)
+  burlicfemplu (character varying(60)) : Libellé court féminin pluriel
+      5 valeurs distinctes, 0 nulles ; Sénateurs (1), Présidentes (1), Questeurs (1), Secrétaires (1), Vice-présidentes (1)
+  burlibfemplu (character varying(120)) : Libellé féminin pluriel
+      5 valeurs distinctes, 1 nulles ; \N (1), Présidentes du Sénat (1), Questeurs du Sénat (1), Secrétaires du Sénat (1), Vice-présidentes du Sénat (1)
+  burlilfemplu (character varying(255)) : Libellé long féminin pluriel
+      5 valeurs distinctes, 0 nulles ; Sénateurs (1), Présidentes du Sénat (1), Questeures du Sénat (1), Secrétaires du Sénat (1), Vice-présidentes du Sénat (1)
+
+## Table senbur : Fonctions des Sénateurs au bureau du Sénat (2749 lignes)
+  senburid (bigint NOT NULL) : Identifiant
+      2749 valeurs distinctes, 0 nulles ; 245 (1), 247 (1), 249 (1), 250 (1), 252 (1), 253 (1)
+  burcod (character varying(12) NOT NULL) : Code bureau 4e Rép.
+      5 valeurs distinctes, 0 nulles ; AUCUNSEN (2331), SECRETSEN (243), VICPDTSEN (114), QUESTESEN (51), PDTSEN (10)
+  senburdatdeb (timestamp without time zone) : Date de début
+      292 valeurs distinctes, 1015 nulles ; \N (1015), 2026-10-01 00:00:00 (186), 2023-10-02 00:00:00 (176), 2014-10-01 00:00:00 (109), 2017-10-02 00:00:00 (101), 2011-10-01 00:00:00 (98)
+  senburdatfin (timestamp without time zone) : Date de fin
+      562 valeurs distinctes, 347 nulles ; \N (347), 2026-09-30 00:00:00 (186), 2023-10-01 00:00:00 (177), 2014-09-30 00:00:00 (105), 2017-10-01 00:00:00 (100), 2011-09-30 00:00:00 (86)
+  senburrelint (character varying(12)) : Chargé Relations Internationales
+      2 valeurs distinctes, 1004 nulles ; NON (1745), \N (1004)
+  senburrngele (bigint) : Rang d'élection
+      28 valeurs distinctes, 1574 nulles ; \N (1574), 1 (1012), 2 (22), 3 (19), 5 (14), 4 (13)
+  temvalcod (character varying(12)) : Code validité
+      2 valeurs distinctes, 0 nulles ; ANCIEN (2401), ACTIF (348)
+  evelic (character varying(60)) : Libellé court
+      1 valeurs distinctes, 2749 nulles ; \N (2749)
+  evelib (character varying(120)) : Libellé
+      1 valeurs distinctes, 2749 nulles ; \N (2749)
+  evelil (character varying(255)) : Libellé long
+      1 valeurs distinctes, 2749 nulles ; \N (2749)
+  eveobs (character varying(255)) : Observations
+      2 valeurs distinctes, 2748 nulles ; \N (2748), Conformément à l'accord intervenu entre les présidents des groupes politiques, Mme Patricia SCHILLINGER remplacera Mme Mireille JOUVE en qualité de Secrétaire du Sénat à compter du 1er avril 2019, à 0 heure (1)
+  senmat (character(6) NOT NULL) : Matricule
+      2011 valeurs distinctes, 0 nulles ; 86034E (12), 92005M (8), 98042T (7), 000692 (7), 95059Q (6), 83031N (6)
+  senburhon (character varying(12)) : Honorariat
+      3 valeurs distinctes, 1004 nulles ; NON (1743), \N (1004), OUI (2)
+  syscredat (timestamp without time zone) : Date système création
+      473 valeurs distinctes, 2149 nulles ; \N (2149), 2017-09-24 00:00:00 (84), 2017-10-04 00:00:00 (8), 2014-09-28 00:00:00 (8), 2017-09-25 10:54:33 (3), 2014-09-28 17:03:41 (3)
+  sysmajdat (timestamp without time zone) : Date système modification
+      577 valeurs distinctes, 1919 nulles ; \N (1919), 2026-09-30 09:40:26 (24), 2017-09-24 18:16:52 (9), 2014-09-28 17:07:41 (5), 2017-09-24 18:17:56 (4), 2017-09-24 18:05:41 (4)
+
+# Couverture de senbur par fonction
+  AUCUNSEN (Sénateur) : 2331 lignes, 1919 personnes, 1919 rattachées à une carte ; débuts 1946-12-08 -> 2026-10-01 ; sans début 1010, sans fin 321, code de validité ACTIF 322
+  SECRETSEN (Secrétaire du Sénat) : 243 lignes, 210 personnes, 210 rattachées à une carte ; débuts 1955-10-06 -> 2026-10-06 ; sans début 2, sans fin 14, code de validité ACTIF 14
+  VICPDTSEN (Vice-président du Sénat) : 114 lignes, 93 personnes, 93 rattachées à une carte ; débuts 1959-05-05 -> 2026-10-06 ; sans début 2, sans fin 8, code de validité ACTIF 8
+  QUESTESEN (Questeur du Sénat) : 51 lignes, 41 personnes, 41 rattachées à une carte ; débuts 1959-05-05 -> 2026-10-06 ; sans début 1, sans fin 3, code de validité ACTIF 3
+  PDTSEN (Président du Sénat) : 10 lignes, 6 personnes, 6 rattachées à une carte ; débuts 1959-05-05 -> 2026-10-01 ; sans début 0, sans fin 1, code de validité ACTIF 1
+
+# Débuts de fonction au Bureau par décennie : 1950 (18), 1960 (38), 1970 (32), 1980 (37), 1990 (49), 2000 (71), 2010 (87), 2020 (81)
+
+# Fin antérieure au début : SECRETSEN François Monsarrat (1955-10-06 -> 1955-10-04), SECRETSEN Catherine Lagatu (1974-10-03 -> 1972-10-02)
+# Sans date de début : QUESTESEN Paul Baratgin (fin 1966-12-22), VICPDTSEN Edmond Michelet (fin 1959-05-28), VICPDTSEN Paul-Jacques Kalb (fin 1964-08-07), SECRETSEN Gustave Philippon (fin 1968-10-01), SECRETSEN Pierre Salvi (fin 1989-01-09)
+# Observations : Conformément à l'accord intervenu entre les présidents des groupes politiques, Mme Patricia SCHILLINGER remplacera Mme Mireille JOUVE en qualité de Secrétaire du Sénat à compter du 1er avril 2019, à 0 heure
+
+# Bureau en cours (code de validité ACTIF) : PDTSEN 1, VICPDTSEN 8, QUESTESEN 3, SECRETSEN 14
+  rang   1  Président du Sénat : Gérard Larcher (86034E, depuis 2026-10-01)
+  rang   2  Vice-président du Sénat : Roger Karoutchi (99004R, depuis 2026-10-06)
+  rang   3  Vice-président du Sénat : Sylvie Vermeillet (19479G, depuis 2026-10-06)
+  rang   4  Vice-président du Sénat : Jean-Claude Tissot (19413M, depuis 2026-10-06)
+  rang   5  Vice-président du Sénat : Nathalie Delattre (19719D, depuis 2026-10-06)
+  rang   6  Vice-président du Sénat : Pierre Barros (21084L, depuis 2026-10-06)
+  rang   7  Vice-président du Sénat : Solanges Nadille (21097R, depuis 2026-10-06)
+  rang   8  Vice-président du Sénat : Bernard Jomier (19683J, depuis 2026-10-06)
+  rang   9  Vice-président du Sénat : Laurence Garnier (20172F, depuis 2026-10-06)
+  rang  10  Questeur du Sénat : Antoine Lefèvre (08010L, depuis 2026-10-06)
+  rang  11  Questeur du Sénat : Olivier Cigolotti (14267Y, depuis 2026-10-06)
+  rang  12  Questeur du Sénat : Marie-Arlette Carlotti (12028B, depuis 2026-10-06)
+  rang  13  Secrétaire du Sénat : Cathy Apourceau-Poly (19760E, depuis 2026-10-06)
+  rang  14  Secrétaire du Sénat : Jean-Michel Arnaud (14189C, depuis 2026-10-06)
+  rang  15  Secrétaire du Sénat : Audrey Bélim (21035B, depuis 2026-10-06)
+  rang  16  Secrétaire du Sénat : Martine Berthet (19575F, depuis 2026-10-06)
+  rang  17  Secrétaire du Sénat : Guislain Cambier (21083K, depuis 2026-10-06)
+  rang  18  Secrétaire du Sénat : Guillaume Chevrollier (18083K, depuis 2026-10-06)
+  rang  19  Secrétaire du Sénat : Laure Darcos (19693L, depuis 2026-10-06)
+  rang  20  Secrétaire du Sénat : Jocelyne Guidez (19691J, depuis 2026-10-06)
+  rang  21  Secrétaire du Sénat : Anne-Catherine Loisier (14205J, depuis 2026-10-06)
+  rang  22  Secrétaire du Sénat : Sebastien Pla (20030R, depuis 2026-10-06)
+  rang  23  Secrétaire du Sénat : Kristina Pluchet (20118Y, depuis 2026-10-06)
+  rang  24  Secrétaire du Sénat : David Ros (21059K, depuis 2026-10-06)
+  rang  25  Secrétaire du Sénat : Christopher Szczurek (21069M, depuis 2026-10-06)
+  rang  26  Secrétaire du Sénat : Cédric Vial (20058E, depuis 2026-10-06)
+
+# Contrôle par ODSEN_GENERAL.csv (« Fonction au Bureau du Sénat », dernière fonction connue)
+  colonne : Fonction au Bureau du Sénat ; valeurs : (vide) (1841), Secrétaire du Sénat (99), Vice-président du Sénat (33), Questeur du Sénat (25), Vice-présidente du Sénat (10), Président du Sénat (3), Questeure du Sénat (1)
+  sénateurs actifs portant une fonction au Bureau : 26 ; Bureau en cours de senbur : 26 ; dans senbur seulement : [] ; dans ODSEN_GENERAL seulement : []
+
+# Lecture
+  DÉCISION (fin antérieure au début) : La fonction est retenue (la ligne l'atteste) mais ses deux dates sont omises : la source ne permet pas de dire laquelle est fausse. Cas relevés : François Monsarrat, secrétaire (1955-10-06 -> 1955-10-04), Catherine Lagatu, secrétaire (1974-10-03 -> 1972-10-02).
+  DÉCISION (sans date de début) : La fonction est retenue avec sa seule date de fin ; la date de début n'est pas reconstituée.
+  DÉCISION (symétrie avec l'Assemblée) : Les fonctions au sein de l'Assemblée (Bureau, présidences de commission et de groupe, rapporteur général) ne sont connues par l'open data de l'Assemblée qu'à partir de la XIIe législature : l'historique AMO30 ne porte aucun mandat au Bureau avant juin 2002, et aucune source officielle structurée ne couvre 1958-2002 (le site de l'Assemblée n'offre que des listes partielles, comme celle des femmes vice-présidentes, et les comptes rendus des séances en PDF). Le Sénat, lui, couvre ces fonctions depuis 1959. Pour que députés et sénateurs d'une même époque soient notés de la même façon, une fonction du Sénat ne donne des points que si elle a été exercée le 2002-06-19 ou après (en cours, ou terminée à cette date ou plus tard). Les fonctions antérieures restent dans le détail de la carte, sans points. Une fonction sans aucune date ne donne pas de points.
+  bureau-secretaire : 128 cartes de l'Assemblée + 120 sénateurs ayant exercé à partir du 2002-06-19 (liste 248 -> 248 cartes) ; 90 sénateurs gardent la fonction sans points
+  bureau-vp-questeur : 68 cartes de l'Assemblée + 79 sénateurs ayant exercé à partir du 2002-06-19 (liste 147 -> 147 cartes) ; 51 sénateurs gardent la fonction sans points
+  détail des fonctions : 369 périodes pour 312 cartes ; matricules sans carte : 0 []
+  exemples :
+    carte S92005M : Secrétaire du Sénat (1995-10-04 -> 2004-09-30) ; Questeur du Sénat (2008-10-07 -> 2010-11-25) ; Vice-président du Sénat (2004-10-06 -> 2004-11-26) ; Vice-président du Sénat (2005-03-02 -> 2008-10-06)
+    carte S000692 : Secrétaire du Sénat (1959-05-05 -> 1959-10-08) ; Secrétaire du Sénat (1961-10-03 -> 1962-10-03) ; Secrétaire du Sénat (1964-10-07 -> 1965-10-05) ; Secrétaire du Sénat (1967-10-11 -> 1968-10-04)
+    carte S83031N : Vice-président du Sénat (1992-10-07 -> 2001-10-02) ; Questeur du Sénat (2001-10-03 -> 2008-10-06) ; Secrétaire du Sénat (1989-10-30 -> 1992-10-07)
+    carte S92040Q : Secrétaire du Sénat (1998-10-06 -> 2001-10-03) ; Secrétaire du Sénat (2008-10-07 -> 2011-10-04) ; Secrétaire du Sénat (2014-10-08 -> 2017-10-03)
+    carte S000340 : Secrétaire du Sénat (1959-10-08 -> 1960-10-06) ; Secrétaire du Sénat (1962-10-03 -> 1963-10-03) ; Secrétaire du Sénat (1965-10-05 -> 1966-10-05)
+    carte S000083 : Secrétaire du Sénat (1965-10-05 -> 1966-10-05) ; Secrétaire du Sénat (1971-10-05 -> 1974-10-03) ; Secrétaire du Sénat (1977-10-05 -> 1980-10-02)
+    carte S95032D : Secrétaire du Sénat (2008-10-07 -> 2008-11-11) ; Vice-président du Sénat (2001-10-03 -> 2008-10-06) ; Vice-président du Sénat (2008-11-12 -> 2011-10-04)
+    carte S98042T : Vice-président du Sénat (2008-11-12 -> 2014-09-30) ; Secrétaire du Sénat (2004-10-06 -> 2008-11-11) ; Questeur du Sénat (2014-10-08 -> 2017-09-30)
