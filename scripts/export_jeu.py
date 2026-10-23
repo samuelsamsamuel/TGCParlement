@@ -3,7 +3,10 @@
 
 Chaque carte : [id, nom affiché, rareté, score, époque, en exercice (1/0), première année, dernière année, source,
 portrait (fichier Commons ou null), distinctions (codes), chambres ("A" Assemblée, "S" Sénat, "G" Gouvernement), sexe,
-fonctions [intitulé, début, fin, rang], mandats regroupés [intitulé, département, [[début, fin], ...], nombre], groupe politique principal, adresse directe du portrait].
+fonctions [intitulé, début, fin, rang], mandats regroupés [intitulé, département, [[début, fin], ...], nombre], groupe politique principal, adresse directe du portrait,
+assemblées où la carte a siégé (index dans la table « assemblees »)].
+Table « assemblees » : [clé stable, intitulé, année d'élection], une ligne par législature ou assemblée de
+Sycomore (régime et législature), dans l'ordre chronologique ; elle sert aux objectifs de collection.
 Le nom affiché est le nom d'usage : premier prénom et nom de famille pour les fiches Sycomore
 (« Jacques, Michel, Pierre Chaban-Delmas » -> « Jacques Chaban-Delmas »).
 """
@@ -78,6 +81,36 @@ def numero_circo(ident, departement, debut):
                 ville = v["ville"] + (" en partie" if v["partielle"] else "")
             return [num, ville] if ville else num
     return None
+
+
+def table_assemblees(cartes):
+    """Législatures et assemblées de Sycomore : clé stable, intitulé, année d'élection (la plus fréquente parmi
+    les débuts de mandat, les élections partielles étant minoritaires), et index de chaque carte."""
+    import unicodedata
+    from collections import Counter
+    vus, membres = {}, {}
+    for c in cartes:
+        for m in c.get("mandats", []):
+            if m.get("chambre") != "AN" or not m.get("regime"):
+                continue
+            k = (m["regime"], m.get("legislature"))
+            vus.setdefault(k, Counter())[(m.get("debut") or "")[:4]] += 1
+            membres.setdefault(k, set()).add(str(c["id"]))
+    table, index = [], {}
+    for k, annees_ in sorted(vus.items(), key=lambda x: min(a for a in x[1] if a) if any(x[1]) else "9999"):
+        regime, leg = k
+        court = regime.split(" - ")[0]
+        titre = f"{leg} ({court})" if leg else regime
+        cle = re.sub(r"[^a-z0-9]+", "-", unicodedata.normalize("NFKD", f"{regime} {leg or ''}")
+                     .encode("ascii", "ignore").decode().lower()).strip("-")
+        annee = max((a for a in annees_ if a), key=lambda a: annees_[a], default=None)
+        index[k] = len(table)
+        table.append([cle, titre, int(annee) if annee else None])
+    par_carte = {}
+    for k, ids in membres.items():
+        for i in ids:
+            par_carte.setdefault(i, []).append(index[k])
+    return table, {i: sorted(v) for i, v in par_carte.items()}
 
 
 def mandats_carte(c):
@@ -161,6 +194,7 @@ def main():
     if os.path.exists(os.path.join("data", "portraits.json")):
         with open(os.path.join("data", "portraits.json"), encoding="utf-8") as f:
             portraits = json.load(f)
+    assemblees, assemblees_carte = table_assemblees(cartes)
     sortie = []
     for c in cartes:
         debut, fin = annees(c)
@@ -174,11 +208,12 @@ def main():
                        portraits.get(str(c["id"])), codes, chambres, c.get("sexe"),
                        fonctions_carte(c["id"], gouv, pres), mandats_carte(c), c.get("groupe"),
                        c.get("photo") or (vignette(portraits[str(c["id"])]) if portraits.get(str(c["id"])) else None)
-                       or photos_gouv.get(simplifie(nom_affiche(c)))])
+                       or photos_gouv.get(simplifie(nom_affiche(c))), assemblees_carte.get(str(c["id"]), [])])
     os.makedirs("site", exist_ok=True)
     with open(os.path.join("site", "jeu.json"), "w", encoding="utf-8") as f:
-        json.dump({"raretes": RARETES, "cartes": sortie}, f, ensure_ascii=False, separators=(",", ":"))
+        json.dump({"raretes": RARETES, "assemblees": assemblees, "cartes": sortie}, f, ensure_ascii=False, separators=(",", ":"))
     print(f"Cartes avec portrait : {sum(1 for x in sortie if x[9])}")
+    print(f"Assemblées (législatures) : {len(assemblees)} ; cartes rattachées : {len(assemblees_carte)}")
     print(f"Cartes exportées : {len(sortie)} ; taille : {os.path.getsize(os.path.join('site', 'jeu.json')) // 1024} Ko")
 
 
