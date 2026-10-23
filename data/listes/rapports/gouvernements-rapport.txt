@@ -1,11 +1,11 @@
-Rattachés : chef-etat-interim 1, chef-etat 8, chef-gouvernement 45, ministre 657, secretaire-etat 496 ; hors catégorie : 173
-Fonctions 1944-1959 reprises : 908 ; fonctions récentes (open data de l'Assemblée) : 0
+Rattachés : chef-etat-interim 1, chef-etat 8, chef-gouvernement 50, ministre 679, secretaire-etat 496 ; hors catégorie : 181
+Fonctions 1944-1959 reprises : 908 ; fonctions récentes (open data de l'Assemblée) : 58
 
 Fonctions non comptées : 
 
-Cartes « hors catégorie » (membres du Gouvernement sans mandat parlementaire) : Abdelkader Barakrok; Agnès Buzyn; Aimé Lepercq; Alain Decaux; Alain Griset; Alexandre Parodi; Alice Saunier-Seïté; Amélie Oudea-Castera; André Bougenot; André Giraud; André Henry; André Malraux; André Postel-Vinay; Annie Lesur; Audrey Azoulay; Azouz Begag; Bernard Chenot; Bernard Kouchner; Bernard Laporte; Brice Hortefeux; Brice Lalonde; Brigitte Girardin; Catherine Colonna; Charles Brune; Charles de Gaulle; Charlotte Caubel; Christian Beullac; Christian Sautter; Christiane Scrivener; Christine Albanel; Christine Chauvet; Christine Lagarde; Chrysoula Zacharopoulou; Clara Chappaz; Claude Allègre; Claude Cheysson; Claude Guéant; Claude Lemaitre; Claudie Haigneré; Corinne Lepage; Cédric O; Delphine Gény-Stephann; Dominique Bertinotti; Dominique Versini; Dominique de Villepin; Elisabeth Moreno; Emile Pelletier; Emmanuel Macron; Emmanuelle Cosse; Emmanuelle Wargon; Eric Lombard; Fabrice Loher; Fadela Amara; Fleur Pellerin; Florence Parly; Francis Mer; François Braun; François Doubin; François Durovray; François Pineau; Françoise Giroud; Françoise Nyssen; Frédéric Mitterrand; Frédérique Vidal; Georges Kiejman; Georges Laffargue; Gil Avérous; Gilbert Grandval; Gérard Koenig; Gérard Renon; Hamlaoui Mékachéra; Harlem Désir; Haroun Tazieff; Henri Frenay; Hubert Curien; Hubert Védrine; Hélène Dorlhac; Isabelle Rome; Jacques Chérèque; Jacques Delors; Jacques Perier; Jean Castex; Jean Farge; Jean Gilbert-Jules; Jean Mattéoli; Jean Sauvagnargues; Jean-Christophe Combe; Jean-François Carenco; Jean-Jacques Aillagon; Jean-Michel Blanquer; Jean-Michel Guerin Du Pabst De Beaumont; Jean-Noël Jeanneney; Jean-Pierre Jouyet; Jean-Pierre Prouteau; Jeannette Bougrab; Joseph Gavini; Jules Julien; Julien Denormandie; Juliette Méadel; Laura Flessel; Laurence Boone; Laurent Nunez; Louis De Guiringaud; Luc Ferry; Lucien Paye; Léon Schwartzenberg; Margie Sudre; Marie Barsacq; Marie-Josée Roig; Marie-Luce Penchard; Marlène Schiappa; Martin Hirsch; Martine Pinvile; Michel Debatisse; Michel D’Ornano; Michel Gillibert; Michel Guy; Michel Jobert; Michel Tony-Revillon; Monique Pelletier; Muriel Pénicaud; Myriam El Khomri; Najat Vallaud-Belkacem; Nathalie Loiseau; Nicolas Daragon; Nicolas Hulot; Nicole Belloubet; Nicole Fontaine; Nicole Guedj; Nicole Pasquier; Nora Berra; Noëlle Lenoir; Olivier Klein; Othman Nasrou; Pap Ndiaye; Pascal Canfin; Patrice Vergriete; Paulette Guinchard-Kunstler; Philippe Baptiste; Philippe Essig; Pierre Aigrain; Pierre Arpaillange; Pierre Chatenet; Pierre Dreyfus; Pierre Guillaumat; Rachida Dati; Rama Yade; Raoul Dautry; René Lenoir; Rima Abdul-Malak; Roger Bambuck; Roger Fauroux; Roxana Maracineanu; Salima Saa; Sibeth Ndiaye; Simone Veil; Sonia Backès; Sophie Cluzel; Sylvie Goulard; Sylvie Retailleau; Thierry Breton; Thierry De Beaucé; Théo Braun; Tokia Saïfi; Wilfrid Baumgartner; Xavier Emmanuelli; Yamina Benguigui; Yves Farge; Yves Galland; Yvon Morandat; Élisabeth Dufourcq; Émile Biasini; Éric Dupond-Moretti
+Cartes « hors catégorie » (membres du Gouvernement sans mandat parlementaire) : Abdelkader Barakrok; Agnès Buzyn; Aimé Lepercq; Alain Decaux; Alain Griset; Alexandre Parodi; Alice Rufo; Alice Saunier-Seïté; Amélie Oudea-Castera; André Bougenot; André Giraud; André Henry; André Malraux; André Postel-Vinay; Annie Lesur; Audrey Azoulay; Azouz Begag; Bernard Chenot; Bernard Kouchner; Bernard Laporte; Brice Hortefeux; Brice Lalonde; Brigitte Girardin; Catherine Chabaud; Catherine Colonna; Catherine Pégard; Charles Brune; Charles de Gaulle; Charlotte Caubel; Christian Beullac; Christian Sautter; Christiane Scrivener; Christine Albanel; Christine Chauvet; Christine Lagarde; Chrysoula Zacharopoulou; Clara Chappaz; Claude Allègre; Claude Cheysson; Claude Guéant; Claude Lemaitre; Claudie Haigneré; Corinne Lepage; Cédric O; Delphine Gény-Stephann; Dominique Bertinotti; Dominique Versini; Dominique de Villepin; Elisabeth Moreno; Emile Pelletier; Emmanuel Macron; Emmanuelle Cosse; Emmanuelle Wargon; Eric Lombard; Fabrice Loher; Fadela Amara; Fleur Pellerin; Florence Parly; Francis Mer; François Braun; François Doubin; François Durovray; François Pineau; Françoise Giroud; Françoise Nyssen; Frédéric Mitterrand; Frédérique Vidal; Georges Kiejman; Georges Laffargue; Gil Avérous; Gilbert Grandval; Gérard Koenig; Gérard Renon; Hamlaoui Mékachéra; Harlem Désir; Haroun Tazieff; Henri Frenay; Hubert Curien; Hubert Védrine; Hélène Dorlhac; Isabelle Rome; Jacques Chérèque; Jacques Delors; Jacques Perier; Jean Castex; Jean Farge; Jean Gilbert-Jules; Jean Mattéoli; Jean Sauvagnargues; Jean-Christophe Combe; Jean-François Carenco; Jean-Jacques Aillagon; Jean-Michel Blanquer; Jean-Michel Guerin Du Pabst De Beaumont; Jean-Noël Jeanneney; Jean-Pierre Farandou; Jean-Pierre Jouyet; Jean-Pierre Prouteau; Jeannette Bougrab; Joseph Gavini; Jules Julien; Julien Denormandie; Juliette Méadel; Laura Flessel; Laurence Boone; Laurent Nunez; Louis De Guiringaud; Luc Ferry; Lucien Paye; Léon Schwartzenberg; Margie Sudre; Marie Barsacq; Marie-Josée Roig; Marie-Luce Penchard; Marie-Pierre Vedrenne; Marlène Schiappa; Martin Hirsch; Martine Pinvile; Michel Debatisse; Michel D’Ornano; Michel Gillibert; Michel Guy; Michel Jobert; Michel Tony-Revillon; Monique Barbut; Monique Pelletier; Muriel Pénicaud; Myriam El Khomri; Najat Vallaud-Belkacem; Nathalie Loiseau; Nicolas Daragon; Nicolas Hulot; Nicole Belloubet; Nicole Fontaine; Nicole Guedj; Nicole Pasquier; Nora Berra; Noëlle Lenoir; Olivier Klein; Othman Nasrou; Pap Ndiaye; Pascal Canfin; Patrice Vergriete; Paulette Guinchard-Kunstler; Philippe Baptiste; Philippe Essig; Pierre Aigrain; Pierre Arpaillange; Pierre Chatenet; Pierre Dreyfus; Pierre Guillaumat; Rachida Dati; Rama Yade; Raoul Dautry; René Lenoir; Rima Abdul-Malak; Roger Bambuck; Roger Fauroux; Roxana Maracineanu; Salima Saa; Serge Papin; Sibeth Ndiaye; Simone Veil; Sonia Backès; Sophie Cluzel; Sylvie Goulard; Sylvie Retailleau; Thierry Breton; Thierry De Beaucé; Théo Braun; Tokia Saïfi; Wilfrid Baumgartner; Xavier Emmanuelli; Yamina Benguigui; Yves Farge; Yves Galland; Yvon Morandat; Édouard Geffray; Élisabeth Dufourcq; Émile Biasini; Éric Dupond-Moretti
 
-Rapprochements souples (graphie ou prénom différents, à vérifier) : Edgard Faure -> 2922 Edgar Faure ; Jean Michel Baylet -> 512 Jean-Michel Baylet ; Jules-Emile Jeanneney -> 4024 Jules, Emile Jeanneney ; Johannès Dupraz -> 2730 Joannès, Pierre Dupraz-Bonsay dit Dupraz ; Fily Dabo Sissoko -> 6862 Fily-Dabo Sissoko ; Henri Bergasse -> 660 Henry, Alexandre, Emmanuel, Marie Bergasse ; Edward Corniglion-Molinier -> 1973 Edouard Corniglion-Molinier ; Hammadoun Dicko -> 2500 Hamadoun Dicko ; Hubert Maga-Coutoucou -> 9033 Hubert, Coutoucou Maga
+Rapprochements souples (graphie ou prénom différents, à vérifier) : Edgard Faure -> 2922 Edgar Faure ; Jean Michel Baylet -> 512 Jean-Michel Baylet ; Michel Fournier -> 18426 Michèle Fournier-Armand ; Jules-Emile Jeanneney -> 4024 Jules, Emile Jeanneney ; Johannès Dupraz -> 2730 Joannès, Pierre Dupraz-Bonsay dit Dupraz ; Fily Dabo Sissoko -> 6862 Fily-Dabo Sissoko ; Henri Bergasse -> 660 Henry, Alexandre, Emmanuel, Marie Bergasse ; Edward Corniglion-Molinier -> 1973 Edouard Corniglion-Molinier ; Hammadoun Dicko -> 2500 Hamadoun Dicko ; Hubert Maga-Coutoucou -> 9033 Hubert, Coutoucou Maga
 
 Homonymes écartés par le contrôle d'âge (vérifier les dates) : Pierre Dreyfus (Ministre de l'industrie, 1981-06-23) : 2590 Pierre, Sylvain Dreyfus dit Dreyfus-Schmidt (1902-05-11 - 1964-07-04) ; Jacques Perier (Sous-SE (Présidence du Conseil) (à compter du 17 juin 1957), 1957-06-17) : 13244 Alexandre, Jacques, Pierre Périer (1774-12-25 - 1846-12-14)
 
@@ -21,6 +21,7 @@ Rattachements :
   Alliot-Marie, Michèle -> 96 Michèle Alliot-Marie
   Alphandéry, Edmond -> 101 Edmond Alphandéry
   Ameline, Nicole -> 109 Nicole Ameline
+  Amiel, David -> 19558 David Amiel
   André, Michèle -> S01031L Michèle André
   Ansquer, Vincent -> 155 Vincent Ansquer
   Anthonioz, Marcel -> 159 Marcel, Louis, Julien Anthonioz
@@ -78,6 +79,7 @@ Rattachements :
   Benoîst, Daniel -> 630 Daniel Benoist
   Bergasse, Henri -> 660 Henry, Alexandre, Emmanuel, Marie Bergasse
   Bergelin, Christian -> 661 Christian Bergelin
+  Berger, Jean-Didier -> 19897 Jean-Didier Berger
   Bergé, Aurore -> 19036 Aurore Bergé
   Bernard-Reymond, Pierre -> 700 Pierre Bernard-Reymond
   Berthoin, Jean -> S000711 Jean Berthoin
@@ -152,6 +154,7 @@ Rattachements :
   Capitant, René -> 1426 René, Marie, Alphonse, Charles Capitant
   Carignon, Alain -> 1442 Alain Carignon
   Carlotti, Marie-Arlette -> 18380 Marie-Arlette Carlotti
+  Caroit, Eléonore -> 19600 Eléonore Caroit
   Carraz, Roland -> 1463 Roland Carraz
   Carrère-Gée, Marie-Claire -> S21090J Marie-Claire Carrère-Gée
   Casanova, Laurent -> 1482 Laurent, Antoine Casanova
@@ -342,6 +345,7 @@ Rattachements :
   Fouques-Duparc, Henri -> 3083 Henri, Marie, Arthur Fouques-Duparc
   Fourcade, Jean-Pierre -> S77019E Jean-Pierre Fourcade
   Fourneyron, Valérie -> 17305 Valérie Fourneyron
+  Fournier, Michel -> 18426 Michèle Fournier-Armand
   Foyer, Jean -> 3110 Jean Foyer
   Franceschi, Joseph -> 3119 Joseph Franceschi
   Francois-Benard, Marie -> 3129 Marie François-Bénard
@@ -350,6 +354,7 @@ Rattachements :
   Frey, Roger -> 3154 Roger Frey
   Gaillard, Félix -> 3200 Félix Gaillard
   Galley, Robert -> 3219 Robert Galley
+  Galliard-Minier, Camille -> 19512 Camille Galliard-Minier
   Gallo, Max -> 3223 Max Gallo
   Galy-Gasparrou, Georges -> 3233 Georges Galy-Gasparrou
   Garet, Pierre -> 3256 Pierre Garet
@@ -432,6 +437,7 @@ Rattachements :
   Jacquinot, Louis -> 3971 Louis Jacquinot
   Jaquet, Gérard -> 4000 Gérard Jaquet
   Jarrot, André -> 4007 André Jarrot
+  Jeanbrun, Vincent -> 19949 Vincent Jeanbrun
   Jeanneney, Jean-Marcel -> 4023 Jean-Marcel Jeanneney
   Jeanneney, Jules-Emile -> 4024 Jules, Emile Jeanneney
   Jospin, Lionel -> 4052 Lionel Jospin
@@ -478,6 +484,7 @@ Rattachements :
   Le Foll, Stéphane -> 18463 Stéphane Le Foll
   Le Garrec, Jean -> 7582 Jean Le Garrec
   Le Guen, Jean-Marie -> 7589 Jean-Marie Le Guen
+  Le Hénanff, Anne -> 19698 Anne Le Hénanff
   Le Maire, Bruno -> 17340 Bruno Le Maire
   Le Pensec, Louis -> 7608 Louis Le Pensec
   Le Pors, Anicet -> S58652T Anicet Le Pors
@@ -492,6 +499,7 @@ Rattachements :
   Lecornu, Sébastien -> S19265T Sébastien Lecornu
   Lecourt, Robert -> 7668 Robert Lecourt
   Lefebvre, Frédéric -> 17394 Frédéric Lefebvre
+  Lefèvre, Mathieu -> 19704 Mathieu Lefèvre
   Legendre, Jacques -> 7710 Jacques Legendre
   Lejeune, Max -> 7738 Max, Marius, Achille Lejeune
   Lellouche, Pierre -> 7741 Pierre Lellouche
@@ -540,6 +548,7 @@ Rattachements :
   Marrane, Georges -> 5022 Georges Marrane
   Martinaud-Deplat, Léon -> 5049 Léon, Jean Martinaud-Déplat
   Martin, Philippe -> 10731 Philippe Martin [décision]
+  Martin, Sébastien -> 20041 Sébastien Martin
   Masseret, Jean-Pierre -> S83042R Jean-Pierre Masseret
   Masson, Jean -> 5083 Jean Masson
   Mattei, Jean-François -> 5107 Jean-François Mattei
@@ -587,6 +596,7 @@ Rattachements :
   Morin, Hervé -> 5422 Hervé Morin
   Moscovici, Pierre -> 5437 Pierre Moscovici
   Mourot, Jean-Paul -> 5458 Jean-Paul Mourot
+  Moutchou, Naïma -> 19297 Naïma Moutchou
   Moutet, Marius -> 5466 Marius Moutet
   Moynet, André -> 5471 André, Rémy Moynet
   Muselier, Renaud -> 5489 Renaud Muselier
@@ -611,6 +621,7 @@ Rattachements :
   Ortoli, François -> 5618 François Ortoli
   Palewski, Gaston -> 5658 Gaston Palewski
   Pandraud, Robert -> 5667 Robert Pandraud
+  Panifous, Laurent -> 19757 Laurent Panifous
   Pannier-Runacher, Agnès -> 19984 Agnès Pannier-Runacher
   Panosyan-Bouvet, Astrid -> 19758 Astrid Panosyan-Bouvet
   Papon, Maurice -> 5675 Maurice Papon
@@ -691,6 +702,7 @@ Rattachements :
   Richert, Philippe -> S92005M Philippe Richert
   Riester, Franck -> 17373 Franck Riester
   Rigout, Marcel -> 6769 Marcel Rigout
+  Rist, Stéphanie -> 19358 Stéphanie Rist
   Rocard, Michel -> 6024 Michel Rocard
   Rochereau, Henri -> S56305S Henri Rochereau
   Roclore, Marcel -> 6042 Marcel Roclore
@@ -699,6 +711,7 @@ Rattachements :
   Rossinot, André -> 6099 André Rossinot
   Rossi, André -> 6096 André Rossi
   Rossi, José -> 6097 José Rossi
+  Roubache, Sabrina -> 19552 Sabrina Agresti-Roubache
   Roudy, Yvette -> 6113 Yvette Roudy
   Rousseau, Aurélien -> 19995 Aurélien Rousseau
   Roussin, Michel -> 6148 Michel Roussin

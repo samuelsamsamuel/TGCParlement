@@ -645,6 +645,12 @@
 "liste": "ministre",
 "debut": "2024-12-13",
 "fin": null
+},
+{
+"fonction": "Ministre d’État, ministre des Outre-mer",
+"liste": "ministre",
+"debut": "2025-10-05",
+"fin": "2025-10-10"
 }
 ],
 "1562": [
@@ -723,6 +729,12 @@
 "liste": "ministre",
 "debut": "2024-12-13",
 "fin": null
+},
+{
+"fonction": "Ministre d’État, ministre de l’Éducation nationale, de l’Enseignement supérieur et de la Recherche",
+"liste": "ministre",
+"debut": "2025-10-05",
+"fin": "2025-10-10"
 }
 ],
 "19016": [
@@ -7863,6 +7875,12 @@
 "liste": "ministre",
 "debut": "2010-03-22",
 "fin": "2010-11-13"
+},
+{
+"fonction": "Ministre de l’Aménagement du territoire, de la Décentralisation et du Logement",
+"liste": "ministre",
+"debut": "2025-10-05",
+"fin": "2025-10-10"
 }
 ],
 "11024": [
@@ -7955,6 +7973,18 @@
 "liste": "ministre",
 "debut": "2024-12-13",
 "fin": null
+},
+{
+"fonction": "Ministre du Travail, de la Santé, des Solidarités, des Familles, de l’Autonomie et des Personnes handicapées",
+"liste": "ministre",
+"debut": "2025-10-05",
+"fin": "2025-10-10"
+},
+{
+"fonction": "Ministre des Armées et des Anciens combattants",
+"liste": "ministre",
+"debut": "2025-10-13",
+"fin": null
 }
 ],
 "2154": [
@@ -7983,6 +8013,12 @@
 "liste": "secretaire-etat",
 "debut": "2004-03-31",
 "fin": "2005-05-31"
+},
+{
+"fonction": "Ministre délégué auprès du ministre de l’Europe et des Affaires étrangères, chargé du Commerce extérieur et de l’Attractivité",
+"liste": "ministre",
+"debut": "2025-10-13",
+"fin": null
 }
 ],
 "1213": [
@@ -8369,6 +8405,12 @@
 "liste": "ministre",
 "debut": "2022-05-20",
 "fin": "2024-07-16"
+},
+{
+"fonction": "Ministre d’État, ministre des Armées et des Anciens combattants",
+"liste": "ministre",
+"debut": "2025-10-05",
+"fin": "2025-10-10"
 }
 ],
 "S09001P": [
@@ -9311,6 +9353,18 @@
 "liste": "ministre",
 "debut": "2024-12-13",
 "fin": null
+},
+{
+"fonction": "Ministre d’État, garde des Sceaux, ministre de la Justice",
+"liste": "ministre",
+"debut": "2025-10-05",
+"fin": "2025-10-10"
+},
+{
+"fonction": "Garde des Sceaux, ministre de la Justice",
+"liste": "ministre",
+"debut": "2025-10-13",
+"fin": null
 }
 ],
 "S08051V": [
@@ -9429,6 +9483,12 @@
 "liste": "ministre",
 "debut": "2024-09-21",
 "fin": "2024-12-05"
+},
+{
+"fonction": "Premier ministre",
+"liste": "chef-gouvernement",
+"debut": "2025-09-10",
+"fin": null
 }
 ],
 "19182": [
@@ -9623,6 +9683,12 @@
 "liste": "ministre",
 "debut": "2024-12-13",
 "fin": null
+},
+{
+"fonction": "Ministre de la Transition écologique, de la Biodiversité, de la Forêt, de la Mer et de la Pêche",
+"liste": "ministre",
+"debut": "2025-10-05",
+"fin": "2025-10-10"
 }
 ],
 "19391": [
@@ -9663,6 +9729,18 @@
 "liste": "ministre",
 "debut": "2024-12-13",
 "fin": null
+},
+{
+"fonction": "Ministre des Comptes publics",
+"liste": "ministre",
+"debut": "2025-10-05",
+"fin": "2025-10-10"
+},
+{
+"fonction": "Ministre de l’Action et des Comptes publics",
+"liste": "ministre",
+"debut": "2025-10-13",
+"fin": "2026-02-21"
 }
 ],
 "19125": [
@@ -9941,6 +10019,12 @@
 "liste": "ministre",
 "debut": "2024-09-21",
 "fin": null
+},
+{
+"fonction": "Ministre de l’Europe et des Affaires étrangères",
+"liste": "ministre",
+"debut": "2025-10-05",
+"fin": null
 }
 ],
 "19250": [
@@ -9955,6 +10039,18 @@
 "liste": "ministre",
 "debut": "2024-02-08",
 "fin": "2024-07-16"
+},
+{
+"fonction": "Ministre de l’Économie, des Finances et de la Souveraineté industrielle et énergétique",
+"liste": "ministre",
+"debut": "2025-10-05",
+"fin": "2025-10-10"
+},
+{
+"fonction": "Ministre de l’Économie, des Finances et de la Souveraineté industrielle, énergétique et numérique",
+"liste": "ministre",
+"debut": "2025-10-13",
+"fin": null
 }
 ],
 "19155": [
@@ -10069,6 +10165,18 @@
 "liste": "ministre",
 "debut": "2024-01-11",
 "fin": null
+},
+{
+"fonction": "Ministre déléguée auprès du Premier ministre, chargée de l’Égalité entre les femmes et les hommes et de la Lutte contre les discriminations, porte-parole du Gouvernement",
+"liste": "chef-gouvernement",
+"debut": "2025-10-05",
+"fin": "2025-10-10"
+},
+{
+"fonction": "Ministre déléguée auprès du Premier ministre, chargée de l’Égalité entre les femmes et les hommes et de la Lutte contre les discriminations",
+"liste": "chef-gouvernement",
+"debut": "2025-10-13",
+"fin": null
 }
 ],
 "19605": [
@@ -10119,6 +10227,12 @@
 "liste": "secretaire-etat",
 "debut": "2024-02-08",
 "fin": "2024-07-16"
+},
+{
+"fonction": "Ministre déléguée auprès du ministre du Travail et des Solidarités et du ministre de l’Éducation nationale, chargée de l’Enseignement et de la Formation professionnels et de l’Apprentissage",
+"liste": "ministre",
+"debut": "2026-02-27",
+"fin": null
 }
 ],
 "19816": [
@@ -10193,6 +10307,12 @@
 "liste": "ministre",
 "debut": "2024-09-21",
 "fin": "2024-12-05"
+},
+{
+"fonction": "Ministre des Sports, de la Jeunesse et de la Vie associative",
+"liste": "ministre",
+"debut": "2025-10-05",
+"fin": null
 }
 ],
 "5273": [
@@ -10215,6 +10335,12 @@
 "liste": "ministre",
 "debut": "2024-12-13",
 "fin": null
+},
+{
+"fonction": "Ministre d’État, ministre de l’Intérieur",
+"liste": "ministre",
+"debut": "2025-10-05",
+"fin": "2025-10-10"
 }
 ],
 "19169": [
@@ -10252,6 +10378,18 @@
 "fonction": "Ministre de l'agriculture et de la souveraineté alimentaire",
 "liste": "ministre",
 "debut": "2024-12-13",
+"fin": null
+},
+{
+"fonction": "Ministre de l’Agriculture et de la Souveraineté alimentaire",
+"liste": "ministre",
+"debut": "2025-10-05",
+"fin": "2025-10-10"
+},
+{
+"fonction": "Ministre de l’Agriculture, de l’Agro-alimentaire et de la Souveraineté alimentaire",
+"liste": "ministre",
+"debut": "2025-10-13",
 "fin": null
 }
 ],
@@ -10317,6 +10455,12 @@
 "liste": "ministre",
 "debut": "2024-12-13",
 "fin": null
+},
+{
+"fonction": "Ministre délégué auprès du ministre de l’Europe et des Affaires étrangères, chargé de l’Europe",
+"liste": "ministre",
+"debut": "2025-10-13",
+"fin": null
 }
 ],
 "S19719D": [
@@ -10338,7 +10482,7 @@
 "fonction": "Ministre déléguée auprès du Premier ministre, porte-parole du Gouvernement",
 "liste": "ministre",
 "debut": "2024-09-21",
-"fin": "2024-12-05"
+"fin": null
 }
 ],
 "S21090J": [
@@ -10360,6 +10504,12 @@
 "fonction": "Ministre déléguée auprès du ministre de l'aménagement du territoire et de la décentralisation, chargée de la ruralité",
 "liste": "ministre",
 "debut": "2024-12-13",
+"fin": null
+},
+{
+"fonction": "Ministre de l’Aménagement du territoire et de la Décentralisation",
+"liste": "ministre",
+"debut": "2025-10-13",
 "fin": null
 }
 ],
@@ -10451,6 +10601,12 @@
 "liste": "ministre",
 "debut": "2024-12-13",
 "fin": null
+},
+{
+"fonction": "Ministre déléguée auprès de la ministre de la Santé, des Familles, de l’Autonomie et des Personnes handicapées, chargée de l’Autonomie et des Personnes handicapées",
+"liste": "ministre",
+"debut": "2025-10-13",
+"fin": "2026-02-26"
 }
 ],
 "18476": [
@@ -10491,6 +10647,12 @@
 "liste": "ministre",
 "debut": "2024-12-13",
 "fin": null
+},
+{
+"fonction": "Ministre des Transports",
+"liste": "ministre",
+"debut": "2025-10-05",
+"fin": null
 }
 ],
 "S11072N": [
@@ -10498,6 +10660,114 @@
 "fonction": "Ministre délégué auprès du ministre de l'Europe et des affaires étrangères, chargé de la francophonie et des partenariats internationaux",
 "liste": "ministre",
 "debut": "2024-12-13",
+"fin": null
+}
+],
+"19600": [
+{
+"fonction": "Ministre déléguée auprès du ministre de l’Europe et des Affaires étrangères, chargée de la Francophonie, des Partenariats internationaux et des Français de l’étranger",
+"liste": "ministre",
+"debut": "2025-10-13",
+"fin": null
+}
+],
+"19698": [
+{
+"fonction": "Ministre déléguée auprès du ministre de l’Économie, des Finances et de la Souveraineté industrielle, énergétique et numérique, chargée de l’Intelligence artificielle et du Numérique",
+"liste": "ministre",
+"debut": "2025-10-13",
+"fin": null
+}
+],
+"19512": [
+{
+"fonction": "Ministre déléguée auprès de la ministre de la Santé, des Familles, de l’Autonomie et des Personnes handicapées, chargée de l’Autonomie et des Personnes handicapées",
+"liste": "ministre",
+"debut": "2026-02-27",
+"fin": null
+}
+],
+"19949": [
+{
+"fonction": "Ministre de la Ville et du Logement",
+"liste": "ministre",
+"debut": "2025-10-13",
+"fin": null
+}
+],
+"18426": [
+{
+"fonction": "Ministre délégué auprès de la ministre de l’Aménagement du territoire et de la Décentralisation, chargé de la Ruralité",
+"liste": "ministre",
+"debut": "2025-10-13",
+"fin": "2026-09-22"
+}
+],
+"19757": [
+{
+"fonction": "Ministre délégué auprès du Premier ministre, chargé des Relations avec le Parlement",
+"liste": "chef-gouvernement",
+"debut": "2025-10-13",
+"fin": null
+}
+],
+"19297": [
+{
+"fonction": "Ministre de la Transformation et de la Fonction publiques, de l’Intelligence artificielle et du Numérique",
+"liste": "ministre",
+"debut": "2025-10-05",
+"fin": "2025-10-10"
+},
+{
+"fonction": "Ministre des Outre-mer",
+"liste": "ministre",
+"debut": "2025-10-13",
+"fin": null
+}
+],
+"19558": [
+{
+"fonction": "Ministre délégué auprès de la ministre de l’Action et des Comptes publics, chargé de la Fonction publique et de la Réforme de l’État",
+"liste": "ministre",
+"debut": "2025-10-13",
+"fin": null
+}
+],
+"19704": [
+{
+"fonction": "Ministre délégué auprès du Premier ministre, chargé des Relations avec le Parlement",
+"liste": "chef-gouvernement",
+"debut": "2025-10-05",
+"fin": "2025-10-10"
+},
+{
+"fonction": "Ministre délégué auprès de la ministre de la Transition écologique, de la Biodiversité et des Négociations internationales sur le climat et la nature, chargé de la Transition écologique",
+"liste": "ministre",
+"debut": "2025-10-13",
+"fin": null
+}
+],
+"19897": [
+{
+"fonction": "Ministre délégué auprès du ministre de l’Intérieur",
+"liste": "ministre",
+"debut": "2026-02-27",
+"fin": null
+}
+],
+"20041": [
+{
+"fonction": "Ministre délégué auprès du ministre de l’Économie, des Finances et de la Souveraineté industrielle, énergétique et numérique, chargé de l’Industrie",
+"liste": "ministre",
+"debut": "2025-10-13",
+"fin": null
+}
+],
+"19358": [
+{
+"fonction": "Ministre de la Santé, des Familles, de l’Autonomie et des Personnes handicapées",
+"liste": "ministre",
+"debut": "2025-10-13",
 "fin": null
 }
 ],
@@ -15071,6 +15341,12 @@
 "liste": "ministre",
 "debut": "2024-01-11",
 "fin": null
+},
+{
+"fonction": "Ministre de la Culture",
+"liste": "ministre",
+"debut": "2025-10-05",
+"fin": "2026-02-26"
 }
 ],
 "G-albanel-christine": [
@@ -15549,6 +15825,12 @@
 "liste": "secretaire-etat",
 "debut": "2018-10-16",
 "fin": "2020-07-03"
+},
+{
+"fonction": "Ministre de l’Intérieur",
+"liste": "ministre",
+"debut": "2025-10-13",
+"fin": null
 }
 ],
 "G-wargon-emmanuelle": [
@@ -15836,6 +16118,76 @@
 "fonction": "Ministre délégué auprès de la ministre d'Etat, ministre de l'éducation nationale, de l'enseignement supérieur et de la recherche, chargé de l'enseignement supérieur et de la recherche",
 "liste": "ministre",
 "debut": "2024-12-13",
+"fin": null
+},
+{
+"fonction": "Ministre de l’Enseignement supérieur, de la Recherche et de l’Espace",
+"liste": "ministre",
+"debut": "2025-10-13",
+"fin": null
+}
+],
+"G-geffray-edouard": [
+{
+"fonction": "Ministre de l’Éducation nationale",
+"liste": "ministre",
+"debut": "2025-10-13",
+"fin": null
+}
+],
+"G-barbut-monique": [
+{
+"fonction": "Ministre de la Transition écologique, de la Biodiversité et des Négociations internationales sur le climat et la nature",
+"liste": "ministre",
+"debut": "2025-10-13",
+"fin": null
+}
+],
+"G-vedrenne-marie-pierre": [
+{
+"fonction": "Ministre déléguée auprès du ministre de l’Intérieur",
+"liste": "ministre",
+"debut": "2025-10-13",
+"fin": null
+}
+],
+"G-chabaud-catherine": [
+{
+"fonction": "Ministre déléguée auprès de la ministre de la Transition écologique, de la Biodiversité et des Négociations internationales sur le climat et la nature, chargée de la Mer et de la Pêche",
+"liste": "ministre",
+"debut": "2025-10-13",
+"fin": null
+}
+],
+"G-farandou-jean-pierre": [
+{
+"fonction": "Ministre du Travail et des Solidarités",
+"liste": "ministre",
+"debut": "2025-10-13",
+"fin": null
+}
+],
+"G-papin-serge": [
+{
+"fonction": "Ministre des Petites et moyennes entreprises, du Commerce, de l’Artisanat, du Tourisme et du Pouvoir d’achat",
+"liste": "ministre",
+"debut": "2025-10-13",
+"fin": null
+}
+],
+"G-rufo-alice": [
+{
+"fonction": "Ministre déléguée auprès de la ministre des Armées et des Anciens combattants",
+"liste": "ministre",
+"debut": "2025-10-13",
+"fin": null
+}
+],
+"G-pegard-catherine": [
+{
+"fonction": "Ministre de la Culture",
+"liste": "ministre",
+"debut": "2026-02-27",
 "fin": null
 }
 ],

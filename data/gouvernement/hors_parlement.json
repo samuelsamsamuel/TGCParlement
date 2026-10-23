@@ -176,6 +176,12 @@
     "fonction": "Ministre délégué auprès de la ministre d'Etat, ministre de l'éducation nationale, de l'enseignement supérieur et de la recherche, chargé de l'enseignement supérieur et de la recherche",
     "debut": "2024-12-13",
     "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de l’Enseignement supérieur, de la Recherche et de l’Espace",
+    "debut": "2025-10-13",
+    "fin": null
    }
   ]
  },
@@ -193,6 +199,18 @@
     "liste": "secretaire-etat",
     "fonction": "SE (Algérie) (à compter du 18 novembre 1957)",
     "debut": "1957-11-18",
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-barbut-monique",
+  "nom": "Monique Barbut",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de la Transition écologique, de la Biodiversité et des Négociations internationales sur le climat et la nature",
+    "debut": "2025-10-13",
     "fin": null
    }
   ]
@@ -594,6 +612,18 @@
   ]
  },
  {
+  "id": "G-chabaud-catherine",
+  "nom": "Catherine Chabaud",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre déléguée auprès de la ministre de la Transition écologique, de la Biodiversité et des Négociations internationales sur le climat et la nature, chargée de la Mer et de la Pêche",
+    "debut": "2025-10-13",
+    "fin": null
+   }
+  ]
+ },
+ {
   "id": "G-chappaz-clara",
   "nom": "Clara Chappaz",
   "fonctions": [
@@ -872,6 +902,18 @@
     "fonction": "Ministre de la culture",
     "debut": "2024-12-13",
     "fin": null
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de la Culture",
+    "debut": "2025-10-05",
+    "fin": "2025-10-10"
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de la Culture",
+    "debut": "2025-10-13",
+    "fin": "2026-02-26"
    }
   ]
  },
@@ -1296,6 +1338,18 @@
   ]
  },
  {
+  "id": "G-farandou-jean-pierre",
+  "nom": "Jean-Pierre Farandou",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre du Travail et des Solidarités",
+    "debut": "2025-10-13",
+    "fin": null
+   }
+  ]
+ },
+ {
   "id": "G-farge-jean",
   "nom": "Jean Farge",
   "fonctions": [
@@ -1453,6 +1507,18 @@
     "liste": "secretaire-etat",
     "fonction": "SE (marine)  (à compter du 2 juillet 1953)",
     "debut": "1953-07-02",
+    "fin": null
+   }
+  ]
+ },
+ {
+  "id": "G-geffray-edouard",
+  "nom": "Édouard Geffray",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de l’Éducation nationale",
+    "debut": "2025-10-13",
     "fin": null
    }
   ]
@@ -2588,6 +2654,12 @@
     "fonction": "Secrétaire d'État auprès du ministre de l'intérieur",
     "debut": "2018-10-16",
     "fin": "2020-07-03"
+   },
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de l’Intérieur",
+    "debut": "2025-10-13",
+    "fin": null
    }
   ]
  },
@@ -2658,6 +2730,18 @@
   ]
  },
  {
+  "id": "G-papin-serge",
+  "nom": "Serge Papin",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre des Petites et moyennes entreprises, du Commerce, de l’Artisanat, du Tourisme et du Pouvoir d’achat",
+    "debut": "2025-10-13",
+    "fin": null
+   }
+  ]
+ },
+ {
   "id": "G-parly-florence",
   "nom": "Florence Parly",
   "fonctions": [
@@ -2714,6 +2798,18 @@
     "fonction": "Ministre de l'éducation nationale",
     "debut": "1961-02-20",
     "fin": "1962-04-14"
+   }
+  ]
+ },
+ {
+  "id": "G-pegard-catherine",
+  "nom": "Catherine Pégard",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre de la Culture",
+    "debut": "2026-02-27",
+    "fin": null
    }
   ]
  },
@@ -2960,6 +3056,18 @@
     "fonction": "Ministre délégué auprès de la Première ministre, chargée de l'égalité entre les femmes et les hommes, de la diversité et de l'égalité des chances",
     "debut": "2022-05-20",
     "fin": "2023-07-20"
+   }
+  ]
+ },
+ {
+  "id": "G-rufo-alice",
+  "nom": "Alice Rufo",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre déléguée auprès de la ministre des Armées et des Anciens combattants",
+    "debut": "2025-10-13",
+    "fin": null
    }
   ]
  },
@@ -3218,6 +3326,18 @@
     "fonction": "Ministre de l'Education nationale, de l'Enseignement supérieur et de la Recherche",
     "debut": "2016-12-06",
     "fin": "2017-05-10"
+   }
+  ]
+ },
+ {
+  "id": "G-vedrenne-marie-pierre",
+  "nom": "Marie-Pierre Vedrenne",
+  "fonctions": [
+   {
+    "liste": "ministre",
+    "fonction": "Ministre déléguée auprès du ministre de l’Intérieur",
+    "debut": "2025-10-13",
+    "fin": null
    }
   ]
  },

@@ -1,1 +1,466 @@
-[]
+[
+{
+"liste": "ministre",
+"prenom": "Édouard",
+"nom": "Geffray",
+"debut": "2025-10-13",
+"fin": null,
+"fonction": "Ministre de l’Éducation nationale"
+},
+{
+"liste": "ministre",
+"prenom": "Laurent",
+"nom": "Nunez",
+"debut": "2025-10-13",
+"fin": null,
+"fonction": "Ministre de l’Intérieur"
+},
+{
+"liste": "ministre",
+"prenom": "Monique",
+"nom": "Barbut",
+"debut": "2025-10-13",
+"fin": null,
+"fonction": "Ministre de la Transition écologique, de la Biodiversité et des Négociations internationales sur le climat et la nature"
+},
+{
+"liste": "ministre",
+"prenom": "Bruno",
+"nom": "Le Maire",
+"debut": "2025-10-05",
+"fin": "2025-10-10",
+"fonction": "Ministre d’État, ministre des Armées et des Anciens combattants"
+},
+{
+"liste": "ministre",
+"prenom": "Élisabeth",
+"nom": "Borne",
+"debut": "2025-10-05",
+"fin": "2025-10-10",
+"fonction": "Ministre d’État, ministre de l’Éducation nationale, de l’Enseignement supérieur et de la Recherche"
+},
+{
+"liste": "ministre",
+"prenom": "Eléonore",
+"nom": "Caroit",
+"debut": "2025-10-13",
+"fin": null,
+"fonction": "Ministre déléguée auprès du ministre de l’Europe et des Affaires étrangères, chargée de la Francophonie, des Partenariats internationaux et des Français de l’étranger"
+},
+{
+"liste": "ministre",
+"prenom": "Philippe",
+"nom": "Tabarot",
+"debut": "2025-10-13",
+"fin": null,
+"fonction": "Ministre des Transports"
+},
+{
+"liste": "ministre",
+"prenom": "Philippe",
+"nom": "Tabarot",
+"debut": "2025-10-05",
+"fin": "2025-10-10",
+"fonction": "Ministre des Transports"
+},
+{
+"liste": "ministre",
+"prenom": "Anne",
+"nom": "Le Hénanff",
+"debut": "2025-10-13",
+"fin": null,
+"fonction": "Ministre déléguée auprès du ministre de l’Économie, des Finances et de la Souveraineté industrielle, énergétique et numérique, chargée de l’Intelligence artificielle et du Numérique"
+},
+{
+"liste": "ministre",
+"prenom": "Camille",
+"nom": "Galliard-Minier",
+"debut": "2026-02-27",
+"fin": null,
+"fonction": "Ministre déléguée auprès de la ministre de la Santé, des Familles, de l’Autonomie et des Personnes handicapées, chargée de l’Autonomie et des Personnes handicapées"
+},
+{
+"liste": "ministre",
+"prenom": "Marie-Pierre",
+"nom": "Vedrenne",
+"debut": "2025-10-13",
+"fin": null,
+"fonction": "Ministre déléguée auprès du ministre de l’Intérieur"
+},
+{
+"liste": "chef-gouvernement",
+"prenom": "Sébastien",
+"nom": "Lecornu",
+"debut": "2025-09-10",
+"fin": "2025-10-10",
+"fonction": "Premier ministre"
+},
+{
+"liste": "chef-gouvernement",
+"prenom": "Sébastien",
+"nom": "Lecornu",
+"debut": "2025-10-11",
+"fin": null,
+"fonction": "Premier ministre"
+},
+{
+"liste": "ministre",
+"prenom": "Catherine",
+"nom": "Chabaud",
+"debut": "2025-10-13",
+"fin": null,
+"fonction": "Ministre déléguée auprès de la ministre de la Transition écologique, de la Biodiversité et des Négociations internationales sur le climat et la nature, chargée de la Mer et de la Pêche"
+},
+{
+"liste": "ministre",
+"prenom": "Marina",
+"nom": "Ferrari",
+"debut": "2025-10-05",
+"fin": "2025-10-10",
+"fonction": "Ministre des Sports, de la Jeunesse et de la Vie associative"
+},
+{
+"liste": "ministre",
+"prenom": "Marina",
+"nom": "Ferrari",
+"debut": "2025-10-13",
+"fin": null,
+"fonction": "Ministre des Sports, de la Jeunesse et de la Vie associative"
+},
+{
+"liste": "ministre",
+"prenom": "Vincent",
+"nom": "Jeanbrun",
+"debut": "2025-10-13",
+"fin": null,
+"fonction": "Ministre de la Ville et du Logement"
+},
+{
+"liste": "ministre",
+"prenom": "Michel",
+"nom": "Fournier",
+"debut": "2025-10-13",
+"fin": "2026-09-22",
+"fonction": "Ministre délégué auprès de la ministre de l’Aménagement du territoire et de la Décentralisation, chargé de la Ruralité"
+},
+{
+"liste": "chef-gouvernement",
+"prenom": "Laurent",
+"nom": "Panifous",
+"debut": "2025-10-13",
+"fin": null,
+"fonction": "Ministre délégué auprès du Premier ministre, chargé des Relations avec le Parlement"
+},
+{
+"liste": "ministre",
+"prenom": "Nicolas",
+"nom": "Forissier",
+"debut": "2025-10-13",
+"fin": null,
+"fonction": "Ministre délégué auprès du ministre de l’Europe et des Affaires étrangères, chargé du Commerce extérieur et de l’Attractivité"
+},
+{
+"liste": "ministre",
+"prenom": "Philippe",
+"nom": "Baptiste",
+"debut": "2025-10-13",
+"fin": null,
+"fonction": "Ministre de l’Enseignement supérieur, de la Recherche et de l’Espace"
+},
+{
+"liste": "ministre",
+"prenom": "Agnès",
+"nom": "Pannier-Runacher",
+"debut": "2025-10-05",
+"fin": "2025-10-10",
+"fonction": "Ministre de la Transition écologique, de la Biodiversité, de la Forêt, de la Mer et de la Pêche"
+},
+{
+"liste": "ministre",
+"prenom": "Naïma",
+"nom": "Moutchou",
+"debut": "2025-10-05",
+"fin": "2025-10-10",
+"fonction": "Ministre de la Transformation et de la Fonction publiques, de l’Intelligence artificielle et du Numérique"
+},
+{
+"liste": "ministre",
+"prenom": "Naïma",
+"nom": "Moutchou",
+"debut": "2025-10-13",
+"fin": null,
+"fonction": "Ministre des Outre-mer"
+},
+{
+"liste": "ministre",
+"prenom": "David",
+"nom": "Amiel",
+"debut": "2025-10-13",
+"fin": null,
+"fonction": "Ministre délégué auprès de la ministre de l’Action et des Comptes publics, chargé de la Fonction publique et de la Réforme de l’État"
+},
+{
+"liste": "chef-gouvernement",
+"prenom": "Mathieu",
+"nom": "Lefèvre",
+"debut": "2025-10-05",
+"fin": "2025-10-10",
+"fonction": "Ministre délégué auprès du Premier ministre, chargé des Relations avec le Parlement"
+},
+{
+"liste": "ministre",
+"prenom": "Mathieu",
+"nom": "Lefèvre",
+"debut": "2025-10-13",
+"fin": null,
+"fonction": "Ministre délégué auprès de la ministre de la Transition écologique, de la Biodiversité et des Négociations internationales sur le climat et la nature, chargé de la Transition écologique"
+},
+{
+"liste": "ministre",
+"prenom": "Éric",
+"nom": "Woerth",
+"debut": "2025-10-05",
+"fin": "2025-10-10",
+"fonction": "Ministre de l’Aménagement du territoire, de la Décentralisation et du Logement"
+},
+{
+"liste": "chef-gouvernement",
+"prenom": "Aurore",
+"nom": "Bergé",
+"debut": "2025-10-13",
+"fin": null,
+"fonction": "Ministre déléguée auprès du Premier ministre, chargée de l’Égalité entre les femmes et les hommes et de la Lutte contre les discriminations"
+},
+{
+"liste": "chef-gouvernement",
+"prenom": "Aurore",
+"nom": "Bergé",
+"debut": "2025-10-05",
+"fin": "2025-10-10",
+"fonction": "Ministre déléguée auprès du Premier ministre, chargée de l’Égalité entre les femmes et les hommes et de la Lutte contre les discriminations, porte-parole du Gouvernement"
+},
+{
+"liste": "ministre",
+"prenom": "Jean-Pierre",
+"nom": "Farandou",
+"debut": "2025-10-13",
+"fin": null,
+"fonction": "Ministre du Travail et des Solidarités"
+},
+{
+"liste": "ministre",
+"prenom": "Catherine",
+"nom": "Vautrin",
+"debut": "2025-10-13",
+"fin": null,
+"fonction": "Ministre des Armées et des Anciens combattants"
+},
+{
+"liste": "ministre",
+"prenom": "Catherine",
+"nom": "Vautrin",
+"debut": "2025-10-05",
+"fin": "2025-10-10",
+"fonction": "Ministre du Travail, de la Santé, des Solidarités, des Familles, de l’Autonomie et des Personnes handicapées"
+},
+{
+"liste": "ministre",
+"prenom": "Rachida",
+"nom": "Dati",
+"debut": "2025-10-05",
+"fin": "2025-10-10",
+"fonction": "Ministre de la Culture"
+},
+{
+"liste": "ministre",
+"prenom": "Rachida",
+"nom": "Dati",
+"debut": "2025-10-13",
+"fin": "2026-02-26",
+"fonction": "Ministre de la Culture"
+},
+{
+"liste": "ministre",
+"prenom": "Jean-Didier",
+"nom": "Berger",
+"debut": "2026-02-27",
+"fin": null,
+"fonction": "Ministre délégué auprès du ministre de l’Intérieur"
+},
+{
+"liste": "ministre",
+"prenom": "Sébastien",
+"nom": "Martin",
+"debut": "2025-10-13",
+"fin": null,
+"fonction": "Ministre délégué auprès du ministre de l’Économie, des Finances et de la Souveraineté industrielle, énergétique et numérique, chargé de l’Industrie"
+},
+{
+"liste": "ministre",
+"prenom": "Serge",
+"nom": "Papin",
+"debut": "2025-10-13",
+"fin": null,
+"fonction": "Ministre des Petites et moyennes entreprises, du Commerce, de l’Artisanat, du Tourisme et du Pouvoir d’achat"
+},
+{
+"liste": "ministre",
+"prenom": "Manuel",
+"nom": "Valls",
+"debut": "2025-10-05",
+"fin": "2025-10-10",
+"fonction": "Ministre d’État, ministre des Outre-mer"
+},
+{
+"liste": "ministre",
+"prenom": "Roland",
+"nom": "Lescure",
+"debut": "2025-10-13",
+"fin": null,
+"fonction": "Ministre de l’Économie, des Finances et de la Souveraineté industrielle, énergétique et numérique"
+},
+{
+"liste": "ministre",
+"prenom": "Roland",
+"nom": "Lescure",
+"debut": "2025-10-05",
+"fin": "2025-10-10",
+"fonction": "Ministre de l’Économie, des Finances et de la Souveraineté industrielle et énergétique"
+},
+{
+"liste": "ministre",
+"prenom": "Alice",
+"nom": "Rufo",
+"debut": "2025-10-13",
+"fin": null,
+"fonction": "Ministre déléguée auprès de la ministre des Armées et des Anciens combattants"
+},
+{
+"liste": "ministre",
+"prenom": "Amélie",
+"nom": "de Montchalin",
+"debut": "2025-10-13",
+"fin": "2026-02-21",
+"fonction": "Ministre de l’Action et des Comptes publics"
+},
+{
+"liste": "ministre",
+"prenom": "Amélie",
+"nom": "de Montchalin",
+"debut": "2025-10-05",
+"fin": "2025-10-10",
+"fonction": "Ministre des Comptes publics"
+},
+{
+"liste": "ministre",
+"prenom": "Françoise",
+"nom": "Gatel",
+"debut": "2025-10-13",
+"fin": null,
+"fonction": "Ministre de l’Aménagement du territoire et de la Décentralisation"
+},
+{
+"liste": "ministre",
+"prenom": "Stéphanie",
+"nom": "Rist",
+"debut": "2025-10-13",
+"fin": null,
+"fonction": "Ministre de la Santé, des Familles, de l’Autonomie et des Personnes handicapées"
+},
+{
+"liste": "ministre",
+"prenom": "Jean-Noël",
+"nom": "Barrot",
+"debut": "2025-10-13",
+"fin": null,
+"fonction": "Ministre de l’Europe et des Affaires étrangères"
+},
+{
+"liste": "ministre",
+"prenom": "Jean-Noël",
+"nom": "Barrot",
+"debut": "2025-10-05",
+"fin": "2025-10-10",
+"fonction": "Ministre de l’Europe et des Affaires étrangères"
+},
+{
+"liste": "ministre",
+"prenom": "Charlotte",
+"nom": "Parmentier-Lecocq",
+"debut": "2025-10-13",
+"fin": "2026-02-26",
+"fonction": "Ministre déléguée auprès de la ministre de la Santé, des Familles, de l’Autonomie et des Personnes handicapées, chargée de l’Autonomie et des Personnes handicapées"
+},
+{
+"liste": "chef-gouvernement",
+"prenom": "Maud",
+"nom": "Bregeon",
+"debut": "2025-10-13",
+"fin": null,
+"fonction": "Ministre déléguée auprès du Premier ministre, porte-parole du Gouvernement"
+},
+{
+"liste": "ministre",
+"prenom": "Sabrina",
+"nom": "Roubache",
+"debut": "2026-02-27",
+"fin": null,
+"fonction": "Ministre déléguée auprès du ministre du Travail et des Solidarités et du ministre de l’Éducation nationale, chargée de l’Enseignement et de la Formation professionnels et de l’Apprentissage"
+},
+{
+"liste": "ministre",
+"prenom": "Benjamin",
+"nom": "Haddad",
+"debut": "2025-10-13",
+"fin": null,
+"fonction": "Ministre délégué auprès du ministre de l’Europe et des Affaires étrangères, chargé de l’Europe"
+},
+{
+"liste": "ministre",
+"prenom": "Gérald",
+"nom": "Darmanin",
+"debut": "2025-10-05",
+"fin": "2025-10-10",
+"fonction": "Ministre d’État, garde des Sceaux, ministre de la Justice"
+},
+{
+"liste": "ministre",
+"prenom": "Gérald",
+"nom": "Darmanin",
+"debut": "2025-10-13",
+"fin": null,
+"fonction": "Garde des Sceaux, ministre de la Justice"
+},
+{
+"liste": "ministre",
+"prenom": "Annie",
+"nom": "Genevard",
+"debut": "2025-10-05",
+"fin": "2025-10-10",
+"fonction": "Ministre de l’Agriculture et de la Souveraineté alimentaire"
+},
+{
+"liste": "ministre",
+"prenom": "Annie",
+"nom": "Genevard",
+"debut": "2025-10-13",
+"fin": null,
+"fonction": "Ministre de l’Agriculture, de l’Agro-alimentaire et de la Souveraineté alimentaire"
+},
+{
+"liste": "ministre",
+"prenom": "Bruno",
+"nom": "Retailleau",
+"debut": "2025-10-05",
+"fin": "2025-10-10",
+"fonction": "Ministre d’État, ministre de l’Intérieur"
+},
+{
+"liste": "ministre",
+"prenom": "Catherine",
+"nom": "Pégard",
+"debut": "2026-02-27",
+"fin": null,
+"fonction": "Ministre de la Culture"
+}
+]

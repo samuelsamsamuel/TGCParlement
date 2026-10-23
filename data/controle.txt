@@ -1,10 +1,10 @@
-Fiches lues : {200: 18062, 404: 3} ; cartes produites : 19635, dont 1573 sénateurs absents de Sycomore ; plus 173 cartes hors catégorie (Gouvernement sans mandat parlementaire)
+Fiches lues : {200: 18062, 404: 3} ; cartes produites : 19635, dont 1573 sénateurs absents de Sycomore ; plus 181 cartes hors catégorie (Gouvernement sans mandat parlementaire)
 
 Distinctions calculées :
   deux-chambres : 1651
   1789 : 1317
   convention : 905
-  ministre : 657
+  ministre : 679
   secretaire-etat : 496
   presidence-an-courte : 205
   bureau-secretaire : 128
@@ -15,7 +15,7 @@ Distinctions calculées :
   bureau-vp-questeur : 68
   presidence-commission : 58
   presidence-groupe : 52
-  chef-gouvernement : 45
+  chef-gouvernement : 50
   presidence-an-longue : 35
   rapporteur-general : 35
   femmes-1945 : 33
@@ -26,20 +26,20 @@ Distinctions calculées :
   presidence-senat-courte : 5
   chef-etat-interim : 1
 
-Scores (grille équilibrée) : maximum 146.3 ; 10e 101.8 ; 100e 63.0 ; 1000e 30.7 ; médiane 7.3
+Scores (grille équilibrée) : maximum 146.3 ; 10e 101.8 ; 100e 64.1 ; 1000e 30.8 ; médiane 7.3
 Cartes à égalité au score maximal : 1 ; scores distincts parmi les 100 premières : 83
 
-Cartes en exercice : 723
-Cartes par époque : Libération et IVe République 1274, Ve République 5776, IIIe République 4622, Monarchies constitutionnelles 2484, IIe République et Second Empire 1549, Révolution et Empire 3930, None 173
+Cartes en exercice : 917
+Cartes par époque : Libération et IVe République 1274, Ve République 5776, IIIe République 4622, Monarchies constitutionnelles 2484, IIe République et Second Empire 1549, Révolution et Empire 3930, None 181
 
 Répartition des raretés :
   mythique : 95
-  legendaire : 433
-  epique : 1073
-  rare : 2469
-  peu-commune : 6237
-  commune : 9328
-  hors-categorie : 173
+  legendaire : 442
+  epique : 1078
+  rare : 2542
+  peu-commune : 6227
+  commune : 9251
+  hors-categorie : 181
 
 Mandats de député par régime et législature :
   Assemblée Nationale | None : 873
@@ -151,21 +151,6 @@ Anomalies :
     000251 Jean-Louis Tinaud (1910-09-23) -> 7078 Jean-Louis Tinaud (1910-07-23)
     57129Y Robert Laurens (1910-09-26) -> 7499 Robert, Marie Laurens (1910-09-27)
     59235J Hubert Martin (1912-02-23) -> 5040 Hubert Martin (1912-02-25)
-  sénateur sans mandat daté (carte créée, durée non comptée) : 14
-    21416L Paul Vidal (ANCIEN)
-    21417M Virginie Lucot Avril (ANCIEN)
-    21418N Jean-Baptiste Olivier (ANCIEN)
-    21419P Mireille Conte Jaubert (ANCIEN)
-    21420G Maurice Perrion (ANCIEN)
-    21421H Anne-Sophie Patru (ANCIEN)
-    21422J Salama Ramia (ANCIEN)
-    21423K Éric Dumoulin (ANCIEN)
-    21424L Brigitte Hybert (ANCIEN)
-    21461R Jean-Marc Ruel (ANCIEN)
-    21592C Sandra Paire (ANCIEN)
-    21630Q Anne Camerac (ANCIEN)
-    21632S Annouck Cotillot (ANCIEN)
-    21634U Didier Maingault (ANCIEN)
 
 Dix premières cartes :
    146.3  mythique    Edgar Faure : Député (Jura, Doubs) de 1946 à 1980, 7 mandats (Quatrième République - Assemblée nationale ; Cinquième République - Assemblée nationale). Sénateur de 1959 à 1988. A siégé dans les deux chambres. Membre de l'Académie française. A dirigé le Gouvernement. A été ministre. A présidé l'Assemblée au moins un an. A été secrétaire d'État.
