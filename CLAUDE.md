@@ -34,7 +34,8 @@ Sénat, lu dans l'export complet `export_sens.zip`, tables `bur` et `senbur`) ; 
 9. `portraits.py`, `portraits_sycomore.py` (portraits officiels de Sycomore pour les députés sans portrait
 Wikidata, sondés par reprise, 20 minutes par exécution), `portraits_wikipedia.py` (image principale libre de
 l'article Wikipédia rattaché par P1045 ou P1808, pour les cartes sans autre portrait ; décision de l'utilisateur,
-octobre 2026 ; filtre par format et mots du nom de fichier, rapport des retenus et écartés), `villes_circonscriptions.py`, `export_jeu.py` (écrit
+octobre 2026 ; seulement si la fiche Commons dit représenter la personne (P180), plus un filtre de mots ; rapport des
+retenus et écartés), `villes_circonscriptions.py`, `export_jeu.py` (écrit
 `site/jeu.json`), puis
 `node scripts/catalogue_serveur.js` (écrit `site/serveur.json`).
 
