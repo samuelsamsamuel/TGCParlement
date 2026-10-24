@@ -91,8 +91,9 @@ retenus et écartés), `villes_circonscriptions.py`, `export_jeu.py` (écrit
 ## Vocabulaire du jeu (références parlementaires)
 
 Onglets : Séance (paquets du jour), Hémicycle (collection), Ordre du jour (objectifs, synthèse et rubriques
-repliables), Buvette (sous-onglets Échanges, avec historique daté, et Comptoir), Mon siège (chiffres et vitrine en six
-cases), Amis, Plus : un menu ouvre trois vues, « Toutes les cartes » (catalogue complet, cartes non obtenues grisées),
+repliables), Buvette (sous-onglets Échanges, avec historique daté, et Comptoir), Amis, Plus : six onglets, assez
+grands pour le téléphone ; le menu Plus ouvre quatre vues, Mon siège (chiffres et vitrine en six cases, libellé du
+pseudo une fois connecté), « Toutes les cartes » (catalogue complet, cartes non obtenues grisées),
 Règlement (règles et sources) et Paramètres (infos du compte, déconnexion et suppression, thème sombre, clair ou comme
 l'appareil gardé dans le navigateur, notifications, contact, mentions légales). Pas de pied de page.
 Hémicycle : les pastilles du haut filtrent (favoris, une rareté) et se désélectionnent au second toucher ; toucher
