@@ -93,7 +93,14 @@ Règlement (règles et sources) et Paramètres (infos du compte, déconnexion et
 l'appareil gardé dans le navigateur, notifications, contact, mentions légales). Pas de pied de page.
 Hémicycle : les pastilles du haut filtrent (favoris, une rareté) et se désélectionnent au second toucher ; toucher
 une carte l'ouvre en grand (`apercu`) avec ses exemplaires, la dissolution de ses seuls doubles (`dissoudre`,
-`POST /api/dissoudre`) et la vente au comptoir. Reflets des mythiques et légendaires espacés (11 et 15 s). Un toucher sur les voix ouvre un encart qui explique leur usage. Choix d'une carte
+`POST /api/dissoudre`) et la vente au comptoir ; tri par défaut par rareté puis par score. Reflets des mythiques et
+légendaires espacés (11 et 15 s), dégradé sans répétition pour que la carte reste nette entre deux passages.
+Première ouverture (`demarrerAccueil`, étape gardée dans `hemicycle-accueil`) : fenêtre d'accueil (créer un compte,
+recommandé ; ouvrir ses cartes dans le navigateur ; « J'ai déjà un compte ») ; après le compte, tutoriel
+d'installation selon l'appareil (iPhone : bouton Partager puis « Sur l'écran d'accueil » ; Android et ordinateur :
+invitation `beforeinstallprompt` ou menu du navigateur) ; puis visite guidée (`ETAPES_VISITE`) qui éclaire chaque
+élément et attend certains gestes (ouvrir le paquet, retourner la carte, finir le paquet). Les tests du navigateur
+posent `hemicycle-accueil = fait` pour passer l'accueil. Un toucher sur les voix ouvre un encart qui explique leur usage. Choix d'une carte
 (vitrine, vente, lots d'un échange) : fenêtre `choisirCarte` en miniatures, favoris d'abord ; à la vente, toute la
 collection y figure, les cartes verrouillées grisées avec leur raison. Buvette et Ordre du jour allégés : pas de
 paragraphes d'introduction, historique et objectifs déjà reçus repliés. Pendant la découverte d'un
