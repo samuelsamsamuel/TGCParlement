@@ -32,9 +32,11 @@ Sénat, lu dans l'export complet `export_sens.zip`, tables `bur` et `senbur`) ; 
 7. `quatre_vingts.py`, `doyens.py`, `presidences.py`, `presidences_senat.py`, `distinctions.py` ;
 8. `cartes.py` (version finale : score, rareté par époque, bonus des élus en exercice) ;
 9. `portraits.py`, `portraits_sycomore.py` (portraits officiels de Sycomore pour les députés sans portrait
-Wikidata, sondés par reprise, 20 minutes par exécution), `portraits_wikipedia.py` (image principale libre de
+Wikidata, sondés par reprise, 20 minutes par exécution), `portraits_senat.py` (photos officielles des anciens
+sénateurs sur senat.fr, adresse reconstruite avec le matricule et vérifiée), `portraits_wikipedia.py` (image principale libre de
 l'article Wikipédia rattaché par P1045 ou P1808, pour les cartes sans autre portrait ; décision de l'utilisateur,
-octobre 2026 ; seulement si la fiche Commons dit représenter la personne (P180), plus un filtre de mots ; rapport des
+octobre 2026 ; seulement si la fiche Commons dit représenter la personne (P180), plus un filtre de mots ; une seule
+image retenue à la deuxième exécution sur 550 images principales libres, le reste étant tombes, armoiries, pages de titre ; rapport des
 retenus et écartés), `villes_circonscriptions.py`, `export_jeu.py` (écrit
 `site/jeu.json`), puis
 `node scripts/catalogue_serveur.js` (écrit `site/serveur.json`).
