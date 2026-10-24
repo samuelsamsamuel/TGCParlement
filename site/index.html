@@ -57,7 +57,8 @@ nav button[aria-selected="true"]{border-bottom-color:var(--dorure);color:var(--d
   header{padding-top:1rem}
   .chapeau{display:none}
   nav{position:fixed;left:0;right:0;bottom:0;z-index:20;background:rgba(46,7,16,.97);backdrop-filter:blur(8px);border-top:1px solid rgba(201,162,74,.45);padding-bottom:env(safe-area-inset-bottom);justify-content:space-around}
-  nav button{flex-direction:column;gap:.15rem;font-size:.6rem;line-height:1.1;text-align:center;padding:.5rem 0 .45rem;letter-spacing:-.01em;border-bottom:0;border-top:3px solid transparent;flex:1 1 0;min-width:0}
+  nav button{flex-direction:column;gap:.2rem;font-size:.74rem;line-height:1.1;text-align:center;padding:.55rem 0 .5rem;border-bottom:0;border-top:3px solid transparent;flex:1 1 0;min-width:0}
+  nav button svg{width:1.45rem;height:1.45rem}
   nav button[aria-selected="true"]{border-top-color:var(--dorure)}
   main{padding-bottom:6rem}
   footer{padding-bottom:6rem}
@@ -260,7 +261,7 @@ footer{max-width:1120px;margin:0 auto;padding:0 1rem 3rem;font-size:.85rem;color
 .annonce{color:var(--dorure-pale);font-size:.92rem;min-height:1.4em;margin:.5rem 0 0}
 .pastille{display:inline-grid;place-items:center;min-width:1.25rem;height:1.25rem;padding:0 .3rem;border-radius:1rem;background:#b8293a;color:#fff;font-size:.72rem;font-weight:700;line-height:1}
 .pastille[hidden]{display:none}
-@media (max-width:700px){nav .pastille{position:absolute;margin:-.2rem 0 0 1.6rem}nav button{position:relative}}
+@media (max-width:700px){nav .pastille{position:absolute;top:.25rem;left:calc(50% + .45rem);margin:0}nav button{position:relative}}
 .objectifs h2{font:400 1.45rem var(--serif);margin:1.6rem 0 .3rem}
 .objectifs h2:first-child{margin-top:0}
 .objectifs .intro{color:var(--dorure-pale);margin:0 0 .9rem;font-size:.92rem}
@@ -304,7 +305,7 @@ footer{max-width:1120px;margin:0 auto;padding:0 1rem 3rem;font-size:.85rem;color
 .colonnes{display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))}
 .toast{position:fixed;left:50%;bottom:1.2rem;transform:translateX(-50%);z-index:40;background:var(--marbre);color:var(--encre);padding:.7rem 1.1rem;border-radius:5px;box-shadow:0 8px 24px rgba(0,0,0,.5);max-width:min(92vw,34rem);font-size:.92rem}
 .toast[hidden]{display:none}
-@media (max-width:700px){.toast{bottom:5.5rem}#nav-compte{max-width:4.6rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}}
+@media (max-width:700px){.toast{bottom:5.5rem}}
 #apercu .detail{grid-template-columns:1fr;justify-items:center}
 
 /* ---------- Questions au Gouvernement ---------- */
@@ -494,11 +495,11 @@ html.presentation{font-size:15px}
     <button role="tab" aria-selected="false" data-vue="collection"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="4" width="8" height="11" rx="1.5"/><rect x="13" y="4" width="8" height="11" rx="1.5"/><path d="M3 19h18"/></svg>Hémicycle</button>
     <button role="tab" aria-selected="false" data-vue="objectifs"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M8 4h8v5a4 4 0 0 1-8 0z"/><path d="M8 6H5a3 3 0 0 0 3 4M16 6h3a3 3 0 0 1-3 4M12 13v4M8 20h8"/></svg>Ordre du jour <span class="pastille" id="pastille" hidden></span></button>
     <button role="tab" aria-selected="false" data-vue="buvette"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 8h13l-3-3M20 16H7l3 3"/></svg>Buvette <span class="pastille" id="pastille-buvette" hidden></span></button>
-    <button role="tab" aria-selected="false" data-vue="compte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span id="nav-compte">Mon siège</span></button>
     <button role="tab" aria-selected="false" data-vue="amis"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><circle cx="17" cy="9" r="2.8"/><path d="M16 14.2a5.5 5.5 0 0 1 6 5.8"/></svg>Amis <span class="pastille" id="pastille-amis" hidden></span></button>
     <button role="tab" aria-selected="false" data-vue="plus" aria-haspopup="menu" aria-controls="menu-plus"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg>Plus</button>
   </nav>
   <div class="menu-plus" id="menu-plus" role="menu" hidden>
+    <button role="menuitem" data-menu="compte"><span id="nav-compte">Mon siège</span></button>
     <button role="menuitem" data-menu="catalogue">Toutes les cartes</button>
     <button role="menuitem" data-menu="apropos">Règlement</button>
     <button role="menuitem" data-menu="parametres">Paramètres</button>
@@ -1373,7 +1374,7 @@ const ETAPES_VISITE = [
   {cible: 'nav [data-vue="objectifs"]', texte: "L'ordre du jour : vos objectifs. Les récompenses (voix, paquets offerts) se réclament ici."},
   {cible: 'nav [data-vue="buvette"]', texte: "La buvette : échanges entre joueurs et comptoir, où l'on vend ses doubles contre des voix. Il faut un compte."},
   {cible: 'nav [data-vue="amis"]', texte: "Vos amis : leur vitrine, un échange ou un duel en un toucher."},
-  {cible: 'nav [data-vue="plus"]', texte: "Plus : toutes les cartes du jeu, le règlement et les paramètres (thème clair ou sombre, notifications)."},
+  {cible: 'nav [data-vue="plus"]', texte: "Plus : votre siège (compte et vitrine), toutes les cartes du jeu, le règlement et les paramètres (thème, notifications)."},
   {cible: null, texte: "C'est parti ! Sous les paquets, les questions au Gouvernement rapportent des voix chaque jour. Bonne séance."},
 ];
 let visite = null;
@@ -1885,7 +1886,7 @@ document.addEventListener("click", e => {
 // Changement de vue. En revenant aux paquets depuis un autre onglet, la scène reflète les paquets gagnés
 // entre-temps ; un paquet en cours de découverte n'est jamais interrompu par un toucher sur l'onglet déjà ouvert
 let vueCourante = "paquet";
-const VUES_PLUS = ["catalogue", "apropos", "parametres"];
+const VUES_PLUS = ["compte", "catalogue", "apropos", "parametres"];
 function allerA(vue){
   const depuis = vueCourante;
   vueCourante = vue;
