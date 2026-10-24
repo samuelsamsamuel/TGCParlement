@@ -86,13 +86,17 @@ Wikidata, sondés par reprise, 20 minutes par exécution), `villes_circonscripti
 
 ## Vocabulaire du jeu (références parlementaires)
 
-Onglets : Séance (paquets du jour), Hémicycle (collection), Ordre du jour (objectifs), Buvette (échanges et
-marché), Mon siège (compte), Règlement (règles). Dissoudre des doubles (recyclage) rapporte des voix, la
+Onglets : Séance (paquets du jour), Hémicycle (collection), Ordre du jour (objectifs, synthèse et rubriques
+repliables), Buvette (sous-onglets Échanges et Comptoir), Mon siège (compte : chiffres, raccourcis, vitrine, réglages
+dont la suppression du compte), Amis. Le Règlement s'ouvre par le bouton « ? » de l'en-tête et le pied de page.
+Classement des joueurs retiré à la demande de l'utilisateur. Dissoudre des doubles (recyclage) rapporte des voix, la
 monnaie du jeu (« acheter des voix est parfaitement réglementaire ») ; à la buvette, les joueurs échangent
 des cartes et se les vendent au comptoir. Pas plus de termes : compte, connexion et échanges gardent des mots
 simples (« prendre séance » et consorts ont été écartés). Les noms de code (fonctions, API, base, champ
 `points`) gardent les termes techniques. Les voix restent visibles en haut à droite. Pendant la découverte d'un
-paquet, toucher la carte la retourne ; « Précédente » et « Suivante » naviguent. Pas de zoom au double toucher
+paquet, toucher la carte la retourne (plus de bouton Verso) ; « Précédente » et « Suivante » naviguent ; l'étoile
+la met en favori (`favoris` de l'état, 300 au plus, `basculerFavori` ; colonne `favoris` et `POST /api/favori` côté
+serveur), filtre « Mes favoris » dans l'Hémicycle. Pas de zoom au double toucher
 (`touch-action: manipulation`).
 
 ## Serveur : comptes, échanges, marché
@@ -118,13 +122,18 @@ paquet, toucher la carte la retourne ; « Précédente » et « Suivante » navi
   (aucune possession, aucun journal) est repris par une nouvelle inscription avec le même mot de passe.
 - Concurrence des opérations des règles : version du joueur incrémentée dans le même lot ; une insertion dans la
   table `garde` (contrainte `ok = 0`) n'a lieu que si la version a changé (`changes() = 0`) et annule tout.
+- Amis (table `amis`, une ligne par sens) : `GET /api/amis`, `POST /api/amis/(demander|accepter|retirer)` ; une demande
+  croisée vaut acceptation, retirer efface les deux sens (refus, annulation, fin d'amitié). Depuis l'onglet Amis :
+  vitrine, échange (Buvette préremplie), duel.
 - Colonnes ajoutées après la mise en service : déclarées dans `COLONNES` (worker), ajoutées à la volée.
-- Vitrine (six cartes), profil, classement (cartes différentes, cache de cinq minutes), prix du comptoir
-  (dernières ventes, médiane par rareté), compteur d'attente (échanges reçus, duels à jouer), suppression du
+- Vitrine (six cartes, exposables en un toucher depuis les favoris), profil, prix du comptoir
+  (dernières ventes, médiane par rareté), compteur d'attente (échanges reçus, demandes d'ami, duels à jouer), suppression du
   compte, formulaire de contact (table `messages`, effacée après un an), signalements (table `signalements`).
   Modération des pseudos : `MOTS_INTERDITS` (cherchés dans le pseudo) et `NOMS_RESERVES` (pseudo entier).
   Lire les messages et signalements : console D1 du tableau de bord Cloudflare.
-- Site : application installable (`manifest.webmanifest`, `sw.js` réseau d'abord, copie hors connexion),
+- Site : application installable (`manifest.webmanifest`, `sw.js` réseau d'abord, copie hors connexion ; icônes
+  écrites par `scripts/icone.py`, bande bleu-blanc-rouge aux couleurs de la Marque de l'État ; changer `CACHE` dans `sw.js`
+  à chaque changement d'icône),
   polices servies par le site (`site/polices/`, licence OFL), page `mentions.html` (mentions légales,
   conditions d'utilisation, confidentialité). `jeu.json` pèse 6,5 Mo mais 1 Mo compressé par Cloudflare.
 - Limites connues : un joueur peut ouvrir plusieurs comptes et faire passer leurs cartes vers un seul

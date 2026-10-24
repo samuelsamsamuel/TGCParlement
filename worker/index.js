@@ -68,6 +68,10 @@ const SCHEMA = [
   // Messages du formulaire de contact (exercice des droits, questions) et signalements de pseudos
   `CREATE TABLE IF NOT EXISTS messages (id INTEGER PRIMARY KEY, joueur INTEGER, reponse TEXT, message TEXT NOT NULL, date TEXT NOT NULL)`,
   `CREATE TABLE IF NOT EXISTS signalements (id INTEGER PRIMARY KEY, de INTEGER NOT NULL, cible INTEGER NOT NULL, motif TEXT, date TEXT NOT NULL)`,
+  // Amis : une demande (de -> vers), puis une amitié acceptée, réciproque
+  `CREATE TABLE IF NOT EXISTS amis (de INTEGER NOT NULL, vers INTEGER NOT NULL, statut TEXT NOT NULL, date TEXT NOT NULL,
+     PRIMARY KEY (de, vers)) WITHOUT ROWID`,
+  `CREATE INDEX IF NOT EXISTS amis_vers ON amis (vers, statut)`,
   // Garde de concurrence : une insertion n'y a lieu que lorsque la version du joueur a changé entre la lecture
   // et l'écriture ; sa contrainte échoue alors et annule tout le lot (voir appliquer)
   `CREATE TABLE IF NOT EXISTS garde (ok INTEGER NOT NULL CHECK (ok = 0))`,
@@ -122,6 +126,7 @@ const COLONNES = {
     ["version", "INTEGER NOT NULL DEFAULT 0"],    // incrémentée à chaque opération des règles (garde de concurrence)
     ["vitrine", "TEXT NOT NULL DEFAULT '[]'"],    // cartes choisies pour la vitrine publique
     ["quiz", "TEXT NOT NULL DEFAULT ''"],         // jour des dernières questions au Gouvernement récompensées
+    ["favoris", "TEXT NOT NULL DEFAULT '[]'"],    // cartes marquées d'une étoile par le joueur
   ],
   annonces: [
     ["rarete", "TEXT NOT NULL DEFAULT ''"],       // rareté de la carte, pour les prix médians par rareté
@@ -179,7 +184,7 @@ async function joueurConnecte(env, requete) {
 /* ---------- État d'un joueur ---------- */
 async function chargerEtat(env, joueur) {
   const [j, p, r, h] = await env.DB.batch([
-    env.DB.prepare("SELECT pseudo, points, offerts, stock, ancre, version, quiz, vitrine FROM joueurs WHERE id = ?").bind(joueur),
+    env.DB.prepare("SELECT pseudo, points, offerts, stock, ancre, version, quiz, vitrine, favoris FROM joueurs WHERE id = ?").bind(joueur),
     env.DB.prepare("SELECT carte, n, importes, reserve FROM possessions WHERE joueur = ? AND n > 0").bind(joueur),
     env.DB.prepare("SELECT cle, date FROM reclames WHERE joueur = ?").bind(joueur),
     env.DB.prepare("SELECT date, operation, detail FROM journal WHERE joueur = ? ORDER BY id DESC LIMIT 20").bind(joueur),
@@ -194,6 +199,7 @@ async function chargerEtat(env, joueur) {
   }
   for (const x of r.results) etat.objectifs[x.cle] = x.date;
   etat.journal = h.results.reverse().map(x => [x.date, x.operation, x.detail ? JSON.parse(x.detail) : null]);
+  etat.favoris = JSON.parse(ligne.favoris || "[]");
   return {pseudo: ligne.pseudo, etat, version: ligne.version, vitrine: JSON.parse(ligne.vitrine || "[]")};
 }
 // Ajout : la ligne est créée au besoin. Retrait : simple mise à jour, car SQLite vérifie les contraintes CHECK
@@ -437,7 +443,7 @@ async function cloreAnnonce(env, joueur, id, action) {
   return json({ok: true});
 }
 
-/* ---------- Prix du comptoir, attente, vitrine, classement, compte ---------- */
+/* ---------- Prix du comptoir, attente, vitrine, favoris, amis, compte ---------- */
 async function prixComptoir(env, url, cat) {
   const carte = String(url.searchParams.get("carte") || "");
   if (!cat.parId[carte]) throw new Refus(400, "Carte inconnue.");
@@ -451,11 +457,12 @@ async function prixComptoir(env, url, cat) {
   return json({ventes: ventes.results, rarete, mediane, ventesRarete: prix.length});
 }
 async function attente(env, joueur) {
-  const [e, d] = await env.DB.batch([
+  const [e, d, a] = await env.DB.batch([
     env.DB.prepare("SELECT COUNT(*) AS n FROM echanges WHERE vers = ? AND statut = 'proposee'").bind(joueur),
+    env.DB.prepare("SELECT COUNT(*) AS n FROM amis WHERE vers = ? AND statut = 'demande'").bind(joueur),
     env.DB.prepare("SELECT COUNT(*) AS n FROM duels WHERE (de = ?1 AND score_de IS NULL) OR (vers = ?1 AND score_vers IS NULL)").bind(joueur),
   ]);
-  return json({echanges: e.results[0].n, duels: d.results[0].n});
+  return json({echanges: e.results[0].n, amis: d.results[0].n, duels: a.results[0].n});
 }
 const MAX_VITRINE = 6;
 async function changerVitrine(env, requete, joueur) {
@@ -481,14 +488,58 @@ async function profil(env, pseudo) {
   return json({pseudo: j.pseudo, cree: j.cree, cartes: c.results[0].n, paliers: p.results[0].n,
     duels: {joues: d.results[0].joues || 0, gagnes: d.results[0].gagnes || 0}, vitrine: JSON.parse(j.vitrine).filter(id => garde.has(id))});
 }
-let classementCache = null;   // {t, corps} : le classement est recalculé au plus toutes les cinq minutes
-async function classement(env) {
-  if (!classementCache || Date.now() - classementCache.t > 300000) {
-    const r = await env.DB.prepare(`SELECT j.pseudo, COUNT(p.carte) AS cartes FROM joueurs j JOIN possessions p ON p.joueur = j.id AND p.n > 0
-      GROUP BY j.id ORDER BY cartes DESC, j.id ASC LIMIT 20`).all();
-    classementCache = {t: Date.now(), corps: {classement: r.results}};
+// Favoris : étoile posée ou retirée sur une carte de la collection (300 au plus)
+const MAX_FAVORIS = 300;
+async function changerFavori(env, requete, joueur, cat) {
+  const c = await lireCorps(requete);
+  const carte = String(c.carte || "");
+  if (!cat.parId[carte]) throw new Refus(400, "Carte inconnue.");
+  const j = await env.DB.prepare("SELECT favoris FROM joueurs WHERE id = ?").bind(joueur).first();
+  const favoris = JSON.parse(j.favoris || "[]").filter(id => id !== carte);
+  if (c.actif) {
+    if (favoris.length >= MAX_FAVORIS) throw new Refus(409, `${MAX_FAVORIS} favoris au plus.`);
+    favoris.push(carte);
   }
-  return json(classementCache.corps);
+  await env.DB.prepare("UPDATE joueurs SET favoris = ? WHERE id = ?").bind(JSON.stringify(favoris), joueur).run();
+  return json({favoris});
+}
+// Amis : demande, acceptation (une demande croisée vaut acceptation), retrait (refus, annulation, fin d'amitié)
+const MAX_AMIS = 200;
+async function listeAmis(env, joueur) {
+  const r = await env.DB.prepare(`SELECT a.de, a.vers, a.statut, j.pseudo FROM amis a JOIN joueurs j ON j.id = CASE WHEN a.de = ?1 THEN a.vers ELSE a.de END
+    WHERE a.de = ?1 OR a.vers = ?1 ORDER BY j.pseudo COLLATE NOCASE`).bind(joueur).all();
+  const amis = [], recues = [], envoyees = [];
+  for (const x of r.results) {
+    if (x.statut === "accepte") { if (x.de === joueur) amis.push(x.pseudo); }
+    else (x.vers === joueur ? recues : envoyees).push(x.pseudo);
+  }
+  return json({amis, recues, envoyees});
+}
+async function actionAmi(env, requete, joueur, action) {
+  const autre = await idJoueur(env, (await lireCorps(requete)).pseudo);
+  if (autre.id === joueur) throw new Refus(400, "Vous ne pouvez pas être votre propre ami.");
+  const date = maintenant();
+  if (action === "demander") {
+    const n = await env.DB.prepare("SELECT COUNT(*) AS n FROM amis WHERE de = ?").bind(joueur).first();
+    if (n.n >= MAX_AMIS) throw new Refus(429, `${MAX_AMIS} amis au plus.`);
+    const inverse = await env.DB.prepare("SELECT statut FROM amis WHERE de = ? AND vers = ?").bind(autre.id, joueur).first();
+    if (inverse) action = "accepter";   // l'autre l'avait déjà demandé : c'est une acceptation
+    else {
+      await env.DB.prepare("INSERT OR IGNORE INTO amis (de, vers, statut, date) VALUES (?, ?, 'demande', ?)").bind(joueur, autre.id, date).run();
+      return json({ok: true, statut: "demande"});
+    }
+  }
+  if (action === "accepter") {
+    const demande = await env.DB.prepare("SELECT 1 FROM amis WHERE de = ? AND vers = ?").bind(autre.id, joueur).first();
+    if (!demande) throw new Refus(409, "Aucune demande de ce joueur.");
+    await env.DB.batch([
+      env.DB.prepare("UPDATE amis SET statut = 'accepte', date = ? WHERE de = ? AND vers = ?").bind(date, autre.id, joueur),
+      env.DB.prepare("INSERT INTO amis (de, vers, statut, date) VALUES (?, ?, 'accepte', ?) ON CONFLICT (de, vers) DO UPDATE SET statut = 'accepte'").bind(joueur, autre.id, date),
+    ]);
+    return json({ok: true, statut: "accepte"});
+  }
+  await env.DB.prepare("DELETE FROM amis WHERE (de = ?1 AND vers = ?2) OR (de = ?2 AND vers = ?1)").bind(joueur, autre.id).run();
+  return json({ok: true, statut: "aucun"});
 }
 async function supprimerCompte(env, requete, joueur) {
   const preuve = String((await lireCorps(requete)).preuve || "");
@@ -504,6 +555,7 @@ async function supprimerCompte(env, requete, joueur) {
     env.DB.prepare("DELETE FROM journal WHERE joueur = ?").bind(joueur),
     env.DB.prepare("DELETE FROM sessions WHERE joueur = ?").bind(joueur),
     env.DB.prepare("DELETE FROM signalements WHERE de = ?1 OR cible = ?1").bind(joueur),
+    env.DB.prepare("DELETE FROM amis WHERE de = ?1 OR vers = ?1").bind(joueur),
     env.DB.prepare("UPDATE messages SET joueur = NULL WHERE joueur = ?").bind(joueur),
     env.DB.prepare("DELETE FROM joueurs WHERE id = ?").bind(joueur),
   ]);
@@ -580,7 +632,6 @@ async function api(requete, env, url) {
   if (methode === "POST" && chemin === "/api/deconnexion") return deconnexion(env, requete);
   const joueur = await joueurConnecte(env, requete);
   if (methode === "POST" && chemin === "/api/contact") return contact(env, requete, joueur);
-  if (methode === "GET" && chemin === "/api/classement") return classement(env);
   let p;
   if (methode === "GET" && (p = chemin.match(/^\/api\/profil\/([^/]+)$/))) return profil(env, decodeURIComponent(p[1]));
   if (methode === "GET" && chemin === "/api/moi") return json(joueur ? {connecte: true, ...(await chargerEtat(env, joueur))} : {connecte: false});
@@ -616,12 +667,15 @@ async function api(requete, env, url) {
   }
   if (methode === "GET" && chemin === "/api/duels") return listeDuels(env, joueur);
   if (methode === "GET" && chemin === "/api/attente") return attente(env, joueur);
+  if (methode === "POST" && chemin === "/api/favori") return changerFavori(env, requete, joueur, await catalogueDuJeu());
+  if (methode === "GET" && chemin === "/api/amis") return listeAmis(env, joueur);
   if (methode === "GET" && chemin === "/api/prix") return prixComptoir(env, url, await catalogueDuJeu());
   if (methode === "POST" && chemin === "/api/vitrine") return changerVitrine(env, requete, joueur);
   if (methode === "POST" && chemin === "/api/supprimer-compte") return supprimerCompte(env, requete, joueur);
   if (methode === "POST" && chemin === "/api/signaler") return signaler(env, requete, joueur);
   if (methode === "POST" && chemin === "/api/duels") return lancerDuel(env, requete, joueur);
   let m;
+  if (methode === "POST" && (m = chemin.match(/^\/api\/amis\/(demander|accepter|retirer)$/))) return actionAmi(env, requete, joueur, m[1]);
   if (methode === "POST" && (m = chemin.match(/^\/api\/duels\/(\d+)\/score$/))) return scoreDuel(env, requete, joueur, Number(m[1]));
   if (methode === "GET" && (m = chemin.match(/^\/api\/joueurs\/([^/]+)$/))) {
     const j = await idJoueur(env, decodeURIComponent(m[1]));
