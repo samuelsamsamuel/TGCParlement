@@ -453,31 +453,29 @@ footer a{color:var(--pierre)}
 :root[data-theme="clair"] .bouton.discret{border-color:rgba(92,16,32,.35)}
 :root[data-theme="clair"] dialog::backdrop{background:rgba(46,7,16,.55)}
 :root[data-theme="clair"] .paquet .mention,:root[data-theme="clair"] .paquet .logo{color:#fff}
-/* ---------- Densité : la séance et la découverte d'un paquet tiennent dans l'écran ---------- */
-html{font-size:15px}
-h1{font-size:clamp(1.7rem,5vw,2.8rem)}
-main{padding-top:1rem}
-.scene{min-height:0;gap:.7rem}
-.paquet{--h:min(360px,46vh)}
-.carte.grande{width:min(270px,66vw,40vh)}
-.actions{width:min(300px,86vw)}
-.actions .bouton{padding:.6rem .6rem;font-size:.9rem}
-.tableau-seance{margin-bottom:.5rem}
-.tableau-seance .nombre{font-size:1.3rem}
-.cases{margin:.35rem 0 .25rem}
-.cases i{width:.75rem;height:1rem}
-.tableau-seance .detail-reserve{font-size:.8rem}
-.reserve{font-size:.82rem;margin:-.2rem 0 .6rem}
-.recap{grid-template-columns:repeat(3,minmax(0,1fr));gap:.5rem}
-@media (min-width:640px){.recap{grid-template-columns:repeat(5,minmax(0,1fr))}}
-.grille{gap:.6rem}
+/* ---------- Présentation : le temps de la visite guidée, tout est resserré pour que séance et découverte
+   tiennent dans l'écran sans défiler ; hors visite, les tailles habituelles ---------- */
+html.presentation{font-size:15px}
+.presentation h1{font-size:clamp(1.7rem,5vw,2.8rem)}
+.presentation main{padding-top:1rem}
+.presentation .scene{min-height:0;gap:.7rem}
+.presentation .paquet{--h:min(360px,46vh)}
+.presentation .carte.grande{width:min(270px,66vw,40vh)}
+.presentation .actions{width:min(300px,86vw)}
+.presentation .actions .bouton{padding:.6rem .6rem;font-size:.9rem}
+.presentation .tableau-seance{margin-bottom:.5rem}
+.presentation .tableau-seance .nombre{font-size:1.3rem}
+.presentation .cases{margin:.35rem 0 .25rem}
+.presentation .cases i{width:.75rem;height:1rem}
+.presentation .tableau-seance .detail-reserve{font-size:.8rem}
+.presentation .reserve{font-size:.82rem;margin:-.2rem 0 .6rem}
+.presentation .recap{grid-template-columns:repeat(3,minmax(0,1fr));gap:.5rem}
+@media (min-width:640px){.presentation .recap{grid-template-columns:repeat(5,minmax(0,1fr))}}
 @media (max-width:700px){
-  html{font-size:14.5px}
-  header{padding-top:.7rem}
-  h1{margin-bottom:.4rem}
-  main{padding:.7rem .8rem 6rem}
-  nav button svg{width:1.1rem;height:1.1rem}
-  nav button{padding:.4rem 0 .35rem}
+  html.presentation{font-size:14.5px}
+  .presentation header{padding-top:.7rem}
+  .presentation h1{margin-bottom:.4rem}
+  .presentation main{padding:.7rem .8rem 6rem}
 }
 @media (prefers-reduced-motion:reduce){.face,.paquet *{transition:none!important;animation:none!important}.r-legendaire .recto::after{animation:none}}
 </style>
@@ -1384,6 +1382,7 @@ function lancerVisite(){
   allerA("paquet");
   if (!document.getElementById("paquet") && !document.getElementById("courante")) afficherPaquet();
   visite = {i: 0, minuteur: null};
+  document.documentElement.classList.add("presentation");
   window.scrollTo({top: 0});
   document.getElementById("guide").hidden = false;
   montrerEtape();
@@ -1391,6 +1390,7 @@ function lancerVisite(){
 function finirVisite(){
   if (!visite) return;
   clearInterval(visite.minuteur); visite = null;
+  document.documentElement.classList.remove("presentation");
   document.getElementById("guide").hidden = true;
   noterAccueil("fait");
 }
