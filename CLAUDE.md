@@ -87,9 +87,13 @@ Wikidata, sondés par reprise, 20 minutes par exécution), `villes_circonscripti
 ## Vocabulaire du jeu (références parlementaires)
 
 Onglets : Séance (paquets du jour), Hémicycle (collection), Ordre du jour (objectifs, synthèse et rubriques
-repliables), Buvette (sous-onglets Échanges et Comptoir), Mon siège (compte : chiffres, vitrine en six cases, réglages
-dont la suppression du compte), Amis, Plus (sous-onglets « Toutes les cartes », catalogue complet où les cartes non
-obtenues sont grisées, et Règlement : règles, sources, lien vers les mentions légales ; pas de pied de page). Un toucher sur les voix ouvre un encart qui explique leur usage. Choix d'une carte
+repliables), Buvette (sous-onglets Échanges, avec historique daté, et Comptoir), Mon siège (chiffres et vitrine en six
+cases), Amis, Plus : un menu ouvre trois vues, « Toutes les cartes » (catalogue complet, cartes non obtenues grisées),
+Règlement (règles et sources) et Paramètres (infos du compte, déconnexion et suppression, thème sombre, clair ou comme
+l'appareil gardé dans le navigateur, notifications, contact, mentions légales). Pas de pied de page.
+Hémicycle : les pastilles du haut filtrent (favoris, une rareté) et se désélectionnent au second toucher ; toucher
+une carte l'ouvre en grand (`apercu`) avec ses exemplaires, la dissolution de ses seuls doubles (`dissoudre`,
+`POST /api/dissoudre`) et la vente au comptoir. Reflets des mythiques et légendaires espacés (11 et 15 s). Un toucher sur les voix ouvre un encart qui explique leur usage. Choix d'une carte
 (vitrine, vente, lots d'un échange) : fenêtre `choisirCarte` en miniatures, favoris d'abord ; à la vente, toute la
 collection y figure, les cartes verrouillées grisées avec leur raison. Buvette et Ordre du jour allégés : pas de
 paragraphes d'introduction, historique et objectifs déjà reçus repliés. Pendant la découverte d'un
@@ -116,9 +120,11 @@ serveur), filtre « Mes favoris » dans l'Hémicycle. Pas de zoom au double touc
 - Mots de passe : étirés dans le navigateur (PBKDF2-SHA-256, 600 000 tours, sel « hemicycle|pseudo »), le
   serveur ne garde que SHA-256(sel aléatoire + preuve) ; le calcul lent hors du Worker tient dans la limite de
   10 ms de calcul du plan gratuit. Pas de récupération de mot de passe faute d'envoi d'e-mails.
-- Reprise de la collection locale à l'inscription, une fois : exemplaires « importés », verrouillés (ni
-  recyclés ni cédés), faute de pouvoir vérifier leur origine ; paliers déjà atteints marqués réclamés ; points
-  et paquets offerts non repris. Une carte en vente est « réservée », verrouillée de même.
+- Reprise de la collection locale à l'inscription, une fois : décision de l'utilisateur (octobre 2026), les cartes
+  reprises sont des cartes ordinaires, vendables et échangeables, alors que le serveur ne peut pas vérifier une
+  collection locale (risque accepté : un joueur peut s'écrire des cartes dans son navigateur avant l'inscription).
+  Colonne `importes` gardée à 0 (migration unique `importes-liberes`, table `reglages`) ; paliers déjà atteints
+  marqués réclamés ; points et paquets offerts non repris. Une carte en vente est « réservée », verrouillée.
 - Monnaie du marché : les voix (champ `points`), gagnées en dissolvant des doubles. Pas d'argent réel.
 - Catalogue du serveur : membres des objectifs codés en plages et décodés à la demande ; le catalogue n'est
   chargé que par les routes qui en ont besoin (environ 12 ms au premier chargement, en cache ensuite).
@@ -130,6 +136,14 @@ serveur), filtre « Mes favoris » dans l'Hémicycle. Pas de zoom au double touc
 - Amis (table `amis`, une ligne par sens) : `GET /api/amis`, `POST /api/amis/(demander|accepter|retirer)` ; une demande
   croisée vaut acceptation, retirer efface les deux sens (refus, annulation, fin d'amitié). Depuis l'onglet Amis :
   vitrine, échange (Buvette préremplie), duel.
+- Notifications (Web Push, RFC 8030 et 8292) : poussée sans contenu, signée VAPID (ES256, clés créées à la première
+  demande et gardées dans `reglages`) ; le texte attend dans `notifications` et le service de travail le lit
+  (`GET /api/notifications`, qui le supprime). Abonnements par appareil (`abonnements`, services de poussée connus
+  seulement), préférences « buvette » (échanges, amis, duels, ventes) et « réserve ». Déclencheur planifié horaire
+  (`triggers.crons` de `wrangler.jsonc`, `scheduled`) : réserve pleine, une fois par remplissage (`reserve_vue`).
+  Signature vérifiée contre FCM (jeton juste : 410 pour un abonnement inconnu ; jeton faux : 403). Sur iPhone,
+  seulement dans l'application installée sur l'écran d'accueil.
+- Migrations uniques : `MIGRATIONS` (worker), notées dans `reglages`.
 - Colonnes ajoutées après la mise en service : déclarées dans `COLONNES` (worker), ajoutées à la volée.
 - Vitrine (six cases, chacune remplie ou vidée à part, enregistrée aussitôt), profil, prix du comptoir
   (dernières ventes, médiane par rareté), compteur d'attente (échanges reçus, demandes d'ami, duels à jouer), suppression du

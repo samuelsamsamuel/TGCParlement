@@ -128,4 +128,12 @@ assert.strictEqual(quizEtat.points, 36);
   const attendu = cat.objectifs.flatMap(o => R.avancement(e2, o).aReclamer.map(x => x.cle)).sort();
   assert.deepStrictEqual(R.clesAtteintes(compact, col).sort(), attendu);
 }
+// Dissolution d'une seule carte : un exemplaire reste, et jamais moins que les exemplaires verrouillés
+{
+  const e3 = R.etatVide(), c = cat.parRarete.rare[0];
+  e3.possedees[c.id] = 4; e3.verrous = {[c.id]: 1};
+  assert.deepStrictEqual(R.dissoudre(e3, cat, c.id), {exemplaires: 3, points: 3 * R.VALEUR_RECYCLAGE.rare});
+  assert.strictEqual(e3.possedees[c.id], 1);
+  assert.deepStrictEqual(R.dissoudre(e3, cat, c.id), {exemplaires: 0, points: 0});
+}
 console.log("tous les tests passent");
