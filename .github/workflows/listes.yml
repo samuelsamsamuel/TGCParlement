@@ -68,6 +68,10 @@ jobs:
         continue-on-error: true
         run: python3 scripts/portraits_sycomore.py
 
+      - name: Portraits des articles Wikipédia (cartes sans autre portrait)
+        continue-on-error: true
+        run: python3 scripts/portraits_wikipedia.py
+
       - name: Plus grande ville des circonscriptions
         continue-on-error: true
         run: python3 scripts/villes_circonscriptions.py

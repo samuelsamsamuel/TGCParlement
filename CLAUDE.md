@@ -12,7 +12,8 @@ le workflow `.github/workflows/listes.yml` (« Listes fermées et cartes »), qu
 
 - Sources officielles uniquement (Assemblée nationale : Sycomore et open data ; Sénat : data.senat.fr ;
   data.gouv.fr ; info.gouv.fr ; Insee via geo.api.gouv.fr). Wikidata seulement pour les noms d'usage, les
-  portraits et quatre distinctions, toujours rattachés par identifiant officiel (Sycomore P1045, Sénat P1808).
+  portraits et quatre distinctions, toujours rattachés par identifiant officiel (Sycomore P1045, Sénat P1808) ;
+  Wikipédia seulement pour l'image principale de l'article rattaché de la même façon (`portraits_wikipedia.py`).
 - Rien d'inventé : une information non vérifiable est omise ; un cas douteux est tranché par une décision
   motivée intégrée au script concerné (`DECISIONS_INTEGREES`, `RETIRES_DU_PANTHEON`, etc.).
 - Chaque script écrit un rapport dans `data/listes/rapports/` : le lire après chaque exécution.
@@ -31,7 +32,9 @@ Sénat, lu dans l'export complet `export_sens.zip`, tables `bur` et `senbur`) ; 
 7. `quatre_vingts.py`, `doyens.py`, `presidences.py`, `presidences_senat.py`, `distinctions.py` ;
 8. `cartes.py` (version finale : score, rareté par époque, bonus des élus en exercice) ;
 9. `portraits.py`, `portraits_sycomore.py` (portraits officiels de Sycomore pour les députés sans portrait
-Wikidata, sondés par reprise, 20 minutes par exécution), `villes_circonscriptions.py`, `export_jeu.py` (écrit
+Wikidata, sondés par reprise, 20 minutes par exécution), `portraits_wikipedia.py` (image principale libre de
+l'article Wikipédia rattaché par P1045 ou P1808, pour les cartes sans autre portrait ; décision de l'utilisateur,
+octobre 2026 ; filtre par format et mots du nom de fichier, rapport des retenus et écartés), `villes_circonscriptions.py`, `export_jeu.py` (écrit
 `site/jeu.json`), puis
 `node scripts/catalogue_serveur.js` (écrit `site/serveur.json`).
 
@@ -100,7 +103,12 @@ recommandé ; ouvrir ses cartes dans le navigateur ; « J'ai déjà un compte »
 d'installation selon l'appareil (iPhone : bouton Partager puis « Sur l'écran d'accueil » ; Android et ordinateur :
 invitation `beforeinstallprompt` ou menu du navigateur) ; puis visite guidée (`ETAPES_VISITE`) qui éclaire chaque
 élément et attend certains gestes (ouvrir le paquet, retourner la carte, finir le paquet). Les tests du navigateur
-posent `hemicycle-accueil = fait` pour passer l'accueil. Un toucher sur les voix ouvre un encart qui explique leur usage. Choix d'une carte
+posent `hemicycle-accueil = fait` pour passer l'accueil. Pendant la visite, rien ne défile (`recentrer` suspendu) :
+l'interface est assez dense pour que séance et découverte tiennent dans l'écran (390 × 844 sans défilement).
+Portraits : vignettes Wikimedia en largeur standard (330 px ; 320 px est refusé, 400), connexions ouvertes d'avance,
+portraits Wikimedia et Sénat demandés en CORS et gardés par le service de travail (cache `hemicycle-portraits`,
+800 au plus) ; ceux de l'Assemblée, sans CORS, restent au cache du navigateur (une réponse opaque gonflerait le
+quota et risquerait l'effacement des données du site, collection locale comprise). Un toucher sur les voix ouvre un encart qui explique leur usage. Choix d'une carte
 (vitrine, vente, lots d'un échange) : fenêtre `choisirCarte` en miniatures, favoris d'abord ; à la vente, toute la
 collection y figure, les cartes verrouillées grisées avec leur raison. Buvette et Ordre du jour allégés : pas de
 paragraphes d'introduction, historique et objectifs déjà reçus repliés. Pendant la découverte d'un
