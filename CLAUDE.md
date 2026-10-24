@@ -88,9 +88,11 @@ Wikidata, sondés par reprise, 20 minutes par exécution), `villes_circonscripti
 
 Onglets : Séance (paquets du jour), Hémicycle (collection), Ordre du jour (objectifs, synthèse et rubriques
 repliables), Buvette (sous-onglets Échanges et Comptoir), Mon siège (compte : chiffres, vitrine en six cases, réglages
-dont la suppression du compte), Amis, Règlement (règles, sources et lien vers les mentions légales, sur aucun autre
-onglet : pas de pied de page). Un toucher sur les voix ouvre un encart qui explique leur usage. Choix d'une carte
-(vitrine, vente au comptoir) : fenêtre `choisirCarte` en miniatures, favoris d'abord. Pendant la découverte d'un
+dont la suppression du compte), Amis, Plus (sous-onglets « Toutes les cartes », catalogue complet où les cartes non
+obtenues sont grisées, et Règlement : règles, sources, lien vers les mentions légales ; pas de pied de page). Un toucher sur les voix ouvre un encart qui explique leur usage. Choix d'une carte
+(vitrine, vente, lots d'un échange) : fenêtre `choisirCarte` en miniatures, favoris d'abord ; à la vente, toute la
+collection y figure, les cartes verrouillées grisées avec leur raison. Buvette et Ordre du jour allégés : pas de
+paragraphes d'introduction, historique et objectifs déjà reçus repliés. Pendant la découverte d'un
 paquet et son récapitulatif, les questions au Gouvernement sont masquées.
 Classement des joueurs retiré à la demande de l'utilisateur. Dissoudre des doubles (recyclage) rapporte des voix, la
 monnaie du jeu (« acheter des voix est parfaitement réglementaire ») ; à la buvette, les joueurs échangent

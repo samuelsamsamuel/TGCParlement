@@ -65,6 +65,13 @@ main{max-width:1120px;margin:0 auto;padding:1.5rem 1rem 4rem}
 
 /* ---------- Le paquet (booster) ---------- */
 .scene{display:flex;flex-direction:column;align-items:center;gap:1rem;min-height:500px}
+.scene.vide{min-height:0;gap:.5rem;margin-top:.4rem}
+.scene.vide .bouton{padding:.55rem 1.1rem;font-size:.9rem}
+#vue-plus .outils select{flex:1 1 28%;min-width:0;font-size:.82rem;padding:.45rem .4rem}
+#vue-plus .outils input{flex:1 1 100%}
+.qag.serre{margin-top:1rem}
+.carte.manquante{filter:grayscale(.9);opacity:.55}
+.centre{text-align:center}
 .paquet{--h:420px;width:calc(var(--h) * .62);height:var(--h);max-height:72vh;max-width:62vw;border:0;padding:0;background:none;position:relative;filter:drop-shadow(0 22px 30px rgba(0,0,0,.55))}
 .paquet .corps-paquet{position:absolute;left:0;right:0;top:7%;bottom:5%;overflow:hidden;
   background:
@@ -182,8 +189,12 @@ main{max-width:1120px;margin:0 auto;padding:1.5rem 1rem 4rem}
 .outils{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;margin-bottom:1.2rem}
 .outils input,.outils select{background:var(--velours-fonce);color:var(--marbre);border:1px solid rgba(201,162,74,.5);border-radius:3px;padding:.55rem .7rem;font:inherit}
 .outils input{flex:1;min-width:12rem}
-.progression{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:.4rem 1.2rem;margin:0 0 1.5rem;padding:0;list-style:none;font-size:.9rem}
-.progression strong{font:700 1.25rem var(--serif);display:block;color:var(--dorure-pale)}
+.progression{display:flex;flex-wrap:wrap;gap:.3rem .4rem;align-items:center;margin:0 0 .9rem;padding:0;list-style:none;font-size:.76rem;color:var(--pierre)}
+.progression li{border:1px solid rgba(201,162,74,.25);border-radius:1rem;padding:.12rem .55rem}
+.progression strong{font-weight:700;color:var(--dorure-pale)}
+.progression li.total{border:0;padding:0 .4rem 0 0;font-size:.9rem;color:var(--marbre)}
+.progression button{background:none;border:0;padding:0;color:inherit;font:inherit}
+.atelier.calme{border:0;background:none;padding:0;margin:0 0 .8rem;font-size:.8rem;color:var(--pierre)}
 .vide{color:var(--dorure-pale);text-align:center;padding:3rem 1rem;grid-column:1/-1}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 
@@ -257,8 +268,6 @@ footer{max-width:1120px;margin:0 auto;padding:0 1rem 3rem;font-size:.85rem;color
 .lignes-buvette .bouton{padding:.35rem .8rem;font-size:.85rem}
 .lien-carte{background:none;border:0;padding:0;color:var(--dorure-pale);text-decoration:underline;text-underline-offset:2px;font:inherit;text-align:left}
 .etiquette{font-size:.72rem;font-weight:700;padding:.1rem .5rem;border-radius:1rem;background:var(--marbre);color:var(--encre);white-space:nowrap}
-.selecteur{border:1px solid rgba(201,162,74,.3);border-radius:6px;padding:.7rem;display:grid;gap:.5rem;background:rgba(46,7,16,.5)}
-.selecteur .choisies:empty::before{content:"Aucune carte choisie.";color:var(--pierre);font-size:.85rem}
 .colonnes{display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))}
 .toast{position:fixed;left:50%;bottom:1.2rem;transform:translateX(-50%);z-index:40;background:var(--marbre);color:var(--encre);padding:.7rem 1.1rem;border-radius:5px;box-shadow:0 8px 24px rgba(0,0,0,.5);max-width:min(92vw,34rem);font-size:.92rem}
 .toast[hidden]{display:none}
@@ -305,6 +314,18 @@ footer{max-width:1120px;margin:0 auto;padding:0 1rem 3rem;font-size:.85rem;color
 .choix-cartes > button{border:0;background:none;padding:0;color:inherit;text-align:center;font-size:.75rem}
 .choix-cartes > button .carte{pointer-events:none}
 .choix-cartes > button span{display:block;margin-top:.2rem;color:var(--dorure-pale)}
+.choix-cartes > button.verrouillee{cursor:default}
+.choix-cartes > button.verrouillee .carte{filter:grayscale(.9);opacity:.5}
+.choix-cartes > button.verrouillee span{color:var(--pierre)}
+.lot{display:flex;flex-wrap:wrap;gap:.4rem;align-items:center;margin:.3rem 0 .6rem}
+.lot .puce{display:inline-flex;align-items:center;gap:.3rem;border:1px solid rgba(201,162,74,.45);border-radius:2rem;padding:.2rem .3rem .2rem .7rem;font-size:.85rem}
+.lot .puce button{background:none;border:0;color:var(--marbre);font-size:1rem;line-height:1;padding:0 .3rem}
+.lot .ajouter{background:none;border:1px dashed rgba(201,162,74,.6);color:var(--dorure-pale);border-radius:2rem;padding:.25rem .8rem;font-size:.85rem}
+.ligne-pseudo{display:flex;gap:.4rem;margin:.3rem 0}
+.ligne-pseudo input{flex:1;min-width:0}
+.ligne-pseudo .bouton{padding:.5rem .9rem;font-size:.88rem}
+details.historique{margin:.4rem 0 1rem}
+details.historique summary{cursor:pointer;font-size:.85rem;color:var(--pierre);padding:.3rem 0}
 .vente{display:grid;grid-template-columns:minmax(0,170px) 1fr;gap:1rem;align-items:start;border:1px solid rgba(201,162,74,.35);border-radius:6px;padding:1rem;background:rgba(92,16,32,.35);margin:.6rem 0 1rem}
 @media (max-width:520px){.vente{grid-template-columns:minmax(0,130px) 1fr}}
 .vente .formulaire{border:0;padding:0;background:none;margin:0}
@@ -344,6 +365,11 @@ details.rubrique summary > span:first-of-type{flex:1}
 .petits .objectif .bouton{padding:.35rem .6rem;font-size:.8rem}
 @media (max-width:700px){details.rubrique summary{flex-wrap:wrap;font-size:1.15rem}}
 .objectif.recu{opacity:.55}
+details.recus{margin-top:.6rem}
+details.recus summary{cursor:pointer;font-size:.85rem;color:var(--pierre);padding:.3rem 0}
+.synthese{padding:.6rem .9rem}
+.synthese .bouton{padding:.5rem 1rem;font-size:.9rem}
+.objectif .bouton{width:100%}
 .liste-objectifs.compacts{grid-template-columns:repeat(auto-fill,minmax(min(100%,260px),1fr));gap:.4rem}
 .compacts .objectif{padding:.5rem .7rem;gap:.25rem}
 .compacts .objectif h3{font-size:.92rem}
@@ -369,7 +395,7 @@ footer a{color:var(--pierre)}
     <button role="tab" aria-selected="false" data-vue="buvette"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 8h13l-3-3M20 16H7l3 3"/></svg>Buvette <span class="pastille" id="pastille-buvette" hidden></span></button>
     <button role="tab" aria-selected="false" data-vue="compte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span id="nav-compte">Mon siège</span></button>
     <button role="tab" aria-selected="false" data-vue="amis"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><circle cx="17" cy="9" r="2.8"/><path d="M16 14.2a5.5 5.5 0 0 1 6 5.8"/></svg>Amis <span class="pastille" id="pastille-amis" hidden></span></button>
-    <button role="tab" aria-selected="false" data-vue="apropos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.7.3-1 .9-1 1.6v.6M12 17.2v.3"/></svg>Règlement</button>
+    <button role="tab" aria-selected="false" data-vue="plus"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg>Plus</button>
   </nav>
 </header>
 <main>
@@ -379,7 +405,20 @@ footer a{color:var(--pierre)}
     <div class="scene" id="scene"></div>
     <section class="qag" id="qag" aria-live="polite"></section>
   </section>
-  <section class="vue apropos" id="vue-apropos" hidden>
+  <section class="vue" id="vue-plus" hidden>
+    <div class="onglets" role="tablist"><button role="tab" data-plus="catalogue" aria-selected="true">Toutes les cartes</button><button role="tab" data-plus="regles" aria-selected="false">Règlement</button></div>
+    <div data-panneau-plus="catalogue">
+      <div class="outils">
+        <input id="cat-recherche" type="search" aria-label="Rechercher dans toutes les cartes" placeholder="Rechercher un nom, un département, un ministère">
+        <select id="cat-possession" aria-label="Obtenues ou non"><option value="">Toutes</option><option value="manquantes">Pas encore obtenues</option><option value="obtenues">Obtenues</option></select>
+        <select id="cat-epoque" aria-label="Époque"><option value="">Toutes les époques</option></select>
+        <select id="cat-rarete" aria-label="Rareté"><option value="">Toutes les raretés</option></select>
+      </div>
+      <p class="note" id="cat-compte"></p>
+      <div class="grille" id="cat-grille"></div>
+      <p class="centre"><button class="bouton discret" id="cat-plus" hidden>Afficher plus de cartes</button></p>
+    </div>
+    <div class="apropos" data-panneau-plus="regles" hidden>
     <h2>Règlement du jeu</h2>
     <p>Toutes les heures, un paquet de cinq cartes s'ajoute à votre réserve, qui en garde huit au plus : en passant matin, midi et soir, on en ouvre une vingtaine par jour. Chaque paquet contient au moins un parlementaire ou un ministre en exercice. Les cartes obtenues prennent place dans votre hémicycle, votre collection.</p>
     <h3>Paquets offerts</h3>
@@ -401,20 +440,19 @@ footer a{color:var(--pierre)}
     <p>Assemblée nationale (base Sycomore et open data), Sénat (open data), data.gouv.fr pour la composition des gouvernements, Wikidata pour les noms d'usage, les portraits et les distinctions complémentaires, rattachés par les identifiants officiels. Chaque carte renvoie à sa fiche officielle. Portraits : Assemblée nationale, Sénat et Wikimedia Commons, crédits au verso de chaque carte.</p>
     <h3>Mentions légales</h3>
     <p><a href="mentions.html">Mentions légales, conditions d'utilisation et confidentialité</a></p>
+    </div>
   </section>
 
   <section class="vue objectifs" id="vue-objectifs" hidden>
     <div class="synthese" id="synthese-objectifs"></div>
     <details class="rubrique" open><summary><span>Premiers pas</span><span class="etat-rubrique" id="etat-premiers"></span></summary>
-      <p class="intro">Les objectifs les plus simples, atteints dès les premiers paquets : chacun rapporte des voix ou un paquet offert.</p>
-      <ul class="liste-objectifs petits" id="obj-premiers"></ul></details>
+      <ul class="liste-objectifs petits" id="obj-premiers"></ul>
+      <details class="recus" id="premiers-recus" hidden><summary></summary><ul class="liste-objectifs petits" id="obj-premiers-recus"></ul></details></details>
     <details class="rubrique" open><summary><span>Remplir l'hémicycle</span><span class="etat-rubrique" id="etat-collection"></span></summary>
       <ul class="liste-objectifs" id="obj-collection"></ul></details>
     <details class="rubrique"><summary><span>Collections historiques</span><span class="etat-rubrique" id="etat-historiques"></span></summary>
-      <p class="intro">Les Quatre-vingts, les Compagnons de la Libération, les présidents de l'Assemblée.</p>
       <ul class="liste-objectifs" id="obj-historiques"></ul></details>
     <details class="rubrique"><summary><span>Législatures</span><span class="etat-rubrique" id="etat-legislatures"></span></summary>
-      <p class="intro">Les députés d'une même assemblée, de la Constituante de 1789 à la législature en cours.</p>
       <ul class="liste-objectifs compacts" id="obj-legislatures"></ul></details>
     <details class="rubrique"><summary><span>Départements</span><span class="etat-rubrique" id="etat-departements"></span></summary>
       <div class="outils"><input id="recherche-dep" type="search" aria-label="Rechercher un département" placeholder="Rechercher un département"></div>
@@ -625,6 +663,8 @@ function afficherPaquet(){
   document.getElementById("qag").hidden = false;
   const scene = document.getElementById("scene");
   const d = Regles.paquetsDisponibles(etat);
+  scene.classList.toggle("vide", d.total <= 0);
+  document.getElementById("qag").classList.toggle("serre", d.total <= 0);
   if (d.total <= 0) {
     const attente = Regles.recompensesEnAttente(etat, cat);
     scene.innerHTML = (attente.objectifs ? `<button class="bouton" id="vers-objectifs">Réclamer ${gainTexte(attente)} à l'ordre du jour</button>` : "")
@@ -749,6 +789,8 @@ function majAtelier(){
   const points = choisis.reduce((a,r) => a+dbl[r].points, 0), exemplaires = choisis.reduce((a,r) => a+dbl[r].exemplaires, 0);
   const echangeables = Math.floor(etat.points / PRIX_PAQUET);
   const verrouilles = Object.values(etat.verrous || {}).reduce((a,n) => a+n, 0);
+  atelier.classList.toggle("calme", !total && !echangeables && !annonceRecyclage);
+  if (!total && !echangeables && !annonceRecyclage) { atelier.innerHTML = "Aucun double à dissoudre."; return; }
   atelier.innerHTML = `<div class="ligne"><p>${total ? `<b>${pluriel(total, "double")}</b> à dissoudre.` : "Aucun double à dissoudre pour l'instant."} ${etat.points ? `Voix : <b>${etat.points.toLocaleString("fr-FR")}</b>.` : ""}${verrouilles ? ` ${pluriel(verrouilles, "exemplaire verrouillé", "exemplaires verrouillés")} (repris du navigateur ou au comptoir).` : ""}</p>
       <div class="boutons">${echangeables ? `<button class="bouton" id="echanger-col">Échanger ${PRIX_PAQUET} voix contre un paquet</button>` : ""}</div></div>
     ${total ? `<ul class="choix">${ORDRE.filter(r => dbl[r]).map(r => `<li><label><input type="checkbox" value="${r}" ${recyclageChoisi.has(r)?"checked":""}> ${LIBELLES[r]} : ${pluriel(dbl[r].exemplaires, "double")}, ${pluriel(dbl[r].points, "voix", "voix")}</label></li>`).join("")}</ul>
@@ -774,28 +816,23 @@ function majAtelier(){
 }
 
 /* ---------- Objectifs ---------- */
+// Un objectif : titre, puis le bouton de réclamation s'il y a lieu, sinon l'avancement en une ligne
 function htmlObjectif(o){
   const a = Regles.avancement(etat, o);
   const gainObj = {paquets: a.aReclamer.reduce((n,e) => n+e.paquets, 0), voix: a.aReclamer.reduce((n,e) => n+e.voix, 0)};
   const gain = gainObj.paquets + gainObj.voix;
   const quantite = e => e.type === "voix" ? pluriel(e.quantite, "voix", "voix") : pluriel(e.quantite, "paquet");
+  const bouton = gain ? `<button class="bouton" data-reclamer="${echapper(o.id)}">Réclamer ${gainTexte(gainObj)}</button>` : "";
   if (o.famille === "premier") {
-    // Une seule carte suffit : trouvé ou à trouver, sans compteur
-    const trouve = a.obtenues > 0, recu = a.etapes[0].reclame;
-    return `<li class="objectif${gain?" pret":""}${recu?" recu":""}">
-      <h3>${echapper(o.titre)}</h3>${o.sousTitre ? `<p class="sous">${echapper(o.sousTitre)}</p>` : ""}
-      <div class="compte"><span>${recu ? "✓ Reçu" : trouve ? "Trouvé" : "À trouver"}</span><span>${quantite(a.etapes[0])}</span></div>
-      ${gain ? `<button class="bouton" data-reclamer="${echapper(o.id)}">Réclamer ${gainTexte(gainObj)}</button>` : ""}
-    </li>`;
+    // Une seule carte suffit : à trouver ou reçu, sans compteur
+    const recu = a.etapes[0].reclame;
+    return `<li class="objectif${gain?" pret":""}${recu?" recu":""}"><h3>${echapper(o.titre)}</h3>
+      ${bouton || `<div class="compte"><span>${recu ? "✓ Reçu" : "À trouver"}</span><span>${quantite(a.etapes[0])}</span></div>`}</li>`;
   }
   const part = Math.min(100, Math.round(100 * a.obtenues / (a.prochain ? a.prochain.seuil : o.total)));
-  return `<li class="objectif${gain?" pret":""}">
-    <h3>${echapper(o.titre)}</h3>${o.sousTitre ? `<p class="sous">${echapper(o.sousTitre)}</p>` : ""}
-    <div class="compte"><span>${a.obtenues.toLocaleString("fr-FR")} sur ${o.total.toLocaleString("fr-FR")}</span><span>${a.prochain ? `prochain palier : ${a.prochain.seuil.toLocaleString("fr-FR")}` : "collection complète"}</span></div>
-    <div class="jauge" aria-hidden="true"><i style="width:${part}%"></i></div>
-    <ul class="paliers">${a.etapes.map(e => `<li class="${e.reclame?"reclame":e.atteint?"atteint":""}">${e.seuil===o.total?"Complète":e.seuil.toLocaleString("fr-FR")} : ${quantite(e)}</li>`).join("")}</ul>
-    ${gain ? `<button class="bouton" data-reclamer="${echapper(o.id)}">Réclamer ${gainTexte(gainObj)}</button>` : ""}
-  </li>`;
+  return `<li class="objectif${gain?" pret":""}"><h3>${echapper(o.titre)}</h3>
+    <div class="compte"><span>${a.obtenues.toLocaleString("fr-FR")} sur ${o.total.toLocaleString("fr-FR")}</span><span>${a.prochain ? `${a.prochain.seuil === o.total ? "complète" : a.prochain.seuil.toLocaleString("fr-FR")} : ${quantite(a.prochain)}` : "✓ terminé"}</span></div>
+    <div class="jauge" aria-hidden="true"><i style="width:${part}%"></i></div>${bouton}</li>`;
 }
 // Ordre du jour : une synthèse en tête (bouton « Tout réclamer »), puis des rubriques repliables dont
 // l'en-tête dit l'avancement et le nombre d'objectifs à réclamer
@@ -814,15 +851,19 @@ function majObjectifs(){
   };
   const enAttente = cat.objectifs.filter(o => av.get(o).aReclamer.length);
   const attente = Regles.recompensesEnAttente(etat, cat);
-  const palier = cat.objectifs.reduce((n, o) => n + av.get(o).etapes.filter(e => e.reclame).length, 0);
   document.getElementById("synthese-objectifs").innerHTML = enAttente.length
-    ? `<p><b>${pluriel(enAttente.length, "objectif atteint", "objectifs atteints")}</b> : ${gainTexte(attente)} à recevoir.</p><button class="bouton" id="tout-reclamer">Tout réclamer</button>`
-    : `<p>Rien à réclamer pour l'instant. ${pluriel(palier, "récompense déjà reçue", "récompenses déjà reçues")}. Les objectifs simples rapportent des voix, les plus difficiles des paquets offerts.</p>`;
+    ? `<p><b>${gainTexte(attente)}</b> à recevoir</p><button class="bouton" id="tout-reclamer">Tout réclamer</button>`
+    : "";
+  document.getElementById("synthese-objectifs").hidden = !enAttente.length;
   // Premiers pas : ceux à réclamer d'abord, puis ceux à trouver, puis ceux déjà reçus
   const rang = o => { const a = av.get(o); return a.aReclamer.length ? 0 : a.prochain ? 1 : 2; };
   const trier = l => l.map(o => [o, rang(o)]).sort((x, y) => x[1] - y[1]).map(([o]) => o);
   const premiers = parFamille("premier"), collection = parFamille("collection"), historiques = parFamille("historique", "presidents");
-  document.getElementById("obj-premiers").innerHTML = trier(premiers).map(htmlObjectif).join("");
+  const recus = premiers.filter(o => !av.get(o).prochain && !av.get(o).aReclamer.length);
+  document.getElementById("obj-premiers").innerHTML = trier(premiers.filter(o => !recus.includes(o))).map(htmlObjectif).join("") || `<li class="note">Tous les premiers pas sont faits.</li>`;
+  document.getElementById("premiers-recus").hidden = !recus.length;
+  document.querySelector("#premiers-recus summary").textContent = `${pluriel(recus.length, "déjà reçu", "déjà reçus")}`;
+  document.getElementById("obj-premiers-recus").innerHTML = recus.map(htmlObjectif).join("");
   document.getElementById("obj-collection").innerHTML = collection.map(htmlObjectif).join("");
   document.getElementById("obj-historiques").innerHTML = historiques.map(htmlObjectif).join("");
   // Législatures et départements : ceux à réclamer puis les plus avancés d'abord ; la recherche filtre par nom
@@ -1014,8 +1055,10 @@ function majCompte(){
 // Fenêtre de choix : la réserve (id -> exemplaires, ou liste d'ids) en cartes miniatures, favoris d'abord puis
 // par rareté ; toucher une carte la choisit et ferme la fenêtre
 let quandChoisi = null, reserveChoix = [];
-function choisirCarte(titre, ids, quand){
-  reserveChoix = ids; quandChoisi = quand;
+// Entrées : [id, exemplaires libres ou null, raison si la carte ne peut pas être choisie]
+let choixMax = 45;
+function choisirCarte(titre, entrees, quand){
+  reserveChoix = entrees; quandChoisi = quand; choixMax = 45;
   document.getElementById("choix-titre").textContent = titre;
   document.getElementById("choix-recherche").value = "";
   dessinerChoix();
@@ -1023,17 +1066,19 @@ function choisirCarte(titre, ids, quand){
 }
 function dessinerChoix(){
   const q = Regles.normer(document.getElementById("choix-recherche").value);
-  const liste = reserveChoix.map(([id, n]) => [cat.parId[id], n]).filter(([c]) => c && (!q || c.cherche.includes(q)))
-    .sort(([a],[b]) => estFavori(b.id)-estFavori(a.id) || ORDRE.indexOf(b.rarete)-ORDRE.indexOf(a.rarete) || b.score-a.score);
-  document.getElementById("choix-grille").innerHTML = liste.length ? liste.slice(0, 45).map(([c, n]) =>
-    `<button data-choisir="${echapper(c.id)}">${htmlCarte(c, {etoile: false})}<span>${estFavori(c.id) ? "★ " : ""}${n !== null ? pluriel(n, "libre") : ""}</span></button>`).join("")
-    + (liste.length > 45 ? `<p class="note" style="grid-column:1/-1">${liste.length - 45} autres cartes : précisez la recherche.</p>` : "")
+  const liste = reserveChoix.map(([id, n, raison]) => [cat.parId[id], n, raison]).filter(([c]) => c && (!q || c.cherche.includes(q)))
+    .sort(([a,,ra],[b,,rb]) => !!ra-!!rb || estFavori(b.id)-estFavori(a.id) || ORDRE.indexOf(b.rarete)-ORDRE.indexOf(a.rarete) || b.score-a.score);
+  document.getElementById("choix-grille").innerHTML = liste.length ? liste.slice(0, choixMax).map(([c, n, raison]) => raison
+    ? `<button disabled class="verrouillee">${htmlCarte(c, {etoile: false})}<span>${echapper(raison)}</span></button>`
+    : `<button data-choisir="${echapper(c.id)}">${htmlCarte(c, {etoile: false})}<span>${estFavori(c.id) ? "★ " : ""}${n !== null && n !== undefined ? pluriel(n, "libre") : ""}</span></button>`).join("")
+    + (liste.length > choixMax ? `<p class="centre" style="grid-column:1/-1"><button class="bouton discret" id="choix-plus">Afficher plus (${liste.length - choixMax} autres)</button></p>` : "")
     : `<p class="note" style="grid-column:1/-1">${reserveChoix.length ? "Aucune carte ne correspond." : "Aucune carte disponible."}</p>`;
 }
 document.getElementById("choix-recherche").addEventListener("input", dessinerChoix);
 document.getElementById("fermer-choix").addEventListener("click", () => document.getElementById("choix-carte").close());
 document.getElementById("choix-carte").addEventListener("click", e => {
   if (e.target.id === "choix-carte") { e.target.close(); return; }
+  if (e.target.id === "choix-plus") { choixMax += 45; dessinerChoix(); return; }
   const b = e.target.closest("[data-choisir]");
   if (!b) return;
   document.getElementById("choix-carte").close();
@@ -1121,26 +1166,20 @@ document.addEventListener("click", e => {
 });
 
 /* ---------- Buvette : échanges entre joueurs et comptoir (marché) ---------- */
-// Sélecteur de cartes : recherche parmi une réserve (id -> exemplaires libres), choix des quantités
-function selecteur(conteneur, reserve, titre, quandChange = () => {}){
+// Lot de cartes d'un échange : réserve (id -> exemplaires libres), choix des quantités par la fenêtre de choix
+function lot(conteneur, reserve, titre, quandChange = () => {}){
   const choix = {};
-  conteneur.innerHTML = `<div class="selecteur"><b>${titre}</b><input class="champ" type="search" placeholder="Rechercher une carte" aria-label="${titre} : rechercher une carte">
-    <ul class="lignes-buvette resultats"></ul><ul class="lignes-buvette choisies"></ul></div>`;
-  const champ = conteneur.querySelector("input"), resultats = conteneur.querySelector(".resultats"), choisies = conteneur.querySelector(".choisies");
   const dessiner = () => {
-    const q = Regles.normer(champ.value);
-    const liste = Object.entries(reserve()).map(([id, n]) => [cat.parId[id], n]).filter(([c, n]) => c && n > (choix[c.id] || 0) && (!q || c.cherche.includes(q)))
-      .sort(([a],[b]) => ORDRE.indexOf(b.rarete)-ORDRE.indexOf(a.rarete) || b.score-a.score).slice(0, q ? 30 : 8);
-    resultats.innerHTML = liste.length ? liste.map(([c, n]) => `<li><span class="quoi">${nomCarte(c.id)}</span><span class="note">${pluriel(n - (choix[c.id]||0), "libre")}</span><button class="bouton discret" data-ajout="${echapper(c.id)}">Ajouter</button></li>`).join("")
-      : `<li class="note">${Object.keys(reserve()).length ? "Aucune carte libre ne correspond." : "Aucune carte libre."}</li>`;
-    choisies.innerHTML = Object.entries(choix).map(([id, q]) => `<li><span class="quoi">${q} × ${nomCarte(id)}</span><button class="bouton discret" data-retrait="${echapper(id)}">Retirer</button></li>`).join("");
+    conteneur.innerHTML = `<div class="lot">${Object.entries(choix).map(([id, q]) => `<span class="puce">${q > 1 ? q + " × " : ""}${nomCarte(id)}<button data-retrait="${echapper(id)}" aria-label="Retirer">×</button></span>`).join("")}
+      <button class="ajouter" data-ajout>+ ${Object.keys(choix).length ? "Ajouter" : titre}</button></div>`;
   };
   conteneur.addEventListener("click", e => {
-    const a = e.target.closest("[data-ajout]"), r = e.target.closest("[data-retrait]");
-    if (a) { choix[a.dataset.ajout] = (choix[a.dataset.ajout] || 0) + 1; dessiner(); quandChange(choix); }
-    if (r) { if (!--choix[r.dataset.retrait]) delete choix[r.dataset.retrait]; dessiner(); quandChange(choix); }
+    const r = e.target.closest("[data-retrait]");
+    if (r) { if (!--choix[r.dataset.retrait]) delete choix[r.dataset.retrait]; dessiner(); quandChange(choix); return; }
+    if (!e.target.closest("[data-ajout]")) return;
+    const entrees = Object.entries(reserve()).map(([id, n]) => [id, n - (choix[id] || 0)]).filter(([, n]) => n > 0);
+    choisirCarte(titre, entrees, id => { choix[id] = (choix[id] || 0) + 1; dessiner(); quandChange(choix); });
   });
-  champ.addEventListener("input", dessiner);
   dessiner();
   return {choix, vider(){ for (const k in choix) delete choix[k]; dessiner(); }, redessiner: dessiner};
 }
@@ -1162,13 +1201,21 @@ function majBuvette(){
   document.getElementById("voix-buvette").textContent = pluriel(etat.points, "voix", "voix");
 }
 // Vente : un bouton ouvre le choix de la carte ; la carte choisie s'affiche avec ses dernières ventes et le prix médian
+// Toutes les cartes de la collection ; un exemplaire repris du navigateur à l'inscription ou déjà posé au
+// comptoir est verrouillé : la carte reste visible, grisée, avec la raison
+function entreesVente(){
+  const auComptoir = new Set(annoncesOuvertes);
+  return Object.keys(etat.possedees).filter(id => etat.possedees[id] > 0).map(id => {
+    const n = Regles.disponibles(etat, id);
+    return [id, n, n ? "" : auComptoir.has(id) ? "Déjà au comptoir" : "Verrouillée : reprise du navigateur"];
+  });
+}
 function dessinerVente(){
   const zone = document.getElementById("zone-vente");
   if (!zone) return;
   if (carteVente && !Regles.disponibles(etat, carteVente)) carteVente = null;
   if (!carteVente) {
-    zone.innerHTML = `<p>${Object.keys(mesLibres()).length ? `Choisissez une de vos cartes libres, puis fixez son prix.` : "Aucune carte libre à vendre : les exemplaires repris du navigateur ou déjà au comptoir sont verrouillés."}</p>
-      ${Object.keys(mesLibres()).length ? `<button class="bouton" data-choisir-vente>Choisir la carte à vendre</button>` : ""}`;
+    zone.innerHTML = `<button class="bouton" data-choisir-vente>Choisir la carte à vendre</button>`;
     return;
   }
   const c = cat.parId[carteVente];
@@ -1220,35 +1267,33 @@ function construireBuvette(vue){
   vue.innerHTML = `<h2>Buvette</h2>
     <div class="onglets" role="tablist"><button role="tab" data-sous="echanges" aria-selected="true">Échanges <span class="pastille" id="pastille-echanges" hidden></span></button><button role="tab" data-sous="comptoir" aria-selected="false">Comptoir</button></div>
     <div data-panneau="echanges">
-      <p>Un échange se fait entre deux joueurs : vous proposez des cartes contre les siennes, il accepte ou refuse. Rien ne change de main avant son accord.</p>
-      <h3>Échanges reçus et proposés</h3>
       <ul class="lignes-buvette" id="liste-echanges"></ul>
+      <details class="historique" id="historique-echanges" hidden><summary>Échanges passés</summary><ul class="lignes-buvette" id="passes-echanges"></ul></details>
       <h3 id="etape-partenaire">Proposer un échange</h3>
-      <p class="etape"><i>1</i><b>Avec qui ?</b></p>
       <div class="puces-amis" id="puces-partenaires"></div>
-      <form class="formulaire" id="form-partenaire"><label>Pseudo du joueur<input type="text" name="pseudo" required autocapitalize="off" spellcheck="false"></label><button class="bouton discret" type="submit">Voir ses cartes libres</button></form>
-      <p class="note" id="partenaire-choisi" aria-live="polite"></p>
+      <form class="ligne-pseudo" id="form-partenaire"><input class="champ" type="text" name="pseudo" required autocapitalize="off" spellcheck="false" placeholder="Pseudo d'un joueur" aria-label="Pseudo du joueur"><button class="bouton discret" type="submit">Choisir</button></form>
       <div id="etapes-echange" hidden>
-        <div class="colonnes"><div><p class="etape"><i>2</i><b>Vous donnez</b></p><div id="sel-donne"></div></div><div><p class="etape"><i>3</i><b>Vous demandez</b></p><div id="sel-recoit"></div></div></div>
-        <p class="etape"><i>4</i><button class="bouton" id="proposer" disabled>Proposer l'échange</button></p>
+        <p class="note" id="partenaire-choisi" aria-live="polite"></p>
+        <p class="etape"><b>Vous donnez</b></p><div id="sel-donne"></div>
+        <p class="etape"><b>Vous demandez</b></p><div id="sel-recoit"></div>
+        <button class="bouton" id="proposer" disabled>Proposer l'échange</button>
       </div>
     </div>
     <div data-panneau="comptoir" hidden>
-      <p>Le comptoir est un marché : on y pose une carte à un prix en voix, et le premier joueur qui l'achète l'emporte. Vous avez <b id="voix-buvette"></b>. Une carte posée au comptoir est réservée : ni dissoute ni échangée tant qu'elle y reste.</p>
-      <h3>Acheter</h3>
+      <p class="note">Vous avez <b id="voix-buvette"></b>. Le premier joueur qui achète une carte l'emporte.</p>
       <div class="outils"><input id="recherche-marche" type="search" placeholder="Rechercher une carte au comptoir" aria-label="Rechercher une carte au comptoir">
         <select id="tri-marche" aria-label="Trier le comptoir"><option value="recent">Les plus récentes</option><option value="prix">Les moins chères</option></select></div>
       <ul class="lignes-buvette" id="liste-marche"></ul>
       <h3>Vendre une carte</h3>
       <div id="zone-vente"></div>
-      <h3>Mes cartes au comptoir</h3>
       <ul class="lignes-buvette" id="mes-annonces"></ul>
+      <details class="historique" id="historique-annonces" hidden><summary>Mes ventes passées</summary><ul class="lignes-buvette" id="passees-annonces"></ul></details>
     </div>`;
-  selDonne = selecteur(document.getElementById("sel-donne"), mesLibres, "Vos cartes libres", majProposer);
-  selRecoit = selecteur(document.getElementById("sel-recoit"), () => sesLibres, "Ses cartes libres", majProposer);
+  selDonne = lot(document.getElementById("sel-donne"), mesLibres, "Choisir vos cartes", majProposer);
+  selRecoit = lot(document.getElementById("sel-recoit"), () => sesLibres, "Choisir ses cartes", majProposer);
   dessinerVente();
   document.getElementById("zone-vente").addEventListener("click", e => {
-    if (e.target.closest("[data-choisir-vente]")) choisirCarte("Carte à vendre", Object.entries(mesLibres()), id => { carteVente = id; dessinerVente(); });
+    if (e.target.closest("[data-choisir-vente]")) choisirCarte("Carte à vendre", entreesVente(), id => { carteVente = id; dessinerVente(); });
     if (e.target.closest("[data-annuler-vente]")) { carteVente = null; dessinerVente(); }
   });
   document.getElementById("zone-vente").addEventListener("submit", e => {
@@ -1292,17 +1337,21 @@ function construireBuvette(vue){
 async function chargerEchanges(){
   const d = await appel("echanges").catch(e => { signaler(e.message); return null; });
   if (!d) return;
-  document.getElementById("liste-echanges").innerHTML = d.echanges.length ? d.echanges.map(x => {
+  const ligne = x => {
     const vous = x.recu ? `${echapper(x.avec)} vous propose ${lotTexte(x.donne)} contre ${lotTexte(x.recoit)}` : `Vous proposez ${lotTexte(x.donne)} à ${echapper(x.avec)} contre ${lotTexte(x.recoit)}`;
     const boutons = x.statut !== "proposee" ? `<span class="note">${STATUTS[x.statut]}</span>` : x.recu
       ? `<button class="bouton" data-action="echanges:${x.id}:accepter">Accepter</button><button class="bouton discret" data-action="echanges:${x.id}:refuser">Refuser</button>`
       : `<span class="note">en attente</span><button class="bouton discret" data-action="echanges:${x.id}:annuler">Retirer</button>`;
     return `<li><span class="quoi">${vous}</span><span class="actions-ligne">${boutons}</span></li>`;
-  }).join("") : `<li class="note">Aucun échange pour l'instant.</li>`;
+  };
+  const enCours = d.echanges.filter(x => x.statut === "proposee"), passes = d.echanges.filter(x => x.statut !== "proposee");
+  document.getElementById("liste-echanges").innerHTML = enCours.map(ligne).join("");
+  document.getElementById("passes-echanges").innerHTML = passes.map(ligne).join("");
+  document.getElementById("historique-echanges").hidden = !passes.length;
   const recus = d.echanges.filter(x => x.recu && x.statut === "proposee").length, pe = document.getElementById("pastille-echanges");
   pe.hidden = !recus; pe.textContent = recus;
 }
-let annoncesMarche = [];
+let annoncesMarche = [], annoncesOuvertes = [];
 async function chargerMarche(){
   const d = await appel("marche?tri=" + document.getElementById("tri-marche").value).catch(e => { signaler(e.message); return null; });
   if (d) { annoncesMarche = d.annonces; dessinerMarche(); }
@@ -1319,9 +1368,13 @@ function dessinerMarche(){
 async function chargerAnnonces(){
   const d = await appel("annonces").catch(e => { signaler(e.message); return null; });
   if (!d) return;
-  document.getElementById("mes-annonces").innerHTML = d.annonces.length ? d.annonces.map(a => `<li><span class="quoi">${nomCarte(a.carte)}</span><span>${pluriel(a.prix, "voix", "voix")}</span>
-    <span class="note">${STATUTS[a.statut]}${a.acheteur ? " à "+echapper(a.acheteur) : ""}</span>${a.statut==="ouverte" ? `<button class="bouton discret" data-action="annonces:${a.id}:retirer">Retirer</button>` : ""}</li>`).join("")
-    : `<li class="note">Aucune carte au comptoir.</li>`;
+  const ligne = a => `<li><span class="quoi">${nomCarte(a.carte)}</span><span>${pluriel(a.prix, "voix", "voix")}</span>
+    <span class="note">${STATUTS[a.statut]}${a.acheteur ? " à "+echapper(a.acheteur) : ""}</span>${a.statut==="ouverte" ? `<button class="bouton discret" data-action="annonces:${a.id}:retirer">Retirer</button>` : ""}</li>`;
+  const ouvertes = d.annonces.filter(a => a.statut === "ouverte"), passees = d.annonces.filter(a => a.statut !== "ouverte");
+  annoncesOuvertes = ouvertes.map(a => a.carte);
+  document.getElementById("mes-annonces").innerHTML = ouvertes.map(ligne).join("");
+  document.getElementById("passees-annonces").innerHTML = passees.map(ligne).join("");
+  document.getElementById("historique-annonces").hidden = !passees.length;
 }
 
 /* ---------- Amis ---------- */
@@ -1388,13 +1441,35 @@ document.addEventListener("click", e => {
   });
 });
 
+/* ---------- Plus : toutes les cartes du jeu, règlement ---------- */
+let catalogueMax = 40;
+function majCatalogue(){
+  if (!cat) return;
+  const q = Regles.normer(document.getElementById("cat-recherche").value);
+  const pos = document.getElementById("cat-possession").value, ep = document.getElementById("cat-epoque").value, ra = document.getElementById("cat-rarete").value;
+  const liste = cartes.filter(c => (!ep || c.epoque === ep) && (!ra || c.rarete === ra) && (!q || c.cherche.includes(q))
+    && (!pos || (pos === "obtenues") === !!etat.possedees[c.id])).sort((a, b) => b.score - a.score);
+  const obtenues = liste.filter(c => etat.possedees[c.id]).length;
+  document.getElementById("cat-compte").textContent = `${pluriel(liste.length, "carte")}, dont ${obtenues.toLocaleString("fr-FR")} ${obtenues > 1 ? "obtenues" : "obtenue"}. Les cartes grisées ne sont pas encore dans votre hémicycle.`;
+  document.getElementById("cat-grille").innerHTML = liste.length ? liste.slice(0, catalogueMax).map(c => htmlCarte(c, {classe: etat.possedees[c.id] ? "" : "manquante"})).join("")
+    : `<p class="vide">Aucune carte ne correspond.</p>`;
+  document.getElementById("cat-plus").hidden = liste.length <= catalogueMax;
+}
+["cat-recherche", "cat-possession", "cat-epoque", "cat-rarete"].forEach(id => document.getElementById(id).addEventListener("input", () => { catalogueMax = 40; majCatalogue(); }));
+document.getElementById("cat-plus").addEventListener("click", () => { catalogueMax += 40; majCatalogue(); });
+document.querySelector("#vue-plus .onglets").addEventListener("click", e => {
+  const b = e.target.closest("[data-plus]"); if (!b) return;
+  document.querySelectorAll("#vue-plus [data-plus]").forEach(x => x.setAttribute("aria-selected", x === b));
+  document.querySelectorAll("#vue-plus [data-panneau-plus]").forEach(x => x.hidden = x.dataset.panneauPlus !== b.dataset.plus);
+});
+
 /* ---------- Collection ---------- */
 function majCollection(){
   if (cat) majAtelier();
   const possedees = cartes.filter(c => etat.possedees[c.id]);
-  document.getElementById("progression").innerHTML = `<li><strong>${possedees.length.toLocaleString("fr-FR")}</strong>cartes sur ${cartes.length.toLocaleString("fr-FR")}</li>` +
-    `<li><button class="lien-carte" id="voir-favoris"><strong>★ ${(etat.favoris || []).length}</strong>favoris</button></li>` +
-    ORDRE.slice().reverse().filter(r => parRarete[r]?.length).map(r => `<li><strong>${possedees.filter(c=>c.rarete===r).length}</strong>${LIBELLES[r].toLowerCase()} sur ${parRarete[r].length.toLocaleString("fr-FR")}</li>`).join("");
+  document.getElementById("progression").innerHTML = `<li class="total"><strong>${possedees.length.toLocaleString("fr-FR")}</strong> cartes sur ${cartes.length.toLocaleString("fr-FR")}</li>` +
+    `<li><button id="voir-favoris"><strong>★ ${(etat.favoris || []).length}</strong> favoris</button></li>` +
+    ORDRE.slice().reverse().filter(r => parRarete[r]?.length).map(r => `<li>${LIBELLES[r]} <strong>${possedees.filter(c=>c.rarete===r).length}</strong>/${parRarete[r].length.toLocaleString("fr-FR")}</li>`).join("");
   const q = document.getElementById("recherche").value.trim().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");
   const f = document.getElementById("filtre").value, tri = document.getElementById("tri").value;
   const liste = possedees.filter(c => (!f || c.rarete===f || (f==="actuel" && c.actuel) || (f==="favoris" && estFavori(c.id))) && (!q || c.cherche.includes(q)))
@@ -1421,6 +1496,7 @@ function allerA(vue){
   if (vue === "paquet" && depuis !== "paquet" && cat && !document.getElementById("courante")) afficherPaquet();
   if (vue === "buvette" && depuis !== "buvette" && compte && buvetteConstruite) { chargerEchanges(); chargerMarche(); chargerAnnonces(); chargerAmis(); }
   if (vue === "amis" && depuis !== "amis") chargerAmis();
+  if (vue === "plus") majCatalogue();
   if (vue === "compte" && depuis !== "compte") construireExtras();
   if (depuis !== vue) window.scrollTo({top: 0});
 }
@@ -1439,6 +1515,8 @@ fetch("jeu.json").then(r => { if (!r.ok) throw new Error(r.status); return r.jso
   parRarete = cat.parRarete;
   const filtre = document.getElementById("filtre");
   filtre.insertAdjacentHTML("beforeend", `<option value="actuel">En exercice</option>`);
+  Object.keys(EPOQUES).filter(e => e && cartes.some(c => c.epoque === e)).forEach(e => document.getElementById("cat-epoque").insertAdjacentHTML("beforeend", `<option>${echapper(e)}</option>`));
+  ORDRE.slice().reverse().filter(r => parRarete[r]?.length).forEach(r => document.getElementById("cat-rarete").insertAdjacentHTML("beforeend", `<option value="${r}">${LIBELLES[r]}</option>`));
   ORDRE.slice().reverse().filter(r => parRarete[r]?.length).forEach(r => filtre.insertAdjacentHTML("beforeend", `<option value="${r}">${LIBELLES[r]}</option>`));
   // Session ouverte sur le serveur ? Sinon, mode navigateur. Sans serveur (site statique seul), le jeu reste local.
   return fetch("/api/moi", {credentials: "same-origin"}).then(r => r.ok ? r.json() : null).catch(() => null).then(m => {
