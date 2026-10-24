@@ -87,8 +87,11 @@ Wikidata, sondés par reprise, 20 minutes par exécution), `villes_circonscripti
 ## Vocabulaire du jeu (références parlementaires)
 
 Onglets : Séance (paquets du jour), Hémicycle (collection), Ordre du jour (objectifs, synthèse et rubriques
-repliables), Buvette (sous-onglets Échanges et Comptoir), Mon siège (compte : chiffres, raccourcis, vitrine, réglages
-dont la suppression du compte), Amis. Le Règlement s'ouvre par le bouton « ? » de l'en-tête et le pied de page.
+repliables), Buvette (sous-onglets Échanges et Comptoir), Mon siège (compte : chiffres, vitrine en six cases, réglages
+dont la suppression du compte), Amis, Règlement (règles, sources et lien vers les mentions légales, sur aucun autre
+onglet : pas de pied de page). Un toucher sur les voix ouvre un encart qui explique leur usage. Choix d'une carte
+(vitrine, vente au comptoir) : fenêtre `choisirCarte` en miniatures, favoris d'abord. Pendant la découverte d'un
+paquet et son récapitulatif, les questions au Gouvernement sont masquées.
 Classement des joueurs retiré à la demande de l'utilisateur. Dissoudre des doubles (recyclage) rapporte des voix, la
 monnaie du jeu (« acheter des voix est parfaitement réglementaire ») ; à la buvette, les joueurs échangent
 des cartes et se les vendent au comptoir. Pas plus de termes : compte, connexion et échanges gardent des mots
@@ -126,7 +129,7 @@ serveur), filtre « Mes favoris » dans l'Hémicycle. Pas de zoom au double touc
   croisée vaut acceptation, retirer efface les deux sens (refus, annulation, fin d'amitié). Depuis l'onglet Amis :
   vitrine, échange (Buvette préremplie), duel.
 - Colonnes ajoutées après la mise en service : déclarées dans `COLONNES` (worker), ajoutées à la volée.
-- Vitrine (six cartes, exposables en un toucher depuis les favoris), profil, prix du comptoir
+- Vitrine (six cases, chacune remplie ou vidée à part, enregistrée aussitôt), profil, prix du comptoir
   (dernières ventes, médiane par rareté), compteur d'attente (échanges reçus, demandes d'ami, duels à jouer), suppression du
   compte, formulaire de contact (table `messages`, effacée après un an), signalements (table `signalements`).
   Modération des pseudos : `MOTS_INTERDITS` (cherchés dans le pseudo) et `NOMS_RESERVES` (pseudo entier).
