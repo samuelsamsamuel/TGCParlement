@@ -169,7 +169,8 @@ serveur), filtre « Mes favoris » dans l'Hémicycle. Pas de zoom au double touc
   Modération des pseudos : `MOTS_INTERDITS` (cherchés dans le pseudo) et `NOMS_RESERVES` (pseudo entier).
   Lire les messages et signalements : console D1 du tableau de bord Cloudflare.
 - Site : application installable (`manifest.webmanifest`, `sw.js` réseau d'abord, copie hors connexion ; icônes
-  écrites par `scripts/icone.py`, bande bleu-blanc-rouge aux couleurs de la Marque de l'État ; changer `CACHE` dans `sw.js`
+  écrites par `scripts/icone.py` : éventail de trois cartes bleue, blanche et rouge sur fond de marbre, choisi par
+  l'utilisateur, avec une version « maskable » réduite pour la zone sûre d'Android ; changer `CACHE` dans `sw.js`
   à chaque changement d'icône),
   polices servies par le site (`site/polices/`, licence OFL), page `mentions.html` (mentions légales,
   conditions d'utilisation, confidentialité). `jeu.json` pèse 6,5 Mo mais 1 Mo compressé par Cloudflare.
