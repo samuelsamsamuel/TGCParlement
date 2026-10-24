@@ -72,6 +72,14 @@ const SCHEMA = [
   `CREATE TABLE IF NOT EXISTS amis (de INTEGER NOT NULL, vers INTEGER NOT NULL, statut TEXT NOT NULL, date TEXT NOT NULL,
      PRIMARY KEY (de, vers)) WITHOUT ROWID`,
   `CREATE INDEX IF NOT EXISTS amis_vers ON amis (vers, statut)`,
+  // Notifications : abonnements Web Push (un par appareil) et messages en attente, lus par le service de travail
+  `CREATE TABLE IF NOT EXISTS abonnements (endpoint TEXT PRIMARY KEY, joueur INTEGER NOT NULL, buvette INTEGER NOT NULL DEFAULT 1,
+     reserve INTEGER NOT NULL DEFAULT 1, reserve_vue TEXT NOT NULL DEFAULT '', date TEXT NOT NULL)`,
+  `CREATE INDEX IF NOT EXISTS abonnements_joueur ON abonnements (joueur)`,
+  `CREATE TABLE IF NOT EXISTS notifications (id INTEGER PRIMARY KEY, joueur INTEGER NOT NULL, texte TEXT NOT NULL, date TEXT NOT NULL)`,
+  `CREATE INDEX IF NOT EXISTS notifications_joueur ON notifications (joueur)`,
+  // Réglages du serveur : migrations faites, clés VAPID des notifications
+  `CREATE TABLE IF NOT EXISTS reglages (cle TEXT PRIMARY KEY, valeur TEXT NOT NULL)`,
   // Garde de concurrence : une insertion n'y a lieu que lorsque la version du joueur a changé entre la lecture
   // et l'écriture ; sa contrainte échoue alors et annule tout le lot (voir appliquer)
   `CREATE TABLE IF NOT EXISTS garde (ok INTEGER NOT NULL CHECK (ok = 0))`,
@@ -132,9 +140,20 @@ const COLONNES = {
     ["rarete", "TEXT NOT NULL DEFAULT ''"],       // rareté de la carte, pour les prix médians par rareté
   ],
 };
+// Migrations à n'exécuter qu'une fois, notées dans la table « reglages »
+const MIGRATIONS = {
+  // Les exemplaires repris du navigateur ne sont plus verrouillés (vente et échange permis)
+  "importes-liberes": "UPDATE possessions SET importes = 0 WHERE importes > 0",
+};
+async function migrationsUniques(env) {
+  const faites = new Set((await env.DB.prepare("SELECT cle FROM reglages").all()).results.map(x => x.cle));
+  for (const [cle, sql] of Object.entries(MIGRATIONS)) if (!faites.has(cle))
+    await env.DB.batch([env.DB.prepare(sql), env.DB.prepare("INSERT OR IGNORE INTO reglages (cle, valeur) VALUES (?, ?)").bind(cle, maintenant())]);
+}
 async function preparerBase(env) {
   schemaPret ||= (async () => {
     await env.DB.batch(SCHEMA.map(sql => env.DB.prepare(sql)));
+    await migrationsUniques(env);
     for (const [table, colonnes] of Object.entries(COLONNES)) {
       const existantes = new Set((await env.DB.prepare(`PRAGMA table_info(${table})`).all()).results.map(c => c.name));
       for (const [nom, def] of colonnes) if (!existantes.has(nom)) await env.DB.prepare(`ALTER TABLE ${table} ADD COLUMN ${nom} ${def}`).run();
@@ -184,7 +203,7 @@ async function joueurConnecte(env, requete) {
 /* ---------- État d'un joueur ---------- */
 async function chargerEtat(env, joueur) {
   const [j, p, r, h] = await env.DB.batch([
-    env.DB.prepare("SELECT pseudo, points, offerts, stock, ancre, version, quiz, vitrine, favoris FROM joueurs WHERE id = ?").bind(joueur),
+    env.DB.prepare("SELECT pseudo, cree, points, offerts, stock, ancre, version, quiz, vitrine, favoris FROM joueurs WHERE id = ?").bind(joueur),
     env.DB.prepare("SELECT carte, n, importes, reserve FROM possessions WHERE joueur = ? AND n > 0").bind(joueur),
     env.DB.prepare("SELECT cle, date FROM reclames WHERE joueur = ?").bind(joueur),
     env.DB.prepare("SELECT date, operation, detail FROM journal WHERE joueur = ? ORDER BY id DESC LIMIT 20").bind(joueur),
@@ -200,7 +219,7 @@ async function chargerEtat(env, joueur) {
   for (const x of r.results) etat.objectifs[x.cle] = x.date;
   etat.journal = h.results.reverse().map(x => [x.date, x.operation, x.detail ? JSON.parse(x.detail) : null]);
   etat.favoris = JSON.parse(ligne.favoris || "[]");
-  return {pseudo: ligne.pseudo, etat, version: ligne.version, vitrine: JSON.parse(ligne.vitrine || "[]")};
+  return {pseudo: ligne.pseudo, cree: ligne.cree, etat, version: ligne.version, vitrine: JSON.parse(ligne.vitrine || "[]")};
 }
 // Ajout : la ligne est créée au besoin. Retrait : simple mise à jour, car SQLite vérifie les contraintes CHECK
 // d'une insertion avant de résoudre le conflit (une insertion négative échouerait toujours). Les lignes de
@@ -283,9 +302,9 @@ async function inscription(env, requete, cat) {
     if (!ex || !egaux(await sha256(ex.sel + preuve), ex.empreinte)) throw new Refus(409, "Ce pseudo est déjà pris.");
     joueur = ex.id;
   }
-  // Reprise de la collection du navigateur, une seule fois : les cartes comptent pour la collection et les
-  // objectifs, mais restent verrouillées (ni recyclées, ni cédées), faute de pouvoir vérifier leur origine.
-  // Les paliers déjà atteints sont marqués comme réclamés : le navigateur les a déjà payés. Voix et paquets
+  // Reprise de la collection du navigateur, une seule fois : les cartes deviennent des cartes ordinaires du
+  // compte (décision de l'utilisateur, octobre 2026 : vendre les cartes du navigateur doit être possible, au prix
+  // d'une collection locale que le serveur ne peut pas vérifier). Les paliers déjà atteints sont marqués comme réclamés : le navigateur les a déjà payés. Voix et paquets
   // offerts ne sont pas repris. En cas d'échec, le compte reste vide et une nouvelle inscription le reprend.
   const repris = {};
   const brut = c.collection && typeof c.collection === "object" ? c.collection : {};
@@ -295,7 +314,7 @@ async function inscription(env, requete, cat) {
   }
   const ids = Object.keys(repris), date = maintenant();
   const requetes = [
-    ...insertionsGroupees(env, "INSERT INTO possessions (joueur, carte, n, importes)", 4, ids.map(id => [joueur, id, repris[id], repris[id]])),
+    ...insertionsGroupees(env, "INSERT INTO possessions (joueur, carte, n)", 3, ids.map(id => [joueur, id, repris[id]])),
     ...insertionsGroupees(env, "INSERT OR IGNORE INTO reclames (joueur, cle, date)", 3, Regles.clesAtteintes(cat, repris).map(cle => [joueur, cle, date])),
   ];
   // Le journal en dernier : sa présence marque une reprise terminée
@@ -358,6 +377,7 @@ async function proposerEchange(env, requete, joueur, cat) {
   const date = maintenant();
   await env.DB.prepare("INSERT INTO echanges (de, vers, donne, recoit, statut, cree, maj) VALUES (?, ?, ?, ?, 'proposee', ?, ?)")
     .bind(joueur, dest.id, JSON.stringify(donne), JSON.stringify(recoit), date, date).run();
+  await notifier(env, dest.id, `${await pseudoDe(env, joueur)} vous propose un échange à la buvette.`);
   return json({ok: true}, 201);
 }
 async function listeEchanges(env, joueur) {
@@ -439,8 +459,82 @@ async function cloreAnnonce(env, joueur, id, action) {
       noterJournal(env, joueur, "achat", {annonce: id, carte: a.carte, prix: a.prix}),
       noterJournal(env, a.vendeur, "vente", {annonce: id, carte: a.carte, prix: a.prix}));
     await lot(env, requetes, "Achat impossible : voix insuffisantes, ou carte déjà vendue ou retirée du comptoir.");
+    await notifier(env, a.vendeur, `Une de vos cartes s'est vendue ${a.prix} voix au comptoir.`);
   }
   return json({ok: true});
+}
+
+/* ---------- Notifications (Web Push) ---------- */
+// Envoi sans contenu chiffré : le serveur garde le texte dans « notifications » et réveille l'appareil par une
+// poussée vide, signée VAPID (RFC 8292) ; le service de travail du site lit alors les messages en attente
+// (GET /api/notifications) et les affiche. Les clés VAPID sont créées à la première demande et gardées en base.
+const SERVICES_PUSH = [/^fcm\.googleapis\.com$/, /^updates\.push\.services\.mozilla\.com$/, /\.notify\.windows\.com$/, /^web\.push\.apple\.com$/];
+const b64url = octets => btoa(String.fromCharCode(...new Uint8Array(octets))).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+let clesVapid = null;
+async function vapid(env, origine) {
+  if (clesVapid) return clesVapid;
+  const ligne = await env.DB.prepare("SELECT valeur FROM reglages WHERE cle = 'vapid'").first();
+  let v = ligne && JSON.parse(ligne.valeur);
+  if (!v) {
+    const paire = await crypto.subtle.generateKey({name: "ECDSA", namedCurve: "P-256"}, true, ["sign", "verify"]);
+    v = {publique: b64url(await crypto.subtle.exportKey("raw", paire.publicKey)), privee: await crypto.subtle.exportKey("jwk", paire.privateKey), sujet: origine};
+    await env.DB.prepare("INSERT OR IGNORE INTO reglages (cle, valeur) VALUES ('vapid', ?)").bind(JSON.stringify(v)).run();
+    v = JSON.parse((await env.DB.prepare("SELECT valeur FROM reglages WHERE cle = 'vapid'").first()).valeur);   // une seule paire, même en cas de course
+  }
+  v.cle = await crypto.subtle.importKey("jwk", v.privee, {name: "ECDSA", namedCurve: "P-256"}, false, ["sign"]);
+  return (clesVapid = v);
+}
+async function pousser(env, endpoint) {
+  const v = await vapid(env);
+  const texte = o => b64url(new TextEncoder().encode(JSON.stringify(o)));
+  const corps = texte({typ: "JWT", alg: "ES256"}) + "." + texte({aud: new URL(endpoint).origin, exp: secondes() + 12 * 3600, sub: v.sujet});
+  const signature = await crypto.subtle.sign({name: "ECDSA", hash: "SHA-256"}, v.cle, new TextEncoder().encode(corps));
+  const r = await fetch(endpoint, {method: "POST", headers: {TTL: "86400", Urgency: "normal", Authorization: `vapid t=${corps}.${b64url(signature)}, k=${v.publique}`}});
+  if (r.status === 404 || r.status === 410) await env.DB.prepare("DELETE FROM abonnements WHERE endpoint = ?").bind(endpoint).run();
+  return r.status;
+}
+const pseudoDe = async (env, id) => (await env.DB.prepare("SELECT pseudo FROM joueurs WHERE id = ?").bind(id).first())?.pseudo || "Un joueur";
+// Message pour un joueur (échanges, amis, duels, ventes) : gardé, puis poussé à ses appareils abonnés, après la réponse
+async function notifier(env, joueur, texte, genre = "buvette") {
+  const abonnes = (await env.DB.prepare(`SELECT endpoint FROM abonnements WHERE joueur = ? AND ${genre === "reserve" ? "reserve" : "buvette"} = 1`).bind(joueur).all()).results;
+  if (!abonnes.length) return;
+  await env.DB.batch([
+    env.DB.prepare("DELETE FROM notifications WHERE joueur = ? AND id NOT IN (SELECT id FROM notifications WHERE joueur = ? ORDER BY id DESC LIMIT 19)").bind(joueur, joueur),
+    env.DB.prepare("INSERT INTO notifications (joueur, texte, date) VALUES (?, ?, ?)").bind(joueur, texte, maintenant()),
+  ]);
+  const envois = Promise.all(abonnes.map(a => pousser(env, a.endpoint).catch(e => console.error("poussée", e))));
+  if (env.ctx) env.ctx.waitUntil(envois); else await envois;
+}
+async function abonner(env, requete, joueur, origine) {
+  const c = await lireCorps(requete), a = c.abonnement || {};
+  let hote;
+  try { const u = new URL(String(a.endpoint || "")); if (u.protocol !== "https:") throw 0; hote = u.hostname; } catch (_) { throw new Refus(400, "Abonnement illisible."); }
+  if (!SERVICES_PUSH.some(r => r.test(hote))) throw new Refus(400, "Service de notification inconnu.");
+  const n = await env.DB.prepare("SELECT COUNT(*) AS n FROM abonnements WHERE joueur = ?").bind(joueur).first();
+  if (n.n >= 10) await env.DB.prepare("DELETE FROM abonnements WHERE joueur = ? AND endpoint IN (SELECT endpoint FROM abonnements WHERE joueur = ? ORDER BY date LIMIT 1)").bind(joueur, joueur).run();
+  await vapid(env, origine);
+  await env.DB.prepare(`INSERT INTO abonnements (endpoint, joueur, buvette, reserve, date) VALUES (?, ?, ?, ?, ?)
+    ON CONFLICT (endpoint) DO UPDATE SET joueur = excluded.joueur, buvette = excluded.buvette, reserve = excluded.reserve`)
+    .bind(a.endpoint, joueur, c.buvette === false ? 0 : 1, c.reserve === false ? 0 : 1, maintenant()).run();
+  return json({ok: true});
+}
+async function lireNotifications(env, joueur) {
+  const [r] = await env.DB.batch([
+    env.DB.prepare("SELECT texte, date FROM notifications WHERE joueur = ? ORDER BY id").bind(joueur),
+    env.DB.prepare("DELETE FROM notifications WHERE joueur = ?").bind(joueur),
+  ]);
+  return json({notifications: r.results});
+}
+// Toutes les heures (déclencheur planifié) : réserve pleine, une fois par remplissage
+async function surveillerReserves(env) {
+  await preparerBase(env);
+  const r = await env.DB.prepare(`SELECT DISTINCT j.id, j.stock, j.ancre, j.offerts, j.points FROM abonnements a JOIN joueurs j ON j.id = a.joueur
+    WHERE a.reserve = 1 AND a.reserve_vue != j.ancre || '|' || j.stock`).all();
+  for (const j of r.results) {
+    if (!Regles.reserveCourante({reserve: j.stock, ancre: j.ancre}).pleine) continue;
+    await env.DB.prepare("UPDATE abonnements SET reserve_vue = ? WHERE joueur = ?").bind(j.ancre + "|" + j.stock, j.id).run();
+    await notifier(env, j.id, `Votre réserve est pleine : ${Regles.RESERVE_MAX} paquets vous attendent en séance.`, "reserve");
+  }
 }
 
 /* ---------- Prix du comptoir, attente, vitrine, favoris, amis, compte ---------- */
@@ -526,6 +620,7 @@ async function actionAmi(env, requete, joueur, action) {
     if (inverse) action = "accepter";   // l'autre l'avait déjà demandé : c'est une acceptation
     else {
       await env.DB.prepare("INSERT OR IGNORE INTO amis (de, vers, statut, date) VALUES (?, ?, 'demande', ?)").bind(joueur, autre.id, date).run();
+      await notifier(env, autre.id, `${await pseudoDe(env, joueur)} vous demande en ami.`);
       return json({ok: true, statut: "demande"});
     }
   }
@@ -536,6 +631,7 @@ async function actionAmi(env, requete, joueur, action) {
       env.DB.prepare("UPDATE amis SET statut = 'accepte', date = ? WHERE de = ? AND vers = ?").bind(date, autre.id, joueur),
       env.DB.prepare("INSERT INTO amis (de, vers, statut, date) VALUES (?, ?, 'accepte', ?) ON CONFLICT (de, vers) DO UPDATE SET statut = 'accepte'").bind(joueur, autre.id, date),
     ]);
+    await notifier(env, autre.id, `${await pseudoDe(env, joueur)} a accepté votre demande d'ami.`);
     return json({ok: true, statut: "accepte"});
   }
   await env.DB.prepare("DELETE FROM amis WHERE (de = ?1 AND vers = ?2) OR (de = ?2 AND vers = ?1)").bind(joueur, autre.id).run();
@@ -556,6 +652,8 @@ async function supprimerCompte(env, requete, joueur) {
     env.DB.prepare("DELETE FROM sessions WHERE joueur = ?").bind(joueur),
     env.DB.prepare("DELETE FROM signalements WHERE de = ?1 OR cible = ?1").bind(joueur),
     env.DB.prepare("DELETE FROM amis WHERE de = ?1 OR vers = ?1").bind(joueur),
+    env.DB.prepare("DELETE FROM abonnements WHERE joueur = ?").bind(joueur),
+    env.DB.prepare("DELETE FROM notifications WHERE joueur = ?").bind(joueur),
     env.DB.prepare("UPDATE messages SET joueur = NULL WHERE joueur = ?").bind(joueur),
     env.DB.prepare("DELETE FROM joueurs WHERE id = ?").bind(joueur),
   ]);
@@ -592,6 +690,7 @@ async function lancerDuel(env, requete, joueur) {
   const date = maintenant(), graine = crypto.getRandomValues(new Uint32Array(1))[0];
   const d = await env.DB.prepare("INSERT INTO duels (de, vers, graine, cree, maj) VALUES (?, ?, ?, ?, ?) RETURNING id")
     .bind(joueur, adversaire.id, graine, date, date).first();
+  await notifier(env, adversaire.id, `${await pseudoDe(env, joueur)} vous défie en duel aux questions au Gouvernement.`);
   return json({id: d.id, graine, avec: adversaire.pseudo}, 201);
 }
 async function listeDuels(env, joueur) {
@@ -667,6 +766,18 @@ async function api(requete, env, url) {
   }
   if (methode === "GET" && chemin === "/api/duels") return listeDuels(env, joueur);
   if (methode === "GET" && chemin === "/api/attente") return attente(env, joueur);
+  if (methode === "GET" && chemin === "/api/notifications/cle") return json({cle: (await vapid(env, url.origin)).publique});
+  if (methode === "POST" && chemin === "/api/notifications/abonner") return abonner(env, requete, joueur, url.origin);
+  if (methode === "POST" && chemin === "/api/notifications/desabonner") {
+    await env.DB.prepare("DELETE FROM abonnements WHERE endpoint = ? AND joueur = ?").bind(String((await lireCorps(requete)).endpoint || ""), joueur).run();
+    return json({ok: true});
+  }
+  if (methode === "GET" && chemin === "/api/notifications") return lireNotifications(env, joueur);
+  if (methode === "POST" && chemin === "/api/dissoudre") {
+    const c = await lireCorps(requete);
+    const cat = await catalogueDuJeu();
+    return avecEtat(await appliquer(env, joueur, e => Regles.dissoudre(e, cat, String(c.carte || ""))));
+  }
   if (methode === "POST" && chemin === "/api/favori") return changerFavori(env, requete, joueur, await catalogueDuJeu());
   if (methode === "GET" && chemin === "/api/amis") return listeAmis(env, joueur);
   if (methode === "GET" && chemin === "/api/prix") return prixComptoir(env, url, await catalogueDuJeu());
@@ -692,14 +803,18 @@ async function api(requete, env, url) {
 }
 
 export default {
-  async fetch(requete, env) {
+  async fetch(requete, env, ctx) {
     const url = new URL(requete.url);
     if (!url.pathname.startsWith("/api/")) return env.ASSETS.fetch(requete);
-    try { return await api(requete, env, url); }
+    // Le contexte suit l'environnement, pour les envois en arrière-plan (notifications)
+    try { return await api(requete, Object.assign(Object.create(env), {ctx}), url); }
     catch (e) {
       if (e instanceof Refus) return json({erreur: e.message}, e.statut);
       console.error(e);
       return json({erreur: "Le serveur a rencontré une erreur. Réessayez dans un instant."}, 500);
     }
+  },
+  async scheduled(evenement, env, ctx) {
+    ctx.waitUntil(surveillerReserves(Object.assign(Object.create(env), {ctx})));
   },
 };

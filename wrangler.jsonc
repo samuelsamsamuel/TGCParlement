@@ -20,5 +20,7 @@
       "database_id": "f10a3460-69ab-4b65-b56a-90c049f02c9c"
     }
   ],
+  // Toutes les heures : notification « réserve pleine » aux joueurs abonnés (surveillerReserves)
+  "triggers": { "crons": ["17 * * * *"] },
   "observability": { "enabled": true }
 }

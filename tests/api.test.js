@@ -27,7 +27,7 @@ const preuve = c => require("crypto").createHash("sha256").update(c).digest("hex
   let r = await A("inscription", {pseudo: "alice" + suffixe, preuve: preuve("a"), collection: {[com]: 2, [qv]: 1, "inconnue": 5}}, {"cf-connecting-ip": "10.0.0." + (++ip)});
   assert.strictEqual(r.statut, 201, JSON.stringify(r.d));
   assert.deepStrictEqual(r.d.etat.possedees, {[com]: 2, [qv]: 1});
-  assert.strictEqual(r.d.etat.verrous[com], 2);
+  assert.ok(!r.d.etat.verrous[com], "exemplaires repris libres");
   assert.ok(r.d.etat.objectifs["quatre-vingts@1"], "palier déjà atteint marqué réclamé");
   assert.strictEqual(R.recompensesEnAttente(r.d.etat, cat).objectifs, 0);
   // Grande collection reprise (au-delà de 100 paramètres D1 par requête) en une seule transaction
@@ -44,9 +44,9 @@ const preuve = c => require("crypto").createHash("sha256").update(c).digest("hex
   assert.strictEqual(r.statut, 409);
   r = await C("connexion", {pseudo: "alice" + suffixe, preuve: preuve("faux")});
   assert.strictEqual(r.statut, 401);
-  // Recyclage : les exemplaires repris ne se recyclent pas
+  // Recyclage : les exemplaires repris se recyclent comme les autres (un double de commune)
   r = await A("recycler", {raretes: ["commune"]});
-  assert.deepStrictEqual(r.d.resultat, {exemplaires: 0, points: 0});
+  assert.deepStrictEqual(r.d.resultat, {exemplaires: 1, points: 1});
   // Réserve pleine (huit paquets) ; neuf ouvertures simultanées : jamais plus de huit, chaque paquet compté une fois
   const ouvertures = await Promise.all(Array.from({length: 9}, () => A("paquet", {})));
   const reussies = ouvertures.filter(x => x.statut === 200).length;
@@ -59,16 +59,16 @@ const preuve = c => require("crypto").createHash("sha256").update(c).digest("hex
   assert.strictEqual(R.paquetsDisponibles(r.d.etat).reserve, 0);
   assert.ok(R.paquetsDisponibles(r.d.etat).prochain > Date.now());
   const total = Object.values(r.d.etat.possedees).reduce((a, b) => a + b, 0);
-  assert.strictEqual(total, 3 + 40);
+  assert.strictEqual(total, 2 + 40);
   // Bob : compte sans reprise
   r = await Bc("inscription", {pseudo: "bob" + suffixe, preuve: preuve("b")}, {"cf-connecting-ip": "10.0.0." + (++ip)});
   assert.strictEqual(r.statut, 201);
   r = await Bc("paquet", {}); assert.strictEqual(r.statut, 200);
   const carteBob = r.d.resultat.tirage[0];
-  // Alice vend une carte libre tirée d'un paquet ; la carte reprise ne peut pas être vendue
+  // Alice vend une carte libre tirée d'un paquet ; la carte reprise est libre aussi
   const etatA = (await A("moi")).d.etat;
   const libreA = Object.keys(etatA.possedees).find(id => R.disponibles(etatA, id) > 0);
-  assert.strictEqual((await A("annonces", {carte: com, prix: 5})).statut, 409);
+  assert.strictEqual(R.disponibles(etatA, com), etatA.possedees[com]);
   r = await A("annonces", {carte: libreA, prix: 7}); assert.strictEqual(r.statut, 201, JSON.stringify(r.d));
   const e2 = (await A("moi")).d.etat;
   assert.strictEqual(R.disponibles(e2, libreA), R.disponibles(etatA, libreA) - 1, "exemplaire réservé");
@@ -84,7 +84,7 @@ const preuve = c => require("crypto").createHash("sha256").update(c).digest("hex
   assert.strictEqual(achats.filter(x => x.statut === 200).length, 1);
   const pointsBob = (await Bc("moi")).d.etat.points, pointsCarole = (await C("moi")).d.etat.points;
   assert.strictEqual(pointsBob + pointsCarole, 93);
-  assert.strictEqual((await A("moi")).d.etat.points, 7);
+  assert.strictEqual((await A("moi")).d.etat.points, 1 + 7, "voix du recyclage et de la vente");
   // Échange : Alice demande la carte de Bob contre une de ses cartes libres
   const e3 = (await A("moi")).d.etat;
   const donneA = Object.keys(e3.possedees).find(id => R.disponibles(e3, id) > 0);
@@ -155,16 +155,29 @@ const preuve = c => require("crypto").createHash("sha256").update(c).digest("hex
   const prof = (await C("profil/alice" + suffixe)).d;
   assert.deepStrictEqual(prof.vitrine, [mienne]); assert.strictEqual(prof.duels.gagnes, 1);
   assert.strictEqual((await C("classement")).statut, 404, "classement retiré");
+  // Dissolution des doubles d'une seule carte
+  const eDbl = (await A("moi")).d.etat, dblA = Object.keys(eDbl.possedees).find(id => R.recyclables(eDbl, id) > 0);
+  if (dblA) {
+    r = await A("dissoudre", {carte: dblA});
+    assert.strictEqual(r.d.resultat.exemplaires, R.recyclables(eDbl, dblA)); assert.strictEqual(r.d.etat.possedees[dblA], eDbl.possedees[dblA] - r.d.resultat.exemplaires);
+  }
+  assert.ok((await A("moi")).d.cree, "date de création du compte");
   // Favoris : gardés par le serveur, une carte inconnue refusée
   assert.deepStrictEqual((await A("favori", {carte: mienne, actif: true})).d.favoris, [mienne]);
   assert.deepStrictEqual((await A("moi")).d.etat.favoris, [mienne]);
   assert.strictEqual((await A("favori", {carte: "inconnue", actif: true})).statut, 400);
   assert.deepStrictEqual((await A("favori", {carte: mienne, actif: false})).d.favoris, []);
+  // Notifications : service inconnu refusé ; abonnement de Bob, message gardé à sa demande d'ami, lu une fois
+  assert.strictEqual((await Bc("notifications/abonner", {abonnement: {endpoint: "https://exemple.org/x"}})).statut, 400);
+  assert.ok((await Bc("notifications/cle")).d.cle.length > 80);
+  assert.strictEqual((await Bc("notifications/abonner", {abonnement: {endpoint: "https://fcm.googleapis.com/fcm/send/essai" + suffixe}, reserve: false})).statut, 200);
   // Amis : demande, pastille d'attente, demande croisée qui vaut acceptation, retrait réciproque
   const alice = "alice" + suffixe, bob = "bob" + suffixe, carole = "carole" + suffixe;
   assert.strictEqual((await A("amis/demander", {pseudo: alice})).statut, 400);
   assert.strictEqual((await A("amis/demander", {pseudo: bob})).d.statut, "demande");
   assert.strictEqual((await Bc("attente")).d.amis, 1);
+  assert.match((await Bc("notifications")).d.notifications.map(n => n.texte).join(), /alice.* vous demande en ami/);
+  assert.deepStrictEqual((await Bc("notifications")).d.notifications, []);
   assert.deepStrictEqual((await Bc("amis")).d.recues, [alice]);
   assert.strictEqual((await Bc("amis/demander", {pseudo: alice})).d.statut, "accepte");
   assert.deepStrictEqual((await A("amis")).d.amis, [bob]); assert.deepStrictEqual((await Bc("amis")).d.amis, [alice]);

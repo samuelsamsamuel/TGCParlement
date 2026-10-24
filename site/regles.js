@@ -209,6 +209,15 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
     if (exemplaires) { etat.points += points; noter(etat, "recyclage", {raretes: [...choisies], exemplaires, points}); }
     return {exemplaires, points};
   }
+  // Dissolution des exemplaires en trop d'une seule carte (le premier exemplaire est toujours gardé)
+  function dissoudre(etat, cat, id) {
+    const c = cat.parId[id], k = c ? recyclables(etat, id) : 0;
+    if (!k) return {exemplaires: 0, points: 0};
+    const points = k * VALEUR_RECYCLAGE[c.rarete];
+    etat.possedees[id] -= k; etat.points += points;
+    noter(etat, "recyclage", {carte: id, exemplaires: k, points});
+    return {exemplaires: k, points};
+  }
   function echangerPoints(etat) {
     if (etat.points < PRIX_PAQUET) return false;
     etat.points -= PRIX_PAQUET; etat.offerts += 1;
@@ -453,5 +462,5 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
 
   return {VERSION_ETAT, basculerFavori, RECHARGE_MS, QUIZ_QUESTIONS, graineDe, questions, recompenseQuiz, validerQuiz, RESERVE_MAX, CARTES_PAR_PAQUET, reserveCourante, ORDRE, POIDS, VALEUR_RECYCLAGE, PRIX_PAQUET, PALIERS,
     etatVide, migrer, jourDuJeu, normer, cartesDeJeu, catalogue, compacter, catalogueCompact, paquetsDisponibles, ouvrirPaquet,
-    disponibles, recyclables, doubles, recycler, echangerPoints, avancement, clesAtteintes, reclamer, recompensesEnAttente};
+    disponibles, recyclables, doubles, recycler, dissoudre, echangerPoints, avancement, clesAtteintes, reclamer, recompensesEnAttente};
 });
