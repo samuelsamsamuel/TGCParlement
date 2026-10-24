@@ -15,6 +15,7 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
   objectifs  { "identifiant@seuil" ou "identifiant@complet": date de la réclamation }
   journal    dernières opérations [date, opération, détail], pour le suivi
   quiz       jour (AAAA-MM-JJ, Paris) des dernières questions au Gouvernement récompensées
+  favoris    cartes marquées d'une étoile (300 au plus)
   verrous    { id de carte: exemplaires bloqués } (compte seulement, fourni par le serveur) : exemplaires repris
              du navigateur à la création du compte et exemplaires en vente. Ils restent dans la collection et
              comptent pour les objectifs, mais ne se recyclent pas et ne se cèdent pas.
@@ -42,7 +43,7 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
 
   /* ---------- État ---------- */
   function etatVide() {
-    return {version: VERSION_ETAT, possedees: {}, reserve: RESERVE_MAX, ancre: 0, points: 0, offerts: 0, objectifs: {}, quiz: "", journal: []};
+    return {version: VERSION_ETAT, possedees: {}, reserve: RESERVE_MAX, ancre: 0, points: 0, offerts: 0, objectifs: {}, quiz: "", favoris: [], journal: []};
   }
   function entier(v) { v = Math.floor(Number(v)); return Number.isFinite(v) && v > 0 ? v : 0; }
   // Accepte les états des versions précédentes (paquets du jour : jour, ouverts) et tout état abîmé ; le passage
@@ -56,6 +57,7 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
     }
     e.points = entier(brut.points);
     e.quiz = typeof brut.quiz === "string" ? brut.quiz : "";
+    if (Array.isArray(brut.favoris)) e.favoris = [...new Set(brut.favoris.map(String))].slice(0, 300);
     e.offerts = entier(brut.offerts);
     if (brut.objectifs && typeof brut.objectifs === "object") Object.assign(e.objectifs, brut.objectifs);
     if (Array.isArray(brut.journal)) e.journal = brut.journal.slice(-JOURNAL_MAX);
@@ -341,6 +343,14 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
   }
 
 
+  /* ---------- Favoris ---------- */
+  function basculerFavori(etat, id, actif) {
+    const f = (etat.favoris || []).filter(x => x !== String(id));
+    if (actif && f.length < 300) f.push(String(id));
+    etat.favoris = f;
+    return f;
+  }
+
   /* ---------- Questions au Gouvernement ---------- */
   // Cinq questions tirées des fiches officielles des cartes : département d'élection, fonction exercée,
   // « qui a été… », époque, année de première élection. Les mauvaises réponses ne sont jamais vraies elles
@@ -441,7 +451,7 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
     return voix;
   }
 
-  return {VERSION_ETAT, RECHARGE_MS, QUIZ_QUESTIONS, graineDe, questions, recompenseQuiz, validerQuiz, RESERVE_MAX, CARTES_PAR_PAQUET, reserveCourante, ORDRE, POIDS, VALEUR_RECYCLAGE, PRIX_PAQUET, PALIERS,
+  return {VERSION_ETAT, basculerFavori, RECHARGE_MS, QUIZ_QUESTIONS, graineDe, questions, recompenseQuiz, validerQuiz, RESERVE_MAX, CARTES_PAR_PAQUET, reserveCourante, ORDRE, POIDS, VALEUR_RECYCLAGE, PRIX_PAQUET, PALIERS,
     etatVide, migrer, jourDuJeu, normer, cartesDeJeu, catalogue, compacter, catalogueCompact, paquetsDisponibles, ouvrirPaquet,
     disponibles, recyclables, doubles, recycler, echangerPoints, avancement, clesAtteintes, reclamer, recompensesEnAttente};
 });

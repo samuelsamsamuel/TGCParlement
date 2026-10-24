@@ -1,7 +1,7 @@
 /* Hémicycle : service de travail de l'application installable.
    Réseau d'abord pour tout le site (le cache HTTP du navigateur évite de retélécharger ce qui n'a pas changé),
    copie locale seulement hors connexion. L'API (/api/) n'est jamais mise en cache. */
-const CACHE = "hemicycle-2";
+const CACHE = "hemicycle-3";
 const ESSENTIEL = ["./", "index.html", "regles.js", "jeu.json", "manifest.webmanifest", "icone-192.png", "icone-512.png"];
 self.addEventListener("install", e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(ESSENTIEL)).then(() => self.skipWaiting())); });
 self.addEventListener("activate", e => {

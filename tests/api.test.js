@@ -154,7 +154,26 @@ const preuve = c => require("crypto").createHash("sha256").update(c).digest("hex
     || !(await A("moi")).d.etat.possedees[cat.parRarete.mythique[90].id], true);
   const prof = (await C("profil/alice" + suffixe)).d;
   assert.deepStrictEqual(prof.vitrine, [mienne]); assert.strictEqual(prof.duels.gagnes, 1);
-  assert.ok((await C("classement")).d.classement.length >= 1);
+  assert.strictEqual((await C("classement")).statut, 404, "classement retiré");
+  // Favoris : gardés par le serveur, une carte inconnue refusée
+  assert.deepStrictEqual((await A("favori", {carte: mienne, actif: true})).d.favoris, [mienne]);
+  assert.deepStrictEqual((await A("moi")).d.etat.favoris, [mienne]);
+  assert.strictEqual((await A("favori", {carte: "inconnue", actif: true})).statut, 400);
+  assert.deepStrictEqual((await A("favori", {carte: mienne, actif: false})).d.favoris, []);
+  // Amis : demande, pastille d'attente, demande croisée qui vaut acceptation, retrait réciproque
+  const alice = "alice" + suffixe, bob = "bob" + suffixe, carole = "carole" + suffixe;
+  assert.strictEqual((await A("amis/demander", {pseudo: alice})).statut, 400);
+  assert.strictEqual((await A("amis/demander", {pseudo: bob})).d.statut, "demande");
+  assert.strictEqual((await Bc("attente")).d.amis, 1);
+  assert.deepStrictEqual((await Bc("amis")).d.recues, [alice]);
+  assert.strictEqual((await Bc("amis/demander", {pseudo: alice})).d.statut, "accepte");
+  assert.deepStrictEqual((await A("amis")).d.amis, [bob]); assert.deepStrictEqual((await Bc("amis")).d.amis, [alice]);
+  assert.strictEqual((await Bc("attente")).d.amis, 0);
+  assert.strictEqual((await A("amis/demander", {pseudo: carole})).statut, 200);
+  assert.strictEqual((await C("amis/accepter", {pseudo: alice})).d.statut, "accepte");
+  assert.strictEqual((await A("amis/retirer", {pseudo: bob})).statut, 200);
+  assert.deepStrictEqual((await Bc("amis")).d, {amis: [], recues: [], envoyees: []});
+  assert.strictEqual((await C("amis/accepter", {pseudo: bob})).statut, 409);
   // Prix du comptoir et attente des échanges
   r = await A("prix?carte=" + encodeURIComponent(libreA));
   assert.strictEqual(r.statut, 200); assert.ok(r.d.ventes.some(v => v.prix === 7));
@@ -168,5 +187,6 @@ const preuve = c => require("crypto").createHash("sha256").update(c).digest("hex
   assert.strictEqual((await C("supprimer-compte", {preuve: preuve("c")})).statut, 200);
   assert.strictEqual((await C("moi")).d.connecte, false);
   assert.strictEqual((await C("connexion", {pseudo: "carole" + suffixe, preuve: preuve("c")})).statut, 401);
+  assert.deepStrictEqual((await A("amis")).d.amis, [], "amitiés effacées avec le compte");
   console.log("API : tous les tests passent");
 })().catch(e => { console.error(e); process.exit(1); });
