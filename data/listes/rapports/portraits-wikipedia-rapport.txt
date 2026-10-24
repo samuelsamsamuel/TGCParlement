@@ -1,130 +1,7 @@
-Portraits Wikipédia : 124 retenus, 426 écartés, sur 7430 cartes sans portrait ayant un article rattaché par identifiant officiel (7757 cartes sans portrait en tout)
+Portraits Wikipédia : 1 retenus, 549 écartés, sur 7430 cartes sans portrait ayant un article rattaché par identifiant officiel (7757 cartes sans portrait en tout)
 
 Retenus :
-10289	Hippolyte Piquet	Père-Lachaise - Division 12 - Andry 01.jpg
-10344	Éloi Charles Fieffé	Arnaud - Recueil de tombeaux des quatre cimetières de Paris - Fieffé (colored).jpg
-10361	Thomas Jollivet	Jollivet Adolphe - Les Colonies françaises devant la Chambre des Pairs 1845.png
-10414	Jacques Cordier (homme politique)	Trouville-sur-Mer-FR-14-chalet Cordier-gravure.jpg
-10458	Philippe Eugène Beyer	Eugène Beyer - Portrait of a gentleman rider with his black horse.Jpeg
-10584	Jean-François Ballot	Père-Lachaise - Division 28 - Ballot 03.jpg
-10858	Jules François Hennecart	Père-Lachaise - Division 15 - non identifié 01.jpg
-11383	Jacques Ardoin	Père-Lachaise - Division 36 - Ardoin 01.jpg
-11438	Arsène Aumont-Thiéville	Père-Lachaise - Division 68 - Aumont-Thiéville 01.jpg
-11441	Pierre Laurent Jean-Baptiste David	Père-Lachaise - Division 26 - Pierre David 01.jpg
-11466	Athanase Conen de Saint-Luc	Armes-Conen de Saint Luc-Ploeuc.jpg
-11558	Pierre Loysel	1807 10 28 turin colstJean 4.jpg
-11565	Louis-Jean-Samuel Joly de Bammeville	Père-Lachaise - Division 12 - Joly Lainé 01.jpg
-11587	Jean-Louis Denisart	Père-Lachaise - Division 54 - Denisart 04.jpg
-11646	André Dupin de Beaumont	Lepassepresent autographe dupin.jpg
-11855	Louis-Paul-Achille Guilhem	Père-Lachaise - Division 52 - Guilhem 01.jpg
-11878	Henri Jean-Baptiste de Bousmard de Chantereine	Chateau Joudreville.jpg
-12010	Frédéric Hély d'Oissel	Hely d'Oissel Abdon Patrocle Frédéric 1777-1833.png
-12029	Justin de Chasseloup-Laubat	Père-Lachaise - Division 49 - Chasseloup-Laubat 01.jpg
-12067	Adrien Charles Deshommets de Martainville	Adrien Deshommets de Martainville.jpg
-12156	Philippe Samary	Basílica de San Nazario, Carcasona, Francia, 2023-01-08, DD 37-39 HDR.jpg
-12192	Claude-Henry-Étienne Bernard de Sassenay	Père-Lachaise - Division 11 - Sassenay 06.jpg
-12490	Joseph Barthélemy Sieyès La Baume	09-Sieyes Joseph Barthelemy.jpg
-12527	Joseph-Honoré-Léonce Sieyès	Père-Lachaise - Division 9 - Sieyès 01.jpg
-12841	Jean-Ignace Jacqueminot	Tombeau de Jean-Ignace Jacqueminot (1754–1813) 2.jpg
-12892	Yves Marie Audrein	Assassinat d'Audrein.jpg
-12999	Nicolas-Joseph Duflos	Père-Lachaise - Division 53 - Duflos 02.jpg
-13068	Alexandre Deleyre	Deleyre, Alexandre – Analyse de la philosophie du chancelier François Bacon. 1, 1756 – BEIC 1276085.jpg
-13114	Jean-Baptiste Le Carpentier	Siège de Granville mort de Desmaison.jpg
-13116	Emmanuel-Pierre Le Tourneur	Père-Lachaise - Division 31 - Delavigne 01.jpg
-13141	Jean Nicolas Méaulle	Jean Nicolas Méaulle.jpg
-13380	René Mans de Froulay de Tessé	10-Tesse, Adrienne Catherine de Noailles, comtesse de, et Rene Mans Froulay, comte de.jpg
-13466	Anne Pierre Coustard de Massi	Aerostat Coustard de Massy & Anne Pierre, Nantes, 1784.jpg
-13660	Bertrand Try	Père-Lachaise - Division 28 - Try 01.jpg
-13820	Jean-Pierre Sers	Carditaphe de Jean-Pierre Sers (1746–1809) 1.jpg
-14298	Gangulphe Andryane	Père-Lachaise - Division 26 - Tarbe des Sablons 01.jpg
-14368	François Rever	Stèle érigée à Conteville à la mémoire de l'abbé Rever.jpg
-14408	François-Charles Dulong	Père-Lachaise - Division 29 - Dulong 02.jpg
-14518	Charlemagne Béjot	17-Bejot Charlemagne.jpg
-14690	Jean-Baptiste Dehaussy de Robécourt	14-Dehaussy de Robecourt Jean Baptiste.jpg
-14711	Louis Genty	Genty - Influence de Fermat sur son siecle, 1784 - 1494071.jpg
-14733	Eustache Antoine Hua	Père-Lachaise - Division 51 - Hua 02.jpg
-14815	Adrien Jean Alexandre Lucy	Père-Lachaise - Division 17 - Lucy 01.jpg
-14823	Romain Malassis	Marque des Malassis de Brest.jpg
-14994	Alexandre Baudet-Dulary	Père-Lachaise - Division 86 - Dulary 01.jpg
-15048	André Charles Membrède	Wapen André Charles de Membrede.jpg
-15298	Jacques Faget de Baure	Père-Lachaise - Division 10 - Faget de Baure 01.jpg
-15405	Michel Marvaud-Baudet	MerignacM1.JPG
-15473	Pierre-Charles Hémart	Ay-FR-51-cimetiere-09.jpg
-15677	Nicolas-Joseph-Marie Parent-Réal	Père-Lachaise - Division 28 - Parent-Real 04.jpg
-15884	Hyacinthe Arrighi de Casanova	1805 pluviose Prefet Arrighi 4.jpg
-15919	Anne-Henri Cabot de Dampmartin	Père-Lachaise - Division 14 - Dampmartin 01.jpg
-15950	Henri de Fontenay	Père-Lachaise - Division 28 - Girollet 01.jpg
-15967	Jean-Baptiste Papin	Tombeau de Jean-Baptiste Papin (1756–1809) 1.jpg
-16021	Victor Avoyne de Chantereyne	Père-Lachaise - Division 35 - Chantereyne 01.jpg
-16123	Claude-Louis Jacobé de Naurois	Père-Lachaise - Division 42 - Jacobé de Naurois 02.jpg
-16139	Étienne de Falaiseau	Père-Lachaise - Division 28 - Falaiseau 01.jpg
-16209	Félix Bodin	Enclos funéraire famille Bodin.jpg
-16211	François Duval de Chassenon de Curzay	François Boleslas Casimir Duval de Chassenon de Curzay (1780-1842).png
-16264	François Alexandre Ragon-Gillet	Père-Lachaise - Division 34 - Ragon-Gillet 06.jpg
-16316	Charles Bouchard des Carneaux	Père-Lachaise - Division 41 - Bouchard des Carneaux 01.jpg
-16324	Louis-Denis Péan de Saint-Gilles	Père-Lachaise - Division 40 - Louis-Denis Péan de Saint-Gilles 01.jpg
-16455	Charles Renauldon	Renauldon Charles, Saint Roch - Grenoble.JPG
-16553	Louis Bouvier-Dumolart	Caveau de Louis Bouvier-Dumolart à Valmunster.jpg
-16570	Pierre Mathias Joseph Wartelle	Armoirie Wartelle Herlincourt.png
-16720	André Haudry de Soucy	Père-Lachaise - Division 49 - Haudry de Soucy 01.jpg
-16735	Benoît-François Boselli	Père-Lachaise - Division 5 - Pecquet 02.jpg
-16739	Antoine-Joseph de Chabrol de Chaméane	Père-Lachaise - Division 40 - Chaméane 01.jpg
-16745	Antoine Louis Boissière	Père-Lachaise - Division 31 - Boissière 02.jpg
-16819	Louis-Joseph Duhamel	Père-Lachaise - Division 39 - Hamel 01.jpg
-16882	Arthur Charles Esprit de La Bourdonnaye	Charlotte, Countess de la Bourdonnaye (1795-1875) 1830 (Paris).jpg
-16999	Louis François Joseph Degouve de Nuncques	Père-Lachaise - Division 28 - Piéron 01.jpg
-17085	Jacques Claude Roman Vassal	Père-Lachaise - Division 38 - Vassal 03.jpg
-17097	Gaspard Auguste Got	Père-Lachaise - Division 25 - Got 01.jpg
-17168	Joseph Dupont-Minoret	Père-Lachaise - Division 49 - Dupont-Minoret 01.jpg
-17182	Claude de Champlouis	HC NAU C CIM-Louveciennes 2015-12.jpg
-17207	Jean Roussilhe	Père-Lachaise - Division 39 - Roussilhe 01.jpg
-17244	Claude-Denis Mater	Claude MATER.jpg
-17246	Prosper Hochet	Père-Lachaise - Division 22 - Hochet 01.jpg
-17440	Pierre Alexandre Fleury de Chaboulon	Père-Lachaise - Division 36 - Fleury de Chaboulon 02.jpg
-17449	Guillaume Marc Antoine Marguerite Baumes	Père-Lachaise - Division 49 - Baumes 01.jpg
-17450	François Garnier (homme politique)	Père-Lachaise - Division 33 - Garnier 01.jpg
-17465	Adolphe-Edmond Blanc	Rochechouart-ville 06 detail.JPG
-17665	Louis Maximilien Rigal	Père-Lachaise - Division 29 - Rigal 02.jpg
-17741	Hippolyte Alphonse Quénault	Père-Lachaise - Division 9 - Quénault 01.jpg
-17755	Louis Henri René Meynadier	Père-Lachaise - Division 37 - Otto-Pellet 11.jpg
-18009	Adelphe Chasles	17-Chasles Henri Lubin Adolphe et Michel.jpg
-18010	Pierre Joseph Chédeaux	Père-Lachaise - Division 39 - Chédeaux 02.jpg
-18058	Éléonor-Zoa Dufriche de Valazé	HC DUFRICHE E StLaurent-StAntoine 2023-03.jpg
-18080	Maurice Fumeron d'Ardeuil	Père-Lachaise - Division 10 - Fumeron 01.jpg
-18132	Charles Laperrine d'Hautpoul	Chapelle Lapperine d'Hautpoul-Carcassonne.jpg
-18136	Louis Théodore de Lasalle	Père-Lachaise - Division 45 - Lasalle 01.jpg
-18200	Joseph-Marie-Frédéric Nicod	Père-Lachaise - Division 22 - Nicod 01.jpg
-18213	Charles Auguste du Bouëxic de Pinieux	Père-Lachaise - Division 10 - Pinieux 03.jpg
-18236	Joseph-Alexandre de Ségur	Ségur sans céremonie by Jean-Baptiste Le Tellier.png
-20058	Marie-Philippe Lubet	Image manquante.png
-3484	Henri Gorce-Franklin	HC GORCE-FRANKLIN H CIM-Neuilly-Nouveau 2015-10.jpg
-5000	Joannès Marietton	Portrait Marietton.jpg
-5435	Pierre Mortier	HC DUTRIEU H CIM-Paris-Batignolles(02) 2015-11.jpg
-5558	Albert Nivert	HC NIVERT A CIM-Paris-Batignolles 2016-04.jpg
-7703	Louis Lefoullon	HC LEFOULLON L CIM-Neuilly-ancien(07) 2015-06.jpg
-7740	Jean-Baptiste Lelièvre	Lelièvre maire de Pipriac et conseiller général.jpg
-85	Jean-Jacques Alicot	Grab Jean-Jacques Alicot.jpg
-8664	Amédée Lefèvre-Pontalis	Lefèvre-Pontalis.jpg
-8729	Édouard Deligny (général)	Général Édouard Deligny - Photo Disdéri (Paris).jpg
-8766	Charles Hyacinthe Dupuy	HC DUPUY H-C CIM-Nyons 2025-04.jpg
-8770	Cornélis Henri de Witt	Tombeau de la famille Guizot 2.jpg
-8973	Jérôme Galloni d'Istria	Capture d’écran 10-10-2026 215851 gw.geneanet.org.jpg
-9448	Ernest-Eugène Duboys	Fontaine du Mail zoomed - Angers - 20080803.JPG
-9544	Adolphe Fould	Père-Lachaise - Division 4 - Adolphe Fould 01.jpg
-9601	Charles Philippe Henri de Noailles	Gare-Mouy-statue-duc-Mouchy-CPancienne.jpg
-987	Alfred Borriglione	HC BORRIGLIONE A CIM-Nice-Chateau 2023-02.jpg
-9966	Théodore-Casimir Delamarre	Père-Lachaise - Division 60 - Delamarre 01.jpg
-S000118	Roger Thiébault	Blangy-sur-Bresle angle place Thiébault 1 ~K5-449.jpg
-S000239	Raymond de Wazières	Famille de Wazières.png
-S000633	Philippe Machefer	HC MACHEFER P CIM-Houilles 006 2015-11.jpg
-S000679	Francis Le Basser	Père-Lachaise - Division 87 - Columbarium 2711-2810.jpg
-S08062Y	Jean-François Mayet	Mayet jean francois08062y carre.jpg
 S20066E	Annick Jacquemet	Annick Jacquemet (2026-06-20).jpg
-S57721K	Hélène Édeline	HC EDELINE H CIM-Gentilly 2018-05.jpg
-S57773X	Janine Alexandre-Debray	Jeanine Alexandre Debray.jpg
-S58039C	Pierre Jourdan (homme politique)	Laveyrune-FR-07-caveau Jourdan-1.jpg
-S86053H	René-Pierre Signé	René-Pierre Signé.jpg
-S92045V	Alain Vasselle	Vasselle alain92045v carre.jpg
 
 Écartés :
 10025	Hector-François Préveraud de La Boutresse	Blason_Préveraud_de_Laubépierre_de_Vaumas.svg	format
@@ -136,13 +13,18 @@ S92045V	Alain Vasselle	Vasselle alain92045v carre.jpg
 10218	Louis-Aimé-Cyprien comte de Corday	Pierres_-_Tombe_famille_Corday_(1).JPG	nom de fichier
 10235	Louis-Stanislas de La Trémoille	Blason_Charles_Belgique_Hollande_de_La_Trémoille.svg	format
 10279	Jean-Marie Pardessus	Blason_famille_fr_Pardessus_(Blésois).svg	format
+10289	Hippolyte Piquet	Père-Lachaise_-_Division_12_-_Andry_01.jpg	nom de fichier
 10304	Jean-François-Toussaint de Lorgeril	Blason_famille_bzh_de_Lorgeril.svg	format
 10316	Paul-Marie-Céleste d'Andigné de La Blanchaye	Blason_famille_fr_Andigné.svg	format
 10319	Augustin-Henry Caillard d'Aillières	Blason_famille_Caillard.svg	format
+10344	Éloi Charles Fieffé	Arnaud_-_Recueil_de_tombeaux_des_quatre_cimetières_de_Paris_-_Fieffé_(colored).jpg	nom de fichier
 10345	Charles-Blaise-Félix Filleau	Signature_de_Charles-Blaise-Félix_Filleau.jpg	nom de fichier
+10361	Thomas Jollivet	Jollivet_Adolphe_-_Les_Colonies_françaises_devant_la_Chambre_des_Pairs_1845.png	la fiche Commons ne dit pas représenter la personne
 10362	Jean-Baptiste-Moïse Jollivet	Blason_Jean-Baptiste_Moise_Jollivet.svg	format
 10383	Eugène Alexandre Husson	Cimetière_de_Fontainebleau_sépultures_division_E.jpg	nom de fichier
 10384	Eugène Jouy d'Arnaud	Blason_Carcassonne_11.svg	format
+10414	Jacques Cordier (homme politique)	Trouville-sur-Mer-FR-14-chalet_Cordier-gravure.jpg	nom de fichier
+10458	Philippe Eugène Beyer	Eugène_Beyer_-_Portrait_of_a_gentleman_rider_with_his_black_horse.Jpeg	la fiche Commons ne dit pas représenter la personne
 10498	Prudent de Chasseloup-Laubat	P_vip.svg	format
 10505	Charles Paul du Coëtlosquet	Blason_famille_fr_du_Coëtlosquet.svg	format
 10506	Charles Ferdinand Pierre du Cambout de Coislin	Blason_fam_fr_du_Cambout_de_Coislin.svg	format
@@ -150,28 +32,38 @@ S92045V	Alain Vasselle	Vasselle alain92045v carre.jpg
 10537	Louis-Joseph Adam de Verdonne	Signature_de_Louis-Joseph_Adam_de_Verdonne.jpg	nom de fichier
 10566	Louis Nicolas Jean Joachim de Cayrol	Ex-libris_et_signature_autographe_de_Louis_Nicolas_Jean_Joachim_de_Cayrol.jpg	nom de fichier
 10572	Jean de Nays Candau	Blason_famille_fr_de_Nays.svg	format
+10584	Jean-François Ballot	Père-Lachaise_-_Division_28_-_Ballot_03.jpg	nom de fichier
 10590	Marie Louis de Vaujuas-Langan	Blason_famille_fr_Treton_de_Vaujuas-Langan.svg	format
 10802	Vincent Charles Henri d'Etchegoyen	Blason_Fr_famille_Ibarrat_(Labourd).svg	format
 10844	Laurent de Gouyon de Coypel	D'argent_croix_de_sable.svg	format
+10858	Jules François Hennecart	Père-Lachaise_-_Division_15_-_non_identifié_01.jpg	nom de fichier
 10893	Alexandre Prosper Camus de Pontcarré de La Guibourgère	Blason_fam_fr_Camus_de_Pontcarré.svg	format
 11071	Rogatien Louis Olivier de Sesmaisons	Blason_famille_fr_de_Sesmaisons.svg	format
 11112	Victor Versigny	Victor_Versigny_signature.png	nom de fichier
 11235	Edmond du Motier de La Fayette	Blason_famille_fr_Motier_de_La_Fayette.svg	format
 11261	Charles de Ludre	Blason_ville_fr_Frolois_54.svg	format
 11378	Xavier de Sade	Blason_famille_fr_de_Sade.svg	format
+11383	Jacques Ardoin	Père-Lachaise_-_Division_36_-_Ardoin_01.jpg	nom de fichier
 11389	Justin Laffite	P_vip.svg	format
 11400	Rose Joseph Teisseire	Blason_Carcassonne_11.svg	format
 11407	Antoine Ressigeac	Blason_Carcassonne_11.svg	format
 11414	Joseph-Léonard Decazes	Blason_famille_fr_Decazes_(branche_cadette,_vicomtes_en_1819).svg	format
 11415	Louis de Guizard	Villecomtal_-_Tombe_de_Louis_de_Guizard.jpg	nom de fichier
 11436	Charles de Tilly	Blason_famille_fr_de_Tilly.svg	format
+11438	Arsène Aumont-Thiéville	Père-Lachaise_-_Division_68_-_Aumont-Thiéville_01.jpg	nom de fichier
+11441	Pierre Laurent Jean-Baptiste David	Père-Lachaise_-_Division_26_-_Pierre_David_01.jpg	nom de fichier
 11447	Pierre-Marie Le Provost de Launay	Blason_famille_bzh_Pastour.svg	format
 11449	Joseph de Saint-Pern-Couellan	Blason_famille_bzh_de_Saint-Pern.svg	format
+11466	Athanase Conen de Saint-Luc	Armes-Conen_de_Saint_Luc-Ploeuc.jpg	nom de fichier
 11469	Amable de Quélen	Blason_fr_burelé_10.svg	format
 11472	Marie Augustin François Passerat de Silans	Blason_famille_fr_Passerat.svg	format
+11558	Pierre Loysel	1807_10_28_turin_colstJean_4.jpg	la fiche Commons ne dit pas représenter la personne
+11565	Louis-Jean-Samuel Joly de Bammeville	Père-Lachaise_-_Division_12_-_Joly_Lainé_01.jpg	nom de fichier
 11579	Jean Philibert de Tardy de La Carrière	Blason_Jean_Philibert_de_Tardy_de_la_Carriere.svg	format
+11587	Jean-Louis Denisart	Père-Lachaise_-_Division_54_-_Denisart_04.jpg	nom de fichier
 11637	Charles Anglès	Blason_famille_fr_ANGLES.svg	format
 11641	Jean-François Anglès	Blason_famille_fr_ANGLES.svg	format
+11646	André Dupin de Beaumont	Lepassepresent_autographe_dupin.jpg	nom de fichier
 11648	Philippe Dupin	Clamecy,_Cimetière,_Enclos_funéraire_de_la_famille_Dupin_3.jpg	nom de fichier
 11660	Joseph de Bourran de Marsac	Signature_de_Joseph_de_Bourran_de_Marsac.jpg	nom de fichier
 11673	René Vauquelin	Signature_de_René_Vauquelin.jpg	nom de fichier
@@ -190,6 +82,8 @@ S92045V	Alain Vasselle	Vasselle alain92045v carre.jpg
 11799	Alexandre François Augustin Petit	Signature_de_Alexandre_François_Augustin_Petit.jpg	nom de fichier
 11809	Joachim Perez du Gief	Signature_de_Joachim_Perez_du_Gief.jpg	nom de fichier
 11822	Antoine Guiot	Signature_de_Antoine_Guiot.jpg	nom de fichier
+11855	Louis-Paul-Achille Guilhem	Père-Lachaise_-_Division_52_-_Guilhem_01.jpg	nom de fichier
+11878	Henri Jean-Baptiste de Bousmard de Chantereine	Chateau_Joudreville.jpg	nom de fichier
 11879	Jean-Joseph Marquis	Signature_de_Jean_Joseph_Marquis.jpg	nom de fichier
 11889	Pierre Paul Alexandre Bouchotte	Signature_de_Pierre_Paul_Alexandre_Bouchotte.jpg	nom de fichier
 11928	Claude-Austrégésile de Bengy de Puyvallée	Blason_d'azur_à_3_étoiles_d'argent.svg	format
@@ -199,15 +93,20 @@ S92045V	Alain Vasselle	Vasselle alain92045v carre.jpg
 11964	Louis-Alexandre-Céleste d'Aumont	P_vip.svg	format
 11967	Pierre Piffon	Signature_de_Pierre_Piffon.jpg	nom de fichier
 11991	Anne Emmanuel de Crussol d'Amboise	Signature_de_Anne_Emmanuel_de_Crussol_d'Amboise.jpg	nom de fichier
+12010	Frédéric Hély d'Oissel	Hely_d'Oissel_Abdon_Patrocle_Frédéric_1777-1833.png	la fiche Commons ne dit pas représenter la personne
+12029	Justin de Chasseloup-Laubat	Père-Lachaise_-_Division_49_-_Chasseloup-Laubat_01.jpg	nom de fichier
 12059	Jean-Marie Duvergier de Hauranne	P_vip.svg	format
 12060	Charles Léonard Odoard du Hazay	P_vip.svg	format
 12065	Louis Frédéric Fouquier-Long	Fouquier_Long_Signature.png	nom de fichier
+12067	Adrien Charles Deshommets de Martainville	Adrien_Deshommets_de_Martainville.jpg	la fiche Commons ne dit pas représenter la personne
 12088	Pierre-Pomponne-Amédée Pocholle	Signature_de_Pierre-Pomponne-Amédée_Pocholle.jpg	nom de fichier
 12110	Jean Aury	Signature_de_Jean_Aury.jpg	nom de fichier
 12115	Gilbert-Louis-Grégoire Michelon de Cheuzat	Blason_familleMichelon.svg	format
 12119	Pierre-Joseph Vernin	Signature_de_Pierre-Joseph_Vernin.jpg	nom de fichier
 12132	Aimé Favre	Signature_de_Aimé_Favre.jpg	nom de fichier
+12156	Philippe Samary	Basílica_de_San_Nazario,_Carcasona,_Francia,_2023-01-08,_DD_37-39_HDR.jpg	la fiche Commons ne dit pas représenter la personne
 12175	Jean-Pierre Pezous	Signature_de_Jean-Pierre_Pezous.jpg	nom de fichier
+12192	Claude-Henry-Étienne Bernard de Sassenay	Père-Lachaise_-_Division_11_-_Sassenay_06.jpg	nom de fichier
 12208	Claude Fricaud	Signature_de_Claude_Fricaud.jpg	nom de fichier
 12212	Philippe-Claude de Montboissier-Beaufort-Canillac	Signature_de_Philippe-Claude_de_Montboissier-Beaufort-Canillac.jpg	nom de fichier
 12213	Pierre-Étienne-Nicolas Bouvet-Jourdan	Signature_de_Pierre-Étienne-Nicolas_Bouvet-Jourdan.jpg	nom de fichier
@@ -227,10 +126,12 @@ S92045V	Alain Vasselle	Vasselle alain92045v carre.jpg
 12453	Jean Goze	Signature_de_Jean_Goze.jpg	nom de fichier
 12461	Alexandre-Eugène Volfius	Signature_de_Alexandre_Eugène_Volfius.jpg	nom de fichier
 12479	Louis-Henri-Charles de Gauville	P_vip.svg	format
+12490	Joseph Barthélemy Sieyès La Baume	09-Sieyes_Joseph_Barthelemy.jpg	la fiche Commons ne dit pas représenter la personne
 12507	Joseph Latil	Signature_de_Joseph_Latil.jpg	nom de fichier
 12512	Charles-Henri de Gayardon de Gresolles	Blason_famille_fr_de_Gayardon_de_Fenoyl.svg	format
 12514	Just-Antoine-Henry-Marie-Germain de Rostaing	Signature_de_Just_Antoine_Henri_Marie_Germain_de_Rostaing.jpg	nom de fichier
 12515	Blaise-Gabriel Jamier	Signature_de_Blaise_Gabriel_Jamier.jpg	nom de fichier
+12527	Joseph-Honoré-Léonce Sieyès	Père-Lachaise_-_Division_9_-_Sieyès_01.jpg	nom de fichier
 12532	Pierre d'Allarde	Signature_de_Pierre_d'Allarde.jpg	nom de fichier
 12537	Antoine Andurand	Signature_de_Antoine_Andurand.jpg	nom de fichier
 12548	Jean-Pierre d’Arraing	Signature_de_Jean-Pierre_d'Arraing.jpg	nom de fichier
@@ -262,14 +163,21 @@ S92045V	Alain Vasselle	Vasselle alain92045v carre.jpg
 12698	Jean-Baptiste-Étienne de Warel	Signature_de_Jean-Baptiste_Étienne_de_Warel.jpg	nom de fichier
 1278	Jules Brunard	Lyon_7e_-_Rue_Jules-Brunard_(plaque).jpg	nom de fichier
 12808	Moyse Bayle	Moyse_Bayle_signature.png	nom de fichier
+12841	Jean-Ignace Jacqueminot	Tombeau_de_Jean-Ignace_Jacqueminot_(1754–1813)_2.jpg	nom de fichier
 12860	Jean-Antoine Louis	Jean-Antoine_Louis_signature.png	nom de fichier
 12862	Gabriel Malès	Signature_de_Gabriel_Malès.jpg	nom de fichier
 12872	Napoléon de Montesquiou-Fézensac	Blason_fam_fr_Montesquiou.svg	format
+12892	Yves Marie Audrein	Assassinat_d'Audrein.jpg	nom de fichier
 12973	Guillaume Chaudron-Rousseau	Signature_de_Guillaume_Chaudron-Rousseau.jpg	nom de fichier
+12999	Nicolas-Joseph Duflos	Père-Lachaise_-_Division_53_-_Duflos_02.jpg	nom de fichier
 13011	Philippe-Charles-Aimé Goupilleau	Philippe-Charles-Aimé_Goupilleau_signature_(cropped).jpg	nom de fichier
+13068	Alexandre Deleyre	Deleyre,_Alexandre_–_Analyse_de_la_philosophie_du_chancelier_François_Bacon._1,_1756_–_BEIC_1276085.jpg	la fiche Commons ne dit pas représenter la personne
 13072	Antoine Joseph Marie d'Espinassy de Fontanelle	Coat_of_Arms_for_The_d'Espinassy_de_Venel_Family.png	nom de fichier
 13098	Jean-Joseph Johannot	Blason_Famille_Johannot.svg	format
+13114	Jean-Baptiste Le Carpentier	Siège_de_Granville_mort_de_Desmaison.jpg	la fiche Commons ne dit pas représenter la personne
+13116	Emmanuel-Pierre Le Tourneur	Père-Lachaise_-_Division_31_-_Delavigne_01.jpg	nom de fichier
 13136	Jean-Baptiste Marragon	Blason_Carcassonne_11.svg	format
+13141	Jean Nicolas Méaulle	Jean_Nicolas_Méaulle.jpg	la fiche Commons ne dit pas représenter la personne
 13184	Jean François Ricord	Signature_du_conventionnel_Jean_François_Ricord_(1759_à_Grasse_-_1818_à_Paris).jpg	nom de fichier
 13192	Pierre Roux-Fazillac	P_vip.svg	format
 13199	Jean Henri Guy Nicolas de Frégeville, marquis de Grandval	P_vip.svg	format
@@ -277,10 +185,12 @@ S92045V	Alain Vasselle	Vasselle alain92045v carre.jpg
 13306	Louis-Jean-Joseph Laurence	Signature_de_Louis_Jean_Joseph_Laurence.jpg	nom de fichier
 13342	Jean-Baptiste Viguier	Signature_de_Jean-Baptiste_Viguier.jpg	nom de fichier
 13364	Joseph-Louis Robert de Lignerac	Blason_famille_fr_Robert_de_Lignerac.svg	format
+13380	René Mans de Froulay de Tessé	10-Tesse,_Adrienne_Catherine_de_Noailles,_comtesse_de,_et_Rene_Mans_Froulay,_comte_de.jpg	la fiche Commons ne dit pas représenter la personne
 13381	Alexis-Bruno-Étienne de Vassé	Blason_famille_de_Vasse.svg	format
 13419	Jacques Nicolas Hingant	Signature_de_Jacques_Nicolas_Hingant.jpg	nom de fichier
 13436	Jean-Baptiste Digaultray	Digaultray.svg	format
 13445	Joseph Chérade de Montbron	Blason_famille_fr_de_Chérade_de_Montbron.svg	format
+13466	Anne Pierre Coustard de Massi	Aerostat_Coustard_de_Massy_&_Anne_Pierre,_Nantes,_1784.jpg	nom de fichier
 13483	François-Thomas Biaille de Germon	Signature_de_François_Thomas_Biaille_de_Germon.jpg	nom de fichier
 13489	Jean-Pierre-Étienne-Lazare Bodineau	Signature_de_Jean_Pierre_Étienne_Lazare_Bodineau.jpg	nom de fichier
 13499	Liphard-Daniel Blandin	Signature_de_Liphard_Daniel_Blandin.jpg	nom de fichier
@@ -308,6 +218,7 @@ S92045V	Alain Vasselle	Vasselle alain92045v carre.jpg
 13625	Antoine Dupuis	Signature_de_Antoine_Dupuis.jpg	nom de fichier
 13626	Jean-Baptiste Dumouchel	Jean-Baptiste_Dumouchel_signature.svg	format
 13635	Jean-André Espic	Signature_de_Jean_André_Espic.jpg	nom de fichier
+13660	Bertrand Try	Père-Lachaise_-_Division_28_-_Try_01.jpg	nom de fichier
 13661	Pierre-Joseph de Lachèze-Murel	Signature_de_Pierre-Joseph_Lachèze_de_Murel.jpg	nom de fichier
 13675	Georges Léonard Bonaventure de Tramecourt	Blason-argent-croix-ancrée-sable.svg	format
 13680	Humbert de Sesmaisons	Blason_famille_fr_de_Sesmaisons.svg	format
@@ -327,6 +238,7 @@ S92045V	Alain Vasselle	Vasselle alain92045v carre.jpg
 13803	Louis-Marie Landrin	Signature_de_Louis_Marie_Landrin.jpg	nom de fichier
 13805	Nicolas-Jean-Baptiste Laignier	Signature_de_Nicolas_Jean-Baptiste_Laignier.jpg	nom de fichier
 13813	Joseph-François-Mathieu Soustelle	Signature_de_Joseph-François-Mathieu_Soustelle.jpg	nom de fichier
+13820	Jean-Pierre Sers	Carditaphe_de_Jean-Pierre_Sers_(1746–1809)_1.jpg	nom de fichier
 13828	René Eschassériaux	Blason-fascé-or-azur.svg	format
 13860	Charles Louis de Ludre de Frolois	Blason_ville_fr_Frolois_54.svg	format
 13865	Abel de Lespinasse	Signature_de_Abel_de_Lespinasse.jpg	nom de fichier
@@ -369,28 +281,43 @@ S92045V	Alain Vasselle	Vasselle alain92045v carre.jpg
 14082	François Aubry	P_vip.svg	format
 14182	Joseph Magdelaine Martin	Signature_de_Joseph_Magdelaine_Martin_-_Archives_nationales_(France).png	nom de fichier
 14252	Jacques Arpin	Tombe_Jacques_Arpin.jpg	nom de fichier
+14298	Gangulphe Andryane	Père-Lachaise_-_Division_26_-_Tarbe_des_Sablons_01.jpg	nom de fichier
 14316	Jean-Philippe-Aymar d'Albignac	P_vip.svg	format
 14340	Louis Wangen de Géroldseck	Blason_famille_de_Wangen_de_Geroldseck.svg	format
+14368	François Rever	Stèle_érigée_à_Conteville_à_la_mémoire_de_l'abbé_Rever.jpg	nom de fichier
 14391	Jean-Baptiste Bourlier	Ornements_extérieurs_Evêques.svg	format
 14401	Bon Henri Pierre de Blangy	Blason-azur-3-coquilles-or.svg	format
+14408	François-Charles Dulong	Père-Lachaise_-_Division_29_-_Dulong_02.jpg	nom de fichier
+14518	Charlemagne Béjot	17-Bejot_Charlemagne.jpg	la fiche Commons ne dit pas représenter la personne
 14565	Ignace Chappe	Cimetière_du_Père_Lachaise_tombe_de_Claude_Chappe.jpg	nom de fichier
 14596	François Cretté de Palluel	Cimetière_du_Hazeret_-_tombe_07.jpg	nom de fichier
 14648	Jean-Aubin Dumoustier de Frédilly	Blason_famille_fr_Dumoustier_(Poitou).svg	format
+14690	Jean-Baptiste Dehaussy de Robécourt	14-Dehaussy_de_Robecourt_Jean_Baptiste.jpg	la fiche Commons ne dit pas représenter la personne
+14711	Louis Genty	Genty_-_Influence_de_Fermat_sur_son_siecle,_1784_-_1494071.jpg	la fiche Commons ne dit pas représenter la personne
 14719	Jean-Baptiste Gouvion	P_vip.svg	format
+14733	Eustache Antoine Hua	Père-Lachaise_-_Division_51_-_Hua_02.jpg	nom de fichier
 14748	Alfred de Chastellux	Orn_ext_comte_et_pair_OLH.svg	format
 14749	César Laurent de Chastellux	Orn_ext_Comte_(baron-pair)_OLH.svg	format
 14776	Jérôme de Larochette	Blason_famille_fr_Rimoz_de_La_Rochette.svg	format
 14786	Claude Le Coz	Ornements_extérieurs_Comtes_Archevêques_de_l'Empire_français.svg	format
+14815	Adrien Jean Alexandre Lucy	Père-Lachaise_-_Division_17_-_Lucy_01.jpg	nom de fichier
+14823	Romain Malassis	Marque_des_Malassis_de_Brest.jpg	nom de fichier
 14909	Louis Jacques Rousseau	P_vip.svg	format
+14994	Alexandre Baudet-Dulary	Père-Lachaise_-_Division_86_-_Dulary_01.jpg	nom de fichier
+15048	André Charles Membrède	Wapen_André_Charles_de_Membrede.jpg	nom de fichier
 15196	Antoine Michet	Blason_famille_fr_Michet.svg	format
 15281	Jacques-Marie Rouzet	Tombe_de_Jacques-Marie_Rouzet_(1743–1820)_2.jpg	nom de fichier
+15298	Jacques Faget de Baure	Père-Lachaise_-_Division_10_-_Faget_de_Baure_01.jpg	nom de fichier
 15331	Guillaume Thabaud de Bois-La-Reine	Blason_Guillaume_Thabaud_de_Bois_La_Reine.svg	format
 15333	Joseph Terral	Terral_Joseph_(1749-1837)_signature.jpg	nom de fichier
 15372	Valentin Perrin-Lasfargues	Blason_de_la_famille_Perrin,_Rouergue.png	nom de fichier
+15405	Michel Marvaud-Baudet	MerignacM1.JPG	la fiche Commons ne dit pas représenter la personne
 15450	Pierre Joseph Vallée	P_vip.svg	format
+15473	Pierre-Charles Hémart	Ay-FR-51-cimetiere-09.jpg	nom de fichier
 15487	François Lassalle-Cezeau	P_vip.svg	format
 15526	Jean-Joseph-Joachim Janod	P_vip.svg	format
 15608	Clément Louis Charles Berthot	Signature_de_Clément_Louis_Charles_Berthot.jpg	nom de fichier
+15677	Nicolas-Joseph-Marie Parent-Réal	Père-Lachaise_-_Division_28_-_Parent-Real_04.jpg	nom de fichier
 15733	Louis-Joseph Faure	Blason_fam_fr_Faure_du_Havre.svg	format
 15752	Jean Chanorier	Croissy-sur-Seine_Plaque_Chanorier.jpg	nom de fichier
 15804	Pierre Leborgne de Boigne	Blason_famille_fr_de_Boigne_(Savoie).svg	format
@@ -398,29 +325,44 @@ S92045V	Alain Vasselle	Vasselle alain92045v carre.jpg
 15833	Victor-Modeste Paroletti	P_vip.svg	format
 15844	Joseph-Marie Gourlay	Blason_Joseph_Marie_Gourlay.svg	format
 15855	Gilles de Grandsaigne	Blason_Gilles_Louis_Antoine_de_Grandsaigne.svg	format
+15884	Hyacinthe Arrighi de Casanova	1805_pluviose_Prefet_Arrighi_4.jpg	la fiche Commons ne dit pas représenter la personne
 15888	Claude-Michel Larché	P_vip.svg	format
 15912	Jean-Baptiste Delécluse	Blason_famille_fr_Jean-Baptiste_Delecluze_(chevalier).svg	format
 15916	Auguste-Marie-Étienne de Prunelé	Blason_famille_fr_de_Prunelé.svg	format
+15919	Anne-Henri Cabot de Dampmartin	Père-Lachaise_-_Division_14_-_Dampmartin_01.jpg	nom de fichier
 15937	Yves-Nicolas Borie	Signature_de_Yves-Nicolas_Borie_-_Archives_nationales_(France).jpg	nom de fichier
+15950	Henri de Fontenay	Père-Lachaise_-_Division_28_-_Girollet_01.jpg	nom de fichier
+15967	Jean-Baptiste Papin	Tombeau_de_Jean-Baptiste_Papin_(1756–1809)_1.jpg	nom de fichier
 15997	Nicolas Charles Bernard-Dutreil	Bernard_du_Treil.gif	format
 16005	Augustin-Marie-Gabriel de Talhouët	Blason_fam_fr_de_Talhouët_de_Bonamour.svg	format
 16008	Aignan-Louis Petit de Lafosse	Blason_famille_fr_Petit-Lafosse_-1813_-_Baron_d'Empire.svg	format
 16012	Jean-Michel Agar	Blason_Jean_Antoine_Michel_Agar_de_Mercues_de_Mosbourg.svg	format
+16021	Victor Avoyne de Chantereyne	Père-Lachaise_-_Division_35_-_Chantereyne_01.jpg	nom de fichier
 16049	Charles Chonet de Bollemont	P_vip.svg	format
 16073	Charles de Bonvoust	P_vip.svg	format
 16081	Emmanuel de Serviez	P_vip.svg	format
 16083	Jean-François Xavier Noguès	P_vip.svg	format
 16097	Jacques Bardenet	P_vip.svg	format
+16123	Claude-Louis Jacobé de Naurois	Père-Lachaise_-_Division_42_-_Jacobé_de_Naurois_02.jpg	nom de fichier
+16139	Étienne de Falaiseau	Père-Lachaise_-_Division_28_-_Falaiseau_01.jpg	nom de fichier
+16209	Félix Bodin	Enclos_funéraire_famille_Bodin.jpg	nom de fichier
+16211	François Duval de Chassenon de Curzay	François_Boleslas_Casimir_Duval_de_Chassenon_de_Curzay_(1780-1842).png	la fiche Commons ne dit pas représenter la personne
 16224	Henri de Castellane	Blason_maison_fr_de_Castellane.svg	format
 16227	Barthélémy François Rolland de Chambaudoin	P_vip.svg	format
 16233	Jacques Nicolas Bouteiller	Blason_Jacques_Nicolas_Bouteiller.svg	format
 16255	Léonard Bord	P_vip.svg	format
+16264	François Alexandre Ragon-Gillet	Père-Lachaise_-_Division_34_-_Ragon-Gillet_06.jpg	nom de fichier
 16281	Benjamin-François de La Douespe du Fougerais	Blason_Benjamin_Francois_Ladoueppe_du_Fougerais,_chevalier_de_l’Empire.svg	format
 16289	François Philibert Bertrand Nompar de Caumont	Blason_famille_fr_de_Caumont-La-Force.svg	format
+16316	Charles Bouchard des Carneaux	Père-Lachaise_-_Division_41_-_Bouchard_des_Carneaux_01.jpg	nom de fichier
+16324	Louis-Denis Péan de Saint-Gilles	Père-Lachaise_-_Division_40_-_Louis-Denis_Péan_de_Saint-Gilles_01.jpg	nom de fichier
 16383	François Prévot-Leygonie (homme politique)	Blason_famille_fr_Prévôt-Leygonie.svg	format
 16400	Georges Guégot de Traoulen	Blason-azur-chevron-argent-3-molettes.svg	format
+16455	Charles Renauldon	Renauldon_Charles,_Saint_Roch_-_Grenoble.JPG	la fiche Commons ne dit pas représenter la personne
 16485	Étienne Brouard	P_vip.svg	format
 16533	François-Léopold Bresson	Blason_famille_fr_de_Bresson_(Lorraine).svg	format
+16553	Louis Bouvier-Dumolart	Caveau_de_Louis_Bouvier-Dumolart_à_Valmunster.jpg	nom de fichier
+16570	Pierre Mathias Joseph Wartelle	Armoirie_Wartelle_Herlincourt.png	nom de fichier
 16572	Louis-Joseph Cavrois	P_vip.svg	format
 16580	Christian Anton Gabaléon de Salmour	P_vip.svg	format
 16608	Claude Ferdinand Bobillier	Tombe_de_la_famille_Bobillier_Duchet-Suchaux_-_Ancien_cimetière_de_Vesoul_-_5_avril_2024.jpg	nom de fichier
@@ -430,13 +372,18 @@ S92045V	Alain Vasselle	Vasselle alain92045v carre.jpg
 16672	Jean-Armand de Hercé	Blason_famille_fr_Hercé.svg	format
 16688	François-Joseph Benoist	Aulnoy-lez-Valenciennes_-_Cimetière_d'Aulnoy-lez-Valenciennes_(A51).JPG	nom de fichier
 16711	René-Louis-Victor de La Tour du Pin	Blason_Famille_de_La_Tour_du_Pin-La_Tour_de_Vinay.svg	format
+16720	André Haudry de Soucy	Père-Lachaise_-_Division_49_-_Haudry_de_Soucy_01.jpg	nom de fichier
 16722	Jean-Victor Chebrou de La Roulière	Blason_famille_fr_Chebrou.svg	format
+16735	Benoît-François Boselli	Père-Lachaise_-_Division_5_-_Pecquet_02.jpg	nom de fichier
+16739	Antoine-Joseph de Chabrol de Chaméane	Père-Lachaise_-_Division_40_-_Chaméane_01.jpg	nom de fichier
+16745	Antoine Louis Boissière	Père-Lachaise_-_Division_31_-_Boissière_02.jpg	nom de fichier
 16751	Louis de Hercé	Blason_famille_fr_Hercé.svg	format
 16766	Charles-François-Alexandre de Mostuéjouls	Blason_famille_fr_de_Mostuéjouls.svg	format
 16782	Pierre Durand du Repaire	Blason-gueules-aigle-or.svg	format
 16784	François du Cheyron du Pavillon	Blason_d'azur_à_trois_rocs_d'or.svg	format
 16796	Paul Émile Louis Marie de La Fruglaye	Blason-argent-lion-sable-armé-lampassé-gueules.svg	format
 16802	Caprais de Grossolles-Flamarens	Blason_famille_fr_de_Grossolles.svg	format
+16819	Louis-Joseph Duhamel	Père-Lachaise_-_Division_39_-_Hamel_01.jpg	nom de fichier
 16823	Amédée-Hippolyte-Marie-Antoine de Mostuéjouls	Blason_famille_fr_de_Mostuéjouls.svg	format
 16837	Anne Joachim Joseph de Rochemore	Blason_famille_fr_de_Rochemore.svg	format
 16841	Louis de Vaulchier du Deschaux	Blason-azur-chevron-or-3-étoiles.svg	format
@@ -444,6 +391,7 @@ S92045V	Alain Vasselle	Vasselle alain92045v carre.jpg
 16857	Pierre Chapt de Rastignac	Blason_fam_fr_Chapt_de_Rastignac.svg	format
 16862	César Bardonin de Sansac	Blason-azur-3-molettes-or.svg	format
 16876	François Mathieu Angot des Rotours	Blason_fam_fr_Angot_de_Rotours.svg	format
+16882	Arthur Charles Esprit de La Bourdonnaye	Charlotte,_Countess_de_la_Bourdonnaye_(1795-1875)_1830_(Paris).jpg	la fiche Commons ne dit pas représenter la personne
 16883	Emmanuel de Sainte-Hermine	Blason_famille_fr_de_Sainte-Hermine.svg	format
 16891	Auguste Louis Philippe de Saint-Chamans	Blason_famille_fr_de_Saint-Chamans.svg	format
 16899	Aimé-Charles-Zacharie-Élisabeth de Gontaut-Biron	Blason_Aimé_Charles_Zacharie_Elisabeth_de_Gontaut_Biron.svg	format
@@ -454,31 +402,46 @@ S92045V	Alain Vasselle	Vasselle alain92045v carre.jpg
 16982	Constantin-Guy Le Gonidec de Penlan	Blason_fam_fr_Le_Gonidec.svg	format
 16983	Gaspard-Marie-Victor de Choiseul d'Aillecourt	Arnouville,_Cimetière,_Chapelle_funéraire_des_Machault_d'Arnouville_3.jpg	nom de fichier
 16996	Alexandre-François-Ferdinand-Guislain-Marie de Bryas	Blason_famille_de_bryas.svg	format
+16999	Louis François Joseph Degouve de Nuncques	Père-Lachaise_-_Division_28_-_Piéron_01.jpg	nom de fichier
 17038	Claude-Marie de Rivérieulx de Chambost	Blason_famille_fr_de_Rivérieulx.svg	format
 17048	Antoine-Gabriel Jars	Cimetière_de_Montmartre_-_Division_5_-_Antoine_Gabriel_Jars_-1.jpg	nom de fichier
 17059	Antoine Bernard Carrelet de Loisy	Blason_famille_fr_Carrelet_de_Loisy.svg	format
 17065	Henri-Louis de Chastellux	Blason_fam_fr_de_Beauvoir-Chastellux_(de_Duras-Chastellux).svg	format
 17072	Guillaume Jean-Baptiste d'Andigné de Resteau	Blason_famille_fr_Andigné.svg	format
+17085	Jacques Claude Roman Vassal	Père-Lachaise_-_Division_38_-_Vassal_03.jpg	nom de fichier
+17097	Gaspard Auguste Got	Père-Lachaise_-_Division_25_-_Got_01.jpg	nom de fichier
 17138	Léonce d'Escayrac-Lauture	Blason-argent-3-bandes-gueules.svg	format
 17143	Alexandre Aguillon	Signature_Alexandre_Aguillon_(1765-1848).png	nom de fichier
 17161	Augustin Prudent de Chabot-Duparc	Blason_famille_fr_de_Chabot.svg	format
+17168	Joseph Dupont-Minoret	Père-Lachaise_-_Division_49_-_Dupont-Minoret_01.jpg	nom de fichier
+17182	Claude de Champlouis	HC_NAU_C_CIM-Louveciennes_2015-12.jpg	nom de fichier
 17185	Charles-Louis de Gislain de Bontin	Blason-azur-cerf-or.svg	format
 17190	Adrien Joseph de Gislain de Bontin	Blason-azur-cerf-or.svg	format
 17195	Charles-Jacques de Fadate de Saint-Georges	Signature_de_Charles-Jacques_de_Fadate_de_Saint-Georges.jpg	nom de fichier
 17206	Joseph-Annet de Lastic	Blason_Famille_fr_de-Lastic.svg	format
+17207	Jean Roussilhe	Père-Lachaise_-_Division_39_-_Roussilhe_01.jpg	nom de fichier
 17218	Alexandre René Gabriel de Terrasson de Montleau	Blason_famille_fr_TERRASSON_DE_MONTLEAU.svg	format
 17220	François Benjamin Levrault	Amédée_Girod_de_l'Ain_caricature.jpg	nom de fichier
 17230	Pierre-Jacques-Nicolas-Gaspard de Chièvres	Argent_Eagle_Sable.svg	format
+17244	Claude-Denis Mater	Claude_MATER.jpg	la fiche Commons ne dit pas représenter la personne
+17246	Prosper Hochet	Père-Lachaise_-_Division_22_-_Hochet_01.jpg	nom de fichier
 17426	Auguste Stanislas Lebobe	Tombe_Auguste_Stanislas_Lebobe_Cimetière_-_Couilly-Pont-aux-Dames_(FR77)_-_2025-09-06_-_1.jpg	nom de fichier
 17432	Henri de Saignard de La Fressange	Saignard_de_la_Fressange.svg	format
+17440	Pierre Alexandre Fleury de Chaboulon	Père-Lachaise_-_Division_36_-_Fleury_de_Chaboulon_02.jpg	nom de fichier
+17449	Guillaume Marc Antoine Marguerite Baumes	Père-Lachaise_-_Division_49_-_Baumes_01.jpg	nom de fichier
+17450	François Garnier (homme politique)	Père-Lachaise_-_Division_33_-_Garnier_01.jpg	nom de fichier
+17465	Adolphe-Edmond Blanc	Rochechouart-ville_06_detail.JPG	la fiche Commons ne dit pas représenter la personne
 17488	Édouard Honoré de Lyle de Taulanne	Blason_famille_fr_de_L'Isle_de_Taulane.svg	format
 17537	Paul de Ségur	Blason_famille_fr_de_Ségur.svg	format
 17634	Amédée Bommart	Blason_famille_fr_Bommart.svg	format
 17639	Félix-Guillaume Merlin de Maingoval	Blason_famille_fr_Merlin_d'Estreux.svg	format
 17647	Hubert de La Ferté-Meun	Blason_famille_fr_Ferté-Meun,_La_(Nivernais).svg	format
 17650	Frédéric Girerd	Tombe_de_Cyprien_Girerd_(1832–1916)_1.jpg	nom de fichier
+17665	Louis Maximilien Rigal	Père-Lachaise_-_Division_29_-_Rigal_02.jpg	nom de fichier
 17707	Louis de Vaucelles de Ravigny	Blason_famille_FR_Vaucelles.svg	format
 17709	Louis Didier Lecour	Blason_famille_fr_Le_Cour_Grandmaison.svg	format
+17741	Hippolyte Alphonse Quénault	Père-Lachaise_-_Division_9_-_Quénault_01.jpg	nom de fichier
+17755	Louis Henri René Meynadier	Père-Lachaise_-_Division_37_-_Otto-Pellet_11.jpg	nom de fichier
 17803	Bertrand-Dominique-Joachim de Logras	Blason_Fr_famille_Olhonce_(Basse-Navarre).svg	format
 17808	Édouard Burignot de Varenne	Blason_famille_fr_Burignot_de_Varenne.svg	format
 17811	Frédéric-Joseph de Cacqueray	Blason_famille_fr_de_Cacqueray.svg	format
@@ -492,12 +455,18 @@ S92045V	Alain Vasselle	Vasselle alain92045v carre.jpg
 17959	Raymond de Bérenger	Blason_famille_fr_Bérenger.svg	format
 17970	François Bignon (homme politique)	Sépulture_de_François_BIGNON_-_Cimetière_Montmartre.JPG	nom de fichier
 18006	Alexandre Dugaigneau de Champvallins	Blason_famille_fr_Dugaigneau.svg	format
+18009	Adelphe Chasles	17-Chasles_Henri_Lubin_Adolphe_et_Michel.jpg	la fiche Commons ne dit pas représenter la personne
+18010	Pierre Joseph Chédeaux	Père-Lachaise_-_Division_39_-_Chédeaux_02.jpg	nom de fichier
 18031	Étienne Crignon de Bonvalet	Blason_famille_fr_Crignon_(Orléanais)_-_alias.svg	format
 18047	Paul de Dieuleveult	François-Marie_et_Paul_de_Dieuleveult_tombe.jpg	nom de fichier
 18054	Joseph Duboys-Fresney	Blason_Etienne_Duboy_Fresney.svg	format
 18057	François Bertrand Dufour	P_vip.svg	format
+18058	Éléonor-Zoa Dufriche de Valazé	HC_DUFRICHE_E_StLaurent-StAntoine_2023-03.jpg	la fiche Commons ne dit pas représenter la personne
+18080	Maurice Fumeron d'Ardeuil	Père-Lachaise_-_Division_10_-_Fumeron_01.jpg	nom de fichier
 18092	Georges Genoux-Prachée	Tombe_de_Georges_Genoux_(Ancien_cimetière_de_Vesoul)_2.jpg	nom de fichier
 18118	Philippe-François Le Denmat de Kervern	Blason-gueules-lion-passant-or.svg	format
+18132	Charles Laperrine d'Hautpoul	Chapelle_Lapperine_d'Hautpoul-Carcassonne.jpg	nom de fichier
+18136	Louis Théodore de Lasalle	Père-Lachaise_-_Division_45_-_Lasalle_01.jpg	nom de fichier
 18138	Ignace Laugier	P_vip.svg	format
 18147	Liphard-Julien Lefort	Signature_de_Liphard_Julien_Lefort-Geffrier.jpg	nom de fichier
 18155	Claude-Antoine Leleu de La Ville aux Bois	Signature_de_Claude_Antoine_Leleu_de_La_Ville_aux_Bois.jpg	nom de fichier
@@ -506,29 +475,45 @@ S92045V	Alain Vasselle	Vasselle alain92045v carre.jpg
 18184	François Petau de Maulette	Blason_ville_fr_Maulette_(Yvelines).svg	format
 18192	René Marie de Montbourcher	Blason_famille_fr_Montbourcher.svg	format
 18196	Géraud-Antoine-Hippolyte de Murat	Signature_du_préfet_Murat.jpg	nom de fichier
+18200	Joseph-Marie-Frédéric Nicod	Père-Lachaise_-_Division_22_-_Nicod_01.jpg	nom de fichier
 18203	Jean-François Gaspard Noizet de Saint-Paul	P_vip.svg	format
 18208	Jean Isidore Partarrieu-Lafosse	Sépulture_de_Jean-Isidore_PARTARRIEU-LAFOSSE_-_Cimetière_Montmartre.JPG	nom de fichier
+18213	Charles Auguste du Bouëxic de Pinieux	Père-Lachaise_-_Division_10_-_Pinieux_03.jpg	nom de fichier
 18221	Jean Pruche	Signature_de_Jean_Pruche.jpg	nom de fichier
+18236	Joseph-Alexandre de Ségur	Ségur_sans_céremonie_by_Jean-Baptiste_Le_Tellier.png	la fiche Commons ne dit pas représenter la personne
 18267	Anne Nicolas Alexandre Texier	Texier_Anne_Nicolas_Alexandre_sépulture_cimetière_Saint-Cheron_Chartres_Eure-et-Loir_(France).jpg	nom de fichier
 18272	Jean Isaac Tondu du Metz	Sépulture_Tondu_du_Metz.jpg	nom de fichier
 18276	Jacques Urvoy de Saint-Bedan	Blason_Casson.svg	format
 18280	Michel Veilande	P_vip.svg	format
 18285	Armand Brunet de Villeneuve	Cimetière_vieux_de_Béziers_-_tombe_d’Armand_Brunet_de_Villeuneuve_et_Agathe_de_Bastard_d'Estang.jpg	nom de fichier
+20058	Marie-Philippe Lubet	Image_manquante.png	la fiche Commons ne dit pas représenter la personne
 301	Émile Aymé de La Chevrelière	Blason_de_la_famille_Aymé_de_La_Chevrelière.svg	format
 302	Jean-Marie Aymé de La Chevrelière	Blason_de_la_famille_Aymé_de_La_Chevrelière.svg	format
+3484	Henri Gorce-Franklin	HC_GORCE-FRANKLIN_H_CIM-Neuilly-Nouveau_2015-10.jpg	nom de fichier
 3945	Marius Isoard	Armoiries_de_Marseille.svg	format
 4164	Henri des Acres de L'Aigle	Blason_famille_fr_des_Acres_de_L'Aigle.svg	format
+5000	Joannès Marietton	Portrait_Marietton.jpg	la fiche Commons ne dit pas représenter la personne
+5435	Pierre Mortier	HC_DUTRIEU_H_CIM-Paris-Batignolles(02)_2015-11.jpg	nom de fichier
+5558	Albert Nivert	HC_NIVERT_A_CIM-Paris-Batignolles_2016-04.jpg	nom de fichier
 5902	François Pichat	Tombe.Jean-Francois.Pichat.jpg	nom de fichier
 6872	Louis Sonnery-Martin	SONNERY_Louis_signature.png	nom de fichier
+7703	Louis Lefoullon	HC_LEFOULLON_L_CIM-Neuilly-ancien(07)_2015-06.jpg	nom de fichier
+7740	Jean-Baptiste Lelièvre	Lelièvre_maire_de_Pipriac_et_conseiller_général.jpg	la fiche Commons ne dit pas représenter la personne
 8416	Alexandre Maitret	Chaumont_(Haute-Marne)_-_Cimetière_-_Tombe_de_François_Alexandre_Maitret_-_Médaillon.jpeg	nom de fichier
+85	Jean-Jacques Alicot	Grab_Jean-Jacques_Alicot.jpg	nom de fichier
 8627	Jean-Pierre de Lamberterie	Blason-azur-lion-argent-armé-lampassé-gueules.svg	format
+8664	Amédée Lefèvre-Pontalis	Lefèvre-Pontalis.jpg	la fiche Commons ne dit pas représenter la personne
 8723	Augustin de Mornay	Blason_famille_fr_de_Mornay_2.svg	format
 8726	Eugène de Murat-Sistrières	Blason_fam_fr_Murat-Sistrières_(de).jpg	nom de fichier
+8729	Édouard Deligny (général)	Général_Édouard_Deligny_-_Photo_Disdéri_(Paris).jpg	la fiche Commons ne dit pas représenter la personne
 8756	Étienne Duboys Fresney	Blason_Etienne_Duboy_Fresney.svg	format
+8766	Charles Hyacinthe Dupuy	HC_DUPUY_H-C_CIM-Nyons_2025-04.jpg	nom de fichier
+8770	Cornélis Henri de Witt	Tombeau_de_la_famille_Guizot_2.jpg	nom de fichier
 8793	Ambroise Vente	Tombe_d'Ambroise_Vente_(1823–1882)_1.jpg	nom de fichier
 8881	Louis de Willecot de Rincquesen	Blason-azur-3-fasces-ondées-or.svg	format
 8884	François de La Roche-Aymon	Blason_famille_fr_de_La_Roche-Aymon.svg	format
 8922	Constance Piou	Tombeau_de_Constance_PIOU_et_Georges_PIOU,_cimetière_Montmartre.JPG	nom de fichier
+8973	Jérôme Galloni d'Istria	Capture_d’écran_10-10-2026_215851_gw.geneanet.org.jpg	la fiche Commons ne dit pas représenter la personne
 8999	Charles Guillemaut	Sépulture_du_général_et_sénateur_Charles-Alexandre_Guillemaut_–_Cimetière_Montmartre.jpg	nom de fichier
 9000	Philibert Bernard de La Guiche	Blason_ville_fr_La_Guiche_(Saône-et-Loire).svg	format
 9017	Eugène-Pierre de Fontaine	Blason_famille_fr_de_Fontaines_2.svg	format
@@ -537,19 +522,34 @@ S92045V	Alain Vasselle	Vasselle alain92045v carre.jpg
 9177	Louis Paul Cavelier de Cuverville	Blason-azur-3-croissants-or.svg	format
 925	Victor de Bonald	Blason_famille_Bonald.svg	format
 9307	Marc de Beauvau-Craon (1816-1883)	Blason_maison_fr_de_Beauvau.svg	format
+9448	Ernest-Eugène Duboys	Fontaine_du_Mail_zoomed_-_Angers_-_20080803.JPG	la fiche Commons ne dit pas représenter la personne
 9482	Théodore Guigue de Moreton de Chabrillan	Blason_Famille_fr_de_Moreton_de_Chabrillan.svg	format
 9504	Antoine Birotteau	Blason_Carcassonne_11.svg	format
 9518	Gustave Gaspard Chaix d'Est-Ange	Tombeau_de_la_famille_CHAIX_D'EST-ANGE_-_Cimetière_de_Montmartre.JPG	nom de fichier
 9543	Marcelin-Laurent-Marie Burin des Roziers	Blason_famille_fr_Burin_(Auvergne).svg	format
+9544	Adolphe Fould	Père-Lachaise_-_Division_4_-_Adolphe_Fould_01.jpg	nom de fichier
 9568	Jean-Baptiste Thieullen	Signature_de_Jean_Baptiste_Thieullen.jpg	nom de fichier
+9601	Charles Philippe Henri de Noailles	Gare-Mouy-statue-duc-Mouchy-CPancienne.jpg	la fiche Commons ne dit pas représenter la personne
 9672	Jean Frédéric Garnier de La Boissière	Blason-gironné-12-pièces-or-gueules.svg	format
 9690	Étienne Bouzique	Plaque_commémorative_d'Étienne_Bouzique.JPG	nom de fichier
 9765	Antoine Auguste Barthélémy	Barthélemy_Antoine_tombe_Bailleau-l'évêque_Eure-et-Loir_France.jpg	nom de fichier
 9776	Émile de Riverieulx	Blason_famille_fr_de_Rivérieulx.svg	format
 9778	Joseph-Marc-Marie de Kersauson de Pennendreff	Blason_famille_bzh_de_Kersauson.svg	format
+987	Alfred Borriglione	HC_BORRIGLIONE_A_CIM-Nice-Chateau_2023-02.jpg	nom de fichier
 9904	Guy Henri Modeste de Fontaine	Blason_famille_fr_de_Fontaines_2.svg	format
 9960	Auguste Cabias	Ancien_cimetière_de_la_Croix-Rousse_-_nov_2016_(13).JPG	nom de fichier
+9966	Théodore-Casimir Delamarre	Père-Lachaise_-_Division_60_-_Delamarre_01.jpg	nom de fichier
+S000118	Roger Thiébault	Blangy-sur-Bresle_angle_place_Thiébault_1_~K5-449.jpg	nom de fichier
+S000239	Raymond de Wazières	Famille_de_Wazières.png	la fiche Commons ne dit pas représenter la personne
 S000476	Robert Pontillon	Tombe_Robert_Pontillon_cimetière_Voltaire_Suresnes.jpg	nom de fichier
+S000633	Philippe Machefer	HC_MACHEFER_P_CIM-Houilles_006_2015-11.jpg	nom de fichier
+S000679	Francis Le Basser	Père-Lachaise_-_Division_87_-_Columbarium_2711-2810.jpg	nom de fichier
+S08062Y	Jean-François Mayet	Mayet_jean_francois08062y_carre.jpg	la fiche Commons ne dit pas représenter la personne
 S57716N	Auguste Amic	Plaque_commémorative_port_de_Sain-Cyr-sur-Mer_Auguste_Amic_(Var,_France).jpg	nom de fichier
+S57721K	Hélène Édeline	HC_EDELINE_H_CIM-Gentilly_2018-05.jpg	nom de fichier
+S57773X	Janine Alexandre-Debray	Jeanine_Alexandre_Debray.jpg	la fiche Commons ne dit pas représenter la personne
+S58039C	Pierre Jourdan (homme politique)	Laveyrune-FR-07-caveau_Jourdan-1.jpg	nom de fichier
 S59521M	André Fosset	Tombe_d'André_Fosset_(1918–2001)_2.jpg	nom de fichier
 S59570W	Louis Espivent de La Villesboisnet de Catuelan	Blason_famille_fr_Espivent_de_la_Villesboisnet.svg	format
+S86053H	René-Pierre Signé	René-Pierre_Signé.jpg	la fiche Commons ne dit pas représenter la personne
+S92045V	Alain Vasselle	Vasselle_alain92045v_carre.jpg	la fiche Commons ne dit pas représenter la personne
