@@ -104,7 +104,8 @@ d'installation selon l'appareil (iPhone : bouton Partager puis « Sur l'écran d
 invitation `beforeinstallprompt` ou menu du navigateur) ; puis visite guidée (`ETAPES_VISITE`) qui éclaire chaque
 élément et attend certains gestes (ouvrir le paquet, retourner la carte, finir le paquet). Les tests du navigateur
 posent `hemicycle-accueil = fait` pour passer l'accueil. Pendant la visite, rien ne défile (`recentrer` suspendu) :
-l'interface est assez dense pour que séance et découverte tiennent dans l'écran (390 × 844 sans défilement).
+la classe `presentation` de `html` resserre l'interface le temps de la visite seulement (séance et découverte
+sans défilement sur 390 × 844) ; hors visite, les tailles habituelles, jugées plus lisibles par l'utilisateur.
 Portraits : vignettes Wikimedia en largeur standard (330 px ; 320 px est refusé, 400), connexions ouvertes d'avance,
 portraits Wikimedia et Sénat demandés en CORS et gardés par le service de travail (cache `hemicycle-portraits`,
 800 au plus) ; ceux de l'Assemblée, sans CORS, restent au cache du navigateur (une réponse opaque gonflerait le
