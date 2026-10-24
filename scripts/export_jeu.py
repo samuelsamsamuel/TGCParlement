@@ -150,8 +150,10 @@ def mandats_carte(c):
     return sorted(groupes.values(), key=lambda g: (g[2][0][0] if g[2] else 9999))
 
 
-def vignette(fichier, largeur=320):
-    """Adresse directe de la vignette Commons (sans la redirection de Special:FilePath, plus lente)."""
+def vignette(fichier, largeur=330):
+    """Adresse directe de la vignette Commons (sans la redirection de Special:FilePath, plus lente). Largeur standard
+    de Wikimedia (20, 40, 60, 120, 250, 330, 500… : https://www.mediawiki.org/wiki/Common_thumbnail_sizes) : une
+    autre largeur, demandée directement, est refusée (400) ou limitée (429)."""
     import hashlib
     nom = fichier.replace(" ", "_")
     h = hashlib.md5(nom.encode("utf-8")).hexdigest()
@@ -195,6 +197,11 @@ def main():
         with open(os.path.join("data", "portraits.json"), encoding="utf-8") as f:
             portraits = json.load(f)
     # Portraits officiels de Sycomore (scripts/portraits_sycomore.py), pour les députés sans portrait Wikidata
+    # Image principale de l'article Wikipédia (scripts/portraits_wikipedia.py), pour les cartes sans autre portrait
+    wikipedia = {}
+    if os.path.exists(os.path.join("data", "portraits_wikipedia.json")):
+        with open(os.path.join("data", "portraits_wikipedia.json"), encoding="utf-8") as f:
+            wikipedia = json.load(f)
     sycomore = {}
     if os.path.exists(os.path.join("data", "portraits_sycomore.json")):
         with open(os.path.join("data", "portraits_sycomore.json"), encoding="utf-8") as f:
@@ -210,11 +217,12 @@ def main():
             chambres += "G"
         sortie.append([c["id"], nom_affiche(c), RARETES.index(c["rarete"]), c["score"], c.get("epoque") or "",
                        1 if c.get("en_exercice") else 0, debut, fin, source(c),
-                       portraits.get(str(c["id"])), codes, chambres, c.get("sexe"),
+                       portraits.get(str(c["id"])) or (None if sycomore.get(str(c["id"])) else wikipedia.get(str(c["id"]))), codes, chambres, c.get("sexe"),
                        fonctions_carte(c["id"], gouv, pres), mandats_carte(c), c.get("groupe"),
                        c.get("photo") or (vignette(portraits[str(c["id"])]) if portraits.get(str(c["id"])) else None)
                        or photos_gouv.get(simplifie(nom_affiche(c)))
-                       or (f"https://www2.assemblee-nationale.fr/static/sycomore/jpg/{c['id']}.jpg" if sycomore.get(str(c["id"])) else None),
+                       or (f"https://www2.assemblee-nationale.fr/static/sycomore/jpg/{c['id']}.jpg" if sycomore.get(str(c["id"])) else None)
+                       or (vignette(wikipedia[str(c["id"])]) if wikipedia.get(str(c["id"])) else None),
                        assemblees_carte.get(str(c["id"]), [])])
     os.makedirs("site", exist_ok=True)
     with open(os.path.join("site", "jeu.json"), "w", encoding="utf-8") as f:
