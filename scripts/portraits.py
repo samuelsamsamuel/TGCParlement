@@ -20,19 +20,23 @@ import urllib.request
 
 POINT = "https://query.wikidata.org/sparql"
 UA = "TGCParlement/1.0 (projet personnel ; contact : " + os.environ.get("CONTACT", "non renseigné") + ")"
+# Libellé français, sinon le libellé commun à toutes les langues (« mul ») : depuis 2025, Wikidata ne garde souvent
+# plus de libellé français pour une personne dont le nom s'écrit de même dans toutes les langues (Emmanuel Macron)
+NOM_USAGE = ("OPTIONAL { ?p rdfs:label ?nom_fr FILTER(LANG(?nom_fr) = 'fr') } "
+             "OPTIONAL { ?p rdfs:label ?nom_mul FILTER(LANG(?nom_mul) = 'mul') } BIND(COALESCE(?nom_fr, ?nom_mul) AS ?nom)")
 REQUETES = {
-    "sycomore": "SELECT ?id ?img ?nom WHERE { ?p wdt:P1045 ?id . OPTIONAL { ?p wdt:P18 ?img } "
-                "OPTIONAL { ?p rdfs:label ?nom FILTER(LANG(?nom) = 'fr') } }",
-    "senat": "SELECT ?id ?img ?nom WHERE { ?p wdt:P1808 ?id . OPTIONAL { ?p wdt:P18 ?img } "
-             "OPTIONAL { ?p rdfs:label ?nom FILTER(LANG(?nom) = 'fr') } }",
+    "sycomore": "SELECT ?id ?img ?nom WHERE { ?p wdt:P1045 ?id . OPTIONAL { ?p wdt:P18 ?img } " + NOM_USAGE + " }",
+    "senat": "SELECT ?id ?img ?nom WHERE { ?p wdt:P1808 ?id . OPTIONAL { ?p wdt:P18 ?img } " + NOM_USAGE + " }",
 }
 # Membres du Gouvernement sans mandat parlementaire : pas d'identifiant officiel commun ; recherche par le libellé
 # ou un autre nom de l'élément (variantes de casse des particules et d'apostrophe : « D’Ornano », « De Guiringaud »).
 # Les homonymes sont départagés par les dates : n'est gardée que la personne majeure et vivante au début de sa
 # première fonction gouvernementale (Charles de Gaulle : ni l'oncle poète, mort en 1880, ni le petit-fils, né en
-# 1948). Le portrait n'est retenu que si une seule personne reste.
-REQUETE_NOMS = ("SELECT ?nom ?p ?img ?naissance ?deces WHERE { VALUES ?nom { %s } ?p rdfs:label|skos:altLabel ?nom ; "
-                "wdt:P31 wd:Q5 ; wdt:P18 ?img . OPTIONAL { ?p wdt:P569 ?naissance } OPTIONAL { ?p wdt:P570 ?deces } }")
+# 1948). S'il en reste plusieurs, la nationalité française départage (Henri Frenay, ministre en 1944, et un
+# écrivain wallon du même nom) ; le portrait n'est retenu que si une seule personne reste.
+REQUETE_NOMS = ("SELECT ?nom ?p ?img ?naissance ?deces ?francais WHERE { VALUES ?nom { %s } ?p rdfs:label|skos:altLabel ?nom ; "
+                "wdt:P31 wd:Q5 ; wdt:P18 ?img . OPTIONAL { ?p wdt:P569 ?naissance } OPTIONAL { ?p wdt:P570 ?deces } "
+                "OPTIONAL { ?p wdt:P27 wd:Q142 . BIND(true AS ?francais) } }")
 # Garde : pendant une panne, le service de requêtes de Wikidata peut répondre à vide ; un résultat très inférieur
 # au précédent n'écrase pas les fichiers existants.
 SEUIL_GARDE = 0.9
@@ -71,7 +75,13 @@ def fichier(url_image):
 
 
 def main():
-    portraits, noms = {}, {}
+    # Plusieurs images pour une même personne : l'image déjà retenue reste tant qu'elle figure parmi elles, sinon la
+    # première par ordre alphabétique ; l'ordre des réponses de Wikidata varie d'une exécution à l'autre
+    precedents = {}
+    if os.path.exists(os.path.join("data", "portraits.json")):
+        with open(os.path.join("data", "portraits.json"), encoding="utf-8") as f:
+            precedents = json.load(f)
+    images, noms = {}, {}
     for cle, requete in REQUETES.items():
         for b in interroger(requete):
             brut = b["id"]["value"].strip()
@@ -79,9 +89,11 @@ def main():
             if cle == "sycomore" and not brut.isdigit():
                 continue
             if "img" in b:
-                portraits.setdefault(ident, fichier(b["img"]["value"]))
+                images.setdefault(ident, set()).add(fichier(b["img"]["value"]))
             if "nom" in b:
                 noms.setdefault(ident, b["nom"]["value"])
+    choisir = lambda ident, ens: precedents[ident] if precedents.get(ident) in ens else min(ens)
+    portraits = {ident: choisir(ident, ens) for ident, ens in images.items()}
     nb_an = len(portraits)
     f_hors = os.path.join("data", "gouvernement", "hors_parlement.json")
     if os.path.exists(f_hors):
@@ -93,16 +105,19 @@ def main():
             for v in variantes(h["nom"]):
                 vers[v] = (h["id"], debut)
         libelles = list(vers)
-        candidats = {}   # identifiant de carte -> {élément Wikidata: fichier}
+        candidats = {}   # identifiant de carte -> {élément Wikidata: (français, images)}
         for i in range(0, len(libelles), 60):
-            valeurs = " ".join('"%s"@fr' % n.replace('"', "") for n in libelles[i:i + 60])
+            valeurs = " ".join('"%s"@%s' % (n.replace('"', ""), langue) for n in libelles[i:i + 60] for langue in ("fr", "mul"))
             for b in interroger(REQUETE_NOMS % valeurs):
                 ident, debut = vers[b["nom"]["value"]]
                 if plausible(b.get("naissance", {}).get("value", ""), b.get("deces", {}).get("value", ""), debut):
-                    candidats.setdefault(ident, {}).setdefault(b["p"]["value"], fichier(b["img"]["value"]))
+                    francais, ens = candidats.setdefault(ident, {}).setdefault(b["p"]["value"], ("francais" in b, set()))
+                    ens.add(fichier(b["img"]["value"]))
         for ident, elements in candidats.items():
+            if len(elements) > 1:
+                elements = {p: v for p, v in elements.items() if v[0]}
             if len(elements) == 1:
-                portraits.setdefault(ident, next(iter(elements.values())))
+                portraits.setdefault(ident, choisir(ident, next(iter(elements.values()))[1]))
     ancien = os.path.join("data", "portraits.json")
     if os.path.exists(ancien):
         with open(ancien, encoding="utf-8") as f:
