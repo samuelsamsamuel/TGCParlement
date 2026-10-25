@@ -17,7 +17,7 @@ sys.path.insert(0, os.path.dirname(__file__))
 from portraits import interroger  # noqa: E402
 
 IDENTIFIANTS = ("OPTIONAL { ?p wdt:P1045 ?syc } OPTIONAL { ?p wdt:P1808 ?sen } "
-                "OPTIONAL { ?p rdfs:label ?libelle FILTER(LANG(?libelle) = 'fr') }")
+                "OPTIONAL { ?p rdfs:label ?libelle_fr FILTER(LANG(?libelle_fr) = 'fr') } OPTIONAL { ?p rdfs:label ?libelle_mul FILTER(LANG(?libelle_mul) = 'mul') } BIND(COALESCE(?libelle_fr, ?libelle_mul) AS ?libelle)")
 CRITERES = {
     "compagnon-liberation": (15, "Compagnon de la Libération",
         "VALUES ?dl { 'compagnon de la Libération'@fr 'Compagnon de la Libération'@fr } ?d rdfs:label ?dl . ?p wdt:P166 ?d ."),
@@ -59,7 +59,7 @@ def main():
                        "?p wdt:P39 ?pos . ?pos rdfs:label ?posl . FILTER(LANG(?posl) = 'fr' && (CONTAINS(LCASE(?posl), 'ministre') "
                        "|| CONTAINS(LCASE(?posl), \"secrétaire d'état\") || CONTAINS(LCASE(?posl), 'président de la république')))"):
             requete = ("SELECT DISTINCT ?p ?syc ?sen ?libelle ?d WHERE { %s %s "
-                       "OPTIONAL { ?p rdfs:label ?libelle FILTER(LANG(?libelle) = 'fr') } }" % (condition, filtre))
+                       "OPTIONAL { ?p rdfs:label ?libelle_fr FILTER(LANG(?libelle_fr) = 'fr') } OPTIONAL { ?p rdfs:label ?libelle_mul FILTER(LANG(?libelle_mul) = 'mul') } BIND(COALESCE(?libelle_fr, ?libelle_mul) AS ?libelle) }" % (condition, filtre))
             try:
                 resultats += interroger(requete)
             except SystemExit as e:
