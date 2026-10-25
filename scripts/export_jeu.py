@@ -202,6 +202,11 @@ def main():
     if os.path.exists(os.path.join("data", "portraits_wikipedia.json")):
         with open(os.path.join("data", "portraits_wikipedia.json"), encoding="utf-8") as f:
             wikipedia = json.load(f)
+    # Fichiers de Commons qui ne dépeignent que la personne (scripts/portraits_commons.py), en dernier recours
+    commons = {}
+    if os.path.exists(os.path.join("data", "portraits_commons.json")):
+        with open(os.path.join("data", "portraits_commons.json"), encoding="utf-8") as f:
+            commons = json.load(f)
     # Photos officielles des anciens sénateurs (scripts/portraits_senat.py)
     senat = {}
     if os.path.exists(os.path.join("data", "portraits_senat.json")):
@@ -222,13 +227,14 @@ def main():
             chambres += "G"
         sortie.append([c["id"], nom_affiche(c), RARETES.index(c["rarete"]), c["score"], c.get("epoque") or "",
                        1 if c.get("en_exercice") else 0, debut, fin, source(c),
-                       portraits.get(str(c["id"])) or (None if sycomore.get(str(c["id"])) or senat.get(str(c["id"])) else wikipedia.get(str(c["id"]))), codes, chambres, c.get("sexe"),
+                       portraits.get(str(c["id"])) or (None if sycomore.get(str(c["id"])) or senat.get(str(c["id"])) else wikipedia.get(str(c["id"]), commons.get(str(c["id"])))), codes, chambres, c.get("sexe"),
                        fonctions_carte(c["id"], gouv, pres), mandats_carte(c), c.get("groupe"),
                        c.get("photo") or (vignette(portraits[str(c["id"])]) if portraits.get(str(c["id"])) else None)
                        or photos_gouv.get(simplifie(nom_affiche(c)))
                        or (f"https://www2.assemblee-nationale.fr/static/sycomore/jpg/{c['id']}.jpg" if sycomore.get(str(c["id"])) else None)
                        or senat.get(str(c["id"]))
-                       or (vignette(wikipedia[str(c["id"])]) if wikipedia.get(str(c["id"])) else None),
+                       or (vignette(wikipedia[str(c["id"])]) if wikipedia.get(str(c["id"])) else None)
+                       or (vignette(commons[str(c["id"])]) if commons.get(str(c["id"])) else None),
                        assemblees_carte.get(str(c["id"]), [])])
     os.makedirs("site", exist_ok=True)
     with open(os.path.join("site", "jeu.json"), "w", encoding="utf-8") as f:

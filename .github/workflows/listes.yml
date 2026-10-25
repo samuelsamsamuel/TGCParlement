@@ -84,6 +84,11 @@ jobs:
         continue-on-error: true
         run: python3 scripts/portraits_wikipedia.py
 
+      - name: Portraits de Commons dépeignant la personne seule (reprise, 10 minutes au plus)
+        continue-on-error: true
+        timeout-minutes: 14
+        run: python3 scripts/portraits_commons.py
+
       - name: Plus grande ville des circonscriptions
         continue-on-error: true
         run: python3 scripts/villes_circonscriptions.py

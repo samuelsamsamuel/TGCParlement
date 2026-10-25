@@ -15,7 +15,9 @@ exécution à la fois, qui enregistre `data/` et `site/` (même après une annul
 - Sources officielles uniquement (Assemblée nationale : Sycomore et open data ; Sénat : data.senat.fr ;
   data.gouv.fr ; info.gouv.fr ; Insee via geo.api.gouv.fr). Wikidata seulement pour les noms d'usage, les
   portraits et quatre distinctions, toujours rattachés par identifiant officiel (Sycomore P1045, Sénat P1808) ;
-  Wikipédia seulement pour l'image principale de l'article rattaché de la même façon (`portraits_wikipedia.py`).
+  Wikipédia seulement pour l'image principale de l'article rattaché de la même façon (`portraits_wikipedia.py`) ;
+  Commons seulement pour les fichiers dont la fiche dit ne représenter (P180) que cet élément (`portraits_commons.py`,
+  demande de l'utilisateur d'améliorer la couverture photo, octobre 2026).
 - Rien d'inventé : une information non vérifiable est omise ; un cas douteux est tranché par une décision
   motivée intégrée au script concerné (`DECISIONS_INTEGREES`, `RETIRES_DU_PANTHEON`, etc.).
 - Chaque script écrit un rapport dans `data/listes/rapports/` : le lire après chaque exécution.
@@ -44,7 +46,9 @@ sénateurs sur senat.fr, adresse reconstruite avec le matricule et vérifiée), 
 l'article Wikipédia rattaché par P1045 ou P1808, pour les cartes sans autre portrait ; décision de l'utilisateur,
 octobre 2026 ; seulement si la fiche Commons dit représenter la personne (P180), plus un filtre de mots ; une seule
 image retenue à la deuxième exécution sur 550 images principales libres, le reste étant tombes, armoiries, pages de titre ; rapport des
-retenus et écartés), `villes_circonscriptions.py`, `export_jeu.py` (écrit
+retenus et écartés), `portraits_commons.py` (fichiers de Commons qui ne dépeignent que la personne, recherche
+`haswbstatement:P180=…` par lots de 16, reprise de 10 minutes par exécution, jamais sondés d'abord, dates dans
+`data/portraits_commons_sondes.json`), `villes_circonscriptions.py`, `export_jeu.py` (écrit
 `site/jeu.json`), puis
 `node scripts/catalogue_serveur.js` (écrit `site/serveur.json`).
 
@@ -108,8 +112,9 @@ grands pour le téléphone ; le menu Plus ouvre quatre vues, Mon siège (chiffre
 pseudo une fois connecté), « Toutes les cartes » (catalogue complet, cartes non obtenues grisées),
 Règlement (règles et sources) et Paramètres (infos du compte, déconnexion et suppression, thème sombre, clair ou comme
 l'appareil gardé dans le navigateur, notifications, contact, mentions légales). Pas de pied de page.
-Hémicycle : les pastilles du haut filtrent (favoris, une rareté) et se désélectionnent au second toucher ; toucher
-une carte l'ouvre en grand (`apercu`) avec ses exemplaires, la dissolution de ses seuls doubles (`dissoudre`,
+Hémicycle : les pastilles du haut filtrent (favoris, doubles, une rareté) et se désélectionnent au second toucher ;
+le bouton « Voir mes doubles » pose le même filtre (`doubles`) ; l'échange de voix contre un paquet n'y figure pas
+(Séance et encart des voix seulement, demande de l'utilisateur) ; toucher une carte l'ouvre en grand (`apercu`) avec ses exemplaires, la dissolution de ses seuls doubles (`dissoudre`,
 `POST /api/dissoudre`) et la vente au comptoir ; tri par défaut par rareté puis par score. Reflets des mythiques et
 légendaires espacés (11 et 15 s), dégradé sans répétition pour que la carte reste nette entre deux passages.
 Première ouverture (`demarrerAccueil`, étape gardée dans `hemicycle-accueil`) : fenêtre d'accueil (créer un compte,
@@ -187,7 +192,9 @@ serveur), filtre « Mes favoris » dans l'Hémicycle. Pas de zoom au double touc
 - Site : application installable (`manifest.webmanifest`, `sw.js` réseau d'abord, copie hors connexion ; icônes
   écrites par `scripts/icone.py` : éventail de trois cartes bleue, blanche et rouge sur fond de marbre, choisi par
   l'utilisateur, avec une version « maskable » réduite pour la zone sûre d'Android ; changer `CACHE` dans `sw.js`
-  à chaque changement d'icône),
+  à chaque changement d'icône ; l'application installée, gardée en mémoire par iOS, compare au retour au premier plan
+  la page en ligne à celle du démarrage, au plus toutes les dix minutes, et se recharge si elle a changé, hors
+  découverte d'un paquet, visite guidée ou saisie),
   polices servies par le site (`site/polices/`, licence OFL), page `mentions.html` (mentions légales,
   conditions d'utilisation, confidentialité). `jeu.json` pèse 6,5 Mo mais 1 Mo compressé par Cloudflare.
 - Limites connues : un joueur peut ouvrir plusieurs comptes et faire passer leurs cartes vers un seul
