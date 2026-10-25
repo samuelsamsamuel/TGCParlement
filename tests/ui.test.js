@@ -125,6 +125,15 @@ const T = process.argv[2] || require("os").tmpdir();
   const tel = await b.newPage({viewport: {width: 390, height: 844}, isMobile: true});
   await tel.addInitScript(() => localStorage.setItem("hemicycle-accueil", "fait"));
   await tel.goto("http://localhost:8765/");
+  // Récapitulatif d'un paquet : tout en bas de la page, le bouton reste entier au-dessus de la barre d'onglets
+  await tel.click("#paquet"); await tel.waitForSelector("#suite");
+  for (let i = 0; i < 5; i++) await tel.click("#suite");
+  await tel.waitForSelector(".recap"); await tel.waitForSelector("#suivant");
+  await tel.evaluate(() => scrollTo(0, document.documentElement.scrollHeight)); await tel.waitForTimeout(300);
+  const [basBouton, hautBarre] = await tel.evaluate(() => [document.getElementById("suivant").getBoundingClientRect().bottom,
+    document.querySelector("nav").getBoundingClientRect().top]);
+  assert.ok(basBouton + 8 <= hautBarre, `bouton du récapitulatif sous la barre d'onglets (${basBouton} / ${hautBarre})`);
+  await tel.screenshot({path: T + "/recap-bas-tel.png"});
   await tel.evaluate(s => localStorage.setItem("hemicycle-collection", s), JSON.stringify(e5));
   await tel.reload(); await tel.waitForSelector("#paquet");
   await tel.click('nav [data-vue="objectifs"]'); await tel.waitForSelector(".objectif");

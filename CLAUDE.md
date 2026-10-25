@@ -30,7 +30,9 @@ exécution à la fois, qui enregistre `data/` et `site/` (même après une annul
 circonscriptions ; intitulés gouvernementaux transcrits d'info.gouv.fr dans `COMPOSITIONS`, à compléter à
 chaque remaniement) ; 5. `senat_fonctions.py` (commissions et groupes) puis `senat_bureau.py` (Bureau du
 Sénat, lu dans l'export complet `export_sens.zip`, tables `bur` et `senbur`) ; 6. `gouvernements.py`
-(Ve République et rattachements) ;
+(Ve République et rattachements ; le jeu de données de data.gouv.fr, arrêté au gouvernement Bayrou, laisse ses
+fonctions sans fin : elles sont closes la veille de l'entrée en fonction du Premier ministre suivant, comme dans
+l'open data de l'Assemblée, sans quoi ses membres passaient pour « en exercice ») ;
 7. `quatre_vingts.py`, `doyens.py`, `presidences.py`, `presidences_senat.py`, `distinctions.py` ;
 8. `cartes.py` (version finale : score, rareté par époque, bonus des élus en exercice) ;
 9. `portraits.py` (libellé français, sinon le libellé commun « mul » que Wikidata utilise désormais pour beaucoup de
