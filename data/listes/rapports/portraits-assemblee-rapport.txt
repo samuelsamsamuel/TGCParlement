@@ -1,0 +1,18 @@
+Photos officielles de l'Assemblée : 187 en tout ; sondées cette fois : 198, trouvées 187, sans photo 11, erreurs à refaire 0 ; députés de l'open data sans carte unique : 34
+
+Fichier lu : https://data.assemblee-nationale.fr/static/openData/repository/17/amo/tous_acteurs_mandats_organes_xi_legislature/AMO30_tous_acteurs_tous_mandats_tous_organes_historique.json.zip (13716205 octets, essai 1)
+https://data.assemblee-nationale.fr/static/openData/repository/18/amo/deputes_senateurs_ministres_legislature/AMO20_dep_sen_min_tous_mandats_et_organes.json.zip : HTTP Error 404: Not Found
+Fichier lu : https://data.assemblee-nationale.fr/static/openData/repository/17/amo/deputes_senateurs_ministres_legislature/AMO20_dep_sen_min_tous_mandats_et_organes.json.zip (2662733 octets, essai 1)
+
+Sans photo :
+18313	Emmanuelle Ajon	PA341924	législatures 13
+18316	Patrice François	PA342364	législatures 13
+18311	André Rouxel	PA343174	législatures 13
+18315	Joëlle Borowski	PA343610	législatures 13
+19452	Catherine Pen	PA347627	législatures 14
+19478	Esther Baron	PA642651	législatures 14
+19477	Claire Mallejac	PA642741	législatures 14
+19476	Jean-Louis Rousselin	PA642963	législatures 14
+19543	Sébastien David	PA718998	législatures 15
+19542	Bernadette Beauvais	PA721640	législatures 15
+20048	Stéphane Chouin	PA841347	législatures 17
