@@ -8,7 +8,8 @@ Wikipédia sont déjà lus ; il reste les fichiers de Commons dont les données 
 jamais par le nom. C'est le même critère que portraits_wikipedia.py, appliqué à tous les fichiers de Commons.
 
 Ne sont retenus que les fichiers dont la fiche ne dépeint que cette personne (pas de photo de groupe, de tombe ou de
-scène portant aussi d'autres éléments), au format photo (JPEG, PNG, WebP), dont le nom ne contient aucun mot de
+scène portant aussi d'autres éléments), dont le nom contient un mot du nom de famille (premier passage, octobre
+2026 : « FRAC069266 1K3 Guignol.jpg » déclaré représenter Lazare Goujon), au format photo (JPEG, PNG, WebP), dont le nom ne contient aucun mot de
 EXCLUS (portraits_wikipedia.py). S'il en reste plusieurs, le premier nom de fichier contenant « portrait », sinon
 l'ordre alphabétique : le choix est stable d'une exécution à l'autre. Les fichiers retenus et écartés sont listés
 dans le rapport, avec la raison. Une recherche Commons qui échoue garde les portraits déjà trouvés.
@@ -31,6 +32,7 @@ import urllib.parse
 import urllib.request
 
 sys.path.insert(0, os.path.dirname(__file__))
+from cartes import nom_famille_sycomore  # noqa: E402
 from portraits_wikipedia import EXCLUS, FORMATS, REQUETES, SPARQL, lire, sans_accents  # noqa: E402
 
 COMMONS = "https://commons.wikimedia.org/w/api.php"
@@ -97,7 +99,12 @@ def depeints_par_fichier(qids):
     return resultat
 
 
-def raison(fichier, element, representes):
+def mots_famille(nom):
+    """Mots distinctifs du nom de famille : « Christian Lunet de La Malène » -> {lunet, malene}."""
+    return {m for m in re.split(r"[^a-z]+", sans_accents(nom_famille_sycomore(nom))) if len(m) > 2} - {"des", "les"}
+
+
+def raison(fichier, element, representes, famille):
     """Raison d'écarter le fichier, ou None s'il est retenu."""
     if not fichier.lower().endswith(FORMATS):
         return "format"
@@ -105,6 +112,8 @@ def raison(fichier, element, representes):
         return "nom de fichier"
     if representes != {element}:
         return f"dépeint aussi {len(representes - {element})} autre(s) élément(s)"
+    if not famille & set(re.split(r"[^a-z]+", sans_accents(fichier))):
+        return "nom de famille absent du nom de fichier"
     return None
 
 
@@ -120,6 +129,7 @@ def main():
     except RuntimeError as e:
         print(f"{e} : portraits précédents gardés")
         return
+    noms = {str(c["id"]): c["nom"] for c in cartes}
     par_element = {}
     for ident, q in liens.items():
         par_element.setdefault(q, []).append(ident)
@@ -146,7 +156,8 @@ def main():
             for fichier, representes in sorted(fichiers.items()):
                 if q not in representes:
                     continue
-                r = raison(fichier, q, representes)
+                famille = set().union(*(mots_famille(noms.get(i, "")) for i in par_element[q]))
+                r = raison(fichier, q, representes, famille)
                 if r:
                     ecartes.append(f"{q}\t{fichier}\t{r}")
                 else:
@@ -160,7 +171,6 @@ def main():
         json.dump(retenus, f, ensure_ascii=False, indent=0, sort_keys=True)
     with open(SONDES, "w", encoding="utf-8") as f:
         json.dump(sondes, f, ensure_ascii=False, indent=0, sort_keys=True)
-    noms = {str(c["id"]): c["nom"] for c in cartes}
     lignes = [f"Portraits Commons : {len(retenus)} cartes, sur {len(liens)} cartes sans portrait rattachées à Wikidata par "
               f"identifiant officiel ({len(sans)} cartes sans portrait en tout) ; éléments sondés cette fois : "
               f"{sum(1 for v in sondes.values() if v == aujourdhui)}, restant à sonder ou en erreur : {non_sondes}",

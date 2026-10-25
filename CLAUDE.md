@@ -41,14 +41,18 @@ l'open data de l'Assemblée, sans quoi ses membres passaient pour « en exercice
 personnes ; membres du Gouvernement sans mandat : libellé ou autre nom, homonymes départagés par les dates de vie
 et de fonction puis par la nationalité française ; image déjà retenue gardée tant qu'elle reste valable ; garde : une réponse de Wikidata très inférieure à la précédente n'écrase rien),
 `portraits_sycomore.py` (portraits officiels de Sycomore pour les députés sans portrait
-Wikidata, sondés par reprise, 20 minutes par exécution), `portraits_senat.py` (photos officielles des anciens
-sénateurs sur senat.fr, adresse reconstruite avec le matricule et vérifiée), `portraits_wikipedia.py` (image principale libre de
+Wikidata, sondés par reprise, 20 minutes par exécution), `portraits_assemblee.py` (photos officielles des députés
+depuis la XIe législature, `static/tribun/<législature>/photos/<numéro PA>.jpg`, rattachement de `gouvernements_an.py` ;
+187 photos à la première exécution, octobre 2026), `portraits_senat.py` (photos officielles des anciens
+sénateurs sur senat.fr, adresse reconstruite avec le matricule et vérifiée ; aussi pour les cartes Sycomore des
+sénateurs qui ont été députés, par `correspondances.json`), `portraits_wikipedia.py` (image principale libre de
 l'article Wikipédia rattaché par P1045 ou P1808, pour les cartes sans autre portrait ; décision de l'utilisateur,
 octobre 2026 ; seulement si la fiche Commons dit représenter la personne (P180), plus un filtre de mots ; une seule
 image retenue à la deuxième exécution sur 550 images principales libres, le reste étant tombes, armoiries, pages de titre ; rapport des
 retenus et écartés), `portraits_commons.py` (fichiers de Commons qui ne dépeignent que la personne, recherche
 `haswbstatement:P180=…` par lots de 16, reprise de 10 minutes par exécution, jamais sondés d'abord, dates dans
-`data/portraits_commons_sondes.json`), `villes_circonscriptions.py`, `export_jeu.py` (écrit
+`data/portraits_commons_sondes.json` ; nom de famille exigé dans le nom de fichier ; premier passage complet : 35
+personnes sur 6 761 ont un fichier qui les dépeint, 2 portraits retenus), `villes_circonscriptions.py`, `export_jeu.py` (écrit
 `site/jeu.json`), puis
 `node scripts/catalogue_serveur.js` (écrit `site/serveur.json`).
 
@@ -206,7 +210,11 @@ serveur), filtre « Mes favoris » dans l'Hémicycle. Pas de zoom au double touc
    (article 1-1 de la loi du 21 juin 2004, texte officiel non consulté, Légifrance refusant les requêtes
    automatiques), ce qui suppose que Cloudflare connaisse son identité. Écarté pour l'instant : adresse
    e-mail vérifiée (récupération du mot de passe, frein aux comptes multiples).
-2. Lacunes connues, faute de source officielle structurée : sénateurs de la IIIe République et du Conseil
+2. Portraits : 6 600 cartes sans portrait, surtout avant 1870 (un tiers de couverture pour la Révolution et les
+   monarchies constitutionnelles) ; Wikidata, Sycomore, Sénat, Assemblée, Wikipédia et Commons (P180) épuisés.
+   Piste non retenue : catégorie Commons de la personne (Wikidata P373), 396 cartes sans portrait, surtout des
+   signatures numérisées des Archives nationales.
+3. Lacunes connues, faute de source officielle structurée : sénateurs de la IIIe République et du Conseil
    de la République (1946-1948), gouvernements antérieurs à 1944, villes des circonscriptions avant 2012,
    fonctions au sein de l'Assemblée avant juin 2002 (seuls les comptes rendus de séance en PDF les portent ;
    leur lecture lèverait la règle de symétrie).

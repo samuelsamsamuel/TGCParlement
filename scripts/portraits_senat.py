@@ -5,7 +5,8 @@ Source officielle : www.senat.fr/senimg/<nom>_<prénom><matricule>_carre.jpg, la
 L'API du Sénat ne donne l'adresse (urlAvatar) que pour les sénateurs en fonction (scripts/senateurs.py) ; pour les
 anciens, l'adresse est reconstruite à partir du nom de famille, du prénom et du matricule de l'open data
 (data/senat/senateurs.json), puis vérifiée par une requête HEAD (statut 200, type image/*). Le matricule figure dans
-l'adresse : aucun risque de confusion entre homonymes.
+l'adresse : aucun risque de confusion entre homonymes. Un sénateur qui a aussi été député a sa carte Sycomore
+(data/senat/correspondances.json, matricule -> carte) : sa photo du Sénat lui revient si Sycomore n'en a pas.
 
 Mesure préalable (octobre 2026) : 939 cartes de sénateurs sans portrait ; sur un échantillon de 60, 59 photos
 trouvées avec la règle de nom ci-dessous (une adresse inconnue renvoie 404).
@@ -74,15 +75,17 @@ def main():
     cartes = {str(c["id"]) for c in lire(os.path.join("data", "cartes.json"), [])}
     wikidata = lire(os.path.join("data", "portraits.json"), {})
     resultats = lire(SORTIE, {})
-    a_sonder = [s for s in senateurs if not s.get("photo")
-                and ("S" + s["matricule"].upper()) in cartes and ("S" + s["matricule"].upper()) not in wikidata
-                and ("S" + s["matricule"].upper()) not in resultats]
+    correspondances = lire(os.path.join("data", "senat", "correspondances.json"), {})
+    sycomore = {k for k, v in lire(os.path.join("data", "portraits_sycomore.json"), {}).items() if v}
+    carte = lambda s: str(correspondances.get(s["matricule"].upper(), "S" + s["matricule"].upper()))
+    a_sonder = [s for s in senateurs if not s.get("photo") and carte(s) in cartes and carte(s) not in wikidata
+                and carte(s) not in sycomore and carte(s) not in resultats]
     trouves, absents, erreurs, debut = 0, [], 0, time.monotonic()
     for s in a_sonder:
         if time.monotonic() - debut > BUDGET:
             erreurs += 1
             continue
-        ident, reponse = "S" + s["matricule"].upper(), None
+        ident, reponse = carte(s), None
         for url in adresses(s):
             r = existe(url)
             time.sleep(DELAI)
