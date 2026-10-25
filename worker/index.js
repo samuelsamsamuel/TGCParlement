@@ -236,8 +236,10 @@ const noterJournal = (env, joueur, operation, detail) => env.DB.prepare(
 // Applique une opération des règles à l'état du joueur, puis écrit les seules variations, sous contraintes
 // La version du joueur, lue avec l'état, doit être inchangée au moment d'écrire : sinon une autre opération est
 // passée entre-temps (deux paquets ouverts à la même seconde, par exemple), la garde échoue et rien n'est écrit.
+// L'état écrit est gardé pour la réponse (env.etatEcrit) : la renvoyer ne demande pas de relire la collection,
+// ce qui divise par deux les lignes lues en base à chaque opération (D1 facture les lignes lues).
 async function appliquer(env, joueur, operation) {
-  const {etat: avant, version} = await chargerEtat(env, joueur);
+  const lu = await chargerEtat(env, joueur), {etat: avant, version} = lu;
   const apres = structuredClone(avant);
   const resultat = operation(apres);
   const requetes = [
@@ -258,6 +260,10 @@ async function appliquer(env, joueur, operation) {
     requetes.push(env.DB.prepare("INSERT INTO reclames (joueur, cle, date) VALUES (?, ?, ?)").bind(joueur, cle, apres.objectifs[cle]));
   for (const [, op, detail] of apres.journal.slice(avant.journal.length)) requetes.push(noterJournal(env, joueur, op, detail));
   if (requetes.length > 2) await lot(env, requetes);
+  // Même forme que chargerEtat : exemplaires à zéro retirés, vingt dernières lignes du journal
+  for (const id of Object.keys(apres.possedees)) if (!apres.possedees[id]) delete apres.possedees[id];
+  apres.journal = apres.journal.slice(-20);
+  env.etatEcrit = {...lu, etat: requetes.length > 2 ? apres : avant, version: requetes.length > 2 ? version + 1 : version};
   return resultat;
 }
 
@@ -735,7 +741,7 @@ async function api(requete, env, url) {
   if (methode === "GET" && (p = chemin.match(/^\/api\/profil\/([^/]+)$/))) return profil(env, decodeURIComponent(p[1]));
   if (methode === "GET" && chemin === "/api/moi") return json(joueur ? {connecte: true, ...(await chargerEtat(env, joueur))} : {connecte: false});
   if (!joueur) throw new Refus(401, "Connectez-vous pour continuer.");
-  const avecEtat = async resultat => json({resultat, ...(await chargerEtat(env, joueur))});
+  const avecEtat = async resultat => json({resultat, ...(env.etatEcrit || await chargerEtat(env, joueur))});
   if (methode === "POST" && chemin === "/api/paquet") {
     const cat = await catalogueDuJeu();
     const r = await appliquer(env, joueur, e => Regles.ouvrirPaquet(e, cat, {maintenant: Date.now(), aleatoire}));
@@ -802,10 +808,28 @@ async function api(requete, env, url) {
   throw new Refus(404, "Adresse inconnue.");
 }
 
+// Mesure des lignes lues en base (D1 facture les lignes lues), seulement en local : wrangler dev --var
+// MESURE_LECTURES:1 ; le total de la requête est renvoyé dans l'en-tête x-lignes-lues
+function compterLectures(db, total) {
+  const lues = r => { total.n += (r && r.meta && r.meta.rows_read) || 0; return r; };
+  const enrober = brut => new Proxy(brut, {get(t, k) {
+    if (k === "brut") return t;
+    if (k === "bind") return (...a) => enrober(t.bind(...a));
+    if (k === "all" || k === "run") return async () => lues(await t[k]());
+    if (k === "first") return async col => { const r = lues(await t.all()), ligne = r.results[0]; return ligne ? (col ? ligne[col] : ligne) : null; };
+    const v = t[k]; return typeof v === "function" ? v.bind(t) : v;
+  }});
+  return {prepare: sql => enrober(db.prepare(sql)), batch: async l => (await db.batch(l.map(x => x.brut || x))).map(lues)};
+}
 export default {
   async fetch(requete, env, ctx) {
     const url = new URL(requete.url);
     if (!url.pathname.startsWith("/api/")) return env.ASSETS.fetch(requete);
+    if (env.MESURE_LECTURES) {
+      const total = {n: 0}, monde = Object.assign(Object.create(env), {ctx, DB: compterLectures(env.DB, total)});
+      const r = await api(requete, monde, url).catch(e => e instanceof Refus ? json({erreur: e.message}, e.statut) : Promise.reject(e));
+      const copie = new Response(r.body, r); copie.headers.set("x-lignes-lues", String(total.n)); return copie;
+    }
     // Le contexte suit l'environnement, pour les envois en arrière-plan (notifications)
     try { return await api(requete, Object.assign(Object.create(env), {ctx}), url); }
     catch (e) {

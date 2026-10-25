@@ -782,7 +782,9 @@ async function majAttente(){
   ps.hidden = !a.duels; ps.textContent = a.duels;
   pb.hidden = !a.echanges; pb.textContent = a.echanges;
 }
-setInterval(majAttente, 120000);
+// Seulement quand la page est visible (chaque appel compte dans les limites gratuites du serveur), et aussitôt revenue
+setInterval(() => { if (!document.hidden) majAttente(); }, 120000);
+document.addEventListener("visibilitychange", () => { if (!document.hidden) majAttente(); });
 // La réserve se remplit d'elle-même : compteur tenu à jour, et paquet affiché dès qu'il arrive si la scène attend
 setInterval(() => {
   if (!cat) return;
