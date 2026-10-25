@@ -31,7 +31,9 @@ Sénat, lu dans l'export complet `export_sens.zip`, tables `bur` et `senbur`) ; 
 (Ve République et rattachements) ;
 7. `quatre_vingts.py`, `doyens.py`, `presidences.py`, `presidences_senat.py`, `distinctions.py` ;
 8. `cartes.py` (version finale : score, rareté par époque, bonus des élus en exercice) ;
-9. `portraits.py`, `portraits_sycomore.py` (portraits officiels de Sycomore pour les députés sans portrait
+9. `portraits.py` (membres du Gouvernement sans mandat : libellé ou autre nom, homonymes départagés par les dates
+de vie et de fonction ; garde : une réponse de Wikidata très inférieure à la précédente n'écrase rien),
+`portraits_sycomore.py` (portraits officiels de Sycomore pour les députés sans portrait
 Wikidata, sondés par reprise, 20 minutes par exécution), `portraits_senat.py` (photos officielles des anciens
 sénateurs sur senat.fr, adresse reconstruite avec le matricule et vérifiée), `portraits_wikipedia.py` (image principale libre de
 l'article Wikipédia rattaché par P1045 ou P1808, pour les cartes sans autre portrait ; décision de l'utilisateur,
