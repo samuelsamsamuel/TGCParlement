@@ -29,14 +29,14 @@ Distinctions calculées :
 Scores (grille équilibrée) : maximum 146.3 ; 10e 102.6 ; 100e 64.6 ; 1000e 31.0 ; médiane 7.4
 Cartes à égalité au score maximal : 1 ; scores distincts parmi les 100 premières : 82
 
-Cartes en exercice : 917
+Cartes en exercice : 906
 Cartes par époque : Libération et IVe République 1274, Ve République 5776, IIIe République 4622, Monarchies constitutionnelles 2484, IIe République et Second Empire 1549, Révolution et Empire 3930, None 181
 
 Répartition des raretés :
   mythique : 95
-  legendaire : 441
-  epique : 1088
-  rare : 2536
+  legendaire : 437
+  epique : 1090
+  rare : 2538
   peu-commune : 6213
   commune : 9262
   hors-categorie : 181
