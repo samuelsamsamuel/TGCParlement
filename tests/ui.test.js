@@ -74,6 +74,11 @@ const T = process.argv[2] || require("os").tmpdir();
   await page.click("[data-dissoudre]");
   await page.waitForFunction(id => etat.possedees[id] === 1, dbl);
   await page.click("#fermer-apercu");
+  // Vue des doubles : seules les cartes en plusieurs exemplaires, puis retour à toute la collection
+  await page.click("#voir-doubles"); assert.strictEqual(await page.inputValue("#filtre"), "doubles");
+  const vues = await page.evaluate(() => [...document.querySelectorAll("#grille .carte")].map(c => etat.possedees[c.dataset.id]));
+  assert.ok(vues.length > 0 && vues.every(n => n > 1), "seulement des doubles : " + vues.join(","));
+  await page.click("#voir-doubles"); assert.strictEqual(await page.inputValue("#filtre"), "");
   const libelle = await page.textContent("#recycler");
   page.once("dialog", d => d.accept());
   await page.screenshot({path: T + "/collection-desktop.png", fullPage: false});
@@ -81,8 +86,10 @@ const T = process.argv[2] || require("os").tmpdir();
   await page.waitForFunction(() => /dissous/.test(document.querySelector(".annonce").textContent));
   const e2 = await page.evaluate(() => JSON.parse(localStorage.getItem("hemicycle-collection")));
   console.log("bouton :", libelle.trim(), "| points :", e2.points);
-  assert.ok(e2.points >= 30); assert.ok(await page.isVisible("#echanger-col"));
-  await page.click("#echanger-col");
+  // L'échange de voix contre un paquet n'est pas proposé dans l'Hémicycle, mais dans l'encart des voix
+  assert.ok(e2.points >= 30); assert.match(await page.textContent("#atelier"), /^(?![\s\S]*contre un paquet)/);
+  await page.click("#voix-tete"); await page.click("#voix-paquet");
+  await page.waitForFunction(() => JSON.parse(localStorage.getItem("hemicycle-collection")).offerts === 1);
   const e3 = await page.evaluate(() => JSON.parse(localStorage.getItem("hemicycle-collection")));
   assert.strictEqual(e3.offerts, 1); assert.strictEqual(e3.points, e2.points - 25);
   // Objectifs : réclamer les paliers des Quatre-vingts

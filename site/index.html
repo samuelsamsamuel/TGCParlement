@@ -572,7 +572,7 @@ html.presentation{font-size:15px}
     <div class="atelier" id="atelier"></div>
     <div class="outils">
       <input id="recherche" type="search" aria-label="Rechercher dans mon hémicycle" placeholder="Rechercher un nom, un département, un ministère">
-      <select id="filtre" aria-label="Filtrer"><option value="">Toutes les cartes</option><option value="favoris">★ Mes favoris</option></select>
+      <select id="filtre" aria-label="Filtrer"><option value="">Toutes les cartes</option><option value="favoris">★ Mes favoris</option><option value="doubles">Mes doubles</option></select>
       <select id="tri" aria-label="Trier"><option value="rarete">Par rareté</option><option value="score">Par score</option><option value="nom">Par nom</option><option value="annee">Par date</option></select>
     </div>
     <div class="grille" id="grille"></div>
@@ -923,15 +923,16 @@ function majAtelier(){
   const total = Object.values(dbl).reduce((a,r) => a+r.exemplaires, 0);
   const choisis = [...recyclageChoisi].filter(r => dbl[r]);
   const points = choisis.reduce((a,r) => a+dbl[r].points, 0), exemplaires = choisis.reduce((a,r) => a+dbl[r].exemplaires, 0);
-  const echangeables = Math.floor(etat.points / PRIX_PAQUET);
   const verrouilles = Object.values(etat.verrous || {}).reduce((a,n) => a+n, 0);
-  atelier.classList.toggle("calme", !total && !echangeables && !annonceRecyclage);
-  if (!total && !echangeables && !annonceRecyclage) { atelier.innerHTML = "Aucun double à dissoudre."; return; }
+  // L'échange de voix contre un paquet se fait dans la Séance et dans l'encart des voix, pas ici
+  atelier.classList.toggle("calme", !total && !annonceRecyclage);
+  if (!total && !annonceRecyclage) { atelier.innerHTML = "Aucun double à dissoudre."; return; }
+  const voirDoubles = document.getElementById("filtre").value === "doubles";
   atelier.innerHTML = `<div class="ligne"><p>${total ? `<b>${pluriel(total, "double")}</b> à dissoudre.` : "Aucun double à dissoudre pour l'instant."} ${etat.points ? `Voix : <b>${etat.points.toLocaleString("fr-FR")}</b>.` : ""}${verrouilles ? ` ${pluriel(verrouilles, "exemplaire", "exemplaires")} au comptoir.` : ""}</p>
-      <div class="boutons">${echangeables ? `<button class="bouton" id="echanger-col">Échanger ${PRIX_PAQUET} voix contre un paquet</button>` : ""}</div></div>
+      <div class="boutons">${total ? `<button class="bouton discret" id="voir-doubles" aria-pressed="${voirDoubles}">${voirDoubles ? "Toutes mes cartes" : "Voir mes doubles"}</button>` : ""}</div></div>
     ${total ? `<ul class="choix">${ORDRE.filter(r => dbl[r]).map(r => `<li><label><input type="checkbox" value="${r}" ${recyclageChoisi.has(r)?"checked":""}> ${LIBELLES[r]} : ${pluriel(dbl[r].exemplaires, "double")}, ${pluriel(dbl[r].points, "voix", "voix")}</label></li>`).join("")}</ul>
       <div class="boutons"><button class="bouton discret" id="recycler" ${exemplaires?"":"disabled"}>${exemplaires ? `Dissoudre ${pluriel(exemplaires, "double")} contre ${pluriel(points, "voix", "voix")}` : "Cochez une rareté à dissoudre"}</button></div>
-      <p class="aide">Le premier exemplaire de chaque carte est toujours gardé. ${PRIX_PAQUET} voix donnent un paquet offert.</p>` : ""}
+      <p class="aide">Le premier exemplaire de chaque carte est toujours gardé.</p>` : ""}
     <p class="annonce" aria-live="polite">${annonceRecyclage}</p>`;
   atelier.querySelectorAll("input[type=checkbox]").forEach(i => i.addEventListener("change", () => {
     i.checked ? recyclageChoisi.add(i.value) : recyclageChoisi.delete(i.value); annonceRecyclage = ""; majAtelier();
@@ -944,11 +945,11 @@ function majAtelier(){
       majTout(); afficherPaquet();
     });
   });
-  document.getElementById("echanger-col")?.addEventListener("click", e => occupe(e.target, async () => {
-    if (!(await actions.echangerPoints())) return;
-    annonceRecyclage = "Un paquet offert vous attend dans l'onglet Séance.";
-    majTout(); afficherPaquet();
-  }));
+  document.getElementById("voir-doubles")?.addEventListener("click", () => {
+    document.getElementById("filtre").value = voirDoubles ? "" : "doubles";
+    majCollection();
+    if (!voirDoubles) document.getElementById("progression").scrollIntoView({behavior: "smooth", block: "start"});
+  });
 }
 
 /* ---------- Objectifs ---------- */
@@ -1867,19 +1868,21 @@ document.getElementById("cat-plus").addEventListener("click", () => { catalogueM
 function majCollection(){
   if (cat) majAtelier();
   const possedees = cartes.filter(c => etat.possedees[c.id]);
-  // Pastilles : chacune filtre l'hémicycle (favoris, une rareté) ; un second toucher retire le filtre
+  const enDouble = possedees.filter(c => etat.possedees[c.id] > 1).length;
+  // Pastilles : chacune filtre l'hémicycle (favoris, doubles, une rareté) ; un second toucher retire le filtre
   const f = document.getElementById("filtre").value, tri = document.getElementById("tri").value;
   const pastille = (valeur, contenu) => `<li${valeur === "" ? ' class="total"' : ""}><button data-pastille="${valeur}" aria-pressed="${valeur !== "" && f === valeur}">${contenu}</button></li>`;
   document.getElementById("progression").innerHTML = pastille("", `<strong>${possedees.length.toLocaleString("fr-FR")}</strong> cartes sur ${cartes.length.toLocaleString("fr-FR")}`) +
     pastille("favoris", `<strong>★ ${(etat.favoris || []).length}</strong> favoris`) +
+    (enDouble || f === "doubles" ? pastille("doubles", `<strong>${enDouble.toLocaleString("fr-FR")}</strong> en double`) : "") +
     ORDRE.slice().reverse().filter(r => parRarete[r]?.length).map(r => pastille(r, `${LIBELLES[r]} <strong>${possedees.filter(c=>c.rarete===r).length}</strong>/${parRarete[r].length.toLocaleString("fr-FR")}`)).join("");
   const q = document.getElementById("recherche").value.trim().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");
-  const liste = possedees.filter(c => (!f || c.rarete===f || (f==="actuel" && c.actuel) || (f==="favoris" && estFavori(c.id))) && (!q || c.cherche.includes(q)))
+  const liste = possedees.filter(c => (!f || c.rarete===f || (f==="actuel" && c.actuel) || (f==="favoris" && estFavori(c.id)) || (f==="doubles" && etat.possedees[c.id] > 1)) && (!q || c.cherche.includes(q)))
     .sort(tri==="nom" ? (a,b)=>a.nom.localeCompare(b.nom,"fr") : tri==="annee" ? (a,b)=>(a.debut||0)-(b.debut||0)
       : tri==="rarete" ? (a,b)=>ORDRE.indexOf(b.rarete)-ORDRE.indexOf(a.rarete) || b.score-a.score : (a,b)=>b.score-a.score);
   const grille = document.getElementById("grille");
   grille.innerHTML = liste.length ? liste.slice(0,200).map(c => htmlCarte(c)).join("")
-    : `<p class="vide">${f === "favoris" && !q ? "Aucun favori pour l'instant : touchez l'étoile d'une carte pour l'ajouter." : possedees.length ? "Aucune carte de votre collection ne correspond à cette recherche." : "Votre collection est vide. Ouvrez un paquet pour obtenir vos premières cartes."}</p>`;
+    : `<p class="vide">${f === "favoris" && !q ? "Aucun favori pour l'instant : touchez l'étoile d'une carte pour l'ajouter." : f === "doubles" && !q ? "Aucune carte en double pour l'instant." : possedees.length ? "Aucune carte de votre collection ne correspond à cette recherche." : "Votre collection est vide. Ouvrez un paquet pour obtenir vos premières cartes."}</p>`;
   if (liste.length > 200) grille.insertAdjacentHTML("beforeend", `<p class="vide">${liste.length-200} autres cartes : affinez la recherche pour les afficher.</p>`);
 }
 // Toucher une carte de l'hémicycle ou du catalogue l'ouvre en grand ; dans le récapitulatif d'un paquet, la
@@ -1946,6 +1949,21 @@ fetch("jeu.json").then(r => { if (!r.ok) throw new Error(r.status); return r.jso
 }).catch(e => { console.error(e); document.getElementById("restants").textContent = "Les cartes n'ont pas pu être chargées. Vérifiez que le fichier jeu.json est publié à côté de cette page, puis rechargez."; });
 // Application installable : le service de travail garde le site et les cartes pour les visites suivantes
 if ("serviceWorker" in navigator) navigator.serviceWorker.register("sw.js").catch(() => {});
+// Mise à jour : l'application installée reste en mémoire sans se recharger (iPhone surtout). Au retour au premier
+// plan, au plus toutes les dix minutes, la page en ligne est comparée à celle du démarrage ; si elle a changé,
+// rechargement, sauf pendant la découverte d'un paquet, la visite guidée ou une saisie
+const empreintePage = () => fetch("./", {cache: "no-store"}).then(r => r.ok ? r.text() : null)
+  .then(t => t && crypto.subtle.digest("SHA-256", new TextEncoder().encode(t))).then(h => h && [...new Uint8Array(h)].join(".")).catch(() => null);
+let empreinteDepart = null, dernierControle = Date.now();
+setTimeout(() => empreintePage().then(h => { empreinteDepart = h; }), 5000);
+document.addEventListener("visibilitychange", async () => {
+  if (document.hidden || !empreinteDepart || Date.now() - dernierControle < 600000) return;
+  dernierControle = Date.now();
+  const h = await empreintePage();
+  const enCours = document.getElementById("courante") || document.documentElement.classList.contains("presentation")
+    || document.querySelector("dialog[open]") || ["INPUT", "TEXTAREA", "SELECT"].includes(document.activeElement?.tagName);
+  if (h && h !== empreinteDepart && !enCours) location.reload();
+});
 </script>
 </body>
 </html>
