@@ -2,7 +2,7 @@
 // Publié par Cloudflare Workers Builds à chaque commit sur main (commande « npx wrangler deploy »).
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "tgcparlement",
+  "name": "jeu",
   "main": "worker/index.js",
   "compatibility_date": "2026-09-01",
   "assets": {

@@ -3,7 +3,8 @@
 Jeu de cartes à collectionner sur les parlementaires français depuis 1789 (« Hémicycle »).
 Site dans `site/` (HTML et JavaScript natifs, sans compilation) : `index.html` (interface), `regles.js` (règles
 du jeu), `jeu.json` (cartes, écrit par `export_jeu.py`), `serveur.json` (catalogue réduit du serveur, écrit par
-`scripts/catalogue_serveur.js`). Publié par Cloudflare Workers Builds à chaque commit sur main : le Worker
+`scripts/catalogue_serveur.js`). Publié par Cloudflare Workers Builds à chaque commit sur main, à l'adresse
+https://jeu.hemicycle.workers.dev (Worker « jeu », sous-domaine de compte « hemicycle », octobre 2026) : le Worker
 `worker/index.js` (configuration `wrangler.jsonc`) sert le site et l'API `/api/`, avec la base D1 « hemicycle ».
 Données construites par les scripts Python de `scripts/` (bibliothèque standard uniquement), lancés par
 le workflow `.github/workflows/listes.yml` (« Listes fermées et cartes »), chaque nuit à 2 h 41 UTC ou à la main, une
