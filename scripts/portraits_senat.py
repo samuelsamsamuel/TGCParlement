@@ -10,6 +10,8 @@ l'adresse : aucun risque de confusion entre homonymes.
 Mesure préalable (octobre 2026) : 939 cartes de sénateurs sans portrait ; sur un échantillon de 60, 59 photos
 trouvées avec la règle de nom ci-dessous (une adresse inconnue renvoie 404).
 
+Durée : BUDGET_MINUTES (5 par défaut) ; deux tentatives de 15 secondes par adresse.
+
 Sorties : data/portraits_senat.json ({identifiant de carte: adresse de la photo}),
 data/listes/rapports/portraits-senat-rapport.txt
 """
@@ -25,6 +27,9 @@ SORTIE = os.path.join("data", "portraits_senat.json")
 RAPPORT = os.path.join("data", "listes", "rapports", "portraits-senat-rapport.txt")
 UA = "TGCParlement/1.0 (portraits ; contact : " + os.environ.get("CONTACT", "non renseigné") + ")"
 DELAI = float(os.environ.get("DELAI", "0.3"))
+# Limite de durée par exécution : le site du Sénat peut répondre lentement aux machines du workflow ; ce qui n'a pas
+# été sondé l'est à l'exécution suivante (les photos déjà trouvées sont gardées)
+BUDGET = float(os.environ.get("BUDGET_MINUTES", "5")) * 60
 
 
 def lire(chemin, defaut):
@@ -51,10 +56,10 @@ def adresses(s):
 
 def existe(url):
     req = urllib.request.Request(url, method="HEAD", headers={"User-Agent": UA})
-    for attente in (0, 5, 20):
+    for attente in (0, 5):
         time.sleep(attente)
         try:
-            with urllib.request.urlopen(req, timeout=30) as r:
+            with urllib.request.urlopen(req, timeout=15) as r:
                 return r.status == 200 and r.headers.get("content-type", "").startswith("image/")
         except urllib.error.HTTPError as e:
             if e.code in (403, 404, 410):
@@ -72,8 +77,11 @@ def main():
     a_sonder = [s for s in senateurs if not s.get("photo")
                 and ("S" + s["matricule"].upper()) in cartes and ("S" + s["matricule"].upper()) not in wikidata
                 and ("S" + s["matricule"].upper()) not in resultats]
-    trouves, absents, erreurs = 0, [], 0
+    trouves, absents, erreurs, debut = 0, [], 0, time.monotonic()
     for s in a_sonder:
+        if time.monotonic() - debut > BUDGET:
+            erreurs += 1
+            continue
         ident, reponse = "S" + s["matricule"].upper(), None
         for url in adresses(s):
             r = existe(url)
