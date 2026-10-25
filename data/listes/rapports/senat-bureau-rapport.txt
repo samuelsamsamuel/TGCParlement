@@ -1,4 +1,4 @@
-Archive https://data.senat.fr/data/senateurs/export_sens.zip : 8544202 octets ; export_sens.sql (60011397 octets, 2026-10-24)
+Archive https://data.senat.fr/data/senateurs/export_sens.zip : 8548865 octets ; export_sens.sql (60012874 octets, 2026-10-25)
 
 # 95 tables
   activite                     42935 lignes  Table des activités des Sénateurs faisant l'objet d'un relevé de présences
@@ -37,7 +37,7 @@ Archive https://data.senat.fr/data/senateurs/export_sens.zip : 8544202 octets ; 
   fonmemcom                    21213 lignes  Fonctions des membres de Commission
   fonmemdelega                  3753 lignes  Fonctions des membres de délégation
   fonmemgrppol                  3747 lignes  Fonctions des membres de groupe politique
-  fonmemgrpsen                 39630 lignes  Fonction d'un membre d'un groupe sénatorial
+  fonmemgrpsen                 39639 lignes  Fonction d'un membre d'un groupe sénatorial
   fonmemorg                       17 lignes  Fonctions membres d'organisme
   fonorg                          15 lignes  Fonctions dans les organismes
   grppol                          29 lignes  Groupes Politiques
@@ -53,7 +53,7 @@ Archive https://data.senat.fr/data/senateurs/export_sens.zip : 8544202 octets ; 
   memdelega                     2747 lignes  Membres de délégation
   memextpar                     4533 lignes  Membre organisme extra-parlementaire
   memgrppol                     3585 lignes  Membres de groupe politique
-  memgrpsen                    32361 lignes  Membre groupe sénatorial
+  memgrpsen                    32370 lignes  Membre groupe sénatorial
   memorg                          17 lignes  Membres d'organisme
   minind                         396 lignes  Ministre
   mismin                          40 lignes  Missions et Ministères
