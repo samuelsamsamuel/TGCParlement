@@ -1,0 +1,70 @@
+name: Tests
+
+# À chaque modification proposée ou fusionnée : règles du jeu, API contre un Worker local (base D1 locale, sans
+# compte Cloudflare) et parcours dans un vrai navigateur ; dans le quota gratuit de GitHub Actions, rien n'est publié.
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: tests-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  regles:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Règles du jeu
+        run: node tests/regles.test.js
+
+  api-et-interface:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      WR: npx wrangler
+      ETAT: /tmp/hemicycle-d1
+      WRANGLER_SEND_METRICS: "false"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Outils de test (versions fixées)
+        run: |
+          npm install --no-save --no-audit --no-fund wrangler@4.152.0 playwright@1.63.0
+          npx playwright install --with-deps chromium
+      - name: Site statique et Worker local
+        run: |
+          (cd site && python3 -m http.server 8765 > /tmp/site.log 2>&1 &)
+          (npx wrangler dev --port 8787 --persist-to "$ETAT" > /tmp/wrangler.log 2>&1 &)
+          for i in $(seq 1 90); do curl -s localhost:8787/api/moi > /dev/null && curl -s localhost:8765/ > /dev/null && exit 0; sleep 2; done
+          cat /tmp/wrangler.log; exit 1
+      - name: API
+        run: node tests/api.test.js
+      - name: Parcours sans compte
+        run: node tests/ui.test.js /tmp/captures
+      - name: Parcours avec comptes
+        run: node tests/ui-compte.test.js /tmp/captures
+      - name: Première ouverture (sans et avec compte)
+        run: node tests/accueil.test.js /tmp/captures http://localhost:8787/
+      - name: Journal du Worker en cas d'échec
+        if: failure()
+        run: tail -80 /tmp/wrangler.log
+      - name: Captures d'écran
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: captures
+          path: /tmp/captures
+          if-no-files-found: ignore
+          retention-days: 7

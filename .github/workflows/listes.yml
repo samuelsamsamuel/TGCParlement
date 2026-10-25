@@ -2,9 +2,17 @@ name: Listes fermées et cartes
 
 on:
   workflow_dispatch:
+  # Chaque nuit (2 h 41 UTC) : sénateurs, gouvernements et cartes restent à jour sans lancement à la main
+  schedule:
+    - cron: "41 2 * * *"
 
 permissions:
   contents: write
+
+# Une seule exécution à la fois : deux exécutions simultanées écriraient les mêmes fichiers
+concurrency:
+  group: listes
+  cancel-in-progress: false
 
 jobs:
   listes:

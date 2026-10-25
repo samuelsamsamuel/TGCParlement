@@ -35,7 +35,7 @@ const preuve = c => require("crypto").createHash("sha256").update(c).digest("hex
   r = await client()("inscription", {pseudo: "grand" + suffixe, preuve: preuve("g"), collection: grande}, {"cf-connecting-ip": "10.0.0." + (++ip)});
   assert.strictEqual(r.statut, 201, JSON.stringify(r.d)); assert.strictEqual(Object.keys(r.d.etat.possedees).length, 300);
   // Compte resté vide (inscription interrompue) : la même inscription le reprend ; un autre mot de passe est refusé
-  require("child_process").execSync(`cd /home/user/TGCParlement && ${process.env.WR} d1 execute hemicycle --local --persist-to ${process.env.ETAT} --command "INSERT INTO joueurs (pseudo, sel, empreinte, cree) VALUES ('vide${suffixe}', 'ab', '${require("crypto").createHash("sha256").update("ab" + preuve("v")).digest("hex")}', '2026-10-24')"`, {stdio: "ignore"});
+  require("child_process").execSync(`cd ${require("path").join(__dirname, "..")} && ${process.env.WR} d1 execute hemicycle --local --persist-to ${process.env.ETAT} --command "INSERT INTO joueurs (pseudo, sel, empreinte, cree) VALUES ('vide${suffixe}', 'ab', '${require("crypto").createHash("sha256").update("ab" + preuve("v")).digest("hex")}', '2026-10-24')"`, {stdio: "ignore"});
   assert.strictEqual((await client()("inscription", {pseudo: "vide" + suffixe, preuve: preuve("autre")}, {"cf-connecting-ip": "10.0.2.1"})).statut, 409);
   r = await client()("inscription", {pseudo: "vide" + suffixe, preuve: preuve("v"), collection: {[com]: 1}}, {"cf-connecting-ip": "10.0.2.2"});
   assert.strictEqual(r.statut, 201, JSON.stringify(r.d)); assert.strictEqual(r.d.etat.possedees[com], 1);

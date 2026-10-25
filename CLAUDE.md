@@ -6,7 +6,8 @@ du jeu), `jeu.json` (cartes, écrit par `export_jeu.py`), `serveur.json` (catalo
 `scripts/catalogue_serveur.js`). Publié par Cloudflare Workers Builds à chaque commit sur main : le Worker
 `worker/index.js` (configuration `wrangler.jsonc`) sert le site et l'API `/api/`, avec la base D1 « hemicycle ».
 Données construites par les scripts Python de `scripts/` (bibliothèque standard uniquement), lancés par
-le workflow `.github/workflows/listes.yml` (« Listes fermées et cartes »), qui enregistre `data/` et `site/`.
+le workflow `.github/workflows/listes.yml` (« Listes fermées et cartes »), chaque nuit à 2 h 41 UTC ou à la main, une
+exécution à la fois, qui enregistre `data/` et `site/` (même après une annulation : l'enregistrement est `always()`).
 
 ## Règles du projet
 
@@ -91,7 +92,10 @@ retenus et écartés), `villes_circonscriptions.py`, `export_jeu.py` (écrit
   (table `assemblees` de `jeu.json`), chaque département d'au moins cinq cartes. Paliers dans `PALIERS` ;
   la collection complète donne 5 paquets et a sa propre clé (`@complet`), pour ne se réclamer qu'une fois.
 - Tests : `node tests/regles.test.js` (sans installation) ; `tests/api.test.js` contre un serveur local
-  (`npx wrangler dev`, mode d'emploi en tête du fichier).
+  (`npx wrangler dev`, mode d'emploi en tête du fichier) ; parcours Playwright `tests/ui.test.js` (sans compte),
+  `tests/ui-compte.test.js` (deux joueurs) et `tests/accueil.test.js` (première ouverture). Tous lancés par
+  `.github/workflows/tests.yml` à chaque pull request et à chaque commit sur main (Wrangler et Playwright aux
+  versions fixées, installés sur la machine de GitHub seulement) ; captures en artefact « captures ».
 
 ## Vocabulaire du jeu (références parlementaires)
 
@@ -149,6 +153,10 @@ serveur), filtre « Mes favoris » dans l'Hémicycle. Pas de zoom au double touc
   Colonne `importes` gardée à 0 (migration unique `importes-liberes`, table `reglages`) ; paliers déjà atteints
   marqués réclamés ; points et paquets offerts non repris. Une carte en vente est « réservée », verrouillée.
 - Monnaie du marché : les voix (champ `points`), gagnées en dissolvant des doubles. Pas d'argent réel.
+- Lignes lues (limite gratuite de D1 : 5 millions par jour) : `appliquer` garde l'état écrit (`env.etatEcrit`), la
+  réponse ne relit donc pas la collection (mesure, joueur de 300 cartes : 745 lignes par paquet avant, 372 après) ;
+  pastilles d'attente relues seulement quand la page est visible. Mesurer : `wrangler dev --var MESURE_LECTURES:1`,
+  en-tête `x-lignes-lues` de chaque réponse.
 - Catalogue du serveur : membres des objectifs codés en plages et décodés à la demande ; le catalogue n'est
   chargé que par les routes qui en ont besoin (environ 12 ms au premier chargement, en cache ensuite).
 - D1 accepte au plus 100 paramètres par requête (le serveur local n'a pas cette limite) : insertions groupées par
