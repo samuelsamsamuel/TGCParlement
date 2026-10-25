@@ -60,14 +60,15 @@ nav button[aria-selected="true"]{border-bottom-color:var(--dorure);color:var(--d
   nav button{flex-direction:column;gap:.2rem;font-size:.74rem;line-height:1.1;text-align:center;padding:.55rem 0 .5rem;border-bottom:0;border-top:3px solid transparent;flex:1 1 0;min-width:0}
   nav button svg{width:1.45rem;height:1.45rem}
   nav button[aria-selected="true"]{border-top-color:var(--dorure)}
-  main{padding-bottom:6rem}
-  footer{padding-bottom:6rem}
 }
 .apropos{max-width:42rem;margin:0 auto;line-height:1.6}
 .apropos h2{font:400 1.6rem var(--serif);margin:0 0 .6rem}
 .apropos h3{font:600 1rem var(--sans);color:var(--dorure-pale);margin:1.4rem 0 .4rem}
 .apropos p{margin:.4rem 0}
 main{max-width:1120px;margin:0 auto;padding:1.5rem 1rem 4rem}
+/* Téléphone : barre d'onglets fixe (deux lignes de libellé) et zone du bas de l'iPhone ; le dernier bouton reste entier.
+   Après la règle générale, qui l'emportait jusqu'ici */
+@media (max-width:700px){main{padding-bottom:calc(6.5rem + env(safe-area-inset-bottom))}}
 .vue[hidden]{display:none}
 .bouton{background:var(--dorure);color:var(--encre);border:0;border-radius:3px;padding:.8rem 1.5rem;font-weight:600;font-size:1rem}
 .bouton.discret{background:none;color:var(--dorure-pale);border:1px solid rgba(201,162,74,.5);font-weight:500}
@@ -476,7 +477,7 @@ html.presentation{font-size:15px}
   html.presentation{font-size:14.5px}
   .presentation header{padding-top:.7rem}
   .presentation h1{margin-bottom:.4rem}
-  .presentation main{padding:.7rem .8rem 6rem}
+  .presentation main{padding:.7rem .8rem calc(6rem + env(safe-area-inset-bottom))}
 }
 @media (prefers-reduced-motion:reduce){.face,.paquet *{transition:none!important;animation:none!important}.r-legendaire .recto::after{animation:none}}
 </style>

@@ -15,7 +15,7 @@ Sorties : data/listes/chef-etat.json, chef-gouvernement.json, ministre.json, sec
 Bibliothèque standard uniquement.
 """
 import csv
-from datetime import date
+from datetime import date, timedelta
 import io
 import json
 import os
@@ -232,6 +232,8 @@ def main():
         elif not (r.get("fonction") or "").lower().startswith("premier ministre"):
             non_comptees[r.get("fonction")] += 1
 
+    nb_datagouv = len(lignes)  # lignes du jeu de données de data.gouv.fr
+
     # Gouvernements récents d'après l'open data de l'Assemblée (gouvernements_an.py), qui complète
     # le jeu de données de la Ve République, arrêté en mars 2025
     f_an = os.path.join("data", "gouvernement", "an_lignes.json")
@@ -241,6 +243,21 @@ def main():
             for r in json.load(f):
                 lignes.append((r["liste"], r["prenom"], r["nom"], r["debut"], r["fonction"], r["fin"]))
                 nb_an += 1
+
+    # Le jeu de données de data.gouv.fr, arrêté au gouvernement Bayrou, laisse sans fin les fonctions alors en cours
+    # (36 lignes du 13 décembre 2024, mesure d'octobre 2026). Une fonction gouvernementale cesse au plus tard avec le
+    # gouvernement : elle est close la veille de l'entrée en fonction du Premier ministre suivant (open data de
+    # l'Assemblée : membres du gouvernement Bayrou jusqu'au 9 septembre 2025, Sébastien Lecornu Premier ministre le
+    # 10). Une reconduction figure dans les lignes de l'Assemblée, à sa propre date.
+    debuts_pm = sorted({l[3] for l in lignes if l[0] == "chef-gouvernement" and l[3]})
+    closes = 0
+    for k, (liste, prenom, nom, debut, fonction, fin) in enumerate(lignes):
+        if k >= nb_datagouv or fin or not debut or liste.startswith("chef-etat"):
+            continue
+        suivant = next((d for d in debuts_pm if d > debut), None)
+        if suivant:
+            lignes[k] = (liste, prenom, nom, debut, fonction, (date.fromisoformat(suivant) - timedelta(days=1)).isoformat())
+            closes += 1
 
     # Gouvernements de la Libération et de la IVe République (lus par gouvernements_ive.py)
     f_ive = os.path.join("data", "gouvernement", "ive_lignes.json")
@@ -365,6 +382,7 @@ def main():
                    + f" ; hors catégorie : {len(sans_carte)}")
     if DATES_ILLISIBLES:
         rapport.insert(1, "DATES ILLISIBLES (exemples) : " + " | ".join(DATES_ILLISIBLES))
+    rapport.append(f"\nFonctions sans fin dans data.gouv.fr closes la veille du Premier ministre suivant : {closes}")
     rapport.append("\nFonctions non comptées : " + "; ".join(f"{k} ({v})" for k, v in sorted(non_comptees.items())))
     rapport.append("\nCartes « hors catégorie » (membres du Gouvernement sans mandat parlementaire) : "
                    + "; ".join(sans_carte))
