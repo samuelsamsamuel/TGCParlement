@@ -1794,6 +1794,8 @@ function majAmis(){
       ${serveur ? `<p>Il faut un compte pour avoir des amis.</p><button class="bouton" data-aller-compte>Créer un compte</button>` : "<p>Les amis arriveront avec les comptes.</p>"}`;
     return;
   }
+  // La liste est redessinée quand le serveur répond : un pseudo en cours de saisie est gardé, curseur compris
+  const champ = vue.querySelector("#form-ami [name=pseudo]"), saisie = champ ? champ.value : "", actif = !!champ && document.activeElement === champ;
   const ligne = (p, boutons) => `<li><span class="quoi"><button class="lien-carte" data-profil="${echapper(p)}">${echapper(p)}</button></span><span class="actions-ligne">${boutons}</span></li>`;
   vue.innerHTML = `<h2>Amis</h2>
     <form class="formulaire" id="form-ami"><label>Ajouter un ami par son pseudo<input type="text" name="pseudo" required autocapitalize="off" spellcheck="false" placeholder="Pseudo"></label><button class="bouton" type="submit">Envoyer la demande</button></form>
@@ -1806,6 +1808,9 @@ function majAmis(){
       : `<li class="note">Pas encore d'amis. Envoyez une demande avec le pseudo d'un joueur : il l'acceptera depuis son onglet Amis.</li>`}</ul>
     ${amis.envoyees.length ? `<h3>Demandes envoyées</h3><ul class="lignes-buvette">${amis.envoyees.map(p => ligne(p,
       `<span class="note">en attente</span><button class="bouton discret" data-ami="retirer:${echapper(p)}">Annuler</button>`)).join("")}</ul>` : ""}`;
+  const nouveauChamp = vue.querySelector("#form-ami [name=pseudo]");
+  if (nouveauChamp && saisie) nouveauChamp.value = saisie;
+  if (nouveauChamp && actif) nouveauChamp.focus();
 }
 document.getElementById("vue-amis").addEventListener("submit", e => {
   if (e.target.id !== "form-ami") return;
