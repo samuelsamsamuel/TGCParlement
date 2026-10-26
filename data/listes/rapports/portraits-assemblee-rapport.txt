@@ -1,4 +1,4 @@
-Photos officielles de l'Assemblée : 187 en tout ; sondées cette fois : 198, trouvées 187, sans photo 11, erreurs à refaire 0 ; députés de l'open data sans carte unique : 34
+Photos officielles de l'Assemblée : 187 en tout ; sondées cette fois : 11, trouvées 0, sans photo 11, erreurs à refaire 0 ; députés de l'open data sans carte unique : 34
 
 Fichier lu : https://data.assemblee-nationale.fr/static/openData/repository/17/amo/tous_acteurs_mandats_organes_xi_legislature/AMO30_tous_acteurs_tous_mandats_tous_organes_historique.json.zip (13716205 octets, essai 1)
 https://data.assemblee-nationale.fr/static/openData/repository/18/amo/deputes_senateurs_ministres_legislature/AMO20_dep_sen_min_tous_mandats_et_organes.json.zip : HTTP Error 404: Not Found

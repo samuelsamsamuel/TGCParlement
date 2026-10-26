@@ -1,9 +1,7 @@
-Portraits Commons : 3 cartes, sur 6762 cartes sans portrait rattachées à Wikidata par identifiant officiel (6819 cartes sans portrait en tout) ; éléments sondés cette fois : 6761, restant à sonder ou en erreur : 0
+Portraits Commons : 1 cartes, sur 6740 cartes sans portrait rattachées à Wikidata par identifiant officiel (6797 cartes sans portrait en tout) ; éléments sondés cette fois : 6739, restant à sonder ou en erreur : 0
 
 Retenus :
 13736	Louis, François, Antoine Arbogast	Q2572301	Antoine Arbogast.png
-3499	Lazare Goujon	Q3220006	FRAC069266 1K3 Guignol.jpg
-4924	Christian Lunet de La Malène	Q2965727	Christian de La Malène MEP portrait (cropped).jpg
 
 Écartés :
 Q1096895	Claude-Louis-Michel de Sacy - L'Esclavage des Américains et des nègres. Piece qui a concouru pour le prix de l'Académie françoise, 1775.pdf	format
@@ -41,6 +39,7 @@ Q3164334	Tomb of Jean-Baptiste Papin in Panthéon.jpg	nom de fichier
 Q3164459	Signature de Jean Baptiste Thieullen.jpg	nom de fichier
 Q3169299	Plaque Quai Jean-Pierre Fougerat Couëron.jpg	nom de fichier
 Q3220006	FRAC069266 1K3 Affiche elections.jpg	nom de fichier
+Q3220006	FRAC069266 1K3 Guignol.jpg	nom de famille absent du nom de fichier
 Q3220006	Lazare Goujon signature.jpg	nom de fichier
 Q3220006	Portrait de Lazare Goujon 1.jpg	dépeint aussi 2 autre(s) élément(s)
 Q3220006	Villeurbanne - Jardin des Tout-petits-Adolphe-Lafont - inauguration-du-jardin-en-1929-le-maire-lazare-goujon-et-pauline-lafont.jpg	dépeint aussi 3 autre(s) élément(s)
