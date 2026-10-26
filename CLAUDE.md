@@ -206,6 +206,11 @@ serveur), filtre « Mes favoris » dans l'Hémicycle. Pas de zoom au double touc
   liste JSON d'identifiants, `limite` d'utilisations et `fin` facultatives, « 2026-12-31 » valant jusqu'au soir UTC) ;
   `codes_utilises` (clé code + joueur) : une fois par compte. Exemple :
   `INSERT INTO codes (code, voix, paquets, cartes, limite, fin) VALUES ('NOEL2026', 50, 2, '["4567"]', 100, '2026-12-31');`
+  Méthode retenue par l'utilisateur : il donne les codes voulus et leurs récompenses, Claude les ajoute dans
+  `worker/codes.js` (empreinte SHA-256 du code en minuscules, `node scripts/code.js "CODE"`, jamais le code en clair, ni
+  dans le dépôt ni dans les messages de commit ou de PR ; note sur l'usage du code), puis PR et fusion : le code marche
+  dès le déploiement, recopié dans D1 à la première saisie (récompenses et limites suivent ensuite le fichier). Tests :
+  `--var CODE_ESSAI:1` du Worker local ajoute le code d'essai « essai-depot ».
 - Migrations uniques : `MIGRATIONS` (worker), notées dans `reglages`.
 - Colonnes ajoutées après la mise en service : déclarées dans `COLONNES` (worker), ajoutées à la volée.
 - Vitrine (six cases, chacune remplie ou vidée à part, enregistrée aussitôt), profil, prix du comptoir

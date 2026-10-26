@@ -17,6 +17,7 @@ ne livre que des empreintes coûteuses à attaquer. Sessions : jeton aléatoire 
 base ne garde que l'empreinte.
 */
 import Regles from "../site/regles.js";
+import {CODES} from "./codes.js";
 
 const DUREE_SESSION = 90 * 24 * 3600;           // secondes
 const COOKIE = "hemicycle_session";
@@ -678,6 +679,16 @@ async function utiliserCode(env, requete, joueur, cat) {
   if (!saisi) throw new Refus(400, "Saisissez un code.");
   await purgerTentatives(env);
   await limiter(env, "code:" + joueur, LIMITES.connexion);
+  // Code du dépôt (worker/codes.js, par empreinte) : recopié ou mis à jour dans D1, qui compte les utilisations.
+  // CODE_ESSAI (variable du Worker local des tests seulement) ajoute le code « essai-depot »
+  const empreinte = await sha256(saisi.toLowerCase());
+  const depot = [...CODES, ...(env.CODE_ESSAI ? [{empreinte: await sha256("essai-depot"), voix: 4, paquets: 0, cartes: [], limite: null, fin: null}] : [])]
+    .find(x => x.empreinte === empreinte);
+  // Une limite abaissée sous les utilisations déjà faites viole la contrainte : le code reste alors épuisé
+  if (depot) await env.DB.prepare(`INSERT INTO codes (code, voix, paquets, cartes, limite, fin) VALUES (?, ?, ?, ?, ?, ?)
+    ON CONFLICT (code) DO UPDATE SET voix = excluded.voix, paquets = excluded.paquets, cartes = excluded.cartes, limite = excluded.limite, fin = excluded.fin`)
+    .bind(saisi.toLowerCase(), depot.voix || 0, depot.paquets || 0, JSON.stringify(depot.cartes || []), depot.limite ?? null, depot.fin ?? null).run()
+    .catch(e => { if (!contrainte(e)) throw e; });
   const c = await env.DB.prepare("SELECT * FROM codes WHERE code = ?").bind(saisi).first();
   // fin : « 2026-12-31 » vaut jusqu'à la fin de ce jour (heure UTC), comparée à la même longueur
   if (!c || (c.fin && c.fin < maintenant().slice(0, c.fin.length))) throw new Refus(404, "Ce code n'existe pas ou n'est plus valable.");
