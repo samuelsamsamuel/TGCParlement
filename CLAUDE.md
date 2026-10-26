@@ -111,7 +111,9 @@ personnes sur 6 761 ont un fichier qui les dépeint, 2 portraits retenus), `vill
 ## Vocabulaire du jeu (références parlementaires)
 
 Onglets : Séance (paquets du jour), Hémicycle (collection), Ordre du jour (objectifs, synthèse et rubriques
-repliables), Buvette (sous-onglets Échanges, avec historique daté, et Comptoir), Amis, Plus : six onglets, assez
+repliables), Buvette (sous-onglets Échanges : propositions en attente en fiches « Vous donnez / Vous recevez », et proposer ; Comptoir ;
+Historique : échanges terminés, ventes et achats au comptoir, par mois, filtre Tout / Échanges / Comptoir, cartes nommées
+avec miniature ; `GET /api/annonces` renvoie aussi les achats, index `annonces_acheteur`), Amis, Plus : six onglets, assez
 grands pour le téléphone ; le menu Plus ouvre quatre vues, Mon siège (chiffres et vitrine en six cases, libellé du
 pseudo une fois connecté), « Toutes les cartes » (catalogue complet, cartes non obtenues grisées),
 Règlement (règles et sources) et Paramètres (infos du compte, déconnexion et suppression, thème sombre, clair ou comme
