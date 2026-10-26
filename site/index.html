@@ -454,6 +454,35 @@ details.recus summary{cursor:pointer;font-size:.85rem;color:var(--pierre);paddin
 .compacts .objectif{padding:.5rem .7rem;gap:.25rem}
 .compacts .objectif h3{font-size:.92rem}
 .compacts .objectif .sous,.compacts .objectif .paliers{display:none}
+/* Ordre du jour en lignes : une liste par rubrique, en-têtes sur une ligne */
+.liste-objectifs,.liste-objectifs.petits,.liste-objectifs.compacts{display:grid;grid-template-columns:1fr;gap:0;border:1px solid rgba(201,162,74,.25);border-radius:8px;overflow:hidden;background:rgba(46,7,16,.45)}
+.liste-objectifs .objectif,.petits .objectif,.compacts .objectif{border:0;border-bottom:1px solid rgba(201,162,74,.15);border-radius:0;background:none;box-shadow:none;padding:.55rem .75rem;gap:.3rem}
+.liste-objectifs .objectif:last-child{border-bottom:0}
+.liste-objectifs .objectif.pret{background:rgba(201,162,74,.12);box-shadow:inset 3px 0 0 var(--dorure)}
+.tete-obj{display:flex;align-items:center;gap:.55rem;min-width:0}
+.tete-obj h3,.petits .objectif h3,.compacts .objectif h3{flex:1;min-width:0;font:600 .92rem/1.3 var(--sans, inherit);margin:0}
+.marque-obj{flex:none;width:1.25rem;height:1.25rem;border-radius:50%;display:grid;place-items:center;font-size:.72rem;border:1.5px solid rgba(201,162,74,.5);color:var(--dorure)}
+.pret .marque-obj{background:var(--dorure);border-color:var(--dorure);color:#2e0710}
+.recu .marque-obj{background:rgba(201,162,74,.25);border-color:transparent;color:var(--dorure-pale)}
+.gain-obj{flex:none;font-size:.78rem;color:var(--pierre);white-space:nowrap}
+.objectif .tete-obj .bouton,.petits .objectif .tete-obj .bouton{width:auto;flex:none;padding:.3rem .7rem;font-size:.78rem}
+.objectif .compte,.petits .objectif .compte,.compacts .objectif .compte{font-size:.75rem;color:var(--pierre);padding-left:1.8rem}
+.objectif .jauge{height:.3rem;margin-left:1.8rem}
+.objectif.recu{opacity:.6}
+details.rubrique summary{flex-wrap:nowrap !important;align-items:center;font-size:1.15rem}
+details.rubrique summary > span:first-of-type{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.etat-rubrique{display:flex;align-items:center;gap:.35rem;flex:none}
+.avance-rubrique{color:var(--pierre);font-weight:600}
+.etat-rubrique em{margin-left:0;min-width:1.4rem;text-align:center}
+.synthese p{display:grid;gap:.1rem}
+.synthese[hidden]{display:none}
+.liste-objectifs > li.note,.liste-objectifs > li.plus-obj{padding:.6rem .75rem;list-style:none}
+.plus-obj .lien-carte{font-size:.85rem}
+details.rubrique details.recus > summary{display:block;font:400 .85rem var(--sans, inherit);color:var(--pierre);padding:.5rem 0 .3rem}
+details.rubrique details.recus > summary::before{content:"▸ ";font-size:.8rem;margin:0}
+details.rubrique details.recus[open] > summary::before{content:"▾ ";transform:none}
+:root[data-theme="clair"] .liste-objectifs{background:rgba(255,255,255,.55);border-color:rgba(92,16,32,.2)}
+:root[data-theme="clair"] .liste-objectifs .objectif{border-bottom-color:rgba(92,16,32,.12)}
 footer a{color:var(--pierre)}
 #apercu .carte{width:min(300px,78vw)}
 /* ---------- Accueil, installation, visite guidée ---------- */
@@ -1000,27 +1029,34 @@ function majAtelier(){
 }
 
 /* ---------- Objectifs ---------- */
-// Un objectif : titre, puis le bouton de réclamation s'il y a lieu, sinon l'avancement en une ligne
+// Un objectif en une ligne : marque (à réclamer, à faire, reçu), titre, puis le bouton de réclamation ou la prochaine
+// récompense ; pour un objectif à compter, l'avancement et une jauge en dessous
 function htmlObjectif(o){
   const a = Regles.avancement(etat, o);
   const gainObj = {paquets: a.aReclamer.reduce((n,e) => n+e.paquets, 0), voix: a.aReclamer.reduce((n,e) => n+e.voix, 0)};
   const gain = gainObj.paquets + gainObj.voix;
   const quantite = e => e.type === "voix" ? pluriel(e.quantite, "voix", "voix") : pluriel(e.quantite, "paquet");
-  const bouton = gain ? `<button class="bouton" data-reclamer="${echapper(o.id)}">Réclamer ${gainTexte(gainObj)}</button>` : "";
-  if (o.famille === "premier") {
-    // Une seule carte suffit : à trouver ou reçu, sans compteur
-    const recu = a.etapes[0].reclame;
-    return `<li class="objectif${gain?" pret":""}${recu?" recu":""}"><h3>${echapper(o.titre)}</h3>
-      ${bouton || `<div class="compte"><span>${recu ? "✓ Reçu" : "À trouver"}</span><span>${quantite(a.etapes[0])}</span></div>`}</li>`;
-  }
+  const fini = !a.prochain && !gain;
+  const marque = `<span class="marque-obj" aria-hidden="true">${gain ? "★" : fini ? "✓" : ""}</span>`;
+  const droite = gain ? `<button class="bouton" data-reclamer="${echapper(o.id)}" aria-label="Réclamer ${gainTexte(gainObj)}">+ ${gainTexte(gainObj)}</button>`
+    : fini ? `<span class="gain-obj">reçu</span>` : `<span class="gain-obj">${quantite(o.famille === "premier" ? a.etapes[0] : a.prochain)}</span>`;
+  const classe = `objectif${gain ? " pret" : ""}${fini ? " recu" : ""}`;
+  if (o.famille === "premier") return `<li class="${classe}"><div class="tete-obj">${marque}<h3>${echapper(o.titre)}</h3>${droite}</div></li>`;
   const part = Math.min(100, Math.round(100 * a.obtenues / (a.prochain ? a.prochain.seuil : o.total)));
-  return `<li class="objectif${gain?" pret":""}"><h3>${echapper(o.titre)}</h3>
-    <div class="compte"><span>${a.obtenues.toLocaleString("fr-FR")} sur ${o.total.toLocaleString("fr-FR")}</span><span>${a.prochain ? `${a.prochain.seuil === o.total ? "complète" : a.prochain.seuil.toLocaleString("fr-FR")} : ${quantite(a.prochain)}` : "✓ terminé"}</span></div>
-    <div class="jauge" aria-hidden="true"><i style="width:${part}%"></i></div>${bouton}</li>`;
+  const suite = a.prochain ? `prochain palier : ${a.prochain.seuil === o.total ? "complète" : a.prochain.seuil.toLocaleString("fr-FR")}` : "terminé";
+  return `<li class="${classe}"><div class="tete-obj">${marque}<h3>${echapper(o.titre)}</h3>${droite}</div>
+    <div class="jauge" aria-hidden="true"><i style="width:${part}%"></i></div>
+    <div class="compte"><span>${a.obtenues.toLocaleString("fr-FR")} sur ${o.total.toLocaleString("fr-FR")}</span><span>${suite}</span></div></li>`;
 }
 // Ordre du jour : une synthèse en tête (bouton « Tout réclamer »), puis des rubriques repliables dont
 // l'en-tête dit l'avancement et le nombre d'objectifs à réclamer
-const pretsVus = {};
+const pretsVus = {}, toutVoir = {legislatures: false, departements: false}, LIMITE_RUBRIQUE = 8;
+// Les plus avancés d'abord ; au-delà de LIMITE_RUBRIQUE, un bouton affiche le reste
+function listeLimitee(liste, cle){
+  if (toutVoir[cle] || liste.length <= LIMITE_RUBRIQUE) return liste.map(htmlObjectif).join("");
+  return liste.slice(0, LIMITE_RUBRIQUE).map(htmlObjectif).join("")
+    + `<li class="plus-obj"><button class="lien-carte" data-tout-voir="${cle}">Afficher les ${liste.length - LIMITE_RUBRIQUE} autres</button></li>`;
+}
 function majObjectifs(){
   if (!cat) return;
   const av = new Map(cat.objectifs.map(o => [o, Regles.avancement(etat, o)]));
@@ -1028,15 +1064,15 @@ function majObjectifs(){
   // Une rubrique courte s'ouvre d'elle-même quand un objectif y devient réclamable en cours de partie
   const etatRubrique = (id, liste) => {
     const prets = liste.filter(o => av.get(o).aReclamer.length).length;
-    const faits = liste.filter(o => !av.get(o).prochain).length;
+    const faits = liste.filter(o => !av.get(o).prochain && !av.get(o).aReclamer.length).length;
     if (id in pretsVus && prets > pretsVus[id] && !/legislatures|departements/.test(id)) document.getElementById(id).closest("details").open = true;
     pretsVus[id] = prets;
-    document.getElementById(id).innerHTML = `${faits} sur ${liste.length} terminé${faits > 1 ? "s" : ""}${prets ? `<em>${prets} à réclamer</em>` : ""}`;
+    document.getElementById(id).innerHTML = `<span class="avance-rubrique" title="objectifs terminés">${faits}/${liste.length}</span>${prets ? `<em title="à réclamer">${prets}</em>` : ""}`;
   };
   const enAttente = cat.objectifs.filter(o => av.get(o).aReclamer.length);
   const attente = Regles.recompensesEnAttente(etat, cat);
   document.getElementById("synthese-objectifs").innerHTML = enAttente.length
-    ? `<p><b>${gainTexte(attente)}</b> à recevoir</p><button class="bouton" id="tout-reclamer">Tout réclamer</button>`
+    ? `<p><span class="note">${pluriel(enAttente.length, "objectif atteint", "objectifs atteints")}</span><b>${gainTexte(attente)}</b> à recevoir</p><button class="bouton" id="tout-reclamer">Tout réclamer</button>`
     : "";
   document.getElementById("synthese-objectifs").hidden = !enAttente.length;
   // Premiers pas : ceux à réclamer d'abord, puis ceux à trouver, puis ceux déjà reçus
@@ -1054,14 +1090,16 @@ function majObjectifs(){
   const parAvance = l => l.map(o => [o, av.get(o)])
     .sort(([o1,a1],[o2,a2]) => (a2.aReclamer.length>0)-(a1.aReclamer.length>0) || a2.obtenues/o2.total-a1.obtenues/o1.total || 0).map(([o]) => o);
   const legislatures = parFamille("legislature");
-  document.getElementById("obj-legislatures").innerHTML = parAvance(legislatures).map(htmlObjectif).join("");
+  document.getElementById("obj-legislatures").innerHTML = listeLimitee(parAvance(legislatures), "legislatures");
   const q = Regles.normer(document.getElementById("recherche-dep").value);
   const tousDeps = parFamille("departement"), deps = tousDeps.filter(o => !q || Regles.normer(o.titre).includes(q));
-  document.getElementById("obj-departements").innerHTML = deps.length ? parAvance(deps).map(htmlObjectif).join("") : `<p class="vide">Aucun département ne correspond à cette recherche.</p>`;
+  document.getElementById("obj-departements").innerHTML = deps.length ? (q ? parAvance(deps).map(htmlObjectif).join("") : listeLimitee(parAvance(deps), "departements")) : `<p class="vide">Aucun département ne correspond à cette recherche.</p>`;
   etatRubrique("etat-premiers", premiers); etatRubrique("etat-collection", collection); etatRubrique("etat-historiques", historiques);
   etatRubrique("etat-legislatures", legislatures); etatRubrique("etat-departements", tousDeps);
 }
 document.getElementById("vue-objectifs").addEventListener("click", e => {
+  const t = e.target.closest("[data-tout-voir]");
+  if (t) { toutVoir[t.dataset.toutVoir] = true; majObjectifs(); return; }
   if (e.target.id === "tout-reclamer") {
     occupe(e.target, async () => {
       const total = {paquets: 0, voix: 0};
