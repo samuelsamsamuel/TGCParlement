@@ -1,5 +1,5 @@
 /* Test de l'API sur un serveur local, à lancer depuis la racine du dépôt :
-     npx wrangler dev --port 8787 --persist-to /tmp/hemicycle-d1     (dans un premier terminal)
+     npx wrangler dev --port 8787 --test-scheduled --persist-to /tmp/hemicycle-d1     (dans un premier terminal)
      WR="npx wrangler" ETAT=/tmp/hemicycle-d1 node tests/api.test.js   (dans un second)
    Il crée trois joueurs et vérifie inscription avec reprise, paquets, recyclage, marché et échanges,
    y compris des demandes simultanées (une seule doit aboutir). */
@@ -187,6 +187,18 @@ const preuve = c => require("crypto").createHash("sha256").update(c).digest("hex
   assert.strictEqual((await A("amis/retirer", {pseudo: bob})).statut, 200);
   assert.deepStrictEqual((await Bc("amis")).d, {amis: [], recues: [], envoyees: []});
   assert.strictEqual((await C("amis/accepter", {pseudo: bob})).statut, 409);
+  // Réserve pleine (tâche horaire, wrangler dev --test-scheduled) : seulement après un vrai remplissage, une fois
+  const sql = c => require("child_process").execSync(`cd ${require("path").join(__dirname, "..")} && ${process.env.WR} d1 execute hemicycle --local --persist-to ${process.env.ETAT} --command "${c}"`, {stdio: "ignore"});
+  const horaire = async () => assert.strictEqual((await fetch("http://localhost:8787/cdn-cgi/handler/scheduled")).status, 200);
+  assert.strictEqual((await C("notifications/abonner", {abonnement: {endpoint: "https://fcm.googleapis.com/fcm/send/reserve" + suffixe}})).statut, 200);
+  sql(`UPDATE joueurs SET stock = 7, ancre = ${Date.now() - 2 * 3600e3} WHERE pseudo = '${carole}'`);
+  await horaire();
+  assert.deepStrictEqual((await C("notifications")).d.notifications, [], "un seul paquet ouvert : pas de notification");
+  sql(`UPDATE joueurs SET stock = 0, ancre = ${Date.now() - 9 * 3600e3} WHERE pseudo = '${carole}'`);
+  await horaire();
+  assert.match((await C("notifications")).d.notifications.map(n => n.texte).join(), /réserve est pleine/);
+  await horaire();
+  assert.deepStrictEqual((await C("notifications")).d.notifications, [], "une fois par remplissage");
   // Prix du comptoir et attente des échanges
   r = await A("prix?carte=" + encodeURIComponent(libreA));
   assert.strictEqual(r.statut, 200); assert.ok(r.d.ventes.some(v => v.prix === 7));

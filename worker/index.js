@@ -506,6 +506,7 @@ async function notifier(env, joueur, texte, genre = "buvette") {
   if (!abonnes.length) return;
   await env.DB.batch([
     env.DB.prepare("DELETE FROM notifications WHERE joueur = ? AND id NOT IN (SELECT id FROM notifications WHERE joueur = ? ORDER BY id DESC LIMIT 19)").bind(joueur, joueur),
+    env.DB.prepare("DELETE FROM notifications WHERE joueur = ? AND texte = ?").bind(joueur, texte),  // même message non lu : remplacé
     env.DB.prepare("INSERT INTO notifications (joueur, texte, date) VALUES (?, ?, ?)").bind(joueur, texte, maintenant()),
   ]);
   const envois = Promise.all(abonnes.map(a => pousser(env, a.endpoint).catch(e => console.error("poussée", e))));
@@ -531,11 +532,15 @@ async function lireNotifications(env, joueur) {
   ]);
   return json({notifications: r.results});
 }
-// Toutes les heures (déclencheur planifié) : réserve pleine, une fois par remplissage
+// Toutes les heures (déclencheur planifié) : réserve pleine, une fois par remplissage. Seulement si la moitié au moins
+// de la réserve s'est remplie depuis le dernier paquet ouvert (RESERVE_MIN_AVIS) : un paquet ouvert d'une réserve
+// pleine la rendait de nouveau pleine une heure plus tard, d'où une notification presque à chaque paquet (signalé par
+// l'utilisateur, octobre 2026)
+const RESERVE_MIN_AVIS = Regles.RESERVE_MAX / 2;
 async function surveillerReserves(env) {
   await preparerBase(env);
   const r = await env.DB.prepare(`SELECT DISTINCT j.id, j.stock, j.ancre, j.offerts, j.points FROM abonnements a JOIN joueurs j ON j.id = a.joueur
-    WHERE a.reserve = 1 AND a.reserve_vue != j.ancre || '|' || j.stock`).all();
+    WHERE a.reserve = 1 AND a.reserve_vue != j.ancre || '|' || j.stock AND j.stock <= ?`).bind(Regles.RESERVE_MAX - RESERVE_MIN_AVIS).all();
   for (const j of r.results) {
     if (!Regles.reserveCourante({reserve: j.stock, ancre: j.ancre}).pleine) continue;
     await env.DB.prepare("UPDATE abonnements SET reserve_vue = ? WHERE joueur = ?").bind(j.ancre + "|" + j.stock, j.id).run();
