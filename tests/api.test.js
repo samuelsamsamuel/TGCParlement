@@ -185,7 +185,7 @@ const preuve = c => require("crypto").createHash("sha256").update(c).digest("hex
   assert.strictEqual((await A("amis/demander", {pseudo: carole})).statut, 200);
   assert.strictEqual((await C("amis/accepter", {pseudo: alice})).d.statut, "accepte");
   assert.strictEqual((await A("amis/retirer", {pseudo: bob})).statut, 200);
-  assert.deepStrictEqual((await Bc("amis")).d, {amis: [], recues: [], envoyees: []});
+  assert.deepStrictEqual((await Bc("amis")).d, {amis: [], recues: [], envoyees: [], vitrines: {}});
   assert.strictEqual((await C("amis/accepter", {pseudo: bob})).statut, 409);
   // Réserve pleine (tâche horaire, wrangler dev --test-scheduled) : seulement après un vrai remplissage, une fois
   const sql = c => require("child_process").execSync(`cd ${require("path").join(__dirname, "..")} && ${process.env.WR} d1 execute hemicycle --local --persist-to ${process.env.ETAT} --command "${c}"`, {stdio: "ignore"});
@@ -206,7 +206,6 @@ const preuve = c => require("crypto").createHash("sha256").update(c).digest("hex
   assert.strictEqual((await client()("inscription", {pseudo: "c0nnard" + suffixe, preuve: preuve("z")}, {"cf-connecting-ip": "10.0.1.1"})).statut, 400);
   assert.strictEqual((await client()("inscription", {pseudo: "Monique" + suffixe, preuve: preuve("m")}, {"cf-connecting-ip": "10.0.1.2"})).statut, 201);
   assert.strictEqual((await client()("contact", {message: "Bonjour, une question."}, {"cf-connecting-ip": "10.0.1.3"})).statut, 201);
-  assert.strictEqual((await C("signaler", {pseudo: "bob" + suffixe, motif: "essai"})).statut, 201);
   // Suppression du compte : mauvais mot de passe refusé, puis tout est effacé
   assert.strictEqual((await C("supprimer-compte", {preuve: preuve("faux")})).statut, 401);
   assert.strictEqual((await C("supprimer-compte", {preuve: preuve("c")})).statut, 200);

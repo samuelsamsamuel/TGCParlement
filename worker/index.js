@@ -65,7 +65,8 @@ const SCHEMA = [
      score_de INTEGER, score_vers INTEGER, cree TEXT NOT NULL, maj TEXT NOT NULL)`,
   `CREATE INDEX IF NOT EXISTS duels_de ON duels (de)`,
   `CREATE INDEX IF NOT EXISTS duels_vers ON duels (vers)`,
-  // Messages du formulaire de contact (exercice des droits, questions) et signalements de pseudos
+  // Messages du formulaire de contact (exercice des droits, questions) ; signalements de pseudos (retirés à la demande
+  // de l'utilisateur, octobre 2026 : table gardée pour les lignes déjà écrites, effacées avec le compte)
   `CREATE TABLE IF NOT EXISTS messages (id INTEGER PRIMARY KEY, joueur INTEGER, reponse TEXT, message TEXT NOT NULL, date TEXT NOT NULL)`,
   `CREATE TABLE IF NOT EXISTS signalements (id INTEGER PRIMARY KEY, de INTEGER NOT NULL, cible INTEGER NOT NULL, motif TEXT, date TEXT NOT NULL)`,
   // Amis : une demande (de -> vers), puis une amitié acceptée, réciproque
@@ -105,7 +106,7 @@ function contrainte(e) { return /constraint|SQLITE_CONSTRAINT/i.test(String(e &&
 const PSEUDO = /^[\p{L}\p{N}_.-]{3,20}$/u;
 // Modération des pseudos : mots injurieux ou haineux recherchés dans le pseudo (chiffres lus comme des lettres),
 // mots courts et noms réservés refusés seulement s'ils forment tout le pseudo (« pute » est dans « depute »,
-// « nique » dans « Monique »). Le reste passe par le signalement.
+// « nique » dans « Monique »). Le reste passe par le formulaire de contact.
 const MOTS_INTERDITS = ["connard", "connasse", "salope", "salaud", "encule", "batard", "putain", "merde", "couille",
   "negre", "negro", "bougnoul", "youpin", "youtre", "bicot", "chinetoque", "hitler", "pedophile", "violeur", "tapette",
   "gouine", "fiotte", "branleur", "nazi"];
@@ -611,14 +612,19 @@ async function changerFavori(env, requete, joueur, cat) {
 // Amis : demande, acceptation (une demande croisée vaut acceptation), retrait (refus, annulation, fin d'amitié)
 const MAX_AMIS = 200;
 async function listeAmis(env, joueur) {
-  const r = await env.DB.prepare(`SELECT a.de, a.vers, a.statut, j.pseudo FROM amis a JOIN joueurs j ON j.id = CASE WHEN a.de = ?1 THEN a.vers ELSE a.de END
+  const r = await env.DB.prepare(`SELECT a.de, a.vers, a.statut, j.pseudo, j.vitrine FROM amis a JOIN joueurs j ON j.id = CASE WHEN a.de = ?1 THEN a.vers ELSE a.de END
     WHERE a.de = ?1 OR a.vers = ?1 ORDER BY j.pseudo COLLATE NOCASE`).bind(joueur).all();
-  const amis = [], recues = [], envoyees = [];
+  // vitrines : les trois premières cartes de la vitrine de chaque ami, pour la liste (déjà dans la ligne du joueur)
+  const amis = [], recues = [], envoyees = [], vitrines = {};
   for (const x of r.results) {
-    if (x.statut === "accepte") { if (x.de === joueur) amis.push(x.pseudo); }
+    if (x.statut === "accepte") {
+      if (x.de !== joueur) continue;
+      amis.push(x.pseudo);
+      try { vitrines[x.pseudo] = JSON.parse(x.vitrine || "[]").filter(Boolean).slice(0, 3); } catch (_) { vitrines[x.pseudo] = []; }
+    }
     else (x.vers === joueur ? recues : envoyees).push(x.pseudo);
   }
-  return json({amis, recues, envoyees});
+  return json({amis, recues, envoyees, vitrines});
 }
 async function actionAmi(env, requete, joueur, action) {
   const autre = await idJoueur(env, (await lireCorps(requete)).pseudo);
@@ -680,13 +686,6 @@ async function contact(env, requete, joueur) {
     env.DB.prepare("DELETE FROM messages WHERE date < ?").bind(new Date(Date.now() - 365 * 86400000).toISOString()),
     env.DB.prepare("INSERT INTO messages (joueur, reponse, message, date) VALUES (?, ?, ?, ?)").bind(joueur, reponse || null, message, maintenant()),
   ]);
-  return json({ok: true}, 201);
-}
-async function signaler(env, requete, joueur) {
-  const c = await lireCorps(requete);
-  const cible = await idJoueur(env, c.pseudo);
-  await limiter(env, "signalement:" + joueur, [10, 3600]);
-  await env.DB.prepare("INSERT INTO signalements (de, cible, motif, date) VALUES (?, ?, ?, ?)").bind(joueur, cible.id, String(c.motif || "").slice(0, 300), maintenant()).run();
   return json({ok: true}, 201);
 }
 
@@ -794,7 +793,6 @@ async function api(requete, env, url) {
   if (methode === "GET" && chemin === "/api/prix") return prixComptoir(env, url, await catalogueDuJeu());
   if (methode === "POST" && chemin === "/api/vitrine") return changerVitrine(env, requete, joueur);
   if (methode === "POST" && chemin === "/api/supprimer-compte") return supprimerCompte(env, requete, joueur);
-  if (methode === "POST" && chemin === "/api/signaler") return signaler(env, requete, joueur);
   if (methode === "POST" && chemin === "/api/duels") return lancerDuel(env, requete, joueur);
   let m;
   if (methode === "POST" && (m = chemin.match(/^\/api\/amis\/(demander|accepter|retirer)$/))) return actionAmi(env, requete, joueur, m[1]);

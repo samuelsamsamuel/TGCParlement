@@ -180,8 +180,10 @@ serveur), filtre « Mes favoris » dans l'Hémicycle. Pas de zoom au double touc
 - Concurrence des opérations des règles : version du joueur incrémentée dans le même lot ; une insertion dans la
   table `garde` (contrainte `ok = 0`) n'a lieu que si la version a changé (`changes() = 0`) et annule tout.
 - Amis (table `amis`, une ligne par sens) : `GET /api/amis`, `POST /api/amis/(demander|accepter|retirer)` ; une demande
-  croisée vaut acceptation, retirer efface les deux sens (refus, annulation, fin d'amitié). Depuis l'onglet Amis :
-  vitrine, échange (Buvette préremplie), duel.
+  croisée vaut acceptation, retirer efface les deux sens (refus, annulation, fin d'amitié) ; `GET /api/amis` renvoie
+  aussi `vitrines` (trois premières cartes de la vitrine de chaque ami, lues dans la même ligne, sans lecture de plus).
+  Onglet Amis : ajout en une ligne, fiche par ami (pastille de couleur tirée du pseudo, aperçu de la vitrine qui ouvre
+  le profil, Échanger, Défier, Retirer en lien discret), demandes reçues mises en avant.
 - Notifications (Web Push, RFC 8030 et 8292) : poussée sans contenu, signée VAPID (ES256, clés créées à la première
   demande et gardées dans `reglages`) ; le texte attend dans `notifications` et le service de travail le lit
   (`GET /api/notifications`, qui le supprime). Abonnements par appareil (`abonnements`, services de poussée connus
@@ -196,9 +198,10 @@ serveur), filtre « Mes favoris » dans l'Hémicycle. Pas de zoom au double touc
 - Colonnes ajoutées après la mise en service : déclarées dans `COLONNES` (worker), ajoutées à la volée.
 - Vitrine (six cases, chacune remplie ou vidée à part, enregistrée aussitôt), profil, prix du comptoir
   (dernières ventes, médiane par rareté), compteur d'attente (échanges reçus, demandes d'ami, duels à jouer), suppression du
-  compte, formulaire de contact (table `messages`, effacée après un an), signalements (table `signalements`).
+  compte, formulaire de contact (table `messages`, effacée après un an) ; signalement de pseudo retiré à la demande de
+  l'utilisateur (octobre 2026 ; table `signalements` gardée pour les lignes déjà écrites, effacées avec le compte).
   Modération des pseudos : `MOTS_INTERDITS` (cherchés dans le pseudo) et `NOMS_RESERVES` (pseudo entier).
-  Lire les messages et signalements : console D1 du tableau de bord Cloudflare.
+  Lire les messages : console D1 du tableau de bord Cloudflare.
 - Site : application installable (`manifest.webmanifest`, `sw.js` réseau d'abord, copie hors connexion ; icônes
   écrites par `scripts/icone.py` : éventail de trois cartes bleue, blanche et rouge sur fond de marbre, choisi par
   l'utilisateur, avec une version « maskable » réduite pour la zone sûre d'Android ; changer `CACHE` dans `sw.js`

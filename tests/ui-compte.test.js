@@ -129,10 +129,14 @@ const sx = Date.now().toString(36).slice(-4);
   assert.strictEqual(await A.locator("text=Classement").count(), 0);
   assert.strictEqual(await A.locator("text=Ce que votre compte permet").count(), 0);
   await A.screenshot({path: T + "/compte-connecte.png", fullPage: true});
-  await Bp.click('nav [data-vue="amis"]');
-  await Bp.click('#vue-amis .actions-ligne [data-profil="Anne' + sx + '"]');
+  // Fiche d'ami : aperçu de la vitrine d'Anne ; la toucher ouvre son profil, sans bouton de signalement
+  await Bp.reload(); await Bp.click('nav [data-vue="amis"]');
+  await Bp.waitForSelector('#vue-amis .tete-ami[data-profil="Anne' + sx + '"] .mini-ami');
+  await Bp.screenshot({path: T + "/amis-vitrine-tel.png", fullPage: true});
+  await Bp.click('#vue-amis .tete-ami[data-profil="Anne' + sx + '"]');
   await Bp.waitForSelector("#apercu[open] .vitrine .carte");
   await Bp.screenshot({path: T + "/profil-tel.png"});
+  assert.strictEqual(await Bp.locator("#apercu [data-signaler]").count(), 0);
   await Bp.evaluate(() => document.getElementById("apercu").close());
   // Déconnexion : retour à la collection locale du navigateur
   await A.click('nav [data-vue="plus"]'); await A.click('[data-menu="parametres"]'); await A.waitForSelector("#deconnexion"); await A.click("#deconnexion");

@@ -296,6 +296,28 @@ footer{max-width:1120px;margin:0 auto;padding:0 1rem 3rem;font-size:.85rem;color
 .bascule{display:flex;gap:.4rem;margin:.4rem 0}
 .bascule button{background:none;border:1px solid rgba(201,162,74,.5);color:var(--marbre);border-radius:2rem;padding:.35rem .9rem}
 .bascule button[aria-pressed="true"]{background:var(--dorure);color:var(--encre);border-color:var(--dorure)}
+/* Amis : ajout en une ligne, fiches avec pastille, aperçu de la vitrine et gestes */
+.ajout-ami{display:flex;gap:.5rem;margin:.6rem 0 1rem}
+.ajout-ami input{flex:1;min-width:0;font:inherit;padding:.6rem .8rem;border-radius:6px;border:1px solid rgba(201,162,74,.45);background:rgba(46,7,16,.6);color:inherit}
+.compte-amis{font:600 .8rem/1 var(--sans, inherit);vertical-align:middle;background:var(--dorure);color:#2e0710;border-radius:999px;padding:.2rem .5rem}
+.avatar-ami{flex:none;width:2.4rem;height:2.4rem;border-radius:50%;display:grid;place-items:center;font:600 1.1rem/1 var(--serif);color:#fff;background:hsl(var(--teinte) 45% 38%);border:2px solid rgba(201,162,74,.7)}
+.fiches-amis,.demandes-ami{list-style:none;margin:.4rem 0 1rem;padding:0;display:grid;gap:.6rem}
+.fiches-amis{grid-template-columns:repeat(auto-fill,minmax(16rem,1fr))}
+.fiche-ami{border:1px solid rgba(201,162,74,.3);border-radius:10px;background:rgba(46,7,16,.6);padding:.7rem;display:grid;gap:.6rem}
+.tete-ami{display:flex;align-items:center;gap:.6rem;background:none;border:0;color:inherit;text-align:left;padding:0;cursor:pointer;font:inherit}
+.nom-ami{font:400 1.15rem/1.2 var(--serif);flex:1;min-width:0;overflow-wrap:anywhere}
+.vitrine-ami{display:flex;gap:.25rem}
+.mini-ami{width:2.4rem;height:3.2rem;border-radius:3px;padding:2px;background:var(--cadre, #888);display:grid;place-items:center;overflow:hidden}
+.mini-ami img{width:100%;height:100%;object-fit:cover;border-radius:2px}
+.mini-ami b{font:400 .8rem/1 var(--serif);color:#2e0710;background:#efe9df;width:100%;height:100%;display:grid;place-items:center;border-radius:2px}
+.gestes-ami{display:flex;gap:.4rem;align-items:center;flex-wrap:wrap}
+.gestes-ami .bouton{padding:.4rem .9rem;font-size:.88rem}
+.retirer-ami{margin-left:auto;font-size:.82rem;opacity:.75}
+.demande-ami{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;border:1px solid rgba(201,162,74,.25);border-radius:8px;padding:.5rem .7rem;background:rgba(46,7,16,.6)}
+.demande-ami .nom-ami{text-align:left}
+.demandes-ami.recues .demande-ami{border-color:var(--dorure)}
+.vide-amis{line-height:1.5}
+:root[data-theme="clair"] :is(.fiche-ami,.demande-ami,.ajout-ami input){background:rgba(255,255,255,.65);border-color:rgba(92,16,32,.22)}
 .lignes-buvette{list-style:none;margin:.4rem 0;padding:0;display:grid;gap:.4rem}
 .lignes-buvette li{display:flex;flex-wrap:wrap;gap:.3rem .8rem;align-items:center;justify-content:space-between;border:1px solid rgba(201,162,74,.25);border-radius:5px;padding:.5rem .7rem;background:rgba(46,7,16,.6);font-size:.9rem}
 .lignes-buvette .quoi{flex:1;min-width:12rem}
@@ -1538,7 +1560,7 @@ async function majParametres(){
     <h3>Notifications</h3>
     ${notifs}
     <h3>Nous écrire</h3>
-    <form class="formulaire" id="form-contact"><label>Votre message (question, signalement, exercice de vos droits sur vos données)<textarea class="champ" name="message" rows="4" maxlength="2000" required></textarea></label>
+    <form class="formulaire" id="form-contact"><label>Votre message (question, remarque, exercice de vos droits sur vos données)<textarea class="champ" name="message" rows="4" maxlength="2000" required></textarea></label>
       <label>Adresse pour vous répondre (facultatif)<input type="text" name="reponse" maxlength="200" autocomplete="email"></label><button class="bouton discret" type="submit">Envoyer</button></form>
     <h3>Informations</h3>
     <p><a href="mentions.html">Mentions légales, conditions d'utilisation et confidentialité</a></p>
@@ -1593,17 +1615,9 @@ document.addEventListener("click", e => {
       <div class="vitrine">${p.vitrine.filter(id => cat.parId[id]).map(id => htmlCarte(cat.parId[id], {etoile: false})).join("") || `<p class="note">Vitrine vide.</p>`}</div>
       ${compte && compte.pseudo !== p.pseudo ? `<p class="actions-ligne">${relation(p.pseudo) === "ami" ? `<span class="note">Vous êtes amis.</span>`
         : relation(p.pseudo) === "envoyee" ? `<span class="note">Demande d'ami envoyée.</span>`
-        : `<button class="bouton" data-ami="demander:${echapper(p.pseudo)}">${relation(p.pseudo) === "recue" ? "Accepter sa demande d'ami" : "Ajouter en ami"}</button>`}
-        <button class="bouton discret" data-signaler="${echapper(p.pseudo)}">Signaler ce pseudo</button></p>` : ""}`;
+        : `<button class="bouton" data-ami="demander:${echapper(p.pseudo)}">${relation(p.pseudo) === "recue" ? "Accepter sa demande d'ami" : "Ajouter en ami"}</button>`}</p>` : ""}`;
     document.getElementById("apercu").showModal();
   }).catch(x => signaler(x.message));
-});
-document.addEventListener("click", e => {
-  const b = e.target.closest("[data-signaler]");
-  if (!b) return;
-  const motif = prompt(`Pourquoi signaler « ${b.dataset.signaler} » ?`);
-  if (motif === null) return;
-  occupe(b, async () => { await appel("signaler", {pseudo: b.dataset.signaler, motif}); signaler("Signalement envoyé. Merci."); });
 });
 
 /* ---------- Buvette : échanges entre joueurs et comptoir (marché) ---------- */
@@ -1838,18 +1852,26 @@ function majAmis(){
   }
   // La liste est redessinée quand le serveur répond : un pseudo en cours de saisie est gardé, curseur compris
   const champ = vue.querySelector("#form-ami [name=pseudo]"), saisie = champ ? champ.value : "", actif = !!champ && document.activeElement === champ;
-  const ligne = (p, boutons) => `<li><span class="quoi"><button class="lien-carte" data-profil="${echapper(p)}">${echapper(p)}</button></span><span class="actions-ligne">${boutons}</span></li>`;
-  vue.innerHTML = `<h2>Amis</h2>
-    <form class="formulaire" id="form-ami"><label>Ajouter un ami par son pseudo<input type="text" name="pseudo" required autocapitalize="off" spellcheck="false" placeholder="Pseudo"></label><button class="bouton" type="submit">Envoyer la demande</button></form>
-    ${amis.recues.length ? `<h3>Demandes reçues</h3><ul class="lignes-buvette">${amis.recues.map(p => ligne(p,
-      `<button class="bouton" data-ami="accepter:${echapper(p)}">Accepter</button><button class="bouton discret" data-ami="retirer:${echapper(p)}">Refuser</button>`)).join("")}</ul>` : ""}
-    <h3>Mes amis</h3>
-    <ul class="lignes-buvette">${amis.amis.length ? amis.amis.map(p => ligne(p,
-      `<button class="bouton discret" data-profil="${echapper(p)}">Vitrine</button><button class="bouton discret" data-echange-ami="${echapper(p)}">Échanger</button>
-       <button class="bouton discret" data-duel-ami="${echapper(p)}">Défier</button><button class="bouton discret" data-ami="retirer:${echapper(p)}" data-confirmer="Retirer ${echapper(p)} de vos amis ?">Retirer</button>`)).join("")
-      : `<li class="note">Pas encore d'amis. Envoyez une demande avec le pseudo d'un joueur : il l'acceptera depuis son onglet Amis.</li>`}</ul>
-    ${amis.envoyees.length ? `<h3>Demandes envoyées</h3><ul class="lignes-buvette">${amis.envoyees.map(p => ligne(p,
-      `<span class="note">en attente</span><button class="bouton discret" data-ami="retirer:${echapper(p)}">Annuler</button>`)).join("")}</ul>` : ""}`;
+  const e = echapper;
+  // Pastille du joueur : initiale sur une couleur tirée du pseudo (toujours la même pour un joueur)
+  const pastille = p => `<span class="avatar-ami" style="--teinte:${[...p].reduce((h, c) => (h * 31 + c.charCodeAt(0)) % 360, 7)}" aria-hidden="true">${e(p.slice(0, 1).toUpperCase())}</span>`;
+  const mini = id => { const c = cat.parId[id]; if (!c) return ""; const src = srcPortrait(c);
+    const ini = e(initiales(c.nom));
+    return `<span class="mini-ami r-${c.rarete}" title="${e(c.nom)}">${src ? `<img src="${e(src)}" alt="" loading="lazy"${croise(src) ? ' crossorigin="anonymous"' : ""} onerror="this.outerHTML='<b>${ini}</b>'">` : `<b>${ini}</b>`}</span>`; };
+  const fiche = p => { const v = (amis.vitrines || {})[p] || [];
+    return `<li class="fiche-ami"><button class="tete-ami" data-profil="${e(p)}">${pastille(p)}<span class="nom-ami">${e(p)}</span>
+        <span class="vitrine-ami">${v.map(mini).join("") || `<span class="note">vitrine vide</span>`}</span></button>
+      <div class="gestes-ami"><button class="bouton" data-echange-ami="${e(p)}">Échanger</button><button class="bouton discret" data-duel-ami="${e(p)}">Défier</button>
+        <button class="lien-carte retirer-ami" data-ami="retirer:${e(p)}" data-confirmer="Retirer ${e(p)} de vos amis ?">Retirer</button></div></li>`; };
+  const demande = (p, gestes) => `<li class="demande-ami">${pastille(p)}<button class="lien-carte nom-ami" data-profil="${e(p)}">${e(p)}</button><span class="gestes-ami">${gestes}</span></li>`;
+  vue.innerHTML = `<h2>Amis${amis.amis.length ? ` <span class="compte-amis">${amis.amis.length}</span>` : ""}</h2>
+    <form class="ajout-ami" id="form-ami"><input type="text" name="pseudo" required autocapitalize="off" spellcheck="false" placeholder="Pseudo d'un joueur" aria-label="Pseudo du joueur à ajouter"><button class="bouton" type="submit">Ajouter</button></form>
+    ${amis.recues.length ? `<h3>${amis.recues.length > 1 ? "Ils veulent" : "Il veut"} devenir votre ami</h3><ul class="demandes-ami recues">${amis.recues.map(p => demande(p,
+      `<button class="bouton" data-ami="accepter:${e(p)}">Accepter</button><button class="bouton discret" data-ami="retirer:${e(p)}">Refuser</button>`)).join("")}</ul>` : ""}
+    ${amis.amis.length ? `<ul class="fiches-amis">${amis.amis.map(fiche).join("")}</ul>`
+      : `<p class="note vide-amis">Pas encore d'amis. Ajoutez un joueur par son pseudo : il acceptera depuis son onglet Amis. Vous verrez alors sa vitrine, vous pourrez lui proposer des échanges et le défier aux questions au Gouvernement.</p>`}
+    ${amis.envoyees.length ? `<h3>Demandes envoyées</h3><ul class="demandes-ami">${amis.envoyees.map(p => demande(p,
+      `<span class="note">en attente</span><button class="lien-carte" data-ami="retirer:${e(p)}">Annuler</button>`)).join("")}</ul>` : ""}`;
   const nouveauChamp = vue.querySelector("#form-ami [name=pseudo]");
   if (nouveauChamp && saisie) nouveauChamp.value = saisie;
   if (nouveauChamp && actif) nouveauChamp.focus();
