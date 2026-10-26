@@ -211,7 +211,8 @@ serveur), filtre « Mes favoris » dans l'Hémicycle. Pas de zoom au double touc
   polices servies par le site (`site/polices/`, licence OFL), page `mentions.html` (mentions légales,
   conditions d'utilisation, confidentialité). `jeu.json` pèse 6,5 Mo mais 1 Mo compressé par Cloudflare.
 - Limites connues : un joueur peut ouvrir plusieurs comptes et faire passer leurs cartes vers un seul
-  (inscriptions limitées à cinq par heure et par adresse IP, sans plus) ; pas de modération des pseudos.
+  (inscriptions limitées à 100 par heure et par adresse IP, connexions à 300 par quart d'heure et par adresse, pour ne
+  pas gêner les connexions partagées ; 10 essais par quart d'heure et par pseudo) ; pas de modération des pseudos.
 
 ## Prochaines tâches
 
