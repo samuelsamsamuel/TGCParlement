@@ -596,6 +596,7 @@ html.presentation{font-size:15px}
   <p class="centre"><button class="lien-carte" data-accueil="connexion">J'ai déjà un compte</button></p>
 </div></dialog>
 <dialog id="installation" class="fenetre-accueil"><div class="fenetre" id="installation-contenu"></div></dialog>
+<dialog id="preferences" class="fenetre-accueil"><div class="fenetre" id="preferences-contenu"></div></dialog>
 <div class="guide" id="guide" hidden><div class="guide-trou" id="guide-trou"></div>
   <div class="guide-bulle" id="guide-bulle" role="dialog" aria-live="polite"><p id="guide-texte"></p>
     <div class="guide-boutons"><button class="lien-carte" id="guide-passer">Passer la visite</button><span class="note" id="guide-etape"></span><button class="bouton" id="guide-suivant">Suivant</button></div></div></div>
@@ -839,6 +840,7 @@ function montrer(tirage, neuves, i, vues = new Set()){
       <div class="actions petites">${Regles.paquetsDisponibles(etat).total>0?'<button class="bouton" id="suivant">Ouvrir un autre paquet</button>':'<button class="bouton discret" id="voir">Voir mon hémicycle</button>'}</div>`;
     document.getElementById("suivant")?.addEventListener("click", () => { afficherPaquet(); recentrer(); });
     document.getElementById("voir")?.addEventListener("click", () => allerA("collection"));
+    paquetTermine();
     return;
   }
   const c = tirage[i], dejaVue = vues.has(i);
@@ -1467,6 +1469,44 @@ async function desactiverNotifications(){
   const ab = await abonnementActuel();
   if (ab) { await appel("notifications/desabonner", {endpoint: ab.endpoint}).catch(() => {}); await ab.unsubscribe(); }
 }
+// Après le deuxième paquet ouvert sur cet appareil, une fois : thème et notifications, réglables ensuite dans Paramètres
+function paquetTermine(){
+  let n = 0;
+  try { n = Number(localStorage.getItem("hemicycle-paquets-ouverts") || 0) + 1; localStorage.setItem("hemicycle-paquets-ouverts", n); } catch (_) { return; }
+  let fait = true;
+  try { fait = localStorage.getItem("hemicycle-preferences") === "proposees"; } catch (_) {}
+  if (n >= 2 && !fait && !visite) setTimeout(ouvrirPreferences, reduit() ? 0 : 700);
+}
+function ouvrirPreferences(){
+  try { localStorage.setItem("hemicycle-preferences", "proposees"); } catch (_) {}
+  const theme = preferenceTheme();
+  const ios = /iPhone|iPad/.test(navigator.userAgent) && !installee();
+  const notifs = !compte ? `<p class="note">Avec un compte, l'Hémicycle peut vous prévenir d'un échange, d'une demande d'ami ou d'une réserve pleine.</p>`
+    : !pushPossible() ? `<p class="note">${ios ? "Sur iPhone, les notifications ne marchent que dans l'application installée sur l'écran d'accueil." : "Ce navigateur ne reçoit pas de notifications."}</p>`
+    : Notification.permission === "granted" ? "" : `<button class="bouton" id="pref-notifs"><b>Activer les notifications</b> <span>échanges, amis, duels, ventes et réserve pleine</span></button>`;
+  document.getElementById("preferences-contenu").innerHTML = `<p class="sur-titre">Deux réglages</p><h2>À votre goût</h2>
+    <p>Le thème de l'hémicycle :</p>
+    <div class="bascule choix-theme" role="group" aria-label="Thème">${[["sombre", "Sombre"], ["clair", "Clair"], ["auto", "Comme l'appareil"]].map(([v, l]) => `<button data-pref-theme="${v}" aria-pressed="${theme === v}">${l}</button>`).join("")}</div>
+    ${notifs ? `<p>Les notifications :</p>${notifs}` : ""}
+    <p class="note" id="pref-annonce" aria-live="polite"></p>
+    <button class="bouton discret" id="pref-fermer"><b>C'est réglé</b> <span>vous pourrez changer d'avis dans Plus, puis Paramètres</span></button>`;
+  document.getElementById("preferences").showModal();
+}
+document.getElementById("preferences").addEventListener("click", e => {
+  const t = e.target.closest("[data-pref-theme]");
+  if (t) {
+    try { localStorage.setItem("hemicycle-theme", t.dataset.prefTheme); } catch (_) {}
+    appliquerTheme();
+    document.querySelectorAll("[data-pref-theme]").forEach(b => b.setAttribute("aria-pressed", b === t));
+    return;
+  }
+  const b = e.target.closest("#pref-notifs");
+  if (b) occupe(b, async () => {
+    try { await activerNotifications(prefsNotifications()); b.remove(); document.getElementById("pref-annonce").textContent = "Notifications activées sur cet appareil."; }
+    catch (err) { document.getElementById("pref-annonce").textContent = err.message; }
+  });
+  if (e.target.closest("#pref-fermer")) document.getElementById("preferences").close();
+});
 async function majParametres(){
   const vue = document.getElementById("vue-parametres");
   const theme = preferenceTheme(), prefs = prefsNotifications();

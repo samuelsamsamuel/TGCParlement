@@ -116,6 +116,14 @@ const T = process.argv[2] || require("os").tmpdir();
   // Questions au Gouvernement : cinq questions, récompense une fois par jour (masquées pendant la découverte)
   for (let i = 0; i < 5; i++) await page.click("#suite");
   await page.waitForSelector(".recap"); assert.ok(!(await page.isVisible("#qag")));
+  // Deuxième paquet ouvert : thème et notifications proposés, une seule fois
+  await page.waitForSelector("#preferences[open]");
+  assert.match(await page.textContent("#preferences"), /Avec un compte/);
+  await page.click('[data-pref-theme="clair"]'); assert.strictEqual(await page.evaluate(() => document.documentElement.dataset.theme), "clair");
+  await page.click('[data-pref-theme="sombre"]'); assert.strictEqual(await page.evaluate(() => document.documentElement.dataset.theme), "sombre");
+  await page.screenshot({path: T + "/preferences.png"});
+  await page.click("#pref-fermer"); assert.ok(!(await page.isVisible("#preferences")));
+  assert.strictEqual(await page.evaluate(() => localStorage.getItem("hemicycle-preferences")), "proposees");
   await page.click('nav [data-vue="collection"]'); await page.click('nav [data-vue="paquet"]');
   await page.click("#qag-jour");
   for (let i = 0; i < 5; i++) {
