@@ -105,6 +105,11 @@ const T = process.argv[2] || require("os").tmpdir();
   await page.click("details.rubrique:has(#recherche-dep) summary");
   await page.fill("#recherche-dep", "gironde");
   assert.strictEqual(await page.locator("#obj-departements .objectif").count(), 1);
+  // Rubriques longues : huit objectifs, puis un bouton pour le reste
+  await page.click("details.rubrique:has(#obj-legislatures) summary");
+  assert.strictEqual(await page.locator("#obj-legislatures .objectif").count(), 8);
+  await page.click('[data-tout-voir="legislatures"]');
+  assert.ok(await page.locator("#obj-legislatures .objectif").count() > 8);
   // Paquets : les offerts s'ouvrent une fois la réserve vide
   await page.evaluate(() => { etat.reserve = 0; etat.ancre = Date.now(); sauver(); });
   await page.click('nav [data-vue="paquet"]');
