@@ -24,8 +24,12 @@ const MAX_PAR_CARTE = 999;                       // exemplaires repris au plus p
 const MAX_ECHANGE = 40;                          // cartes au plus dans un échange (deux côtés)
 const MAX_ECHANGES_EN_COURS = 20, MAX_ANNONCES = 50;
 const PRIX_MAX = 100000;
-const LIMITES = {                                // tentatives par fenêtre de 15 minutes (1 heure pour les inscriptions)
-  connexion: [10, 15 * 60], connexionIp: [40, 15 * 60], inscriptionIp: [5, 3600],
+// Tentatives par fenêtre de 15 minutes (1 heure pour les inscriptions). Par adresse IP, des plafonds hauts : une
+// box familiale, une classe, un bureau ou les abonnés mobiles d'un opérateur partagent une même adresse (demande de
+// l'utilisateur, octobre 2026 : « le plus possible ») ; ils n'arrêtent plus qu'un script. Par pseudo, la limite reste
+// basse contre les essais de mots de passe.
+const LIMITES = {
+  connexion: [10, 15 * 60], connexionIp: [300, 15 * 60], inscriptionIp: [100, 3600],
 };
 
 const SCHEMA = [
