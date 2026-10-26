@@ -186,7 +186,10 @@ serveur), filtre « Mes favoris » dans l'Hémicycle. Pas de zoom au double touc
   demande et gardées dans `reglages`) ; le texte attend dans `notifications` et le service de travail le lit
   (`GET /api/notifications`, qui le supprime). Abonnements par appareil (`abonnements`, services de poussée connus
   seulement), préférences « buvette » (échanges, amis, duels, ventes) et « réserve ». Déclencheur planifié horaire
-  (`triggers.crons` de `wrangler.jsonc`, `scheduled`) : réserve pleine, une fois par remplissage (`reserve_vue`).
+  (`triggers.crons` de `wrangler.jsonc`, `scheduled`) : réserve pleine, une fois par remplissage (`reserve_vue`),
+  seulement si la moitié au moins de la réserve s'est remplie depuis le dernier paquet (`RESERVE_MIN_AVIS` ; un paquet
+  ouvert d'une réserve pleine la remplissait en une heure, d'où une notification presque à chaque paquet) ; un
+  message identique non lu est remplacé ; testé par `api.test.js` (`wrangler dev --test-scheduled`).
   Signature vérifiée contre FCM (jeton juste : 410 pour un abonnement inconnu ; jeton faux : 403). Sur iPhone,
   seulement dans l'application installée sur l'écran d'accueil.
 - Migrations uniques : `MIGRATIONS` (worker), notées dans `reglages`.
