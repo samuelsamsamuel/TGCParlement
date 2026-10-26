@@ -64,6 +64,7 @@ const SCHEMA = [
      cree TEXT NOT NULL, maj TEXT NOT NULL)`,
   `CREATE INDEX IF NOT EXISTS annonces_statut ON annonces (statut, carte)`,
   `CREATE INDEX IF NOT EXISTS annonces_vendeur ON annonces (vendeur, statut)`,
+  `CREATE INDEX IF NOT EXISTS annonces_acheteur ON annonces (acheteur)`,
   // Duels de questions : mêmes questions (même graine) pour les deux joueurs, pour la gloire (pas de voix)
   `CREATE TABLE IF NOT EXISTS duels (id INTEGER PRIMARY KEY, de INTEGER NOT NULL, vers INTEGER NOT NULL, graine INTEGER NOT NULL,
      score_de INTEGER, score_vers INTEGER, cree TEXT NOT NULL, maj TEXT NOT NULL)`,
@@ -429,10 +430,15 @@ async function marche(env, url) {
     WHERE a.statut = 'ouverte' ${filtre} ORDER BY ${tri} LIMIT 200`).bind(...ids).all();
   return json({annonces: r.results});
 }
+// Annonces du joueur (vendeur) et ses achats (historique de la buvette)
 async function mesAnnonces(env, joueur) {
-  const r = await env.DB.prepare(`SELECT a.id, a.carte, a.prix, a.statut, a.cree, a.maj, j.pseudo AS acheteur FROM annonces a
-    LEFT JOIN joueurs j ON j.id = a.acheteur WHERE a.vendeur = ? ORDER BY (a.statut = 'ouverte') DESC, a.id DESC LIMIT 100`).bind(joueur).all();
-  return json({annonces: r.results});
+  const [r, achats] = await env.DB.batch([
+    env.DB.prepare(`SELECT a.id, a.carte, a.prix, a.statut, a.cree, a.maj, j.pseudo AS acheteur FROM annonces a
+      LEFT JOIN joueurs j ON j.id = a.acheteur WHERE a.vendeur = ? ORDER BY (a.statut = 'ouverte') DESC, a.id DESC LIMIT 100`).bind(joueur),
+    env.DB.prepare(`SELECT a.id, a.carte, a.prix, a.maj, j.pseudo AS vendeur FROM annonces a JOIN joueurs j ON j.id = a.vendeur
+      WHERE a.acheteur = ? ORDER BY a.id DESC LIMIT 100`).bind(joueur),
+  ]);
+  return json({annonces: r.results, achats: achats.results});
 }
 async function vendre(env, requete, joueur, cat) {
   const c = await lireCorps(requete);

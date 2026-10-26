@@ -80,7 +80,7 @@ const sx = Date.now().toString(36).slice(-4);
   await Bp.waitForSelector('[data-action$=":accepter"]');
   await Bp.screenshot({path: T + "/bourse-tel.png", fullPage: true});
   await Bp.click('[data-action$=":accepter"]');
-  await Bp.waitForFunction(() => /accepté/.test(document.getElementById("passes-echanges").textContent));
+  await Bp.waitForFunction(() => /accepté/.test(document.getElementById("historique").textContent) && !document.querySelector("#liste-echanges [data-action]"));
   // Anne met une carte en vente ; Bob, crédité de points, l'achète
   await A.reload(); await A.click('nav [data-vue="buvette"]'); await A.click('.onglets [data-sous="comptoir"]');
   await A.click('[data-choisir-vente]'); await A.waitForSelector("#choix-carte[open] [data-choisir]");
@@ -95,11 +95,18 @@ const sx = Date.now().toString(36).slice(-4);
   await Bp.waitForSelector('[data-action$=":acheter"]:not([disabled])');
   await Bp.click('[data-action$=":acheter"]');
   await Bp.waitForFunction(() => etat.points === 18);
-  await A.reload(); await A.click('nav [data-vue="buvette"]'); await A.click('.onglets [data-sous="comptoir"]');
-  await A.waitForFunction(() => /vendue à Bob/.test(document.getElementById("passees-annonces").textContent));
+  // Historique (sous-onglet) : l'échange accepté et la vente, filtrables ; l'achat chez Bob
+  await A.reload(); await A.click('nav [data-vue="buvette"]'); await A.click('.onglets [data-sous="historique"]');
+  await A.waitForFunction(() => /Vendue à Bob/i.test(document.getElementById("historique").textContent) && /Échange avec Bob/i.test(document.getElementById("historique").textContent));
   assert.strictEqual(await A.evaluate(() => etat.points), 12);
-  // Aperçu d'une carte depuis la bourse
-  await A.click('#historique-annonces summary'); await A.click('#passees-annonces [data-apercu]'); await A.waitForSelector("#apercu[open] .carte");
+  await A.screenshot({path: T + "/historique.png", fullPage: true});
+  await A.click('[data-hist="comptoir"]'); assert.ok(!/Échange avec/.test(await A.textContent("#historique")));
+  await A.click('[data-hist="tout"]');
+  await Bp.click('nav [data-vue="buvette"]'); await Bp.click('.onglets [data-sous="historique"]');
+  await Bp.waitForFunction(() => /Achetée à Anne/i.test(document.getElementById("historique").textContent));
+  await Bp.screenshot({path: T + "/historique-tel.png", fullPage: true});
+  // Aperçu d'une carte depuis l'historique
+  await A.click('#historique .mini-ami'); await A.waitForSelector("#apercu[open] .carte");
   await A.click("#fermer-apercu");
   // Duel : Anne défie Bob depuis la séance, Bob voit la pastille et joue
   await A.click('nav [data-vue="paquet"]');

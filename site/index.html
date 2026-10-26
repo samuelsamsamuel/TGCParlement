@@ -296,6 +296,29 @@ footer{max-width:1120px;margin:0 auto;padding:0 1rem 3rem;font-size:.85rem;color
 .bascule{display:flex;gap:.4rem;margin:.4rem 0}
 .bascule button{background:none;border:1px solid rgba(201,162,74,.5);color:var(--marbre);border-radius:2rem;padding:.35rem .9rem}
 .bascule button[aria-pressed="true"]{background:var(--dorure);color:var(--encre);border-color:var(--dorure)}
+/* Buvette : fiches d'échange (en attente et historique) */
+.fiches-echange{list-style:none;margin:.4rem 0 1rem;padding:0;display:grid;gap:.6rem}
+.fiche-echange{border:1px solid rgba(201,162,74,.3);border-radius:10px;background:rgba(46,7,16,.6);padding:.7rem .8rem;display:grid;gap:.5rem}
+.fiche-echange.recue{border-color:var(--dorure)}
+.fiche-echange.close{opacity:.72}
+.titre-echange{margin:0;display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;font-size:.95rem}
+.icone-hist{width:1.6rem;height:1.6rem;border-radius:50%;display:grid;place-items:center;background:rgba(201,162,74,.2);color:var(--dorure-pale);font-size:.85rem;flex:none}
+.etat-hist{margin-left:auto;font-size:.8rem;padding:.15rem .5rem;border-radius:999px;background:rgba(201,162,74,.18);color:var(--dorure-pale)}
+.fiche-echange.close .etat-hist{background:rgba(255,255,255,.08);color:inherit}
+.sens{display:grid;grid-template-columns:5.2rem 1fr;align-items:center;gap:.5rem;font-size:.85rem}
+.sens > span{opacity:.8}
+.minis{display:grid;gap:.35rem}
+.carte-nommee{display:flex;align-items:center;gap:.5rem;min-width:0}
+.carte-nommee .lien-carte{text-align:left;overflow-wrap:anywhere}
+.carte-nommee .etiquette{flex:none}
+.sens{align-items:start}
+.mini-ami{position:relative;border:0;cursor:pointer}
+.mini-ami i{position:absolute;right:-.35rem;bottom:-.35rem;font:600 .65rem/1 inherit;font-style:normal;background:var(--dorure);color:#2e0710;border-radius:999px;padding:.15rem .3rem}
+.date-hist{margin:0;font-size:.78rem}
+.hist-mois{margin:1rem 0 .2rem;text-transform:capitalize;font-size:1rem;color:var(--dorure-pale)}
+#filtre-historique{margin:.4rem 0}
+:root[data-theme="clair"] .fiche-echange{background:rgba(255,255,255,.65);border-color:rgba(92,16,32,.22)}
+:root[data-theme="clair"] .fiche-echange.recue{border-color:var(--dorure)}
 /* Amis : ajout en une ligne, fiches avec pastille, aperçu de la vitrine et gestes */
 .ajout-ami{display:flex;gap:.5rem;margin:.6rem 0 1rem}
 .ajout-ami input{flex:1;min-width:0;font:inherit;padding:.6rem .8rem;border-radius:6px;border:1px solid rgba(201,162,74,.45);background:rgba(46,7,16,.6);color:inherit}
@@ -1178,6 +1201,19 @@ document.getElementById("apercu").addEventListener("click", e => {
 });
 document.addEventListener("click", e => { const b = e.target.closest("[data-apercu]"); if (b) apercu(b.dataset.apercu); });
 function nomCarte(id){ const c = cat.parId[id]; return c ? `<button class="lien-carte" data-apercu="${echapper(id)}">${echapper(c.nom)}</button> <span class="etiquette">${LIBELLES[c.rarete]}</span>` : echapper(id); }
+// Miniature d'une carte (portrait ou initiales, cadre de sa rareté) ; la toucher ouvre la carte en grand
+function miniature(id, q = 1){
+  const c = cat.parId[id]; if (!c) return "";
+  const src = srcPortrait(c), ini = echapper(initiales(c.nom));
+  return `<button type="button" class="mini-ami r-${c.rarete}" data-apercu="${echapper(id)}" title="${echapper(c.nom)}" aria-label="${echapper(c.nom)}">${src
+    ? `<img src="${echapper(src)}" alt="" loading="lazy"${croise(src) ? ' crossorigin="anonymous"' : ""} onerror="this.outerHTML='<b>${ini}</b>'">` : `<b>${ini}</b>`}${q > 1 ? `<i>×${q}</i>` : ""}</button>`;
+}
+// Carte nommée : miniature, nom et rareté (lots d'un échange, historique)
+function carteNommee(id, q = 1){
+  const c = cat.parId[id]; if (!c) return "";
+  return `<span class="carte-nommee">${miniature(id, q)}<button type="button" class="lien-carte" data-apercu="${echapper(id)}">${echapper(c.nom)}</button><span class="etiquette">${LIBELLES[c.rarete]}</span></span>`;
+}
+function miniatures(l){ const e = Object.entries(l || {}); return e.length ? e.map(([id, q]) => carteNommee(id, q)).join("") : `<span class="note">rien</span>`; }
 function lotTexte(l){ const e = Object.entries(l||{}); return e.length ? e.map(([id,q]) => (q>1?q+" × ":"")+nomCarte(id)).join(", ") : "rien"; }
 
 /* ---------- Compte ---------- */
@@ -1720,10 +1756,9 @@ async function proposerEchangeA(pseudo){
 function construireBuvette(vue){
   buvetteConstruite = true;
   vue.innerHTML = `<h2>Buvette</h2>
-    <div class="onglets" role="tablist"><button role="tab" data-sous="echanges" aria-selected="true">Échanges <span class="pastille" id="pastille-echanges" hidden></span></button><button role="tab" data-sous="comptoir" aria-selected="false">Comptoir</button></div>
+    <div class="onglets" role="tablist"><button role="tab" data-sous="echanges" aria-selected="true">Échanges <span class="pastille" id="pastille-echanges" hidden></span></button><button role="tab" data-sous="comptoir" aria-selected="false">Comptoir</button><button role="tab" data-sous="historique" aria-selected="false">Historique</button></div>
     <div data-panneau="echanges">
-      <ul class="lignes-buvette" id="liste-echanges"></ul>
-      <h3 id="historique-echanges">Historique de vos échanges</h3><ul class="lignes-buvette" id="passes-echanges"></ul>
+      <div id="zone-en-cours" hidden><h3>En attente</h3><ul class="fiches-echange" id="liste-echanges"></ul></div>
       <h3 id="etape-partenaire">Proposer un échange</h3>
       <div class="puces-amis" id="puces-partenaires"></div>
       <form class="ligne-pseudo" id="form-partenaire"><input class="champ" type="text" name="pseudo" required autocapitalize="off" spellcheck="false" placeholder="Pseudo d'un joueur" aria-label="Pseudo du joueur"><button class="bouton discret" type="submit">Choisir</button></form>
@@ -1742,7 +1777,11 @@ function construireBuvette(vue){
       <h3>Vendre une carte</h3>
       <div id="zone-vente"></div>
       <ul class="lignes-buvette" id="mes-annonces"></ul>
-      <details class="historique" id="historique-annonces" hidden><summary>Mes ventes passées</summary><ul class="lignes-buvette" id="passees-annonces"></ul></details>
+    </div>
+    <div data-panneau="historique" hidden>
+      <div class="bascule" role="group" aria-label="Filtrer l'historique" id="filtre-historique">${[["tout", "Tout"], ["echanges", "Échanges"], ["comptoir", "Comptoir"]]
+        .map(([v, l]) => `<button data-hist="${v}" aria-pressed="${v === "tout"}">${l}</button>`).join("")}</div>
+      <div id="historique"></div>
     </div>`;
   selDonne = lot(document.getElementById("sel-donne"), mesLibres, "Choisir vos cartes", majProposer);
   selRecoit = lot(document.getElementById("sel-recoit"), () => sesLibres, "Choisir ses cartes", majProposer);
@@ -1759,6 +1798,12 @@ function construireBuvette(vue){
     });
   });
   vue.querySelector(".onglets").addEventListener("click", e => { const b = e.target.closest("[data-sous]"); if (b) ouvrirSousBuvette(b.dataset.sous); });
+  document.getElementById("filtre-historique").addEventListener("click", e => {
+    const b = e.target.closest("[data-hist]"); if (!b) return;
+    filtreHistorique = b.dataset.hist;
+    document.querySelectorAll("#filtre-historique [data-hist]").forEach(x => x.setAttribute("aria-pressed", x === b));
+    dessinerHistorique();
+  });
   ouvrirSousBuvette(sousBuvette);
   dessinerPartenaires();
   document.getElementById("puces-partenaires").addEventListener("click", e => {
@@ -1792,18 +1837,57 @@ function construireBuvette(vue){
 async function chargerEchanges(){
   const d = await appel("echanges").catch(e => { signaler(e.message); return null; });
   if (!d) return;
-  const ligne = x => {
-    const vous = x.recu ? `${echapper(x.avec)} vous propose ${lotTexte(x.donne)} contre ${lotTexte(x.recoit)}` : `Vous proposez ${lotTexte(x.donne)} à ${echapper(x.avec)} contre ${lotTexte(x.recoit)}`;
-    const boutons = x.statut !== "proposee" ? `<span class="note">${STATUTS[x.statut]}, le ${new Date(x.maj).toLocaleDateString("fr-FR")}</span>` : x.recu
+  // Du point de vue du joueur : ce qu'il donne et ce qu'il reçoit
+  const fiche = x => {
+    const [donne, recoit] = x.recu ? [x.recoit, x.donne] : [x.donne, x.recoit];
+    const gestes = x.recu
       ? `<button class="bouton" data-action="echanges:${x.id}:accepter">Accepter</button><button class="bouton discret" data-action="echanges:${x.id}:refuser">Refuser</button>`
-      : `<span class="note">en attente</span><button class="bouton discret" data-action="echanges:${x.id}:annuler">Retirer</button>`;
-    return `<li><span class="quoi">${vous}</span><span class="actions-ligne">${boutons}</span></li>`;
+      : `<span class="note">en attente de sa réponse</span><button class="lien-carte" data-action="echanges:${x.id}:annuler">Retirer</button>`;
+    return `<li class="fiche-echange${x.recu ? " recue" : ""}"><p class="titre-echange">${x.recu ? `<b>${echapper(x.avec)}</b> vous propose un échange` : `Votre proposition à <b>${echapper(x.avec)}</b>`}</p>
+      <div class="sens"><span>Vous donnez</span><div class="minis">${miniatures(donne)}</div></div>
+      <div class="sens"><span>Vous recevez</span><div class="minis">${miniatures(recoit)}</div></div>
+      <div class="gestes-ami">${gestes}</div></li>`;
   };
-  const enCours = d.echanges.filter(x => x.statut === "proposee"), passes = d.echanges.filter(x => x.statut !== "proposee");
-  document.getElementById("liste-echanges").innerHTML = enCours.map(ligne).join("");
-  document.getElementById("passes-echanges").innerHTML = passes.map(ligne).join("") || `<li class="note">Aucun échange terminé pour l'instant.</li>`;
+  const enCours = d.echanges.filter(x => x.statut === "proposee");
+  document.getElementById("liste-echanges").innerHTML = enCours.map(fiche).join("");
+  document.getElementById("zone-en-cours").hidden = !enCours.length;
+  histoire.echanges = d.echanges.filter(x => x.statut !== "proposee"); dessinerHistorique();
   const recus = d.echanges.filter(x => x.recu && x.statut === "proposee").length, pe = document.getElementById("pastille-echanges");
   pe.hidden = !recus; pe.textContent = recus;
+}
+// Historique de la buvette : échanges terminés, ventes et achats au comptoir, du plus récent au plus ancien, par mois
+const histoire = {echanges: [], ventes: [], achats: []};
+let filtreHistorique = "tout";
+function dessinerHistorique(){
+  const zone = document.getElementById("historique");
+  if (!zone) return;
+  const entrees = [];
+  if (filtreHistorique !== "comptoir") for (const x of histoire.echanges) {
+    const [donne, recoit] = x.recu ? [x.recoit, x.donne] : [x.donne, x.recoit], fait = x.statut === "acceptee";
+    const titre = fait ? `Échange avec <b>${echapper(x.avec)}</b>`
+      : x.statut === "refusee" ? (x.recu ? `Proposition de <b>${echapper(x.avec)}</b> refusée` : `Proposition refusée par <b>${echapper(x.avec)}</b>`)
+      : x.recu ? `Proposition de <b>${echapper(x.avec)}</b> retirée` : `Proposition à <b>${echapper(x.avec)}</b> retirée`;
+    entrees.push({date: x.maj, classe: fait ? "faite" : "close", icone: "⇄", titre, etat: STATUTS[x.statut],
+      corps: `<div class="sens"><span>${fait ? "Donné" : "Proposé"}</span><div class="minis">${miniatures(donne)}</div></div>
+        <div class="sens"><span>${fait ? "Reçu" : "Demandé"}</span><div class="minis">${miniatures(recoit)}</div></div>`});
+  }
+  if (filtreHistorique !== "echanges") {
+    for (const a of histoire.ventes) entrees.push({date: a.maj, classe: a.statut === "vendue" ? "faite" : "close", icone: "◉",
+      titre: a.statut === "vendue" ? `Vendue à <b>${echapper(a.acheteur || "un joueur")}</b>` : "Retirée du comptoir",
+      etat: a.statut === "vendue" ? `+ ${pluriel(a.prix, "voix", "voix")}` : STATUTS[a.statut], corps: `<div class="minis">${carteNommee(a.carte)}</div>`});
+    for (const a of histoire.achats) entrees.push({date: a.maj, classe: "faite", icone: "◉", titre: `Achetée à <b>${echapper(a.vendeur)}</b>`,
+      etat: `− ${pluriel(a.prix, "voix", "voix")}`, corps: `<div class="minis">${carteNommee(a.carte)}</div>`});
+  }
+  entrees.sort((a, b) => String(b.date).localeCompare(String(a.date)));
+  if (!entrees.length) { zone.innerHTML = `<p class="note">${{tout: "Rien encore : vos échanges, ventes et achats apparaîtront ici.", echanges: "Aucun échange terminé pour l'instant.", comptoir: "Aucune vente ni aucun achat pour l'instant."}[filtreHistorique]}</p>`; return; }
+  let mois = "", html = "";
+  for (const x of entrees) {
+    const d = new Date(x.date), m = d.toLocaleDateString("fr-FR", {month: "long", year: "numeric"});
+    if (m !== mois) { html += `${mois ? "</ul>" : ""}<h3 class="hist-mois">${m}</h3><ul class="fiches-echange">`; mois = m; }
+    html += `<li class="fiche-echange hist ${x.classe}"><p class="titre-echange"><span class="icone-hist" aria-hidden="true">${x.icone}</span>${x.titre}
+      <span class="etat-hist">${x.etat}</span></p>${x.corps}<p class="note date-hist">${d.toLocaleDateString("fr-FR", {weekday: "long", day: "numeric", month: "long"})}</p></li>`;
+  }
+  zone.innerHTML = html + "</ul>";
 }
 let annoncesMarche = [], annoncesOuvertes = [];
 async function chargerMarche(){
@@ -1827,8 +1911,7 @@ async function chargerAnnonces(){
   const ouvertes = d.annonces.filter(a => a.statut === "ouverte"), passees = d.annonces.filter(a => a.statut !== "ouverte");
   annoncesOuvertes = ouvertes.map(a => a.carte);
   document.getElementById("mes-annonces").innerHTML = ouvertes.map(ligne).join("");
-  document.getElementById("passees-annonces").innerHTML = passees.map(ligne).join("");
-  document.getElementById("historique-annonces").hidden = !passees.length;
+  histoire.ventes = passees; histoire.achats = d.achats || []; dessinerHistorique();
 }
 
 /* ---------- Amis ---------- */
@@ -1855,9 +1938,7 @@ function majAmis(){
   const e = echapper;
   // Pastille du joueur : initiale sur une couleur tirée du pseudo (toujours la même pour un joueur)
   const pastille = p => `<span class="avatar-ami" style="--teinte:${[...p].reduce((h, c) => (h * 31 + c.charCodeAt(0)) % 360, 7)}" aria-hidden="true">${e(p.slice(0, 1).toUpperCase())}</span>`;
-  const mini = id => { const c = cat.parId[id]; if (!c) return ""; const src = srcPortrait(c);
-    const ini = e(initiales(c.nom));
-    return `<span class="mini-ami r-${c.rarete}" title="${e(c.nom)}">${src ? `<img src="${e(src)}" alt="" loading="lazy"${croise(src) ? ' crossorigin="anonymous"' : ""} onerror="this.outerHTML='<b>${ini}</b>'">` : `<b>${ini}</b>`}</span>`; };
+  const mini = id => miniature(id).replace("<button", "<span").replace(/<\/button>$/, "</span>");
   const fiche = p => { const v = (amis.vitrines || {})[p] || [];
     return `<li class="fiche-ami"><button class="tete-ami" data-profil="${e(p)}">${pastille(p)}<span class="nom-ami">${e(p)}</span>
         <span class="vitrine-ami">${v.map(mini).join("") || `<span class="note">vitrine vide</span>`}</span></button>
