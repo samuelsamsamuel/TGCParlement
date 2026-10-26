@@ -165,7 +165,10 @@ serveur), filtre « Mes favoris » dans l'Hémicycle. Pas de zoom au double touc
   sur une ligne vérifiée au préalable (les lignes de possession ne sont jamais supprimées).
 - Mots de passe : étirés dans le navigateur (PBKDF2-SHA-256, 600 000 tours, sel « hemicycle|pseudo »), le
   serveur ne garde que SHA-256(sel aléatoire + preuve) ; le calcul lent hors du Worker tient dans la limite de
-  10 ms de calcul du plan gratuit. Pas de récupération de mot de passe faute d'envoi d'e-mails.
+  10 ms de calcul du plan gratuit. Pas de récupération de mot de passe faute d'envoi d'e-mails. Changement dans Paramètres
+  (`POST /api/mot-de-passe`, ancien vérifié, 10 essais par quart d'heure, sel neuf, autres sessions fermées). En cas
+  d'oubli, réinitialisation à la main par l'éditeur dans la console D1 (nouveau sel et empreinte de la preuve d'un
+  mot de passe provisoire, sessions et tentatives du joueur effacées), après s'être assuré de l'identité du joueur.
 - Reprise de la collection locale à l'inscription, une fois : décision de l'utilisateur (octobre 2026), les cartes
   reprises sont des cartes ordinaires, vendables et échangeables, alors que le serveur ne peut pas vérifier une
   collection locale (risque accepté : un joueur peut s'écrire des cartes dans son navigateur avant l'inscription).

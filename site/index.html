@@ -1621,6 +1621,13 @@ async function majParametres(){
       ${compte.cree ? `<div class="reglage-ligne"><span>Compte créé le</span><span>${new Date(compte.cree).toLocaleDateString("fr-FR", {day: "numeric", month: "long", year: "numeric"})}</span></div>` : ""}
       <div class="reglage-ligne"><span>Collection</span><span>gardée par le serveur, sur tous vos appareils</span></div>
       <div class="reglage-ligne"><span>Mot de passe</span><span>jamais envoyé : seule une empreinte est gardée ; pas de récupération possible</span></div>
+      <details class="reglages" id="zone-mdp"><summary>Changer de mot de passe</summary>
+        <form class="formulaire" id="form-mdp"><label>Mot de passe actuel<input type="password" name="ancien" autocomplete="current-password" required></label>
+        <label>Nouveau mot de passe (10 caractères au moins)<input type="password" name="nouveau" autocomplete="new-password" minlength="10" required></label>
+        <label>Confirmation du nouveau mot de passe<input type="password" name="nouveau2" autocomplete="new-password" minlength="10" required></label>
+        <p class="note erreur" id="erreur-mdp" aria-live="polite"></p>
+        <button class="bouton" type="submit">Changer le mot de passe</button>
+        <p class="note">Vos autres appareils seront déconnectés ; celui-ci reste connecté.</p></form></details>
       <div class="reglage-ligne"><span>Version de l'état du jeu</span><span>${Regles.VERSION_ETAT}</span></div>
       <p><button class="bouton discret" id="deconnexion">Se déconnecter</button></p>
       <details class="reglages danger" id="zone-suppression"><summary>Supprimer mon compte</summary>
@@ -1668,6 +1675,20 @@ document.getElementById("vue-parametres").addEventListener("submit", e => {
   e.preventDefault();
   if (e.target.id === "form-contact")
     occupe(e.target.querySelector("button"), async () => { await appel("contact", {message: e.target.message.value, reponse: e.target.reponse.value}); e.target.reset(); signaler("Message envoyé. Merci."); });
+  if (e.target.id === "form-mdp") {
+    const f = e.target, erreur = document.getElementById("erreur-mdp");
+    erreur.textContent = "";
+    if (f.nouveau.value.length < 10) { erreur.textContent = "Le nouveau mot de passe doit faire au moins 10 caractères."; return; }
+    if (f.nouveau.value !== f.nouveau2.value) { erreur.textContent = "Les deux nouveaux mots de passe ne sont pas identiques."; return; }
+    occupe(f.querySelector("button"), async () => {
+      const [ancienne, nouvelle] = await Promise.all([etirer(compte.pseudo, f.ancien.value), etirer(compte.pseudo, f.nouveau.value)]);
+      try { await appel("mot-de-passe", {ancienne, nouvelle}); }
+      catch (x) { erreur.textContent = x.message; return; }
+      f.reset(); document.getElementById("zone-mdp").open = false;
+      signaler("Mot de passe changé. Vos autres appareils sont déconnectés.");
+    });
+    return;
+  }
   if (e.target.id === "form-suppression") {
     if (!confirm("Supprimer définitivement votre compte et toute votre collection ?")) return;
     occupe(e.target.querySelector("button"), async () => {

@@ -207,8 +207,18 @@ const preuve = c => require("crypto").createHash("sha256").update(c).digest("hex
   assert.strictEqual((await client()("inscription", {pseudo: "Monique" + suffixe, preuve: preuve("m")}, {"cf-connecting-ip": "10.0.1.2"})).statut, 201);
   assert.strictEqual((await client()("contact", {message: "Bonjour, une question."}, {"cf-connecting-ip": "10.0.1.3"})).statut, 201);
   // Suppression du compte : mauvais mot de passe refusé, puis tout est effacé
+  // Changement de mot de passe : l'ancien est vérifié ; les autres appareils sont déconnectés, celui-ci reste connecté
+  const C2 = client();
+  assert.strictEqual((await C2("connexion", {pseudo: "carole" + suffixe, preuve: preuve("c")})).statut, 200);
+  assert.strictEqual((await C("mot-de-passe", {ancienne: preuve("faux"), nouvelle: preuve("c2")})).statut, 401);
+  assert.strictEqual((await C("mot-de-passe", {ancienne: preuve("c"), nouvelle: "court"})).statut, 400);
+  assert.strictEqual((await C("mot-de-passe", {ancienne: preuve("c"), nouvelle: preuve("c2")})).statut, 200);
+  assert.strictEqual((await C("moi")).d.connecte, true, "l'appareil du changement reste connecté");
+  assert.strictEqual((await C2("moi")).d.connecte, false, "les autres appareils sont déconnectés");
+  assert.strictEqual((await client()("connexion", {pseudo: "carole" + suffixe, preuve: preuve("c")})).statut, 401);
+  assert.strictEqual((await client()("connexion", {pseudo: "carole" + suffixe, preuve: preuve("c2")})).statut, 200);
   assert.strictEqual((await C("supprimer-compte", {preuve: preuve("faux")})).statut, 401);
-  assert.strictEqual((await C("supprimer-compte", {preuve: preuve("c")})).statut, 200);
+  assert.strictEqual((await C("supprimer-compte", {preuve: preuve("c2")})).statut, 200);
   assert.strictEqual((await C("moi")).d.connecte, false);
   assert.strictEqual((await C("connexion", {pseudo: "carole" + suffixe, preuve: preuve("c")})).statut, 401);
   assert.deepStrictEqual((await A("amis")).d.amis, [], "amitiés effacées avec le compte");

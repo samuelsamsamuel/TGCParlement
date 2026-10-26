@@ -145,14 +145,22 @@ const sx = Date.now().toString(36).slice(-4);
   await Bp.screenshot({path: T + "/profil-tel.png"});
   assert.strictEqual(await Bp.locator("#apercu [data-signaler]").count(), 0);
   await Bp.evaluate(() => document.getElementById("apercu").close());
+  // Changement de mot de passe depuis les Paramètres : un mauvais mot de passe actuel est refusé, puis le bon
+  await A.click('nav [data-vue="plus"]'); await A.click('[data-menu="parametres"]'); await A.waitForSelector("#zone-mdp");
+  await A.click("#zone-mdp summary");
+  await A.fill('#form-mdp [name=ancien]', "pas-le-bon-mdp"); await A.fill('#form-mdp [name=nouveau]', "nouveau-motdepasse"); await A.fill('#form-mdp [name=nouveau2]', "nouveau-motdepasse");
+  await A.click('#form-mdp button[type=submit]');
+  await A.waitForFunction(() => /incorrect/.test(document.getElementById("erreur-mdp").textContent), null, {timeout: 20000});
+  await A.fill('#form-mdp [name=ancien]', "motdepasse-long"); await A.click('#form-mdp button[type=submit]');
+  await A.waitForFunction(() => !document.getElementById("zone-mdp").open, null, {timeout: 20000});
   // Déconnexion : retour à la collection locale du navigateur
-  await A.click('nav [data-vue="plus"]'); await A.click('[data-menu="parametres"]'); await A.waitForSelector("#deconnexion"); await A.click("#deconnexion");
+  await A.waitForSelector("#deconnexion"); await A.click("#deconnexion");
   await A.waitForFunction(() => !compte); await A.click('nav [data-vue="plus"]'); await A.click('[data-menu="compte"]'); await A.waitForSelector("#form-compte");
   assert.strictEqual(await A.evaluate(() => Object.keys(etat.possedees).length), locales);
   // Reconnexion avec la casse différente du pseudo
   await A.click('[data-onglet="connexion"]');
   await A.fill('#form-compte [name=pseudo]', "anne" + sx);
-  await A.fill('#form-compte [name=mdp]', "motdepasse-long");
+  await A.fill('#form-compte [name=mdp]', "nouveau-motdepasse");
   await A.click('#form-compte button[type=submit]'); await A.waitForSelector("#compte-principal .chiffres", {timeout: 20000});
   const deborde = await Bp.evaluate(() => document.documentElement.scrollWidth > innerWidth);
   assert.ok(!deborde, "défilement horizontal sur téléphone");

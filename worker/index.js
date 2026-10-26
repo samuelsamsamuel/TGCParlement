@@ -664,6 +664,24 @@ async function actionAmi(env, requete, joueur, action) {
   await env.DB.prepare("DELETE FROM amis WHERE (de = ?1 AND vers = ?2) OR (de = ?2 AND vers = ?1)").bind(joueur, autre.id).run();
   return json({ok: true, statut: "aucun"});
 }
+// Changement de mot de passe : l'ancien est vérifié (10 essais par quart d'heure), le nouveau reçoit un sel neuf ; les
+// autres sessions du joueur sont fermées, celle de l'appareil qui fait le changement reste ouverte
+async function changerMotDePasse(env, requete, joueur) {
+  const c = await lireCorps(requete), ancienne = String(c.ancienne || ""), nouvelle = String(c.nouvelle || "");
+  if (![ancienne, nouvelle].every(p => /^[0-9a-f]{64}$/.test(p))) throw new Refus(400, "Mot de passe illisible.");
+  const cle = "mot-de-passe:" + joueur;
+  await purgerTentatives(env);
+  await limiter(env, cle, LIMITES.connexion);
+  const j = await env.DB.prepare("SELECT sel, empreinte FROM joueurs WHERE id = ?").bind(joueur).first();
+  if (!j || !egaux(await sha256(j.sel + ancienne), j.empreinte)) throw new Refus(401, "Mot de passe actuel incorrect.");
+  const sel = aleatoireHex(16), jeton = lireCookie(requete);
+  await env.DB.batch([
+    env.DB.prepare("UPDATE joueurs SET sel = ?, empreinte = ? WHERE id = ?").bind(sel, await sha256(sel + nouvelle), joueur),
+    env.DB.prepare("DELETE FROM sessions WHERE joueur = ? AND jeton != ?").bind(joueur, jeton ? await sha256(jeton) : ""),
+  ]);
+  await oublier(env, cle);
+  return json({ok: true});
+}
 async function supprimerCompte(env, requete, joueur) {
   const preuve = String((await lireCorps(requete)).preuve || "");
   const j = await env.DB.prepare("SELECT sel, empreinte FROM joueurs WHERE id = ?").bind(joueur).first();
@@ -803,6 +821,7 @@ async function api(requete, env, url) {
   if (methode === "GET" && chemin === "/api/prix") return prixComptoir(env, url, await catalogueDuJeu());
   if (methode === "POST" && chemin === "/api/vitrine") return changerVitrine(env, requete, joueur);
   if (methode === "POST" && chemin === "/api/supprimer-compte") return supprimerCompte(env, requete, joueur);
+  if (methode === "POST" && chemin === "/api/mot-de-passe") return changerMotDePasse(env, requete, joueur);
   if (methode === "POST" && chemin === "/api/duels") return lancerDuel(env, requete, joueur);
   let m;
   if (methode === "POST" && (m = chemin.match(/^\/api\/amis\/(demander|accepter|retirer)$/))) return actionAmi(env, requete, joueur, m[1]);
