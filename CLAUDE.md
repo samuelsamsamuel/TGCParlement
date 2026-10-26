@@ -125,7 +125,10 @@ Première ouverture (`demarrerAccueil`, étape gardée dans `hemicycle-accueil`)
 recommandé ; ouvrir ses cartes dans le navigateur ; « J'ai déjà un compte ») ; après le compte, tutoriel
 d'installation selon l'appareil (iPhone : bouton Partager puis « Sur l'écran d'accueil » ; Android et ordinateur :
 invitation `beforeinstallprompt` ou menu du navigateur) ; puis visite guidée (`ETAPES_VISITE`) qui éclaire chaque
-élément et attend certains gestes (ouvrir le paquet, retourner la carte, finir le paquet). Les tests du navigateur
+élément et attend certains gestes (ouvrir le paquet, retourner la carte, finir le paquet). Au récapitulatif du deuxième paquet
+ouvert sur l'appareil (`paquetTermine`, compteur `hemicycle-paquets-ouverts`), une fois (`hemicycle-preferences`) et
+jamais pendant la visite, la fenêtre `preferences` propose le thème et l'activation des notifications (demande de
+l'utilisateur). Les tests du navigateur
 posent `hemicycle-accueil = fait` pour passer l'accueil. Pendant la visite, rien ne défile (`recentrer` suspendu) :
 la classe `presentation` de `html` resserre l'interface le temps de la visite seulement (séance et découverte
 sans défilement sur 390 × 844) ; hors visite, les tailles habituelles, jugées plus lisibles par l'utilisateur.
