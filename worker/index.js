@@ -65,6 +65,13 @@ const SCHEMA = [
   `CREATE INDEX IF NOT EXISTS annonces_statut ON annonces (statut, carte)`,
   `CREATE INDEX IF NOT EXISTS annonces_vendeur ON annonces (vendeur, statut)`,
   `CREATE INDEX IF NOT EXISTS annonces_acheteur ON annonces (acheteur)`,
+  // Codes à saisir dans Mon siège, créés par l'éditeur dans la console D1 : voix, paquets offerts et cartes (liste JSON
+  // d'identifiants) ; limite d'utilisations et date de fin facultatives ; un compte n'utilise un code qu'une fois
+  `CREATE TABLE IF NOT EXISTS codes (code TEXT PRIMARY KEY COLLATE NOCASE, voix INTEGER NOT NULL DEFAULT 0 CHECK (voix >= 0),
+     paquets INTEGER NOT NULL DEFAULT 0 CHECK (paquets >= 0), cartes TEXT NOT NULL DEFAULT '[]', limite INTEGER,
+     utilisations INTEGER NOT NULL DEFAULT 0, fin TEXT, CHECK (limite IS NULL OR utilisations <= limite))`,
+  `CREATE TABLE IF NOT EXISTS codes_utilises (code TEXT NOT NULL COLLATE NOCASE, joueur INTEGER NOT NULL, date TEXT NOT NULL,
+     PRIMARY KEY (code, joueur))`,
   // Duels de questions : mêmes questions (même graine) pour les deux joueurs, pour la gloire (pas de voix)
   `CREATE TABLE IF NOT EXISTS duels (id INTEGER PRIMARY KEY, de INTEGER NOT NULL, vers INTEGER NOT NULL, graine INTEGER NOT NULL,
      score_de INTEGER, score_vers INTEGER, cree TEXT NOT NULL, maj TEXT NOT NULL)`,
@@ -664,6 +671,33 @@ async function actionAmi(env, requete, joueur, action) {
   await env.DB.prepare("DELETE FROM amis WHERE (de = ?1 AND vers = ?2) OR (de = ?2 AND vers = ?1)").bind(joueur, autre.id).run();
   return json({ok: true, statut: "aucun"});
 }
+// Code saisi dans Mon siège : 10 essais par quart d'heure (on ne devine pas un code au hasard) ; tout est écrit dans un
+// seul lot, la clé de codes_utilises empêche une seconde utilisation et la contrainte de codes la limite d'utilisations
+async function utiliserCode(env, requete, joueur, cat) {
+  const saisi = String((await lireCorps(requete)).code || "").normalize("NFC").trim().slice(0, 60);
+  if (!saisi) throw new Refus(400, "Saisissez un code.");
+  await purgerTentatives(env);
+  await limiter(env, "code:" + joueur, LIMITES.connexion);
+  const c = await env.DB.prepare("SELECT * FROM codes WHERE code = ?").bind(saisi).first();
+  // fin : « 2026-12-31 » vaut jusqu'à la fin de ce jour (heure UTC), comparée à la même longueur
+  if (!c || (c.fin && c.fin < maintenant().slice(0, c.fin.length))) throw new Refus(404, "Ce code n'existe pas ou n'est plus valable.");
+  if (await env.DB.prepare("SELECT 1 FROM codes_utilises WHERE code = ? AND joueur = ?").bind(c.code, joueur).first())
+    throw new Refus(409, "Vous avez déjà utilisé ce code.");
+  if (c.limite !== null && c.utilisations >= c.limite) throw new Refus(409, "Ce code a déjà servi autant de fois que prévu.");
+  let cartes = [];
+  try { cartes = [].concat(JSON.parse(c.cartes || "[]")).map(String).filter(id => cat.parId[id]); } catch (_) { cartes = []; }
+  const parCarte = {};
+  for (const id of cartes) parCarte[id] = (parCarte[id] || 0) + 1;
+  await lot(env, [
+    env.DB.prepare("INSERT INTO codes_utilises (code, joueur, date) VALUES (?, ?, ?)").bind(c.code, joueur, maintenant()),
+    env.DB.prepare("UPDATE codes SET utilisations = utilisations + 1 WHERE code = ?").bind(c.code),
+    env.DB.prepare("UPDATE joueurs SET points = points + ?, offerts = offerts + ? WHERE id = ?").bind(c.voix, c.paquets, joueur),
+    ...Object.entries(parCarte).map(([id, q]) => ajoutCartes(env, joueur, id, q)),
+    noterJournal(env, joueur, "code", {code: c.code, voix: c.voix, paquets: c.paquets, cartes}),
+  ], "Ce code vient d'être utilisé : réessayez.");
+  await oublier(env, "code:" + joueur);
+  return json({gain: {voix: c.voix, paquets: c.paquets, cartes}, ...(await chargerEtat(env, joueur))});
+}
 // Changement de mot de passe : l'ancien est vérifié (10 essais par quart d'heure), le nouveau reçoit un sel neuf ; les
 // autres sessions du joueur sont fermées, celle de l'appareil qui fait le changement reste ouverte
 async function changerMotDePasse(env, requete, joueur) {
@@ -699,6 +733,7 @@ async function supprimerCompte(env, requete, joueur) {
     env.DB.prepare("DELETE FROM amis WHERE de = ?1 OR vers = ?1").bind(joueur),
     env.DB.prepare("DELETE FROM abonnements WHERE joueur = ?").bind(joueur),
     env.DB.prepare("DELETE FROM notifications WHERE joueur = ?").bind(joueur),
+    env.DB.prepare("DELETE FROM codes_utilises WHERE joueur = ?").bind(joueur),
     env.DB.prepare("UPDATE messages SET joueur = NULL WHERE joueur = ?").bind(joueur),
     env.DB.prepare("DELETE FROM joueurs WHERE id = ?").bind(joueur),
   ]);
@@ -822,6 +857,7 @@ async function api(requete, env, url) {
   if (methode === "POST" && chemin === "/api/vitrine") return changerVitrine(env, requete, joueur);
   if (methode === "POST" && chemin === "/api/supprimer-compte") return supprimerCompte(env, requete, joueur);
   if (methode === "POST" && chemin === "/api/mot-de-passe") return changerMotDePasse(env, requete, joueur);
+  if (methode === "POST" && chemin === "/api/code") return utiliserCode(env, requete, joueur, await catalogueDuJeu());
   if (methode === "POST" && chemin === "/api/duels") return lancerDuel(env, requete, joueur);
   let m;
   if (methode === "POST" && (m = chemin.match(/^\/api\/amis\/(demander|accepter|retirer)$/))) return actionAmi(env, requete, joueur, m[1]);

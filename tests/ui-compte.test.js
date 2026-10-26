@@ -135,6 +135,14 @@ const sx = Date.now().toString(36).slice(-4);
   await A.click('nav [data-vue="plus"]'); await A.click('[data-menu="compte"]');
   assert.strictEqual(await A.locator("text=Classement").count(), 0);
   assert.strictEqual(await A.locator("text=Ce que votre compte permet").count(), 0);
+  // Code saisi dans Mon siège : voix créditées, puis refus à la seconde saisie
+  require("child_process").execSync(`cd ${require("path").join(__dirname, "..")} && ${process.env.WR} d1 execute hemicycle --local --persist-to ${process.env.ETAT} --command "INSERT INTO codes (code, voix) VALUES ('ESSAI${sx}', 7)"`, {stdio: "ignore"});
+  const voixAvant = await A.evaluate(() => etat.points);
+  await A.fill('#form-code [name=code]', "essai" + sx); await A.click('#form-code button');
+  await A.waitForFunction(() => /Code accepté : 7 voix/.test(document.getElementById("code-annonce").textContent));
+  assert.strictEqual(await A.evaluate(() => etat.points), voixAvant + 7);
+  await A.fill('#form-code [name=code]', "essai" + sx); await A.click('#form-code button');
+  await A.waitForFunction(() => /déjà utilisé/.test(document.getElementById("code-annonce").textContent));
   await A.screenshot({path: T + "/compte-connecte.png", fullPage: true});
   // Fiche d'ami : aperçu de la vitrine d'Anne ; la toucher ouvre son profil, sans bouton de signalement
   await Bp.reload(); await Bp.click('nav [data-vue="amis"]');
