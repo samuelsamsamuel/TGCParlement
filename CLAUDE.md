@@ -201,6 +201,11 @@ serveur), filtre « Mes favoris » dans l'Hémicycle. Pas de zoom au double touc
   message identique non lu est remplacé ; testé par `api.test.js` (`wrangler dev --test-scheduled`).
   Signature vérifiée contre FCM (jeton juste : 410 pour un abonnement inconnu ; jeton faux : 403). Sur iPhone,
   seulement dans l'application installée sur l'écran d'accueil.
+- Codes (demande de l'utilisateur, octobre 2026) : saisis dans Mon siège (`POST /api/code`, 10 essais par quart d'heure,
+  casse indifférente), créés par l'éditeur dans la console D1, table `codes` (`voix`, `paquets` offerts, `cartes` en
+  liste JSON d'identifiants, `limite` d'utilisations et `fin` facultatives, « 2026-12-31 » valant jusqu'au soir UTC) ;
+  `codes_utilises` (clé code + joueur) : une fois par compte. Exemple :
+  `INSERT INTO codes (code, voix, paquets, cartes, limite, fin) VALUES ('NOEL2026', 50, 2, '["4567"]', 100, '2026-12-31');`
 - Migrations uniques : `MIGRATIONS` (worker), notées dans `reglages`.
 - Colonnes ajoutées après la mise en service : déclarées dans `COLONNES` (worker), ajoutées à la volée.
 - Vitrine (six cases, chacune remplie ou vidée à part, enregistrée aussitôt), profil, prix du comptoir

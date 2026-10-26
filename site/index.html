@@ -1359,7 +1359,10 @@ function construireExtras(){
   if (cle === null) { zone.innerHTML = ""; return; }
   zone.innerHTML = `${compte ? `<h2 id="ma-vitrine-titre">Ma vitrine</h2>
       <p>Six cartes montrées à tout joueur qui ouvre votre profil. Touchez une case vide pour y placer une carte, la croix pour la retirer. <button class="lien-carte" data-profil="${echapper(compte.pseudo)}">Voir mon profil</button></p>
-      <div class="cases-vitrine" id="ma-vitrine"></div>` : ""}`;
+      <div class="cases-vitrine" id="ma-vitrine"></div>
+      <h2>Un code ?</h2>
+      <form class="ajout-ami" id="form-code"><input type="text" name="code" required maxlength="60" autocapitalize="characters" spellcheck="false" autocomplete="off" placeholder="Saisissez un code" aria-label="Code"><button class="bouton" type="submit">Valider</button></form>
+      <p class="note" id="code-annonce" aria-live="polite"></p>` : ""}`;
   if (compte) {
     const vitrine = () => (compte.vitrine || []).filter(id => cat.parId[id]);
     const dessinerVitrine = () => {
@@ -1370,6 +1373,23 @@ function construireExtras(){
     };
     const exposer = async ids => { const r = await appel("vitrine", {cartes: ids}); compte.vitrine = r.vitrine; dessinerVitrine(); };
     dessinerVitrine();
+    // Code : voix, paquets offerts ou cartes, une fois par compte
+    document.getElementById("form-code").addEventListener("submit", e => {
+      e.preventDefault();
+      const f = e.target, annonce = document.getElementById("code-annonce");
+      annonce.textContent = "";
+      occupe(f.querySelector("button"), async () => {
+        let r;
+        try { r = await appel("code", {code: f.code.value}); } catch (x) { annonce.textContent = x.message; return; }
+        const g = r.gain, morceaux = [];
+        if (g.voix) morceaux.push(pluriel(g.voix, "voix", "voix"));
+        if (g.paquets) morceaux.push(pluriel(g.paquets, "paquet offert", "paquets offerts"));
+        if (g.cartes.length) morceaux.push(g.cartes.map(id => cat.parId[id]?.nom).filter(Boolean).join(", "));
+        annonce.textContent = morceaux.length ? `Code accepté : ${morceaux.join(" ; ")}.` : "Code accepté.";
+        f.reset(); majTout(); afficherPaquet();
+        signaler(annonce.textContent);
+      });
+    });
     document.getElementById("ma-vitrine").addEventListener("click", e => {
       const retrait = e.target.closest("[data-retirer-vitrine]");
       if (retrait) { occupe(retrait, () => exposer(vitrine().filter(id => id !== retrait.dataset.retirerVitrine))); return; }

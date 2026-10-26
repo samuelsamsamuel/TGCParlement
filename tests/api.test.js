@@ -199,6 +199,21 @@ const preuve = c => require("crypto").createHash("sha256").update(c).digest("hex
   assert.match((await C("notifications")).d.notifications.map(n => n.texte).join(), /réserve est pleine/);
   await horaire();
   assert.deepStrictEqual((await C("notifications")).d.notifications, [], "une fois par remplissage");
+  // Codes : voix, paquet et carte pour qui saisit le code, une fois par compte, deux comptes au plus ; casse indifférente
+  const code = "BIENVENUE" + suffixe.toUpperCase(), carteCode = String(cat.parRarete.commune[3].id);
+  sql(`INSERT INTO codes (code, voix, paquets, cartes, limite) VALUES ('${code}', 30, 1, '[\\"${carteCode}\\"]', 2)`);
+  sql(`INSERT INTO codes (code, voix, fin) VALUES ('VIEUX${suffixe}', 5, '2020-01-01')`);
+  const avantCode = (await C("moi")).d.etat;
+  r = await C("code", {code: code.toLowerCase()});
+  assert.strictEqual(r.statut, 200, JSON.stringify(r.d));
+  assert.deepStrictEqual(r.d.gain, {voix: 30, paquets: 1, cartes: [carteCode]});
+  assert.strictEqual(r.d.etat.points, avantCode.points + 30); assert.strictEqual(r.d.etat.offerts, avantCode.offerts + 1);
+  assert.strictEqual(r.d.etat.possedees[carteCode], (avantCode.possedees[carteCode] || 0) + 1);
+  assert.strictEqual((await C("code", {code})).statut, 409, "une fois par compte");
+  assert.strictEqual((await A("code", {code})).statut, 200);
+  assert.strictEqual((await Bc("code", {code})).statut, 409, "limite de deux utilisations");
+  assert.strictEqual((await A("code", {code: "inconnu"})).statut, 404);
+  assert.strictEqual((await A("code", {code: "VIEUX" + suffixe})).statut, 404, "code expiré");
   // Prix du comptoir et attente des échanges
   r = await A("prix?carte=" + encodeURIComponent(libreA));
   assert.strictEqual(r.statut, 200); assert.ok(r.d.ventes.some(v => v.prix === 7));
