@@ -1,5 +1,5 @@
 /* Test de l'API sur un serveur local, à lancer depuis la racine du dépôt :
-     npx wrangler dev --port 8787 --test-scheduled --persist-to /tmp/hemicycle-d1     (dans un premier terminal)
+     npx wrangler dev --port 8787 --test-scheduled --var CODE_ESSAI:1 --persist-to /tmp/hemicycle-d1     (dans un premier terminal)
      WR="npx wrangler" ETAT=/tmp/hemicycle-d1 node tests/api.test.js   (dans un second)
    Il crée trois joueurs et vérifie inscription avec reprise, paquets, recyclage, marché et échanges,
    y compris des demandes simultanées (une seule doit aboutir). */
@@ -214,6 +214,10 @@ const preuve = c => require("crypto").createHash("sha256").update(c).digest("hex
   assert.strictEqual((await Bc("code", {code})).statut, 409, "limite de deux utilisations");
   assert.strictEqual((await A("code", {code: "inconnu"})).statut, 404);
   assert.strictEqual((await A("code", {code: "VIEUX" + suffixe})).statut, 404, "code expiré");
+  // Code du dépôt (worker/codes.js, ici le code d'essai du Worker local) : recopié dans D1 à la première saisie
+  r = await A("code", {code: " Essai-Depot "});
+  assert.strictEqual(r.statut, 200, JSON.stringify(r.d)); assert.strictEqual(r.d.gain.voix, 4);
+  assert.strictEqual((await A("code", {code: "essai-depot"})).statut, 409);
   // Prix du comptoir et attente des échanges
   r = await A("prix?carte=" + encodeURIComponent(libreA));
   assert.strictEqual(r.statut, 200); assert.ok(r.d.ventes.some(v => v.prix === 7));
