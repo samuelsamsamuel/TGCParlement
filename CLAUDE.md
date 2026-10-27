@@ -226,7 +226,9 @@ serveur), filtre « Mes favoris » dans l'Hémicycle. Pas de zoom au double touc
   la page en ligne à celle du démarrage, au plus toutes les dix minutes, et se recharge si elle a changé, hors
   découverte d'un paquet, visite guidée ou saisie),
   polices servies par le site (`site/polices/`, licence OFL), page `mentions.html` (mentions légales,
-  conditions d'utilisation, confidentialité). `jeu.json` pèse 6,5 Mo mais 1 Mo compressé par Cloudflare.
+  conditions d'utilisation, dont l'interdiction de vendre cartes, voix ou comptes contre de l'argent hors du jeu,
+  confidentialité ; date de la version des sources, Licence Ouverte 2.0, lue dans `maj.json`, écrit par `export_jeu.py`,
+  aussi dans le champ `maj` de `jeu.json` et affichée dans le Règlement). `jeu.json` pèse 6,5 Mo mais 1 Mo compressé par Cloudflare.
 - Limites connues : un joueur peut ouvrir plusieurs comptes et faire passer leurs cartes vers un seul
   (inscriptions limitées à 100 par heure et par adresse IP, connexions à 300 par quart d'heure et par adresse, pour ne
   pas gêner les connexions partagées ; 10 essais par quart d'heure et par pseudo) ; pas de modération des pseudos.
