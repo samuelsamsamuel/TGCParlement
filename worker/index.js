@@ -262,7 +262,8 @@ async function joueurConnecte(env, requete) {
 async function chargerEtat(env, joueur) {
   const [j, p, r, h] = await env.DB.batch([
     env.DB.prepare("SELECT pseudo, cree, points, offerts, stock, ancre, version, quiz, vitrine, favoris FROM joueurs WHERE id = ?").bind(joueur),
-    env.DB.prepare("SELECT carte, n, importes, reserve FROM possessions WHERE joueur = ? AND n > 0").bind(joueur),
+    // Toutes les lignes : celles à zéro (cartes cédées) se lisent de toute façon avec les autres par la clé du joueur
+    env.DB.prepare("SELECT carte, n, importes, reserve FROM possessions WHERE joueur = ?").bind(joueur),
     env.DB.prepare("SELECT cle, date FROM reclames WHERE joueur = ?").bind(joueur),
     env.DB.prepare("SELECT date, operation, detail FROM journal WHERE joueur = ? ORDER BY id DESC LIMIT 20").bind(joueur),
   ]);
@@ -271,6 +272,7 @@ async function chargerEtat(env, joueur) {
   const etat = Regles.etatVide();
   Object.assign(etat, {points: ligne.points, offerts: ligne.offerts, reserve: ligne.stock, ancre: ligne.ancre, quiz: ligne.quiz, verrous: {}});
   for (const x of p.results) {
+    if (!x.n) { etat.deja.push(x.carte); continue; }   // cartes cédées : restent « obtenues » dans Toutes les cartes
     etat.possedees[x.carte] = x.n;
     if (x.importes + x.reserve) etat.verrous[x.carte] = x.importes + x.reserve;
   }
@@ -319,7 +321,7 @@ async function appliquer(env, joueur, operation) {
   for (const [, op, detail] of apres.journal.slice(avant.journal.length)) requetes.push(noterJournal(env, joueur, op, detail));
   if (requetes.length > 2) await lot(env, requetes);
   // Même forme que chargerEtat : exemplaires à zéro retirés, vingt dernières lignes du journal
-  for (const id of Object.keys(apres.possedees)) if (!apres.possedees[id]) delete apres.possedees[id];
+  for (const id of Object.keys(apres.possedees)) if (!apres.possedees[id]) { delete apres.possedees[id]; if (avant.possedees[id]) apres.deja.push(id); }
   apres.journal = apres.journal.slice(-20);
   env.etatEcrit = {...lu, etat: requetes.length > 2 ? apres : avant, version: requetes.length > 2 ? version + 1 : version};
   return resultat;

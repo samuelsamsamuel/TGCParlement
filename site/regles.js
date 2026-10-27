@@ -16,6 +16,8 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
   journal    dernières opérations [date, opération, détail], pour le suivi
   quiz       jour (AAAA-MM-JJ, Paris) des dernières questions au Gouvernement récompensées
   favoris    cartes marquées d'une étoile (300 au plus)
+  deja       cartes obtenues puis cédées (compte seulement, fourni par le serveur) : plus dans la collection,
+             mais pas grisées dans Toutes les cartes
   verrous    { id de carte: exemplaires bloqués } (compte seulement, fourni par le serveur) : exemplaires repris
              du navigateur à la création du compte et exemplaires en vente. Ils restent dans la collection et
              comptent pour les objectifs, mais ne se recyclent pas et ne se cèdent pas.
@@ -44,7 +46,7 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
 
   /* ---------- État ---------- */
   function etatVide() {
-    return {version: VERSION_ETAT, possedees: {}, reserve: RESERVE_MAX, ancre: 0, points: 0, offerts: 0, objectifs: {}, quiz: "", favoris: [], journal: []};
+    return {version: VERSION_ETAT, possedees: {}, reserve: RESERVE_MAX, ancre: 0, points: 0, offerts: 0, objectifs: {}, quiz: "", favoris: [], journal: [], deja: []};
   }
   function entier(v) { v = Math.floor(Number(v)); return Number.isFinite(v) && v > 0 ? v : 0; }
   // Accepte les états des versions précédentes (paquets du jour : jour, ouverts) et tout état abîmé ; le passage
@@ -58,6 +60,7 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
     }
     e.points = entier(brut.points);
     e.quiz = typeof brut.quiz === "string" ? brut.quiz : "";
+    if (Array.isArray(brut.deja)) e.deja = [...new Set(brut.deja.map(String))].filter(id => !e.possedees[id]);
     if (Array.isArray(brut.favoris)) e.favoris = [...new Set(brut.favoris.map(String))].slice(0, 300);
     e.offerts = entier(brut.offerts);
     if (brut.objectifs && typeof brut.objectifs === "object") Object.assign(e.objectifs, brut.objectifs);

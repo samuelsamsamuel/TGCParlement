@@ -1293,6 +1293,7 @@ function majActionsApercu(id){
       <p>${n > 1 ? `${n} exemplaires dans votre hémicycle` : "Un exemplaire dans votre hémicycle"}${verrous ? `, dont ${verrous} au comptoir` : ""}.</p>
       ${k ? `<button class="bouton discret" data-dissoudre="${echapper(id)}">Dissoudre ${pluriel(k, "double")} : +${pluriel(k * VALEUR_RECYCLAGE[c.rarete], "voix", "voix")}</button>` : ""}
       ${compte && libres ? `<button class="bouton discret" data-vendre="${echapper(id)}">Vendre au comptoir</button>` : ""}`
+    : (etat.deja || []).includes(id) ? `<p class="note">Vous l'avez eue, puis cédée : elle n'est plus dans votre hémicycle. Touchez la carte pour voir sa carrière au verso.</p>`
     : `<p class="note">Pas encore dans votre hémicycle. Touchez la carte pour voir sa carrière au verso.</p>`;
   zone.insertAdjacentHTML("beforeend", `<p class="detenteurs" id="detenteurs"></p>`);
   afficherDetenteurs(id);
@@ -2178,12 +2179,14 @@ let catalogueMax = 40;
 function majCatalogue(){
   if (!cat) return;
   const q = Regles.normer(document.getElementById("cat-recherche").value);
+  // Obtenue : dans la collection, ou cédée depuis (échange, vente) ; une carte qu'on a eue ne redevient pas grise
+  const deja = new Set(etat.deja || []), obtenue = c => !!etat.possedees[c.id] || deja.has(c.id);
   const pos = document.getElementById("cat-possession").value, ep = document.getElementById("cat-epoque").value, ra = document.getElementById("cat-rarete").value;
   const liste = cartes.filter(c => (!ep || c.epoque === ep) && (!ra || c.rarete === ra) && (!q || c.cherche.includes(q))
-    && (!pos || (pos === "obtenues") === !!etat.possedees[c.id])).sort((a, b) => b.score - a.score);
-  const obtenues = liste.filter(c => etat.possedees[c.id]).length;
-  document.getElementById("cat-compte").textContent = `${pluriel(liste.length, "carte")}, dont ${obtenues.toLocaleString("fr-FR")} ${obtenues > 1 ? "obtenues" : "obtenue"}. Les cartes grisées ne sont pas encore dans votre hémicycle.`;
-  document.getElementById("cat-grille").innerHTML = liste.length ? liste.slice(0, catalogueMax).map(c => htmlCarte(c, {classe: etat.possedees[c.id] ? "" : "manquante"})).join("")
+    && (!pos || (pos === "obtenues") === obtenue(c))).sort((a, b) => b.score - a.score);
+  const obtenues = liste.filter(obtenue).length;
+  document.getElementById("cat-compte").textContent = `${pluriel(liste.length, "carte")}, dont ${obtenues.toLocaleString("fr-FR")} ${obtenues > 1 ? "obtenues" : "obtenue"}. Les cartes grisées ne sont jamais passées par votre hémicycle.`;
+  document.getElementById("cat-grille").innerHTML = liste.length ? liste.slice(0, catalogueMax).map(c => htmlCarte(c, {classe: obtenue(c) ? "" : "manquante"})).join("")
     : `<p class="vide">Aucune carte ne correspond.</p>`;
   document.getElementById("cat-plus").hidden = liste.length <= catalogueMax;
 }
