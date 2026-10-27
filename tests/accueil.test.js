@@ -28,7 +28,7 @@ const T = process.argv[2] || require("os").tmpdir(), U = process.argv[3] || "htt
   await p.click("#guide-suivant");
   await p.waitForFunction(() => /d'une carte à l'autre/.test(document.getElementById("guide-texte").textContent));
   for (let i = 0; i < 5; i++) await p.click("#suite");
-  await p.waitForFunction(() => /toutes les heures/.test(document.getElementById("guide-texte").textContent));
+  await p.waitForFunction(() => /toutes les 30 minutes/.test(document.getElementById("guide-texte").textContent));
   let n = 0;
   while (await p.isVisible("#guide:not([hidden])") && n++ < 12) {
     if (n === 3) await p.screenshot({path: T + "/visite-nav-tel.png"});

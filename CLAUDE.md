@@ -79,8 +79,10 @@ personnes sur 6 761 ont un fichier qui les dépeint, 2 portraits retenus), `vill
   marché) le reprendra pour devenir seul juge des tirages et des récompenses.
 - L'état du joueur est versionné (`VERSION_ETAT`, `migrer`) et passe par l'objet `depot` d'`index.html`
   (navigateur aujourd'hui, serveur demain). Un journal des dernières opérations est tenu dans l'état.
-- Rythme : un paquet par heure dans une réserve de huit (`RECHARGE_MS`, `RESERVE_MAX`, état `reserve` et
-  `ancre`), puis les paquets offerts. Questions au Gouvernement (sous les paquets de la Séance) : cinq
+- Rythme : un paquet toutes les 30 minutes dans une réserve de dix (décision de l'utilisateur, octobre 2026, au lieu
+  d'un par heure et huit ; `RECHARGE_MS`, `RESERVE_MAX`, état `reserve` et `ancre`), puis les paquets offerts. Le plafond
+  n'est plus dans la contrainte de la colonne `stock` (`CHECK (stock >= 0)`) : `leverPlafondStock` (worker) a reconstruit
+  une fois la table `joueurs`, à l'identique, qui portait `CHECK (stock BETWEEN 0 AND 8)`. Questions au Gouvernement (sous les paquets de la Séance) : cinq
   questions tirées des fiches (`questions`, graine déterministe), 2 voix par bonne réponse et 5 pour un
   sans-faute, une fois par jour de Paris (`validerQuiz`) ; le navigateur connaît les réponses, d'où le plafond
   de 15 voix par jour. Duels : mêmes questions pour deux joueurs, sans récompense.
