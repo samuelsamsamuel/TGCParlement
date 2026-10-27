@@ -85,7 +85,17 @@ personnes sur 6 761 ont un fichier qui les dépeint, 2 portraits retenus), `vill
   une fois la table `joueurs`, à l'identique, qui portait `CHECK (stock BETWEEN 0 AND 8)`. Questions au Gouvernement (sous les paquets de la Séance) : cinq
   questions tirées des fiches (`questions`, graine déterministe), 2 voix par bonne réponse et 5 pour un
   sans-faute, une fois par jour de Paris (`validerQuiz`) ; le navigateur connaît les réponses, d'où le plafond
-  de 15 voix par jour. Duels : mêmes questions pour deux joueurs, sans récompense.
+  de 15 voix par jour. Duels (demande de l'utilisateur, octobre 2026 : « servir à quelque chose » et plus accessibles) : mise
+  facultative de 10 à 100 voix ou de 1 à 3 paquets offerts (`MISES_DUEL`, `MISE_VOIX_MAX`, `MISE_PAQUETS_MAX`), retenue au
+  lanceur dans le lot qui crée le duel (statut `propose`) ; l'adversaire relève (`/relever`, même mise retenue, clôture
+  `duel-releve`) ou refuse (mise rendue, `duel-clos`) ; le lanceur peut annuler tant que le défi n'est pas relevé. Le serveur
+  garde la graine et juge chaque réponse dans l'ordre (`GET /api/duels/:id/questions` sans les réponses,
+  `POST /api/duels/:id/reponse`), d'après `site/quiz-serveur.json` (`compacterQuiz`, mêmes questions que le catalogue
+  complet, vérifié par le test) ; à la dixième réponse, `cloreDuel` (clôture `duel-fini`) : le gagnant emporte les deux
+  mises, une égalité rend la sienne à chacun. Tâche horaire `expirerDuels` : défi ignoré trois jours remboursé (`expire`),
+  duel relevé non fini au bout de trois jours clos avec les réponses données. Vingt duels en cours au plus par joueur.
+  Accès : bloc Duels de la Séance (défis à relever, duels à jouer ou reprendre, formulaire avec les amis en puces et la mise),
+  bouton Défier de l'onglet Amis qui y mène, formulaire prérempli.
 - Économie : Recyclage d'un exemplaire en trop : commune 1,
   peu commune 2, rare 5, épique 15, légendaire et hors catégorie 40, mythique 100 points ; 25 points font un
   paquet. Un paquet de doubles rapporte en moyenne 21 points : le prix doit rester au-dessus, sans quoi le

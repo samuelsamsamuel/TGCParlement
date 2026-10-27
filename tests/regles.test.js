@@ -136,4 +136,9 @@ assert.strictEqual(quizEtat.points, 36);
   assert.strictEqual(e3.possedees[c.id], 1);
   assert.deepStrictEqual(R.dissoudre(e3, cat, c.id), {exemplaires: 0, points: 0});
 }
+// Duels jugés par le serveur : ses données réduites (compacterQuiz, relu par catalogueQuiz) donnent les mêmes questions
+{
+  const q = R.catalogueQuiz(JSON.parse(JSON.stringify(R.compacterQuiz(cat))));
+  for (const g of [1, 42, 123456789, 4294967295]) assert.deepStrictEqual(R.questions(q, g), R.questions(cat, g), "questions du serveur, graine " + g);
+}
 console.log("tous les tests passent");

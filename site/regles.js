@@ -449,6 +449,20 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
     }
     return liste;
   }
+  // Données des questions pour le serveur (duels jugés par lui, réponses jamais envoyées d'avance au navigateur) :
+  // le vivier et les listes de choix, rien d'autre ; questions() en tire exactement les mêmes questions que du
+  // catalogue complet (vérifié par le test)
+  function compacterQuiz(cat) {
+    const q = preparerQuiz(cat);
+    return {departements: q.departements, fonctions: q.fonctions, epoques: q.epoques,
+      vivier: q.vivier.map(c => [c.id, c.nom, c.sexe === "F" ? 1 : 0, c.epoque || "", c.debut || 0,
+        (c.mandats || []).map(m => m[1] || ""), c.fonctions.map(f => f[0])])};
+  }
+  function catalogueQuiz(data) {
+    const vivier = data.vivier.map(([id, nom, f, epoque, debut, deps, fonctions]) => ({id, nom, sexe: f ? "F" : "M",
+      epoque: epoque || null, debut: debut || null, mandats: deps.map(d => [null, d || null]), fonctions: fonctions.map(x => [x])}));
+    return {quiz: {vivier, departements: data.departements, fonctions: data.fonctions, epoques: data.epoques}};
+  }
   function recompenseQuiz(bonnes) { return bonnes * VOIX_PAR_BONNE + (bonnes === QUIZ_QUESTIONS ? BONUS_SANS_FAUTE : 0); }
   // Questions du jour : récompensées une fois par jour (jour de Paris). Le navigateur connaît les réponses ;
   // le gain est donc plafonné (15 voix par jour), qu'on triche ou non.
@@ -461,7 +475,7 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
     return voix;
   }
 
-  return {VERSION_ETAT, basculerFavori, RECHARGE_MS, QUIZ_QUESTIONS, graineDe, questions, recompenseQuiz, validerQuiz, RESERVE_MAX, CARTES_PAR_PAQUET, reserveCourante, ORDRE, POIDS, VALEUR_RECYCLAGE, PRIX_PAQUET, PALIERS,
+  return {VERSION_ETAT, basculerFavori, RECHARGE_MS, QUIZ_QUESTIONS, graineDe, questions, compacterQuiz, catalogueQuiz, recompenseQuiz, validerQuiz, RESERVE_MAX, CARTES_PAR_PAQUET, reserveCourante, ORDRE, POIDS, VALEUR_RECYCLAGE, PRIX_PAQUET, PALIERS,
     etatVide, migrer, jourDuJeu, normer, cartesDeJeu, catalogue, compacter, catalogueCompact, paquetsDisponibles, ouvrirPaquet,
     disponibles, recyclables, doubles, recycler, dissoudre, echangerPoints, avancement, clesAtteintes, reclamer, recompensesEnAttente};
 });

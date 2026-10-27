@@ -140,6 +140,15 @@ async function lireCatalogue(env, url) {
   }).then(Regles.catalogueCompact).catch(e => { catalogue = null; throw e; });
   return catalogue;
 }
+// Données des questions des duels (scripts/catalogue_serveur.js), chargées par les seules routes des duels
+let quizDuels = null;
+async function lireQuiz(env, url) {
+  quizDuels ||= env.ASSETS.fetch(new Request(new URL("/quiz-serveur.json", url))).then(r => {
+    if (!r.ok) throw new Error("quiz-serveur.json introuvable : " + r.status);
+    return r.json();
+  }).then(Regles.catalogueQuiz).catch(e => { quizDuels = null; throw e; });
+  return quizDuels;
+}
 // Colonnes ajoutées après la mise en service : ajoutées à la volée si la table existante ne les a pas
 const COLONNES = {
   joueurs: [
@@ -152,6 +161,16 @@ const COLONNES = {
   ],
   annonces: [
     ["rarete", "TEXT NOT NULL DEFAULT ''"],       // rareté de la carte, pour les prix médians par rareté
+  ],
+  // Duels avec mise (octobre 2026) : mise de chacun, état, réponses jugées par le serveur ([choix, juste] par question)
+  duels: [
+    ["mise_voix", "INTEGER NOT NULL DEFAULT 0 CHECK (mise_voix >= 0)"],
+    ["mise_paquets", "INTEGER NOT NULL DEFAULT 0 CHECK (mise_paquets >= 0)"],
+    ["statut", "TEXT NOT NULL DEFAULT 'accepte'"],  // propose, accepte, fini, refuse, annule, expire ; anciens duels : accepte
+    ["accepte", "TEXT"],                            // date où l'adversaire a relevé le défi
+    ["rep_de", "TEXT NOT NULL DEFAULT '[]'"],
+    ["rep_vers", "TEXT NOT NULL DEFAULT '[]'"],
+    ["gagnant", "INTEGER"],                         // identifiant du gagnant, 0 pour une égalité
   ],
 };
 // Migrations à n'exécuter qu'une fois, notées dans la table « reglages »
@@ -607,7 +626,8 @@ async function attente(env, joueur) {
   const [e, d, a] = await env.DB.batch([
     env.DB.prepare("SELECT COUNT(*) AS n FROM echanges WHERE vers = ? AND statut = 'proposee'").bind(joueur),
     env.DB.prepare("SELECT COUNT(*) AS n FROM amis WHERE vers = ? AND statut = 'demande'").bind(joueur),
-    env.DB.prepare("SELECT COUNT(*) AS n FROM duels WHERE (de = ?1 AND score_de IS NULL) OR (vers = ?1 AND score_vers IS NULL)").bind(joueur),
+    env.DB.prepare(`SELECT COUNT(*) AS n FROM duels WHERE statut IN ('propose', 'accepte')
+      AND ((de = ?1 AND score_de IS NULL) OR (vers = ?1 AND score_vers IS NULL AND statut = 'accepte') OR (vers = ?1 AND statut = 'propose'))`).bind(joueur),
   ]);
   return json({echanges: e.results[0].n, amis: d.results[0].n, duels: a.results[0].n});
 }
@@ -762,7 +782,12 @@ async function supprimerCompte(env, requete, joueur) {
   const j = await env.DB.prepare("SELECT sel, empreinte FROM joueurs WHERE id = ?").bind(joueur).first();
   if (!j || !/^[0-9a-f]{64}$/.test(preuve) || !egaux(await sha256(j.sel + preuve), j.empreinte)) throw new Refus(401, "Mot de passe incorrect.");
   const date = maintenant();
+  // Duels en cours : chaque adversaire récupère la mise qu'il avait engagée
+  const ouverts = (await env.DB.prepare("SELECT * FROM duels WHERE (de = ?1 OR vers = ?1) AND statut IN ('propose', 'accepte')").bind(joueur).all()).results;
+  const rendus = ouverts.filter(d => d.statut === "accepte" || d.de !== joueur).map(d =>
+    env.DB.prepare("UPDATE joueurs SET points = points + ?, offerts = offerts + ? WHERE id = ?").bind(d.mise_voix, d.mise_paquets, d.de === joueur ? d.vers : d.de));
   await env.DB.batch([
+    ...rendus,
     env.DB.prepare("UPDATE annonces SET statut = 'retiree', maj = ? WHERE vendeur = ? AND statut = 'ouverte'").bind(date, joueur),
     env.DB.prepare("UPDATE echanges SET statut = 'annulee', maj = ? WHERE (de = ?2 OR vers = ?2) AND statut = 'proposee'").bind(date, joueur),
     env.DB.prepare("DELETE FROM duels WHERE de = ?1 OR vers = ?1").bind(joueur),
@@ -794,38 +819,135 @@ async function contact(env, requete, joueur) {
 }
 
 /* ---------- Duels de questions ---------- */
-const MAX_DUELS_EN_COURS = 20;
+// Le serveur juge les duels : il garde la graine, envoie les questions sans les réponses et corrige chaque réponse.
+// Mise facultative, en voix ou en paquets offerts, retenue à chacun quand il s'engage (lancer, relever) ; le gagnant
+// emporte les deux mises, une égalité rend la sienne à chacun. Un défi ignoré DUREE_DUEL est remboursé ; un duel relevé
+// et resté inachevé est clos avec les réponses données (une question sans réponse est fausse).
+const MAX_DUELS_EN_COURS = 20, MISE_VOIX_MAX = 100, MISE_PAQUETS_MAX = 3, DUREE_DUEL = 3 * 86400 * 1000;
+const reponses = t => { try { return JSON.parse(t || "[]"); } catch (_) { return []; } };
+const justes = l => l.filter(x => x[1]).length;
 async function lancerDuel(env, requete, joueur) {
   const c = await lireCorps(requete);
   const adversaire = await idJoueur(env, c.vers);
   if (adversaire.id === joueur) throw new Refus(400, "Vous ne pouvez pas vous défier vous-même.");
-  const enCours = await env.DB.prepare("SELECT COUNT(*) AS n FROM duels WHERE de = ? AND (score_de IS NULL OR score_vers IS NULL)").bind(joueur).first();
+  const voix = entier(c.voix ?? 0, 0, MISE_VOIX_MAX), paquets = entier(c.paquets ?? 0, 0, MISE_PAQUETS_MAX);
+  if (voix === null || paquets === null) throw new Refus(400, `Mise de 0 à ${MISE_VOIX_MAX} voix et de 0 à ${MISE_PAQUETS_MAX} paquets.`);
+  const enCours = await env.DB.prepare("SELECT COUNT(*) AS n FROM duels WHERE de = ? AND statut IN ('propose', 'accepte')").bind(joueur).first();
   if (enCours.n >= MAX_DUELS_EN_COURS) throw new Refus(429, `Vous avez déjà ${MAX_DUELS_EN_COURS} duels en cours.`);
   const date = maintenant(), graine = crypto.getRandomValues(new Uint32Array(1))[0];
-  const d = await env.DB.prepare("INSERT INTO duels (de, vers, graine, cree, maj) VALUES (?, ?, ?, ?, ?) RETURNING id")
-    .bind(joueur, adversaire.id, graine, date, date).first();
-  await notifier(env, adversaire.id, `${await pseudoDe(env, joueur)} vous défie en duel aux questions au Gouvernement.`);
-  return json({id: d.id, graine, avec: adversaire.pseudo}, 201);
+  const [d] = await lot(env, [
+    env.DB.prepare(`INSERT INTO duels (de, vers, graine, cree, maj, mise_voix, mise_paquets, statut) VALUES (?, ?, ?, ?, ?, ?, ?, 'propose') RETURNING id`)
+      .bind(joueur, adversaire.id, graine, date, date, voix, paquets),
+    env.DB.prepare("UPDATE joueurs SET points = points - ?, offerts = offerts - ? WHERE id = ?").bind(voix, paquets, joueur),
+  ], "Vous n'avez pas assez de voix ou de paquets pour cette mise.");
+  const mise = voix || paquets ? `, mise : ${[voix ? voix + " voix" : "", paquets ? paquets + (paquets > 1 ? " paquets" : " paquet") : ""].filter(Boolean).join(" et ")}` : "";
+  await notifier(env, adversaire.id, `${await pseudoDe(env, joueur)} vous défie en duel aux questions au Gouvernement${mise}.`);
+  return json({id: d.results[0].id, avec: adversaire.pseudo}, 201);
 }
 async function listeDuels(env, joueur) {
   const r = await env.DB.prepare(`SELECT d.*, a.pseudo AS pseudo_de, b.pseudo AS pseudo_vers FROM duels d
     JOIN joueurs a ON a.id = d.de JOIN joueurs b ON b.id = d.vers WHERE d.de = ?1 OR d.vers = ?1 ORDER BY d.id DESC LIMIT 30`).bind(joueur).all();
   return json({duels: r.results.map(d => {
-    const moi = d.de === joueur;
+    const moi = d.de === joueur, mes = reponses(moi ? d.rep_de : d.rep_vers), ses = reponses(moi ? d.rep_vers : d.rep_de);
     const mien = moi ? d.score_de : d.score_vers, sien = moi ? d.score_vers : d.score_de;
-    // Le score de l'adversaire n'est montré qu'une fois les deux duellistes passés
-    return {id: d.id, graine: d.graine, avec: moi ? d.pseudo_vers : d.pseudo_de, lance: moi, mien, sien: mien === null ? null : sien,
-      termine: mien !== null && sien !== null, cree: d.cree};
+    const termine = d.statut === "fini" || (mien !== null && sien !== null);
+    // Le score de l'adversaire n'est montré qu'une fois le duel terminé ; la graine reste sur le serveur
+    return {id: d.id, avec: moi ? d.pseudo_vers : d.pseudo_de, lance: moi, statut: d.statut, voix: d.mise_voix, paquets: d.mise_paquets,
+      repondues: mes.length, mien, sien: termine ? (sien ?? justes(ses)) : null, termine,
+      issue: d.gagnant === null ? null : d.gagnant === 0 ? "egalite" : d.gagnant === joueur ? "gagne" : "perdu",
+      echeance: new Date(Date.parse(d.statut === "propose" ? d.cree : (d.accepte || d.cree)) + DUREE_DUEL).toISOString(), cree: d.cree};
   })});
 }
-async function scoreDuel(env, requete, joueur, id) {
-  const bonnes = entier((await lireCorps(requete)).bonnes, 0, Regles.QUIZ_QUESTIONS);
-  if (bonnes === null) throw new Refus(400, "Résultat illisible.");
-  const r = await env.DB.prepare(`UPDATE duels SET score_de = CASE WHEN de = ?2 THEN ?3 ELSE score_de END,
-      score_vers = CASE WHEN vers = ?2 THEN ?3 ELSE score_vers END, maj = ?4
-    WHERE id = ?1 AND ((de = ?2 AND score_de IS NULL) OR (vers = ?2 AND score_vers IS NULL))`).bind(id, joueur, bonnes, maintenant()).run();
-  if (!r.meta.changes) throw new Refus(409, "Vous avez déjà joué ce duel.");
+async function duelDe(env, joueur, id) {
+  const d = await env.DB.prepare("SELECT * FROM duels WHERE id = ?").bind(id).first();
+  if (!d || (d.de !== joueur && d.vers !== joueur)) throw new Refus(404, "Duel introuvable.");
+  return d;
+}
+// Relever (l'adversaire, mise retenue), refuser (l'adversaire) ou annuler (le lanceur) un défi pas encore relevé
+async function repondreDefi(env, joueur, id, action) {
+  const d = await duelDe(env, joueur, id), date = maintenant();
+  if (d.statut !== "propose") throw new Refus(409, "Ce défi n'est plus en attente.");
+  if ((action === "annuler") !== (d.de === joueur)) throw new Refus(403, action === "annuler" ? "Seul le lanceur peut annuler ce défi." : "Ce défi ne vous est pas adressé.");
+  if (action === "relever") {
+    await lot(env, [
+      env.DB.prepare("INSERT INTO clotures (nature, id) VALUES ('duel-releve', ?)").bind(id),
+      env.DB.prepare("UPDATE duels SET statut = 'accepte', accepte = ?, maj = ? WHERE id = ?").bind(date, date, id),
+      env.DB.prepare("UPDATE joueurs SET points = points - ?, offerts = offerts - ? WHERE id = ?").bind(d.mise_voix, d.mise_paquets, joueur),
+    ], "Vous n'avez pas assez de voix ou de paquets pour relever ce défi.");
+    await terminerSiComplet(env, id);
+  } else {
+    await lot(env, [
+      env.DB.prepare("INSERT INTO clotures (nature, id) VALUES ('duel-clos', ?)").bind(id),
+      env.DB.prepare("UPDATE duels SET statut = ?, maj = ? WHERE id = ?").bind(action === "refuser" ? "refuse" : "annule", date, id),
+      env.DB.prepare("UPDATE joueurs SET points = points + ?, offerts = offerts + ? WHERE id = ?").bind(d.mise_voix, d.mise_paquets, d.de),
+    ], "Ce défi vient d'être relevé ou clos.");
+    if (action === "refuser") await notifier(env, d.de, `${await pseudoDe(env, joueur)} a décliné votre duel : votre mise vous est rendue.`);
+  }
   return json({ok: true});
+}
+// Questions du duel, sans les réponses ; celles déjà données reviennent avec leur correction (reprise d'un duel)
+async function questionsDuel(env, joueur, id, url) {
+  const d = await duelDe(env, joueur, id);
+  const moi = d.de === joueur, mes = reponses(moi ? d.rep_de : d.rep_vers);
+  if (!["propose", "accepte"].includes(d.statut) || (!moi && d.statut === "propose")) throw new Refus(409, d.statut === "propose" ? "Relevez d'abord le défi." : "Ce duel est terminé.");
+  const liste = Regles.questions(await lireQuiz(env, url), d.graine);
+  return json({id, questions: liste.map((q, i) => ({texte: q.texte, choix: q.choix, carte: i < mes.length ? q.carte : null,
+    ...(i < mes.length ? {repondu: mes[i][0], bonne: q.bonne, explication: q.explication} : {})}))});
+}
+// Une réponse, dans l'ordre : le serveur la corrige et la garde ; la cinquième fixe le score
+async function repondreDuel(env, requete, joueur, id, url) {
+  const c = await lireCorps(requete), d = await duelDe(env, joueur, id);
+  const moi = d.de === joueur, colonne = moi ? "rep_de" : "rep_vers", score = moi ? "score_de" : "score_vers", mes = reponses(d[colonne]);
+  if (!["propose", "accepte"].includes(d.statut) || (!moi && d.statut === "propose")) throw new Refus(409, "Ce duel ne se joue pas en ce moment.");
+  const liste = Regles.questions(await lireQuiz(env, url), d.graine), i = entier(c.question, 0, liste.length - 1), choix = entier(c.choix, 0, 3);
+  if (i === null || choix === null) throw new Refus(400, "Réponse illisible.");
+  if (i !== mes.length) throw new Refus(409, "Cette question a déjà reçu une réponse.");
+  const q = liste[i], apres = [...mes, [choix, choix === q.bonne ? 1 : 0]], fin = apres.length === liste.length;
+  const r = await env.DB.prepare(`UPDATE duels SET ${colonne} = ?, ${score} = ?, maj = ? WHERE id = ? AND ${colonne} = ?`)
+    .bind(JSON.stringify(apres), fin ? justes(apres) : null, maintenant(), id, d[colonne]).run();
+  if (!r.meta.changes) throw new Refus(409, "Cette question a déjà reçu une réponse.");
+  const resultat = fin ? await terminerSiComplet(env, id) : null;
+  return json({bonne: q.bonne, juste: choix === q.bonne, explication: q.explication, carte: q.carte, fin, score: fin ? justes(apres) : null, resultat});
+}
+// Clôture d'un duel relevé : le gagnant emporte les deux mises, l'égalité rend la sienne à chacun (une fois : clotures)
+async function cloreDuel(env, d) {
+  const sd = d.score_de ?? justes(reponses(d.rep_de)), sv = d.score_vers ?? justes(reponses(d.rep_vers));
+  const gagnant = sd > sv ? d.de : sv > sd ? d.vers : 0, date = maintenant();
+  const credit = (id, fois) => env.DB.prepare("UPDATE joueurs SET points = points + ?, offerts = offerts + ? WHERE id = ?").bind(d.mise_voix * fois, d.mise_paquets * fois, id);
+  try {
+    await env.DB.batch([
+      env.DB.prepare("INSERT INTO clotures (nature, id) VALUES ('duel-fini', ?)").bind(d.id),
+      env.DB.prepare("UPDATE duels SET statut = 'fini', score_de = ?, score_vers = ?, gagnant = ?, maj = ? WHERE id = ?").bind(sd, sv, gagnant, date, d.id),
+      ...(gagnant ? [credit(gagnant, 2)] : [credit(d.de, 1), credit(d.vers, 1)]),
+    ]);
+  } catch (e) { if (contrainte(e)) return null; throw e; }
+  const gain = [d.mise_voix ? d.mise_voix * 2 + " voix" : "", d.mise_paquets ? d.mise_paquets * 2 + " paquets" : ""].filter(Boolean).join(" et ");
+  for (const [moi, lui, monScore, sonScore] of [[d.de, d.vers, sd, sv], [d.vers, d.de, sv, sd]]) {
+    const texte = gagnant === 0 ? `Égalité ${monScore} à ${sonScore} contre ${await pseudoDe(env, lui)} : votre mise vous est rendue.`
+      : gagnant === moi ? `Duel gagné ${monScore} à ${sonScore} contre ${await pseudoDe(env, lui)}${gain ? ` : vous remportez ${gain}` : ""}.`
+      : `Duel perdu ${monScore} à ${sonScore} contre ${await pseudoDe(env, lui)}.`;
+    await notifier(env, moi, texte);
+  }
+  return {score: [sd, sv], gagnant};
+}
+async function terminerSiComplet(env, id) {
+  const d = await env.DB.prepare("SELECT * FROM duels WHERE id = ?").bind(id).first();
+  if (!d || d.statut !== "accepte" || d.score_de === null || d.score_vers === null) return null;
+  return cloreDuel(env, d);
+}
+// Tâche horaire : défis ignorés remboursés, duels relevés et inachevés clos avec les réponses données
+async function expirerDuels(env) {
+  const limite = new Date(Date.now() - DUREE_DUEL).toISOString();
+  const ignores = (await env.DB.prepare("SELECT * FROM duels WHERE statut = 'propose' AND cree < ?").bind(limite).all()).results;
+  for (const d of ignores) {
+    await env.DB.batch([
+      env.DB.prepare("INSERT INTO clotures (nature, id) VALUES ('duel-clos', ?)").bind(d.id),
+      env.DB.prepare("UPDATE duels SET statut = 'expire', maj = ? WHERE id = ?").bind(maintenant(), d.id),
+      env.DB.prepare("UPDATE joueurs SET points = points + ?, offerts = offerts + ? WHERE id = ?").bind(d.mise_voix, d.mise_paquets, d.de),
+    ]).catch(e => { if (!contrainte(e)) throw e; });
+  }
+  const inacheves = (await env.DB.prepare("SELECT * FROM duels WHERE statut = 'accepte' AND COALESCE(accepte, cree) < ?").bind(limite).all()).results;
+  for (const d of inacheves) await cloreDuel(env, d);
 }
 
 /* ---------- Routage ---------- */
@@ -902,7 +1024,9 @@ async function api(requete, env, url) {
   if (methode === "POST" && chemin === "/api/duels") return lancerDuel(env, requete, joueur);
   let m;
   if (methode === "POST" && (m = chemin.match(/^\/api\/amis\/(demander|accepter|retirer)$/))) return actionAmi(env, requete, joueur, m[1]);
-  if (methode === "POST" && (m = chemin.match(/^\/api\/duels\/(\d+)\/score$/))) return scoreDuel(env, requete, joueur, Number(m[1]));
+  if (methode === "GET" && (m = chemin.match(/^\/api\/duels\/(\d+)\/questions$/))) return questionsDuel(env, joueur, Number(m[1]), url);
+  if (methode === "POST" && (m = chemin.match(/^\/api\/duels\/(\d+)\/reponse$/))) return repondreDuel(env, requete, joueur, Number(m[1]), url);
+  if (methode === "POST" && (m = chemin.match(/^\/api\/duels\/(\d+)\/(relever|refuser|annuler)$/))) return repondreDefi(env, joueur, Number(m[1]), m[2]);
   if (methode === "GET" && (m = chemin.match(/^\/api\/joueurs\/([^/]+)$/))) {
     const j = await idJoueur(env, decodeURIComponent(m[1]));
     return json({pseudo: j.pseudo, libres: await libres(env, j.id)});
@@ -948,6 +1072,7 @@ export default {
     }
   },
   async scheduled(evenement, env, ctx) {
-    ctx.waitUntil(surveillerReserves(Object.assign(Object.create(env), {ctx})));
+    const e = Object.assign(Object.create(env), {ctx});
+    ctx.waitUntil(surveillerReserves(e).then(() => expirerDuels(e)));
   },
 };

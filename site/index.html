@@ -296,6 +296,21 @@ footer{max-width:1120px;margin:0 auto;padding:0 1rem 3rem;font-size:.85rem;color
 .bascule{display:flex;gap:.4rem;margin:.4rem 0}
 .bascule button{background:none;border:1px solid rgba(201,162,74,.5);color:var(--marbre);border-radius:2rem;padding:.35rem .9rem}
 .bascule button[aria-pressed="true"]{background:var(--dorure);color:var(--encre);border-color:var(--dorure)}
+/* Duels : défis à relever en tête, formulaire de défi (amis en un toucher, mise), puis duels passés */
+.duels{list-style:none;margin:.4rem 0 .8rem;padding:0;display:grid;gap:.45rem}
+.duel-ligne{display:flex;align-items:center;flex-wrap:wrap;gap:.4rem .7rem;border:1px solid rgba(201,162,74,.3);border-radius:8px;padding:.55rem .7rem;background:rgba(46,7,16,.6);font-size:.92rem}
+.duel-ligne .quoi{flex:1;min-width:10rem}
+.a-relever .duel-ligne{border-color:var(--dorure);box-shadow:inset 3px 0 0 var(--dorure)}
+.passes .duel-ligne{opacity:.85;font-size:.86rem}
+.duel-ligne.gagne{box-shadow:inset 3px 0 0 #3f8f5a}
+.duel-ligne.perdu{opacity:.65}
+.pastille-mise{flex:none;font-size:.75rem;padding:.15rem .55rem;border-radius:999px;background:rgba(201,162,74,.18);color:var(--dorure-pale)}
+.defier{border:1px dashed rgba(201,162,74,.45);border-radius:10px;padding:.7rem;margin:.4rem 0 .8rem;display:grid;gap:.5rem}
+.defier .note{margin:0}
+.ligne-defi{display:flex;gap:.4rem;flex-wrap:wrap}
+.ligne-defi input{flex:1 1 9rem;min-width:0;font:inherit;padding:.55rem .7rem;border-radius:6px;border:1px solid rgba(201,162,74,.45);background:rgba(46,7,16,.6);color:inherit}
+.ligne-defi select{font:inherit;padding:.5rem;border-radius:6px;border:1px solid rgba(201,162,74,.45);background:rgba(46,7,16,.6);color:inherit}
+:root[data-theme="clair"] :is(.duel-ligne,.ligne-defi input,.ligne-defi select){background:rgba(255,255,255,.65);border-color:rgba(92,16,32,.22)}
 /* Buvette : fiches d'échange (en attente et historique) */
 .fiches-echange{list-style:none;margin:.4rem 0 1rem;padding:0;display:grid;gap:.6rem}
 .fiche-echange{border:1px solid rgba(201,162,74,.3);border-radius:10px;background:rgba(46,7,16,.6);padding:.7rem .8rem;display:grid;gap:.5rem}
@@ -625,7 +640,7 @@ html.presentation{font-size:15px}
     <h3>Paquets offerts</h3>
     <p>L'ordre du jour récompense chaque objectif atteint. Les plus simples rapportent des voix pour lancer la partie : premiers pas (premier membre du Gouvernement, premier sénateur, première carte épique…) et premiers paliers de l'hémicycle. Les plus difficiles rapportent des paquets offerts : grands paliers de l'hémicycle, Quatre-vingts, Compagnons de la Libération, présidents de l'Assemblée, députés d'une législature, élus d'un département. La dissolution des doubles rapporte aussi des voix : chaque exemplaire en trop dissous rapporte des voix selon sa rareté (commune 1, peu commune 2, rare 5, épique 15, légendaire et hors catégorie 40, mythique 100), et 25 voix s'échangent contre un paquet. Ici, acheter des voix est parfaitement réglementaire. Le premier exemplaire de chaque carte n'est jamais dissous. Les paquets offerts s'ouvrent une fois la réserve vide, sans limite de date.</p>
     <h3>Questions au Gouvernement</h3>
-    <p>Sous les paquets de la séance, cinq questions par jour, tirées des fiches officielles des cartes : département d'élection, fonction exercée, époque, année de début de carrière. Chaque bonne réponse rapporte 2 voix, et un sans-faute 5 de plus. Avec un compte, on peut aussi défier un autre joueur : les deux reçoivent les mêmes questions, pour la gloire.</p>
+    <p>Sous les paquets de la séance, cinq questions par jour, tirées des fiches officielles des cartes : département d'élection, fonction exercée, époque, année de début de carrière. Chaque bonne réponse rapporte 2 voix, et un sans-faute 5 de plus. Avec un compte, on peut aussi défier un autre joueur, pour la gloire ou contre une mise de 10 à 100 voix ou de 1 à 3 paquets offerts, retenue dès le défi. L'adversaire relève le défi en mettant la même mise, ou le refuse et la vôtre vous revient. Les deux reçoivent les mêmes questions, et le serveur juge chaque réponse : le meilleur score emporte les deux mises, une égalité rend la sienne à chacun. Un défi laissé trois jours sans réponse est remboursé ; un duel relevé mais pas fini au bout de trois jours est clos avec les réponses données.</p>
     <h3>Hémicycle et favoris</h3>
     <p>Dans l'hémicycle, une carte touchée s'ouvre en grand : on y voit ses exemplaires, on peut dissoudre ses doubles ou, avec un compte, la vendre au comptoir. L'étoile d'une carte la met dans vos favoris ; les pastilles du haut de l'hémicycle filtrent les favoris ou une rareté. L'onglet Plus montre toutes les cartes du jeu, celles qui manquent étant grisées.</p>
     <h3>Amis et vitrine</h3>
@@ -961,7 +976,7 @@ function majEncartVoix(){
   const d = Regles.paquetsDisponibles(etat);
   document.getElementById("encart-voix").innerHTML = `<h2>${pluriel(etat.points, "voix", "voix")}</h2>
     <p>Les voix sont la monnaie du jeu. Ici, acheter des voix est parfaitement réglementaire.</p>
-    <p><b>Pour en gagner :</b></p><ul><li>dissoudre vos doubles, dans l'Hémicycle ;</li><li>répondre aux questions au Gouvernement, sous les paquets (15 voix par jour au plus) ;</li><li>réclamer les objectifs simples de l'ordre du jour.</li></ul>
+    <p><b>Pour en gagner :</b></p><ul><li>dissoudre vos doubles, dans l'Hémicycle ;</li><li>répondre aux questions au Gouvernement, sous les paquets (15 voix par jour au plus) ;</li>${compte ? "<li>gagner un duel avec mise ;</li>" : ""}<li>réclamer les objectifs simples de l'ordre du jour.</li></ul>
     <p><b>Pour les dépenser :</b> ${PRIX_PAQUET} voix donnent un paquet${compte ? ", et le comptoir de la buvette vend des cartes contre des voix" : ""}.</p>
     ${d.echangeables ? `<button class="bouton" id="voix-paquet">Échanger ${PRIX_PAQUET} voix contre un paquet</button>` : `<p class="note">Encore ${pluriel(PRIX_PAQUET - etat.points % PRIX_PAQUET, "voix", "voix")} pour un paquet.</p>`}`;
 }
@@ -1142,6 +1157,19 @@ function demarrerQuiz(mode, graine, id = null, avec = ""){
   majQag();
   document.getElementById("qag").scrollIntoView({behavior: reduit() ? "auto" : "smooth", block: "start"});
 }
+// Duel : questions envoyées par le serveur sans les réponses ; chaque réponse est corrigée par lui. Un duel
+// interrompu reprend à la première question sans réponse
+async function demarrerDuel(id, avec){
+  const d = await appel(`duels/${id}/questions`);
+  const faites = d.questions.filter(q => q.repondu !== undefined);
+  quiz = {mode: "duel", id, avec, liste: d.questions, i: Math.min(faites.length, d.questions.length - 1),
+    bonnes: faites.filter(q => q.repondu === q.bonne).length, repondu: null, fin: null};
+  if (faites.length === d.questions.length) quiz.repondu = faites[faites.length - 1].repondu;
+  majQag();
+  document.getElementById("qag").scrollIntoView({behavior: reduit() ? "auto" : "smooth", block: "start"});
+}
+const MISES_DUEL = [["0", "Pour la gloire"], ["v10", "10 voix"], ["v25", "25 voix"], ["v50", "50 voix"], ["v100", "100 voix"], ["p1", "1 paquet"], ["p2", "2 paquets"], ["p3", "3 paquets"]];
+const texteMise = d => [d.voix ? pluriel(d.voix, "voix", "voix") : "", d.paquets ? pluriel(d.paquets, "paquet") : ""].filter(Boolean).join(" et ") || "pour la gloire";
 async function chargerDuels(){
   if (!compte) { duels = []; return; }
   const d = await appel("duels").catch(() => null);
@@ -1168,24 +1196,52 @@ function majQag(){
     return;
   }
   const jour = Regles.jourDuJeu(), fait = etat.quiz === jour;
-  const aJouer = duels.filter(d => d.mien === null), enCours = duels.filter(d => d.mien !== null && !d.termine), finis = duels.filter(d => d.termine).slice(0, 8);
-  const issue = d => d.mien > d.sien ? "gagné" : d.mien < d.sien ? "perdu" : "égalité";
+  const releves = duels.filter(d => !d.lance && d.statut === "propose");
+  const aJouer = duels.filter(d => ["propose", "accepte"].includes(d.statut) && d.mien === null && (d.lance || d.statut === "accepte"));
+  const attente = duels.filter(d => ["propose", "accepte"].includes(d.statut) && d.mien !== null);
+  const finis = duels.filter(d => !["propose", "accepte"].includes(d.statut)).slice(0, 8);
+  const issue = d => d.statut === "fini" ? `${d.mien ?? 0} à ${d.sien ?? 0}, ${{gagne: "gagné", perdu: "perdu", egalite: "égalité"}[d.issue] || "terminé"}`
+    : {refuse: "défi refusé, mise rendue", annule: "défi annulé, mise rendue", expire: "défi sans réponse, mise rendue"}[d.statut] || "terminé";
+  const ligne = (d, contenu, gestes = "") => `<li class="duel-ligne${d.statut === "fini" ? " " + (d.issue || "") : ""}"><span class="pastille-mise">${texteMise(d)}</span>
+    <span class="quoi">${contenu}</span><span class="gestes-ami">${gestes}</span></li>`;
   zone.innerHTML = `<h2>Questions au Gouvernement</h2>
     <p>${fait ? "Vous avez répondu aux questions du jour. Les suivantes arrivent demain." : `Cinq questions tirées des fiches officielles : 2 voix par bonne réponse, et 5 de plus pour un sans-faute.`}</p>
     ${fait ? "" : `<button class="bouton" id="qag-jour">Poser les questions du jour</button>`}
-    ${compte ? `<h3>Duels</h3>
-      <form class="formulaire" id="form-duel"><label>Défier un joueur (même questions pour les deux, pour la gloire)<input type="text" name="pseudo" required autocapitalize="off" spellcheck="false" placeholder="Pseudo"></label><button class="bouton discret" type="submit">Lancer le duel</button></form>
-      <ul class="lignes-buvette">${aJouer.map(d => `<li><span class="quoi">${d.lance ? "Votre duel contre" : "Défi de"} ${echapper(d.avec)}</span><button class="bouton" data-duel="${d.id}">Jouer</button></li>`).join("")}
-        ${enCours.map(d => `<li><span class="quoi">Contre ${echapper(d.avec)} : vous avez ${d.mien} sur 5, en attente de son score</span></li>`).join("")}
-        ${finis.map(d => `<li><span class="quoi">Contre ${echapper(d.avec)} : ${d.mien} à ${d.sien}, ${issue(d)}</span></li>`).join("")}
-        ${duels.length ? "" : `<li class="note">Aucun duel pour l'instant.</li>`}</ul>` : `<p class="note">Créez un compte pour défier d'autres joueurs.</p>`}`;
+    ${compte ? `<h3 id="titre-duels">Duels</h3>
+      ${releves.length ? `<ul class="duels a-relever">${releves.map(d => ligne(d, `<b>${echapper(d.avec)}</b> vous défie`,
+        `<button class="bouton" data-relever="${d.id}">Relever le défi</button><button class="lien-carte" data-refuser="${d.id}">Refuser</button>`)).join("")}</ul>` : ""}
+      ${aJouer.length ? `<ul class="duels">${aJouer.map(d => ligne(d, `Contre <b>${echapper(d.avec)}</b>${d.repondues ? ` · ${d.repondues} sur 5` : ""}`,
+        `<button class="bouton" data-duel="${d.id}">${d.repondues ? "Reprendre" : "Jouer"}</button>`)).join("")}</ul>` : ""}
+      <form class="defier" id="form-duel"><p class="note">Mêmes cinq questions pour les deux ; le meilleur score emporte les deux mises, une égalité rend la sienne à chacun.</p>
+        ${amis.amis.length ? `<div class="puces-amis">${amis.amis.map(p => `<button type="button" data-defier="${echapper(p)}">${echapper(p)}</button>`).join("")}</div>` : ""}
+        <div class="ligne-defi"><input type="text" name="pseudo" required autocapitalize="off" spellcheck="false" placeholder="Pseudo de l'adversaire" aria-label="Adversaire">
+          <select name="mise" aria-label="Mise">${MISES_DUEL.map(([v, l]) => `<option value="${v}">${l}</option>`).join("")}</select>
+          <button class="bouton" type="submit">Défier</button></div></form>
+      ${attente.length || finis.length ? `<ul class="duels passes">${attente.map(d => ligne(d, `Contre <b>${echapper(d.avec)}</b> : vous avez ${d.mien} sur 5, en attente${d.statut === "propose" ? " de sa réponse au défi" : " de son score"}`,
+        d.statut === "propose" ? `<button class="lien-carte" data-annuler-duel="${d.id}">Annuler</button>` : "")).join("")}
+        ${finis.map(d => ligne(d, `Contre <b>${echapper(d.avec)}</b> : ${issue(d)}`)).join("")}</ul>` : ""}`
+      : `<p class="note">Créez un compte pour défier d'autres joueurs.</p>`}`;
 }
 document.getElementById("qag").addEventListener("click", e => {
   const t = e.target;
   if (t.id === "qag-jour") demarrerQuiz("jour", Regles.graineDe(Regles.jourDuJeu() + "|" + (compte ? compte.pseudo.toLowerCase() : "navigateur")));
-  if (t.dataset.duel) { const d = duels.find(x => x.id === Number(t.dataset.duel)); if (d) demarrerQuiz("duel", d.graine, d.id, d.avec); }
-  if (t.dataset.choix !== undefined && quiz && quiz.repondu === null) {
-    quiz.repondu = Number(t.dataset.choix);
+  const duel = id => duels.find(x => x.id === Number(id));
+  if (t.dataset.duel) { const d = duel(t.dataset.duel); if (d) occupe(t, () => demarrerDuel(d.id, d.avec)); }
+  if (t.dataset.relever) { const d = duel(t.dataset.relever); if (d) occupe(t, async () => { await appel(`duels/${d.id}/relever`, {}); await appel("moi"); majTout(); await chargerDuels(); majAttente(); await demarrerDuel(d.id, d.avec); }); }
+  if (t.dataset.refuser) occupe(t, async () => { await appel(`duels/${t.dataset.refuser}/refuser`, {}); await chargerDuels(); majAttente(); signaler("Défi refusé : la mise est rendue à son lanceur."); });
+  if (t.dataset.annulerDuel) occupe(t, async () => { await appel(`duels/${t.dataset.annulerDuel}/annuler`, {}); await appel("moi"); majTout(); await chargerDuels(); signaler("Défi annulé : votre mise vous est rendue."); });
+  if (t.dataset.defier) { const f = document.getElementById("form-duel"); f.pseudo.value = t.dataset.defier; f.mise.focus(); }
+  if (t.dataset.choix !== undefined && quiz && quiz.repondu === null && !quiz.attente) {
+    const choix = Number(t.dataset.choix);
+    if (quiz.mode === "duel") {
+      quiz.attente = true;
+      appel(`duels/${quiz.id}/reponse`, {question: quiz.i, choix}).then(r => {
+        Object.assign(quiz.liste[quiz.i], {bonne: r.bonne, explication: r.explication, carte: r.carte});
+        quiz.repondu = choix; if (r.juste) quiz.bonnes += 1; quiz.resultat = r.resultat;
+      }).catch(x => signaler(x.message)).finally(() => { quiz.attente = false; majQag(); });
+      return;
+    }
+    quiz.repondu = choix;
     if (quiz.repondu === quiz.liste[quiz.i].bonne) quiz.bonnes += 1;
     majQag();
   }
@@ -1196,9 +1252,12 @@ document.getElementById("qag").addEventListener("click", e => {
         const v = await actions.validerQuiz(quiz.bonnes);
         quiz.fin = v ? `${pluriel(v, "voix", "voix")} ${v > 1 ? "gagnées" : "gagnée"}.` : "Les questions du jour étaient déjà récompensées.";
       } else {
-        await appel(`duels/${quiz.id}/score`, {bonnes: quiz.bonnes});
-        quiz.fin = `Score envoyé. Le résultat apparaîtra quand ${echapper(quiz.avec)} aura joué.`;
-        chargerDuels(); majAttente();
+        // Le serveur a déjà gardé chaque réponse ; si l'adversaire a joué, le duel est clos et les mises versées
+        await chargerDuels();
+        const d = duels.find(x => x.id === quiz.id);
+        quiz.fin = d && d.statut === "fini" ? `Duel terminé : ${d.mien} à ${d.sien}, ${{gagne: `gagné${d.voix || d.paquets ? `, vous remportez ${texteMise({voix: d.voix * 2, paquets: d.paquets * 2})}` : ""}`, perdu: "perdu", egalite: "égalité, chacun récupère sa mise"}[d.issue]}.`
+          : `Votre score est enregistré. Le résultat arrivera quand ${echapper(quiz.avec)} aura joué.`;
+        await appel("moi"); majTout(); majAttente();
       }
       majCompteur(); majQag();
     });
@@ -1208,10 +1267,12 @@ document.getElementById("qag").addEventListener("click", e => {
 document.getElementById("qag").addEventListener("submit", e => {
   if (e.target.id !== "form-duel") return;
   e.preventDefault();
-  occupe(e.target.querySelector("button"), async () => {
-    const d = await appel("duels", {vers: e.target.pseudo.value.trim()});
+  const f = e.target, m = f.mise.value;
+  occupe(f.querySelector("button[type=submit]"), async () => {
+    const d = await appel("duels", {vers: f.pseudo.value.trim(), voix: m[0] === "v" ? Number(m.slice(1)) : 0, paquets: m[0] === "p" ? Number(m.slice(1)) : 0});
+    await appel("moi"); majTout();
     await chargerDuels();
-    demarrerQuiz("duel", d.graine, d.id, d.avec);
+    await demarrerDuel(d.id, d.avec);
   });
 });
 
@@ -2029,7 +2090,7 @@ function relation(pseudo){
 async function chargerAmis(){
   if (!compte) { amis = {amis: [], recues: [], envoyees: []}; majAmis(); return; }
   const d = await appel("amis").catch(() => null);
-  if (d) { amis = d; majAmis(); dessinerPartenaires(); }
+  if (d) { amis = d; majAmis(); dessinerPartenaires(); if (!quiz) majQag(); }
 }
 function majAmis(){
   const vue = document.getElementById("vue-amis");
@@ -2081,10 +2142,11 @@ document.addEventListener("click", e => {
   if (b.dataset.allerCompte !== undefined) { allerA("compte"); return; }
   if (b.dataset.echangeAmi) { document.getElementById("apercu").close(); proposerEchangeA(b.dataset.echangeAmi); return; }
   if (b.dataset.duelAmi) {
-    occupe(b, async () => {
-      const d = await appel("duels", {vers: b.dataset.duelAmi});
-      allerA("paquet"); await chargerDuels(); demarrerQuiz("duel", d.graine, d.id, d.avec);
-    });
+    // Le défi se prépare dans la Séance : adversaire prérempli, mise à choisir
+    document.getElementById("apercu").close?.();
+    allerA("paquet"); quiz = null; majQag();
+    const f = document.getElementById("form-duel");
+    if (f) { f.pseudo.value = b.dataset.duelAmi; document.getElementById("titre-duels").scrollIntoView({behavior: reduit() ? "auto" : "smooth", block: "start"}); f.mise.focus(); }
     return;
   }
   if (b.dataset.confirmer && !confirm(b.dataset.confirmer)) return;

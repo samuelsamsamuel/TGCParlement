@@ -136,17 +136,40 @@ const preuve = c => require("crypto").createHash("sha256").update(c).digest("hex
   r = await C("quiz", {bonnes: 5}); assert.strictEqual(r.d.resultat, 0);
   assert.strictEqual((await C("moi")).d.etat.points, avantQ + 15);
   assert.strictEqual((await C("quiz", {bonnes: 9})).statut, 400);
-  // Duel : même graine pour les deux, score de l'adversaire caché tant qu'on n'a pas joué, une seule fois
-  r = await A("duels", {vers: "carole" + suffixe}); assert.strictEqual(r.statut, 201);
-  const duel = r.d.id, graine = r.d.graine;
+  // Duels jugés par le serveur, avec mise : la graine ne quitte pas le serveur ; le test la lit en base pour répondre
+  const base = c => require("child_process").execSync(`cd ${require("path").join(__dirname, "..")} && ${process.env.WR} d1 execute hemicycle --local --persist-to ${process.env.ETAT} --json --command "${c}"`).toString();
+  const lire = c => JSON.parse(base(c))[0].results;
+  const qcat = R.catalogueQuiz(require("../site/quiz-serveur.json"));
+  const voixDe = async cl => (await cl("moi")).d.etat.points;
+  base(`UPDATE joueurs SET points = 50 WHERE pseudo IN ('alice${suffixe}', 'carole${suffixe}')`);
+  assert.strictEqual((await A("duels", {vers: "carole" + suffixe, voix: 1000})).statut, 400, "mise plafonnée");
+  r = await A("duels", {vers: "carole" + suffixe, voix: 10}); assert.strictEqual(r.statut, 201, JSON.stringify(r.d));
+  const duel = r.d.id, graine = lire(`SELECT graine FROM duels WHERE id = ${duel}`)[0].graine, bonnes = R.questions(qcat, graine).map(q => q.bonne);
+  assert.strictEqual(await voixDe(A), 40, "mise retenue au lanceur");
   assert.strictEqual((await C("attente")).d.duels, 1);
-  assert.strictEqual((await A("duels/" + duel + "/score", {bonnes: 4})).statut, 200);
-  assert.strictEqual((await A("duels/" + duel + "/score", {bonnes: 5})).statut, 409);
+  assert.strictEqual((await C("duels/" + duel + "/questions")).statut, 409, "relever d'abord");
+  const qA = (await A("duels/" + duel + "/questions")).d.questions;
+  assert.strictEqual(qA.length, 5); assert.ok(qA.every(q => q.bonne === undefined), "pas de réponse envoyée d'avance");
+  const jouer = async (cl, nbJustes) => { let x; for (let k = 0; k < 5; k++) x = await cl("duels/" + duel + "/reponse", {question: k, choix: k < nbJustes ? bonnes[k] : (bonnes[k] + 1) % 4}); return x; };
+  r = await jouer(A, 4); assert.strictEqual(r.d.fin, true); assert.strictEqual(r.d.score, 4); assert.strictEqual(r.d.resultat, null);
+  assert.strictEqual((await A("duels/" + duel + "/reponse", {question: 4, choix: 0})).statut, 409, "une réponse par question");
   let vueC = (await C("duels")).d.duels.find(x => x.id === duel);
-  assert.strictEqual(vueC.graine, graine); assert.strictEqual(vueC.sien, null);
-  assert.strictEqual((await C("duels/" + duel + "/score", {bonnes: 2})).statut, 200);
+  assert.strictEqual(vueC.graine, undefined); assert.strictEqual(vueC.sien, null); assert.strictEqual(vueC.voix, 10);
+  assert.strictEqual((await C("duels/" + duel + "/relever", {})).statut, 200);
+  assert.strictEqual(await voixDe(C), 40, "mise retenue à l'adversaire");
+  assert.strictEqual((await C("duels/" + duel + "/relever", {})).statut, 409);
+  r = await jouer(C, 2); assert.strictEqual(r.d.resultat.score.join(), "4,2");
+  assert.strictEqual(await voixDe(A), 60, "le gagnant emporte les deux mises"); assert.strictEqual(await voixDe(C), 40);
   vueC = (await C("duels")).d.duels.find(x => x.id === duel);
-  assert.ok(vueC.termine); assert.strictEqual(vueC.sien, 4);
+  assert.ok(vueC.termine); assert.strictEqual(vueC.sien, 4); assert.strictEqual(vueC.issue, "perdu");
+  // Défi refusé : mise rendue ; défi ignoré trois jours : remboursé par la tâche horaire
+  r = await A("duels", {vers: "carole" + suffixe, voix: 5}); assert.strictEqual(await voixDe(A), 55);
+  assert.strictEqual((await C("duels/" + r.d.id + "/refuser", {})).statut, 200); assert.strictEqual(await voixDe(A), 60);
+  r = await A("duels", {vers: "carole" + suffixe, paquets: 0, voix: 20}); assert.strictEqual(await voixDe(A), 40);
+  base(`UPDATE duels SET cree = '2020-01-01T00:00:00.000Z' WHERE id = ${r.d.id}`);
+  assert.strictEqual((await fetch("http://localhost:8787/cdn-cgi/handler/scheduled")).status, 200);
+  assert.strictEqual(await voixDe(A), 60, "défi expiré remboursé");
+  assert.strictEqual((await A("duels")).d.duels.find(x => x.id === r.d.id).statut, "expire");
   // Vitrine et profil : seulement des cartes de la collection
   const mienne = Object.keys((await A("moi")).d.etat.possedees)[0];
   assert.strictEqual((await A("vitrine", {cartes: [mienne]})).statut, 200);

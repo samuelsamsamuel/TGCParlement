@@ -109,17 +109,26 @@ const sx = Date.now().toString(36).slice(-4);
   // Aperçu d'une carte depuis l'historique
   await A.click('#historique .mini-ami'); await A.waitForSelector("#apercu[open] .carte");
   await A.click("#fermer-apercu");
-  // Duel : Anne défie Bob depuis la séance, Bob voit la pastille et joue
+  // Duel avec mise : Anne défie Bob pour 10 voix, Bob relève le défi depuis la pastille ; le serveur juge chaque réponse
   await A.click('nav [data-vue="paquet"]');
   await A.fill('#form-duel [name=pseudo]', "bob" + sx);
-  await A.click('#form-duel button');
-  for (let i = 0; i < 5; i++) { await A.waitForSelector(".choix-q button:not([disabled])"); await A.click('.choix-q button[data-choix="0"]'); await A.click("#qag-suite"); }
+  await A.selectOption('#form-duel [name=mise]', "v10");
+  await A.click('#form-duel button[type=submit]');
+  await A.waitForFunction(() => etat.points === 2);
+  const repondre = async (P, choix) => { for (let i = 0; i < 5; i++) {
+    await P.waitForSelector(".choix-q button:not([disabled])"); await P.click(`.choix-q button[data-choix="${choix}"]`);
+    await P.waitForSelector("#qag-suite"); await P.click("#qag-suite"); } };
+  await repondre(A, 0);
   await A.waitForSelector("#qag-fermer"); await A.click("#qag-fermer");
   await Bp.reload(); await Bp.waitForSelector("#pastille-seance:not([hidden])");
-  await Bp.click('[data-duel]');
-  for (let i = 0; i < 5; i++) { await Bp.waitForSelector(".choix-q button:not([disabled])"); await Bp.click('.choix-q button[data-choix="1"]'); await Bp.click("#qag-suite"); }
-  await Bp.waitForSelector("#qag-fermer"); await Bp.click("#qag-fermer");
+  await Bp.waitForLoadState("networkidle"); await Bp.locator("#titre-duels").scrollIntoViewIfNeeded(); await Bp.screenshot({path: T + "/duels-tel.png"});
+  await Bp.click("[data-relever]"); await Bp.waitForFunction(() => etat.points === 8);
+  await Bp.screenshot({path: T + "/duel-tel.png", fullPage: true});
+  await repondre(Bp, 1);
+  await Bp.waitForFunction(() => /Duel terminé/.test(document.getElementById("qag").textContent));
+  await Bp.click("#qag-fermer");
   await Bp.waitForFunction(() => /Contre .* : \d à \d/.test(document.getElementById("qag").textContent));
+  await A.reload(); await A.waitForFunction(() => compte && [2, 12, 22].includes(etat.points));
   // Vitrine d'Anne, faite de ses favoris, visible par Bob depuis ses amis
   await A.click('nav [data-vue="collection"]'); await A.click('#grille [data-favori]');
   await A.waitForFunction(() => etat.favoris.length === 1);
