@@ -101,6 +101,11 @@ personnes sur 6 761 ont un fichier qui les dépeint, 2 portraits retenus), `vill
   paquet. Un paquet de doubles rapporte en moyenne 21 points : le prix doit rester au-dessus, sans quoi le
   recyclage créerait des paquets sans fin (vérifié par le test). Par défaut, seules les raretés commune à
   rare sont cochées pour le recyclage : les doubles plus rares serviront aux échanges entre joueurs.
+- Rareté « unique » (demande de l'utilisateur, octobre 2026) : au-dessus de toutes, pour la seule carte de Charles de
+  Gaulle (`CARTES_UNIQUES`, `cartes.py` ; jusque-là hors catégorie). Ajoutée en dernier dans `RARETES` (`export_jeu.py`)
+  et `ORDRE` (`regles.js`) pour ne pas décaler les indices publiés ; poids de tirage 0,004 (`POIDS`), sous celui d'une
+  mythique donnée (0,4 pour 95 cartes ; vérifié par le test), soit une carte sur 25 000 environ ; dissolution 250 voix ;
+  cadre tricolore et or (`.r-unique`).
 - Paliers (`PALIERS`) hauts et modestes pour les législatures (50, 150) et les départements (15, 40) : des
   paliers bas s'auto-entretenaient (simulation : la moitié des cartes dès le premier jour). Un test vérifie
   qu'un premier jour avec toutes les récompenses en cascade reste borné.

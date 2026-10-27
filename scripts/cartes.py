@@ -84,6 +84,7 @@ PTS_FEMMES_1945 = 20
 NIVEAUX = [("mythique", 0.005), ("legendaire", 0.025), ("epique", 0.08), ("rare", 0.20),
            ("peu-commune", 0.50), ("commune", 1.0)]
 ORDRE = [n for n, _ in NIVEAUX]
+CARTES_UNIQUES = {"G-de-gaulle-charles": "Charles de Gaulle"}  # rareté « unique » (voir plus bas)
 
 MOIS = {m: i + 1 for i, m in enumerate(
     ["janvier", "février", "mars", "avril", "mai", "juin", "juillet",
@@ -535,6 +536,14 @@ def main():
     hors_categorie = cartes_hors_categorie(listes)
     hors_categorie.sort(key=lambda c: (-c["score"], c["id"]))
     cartes.extend(hors_categorie)
+    # Décision de l'utilisateur (octobre 2026) : une rareté « unique », au-dessus de toutes, pour la seule carte de
+    # Charles de Gaulle (membre du Gouvernement sans mandat parlementaire, jusque-là « hors catégorie »)
+    for c in cartes:
+        if c["id"] in CARTES_UNIQUES:
+            c["rarete"] = "unique"
+    absentes = sorted(set(CARTES_UNIQUES) - {c["id"] for c in cartes})
+    if absentes:
+        anomalies["carte unique introuvable"].extend(absentes)
 
     os.makedirs("data", exist_ok=True)
     with open(F_CARTES, "w", encoding="utf-8") as f:
@@ -550,7 +559,7 @@ def main():
         f.write("Distinctions calculées :\n")
         for k, v in dist.most_common():
             f.write(f"  {k} : {v}\n")
-        scores = sorted((c["score"] for c in cartes if c["rarete"] != "hors-categorie"), reverse=True)
+        scores = sorted((c["score"] for c in cartes if c["rarete"] not in ("hors-categorie", "unique")), reverse=True)
         f.write("\nScores (grille équilibrée) : maximum %.1f ; 10e %.1f ; 100e %.1f ; 1000e %.1f ; médiane %.1f\n"
                 % (scores[0], scores[9], scores[99], scores[999], scores[len(scores) // 2]))
         egalite = sum(1 for x in scores if x == scores[0])

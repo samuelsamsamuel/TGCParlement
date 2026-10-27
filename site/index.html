@@ -209,6 +209,11 @@ main{max-width:1120px;margin:0 auto;padding:1.5rem 1rem 4rem}
 .r-commune{--cadre:linear-gradient(145deg,#b3aa9e,#7c7368);--sur-cadre:#fff;--rarete-texte:#5f554b}
 .r-hors-categorie{--cadre:linear-gradient(145deg,#2c3e7a 0 33%,#efe9df 33% 66%,#b8293a 66%);--sur-cadre:#21161a;--rarete-texte:#5c1020}
 .r-hors-categorie .entete{background:#efe9df}
+/* Unique (Charles de Gaulle seul) : tricolore et or, halo et reflet plus fréquents que la mythique */
+.r-unique{--cadre:conic-gradient(from 210deg,#1d2b63,#2c3e7a,#f4efe4,#efe9df,#b8293a,#8f1d2c,#e6d29a,#1d2b63);--sur-cadre:#1a1014;--rarete-texte:#1d2b63}
+.r-unique .entete{background:linear-gradient(90deg,#f6e7b0,#e6d29a 50%,#f6e7b0)}
+.r-unique.retournee .recto,.r-unique.retournee .verso{box-shadow:0 0 0 2px #e6d29a,0 0 45px rgba(230,210,154,.7),0 0 90px rgba(44,62,122,.5),0 0 120px rgba(184,41,58,.35)}
+.r-unique .recto::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:linear-gradient(115deg,transparent 30%,rgba(255,246,214,.6) 45%,transparent 60%);background-size:250% 100%;background-repeat:no-repeat;animation:reflet 8s ease-in-out infinite}
 .r-legendaire.retournee .recto{box-shadow:0 0 0 1px #f1dc9a,0 0 40px rgba(201,162,74,.6),0 10px 26px rgba(0,0,0,.4)}
 .r-legendaire .recto::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:linear-gradient(115deg,transparent 35%,rgba(255,255,255,.35) 45%,transparent 55%);background-size:250% 100%;background-repeat:no-repeat;animation:reflet 15s ease-in-out infinite}
 /* Bande de lumière à 45 % d'un dégradé large de 2,5 cartes : hors de la carte à 120 % comme à -20 % */
@@ -587,7 +592,7 @@ html.presentation{font-size:15px}
   .presentation h1{margin-bottom:.4rem}
   .presentation main{padding:.7rem .8rem calc(6rem + env(safe-area-inset-bottom))}
 }
-@media (prefers-reduced-motion:reduce){.face,.paquet *{transition:none!important;animation:none!important}.r-legendaire .recto::after{animation:none}}
+@media (prefers-reduced-motion:reduce){.face,.paquet *{transition:none!important;animation:none!important}.r-legendaire .recto::after,.r-unique .recto::after{animation:none}}
 </style>
 </head>
 <body>
@@ -639,7 +644,7 @@ html.presentation{font-size:15px}
     <h2>Règlement du jeu</h2>
     <p>Toutes les 30 minutes, un paquet de cinq cartes s'ajoute à votre réserve, qui en garde dix au plus : en passant matin, midi et soir, on en ouvre une trentaine par jour. Chaque paquet contient au moins un parlementaire ou un ministre en exercice. Les cartes obtenues prennent place dans votre hémicycle, votre collection.</p>
     <h3>Paquets offerts</h3>
-    <p>L'ordre du jour récompense chaque objectif atteint. Les plus simples rapportent des voix pour lancer la partie : premiers pas (premier membre du Gouvernement, premier sénateur, première carte épique…) et premiers paliers de l'hémicycle. Les plus difficiles rapportent des paquets offerts : grands paliers de l'hémicycle, Quatre-vingts, Compagnons de la Libération, présidents de l'Assemblée, députés d'une législature, élus d'un département. La dissolution des doubles rapporte aussi des voix : chaque exemplaire en trop dissous rapporte des voix selon sa rareté (commune 1, peu commune 2, rare 5, épique 15, légendaire et hors catégorie 40, mythique 100), et 25 voix s'échangent contre un paquet. Ici, acheter des voix est parfaitement réglementaire. Le premier exemplaire de chaque carte n'est jamais dissous. Les paquets offerts s'ouvrent une fois la réserve vide, sans limite de date.</p>
+    <p>L'ordre du jour récompense chaque objectif atteint. Les plus simples rapportent des voix pour lancer la partie : premiers pas (premier membre du Gouvernement, premier sénateur, première carte épique…) et premiers paliers de l'hémicycle. Les plus difficiles rapportent des paquets offerts : grands paliers de l'hémicycle, Quatre-vingts, Compagnons de la Libération, présidents de l'Assemblée, députés d'une législature, élus d'un département. La dissolution des doubles rapporte aussi des voix : chaque exemplaire en trop dissous rapporte des voix selon sa rareté (commune 1, peu commune 2, rare 5, épique 15, légendaire et hors catégorie 40, mythique 100, unique 250), et 25 voix s'échangent contre un paquet. Ici, acheter des voix est parfaitement réglementaire. Le premier exemplaire de chaque carte n'est jamais dissous. Les paquets offerts s'ouvrent une fois la réserve vide, sans limite de date.</p>
     <h3>Questions au Gouvernement</h3>
     <p>Sous les paquets de la séance, cinq questions par jour, tirées des fiches officielles des cartes : département d'élection, fonction exercée, époque, année de début de carrière. Chaque bonne réponse rapporte 2 voix, et un sans-faute 5 de plus. Avec un compte, on peut aussi défier un autre joueur, pour la gloire ou contre une mise de 10 à 100 voix ou de 1 à 3 paquets offerts, retenue dès le défi. L'adversaire relève le défi en mettant la même mise, ou le refuse et la vôtre vous revient. Les deux reçoivent les mêmes questions, et le serveur juge chaque réponse : le meilleur score emporte les deux mises, une égalité rend la sienne à chacun. Un défi laissé trois jours sans réponse est remboursé ; un duel relevé mais pas fini au bout de trois jours est clos avec les réponses données.</p>
     <h3>Hémicycle et favoris</h3>
@@ -650,7 +655,7 @@ html.presentation{font-size:15px}
     <p>Sans compte, la collection reste dans ce navigateur. Avec un compte (pseudo et mot de passe), la collection est gardée par le serveur et se retrouve sur tous vos appareils, et c'est alors le serveur qui tire les cartes. À la création du compte, la collection de ce navigateur est reprise une fois, et ses cartes deviennent des cartes du compte comme les autres. Les objectifs déjà réclamés dans le navigateur ne se réclament pas une seconde fois, et les voix et paquets offerts du navigateur ne sont pas repris.</p>
     <p>À la buvette, on propose à un autre joueur un échange de cartes, qu'il accepte ou refuse. On y tient aussi le comptoir, où les joueurs se vendent et s'achètent des cartes contre des voix. Une carte posée au comptoir est réservée : elle ne peut être ni dissoute ni échangée tant qu'elle y reste.</p>
     <h3>Raretés</h3>
-    <p>La rareté d'une carte dépend de son score, comparé à celui des autres parlementaires de la même époque. Par carte tirée : mythique 0,4 %, légendaire 1,6 %, épique 6 %, rare 15 %, peu commune 30 %, commune 46 %. Les élus en exercice gagnent un niveau de rareté.</p>
+    <p>La rareté d'une carte dépend de son score, comparé à celui des autres parlementaires de la même époque. Par carte tirée : mythique 0,4 %, légendaire 1,6 %, épique 6 %, rare 15 %, peu commune 30 %, commune 46 %. Les élus en exercice gagnent un niveau de rareté. Au-dessus de toutes, la rareté unique ne compte qu'une carte, Charles de Gaulle, plus rare au tirage que n'importe quelle carte mythique : en moyenne une fois sur 25 000 cartes, soit environ un paquet sur 6 000.</p>
     <h3>Score</h3>
     <p>Le score additionne la durée des mandats (1 point par an jusqu'à 20 ans, puis 0,5 point jusqu'à 40 ans) et les fonctions exercées : chef de l'État, chef du Gouvernement, ministre, secrétaire d'État, présidence d'une assemblée, d'une commission ou d'un groupe, Bureau. Les fonctions exercées au sein des chambres (Bureau, présidence de commission ou de groupe, rapporteur général) ne sont connues par l'open data de l'Assemblée qu'à partir de juin 2002 ; pour que députés et sénateurs soient notés de la même façon, celles du Sénat ne comptent aussi qu'à partir de cette date, les plus anciennes restant affichées sur la carte. Dans chaque famille de fonctions, la plus haute compte en entier et les autres pour un quart. S'y ajoutent les distinctions historiques : Constituante de 1789, Convention, Quatre-vingts, premières élues de 1945, Compagnons de la Libération, Académie française, prix Nobel, Panthéon.</p>
     <h3>Sources</h3>
@@ -716,7 +721,7 @@ html.presentation{font-size:15px}
 <script src="regles.js"></script>
 <script>
 const {ORDRE, VALEUR_RECYCLAGE, PRIX_PAQUET} = Regles;
-const LIBELLES = {"mythique":"Mythique","legendaire":"Légendaire","epique":"Épique","rare":"Rare","peu-commune":"Peu commune","commune":"Commune","hors-categorie":"Hors catégorie"};
+const LIBELLES = {"mythique":"Mythique","legendaire":"Légendaire","epique":"Épique","rare":"Rare","peu-commune":"Peu commune","commune":"Commune","hors-categorie":"Hors catégorie","unique":"Unique"};
 const CHAMBRES = {"A":"Assemblée","S":"Sénat","G":"Gouvernement"};
 const EPOQUES = {"Révolution et Empire":"#6b4a2b","Monarchies constitutionnelles":"#3d5a73","IIe République et Second Empire":"#5b4b7a",
   "IIIe République":"#2f6b5a","Libération et IVe République":"#7a5a1e","Ve République":"#2c3e7a","":"#5c1020"};
