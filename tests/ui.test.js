@@ -20,7 +20,7 @@ const T = process.argv[2] || require("os").tmpdir();
     localStorage.setItem("hemicycle-collection", JSON.stringify({possedees: {"2922": 3}, jour, ouverts: 2}));
   });
   await page.reload(); await page.waitForSelector("#paquet");
-  assert.match(await page.textContent("#restants"), /8 paquets à ouvrir.*Réserve : 8 sur 8.*Réserve pleine/s);
+  assert.match(await page.textContent("#restants"), /10 paquets à ouvrir.*Réserve : 10 sur 10.*Réserve pleine/s);
   await page.click("#voix-tete"); assert.ok(await page.isVisible("#encart-voix"));
   await page.click("h1"); assert.ok(!(await page.isVisible("#encart-voix")));
   // Ouvrir le dernier paquet du jour et aller au récapitulatif
@@ -41,7 +41,7 @@ const T = process.argv[2] || require("os").tmpdir();
   await page.waitForSelector(".recap");
   assert.strictEqual(await page.locator("#revoir").count(), 0);
   const etat = await page.evaluate(() => JSON.parse(localStorage.getItem("hemicycle-collection")));
-  assert.strictEqual(etat.version, 3); assert.strictEqual(etat.reserve, 7); assert.strictEqual(etat.possedees["2922"] >= 3, true);
+  assert.strictEqual(etat.version, 3); assert.strictEqual(etat.reserve, 9); assert.strictEqual(etat.possedees["2922"] >= 3, true);
   assert.ok(await page.isVisible("#suivant"), "il reste des paquets en réserve");
   // Doubles et objectif atteint : Edgar Faure n'est pas un Quatre-vingts ; on donne au joueur cinq Quatre-vingts
   await page.evaluate(() => {

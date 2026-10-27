@@ -13,10 +13,10 @@ assert.deepStrictEqual(e.possedees, {"2922": 3}); assert.strictEqual(e.version, 
 assert.strictEqual(R.paquetsDisponibles(e).reserve, R.RESERVE_MAX);
 assert.deepStrictEqual(R.migrer(null), R.etatVide());
 
-// Réserve : pleine au départ, un paquet par heure, plafonnée à huit ; l'heure entamée reste acquise
+// Réserve : pleine au départ, un paquet par intervalle (RECHARGE_MS), plafonnée à RESERVE_MAX ; l'intervalle entamé reste acquis
 const H = R.RECHARGE_MS, t0 = Date.UTC(2026, 9, 24, 8, 0);
 const s = R.etatVide();
-for (let i = 0; i < 8; i++) assert.strictEqual(R.ouvrirPaquet(s, cat, {maintenant: t0, aleatoire: alea}).origine, "reserve");
+for (let i = 0; i < R.RESERVE_MAX; i++) assert.strictEqual(R.ouvrirPaquet(s, cat, {maintenant: t0, aleatoire: alea}).origine, "reserve");
 assert.strictEqual(R.ouvrirPaquet(s, cat, {maintenant: t0, aleatoire: alea}), null);
 assert.strictEqual(R.paquetsDisponibles(s, t0).prochain, t0 + H);
 assert.strictEqual(R.paquetsDisponibles(s, t0 + H - 1).reserve, 0);
@@ -24,14 +24,14 @@ assert.strictEqual(R.paquetsDisponibles(s, t0 + 2.5 * H).reserve, 2);
 R.ouvrirPaquet(s, cat, {maintenant: t0 + 2.5 * H, aleatoire: alea});
 assert.strictEqual(R.paquetsDisponibles(s, t0 + 2.5 * H).reserve, 1);
 assert.strictEqual(R.paquetsDisponibles(s, t0 + 3 * H).reserve, 2, "la demi-heure entamée compte toujours");
-assert.strictEqual(R.paquetsDisponibles(s, t0 + 100 * H).reserve, 8, "plafond");
+assert.strictEqual(R.paquetsDisponibles(s, t0 + 100 * H).reserve, R.RESERVE_MAX, "plafond");
 // Réserve vide : les paquets offerts prennent le relais
 const s2 = R.etatVide(); s2.reserve = 0; s2.ancre = t0; s2.offerts = 1;
 assert.strictEqual(R.ouvrirPaquet(s2, cat, {maintenant: t0, aleatoire: alea}).origine, "offert");
 assert.strictEqual(s2.offerts, 0);
 const p = R.ouvrirPaquet(s, cat, {maintenant: t0 + 100 * H, aleatoire: alea});
 assert.strictEqual(p.tirage.length, 5); assert.ok(p.tirage.some(c => c.actuel));
-assert.strictEqual(Object.values(s.possedees).reduce((a, b) => a + b, 0), 50);
+assert.strictEqual(Object.values(s.possedees).reduce((a, b) => a + b, 0), (R.RESERVE_MAX + 2) * R.CARTES_PAR_PAQUET);
 
 // Recyclage : garde un exemplaire, points selon la rareté, raretés non choisies intactes
 const r = R.etatVide();

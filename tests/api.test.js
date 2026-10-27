@@ -47,19 +47,19 @@ const preuve = c => require("crypto").createHash("sha256").update(c).digest("hex
   // Recyclage : les exemplaires repris se recyclent comme les autres (un double de commune)
   r = await A("recycler", {raretes: ["commune"]});
   assert.deepStrictEqual(r.d.resultat, {exemplaires: 1, points: 1});
-  // Réserve pleine (huit paquets) ; neuf ouvertures simultanées : jamais plus de huit, chaque paquet compté une fois
-  const ouvertures = await Promise.all(Array.from({length: 9}, () => A("paquet", {})));
+  // Réserve pleine (RESERVE_MAX paquets) ; une ouverture simultanée de plus : jamais plus que la réserve, chaque paquet compté une fois
+  const ouvertures = await Promise.all(Array.from({length: R.RESERVE_MAX + 1}, () => A("paquet", {})));
   const reussies = ouvertures.filter(x => x.statut === 200).length;
-  console.log("ouvertures simultanées réussies :", reussies, "sur 9 ;", ouvertures.map(x => x.statut).join(","));
-  assert.ok(reussies <= 8);
-  for (let i = reussies; i < 8; i++) assert.strictEqual((await A("paquet", {})).statut, 200);
+  console.log("ouvertures simultanées réussies :", reussies, "sur", R.RESERVE_MAX + 1, ";", ouvertures.map(x => x.statut).join(","));
+  assert.ok(reussies <= R.RESERVE_MAX);
+  for (let i = reussies; i < R.RESERVE_MAX; i++) assert.strictEqual((await A("paquet", {})).statut, 200);
   r = await A("paquet", {});
   assert.strictEqual(r.statut, 409);
   r = await A("moi");
   assert.strictEqual(R.paquetsDisponibles(r.d.etat).reserve, 0);
   assert.ok(R.paquetsDisponibles(r.d.etat).prochain > Date.now());
   const total = Object.values(r.d.etat.possedees).reduce((a, b) => a + b, 0);
-  assert.strictEqual(total, 2 + 40);
+  assert.strictEqual(total, 2 + R.CARTES_PAR_PAQUET * R.RESERVE_MAX);
   // Bob : compte sans reprise
   r = await Bc("inscription", {pseudo: "bob" + suffixe, preuve: preuve("b")}, {"cf-connecting-ip": "10.0.0." + (++ip)});
   assert.strictEqual(r.statut, 201);

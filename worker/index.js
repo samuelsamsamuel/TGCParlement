@@ -143,7 +143,7 @@ async function lireCatalogue(env, url) {
 // Colonnes ajoutées après la mise en service : ajoutées à la volée si la table existante ne les a pas
 const COLONNES = {
   joueurs: [
-    ["stock", `INTEGER NOT NULL DEFAULT ${Regles.RESERVE_MAX} CHECK (stock BETWEEN 0 AND ${Regles.RESERVE_MAX})`],  // réserve de paquets à l'ancre
+    ["stock", `INTEGER NOT NULL DEFAULT ${Regles.RESERVE_MAX} CHECK (stock >= 0)`],  // réserve de paquets à l'ancre (plafond : règles)
     ["ancre", "INTEGER NOT NULL DEFAULT 0"],      // instant (ms) depuis lequel la réserve se recharge ; 0 : pleine
     ["version", "INTEGER NOT NULL DEFAULT 0"],    // incrémentée à chaque opération des règles (garde de concurrence)
     ["vitrine", "TEXT NOT NULL DEFAULT '[]'"],    // cartes choisies pour la vitrine publique
@@ -164,6 +164,28 @@ async function migrationsUniques(env) {
   for (const [cle, sql] of Object.entries(MIGRATIONS)) if (!faites.has(cle))
     await env.DB.batch([env.DB.prepare(sql), env.DB.prepare("INSERT OR IGNORE INTO reglages (cle, valeur) VALUES (?, ?)").bind(cle, maintenant())]);
 }
+// La colonne stock portait le plafond de la réserve dans sa contrainte (CHECK stock BETWEEN 0 AND 8) : passé à dix
+// paquets (octobre 2026), il bloquait toute ouverture depuis une réserve de plus de huit. SQLite ne modifie pas une
+// contrainte : la table joueurs est reconstruite une fois, à l'identique (même définition, mêmes lignes et mêmes
+// identifiants), avec CHECK (stock >= 0) ; le plafond reste tenu par les règles. Sans effet si la contrainte est déjà levée.
+async function leverPlafondStock(env) {
+  const t = await env.DB.prepare("SELECT sql FROM sqlite_master WHERE type = 'table' AND name = 'joueurs'").first();
+  if (!t || !/CHECK \(stock BETWEEN 0 AND \d+\)/.test(t.sql)) return;
+  const nouvelle = t.sql.replace(/CHECK \(stock BETWEEN 0 AND \d+\)/, "CHECK (stock >= 0)").replace(/^CREATE TABLE\s+("?)joueurs\1/, "CREATE TABLE joueurs_nouveau");
+  try {
+    await env.DB.batch([
+      env.DB.prepare("DROP TABLE IF EXISTS joueurs_nouveau"),
+      env.DB.prepare(nouvelle),
+      env.DB.prepare("INSERT INTO joueurs_nouveau SELECT * FROM joueurs"),
+      env.DB.prepare("DROP TABLE joueurs"),
+      env.DB.prepare("ALTER TABLE joueurs_nouveau RENAME TO joueurs"),
+    ]);
+  } catch (e) {
+    // Une autre instance l'a fait au même moment : la contrainte doit être levée
+    const apres = await env.DB.prepare("SELECT sql FROM sqlite_master WHERE type = 'table' AND name = 'joueurs'").first();
+    if (!apres || /CHECK \(stock BETWEEN 0 AND \d+\)/.test(apres.sql)) throw e;
+  }
+}
 async function preparerBase(env) {
   schemaPret ||= (async () => {
     await env.DB.batch(SCHEMA.map(sql => env.DB.prepare(sql)));
@@ -172,6 +194,7 @@ async function preparerBase(env) {
       const existantes = new Set((await env.DB.prepare(`PRAGMA table_info(${table})`).all()).results.map(c => c.name));
       for (const [nom, def] of colonnes) if (!existantes.has(nom)) await env.DB.prepare(`ALTER TABLE ${table} ADD COLUMN ${nom} ${def}`).run();
     }
+    await leverPlafondStock(env);
   })().catch(e => { schemaPret = null; throw e; });
   return schemaPret;
 }

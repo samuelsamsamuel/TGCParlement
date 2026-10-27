@@ -8,7 +8,7 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
 
 État (version 2) :
   possedees  { id de carte: nombre d'exemplaires }
-  reserve    paquets en réserve à l'instant « ancre » ; un paquet s'y ajoute toutes les heures, jusqu'à huit
+  reserve    paquets en réserve à l'instant « ancre » ; un paquet s'y ajoute toutes les 30 minutes, jusqu'à dix
   ancre      instant (millisecondes) depuis lequel la réserve se recharge ; 0 : réserve pleine
   points     points de recyclage non encore échangés
   offerts    paquets gagnés (objectifs, échanges de points), sans limite de jour
@@ -28,9 +28,10 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
   "use strict";
 
   const VERSION_ETAT = 3;
-  // Rythme des paquets : un paquet par heure, jusqu'à huit en réserve (un joueur qui passe matin, midi et soir
-  // en ouvre une vingtaine par jour ; un joueur absent ne perd que ce qui dépasse la réserve)
-  const RECHARGE_MS = 3600 * 1000, RESERVE_MAX = 8, CARTES_PAR_PAQUET = 5;
+  // Rythme des paquets : un paquet toutes les 30 minutes, jusqu'à dix en réserve (décision de l'utilisateur, octobre
+  // 2026, au lieu d'un par heure et huit ; un joueur qui passe matin, midi et soir en ouvre une trentaine par jour ;
+  // un joueur absent ne perd que ce qui dépasse la réserve)
+  const RECHARGE_MS = 30 * 60 * 1000, RESERVE_MAX = 10, CARTES_PAR_PAQUET = 5;
   const ORDRE = ["commune", "peu-commune", "rare", "epique", "hors-categorie", "legendaire", "mythique"];
   // Probabilité de chaque rareté pour une carte tirée : les plus hautes restent rares, quel que soit leur nombre
   const POIDS = {"mythique": 0.4, "legendaire": 1.6, "epique": 6, "rare": 15, "peu-commune": 30, "commune": 46, "hors-categorie": 1};
@@ -139,7 +140,7 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
   }
 
   /* ---------- Paquets ---------- */
-  // Réserve à l'instant donné : la réserve de l'ancre plus un paquet par heure écoulée, plafonnée ;
+  // Réserve à l'instant donné : la réserve de l'ancre plus un paquet par intervalle écoulé (RECHARGE_MS), plafonnée ;
   // prochain : instant du prochain paquet (null si la réserve est pleine)
   function reserveCourante(etat, maintenant = Date.now()) {
     const heures = Math.floor(Math.max(0, maintenant - (etat.ancre || 0)) / RECHARGE_MS);
