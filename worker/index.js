@@ -790,6 +790,8 @@ async function supprimerCompte(env, requete, joueur) {
     ...rendus,
     env.DB.prepare("UPDATE annonces SET statut = 'retiree', maj = ? WHERE vendeur = ? AND statut = 'ouverte'").bind(date, joueur),
     env.DB.prepare("UPDATE echanges SET statut = 'annulee', maj = ? WHERE (de = ?2 OR vers = ?2) AND statut = 'proposee'").bind(date, joueur),
+    // Clôtures des duels effacés d'abord : leur numéro peut resservir à un nouveau duel (clé sans AUTOINCREMENT)
+    env.DB.prepare("DELETE FROM clotures WHERE nature IN ('duel-releve', 'duel-clos', 'duel-fini') AND id IN (SELECT id FROM duels WHERE de = ?1 OR vers = ?1)").bind(joueur),
     env.DB.prepare("DELETE FROM duels WHERE de = ?1 OR vers = ?1").bind(joueur),
     env.DB.prepare("DELETE FROM possessions WHERE joueur = ?").bind(joueur),
     env.DB.prepare("DELETE FROM reclames WHERE joueur = ?").bind(joueur),
