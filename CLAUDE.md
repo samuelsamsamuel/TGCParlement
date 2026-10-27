@@ -226,6 +226,11 @@ serveur), filtre « Mes favoris » dans l'Hémicycle. Pas de zoom au double touc
   dans le dépôt ni dans les messages de commit ou de PR ; note sur l'usage du code), puis PR et fusion : le code marche
   dès le déploiement, recopié dans D1 à la première saisie (récompenses et limites suivent ensuite le fichier). Tests :
   `--var CODE_ESSAI:1` du Worker local ajoute le code d'essai « essai-depot ».
+- Détenteurs (demande de l'utilisateur, octobre 2026) : sous la grande carte (`apercu`, Hémicycle et « Toutes les cartes »),
+  nombre de comptes qui en ont au moins un exemplaire, sans dire lesquels (`GET /api/detenteurs?carte=`, sans connexion,
+  index `possessions_carte`, cache de dix minutes) ; une carte cédée sort de la collection, les objectifs déjà
+  réclamés restent acquis, et elle n'est pas grisée dans « Toutes les cartes » (demande de l'utilisateur) : `deja` de
+  l'état, cartes dont la ligne de possession est à zéro (jamais supprimée), lue avec les autres par `chargerEtat`.
 - Migrations uniques : `MIGRATIONS` (worker), notées dans `reglages`.
 - Colonnes ajoutées après la mise en service : déclarées dans `COLONNES` (worker), ajoutées à la volée.
 - Vitrine (six cases, chacune remplie ou vidée à part, enregistrée aussitôt), profil, prix du comptoir
