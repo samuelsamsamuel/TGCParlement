@@ -243,8 +243,15 @@ def main():
                        or (vignette(commons[str(c["id"])]) if commons.get(str(c["id"])) else None),
                        assemblees_carte.get(str(c["id"]), [])])
     os.makedirs("site", exist_ok=True)
+    # Date de la version des sources utilisée (Licence Ouverte 2.0 : mention de la source et de la date de dernière
+    # mise à jour) : jour de l'export, qui suit le téléchargement des sources par le workflow ; maj.json pour la page
+    # des mentions légales, qui ne charge pas jeu.json
+    import datetime
+    jour = datetime.datetime.now(datetime.timezone.utc).date().isoformat()
     with open(os.path.join("site", "jeu.json"), "w", encoding="utf-8") as f:
-        json.dump({"raretes": RARETES, "assemblees": assemblees, "cartes": sortie}, f, ensure_ascii=False, separators=(",", ":"))
+        json.dump({"maj": jour, "raretes": RARETES, "assemblees": assemblees, "cartes": sortie}, f, ensure_ascii=False, separators=(",", ":"))
+    with open(os.path.join("site", "maj.json"), "w", encoding="utf-8") as f:
+        json.dump({"maj": jour}, f)
     print(f"Cartes avec portrait : {sum(1 for x in sortie if x[9] or x[16])} (dont Sycomore : {sum(1 for x in sortie if x[16] and 'sycomore' in x[16])})")
     print(f"Assemblées (législatures) : {len(assemblees)} ; cartes rattachées : {len(assemblees_carte)}")
     print(f"Cartes exportées : {len(sortie)} ; taille : {os.path.getsize(os.path.join('site', 'jeu.json')) // 1024} Ko")

@@ -620,7 +620,7 @@ html.presentation{font-size:15px}
     <h3>Score</h3>
     <p>Le score additionne la durée des mandats (1 point par an jusqu'à 20 ans, puis 0,5 point jusqu'à 40 ans) et les fonctions exercées : chef de l'État, chef du Gouvernement, ministre, secrétaire d'État, présidence d'une assemblée, d'une commission ou d'un groupe, Bureau. Les fonctions exercées au sein des chambres (Bureau, présidence de commission ou de groupe, rapporteur général) ne sont connues par l'open data de l'Assemblée qu'à partir de juin 2002 ; pour que députés et sénateurs soient notés de la même façon, celles du Sénat ne comptent aussi qu'à partir de cette date, les plus anciennes restant affichées sur la carte. Dans chaque famille de fonctions, la plus haute compte en entier et les autres pour un quart. S'y ajoutent les distinctions historiques : Constituante de 1789, Convention, Quatre-vingts, premières élues de 1945, Compagnons de la Libération, Académie française, prix Nobel, Panthéon.</p>
     <h3>Sources</h3>
-    <p>Assemblée nationale (base Sycomore et open data), Sénat (open data), data.gouv.fr pour la composition des gouvernements, Wikidata pour les noms d'usage, les portraits et les distinctions complémentaires, rattachés par les identifiants officiels. Chaque carte renvoie à sa fiche officielle. Portraits : Assemblée nationale, Sénat et Wikimedia Commons, crédits au verso de chaque carte.</p>
+    <p>Assemblée nationale (base Sycomore et open data), Sénat (open data), data.gouv.fr pour la composition des gouvernements, Wikidata pour les noms d'usage, les portraits et les distinctions complémentaires, rattachés par les identifiants officiels. Chaque carte renvoie à sa fiche officielle. Portraits : Assemblée nationale, Sénat et Wikimedia Commons, crédits au verso de chaque carte. <span id="maj-donnees"></span></p>
     </div>
   </section>
   <section class="vue panneau" id="vue-parametres" hidden></section>
@@ -2156,6 +2156,8 @@ fetch("jeu.json").then(r => { if (!r.ok) throw new Error(r.status); return r.jso
   cartes.forEach(c => c.cherche = (c.nom+" "+c.epoque+" "+(c.groupe||"")+" "+c.fonctions.map(f=>f[0]).join(" ")+" "+c.mandats.map(m=>m[1]).join(" "))
     .toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,""));
   cat = Regles.catalogue(cartes, d.assemblees || []);
+  // Licence Ouverte 2.0 : source et date de la version utilisée
+  if (d.maj) document.getElementById("maj-donnees").textContent = `Données de l'Assemblée nationale, du Sénat et de data.gouv.fr réutilisées sous la Licence Ouverte 2.0, dans leur version téléchargée le ${new Date(d.maj + "T12:00:00Z").toLocaleDateString("fr-FR", {day: "numeric", month: "long", year: "numeric"})}.`;
   parRarete = cat.parRarete;
   const filtre = document.getElementById("filtre");
   filtre.insertAdjacentHTML("beforeend", `<option value="actuel">En exercice</option>`);
