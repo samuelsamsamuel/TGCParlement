@@ -19,7 +19,8 @@ import sys
 sys.path.insert(0, os.path.dirname(__file__))
 from cartes import nom_famille_sycomore  # noqa: E402
 
-RARETES = ["mythique", "legendaire", "epique", "rare", "peu-commune", "commune", "hors-categorie"]
+# « unique » en dernier : les indices des raretés déjà publiées ne changent pas
+RARETES = ["mythique", "legendaire", "epique", "rare", "peu-commune", "commune", "hors-categorie", "unique"]
 
 
 NOMS_USAGE = {}

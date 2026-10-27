@@ -4,6 +4,11 @@ const R = require("../site/regles.js");
 const d = require("../site/jeu.json");
 const cartes = R.cartesDeJeu(d);
 const cat = R.catalogue(cartes, d.assemblees);
+
+// Rareté unique : Charles de Gaulle seul, au-dessus de toutes, plus rare au tirage que n'importe quelle mythique
+assert.deepStrictEqual(cat.parRarete.unique.map(c => c.nom), ["Charles de Gaulle"]);
+assert.strictEqual(R.ORDRE[R.ORDRE.length - 1], "unique");
+assert.ok(R.POIDS.unique < R.POIDS.mythique / cat.parRarete.mythique.length, "tirage d'une mythique donnée plus fréquent");
 let graine = 42; const alea = () => (graine = (graine * 16807) % 2147483647) / 2147483647;
 
 // Migration des versions précédentes : collection gardée, réserve pleine
