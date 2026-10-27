@@ -1,4 +1,4 @@
-Portraits Wikipédia : 1 retenus, 549 écartés, sur 7430 cartes sans portrait ayant un article rattaché par identifiant officiel (7745 cartes sans portrait en tout)
+Portraits Wikipédia : 1 retenus, 550 écartés, sur 7430 cartes sans portrait ayant un article rattaché par identifiant officiel (7745 cartes sans portrait en tout)
 
 Retenus :
 S20066E	Annick Jacquemet	Annick Jacquemet (2026-06-20).jpg
@@ -487,6 +487,7 @@ S20066E	Annick Jacquemet	Annick Jacquemet (2026-06-20).jpg
 18280	Michel Veilande	P_vip.svg	format
 18285	Armand Brunet de Villeneuve	Cimetière_vieux_de_Béziers_-_tombe_d’Armand_Brunet_de_Villeuneuve_et_Agathe_de_Bastard_d'Estang.jpg	nom de fichier
 20058	Marie-Philippe Lubet	Image_manquante.png	la fiche Commons ne dit pas représenter la personne
+2311	Arthur Delmas	Delmas,_en_gibus,_député_de_la_Corrèze_(rentrée_parlementaire,_le_22_octobre_1907)_-_btv1b532251137.jpg	la fiche Commons ne dit pas représenter la personne
 301	Émile Aymé de La Chevrelière	Blason_de_la_famille_Aymé_de_La_Chevrelière.svg	format
 302	Jean-Marie Aymé de La Chevrelière	Blason_de_la_famille_Aymé_de_La_Chevrelière.svg	format
 3484	Henri Gorce-Franklin	HC_GORCE-FRANKLIN_H_CIM-Neuilly-Nouveau_2015-10.jpg	nom de fichier

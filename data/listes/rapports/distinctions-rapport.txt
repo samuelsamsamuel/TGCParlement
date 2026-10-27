@@ -288,7 +288,6 @@ Lauréat du prix Nobel : 7 cartes (éléments Wikidata de la distinction : Q3563
   Paul Henri Balluet d'Estournelles de Constant (Sénat senateur-3eme-republique/d_estournelles_de_constant_paul1252r3)
 
 Inhumé au Panthéon : 31 cartes (éléments Wikidata de la distinction : Q188856)
-  (requête partielle : 31 rattachements précédents conservés)
   Alphonse Baudin (Sycomore 9418)
   André Malraux (membre du Gouvernement, par le nom)
   Antoine-César de Choiseul-Praslin (Sycomore 11718)
@@ -313,12 +312,16 @@ Inhumé au Panthéon : 31 cartes (éléments Wikidata de la distinction : Q18885
   Louis-Joseph-Charles-Amable d'Albert de Luynes (Sycomore 13362)
   Louis-Michel Le Peletier de Saint-Fargeau (Sycomore 12352)
   Léon Gambetta (Sycomore 3237)
+  Marcellin Berthelot (Sénat senateur-3eme-republique/berthelot_marcellin1436r3)
   Nicolas de Condorcet (Sycomore 11572)
   Paul Painlevé (Sycomore 5653)
   Pierre Jean Georges Cabanis (Sycomore 12994)
+  Robert Badinter (Sénat senateur/badinter_robert95006b)
   Sadi Carnot (Sycomore 1453)
   Victor Hugo (Sycomore 8795)
+  Victor Hugo (Sénat senateur-3eme-republique/hugo_victor1354r3)
   Victor Schœlcher (Sycomore 8849)
+  Victor Schœlcher (Sénat senateur-3eme-republique/schoelcher_victor1534r3)
   retiré : Le Peletier de Saint-Fargeau, retiré du Panthéon en 1795
   retiré : Marat, retiré du Panthéon en 1795
   retiré : Mirabeau, retiré du Panthéon en 1794
