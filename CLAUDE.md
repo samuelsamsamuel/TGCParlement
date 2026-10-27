@@ -113,7 +113,9 @@ personnes sur 6 761 ont un fichier qui les dépeint, 2 portraits retenus), `vill
 Onglets : Séance (paquets du jour), Hémicycle (collection), Ordre du jour (objectifs, synthèse et rubriques
 repliables ; un objectif par ligne : marque, titre, bouton « + gain » ou prochaine récompense, jauge pour ceux à compter ;
 en-tête de rubrique sur une ligne, terminés/total et nombre à réclamer ; législatures et départements limités aux
-huit plus avancés, `LIMITE_RUBRIQUE`, avec « Afficher les autres »), Buvette (sous-onglets Échanges : propositions en attente en fiches « Vous donnez / Vous recevez », et proposer ; Comptoir ;
+huit plus avancés, `LIMITE_RUBRIQUE`, avec « Afficher les autres »), Buvette (sous-onglets Échanges : propositions en attente en fiches « Vous donnez / Vous recevez », et proposer ; Comptoir en
+étals, grille de tuiles portrait, rareté, prix, vendeur, Acheter ou « Pas assez de voix », puis « Mes cartes au comptoir »
+avec la tuile « Mettre une carte en vente » ;
 Historique : échanges terminés, ventes et achats au comptoir, par mois, filtre Tout / Échanges / Comptoir, cartes nommées
 avec miniature ; `GET /api/annonces` renvoie aussi les achats, index `annonces_acheteur`), Amis, Plus : six onglets, assez
 grands pour le téléphone ; le menu Plus ouvre quatre vues, Mon siège (chiffres et vitrine en six cases, libellé du
@@ -190,7 +192,8 @@ serveur), filtre « Mes favoris » dans l'Hémicycle. Pas de zoom au double touc
   croisée vaut acceptation, retirer efface les deux sens (refus, annulation, fin d'amitié) ; `GET /api/amis` renvoie
   aussi `vitrines` (trois premières cartes de la vitrine de chaque ami, lues dans la même ligne, sans lecture de plus).
   Onglet Amis : ajout en une ligne, fiche par ami (pastille de couleur tirée du pseudo, aperçu de la vitrine qui ouvre
-  le profil, Échanger, Défier, Retirer en lien discret), demandes reçues mises en avant.
+  le profil, Échanger, Défier, Retirer en lien discret), demandes reçues mises en avant ; « Vous connaissez peut-être » :
+  `suggestions` de `GET /api/amis`, amis d'amis sans lien avec le joueur, les plus d'amis en commun d'abord (6 au plus).
 - Notifications (Web Push, RFC 8030 et 8292) : poussée sans contenu, signée VAPID (ES256, clés créées à la première
   demande et gardées dans `reglages`) ; le texte attend dans `notifications` et le service de travail le lit
   (`GET /api/notifications`, qui le supprime). Abonnements par appareil (`abonnements`, services de poussée connus

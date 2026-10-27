@@ -89,10 +89,11 @@ const sx = Date.now().toString(36).slice(-4);
   await A.screenshot({path: T + "/vente.png", fullPage: true});
   await A.fill('#zone-vente [name=prix]', "12");
   await A.click('#zone-vente button[type=submit]');
-  await A.waitForFunction(() => /au comptoir/.test(document.getElementById("mes-annonces").textContent));
+  await A.waitForFunction(() => /en vente/.test(document.getElementById("mes-annonces").textContent));
   require("child_process").execSync(`cd ${require("path").join(__dirname, "..")} && ${process.env.WR} d1 execute hemicycle --local --persist-to ${process.env.ETAT} --command "UPDATE joueurs SET points = 30 WHERE pseudo = 'Bob${sx}'"`, {stdio: "ignore"});
   await Bp.reload(); await Bp.click('nav [data-vue="buvette"]'); await Bp.click('.onglets [data-sous="comptoir"]');
   await Bp.waitForSelector('[data-action$=":acheter"]:not([disabled])');
+  await Bp.screenshot({path: T + "/comptoir-tel.png", fullPage: true});
   await Bp.click('[data-action$=":acheter"]');
   await Bp.waitForFunction(() => etat.points === 18);
   // Historique (sous-onglet) : l'échange accepté et la vente, filtrables ; l'achat chez Bob
