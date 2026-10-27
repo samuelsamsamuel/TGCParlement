@@ -105,7 +105,7 @@ personnes sur 6 761 ont un fichier qui les dépeint, 2 portraits retenus), `vill
   Gaulle (`CARTES_UNIQUES`, `cartes.py` ; jusque-là hors catégorie). Ajoutée en dernier dans `RARETES` (`export_jeu.py`)
   et `ORDRE` (`regles.js`) pour ne pas décaler les indices publiés ; poids de tirage 0,004 (`POIDS`), sous celui d'une
   mythique donnée (0,4 pour 95 cartes ; vérifié par le test), soit une carte sur 25 000 environ ; dissolution 250 voix ;
-  cadre tricolore et or (`.r-unique`).
+  cadre tricolore et or (`.r-unique`) ; en tête de « Toutes les cartes », avant le tri par score (demande de l'utilisateur).
 - Paliers (`PALIERS`) hauts et modestes pour les législatures (50, 150) et les départements (15, 40) : des
   paliers bas s'auto-entretenaient (simulation : la moitié des cartes dès le premier jour). Un test vérifie
   qu'un premier jour avec toutes les récompenses en cascade reste borné.

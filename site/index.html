@@ -2188,7 +2188,7 @@ function majCatalogue(){
   const deja = new Set(etat.deja || []), obtenue = c => !!etat.possedees[c.id] || deja.has(c.id);
   const pos = document.getElementById("cat-possession").value, ep = document.getElementById("cat-epoque").value, ra = document.getElementById("cat-rarete").value;
   const liste = cartes.filter(c => (!ep || c.epoque === ep) && (!ra || c.rarete === ra) && (!q || c.cherche.includes(q))
-    && (!pos || (pos === "obtenues") === obtenue(c))).sort((a, b) => b.score - a.score);
+    && (!pos || (pos === "obtenues") === obtenue(c))).sort((a, b) => (b.rarete === "unique") - (a.rarete === "unique") || b.score - a.score);
   const obtenues = liste.filter(obtenue).length;
   document.getElementById("cat-compte").textContent = `${pluriel(liste.length, "carte")}, dont ${obtenues.toLocaleString("fr-FR")} ${obtenues > 1 ? "obtenues" : "obtenue"}. Les cartes grisées ne sont jamais passées par votre hémicycle.`;
   document.getElementById("cat-grille").innerHTML = liste.length ? liste.slice(0, catalogueMax).map(c => htmlCarte(c, {classe: obtenue(c) ? "" : "manquante"})).join("")
