@@ -185,8 +185,17 @@ const preuve = c => require("crypto").createHash("sha256").update(c).digest("hex
   assert.strictEqual((await A("amis/demander", {pseudo: carole})).statut, 200);
   assert.strictEqual((await C("amis/accepter", {pseudo: alice})).d.statut, "accepte");
   assert.strictEqual((await A("amis/retirer", {pseudo: bob})).statut, 200);
-  assert.deepStrictEqual((await Bc("amis")).d, {amis: [], recues: [], envoyees: [], vitrines: {}});
+  assert.deepStrictEqual((await Bc("amis")).d, {amis: [], recues: [], envoyees: [], vitrines: {}, suggestions: []});
   assert.strictEqual((await C("amis/accepter", {pseudo: bob})).statut, 409);
+  // Suggestions : Bob devient ami de Carole, amie d'Alice ; chacun voit l'autre en ami d'ami, plus après une demande
+  assert.strictEqual((await Bc("amis/demander", {pseudo: carole})).d.statut, "demande");
+  assert.strictEqual((await C("amis/accepter", {pseudo: bob})).d.statut, "accepte");
+  assert.deepStrictEqual((await A("amis")).d.suggestions, [{pseudo: bob, communs: 1}]);
+  assert.deepStrictEqual((await Bc("amis")).d.suggestions, [{pseudo: alice, communs: 1}]);
+  assert.deepStrictEqual((await C("amis")).d.suggestions, [], "ses amis sont déjà amis avec elle");
+  assert.strictEqual((await A("amis/demander", {pseudo: bob})).d.statut, "demande");
+  assert.deepStrictEqual((await A("amis")).d.suggestions, [], "demande envoyée : plus suggéré");
+  assert.strictEqual((await A("amis/retirer", {pseudo: bob})).statut, 200);
   // Réserve pleine (tâche horaire, wrangler dev --test-scheduled) : seulement après un vrai remplissage, une fois
   const sql = c => require("child_process").execSync(`cd ${require("path").join(__dirname, "..")} && ${process.env.WR} d1 execute hemicycle --local --persist-to ${process.env.ETAT} --command "${c}"`, {stdio: "ignore"});
   const horaire = async () => assert.strictEqual((await fetch("http://localhost:8787/cdn-cgi/handler/scheduled")).status, 200);

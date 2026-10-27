@@ -642,7 +642,14 @@ async function listeAmis(env, joueur) {
     }
     else (x.vers === joueur ? recues : envoyees).push(x.pseudo);
   }
-  return json({amis, recues, envoyees, vitrines});
+  // Suggestions : amis de mes amis, sans lien avec moi (ni ami, ni demande dans un sens ou l'autre), les plus d'amis en
+  // commun d'abord ; parcours des clés (de, vers) de la table amis, quelques lignes par ami
+  const s = await env.DB.prepare(`SELECT j.pseudo, COUNT(*) AS communs FROM amis a1
+    JOIN amis a2 ON a2.de = a1.vers AND a2.statut = 'accepte' JOIN joueurs j ON j.id = a2.vers
+    WHERE a1.de = ?1 AND a1.statut = 'accepte' AND a2.vers != ?1
+      AND NOT EXISTS (SELECT 1 FROM amis x WHERE (x.de = ?1 AND x.vers = a2.vers) OR (x.de = a2.vers AND x.vers = ?1))
+    GROUP BY a2.vers ORDER BY communs DESC, j.pseudo COLLATE NOCASE LIMIT 6`).bind(joueur).all();
+  return json({amis, recues, envoyees, vitrines, suggestions: s.results});
 }
 async function actionAmi(env, requete, joueur, action) {
   const autre = await idJoueur(env, (await lireCorps(requete)).pseudo);

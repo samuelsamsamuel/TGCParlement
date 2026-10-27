@@ -406,6 +406,24 @@ footer{max-width:1120px;margin:0 auto;padding:0 1rem 3rem;font-size:.85rem;color
 .ligne-pseudo .bouton{padding:.5rem .9rem;font-size:.88rem}
 details.historique{margin:.4rem 0 1rem}
 details.historique summary{cursor:pointer;font-size:.85rem;color:var(--pierre);padding:.3rem 0}
+/* Comptoir : étals en grille */
+.tete-comptoir{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;margin:.4rem 0 .8rem}
+.bourse-voix{border:1px solid var(--dorure);border-radius:999px;padding:.25rem .8rem;font-size:.9rem;color:var(--dorure-pale)}
+.etals{list-style:none;margin:.4rem 0 1rem;padding:0;display:grid;gap:.7rem;grid-template-columns:repeat(auto-fill,minmax(min(46%,10.5rem),1fr))}
+.etal{display:flex;flex-direction:column;gap:.25rem;border:1px solid rgba(201,162,74,.3);border-radius:10px;background:rgba(46,7,16,.6);padding:.5rem}
+.visuel-etal{position:relative;display:grid;place-items:center;aspect-ratio:4/5;border:0;border-radius:7px;padding:3px;background:var(--cadre, #888);cursor:pointer;overflow:hidden}
+.visuel-etal img{width:100%;height:100%;object-fit:cover;border-radius:5px;background:#efe9df}
+.visuel-etal b{width:100%;height:100%;display:grid;place-items:center;border-radius:5px;background:#efe9df;color:#5c1020;font:400 1.6rem/1 var(--serif)}
+.visuel-etal .etiquette{position:absolute;top:.4rem;right:.4rem}
+.nom-etal{margin:.2rem 0 0;font:600 .88rem/1.25 var(--sans, inherit);overflow-wrap:anywhere}
+.prix-etal{margin:0;font:400 1.15rem/1.2 var(--serif);color:var(--dorure-pale)}
+.sous-etal{margin:0 0 .25rem;font-size:.75rem}
+.etal .bouton{margin-top:auto;padding:.4rem .6rem;font-size:.85rem;width:100%}
+.etal .bouton[disabled]{opacity:.55}
+.vide-etals{grid-column:1/-1;border:1px dashed rgba(201,162,74,.35);border-radius:10px;padding:1rem;text-align:center}
+.vendre-etal{display:grid;place-items:center;gap:.2rem;width:100%;border:1.5px dashed rgba(201,162,74,.55);border-radius:10px;background:none;color:var(--dorure-pale);padding:1rem;font:inherit;cursor:pointer}
+.vendre-etal b{font-size:1.6rem;line-height:1}
+:root[data-theme="clair"] .etal{background:rgba(255,255,255,.65);border-color:rgba(92,16,32,.22)}
 .vente{display:grid;grid-template-columns:minmax(0,170px) 1fr;gap:1rem;align-items:start;border:1px solid rgba(201,162,74,.35);border-radius:6px;padding:1rem;background:rgba(92,16,32,.35);margin:.6rem 0 1rem}
 @media (max-width:520px){.vente{grid-template-columns:minmax(0,130px) 1fr}}
 .vente .formulaire{border:0;padding:0;background:none;margin:0}
@@ -1785,7 +1803,7 @@ function dessinerVente(){
   if (!zone) return;
   if (carteVente && !Regles.disponibles(etat, carteVente)) carteVente = null;
   if (!carteVente) {
-    zone.innerHTML = `<button class="bouton" data-choisir-vente>Choisir la carte à vendre</button>`;
+    zone.innerHTML = `<button class="vendre-etal" data-choisir-vente><b>+</b>Mettre une carte en vente</button>`;
     return;
   }
   const c = cat.parId[carteVente];
@@ -1849,13 +1867,13 @@ function construireBuvette(vue){
       </div>
     </div>
     <div data-panneau="comptoir" hidden>
-      <p class="note">Vous avez <b id="voix-buvette"></b>. Le premier joueur qui achète une carte l'emporte.</p>
+      <div class="tete-comptoir"><span class="bourse-voix">Vous avez <b id="voix-buvette"></b></span><span class="note">Le premier qui achète l'emporte.</span></div>
       <div class="outils"><input id="recherche-marche" type="search" placeholder="Rechercher une carte au comptoir" aria-label="Rechercher une carte au comptoir">
         <select id="tri-marche" aria-label="Trier le comptoir"><option value="recent">Les plus récentes</option><option value="prix">Les moins chères</option></select></div>
-      <ul class="lignes-buvette" id="liste-marche"></ul>
-      <h3>Vendre une carte</h3>
+      <ul class="etals" id="liste-marche"></ul>
+      <h3>Mes cartes au comptoir</h3>
       <div id="zone-vente"></div>
-      <ul class="lignes-buvette" id="mes-annonces"></ul>
+      <ul class="etals" id="mes-annonces"></ul>
     </div>
     <div data-panneau="historique" hidden>
       <div class="bascule" role="group" aria-label="Filtrer l'historique" id="filtre-historique">${[["tout", "Tout"], ["echanges", "Échanges"], ["comptoir", "Comptoir"]]
@@ -1973,20 +1991,29 @@ async function chargerMarche(){
   const d = await appel("marche?tri=" + document.getElementById("tri-marche").value).catch(e => { signaler(e.message); return null; });
   if (d) { annoncesMarche = d.annonces; dessinerMarche(); }
 }
+// Étal du comptoir : portrait, nom, rareté, prix, vendeur et geste (acheter, retirer)
+function etal(a, geste, sous){
+  const c = cat.parId[a.carte]; if (!c) return "";
+  const src = srcPortrait(c), ini = echapper(initiales(c.nom));
+  return `<li class="etal r-${c.rarete}"><button type="button" class="visuel-etal" data-apercu="${echapper(a.carte)}" aria-label="Voir ${echapper(c.nom)}">${src
+      ? `<img src="${echapper(src)}" alt="" loading="lazy"${croise(src) ? ' crossorigin="anonymous"' : ""} onerror="this.outerHTML='<b>${ini}</b>'">` : `<b>${ini}</b>`}
+      <span class="etiquette">${LIBELLES[c.rarete]}</span></button>
+    <p class="nom-etal">${echapper(c.nom)}</p><p class="prix-etal">${pluriel(a.prix, "voix", "voix")}</p><p class="note sous-etal">${sous}</p>${geste}</li>`;
+}
 function dessinerMarche(){
   const q = Regles.normer(document.getElementById("recherche-marche").value);
   const liste = annoncesMarche.filter(a => cat.parId[a.carte] && (!q || cat.parId[a.carte].cherche.includes(q)));
   document.getElementById("liste-marche").innerHTML = liste.length ? liste.map(a => {
     const miennes = a.vendeur === compte.pseudo;
-    return `<li><span class="quoi">${nomCarte(a.carte)}</span><span>${pluriel(a.prix, "voix", "voix")}</span><span class="note">${miennes ? "votre carte" : "par "+echapper(a.vendeur)}</span>
-      ${miennes ? "" : `<button class="bouton" data-action="annonces:${a.id}:acheter" ${etat.points < a.prix ? "disabled" : ""}>Acheter</button>`}</li>`;
-  }).join("") : `<li class="note">${annoncesMarche.length ? "Aucune carte du comptoir ne correspond." : "Le comptoir est vide pour l'instant."}</li>`;
+    return etal(a, miennes ? `<span class="note">votre carte</span>`
+      : `<button class="bouton" data-action="annonces:${a.id}:acheter" ${etat.points < a.prix ? "disabled" : ""}>${etat.points < a.prix ? "Pas assez de voix" : "Acheter"}</button>`,
+      miennes ? "mise en vente par vous" : "par " + echapper(a.vendeur));
+  }).join("") : `<li class="vide-etals note">${annoncesMarche.length ? "Aucune carte du comptoir ne correspond." : "Le comptoir est vide pour l'instant : soyez le premier à y poser une carte."}</li>`;
 }
 async function chargerAnnonces(){
   const d = await appel("annonces").catch(e => { signaler(e.message); return null; });
   if (!d) return;
-  const ligne = a => `<li><span class="quoi">${nomCarte(a.carte)}</span><span>${pluriel(a.prix, "voix", "voix")}</span>
-    <span class="note">${STATUTS[a.statut]}${a.acheteur ? " à "+echapper(a.acheteur) : ""}</span>${a.statut==="ouverte" ? `<button class="bouton discret" data-action="annonces:${a.id}:retirer">Retirer</button>` : ""}</li>`;
+  const ligne = a => etal(a, `<button class="bouton discret" data-action="annonces:${a.id}:retirer">Retirer</button>`, "en vente");
   const ouvertes = d.annonces.filter(a => a.statut === "ouverte"), passees = d.annonces.filter(a => a.statut !== "ouverte");
   annoncesOuvertes = ouvertes.map(a => a.carte);
   document.getElementById("mes-annonces").innerHTML = ouvertes.map(ligne).join("");
@@ -2030,6 +2057,8 @@ function majAmis(){
       `<button class="bouton" data-ami="accepter:${e(p)}">Accepter</button><button class="bouton discret" data-ami="retirer:${e(p)}">Refuser</button>`)).join("")}</ul>` : ""}
     ${amis.amis.length ? `<ul class="fiches-amis">${amis.amis.map(fiche).join("")}</ul>`
       : `<p class="note vide-amis">Pas encore d'amis. Ajoutez un joueur par son pseudo : il acceptera depuis son onglet Amis. Vous verrez alors sa vitrine, vous pourrez lui proposer des échanges et le défier aux questions au Gouvernement.</p>`}
+    ${(amis.suggestions || []).length ? `<h3>Vous connaissez peut-être</h3><ul class="demandes-ami suggestions">${amis.suggestions.map(x => demande(x.pseudo,
+      `<span class="note">${pluriel(x.communs, "ami en commun", "amis en commun")}</span><button class="bouton discret" data-ami="demander:${e(x.pseudo)}">Ajouter</button>`)).join("")}</ul>` : ""}
     ${amis.envoyees.length ? `<h3>Demandes envoyées</h3><ul class="demandes-ami">${amis.envoyees.map(p => demande(p,
       `<span class="note">en attente</span><button class="lien-carte" data-ami="retirer:${e(p)}">Annuler</button>`)).join("")}</ul>` : ""}`;
   const nouveauChamp = vue.querySelector("#form-ami [name=pseudo]");
