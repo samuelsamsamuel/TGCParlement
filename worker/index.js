@@ -53,6 +53,8 @@ const SCHEMA = [
   `CREATE TABLE IF NOT EXISTS journal (id INTEGER PRIMARY KEY, joueur INTEGER NOT NULL, date TEXT NOT NULL,
      operation TEXT NOT NULL, detail TEXT)`,
   `CREATE INDEX IF NOT EXISTS journal_joueur ON journal (joueur, id)`,
+  // Nombre de joueurs qui ont une carte (aperçu de « Toutes les cartes ») : lu dans l'index seul
+  `CREATE INDEX IF NOT EXISTS possessions_carte ON possessions (carte, n)`,
   `CREATE TABLE IF NOT EXISTS sessions (jeton TEXT PRIMARY KEY, joueur INTEGER NOT NULL, expire INTEGER NOT NULL)`,
   `CREATE INDEX IF NOT EXISTS sessions_joueur ON sessions (joueur)`,
   `CREATE TABLE IF NOT EXISTS tentatives (cle TEXT PRIMARY KEY, n INTEGER NOT NULL, debut INTEGER NOT NULL)`,
@@ -622,6 +624,13 @@ async function prixComptoir(env, url, cat) {
   const mediane = prix.length ? (prix.length % 2 ? prix[(prix.length - 1) / 2] : Math.round((prix[prix.length / 2 - 1] + prix[prix.length / 2]) / 2)) : null;
   return json({ventes: ventes.results, rarete, mediane, ventesRarete: prix.length});
 }
+// Nombre de joueurs qui ont au moins un exemplaire d'une carte, sans dire lesquels ; gardé dix minutes en cache
+async function detenteurs(env, url) {
+  const carte = String(url.searchParams.get("carte") || "");
+  if (!/^[A-Za-z0-9]{1,20}$/.test(carte)) throw new Refus(400, "Carte inconnue.");
+  const r = await env.DB.prepare("SELECT COUNT(*) AS n FROM possessions WHERE carte = ? AND n > 0").bind(carte).first();
+  return json({carte, joueurs: r.n}, 200, {"cache-control": "public, max-age=600"});
+}
 async function attente(env, joueur) {
   const [e, d, a] = await env.DB.batch([
     env.DB.prepare("SELECT COUNT(*) AS n FROM echanges WHERE vers = ? AND statut = 'proposee'").bind(joueur),
@@ -972,6 +981,7 @@ async function api(requete, env, url) {
   let p;
   if (methode === "GET" && (p = chemin.match(/^\/api\/profil\/([^/]+)$/))) return profil(env, decodeURIComponent(p[1]));
   if (methode === "GET" && chemin === "/api/moi") return json(joueur ? {connecte: true, ...(await chargerEtat(env, joueur))} : {connecte: false});
+  if (methode === "GET" && chemin === "/api/detenteurs") return detenteurs(env, url);
   if (!joueur) throw new Refus(401, "Connectez-vous pour continuer.");
   const avecEtat = async resultat => json({resultat, ...(env.etatEcrit || await chargerEtat(env, joueur))});
   if (methode === "POST" && chemin === "/api/paquet") {

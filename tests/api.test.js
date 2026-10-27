@@ -136,6 +136,13 @@ const preuve = c => require("crypto").createHash("sha256").update(c).digest("hex
   r = await C("quiz", {bonnes: 5}); assert.strictEqual(r.d.resultat, 0);
   assert.strictEqual((await C("moi")).d.etat.points, avantQ + 15);
   assert.strictEqual((await C("quiz", {bonnes: 9})).statut, 400);
+  // Détenteurs d'une carte : nombre de comptes qui en ont au moins un exemplaire, sans connexion
+  {
+    const id = Object.keys((await A("moi")).d.etat.possedees)[0];
+    const d = await (await fetch("http://localhost:8787/api/detenteurs?carte=" + id)).json();
+    assert.ok(d.joueurs >= 1, JSON.stringify(d));
+    assert.strictEqual((await fetch("http://localhost:8787/api/detenteurs?carte=x;y")).status, 400);
+  }
   // Duels jugés par le serveur, avec mise : la graine ne quitte pas le serveur ; le test la lit en base pour répondre
   const base = c => require("child_process").execSync(`cd ${require("path").join(__dirname, "..")} && ${process.env.WR} d1 execute hemicycle --local --persist-to ${process.env.ETAT} --json --command "${c}"`).toString();
   const lire = c => JSON.parse(base(c))[0].results;

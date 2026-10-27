@@ -100,6 +100,7 @@ main{max-width:1120px;margin:0 auto;padding:1.5rem 1rem 4rem}
 .progression li.total button[aria-pressed="true"] strong{color:var(--dorure-pale)}
 .actions-apercu{display:grid;gap:.5rem;justify-items:center;text-align:center;width:100%;max-width:22rem;margin:0 auto}
 .actions-apercu p{margin:0}
+.actions-apercu .detenteurs{font-size:.82rem;color:var(--dorure);min-height:1.2em}
 .actions-apercu .bouton{width:100%}
 .qag.serre{margin-top:1rem}
 .carte.manquante{filter:grayscale(.9);opacity:.55}
@@ -1293,6 +1294,19 @@ function majActionsApercu(id){
       ${k ? `<button class="bouton discret" data-dissoudre="${echapper(id)}">Dissoudre ${pluriel(k, "double")} : +${pluriel(k * VALEUR_RECYCLAGE[c.rarete], "voix", "voix")}</button>` : ""}
       ${compte && libres ? `<button class="bouton discret" data-vendre="${echapper(id)}">Vendre au comptoir</button>` : ""}`
     : `<p class="note">Pas encore dans votre hémicycle. Touchez la carte pour voir sa carrière au verso.</p>`;
+  zone.insertAdjacentHTML("beforeend", `<p class="detenteurs" id="detenteurs"></p>`);
+  afficherDetenteurs(id);
+}
+// Nombre de joueurs qui ont la carte (comptes seulement : une collection gardée dans un navigateur n'est pas connue)
+const detenteursConnus = new Map();
+async function afficherDetenteurs(id){
+  if (!detenteursConnus.has(id)) {
+    const d = await fetch("/api/detenteurs?carte=" + encodeURIComponent(id)).then(r => r.ok ? r.json() : null).catch(() => null);
+    if (!d) return;
+    detenteursConnus.set(id, d.joueurs);
+  }
+  const n = detenteursConnus.get(id), el = document.getElementById("detenteurs");
+  if (el) el.textContent = n ? n > 1 ? `${n.toLocaleString("fr-FR")} joueurs l'ont dans leur hémicycle.` : "Un joueur l'a dans son hémicycle." : "Aucun joueur ne l'a encore dans son hémicycle.";
 }
 document.getElementById("apercu").addEventListener("click", e => {
   const d = e.target.closest("[data-dissoudre]"), v = e.target.closest("[data-vendre]");
