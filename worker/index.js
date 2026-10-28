@@ -920,7 +920,7 @@ async function questionsDuel(env, joueur, id, url) {
   const moi = d.de === joueur, mes = reponses(moi ? d.rep_de : d.rep_vers);
   if (!["propose", "accepte"].includes(d.statut) || (!moi && d.statut === "propose")) throw new Refus(409, d.statut === "propose" ? "Relevez d'abord le défi." : "Ce duel est terminé.");
   const liste = Regles.questions(await lireQuiz(env, url), d.graine);
-  return json({id, questions: liste.map((q, i) => ({texte: q.texte, choix: q.choix, carte: i < mes.length ? q.carte : null,
+  return json({id, questions: liste.map((q, i) => ({texte: q.texte, choix: q.choix, ...(q.photo ? {photo: q.photo} : {}), carte: i < mes.length ? q.carte : null,
     ...(i < mes.length ? {repondu: mes[i][0], bonne: q.bonne, explication: q.explication} : {})}))});
 }
 // Une réponse, dans l'ordre : le serveur la corrige et la garde ; la cinquième fixe le score

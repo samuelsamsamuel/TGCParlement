@@ -393,11 +393,16 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
   }
 
   /* ---------- Questions au Gouvernement ---------- */
-  // Cinq questions tirées des fiches officielles des cartes : département d'élection, fonction exercée,
-  // « qui a été… », époque, année de première élection. Les mauvaises réponses ne sont jamais vraies elles
-  // aussi (département où la personne n'a pas été élue, fonction qu'elle n'a pas exercée...). Le tirage dépend
-  // d'une graine : les deux joueurs d'un duel reçoivent les mêmes questions.
-  const QUIZ_QUESTIONS = 5, VOIX_PAR_BONNE = 2, BONUS_SANS_FAUTE = 5, SCORE_QUIZ = 25;
+  // Cinq questions tirées des fiches officielles des cartes, depuis 1958 seulement (demande de l'utilisateur, octobre
+  // 2026 : des questions plus simples et plus variées) : « Qui est-ce ? » sur un portrait, « Qui est actuellement… ? »,
+  // « Qui a été… ? », département d'élection, fonction exercée. Les mauvaises réponses ne sont jamais vraies elles aussi
+  // (personne qui n'a pas exercé la fonction, département où elle n'a pas été élue...). Le tirage dépend d'une graine :
+  // les deux joueurs d'un duel reçoivent les mêmes questions.
+  const QUIZ_QUESTIONS = 5, VOIX_PAR_BONNE = 2, BONUS_SANS_FAUTE = 5, SCORE_QUIZ = 25, ANNEE_QUIZ = 1958, LIBELLE_QUIZ = 90;
+  // Notoriété demandée par type de question (score de la carte) : un visage se reconnaît moins qu'un nom ne se situe
+  const SCORE_PHOTO = 40, SCORE_NOM = 35;
+  // Une série : un « Qui est-ce ? », un poste actuel, un département, un « Qui a été… ? », une fonction, dans le désordre
+  const TYPES_QUIZ = ["photo", "actuel", "departement", "qui", "fonction"];
   function graineDe(texte) {  // FNV-1a 32 bits
     let h = 2166136261;
     for (const ch of String(texte)) { h ^= ch.codePointAt(0); h = Math.imul(h, 16777619) >>> 0; }
@@ -408,16 +413,28 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
     return () => { a = (a + 0x6D2B79F5) >>> 0; let t = a; t = Math.imul(t ^ (t >>> 15), t | 1); t ^= t + Math.imul(t ^ (t >>> 7), t | 61); return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
   }
   const cleFonction = t => normer(String(t).split(",")[0]);
+  // Fonctions retenues pour les questions : exercées depuis 1958, au libellé assez court pour se lire d'un coup d'œil
+  const fonctionsQuiz = c => c.fonctions.filter(f => (f[1] || 0) >= ANNEE_QUIZ && String(f[0]).length <= LIBELLE_QUIZ);
+  // Portrait d'une carte pour « Qui est-ce ? » : adresse complète, ou fichier de Commons (« commons: » + nom)
+  const photoQuiz = c => c.photo || (c.portrait ? "commons:" + c.portrait : null);
   function preparerQuiz(cat) {
     if (cat.quiz) return cat.quiz;
-    const vivier = cat.cartes.filter(c => c.score >= SCORE_QUIZ && c.mandats && (c.mandats.some(m => m[1]) || c.fonctions.length))
+    // Parlementaires et ministres de la Ve République : carrière commencée en 1958 ou après, assez connus (score) ou en
+    // exercice ; départements de leurs mandats depuis 1958
+    const vivier = cat.cartes.filter(c => (c.debut || 0) >= ANNEE_QUIZ && (c.score >= SCORE_QUIZ || c.actuel) && c.mandats
+      && (c.mandats.some(m => m[1]) || fonctionsQuiz(c).length || photoQuiz(c)))
       .sort((a, b) => String(a.id).localeCompare(String(b.id)));
-    const departements = [...new Set(cat.cartes.flatMap(c => (c.mandats || []).map(m => m[1]).filter(Boolean)))].sort();
-    const fonctions = [...new Set(vivier.flatMap(c => c.fonctions.map(f => f[0])))].sort();
-    const epoques = [...new Set(cat.cartes.map(c => c.epoque).filter(Boolean))].sort();
-    return cat.quiz = {vivier, departements, fonctions, epoques};
+    const departements = [...new Set(vivier.flatMap(c => c.mandats.map(m => m[1]).filter(Boolean)))].sort();
+    const fonctions = [...new Set(vivier.flatMap(c => fonctionsQuiz(c).map(f => f[0])))].sort();
+    // Postes occupés aujourd'hui par une seule personne (fonction sans date de fin) : « Qui est actuellement… ? »
+    const titulaires = {};
+    for (const c of vivier) for (const f of fonctionsQuiz(c)) if (f[2] === null || f[2] === undefined) (titulaires[f[0]] ||= new Set()).add(c.id);
+    const postes = Object.keys(titulaires).filter(f => titulaires[f].size === 1).sort();
+    const connus = vivier.filter(c => c.score >= SCORE_PHOTO);
+    return cat.quiz = {vivier, connus, departements, fonctions, postes, parId: Object.fromEntries(vivier.map(c => [c.id, c])),
+      titulaire: Object.fromEntries(postes.map(f => [f, [...titulaires[f]][0]]))};
   }
-  function question(cat, c, h) {
+  function question(cat, c, h, type) {
     const q = preparerQuiz(cat), elle = c.sexe === "F";
     const pris = (liste, exclus, n) => {  // n éléments distincts de la liste, hors exclus
       const r = [], vus = new Set();
@@ -427,72 +444,73 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
       }
       return r.length === n ? r : null;
     };
-    const melanger = (bonne, autres, texte, explication) => {
+    const melanger = (bonne, autres, texte, explication, photo = null) => {
       const choix = [bonne, ...autres];
       for (let i = choix.length - 1; i > 0; i--) { const j = Math.floor(h() * (i + 1)); [choix[i], choix[j]] = [choix[j], choix[i]]; }
-      return {carte: c.id, texte, choix, bonne: choix.indexOf(bonne), explication};
+      return {carte: c.id, texte, choix, bonne: choix.indexOf(bonne), explication, ...(photo ? {photo} : {})};
     };
-    const types = [];
-    const deps = (c.mandats || []).map(m => m[1]).filter(Boolean);
-    // Département, fonction et « qui a été » comptent double : ce sont les questions les plus parlantes
-    if (deps.length) types.push("departement", "departement");
-    if (c.fonctions.length) types.push("fonction", "fonction", "qui", "qui");
-    if (c.epoque) types.push("epoque");
-    if (c.debut) types.push("annee");
-    const type = types[Math.floor(h() * types.length)];
-    if (type === "departement") {
+    // Autres personnes du même sexe, pour que la réponse ne se devine pas au prénom
+    const memes = x => x.id !== c.id && (x.sexe === "F") === elle;
+    const deps = c.mandats.map(m => m[1]).filter(Boolean), fonctions = fonctionsQuiz(c);
+    const poste = q.postes.find(f => q.titulaire[f] === c.id);
+    if (type === "photo" && photoQuiz(c) && c.score >= SCORE_PHOTO) {
+      const autres = pris(q.connus, x => !memes(x) || x.nom === c.nom, 3);
+      if (autres) return melanger(c.nom, autres.map(x => x.nom), "Qui est-ce ?", `C'est ${c.nom}.`, photoQuiz(c));
+    }
+    if (type === "actuel" && poste) {
+      const cle = cleFonction(poste), autres = pris(q.vivier, x => !memes(x) || !x.actuel || fonctionsQuiz(x).some(g => cleFonction(g[0]) === cle), 3);
+      if (autres) return melanger(c.nom, autres.map(x => x.nom), `Qui est actuellement ${elle ? "la titulaire" : "le titulaire"} de ce poste : ${poste} ?`, `C'est ${c.nom}.`);
+    }
+    if (type === "departement" && deps.length && c.score >= SCORE_NOM) {
       const siens = new Set(deps.map(normer)), bonne = deps[0];
       const autres = pris(q.departements, d => siens.has(normer(d)), 3);
       if (autres) return melanger(bonne, autres, `Dans quel département ${c.nom} a-t-${elle ? "elle" : "il"} été ${elle ? "élue" : "élu"} ?`,
         `${c.nom} a été ${elle ? "élue" : "élu"} : ${[...new Set(deps)].join(", ")}.`);
     }
-    if (type === "fonction") {
-      const siennes = new Set(c.fonctions.map(f => cleFonction(f[0]))), bonne = c.fonctions[Math.floor(h() * c.fonctions.length)][0];
+    if (type === "qui" && fonctions.length && c.score >= SCORE_NOM) {
+      const f = fonctions[Math.floor(h() * fonctions.length)][0], cle = cleFonction(f);
+      const autres = pris(q.connus, x => !memes(x) || x.nom === c.nom || x.fonctions.some(g => cleFonction(g[0]) === cle), 3);
+      if (autres) return melanger(c.nom, autres.map(x => x.nom), `Qui a été : ${f} ?`, `C'était ${c.nom}.`);
+    }
+    if (type === "fonction" && fonctions.length && c.score >= SCORE_NOM) {
+      const siennes = new Set(c.fonctions.map(f => cleFonction(f[0]))), bonne = fonctions[Math.floor(h() * fonctions.length)][0];
       const autres = pris(q.fonctions, f => siennes.has(cleFonction(f)), 3);
       if (autres) return melanger(bonne, autres, `Laquelle de ces fonctions ${c.nom} a-t-${elle ? "elle" : "il"} exercée ?`, `${c.nom} : ${bonne}.`);
     }
-    if (type === "qui") {
-      const f = c.fonctions[Math.floor(h() * c.fonctions.length)][0], cle = cleFonction(f);
-      const autres = pris(q.vivier, x => x.id === c.id || x.fonctions.some(g => cleFonction(g[0]) === cle), 3);
-      if (autres) return melanger(c.nom, autres.map(x => x.nom), `Qui a exercé cette fonction : ${f} ?`, `C'était ${c.nom}.`);
-    }
-    if (type === "epoque") {
-      const autres = pris(q.epoques, e => e === c.epoque, 3);
-      if (autres) return melanger(c.epoque, autres, `À quelle époque ${c.nom} a-t-${elle ? "elle" : "il"} commencé sa carrière ?`, `${c.nom} : ${c.epoque}, à partir de ${c.debut}.`);
-    }
-    if (type === "annee") {
-      const ecarts = [-12, -8, -5, -3, 3, 5, 8, 12].map(d => c.debut + d).filter(a => a >= 1789 && a <= 2026);
-      const autres = pris(ecarts, () => false, 3);
-      if (autres) return melanger(c.debut, autres, `En quelle année commence la carrière de ${c.nom} ?`, `${c.nom} : premier mandat ou première fonction en ${c.debut}.`);
-    }
     return null;
   }
-  // Questions d'une graine ; collection : cartes du joueur, qui fournissent la moitié des questions s'il en a assez
+  // Questions d'une graine : les cinq types dans un ordre tiré au sort. collection : cartes du joueur, d'où vient une
+  // question sur deux quand il en a assez (le poste actuel, lui, se tire parmi les postes)
   function questions(cat, graine, collection = null) {
     const q = preparerQuiz(cat), h = hasard(graine), liste = [], vues = new Set();
     const siennes = collection ? q.vivier.filter(c => collection[c.id]) : [];
-    for (let essais = 0; liste.length < QUIZ_QUESTIONS && essais < 100; essais++) {
-      const source = siennes.length >= 10 && liste.length % 2 === 0 ? siennes : q.vivier;
-      const c = source[Math.floor(h() * source.length)];
-      if (vues.has(c.id)) continue;
-      const x = question(cat, c, h);
-      if (x) { vues.add(c.id); liste.push(x); }
+    const types = TYPES_QUIZ.slice();
+    for (let i = types.length - 1; i > 0; i--) { const j = Math.floor(h() * (i + 1)); [types[i], types[j]] = [types[j], types[i]]; }
+    for (const type of types) {
+      for (let essais = 0; essais < 60; essais++) {
+        const source = type === "actuel" ? null : siennes.length >= 10 && liste.length % 2 === 0 && essais < 20 ? siennes : type === "photo" ? q.connus : q.vivier;
+        const c = source ? source[Math.floor(h() * source.length)] : q.parId[q.titulaire[q.postes[Math.floor(h() * q.postes.length)]]];
+        if (!c || vues.has(c.id)) continue;
+        const x = question(cat, c, h, type);
+        if (x) { vues.add(c.id); liste.push(x); break; }
+      }
     }
     return liste;
   }
   // Données des questions pour le serveur (duels jugés par lui, réponses jamais envoyées d'avance au navigateur) :
-  // le vivier et les listes de choix, rien d'autre ; questions() en tire exactement les mêmes questions que du
-  // catalogue complet (vérifié par le test)
+  // le vivier et ce que les questions en lisent, rien d'autre ; questions() en tire exactement les mêmes questions que
+  // du catalogue complet (vérifié par le test)
   function compacterQuiz(cat) {
     const q = preparerQuiz(cat);
-    return {departements: q.departements, fonctions: q.fonctions, epoques: q.epoques,
-      vivier: q.vivier.map(c => [c.id, c.nom, c.sexe === "F" ? 1 : 0, c.epoque || "", c.debut || 0,
-        (c.mandats || []).map(m => m[1] || ""), c.fonctions.map(f => f[0])])};
+    return {version: 2, vivier: q.vivier.map(c => [c.id, c.nom, c.sexe === "F" ? 1 : 0, c.debut || 0, c.score, c.actuel ? 1 : 0, photoQuiz(c) || "",
+      c.mandats.map(m => m[1] || ""), c.fonctions.map(f => [f[0], f[1] || 0, f[2] === undefined ? null : f[2]])])};
   }
   function catalogueQuiz(data) {
-    const vivier = data.vivier.map(([id, nom, f, epoque, debut, deps, fonctions]) => ({id, nom, sexe: f ? "F" : "M",
-      epoque: epoque || null, debut: debut || null, mandats: deps.map(d => [null, d || null]), fonctions: fonctions.map(x => [x])}));
-    return {quiz: {vivier, departements: data.departements, fonctions: data.fonctions, epoques: data.epoques}};
+    const cartes = data.vivier.map(([id, nom, f, debut, score, actuel, photo, deps, fonctions]) => ({id, nom, sexe: f ? "F" : "M",
+      debut: debut || null, score, actuel: !!actuel, photo: photo && !photo.startsWith("commons:") ? photo : null,
+      portrait: photo && photo.startsWith("commons:") ? photo.slice(8) : null,
+      mandats: deps.map(d => [null, d || null]), fonctions}));
+    return {cartes};
   }
   function recompenseQuiz(bonnes) { return bonnes * VOIX_PAR_BONNE + (bonnes === QUIZ_QUESTIONS ? BONUS_SANS_FAUTE : 0); }
   // Questions du jour : récompensées une fois par jour (jour de Paris). Le navigateur connaît les réponses ;

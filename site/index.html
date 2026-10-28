@@ -397,6 +397,7 @@ footer{max-width:1120px;margin:0 auto;padding:0 1rem 3rem;font-size:.85rem;color
 .qag h3{font:600 1rem var(--sans);color:var(--dorure-pale);margin:1.1rem 0 .4rem}
 .question{border:1px solid rgba(201,162,74,.4);border-radius:6px;padding:1rem;background:rgba(92,16,32,.35)}
 .question .texte{font:700 1.1rem/1.35 var(--serif);margin:.3rem 0 .8rem}
+.question .photo-q{display:block;width:9rem;height:11rem;object-fit:cover;object-position:50% 20%;margin:0 auto .9rem;border-radius:6px;border:2px solid var(--dorure);background:#e9e2d6}
 .choix-q{display:grid;gap:.45rem}
 .choix-q button{text-align:left;background:var(--velours-fonce);color:var(--marbre);border:1px solid rgba(201,162,74,.5);border-radius:4px;padding:.65rem .8rem}
 .choix-q button.bonne{background:#2f6b3a;border-color:#7fd08a}
@@ -671,7 +672,7 @@ html.presentation{font-size:15px}
     <h3>Paquets offerts</h3>
     <p>L'ordre du jour récompense chaque objectif atteint. Les plus simples rapportent des voix pour lancer la partie : premiers pas (premier membre du Gouvernement, premier sénateur, première carte épique…) et premiers paliers de l'hémicycle. Les plus difficiles rapportent des paquets offerts : grands paliers de l'hémicycle, Quatre-vingts, Compagnons de la Libération, présidents de l'Assemblée, députés d'une législature, élus d'un département. La dissolution des doubles rapporte aussi des voix : chaque exemplaire en trop dissous rapporte des voix selon sa rareté (commune 1, peu commune 2, rare 5, épique 15, légendaire et hors catégorie 40, mythique 100, unique 250), et 25 voix s'échangent contre un paquet. Ici, acheter des voix est parfaitement réglementaire. Le premier exemplaire de chaque carte n'est jamais dissous. Les paquets offerts s'ouvrent une fois la réserve vide, sans limite de date.</p>
     <h3>Questions au Gouvernement</h3>
-    <p>Sous les paquets de la séance, cinq questions par jour, tirées des fiches officielles des cartes : département d'élection, fonction exercée, époque, année de début de carrière. Chaque bonne réponse rapporte 2 voix, et un sans-faute 5 de plus. Avec un compte, on peut aussi défier un autre joueur, pour la gloire ou contre une mise de 10 à 100 voix ou de 1 à 3 paquets offerts, retenue dès le défi. L'adversaire relève le défi en mettant la même mise, ou le refuse et la vôtre vous revient. Les deux reçoivent les mêmes questions, et le serveur juge chaque réponse : le meilleur score emporte les deux mises, une égalité rend la sienne à chacun. Un défi laissé trois jours sans réponse est remboursé ; un duel relevé mais pas fini au bout de trois jours est clos avec les réponses données.</p>
+    <p>Sous les paquets de la séance, cinq questions par jour sur la Ve République, tirées des fiches officielles des cartes : un portrait à reconnaître, le titulaire actuel d'un poste, un département d'élection, une fonction et la personne qui l'a exercée. Chaque bonne réponse rapporte 2 voix, et un sans-faute 5 de plus. Avec un compte, on peut aussi défier un autre joueur, pour la gloire ou contre une mise de 10 à 100 voix ou de 1 à 3 paquets offerts, retenue dès le défi. L'adversaire relève le défi en mettant la même mise, ou le refuse et la vôtre vous revient. Les deux reçoivent les mêmes questions, et le serveur juge chaque réponse : le meilleur score emporte les deux mises, une égalité rend la sienne à chacun. Un défi laissé trois jours sans réponse est remboursé ; un duel relevé mais pas fini au bout de trois jours est clos avec les réponses données.</p>
     <h3>Hémicycle et favoris</h3>
     <p>Dans l'hémicycle, une carte touchée s'ouvre en grand : on y voit ses exemplaires, on peut dissoudre ses doubles ou, avec un compte, la vendre au comptoir. L'étoile d'une carte la met dans vos favoris ; les pastilles du haut de l'hémicycle filtrent les favoris ou une rareté. L'onglet Plus montre toutes les cartes du jeu, celles qui manquent étant grisées.</p>
     <h3>Amis et vitrine</h3>
@@ -1236,6 +1237,7 @@ function majQag(){
     zone.innerHTML = `<h2>Questions au Gouvernement</h2><div class="question">
       <span class="note">${quiz.mode === "duel" ? "Duel contre " + echapper(quiz.avec) + " · " : ""}Question ${quiz.i + 1} sur ${quiz.liste.length}</span>
       <p class="texte">${echapper(q.texte)}</p>
+      ${q.photo ? `<img class="photo-q" alt="Portrait à reconnaître" src="${echapper(q.photo.startsWith("commons:") ? urlPortrait(q.photo.slice(8)) : q.photo)}">` : ""}
       <div class="choix-q">${q.choix.map((c, k) => `<button data-choix="${k}" ${quiz.repondu !== null ? "disabled" : ""} class="${quiz.repondu === null ? "" : k === q.bonne ? "bonne" : k === quiz.repondu ? "mauvaise" : ""}">${echapper(c)}</button>`).join("")}</div>
       ${quiz.repondu !== null ? `<div class="apres"><span>${quiz.repondu === q.bonne ? "Bonne réponse." : "Mauvaise réponse."} ${echapper(q.explication)}</span>
         <button class="bouton discret" data-apercu="${echapper(q.carte)}">Voir la carte</button>
