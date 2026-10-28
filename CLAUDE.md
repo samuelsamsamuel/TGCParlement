@@ -85,7 +85,10 @@ de chaque année depuis 1943, anciens noms compris ; écrit `site/departements.j
   d'un par heure et huit ; `RECHARGE_MS`, `RESERVE_MAX`, état `reserve` et `ancre`), puis les paquets offerts. Le plafond
   n'est plus dans la contrainte de la colonne `stock` (`CHECK (stock >= 0)`) : `leverPlafondStock` (worker) a reconstruit
   une fois la table `joueurs`, à l'identique, qui portait `CHECK (stock BETWEEN 0 AND 8)`. Questions au Gouvernement (sous les paquets de la Séance) : cinq
-  questions tirées des fiches (`questions`, graine déterministe), 2 voix par bonne réponse et 5 pour un
+  questions tirées des fiches (`questions`, graine déterministe), depuis 1958 seulement et une de chaque type par série
+  (`TYPES_QUIZ`, demande de l'utilisateur, octobre 2026) : « Qui est-ce ? » sur un portrait (cartes de score 40 et plus,
+  `SCORE_PHOTO`), « Qui est actuellement… ? » (poste sans date de fin à titulaire unique), département, « Qui a été… ? »,
+  fonction (score 35 et plus, libellés de 90 signes au plus) ; mauvaises réponses du même sexe ; 2 voix par bonne réponse et 5 pour un
   sans-faute, une fois par jour de Paris (`validerQuiz`) ; le navigateur connaît les réponses, d'où le plafond
   de 15 voix par jour. Duels (demande de l'utilisateur, octobre 2026 : « servir à quelque chose » et plus accessibles) : mise
   facultative de 10 à 100 voix ou de 1 à 3 paquets offerts (`MISES_DUEL`, `MISE_VOIX_MAX`, `MISE_PAQUETS_MAX`), retenue au
