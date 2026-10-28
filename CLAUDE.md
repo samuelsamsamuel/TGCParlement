@@ -156,7 +156,8 @@ Hémicycle : les pastilles du haut filtrent (favoris, doubles, une rareté) et s
 le bouton « Voir mes doubles » pose le même filtre (`doubles`) ; l'échange de voix contre un paquet n'y figure pas
 (Séance et encart des voix seulement, demande de l'utilisateur) ; toucher une carte l'ouvre en grand (`apercu`) avec ses exemplaires, la dissolution de ses doubles (`dissoudre`,
 `POST /api/dissoudre`) ou, sans double, de la carte elle-même avec sa valeur en voix (`tout`, confirmation demandée ;
-retirée de la vitrine), la vente au comptoir et « Mettre en vitrine » ou « Retirer de ma vitrine » ; tri par défaut par rareté puis par score. Reflets des mythiques et
+retirée de la vitrine), la vente au comptoir et « Mettre en vitrine » ou « Retirer de ma vitrine » (vitrine pleine : choix de la carte à
+remplacer, qui cède sa case, demande de l'utilisateur) ; tri par défaut par rareté puis par score. Reflets des mythiques et
 légendaires espacés (11 et 15 s), dégradé sans répétition pour que la carte reste nette entre deux passages.
 Première ouverture (`demarrerAccueil`, étape gardée dans `hemicycle-accueil`) : fenêtre d'accueil (créer un compte,
 recommandé ; ouvrir ses cartes dans le navigateur ; « J'ai déjà un compte ») ; après le compte, tutoriel
