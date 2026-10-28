@@ -111,8 +111,9 @@ de chaque année depuis 1943, anciens noms compris ; écrit `site/departements.j
 - Journée (demande de l'utilisateur, octobre 2026), en tête de l'ordre du jour (`majJournee`) : série de connexion « Choix »
   (`SERIE`, `reclamerSerie`, `choisirLot` : 10 voix, 1 commune parmi 3, 1 paquet, 25 voix, 1 parmi 5 peu communes ou mieux,
   2 paquets, 1 parmi 5 dont une épique ; cartes proposées jamais possédées ; un jour manqué redescend d'un palier, le
-  lendemain du 7e on recommence ; lot à choisir en attente bloque le suivant ; la carte touchée parmi les propositions
-  s'affiche en grand dans la fenêtre `confirmer-lot`, « Confirmer mon choix » ou « Revenir aux cartes proposées », demande de
+  lendemain du 7e on recommence ; lot à choisir en attente bloque le suivant ; cartes proposées en grand dans un carrousel
+  sans recherche (`carrouselLot`, fenêtre `choix-lot` : glisser, flèches sur ordinateur, points), « Garder cette carte » ouvre
+  la fenêtre `confirmer-lot`, « Confirmer mon choix » ou « Revenir aux cartes proposées », demande de
   l'utilisateur) ; objectifs du jour (`objectifsDuJour`,
   mêmes pour tous, tirés de la date : deux tâches de `TACHES` à 10 voix, comptées par les opérations des règles,
   `compter`, et une carte recherchée à 1 paquet : une carte de plus dans un thème (époque, Sénat, Gouvernement, femmes,
@@ -177,7 +178,11 @@ retirée de la vitrine), la vente au comptoir et « Mettre en vitrine » ou « R
 remplacer, qui cède sa case, demande de l'utilisateur) ; tri par défaut par rareté puis par score. Sélection multiple (demande de l'utilisateur, octobre 2026) : bouton « Sélectionner »,
 cases sur les cartes, barre du bas (« Tout sélectionner » des cartes affichées, « Garder un exemplaire de chaque » coché par
 défaut, total en voix), `dissoudreSelection` des règles (200 cartes au plus, une ligne de journal), `POST /api/dissoudre` avec `cartes`
-et `garder` ; les cartes sorties de la collection quittent la vitrine. Reflets de l'unique, des mythiques et
+et `garder` ; les cartes sorties de la collection quittent la vitrine.
+Cartes gardées (« Ne pas dissoudre », demande de l'utilisateur, octobre 2026) : bouton de la barre de sélection et de la grande
+carte, état `gardes` (1 000 au plus, `garderCartes`, colonne `gardes` de `joueurs`, `POST /api/gardes`) ; leurs doubles sortent
+du compte de l'atelier, de la dissolution par rareté et du filtre des doubles, mention « gardée » sur la carte, filtre « Cartes
+gardées » ; la dissolution choisie carte par carte reste possible. Reflets de l'unique, des mythiques et
 légendaires toutes les 6, 8 et 11 s (rapprochés à la demande de l'utilisateur, octobre 2026, après 8, 11 et 15 s), dégradé sans répétition pour que la carte reste nette entre deux passages.
 Première ouverture (`demarrerAccueil`, étape gardée dans `hemicycle-accueil`) : fenêtre d'accueil (créer un compte,
 recommandé ; ouvrir ses cartes dans le navigateur ; « J'ai déjà un compte ») ; après le compte, tutoriel

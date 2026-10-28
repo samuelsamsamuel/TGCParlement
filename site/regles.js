@@ -16,6 +16,7 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
   journal    dernières opérations [date, opération, détail], pour le suivi
   quiz       jour (AAAA-MM-JJ, Paris) des dernières questions au Gouvernement récompensées
   favoris    cartes marquées d'une étoile (300 au plus)
+  gardes     cartes dont les doubles ne sont pas proposés à la dissolution (1 000 au plus)
   deja       cartes obtenues puis cédées (compte seulement, fourni par le serveur) : plus dans la collection,
              mais pas grisées dans Toutes les cartes
   verrous    { id de carte: exemplaires bloqués } (compte seulement, fourni par le serveur) : exemplaires repris
@@ -46,7 +47,7 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
 
   /* ---------- État ---------- */
   function etatVide() {
-    return {version: VERSION_ETAT, possedees: {}, reserve: RESERVE_MAX, ancre: 0, points: 0, offerts: 0, objectifs: {}, quiz: "", favoris: [], journal: [], deja: [], quotidien: {}};
+    return {version: VERSION_ETAT, possedees: {}, reserve: RESERVE_MAX, ancre: 0, points: 0, offerts: 0, objectifs: {}, quiz: "", favoris: [], gardes: [], journal: [], deja: [], quotidien: {}};
   }
   function entier(v) { v = Math.floor(Number(v)); return Number.isFinite(v) && v > 0 ? v : 0; }
   // Accepte les états des versions précédentes (paquets du jour : jour, ouverts) et tout état abîmé ; le passage
@@ -62,6 +63,7 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
     e.quiz = typeof brut.quiz === "string" ? brut.quiz : "";
     if (Array.isArray(brut.deja)) e.deja = [...new Set(brut.deja.map(String))].filter(id => !e.possedees[id]);
     if (Array.isArray(brut.favoris)) e.favoris = [...new Set(brut.favoris.map(String))].slice(0, 300);
+    if (Array.isArray(brut.gardes)) e.gardes = [...new Set(brut.gardes.map(String))].slice(0, MAX_GARDES);
     e.offerts = entier(brut.offerts);
     if (brut.objectifs && typeof brut.objectifs === "object") Object.assign(e.objectifs, brut.objectifs);
     if (Array.isArray(brut.journal)) e.journal = brut.journal.slice(-JOURNAL_MAX);
@@ -223,12 +225,22 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
   function disponibles(etat, id) { return Math.max(0, (etat.possedees[id] || 0) - ((etat.verrous && etat.verrous[id]) || 0)); }
   // Exemplaires recyclables : libres et en trop (le premier exemplaire de chaque carte est gardé)
   function recyclables(etat, id) { return Math.min(Math.max(0, (etat.possedees[id] || 0) - 1), disponibles(etat, id)); }
-  // Exemplaires en trop recyclables, regroupés par rareté
+  // Cartes gardées (« Ne pas dissoudre », demande de l'utilisateur, octobre 2026) : leurs doubles ne sont ni comptés
+  // ni dissous par rareté ; seule une dissolution choisie carte par carte les touche
+  const MAX_GARDES = 1000;
+  const gardees = etat => new Set(etat.gardes || []);
+  function garderCartes(etat, ids, actif) {
+    const g = gardees(etat);
+    for (const id of ids.map(String)) actif ? g.add(id) : g.delete(id);
+    etat.gardes = [...g].slice(0, MAX_GARDES);
+    return etat.gardes;
+  }
+  // Exemplaires en trop recyclables, regroupés par rareté (cartes gardées exclues)
   function doubles(etat, cat) {
-    const parRarete = {};
+    const parRarete = {}, g = gardees(etat);
     for (const id of Object.keys(etat.possedees)) {
       const c = cat.parId[id], k = recyclables(etat, id);
-      if (!c || !k) continue;
+      if (!c || !k || g.has(id)) continue;
       const r = parRarete[c.rarete] ||= {cartes: 0, exemplaires: 0, points: 0};
       r.cartes += 1; r.exemplaires += k; r.points += k * VALEUR_RECYCLAGE[c.rarete];
     }
@@ -236,11 +248,11 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
   }
   // Recycle tous les exemplaires en trop des raretés choisies ; le premier exemplaire de chaque carte est gardé
   function recycler(etat, cat, raretes) {
-    const choisies = new Set(raretes);
+    const choisies = new Set(raretes), g = gardees(etat);
     let exemplaires = 0, points = 0;
     for (const id of Object.keys(etat.possedees)) {
       const c = cat.parId[id], k = recyclables(etat, id);
-      if (!c || !k || !choisies.has(c.rarete)) continue;
+      if (!c || !k || !choisies.has(c.rarete) || g.has(id)) continue;
       exemplaires += k; points += k * VALEUR_RECYCLAGE[c.rarete];
       etat.possedees[id] -= k;
     }
@@ -676,7 +688,7 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
     return voix;
   }
 
-  return {VERSION_ETAT, basculerFavori, RECHARGE_MS, QUIZ_QUESTIONS, graineDe, questions, compacterQuiz, catalogueQuiz, recompenseQuiz, validerQuiz, RESERVE_MAX, CARTES_PAR_PAQUET, reserveCourante, ORDRE, POIDS, VALEUR_RECYCLAGE, PRIX_PAQUET, PALIERS,
+  return {VERSION_ETAT, basculerFavori, MAX_GARDES, garderCartes, RECHARGE_MS, QUIZ_QUESTIONS, graineDe, questions, compacterQuiz, catalogueQuiz, recompenseQuiz, validerQuiz, RESERVE_MAX, CARTES_PAR_PAQUET, reserveCourante, ORDRE, POIDS, VALEUR_RECYCLAGE, PRIX_PAQUET, PALIERS,
     etatVide, migrer, jourDuJeu, normer, cartesDeJeu, catalogue, compacter, catalogueCompact, paquetsDisponibles, ouvrirPaquet,
     disponibles, recyclables, doubles, recycler, dissoudre, MAX_SELECTION, dissoudreSelection, echangerPoints, avancement, clesAtteintes, reclamer, recompensesEnAttente,
     SERIE, serieDuJour, reclamerSerie, choisirLot, objectifsDuJour, preparerJour, etatDuJour, reclamerJour};
