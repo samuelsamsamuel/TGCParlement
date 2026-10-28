@@ -148,14 +148,15 @@ assert.strictEqual(quizEtat.points, 36);
 }
 console.log("tous les tests passent");
 
-// Doubles réduits : une carte déjà possédée est retirée une fois ; jamais deux fois la même carte dans un paquet
+// Doubles réduits : jamais deux fois la même carte dans un paquet ; environ 10 % de doubles du 701e au 1 500e paquet
 {
   const e = R.etatVide(); let doubles = 0, cartesTirees = 0;
-  for (let k = 0; k < 300; k++) {
+  for (let k = 1; k <= 1500; k++) {
     e.reserve = 10; e.ancre = Date.now();
     const avant = {...e.possedees}, r = R.ouvrirPaquet(e, cat, {aleatoire: alea});
     assert.strictEqual(new Set(r.tirage.map(c => c.id)).size, r.tirage.length, "même carte deux fois dans un paquet");
-    doubles += r.tirage.filter(c => avant[c.id]).length; cartesTirees += r.tirage.length;
+    if (k > 700) { doubles += r.tirage.filter(c => avant[c.id]).length; cartesTirees += r.tirage.length; }
   }
-  assert.ok(doubles / cartesTirees < 0.03, "doubles sur 300 paquets : " + doubles);
+  const part = doubles / cartesTirees;
+  assert.ok(part > 0.07 && part < 0.13, "doubles du 701e au 1 500e paquet : " + (100 * part).toFixed(1) + " %");
 }
