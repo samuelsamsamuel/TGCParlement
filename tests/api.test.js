@@ -269,6 +269,90 @@ const preuve = c => require("crypto").createHash("sha256").update(c).digest("hex
   assert.strictEqual((await A("amis/demander", {pseudo: bob})).d.statut, "demande");
   assert.deepStrictEqual((await A("amis")).d.suggestions, [], "demande envoyée : plus suggéré");
   assert.strictEqual((await A("amis/retirer", {pseudo: bob})).statut, 200);
+  // Échange avec des voix : d'un seul côté, une carte au moins ; voix payées à l'acceptation ; voix manquantes : rien ne bouge
+  base(`UPDATE joueurs SET points = 30 WHERE pseudo IN ('${alice}', '${bob}', '${carole}')`);
+  const libresDe = async cl => { const e = (await cl("moi")).d.etat; return Object.keys(e.possedees).filter(id => R.disponibles(e, id) > 0); };
+  const [carteV] = await libresDe(A);
+  assert.strictEqual((await Bc("echanges", {vers: alice, donne: {}, recoit: {[carteV]: 1}, voix_donne: 5, voix_recoit: 5})).statut, 400);
+  assert.strictEqual((await Bc("echanges", {vers: alice, donne: {}, recoit: {}, voix_donne: 5})).statut, 400, "une carte au moins");
+  assert.strictEqual((await Bc("echanges", {vers: alice, donne: {}, recoit: {[carteV]: 1}, voix_donne: 31})).statut, 409, "voix insuffisantes");
+  assert.strictEqual((await Bc("echanges", {vers: alice, donne: {}, recoit: {[carteV]: 1}, voix_donne: 5})).statut, 201);
+  const ev = (await A("echanges")).d.echanges.find(x => x.statut === "proposee" && x.recu);
+  assert.strictEqual(ev.voixDonne, 5); assert.strictEqual(ev.voixRecoit, 0);
+  const nV = (await Bc("moi")).d.etat.possedees[carteV] || 0;
+  assert.strictEqual((await A("echanges/" + ev.id + "/accepter", {})).statut, 200);
+  assert.strictEqual(await voixDe(A), 35); assert.strictEqual(await voixDe(Bc), 25);
+  assert.strictEqual((await Bc("moi")).d.etat.possedees[carteV], nV + 1);
+  const [carteW] = await libresDe(A);
+  assert.strictEqual((await A("echanges", {vers: bob, donne: {[carteW]: 1}, recoit: {}, voix_recoit: 26})).statut, 201);
+  const ew = (await Bc("echanges")).d.echanges.find(x => x.statut === "proposee" && x.recu);
+  assert.strictEqual((await Bc("echanges/" + ew.id + "/accepter", {})).statut, 409, "Bob n'a que 25 voix");
+  assert.strictEqual(await voixDe(Bc), 25); assert.strictEqual((await Bc("echanges")).d.echanges.find(x => x.id === ew.id).statut, "proposee");
+  assert.strictEqual((await A("echanges/" + ew.id + "/annuler", {})).statut, 200);
+  // Alerte de vente : Bob guette une carte, Alice la pose au comptoir, Bob est averti (il est abonné aux notifications)
+  const [carteO] = await libresDe(A);
+  assert.strictEqual((await Bc("alertes", {carte: "inconnue", actif: true})).statut, 400);
+  assert.deepStrictEqual((await Bc("alertes", {carte: carteO, actif: true, nom: "Carte guettée"})).d.alertes, [carteO]);
+  assert.deepStrictEqual((await Bc("alertes")).d.alertes, [carteO]);
+  // Le faux abonnement est effacé à la première poussée (FCM répond 410) : réabonné avant chaque message attendu ;
+  // les avis partent après la réponse, d'où quelques essais
+  // Adresse neuve à chaque fois : la réponse tardive d'une poussée précédente n'efface que l'ancienne
+  let abonnements = 0;
+  const abonnerBob = () => Bc("notifications/abonner", {abonnement: {endpoint: "https://fcm.googleapis.com/fcm/send/essai" + suffixe + "-" + (++abonnements)}, reserve: false});
+  const avisBob = async motif => {
+    let textes = "";
+    for (let k = 0; k < 20 && !motif.test(textes); k++) { textes += (await Bc("notifications")).d.notifications.map(n => n.texte).join(); if (!motif.test(textes)) await new Promise(f => setTimeout(f, 250)); }
+    assert.match(textes, motif);
+  };
+  await abonnerBob(); await Bc("notifications");
+  assert.strictEqual((await A("annonces", {carte: carteO, prix: 20})).statut, 201);
+  await avisBob(/Carte guettée est en vente au comptoir : 20 voix/);
+  assert.deepStrictEqual((await Bc("alertes", {carte: carteO, actif: false})).d.alertes, []);
+  // Contre-offres : sous le prix seulement ; la nouvelle remplace l'ancienne ; refus notifié ; acceptée, elle vaut achat au
+  // prix offert et clôt les autres offres
+  const annO = (await A("annonces")).d.annonces.find(a => a.statut === "ouverte" && a.carte === carteO).id;
+  assert.strictEqual((await A("annonces/" + annO + "/offre", {prix: 10})).statut, 400, "pas sur sa propre carte");
+  assert.strictEqual((await Bc("annonces/" + annO + "/offre", {prix: 20})).statut, 400, "au prix demandé, on achète");
+  assert.strictEqual((await Bc("annonces/" + annO + "/offre", {prix: 26})).statut, 400);
+  assert.strictEqual((await Bc("annonces/" + annO + "/offre", {prix: 10})).statut, 201);
+  assert.strictEqual((await Bc("annonces/" + annO + "/offre", {prix: 12})).statut, 201);
+  let offres = (await A("annonces")).d.offres;
+  assert.deepStrictEqual(offres.map(o => [o.prix, o.acheteur]), [[12, bob]], "l'offre de 12 remplace celle de 10");
+  assert.strictEqual((await A("attente")).d.offres, 1);
+  assert.strictEqual((await Bc("annonces")).d.mesOffres.length, 1);
+  assert.strictEqual((await Bc("offres/" + offres[0].id + "/accepter", {})).statut, 403, "seul le vendeur accepte");
+  await abonnerBob();
+  assert.strictEqual((await A("offres/" + offres[0].id + "/refuser", {})).statut, 200);
+  assert.strictEqual((await A("offres/" + offres[0].id + "/accepter", {})).statut, 409);
+  await avisBob(/refusé votre offre de 12 voix/);
+  assert.strictEqual((await Bc("annonces/" + annO + "/offre", {prix: 15})).statut, 201);
+  assert.strictEqual((await C("annonces/" + annO + "/offre", {prix: 14})).statut, 201);
+  offres = (await A("annonces")).d.offres;
+  assert.strictEqual(offres.length, 2);
+  const deBob = offres.find(o => o.acheteur === bob), deCarole = offres.find(o => o.acheteur === carole);
+  const nO = (await Bc("moi")).d.etat.possedees[carteO] || 0;
+  await abonnerBob();
+  assert.strictEqual((await A("offres/" + deBob.id + "/accepter", {})).statut, 200);
+  assert.strictEqual(await voixDe(Bc), 10); assert.strictEqual(await voixDe(A), 50);
+  assert.strictEqual((await Bc("moi")).d.etat.possedees[carteO], nO + 1);
+  const vendue = (await A("annonces")).d.annonces.find(a => a.id === annO);
+  assert.strictEqual(vendue.statut, "vendue"); assert.strictEqual(vendue.prix, 15); assert.strictEqual(vendue.acheteur, bob);
+  assert.strictEqual((await A("offres/" + deCarole.id + "/accepter", {})).statut, 409, "offre close avec l'annonce");
+  assert.deepStrictEqual((await C("annonces")).d.mesOffres, []);
+  assert.strictEqual((await A("attente")).d.offres, 0);
+  await avisBob(/accepte votre offre de 15 voix/);
+  // Offre que l'acheteur ne peut plus payer : acceptation refusée, rien ne bouge
+  const [carteP] = await libresDe(A);
+  assert.strictEqual((await A("annonces", {carte: carteP, prix: 9})).statut, 201);
+  const annP = (await A("annonces")).d.annonces.find(a => a.statut === "ouverte" && a.carte === carteP).id;
+  assert.strictEqual((await Bc("annonces/" + annP + "/offre", {prix: 8})).statut, 201);
+  base(`UPDATE joueurs SET points = 3 WHERE pseudo = '${bob}'`);
+  const offreP = (await A("annonces")).d.offres[0].id;
+  assert.strictEqual((await A("offres/" + offreP + "/accepter", {})).statut, 409);
+  assert.strictEqual((await A("annonces")).d.annonces.find(a => a.id === annP).statut, "ouverte");
+  // Retrait de l'annonce : l'offre en attente est close avec elle
+  assert.strictEqual((await A("annonces/" + annP + "/retirer", {})).statut, 200);
+  assert.deepStrictEqual((await Bc("annonces")).d.mesOffres, []);
   // Réserve pleine (tâche horaire, wrangler dev --test-scheduled) : seulement après un vrai remplissage, une fois
   const sql = c => require("child_process").execSync(`cd ${require("path").join(__dirname, "..")} && ${process.env.WR} d1 execute hemicycle --local --persist-to ${process.env.ETAT} --command "${c}"`, {stdio: "ignore"});
   const horaire = async () => assert.strictEqual((await fetch("http://localhost:8787/cdn-cgi/handler/scheduled")).status, 200);

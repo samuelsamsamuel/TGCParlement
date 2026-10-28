@@ -24,7 +24,7 @@ const COOKIE = "hemicycle_session";
 const MAX_PAR_CARTE = 999;                       // exemplaires repris au plus par carte
 const MAX_VOIX_REPRISES = 1000;                  // voix du navigateur reprises au plus à l'inscription
 const MAX_ECHANGE = 40;                          // cartes au plus dans un échange (deux côtés)
-const MAX_ECHANGES_EN_COURS = 20, MAX_ANNONCES = 50;
+const MAX_ECHANGES_EN_COURS = 20, MAX_ANNONCES = 50, MAX_OFFRES_EN_COURS = 20, MAX_ALERTES = 50;
 const PRIX_MAX = 100000;
 // Tentatives par fenêtre de 15 minutes (1 heure pour les inscriptions). Par adresse IP, des plafonds hauts : une
 // box familiale, une classe, un bureau ou les abonnés mobiles d'un opérateur partagent une même adresse (demande de
@@ -69,6 +69,18 @@ const SCHEMA = [
   `CREATE INDEX IF NOT EXISTS annonces_statut ON annonces (statut, carte)`,
   `CREATE INDEX IF NOT EXISTS annonces_vendeur ON annonces (vendeur, statut)`,
   `CREATE INDEX IF NOT EXISTS annonces_acheteur ON annonces (acheteur)`,
+  // Contre-offres au comptoir : un acheteur propose moins que le prix demandé, le vendeur accepte ou refuse ; une offre
+  // en attente par acheteur et par annonce (la nouvelle remplace l'ancienne) ; numéros jamais réutilisés (clôtures)
+  `CREATE TABLE IF NOT EXISTS offres (id INTEGER PRIMARY KEY AUTOINCREMENT, annonce INTEGER NOT NULL, acheteur INTEGER NOT NULL,
+     prix INTEGER NOT NULL CHECK (prix BETWEEN 1 AND ${PRIX_MAX}), statut TEXT NOT NULL, cree TEXT NOT NULL, maj TEXT NOT NULL)`,
+  `CREATE INDEX IF NOT EXISTS offres_annonce ON offres (annonce, statut)`,
+  `CREATE INDEX IF NOT EXISTS offres_acheteur ON offres (acheteur, statut)`,
+  `CREATE UNIQUE INDEX IF NOT EXISTS offres_une ON offres (annonce, acheteur) WHERE statut = 'proposee'`,
+  // Alertes de vente : le joueur est averti quand une carte qu'il guette est posée au comptoir ; le nom de la carte,
+  // donné par son navigateur, ne sert qu'au texte de sa propre notification (le catalogue du serveur n'a pas les noms)
+  `CREATE TABLE IF NOT EXISTS alertes (joueur INTEGER NOT NULL, carte TEXT NOT NULL, nom TEXT NOT NULL DEFAULT '', date TEXT NOT NULL,
+     PRIMARY KEY (joueur, carte)) WITHOUT ROWID`,
+  `CREATE INDEX IF NOT EXISTS alertes_carte ON alertes (carte)`,
   // Codes à saisir dans Mon siège, créés par l'éditeur dans la console D1 : voix, paquets offerts et cartes (liste JSON
   // d'identifiants) ; limite d'utilisations et date de fin facultatives ; un compte n'utilise un code qu'une fois
   `CREATE TABLE IF NOT EXISTS codes (code TEXT PRIMARY KEY COLLATE NOCASE, voix INTEGER NOT NULL DEFAULT 0 CHECK (voix >= 0),
@@ -165,6 +177,11 @@ const COLONNES = {
   ],
   annonces: [
     ["rarete", "TEXT NOT NULL DEFAULT ''"],       // rareté de la carte, pour les prix médians par rareté
+  ],
+  // Voix ajoutées à un échange (octobre 2026), d'un seul côté : données par celui qui propose ou demandées à l'autre
+  echanges: [
+    ["voix_donne", "INTEGER NOT NULL DEFAULT 0 CHECK (voix_donne >= 0)"],
+    ["voix_recoit", "INTEGER NOT NULL DEFAULT 0 CHECK (voix_recoit >= 0)"],
   ],
   // Duels avec mise (octobre 2026) : mise de chacun, état, réponses jugées par le serveur ([choix, juste] par question)
   duels: [
@@ -442,25 +459,31 @@ async function proposerEchange(env, requete, joueur, cat) {
   const dest = await idJoueur(env, c.vers);
   if (dest.id === joueur) throw new Refus(400, "Vous ne pouvez pas échanger avec vous-même.");
   const donne = lireLot(cat, c.donne), recoit = lireLot(cat, c.recoit);
+  const voixDonne = entier(c.voix_donne ?? 0, 0, PRIX_MAX), voixRecoit = entier(c.voix_recoit ?? 0, 0, PRIX_MAX);
+  if (voixDonne === null || voixRecoit === null) throw new Refus(400, `Les voix d'un échange vont de 0 à ${PRIX_MAX.toLocaleString("fr-FR")}.`);
+  if (voixDonne && voixRecoit) throw new Refus(400, "Ajoutez des voix d'un seul côté de l'échange.");
   if (!somme(donne) && !somme(recoit)) throw new Refus(400, "Choisissez au moins une carte.");
   if (somme(donne) + somme(recoit) > MAX_ECHANGE) throw new Refus(400, `Un échange porte au plus sur ${MAX_ECHANGE} cartes.`);
   const [mes, ses] = [await libres(env, joueur), await libres(env, dest.id)];
   for (const [id, q] of Object.entries(donne)) if ((mes[id] || 0) < q) throw new Refus(409, "Vous n'avez pas assez d'exemplaires libres de l'une des cartes proposées.");
   for (const [id, q] of Object.entries(recoit)) if ((ses[id] || 0) < q) throw new Refus(409, `${dest.pseudo} n'a pas assez d'exemplaires libres de l'une des cartes demandées.`);
+  // Les voix de l'autre joueur ne sont pas vérifiées ici (ce serait dévoiler son solde) : seulement à l'acceptation
+  if (voixDonne && (await env.DB.prepare("SELECT points FROM joueurs WHERE id = ?").bind(joueur).first()).points < voixDonne)
+    throw new Refus(409, "Vous n'avez pas assez de voix pour cette proposition.");
   const enCours = await env.DB.prepare("SELECT COUNT(*) AS n FROM echanges WHERE de = ? AND statut = 'proposee'").bind(joueur).first();
   if (enCours.n >= MAX_ECHANGES_EN_COURS) throw new Refus(429, `Vous avez déjà ${MAX_ECHANGES_EN_COURS} propositions en attente.`);
   const date = maintenant();
-  await env.DB.prepare("INSERT INTO echanges (de, vers, donne, recoit, statut, cree, maj) VALUES (?, ?, ?, ?, 'proposee', ?, ?)")
-    .bind(joueur, dest.id, JSON.stringify(donne), JSON.stringify(recoit), date, date).run();
+  await env.DB.prepare("INSERT INTO echanges (de, vers, donne, recoit, statut, cree, maj, voix_donne, voix_recoit) VALUES (?, ?, ?, ?, 'proposee', ?, ?, ?, ?)")
+    .bind(joueur, dest.id, JSON.stringify(donne), JSON.stringify(recoit), date, date, voixDonne, voixRecoit).run();
   await notifier(env, dest.id, `${await pseudoDe(env, joueur)} vous propose un échange à la buvette.`);
   return json({ok: true}, 201);
 }
 async function listeEchanges(env, joueur) {
-  const r = await env.DB.prepare(`SELECT e.id, e.de, e.vers, e.donne, e.recoit, e.statut, e.cree, e.maj, a.pseudo AS pseudo_de, b.pseudo AS pseudo_vers
+  const r = await env.DB.prepare(`SELECT e.id, e.de, e.vers, e.donne, e.recoit, e.voix_donne, e.voix_recoit, e.statut, e.cree, e.maj, a.pseudo AS pseudo_de, b.pseudo AS pseudo_vers
     FROM echanges e JOIN joueurs a ON a.id = e.de JOIN joueurs b ON b.id = e.vers
     WHERE (e.de = ?1 OR e.vers = ?1) ORDER BY (e.statut = 'proposee') DESC, e.maj DESC LIMIT 60`).bind(joueur).all();
   return json({echanges: r.results.map(e => ({id: e.id, recu: e.vers === joueur, avec: e.vers === joueur ? e.pseudo_de : e.pseudo_vers,
-    donne: JSON.parse(e.donne), recoit: JSON.parse(e.recoit), statut: e.statut, cree: e.cree, maj: e.maj}))});
+    donne: JSON.parse(e.donne), recoit: JSON.parse(e.recoit), voixDonne: e.voix_donne, voixRecoit: e.voix_recoit, statut: e.statut, cree: e.cree, maj: e.maj}))});
 }
 async function cloreEchange(env, joueur, id, action) {
   const e = await env.DB.prepare("SELECT * FROM echanges WHERE id = ?").bind(id).first();
@@ -479,10 +502,15 @@ async function cloreEchange(env, joueur, id, action) {
     if (manque) throw new Refus(409, "L'échange n'est plus possible : l'un de vous n'a plus assez d'exemplaires libres.");
     for (const [carte, q] of Object.entries(donne)) requetes.push(retraitCartes(env, e.de, carte, q), ajoutCartes(env, e.vers, carte, q));
     for (const [carte, q] of Object.entries(recoit)) requetes.push(retraitCartes(env, e.vers, carte, q), ajoutCartes(env, e.de, carte, q));
+    // Voix : retirées sous la contrainte points >= 0, qui annule tout l'échange si l'un n'en a plus assez
+    const virement = (de, vers, v) => [env.DB.prepare("UPDATE joueurs SET points = points - ? WHERE id = ?").bind(v, de),
+      env.DB.prepare("UPDATE joueurs SET points = points + ? WHERE id = ?").bind(v, vers)];
+    if (e.voix_donne) requetes.push(...virement(e.de, e.vers, e.voix_donne));
+    if (e.voix_recoit) requetes.push(...virement(e.vers, e.de, e.voix_recoit));
     requetes.push(noterJournal(env, e.de, "echange", {id, avec: e.vers}), noterJournal(env, e.vers, "echange", {id, avec: e.de}));
   }
   await lot(env, requetes, action === "accepter"
-    ? "L'échange n'est plus possible : l'un de vous n'a plus assez d'exemplaires libres." : "Cet échange n'est plus en attente.");
+    ? "L'échange n'est plus possible : l'un de vous n'a plus assez d'exemplaires libres ou de voix." : "Cet échange n'est plus en attente.");
   return json({ok: true});
 }
 async function marche(env, url) {
@@ -493,15 +521,19 @@ async function marche(env, url) {
     WHERE a.statut = 'ouverte' ${filtre} ORDER BY ${tri} LIMIT 200`).bind(...ids).all();
   return json({annonces: r.results});
 }
-// Annonces du joueur (vendeur) et ses achats (historique de la buvette)
+// Annonces du joueur (vendeur), ses achats (historique de la buvette), les offres reçues sur ses annonces ouvertes et
+// celles qu'il a faites
 async function mesAnnonces(env, joueur) {
-  const [r, achats] = await env.DB.batch([
+  const [r, achats, recues, faites] = await env.DB.batch([
     env.DB.prepare(`SELECT a.id, a.carte, a.prix, a.statut, a.cree, a.maj, j.pseudo AS acheteur FROM annonces a
       LEFT JOIN joueurs j ON j.id = a.acheteur WHERE a.vendeur = ? ORDER BY (a.statut = 'ouverte') DESC, a.id DESC LIMIT 100`).bind(joueur),
     env.DB.prepare(`SELECT a.id, a.carte, a.prix, a.maj, j.pseudo AS vendeur FROM annonces a JOIN joueurs j ON j.id = a.vendeur
       WHERE a.acheteur = ? ORDER BY a.id DESC LIMIT 100`).bind(joueur),
+    env.DB.prepare(`SELECT o.id, o.annonce, o.prix, o.cree, j.pseudo AS acheteur FROM annonces a JOIN offres o ON o.annonce = a.id
+      JOIN joueurs j ON j.id = o.acheteur WHERE a.vendeur = ? AND a.statut = 'ouverte' AND o.statut = 'proposee' ORDER BY o.id DESC LIMIT 200`).bind(joueur),
+    env.DB.prepare(`SELECT id, annonce, prix, statut, maj FROM offres WHERE acheteur = ? AND statut = 'proposee' ORDER BY id DESC LIMIT ${MAX_OFFRES_EN_COURS}`).bind(joueur),
   ]);
-  return json({annonces: r.results, achats: achats.results});
+  return json({annonces: r.results, achats: achats.results, offres: recues.results, mesOffres: faites.results});
 }
 async function vendre(env, requete, joueur, cat) {
   const c = await lireCorps(requete);
@@ -517,13 +549,23 @@ async function vendre(env, requete, joueur, cat) {
     env.DB.prepare("UPDATE possessions SET reserve = reserve + 1 WHERE joueur = ? AND carte = ?").bind(joueur, carte),
     env.DB.prepare("INSERT INTO annonces (vendeur, carte, prix, statut, cree, maj, rarete) VALUES (?, ?, ?, 'ouverte', ?, ?, ?)").bind(joueur, carte, prix, date, date, cat.parId[carte].rarete),
   ], "Vous n'avez plus d'exemplaire libre de cette carte.");
+  // Joueurs qui guettent cette carte (alertes de vente) : avertis après la réponse
+  const guetteurs = (await env.DB.prepare("SELECT joueur, nom FROM alertes WHERE carte = ? AND joueur != ? LIMIT 200").bind(carte, joueur).all()).results;
+  const avis = Promise.all(guetteurs.map(g => notifier(env, g.joueur, `${g.nom || "Une carte que vous guettez"} est en vente au comptoir : ${prix.toLocaleString("fr-FR")} voix.`)
+    .catch(e => console.error("alerte", e))));
+  if (env.ctx) env.ctx.waitUntil(avis); else await avis;
   return json({ok: true}, 201);
 }
+// Offres en attente d'une annonce qui se clôt (achat, retrait, offre acceptée) : closes avec elle, dans le même lot
+const offresCaduques = (env, annonce, date, sauf = 0) => [
+  env.DB.prepare("INSERT INTO clotures (nature, id) SELECT 'offre', id FROM offres WHERE annonce = ? AND statut = 'proposee' AND id != ?").bind(annonce, sauf),
+  env.DB.prepare("UPDATE offres SET statut = 'caduque', maj = ? WHERE annonce = ? AND statut = 'proposee' AND id != ?").bind(date, annonce, sauf),
+];
 async function cloreAnnonce(env, joueur, id, action) {
   const a = await env.DB.prepare("SELECT * FROM annonces WHERE id = ?").bind(id).first();
   if (!a || a.statut !== "ouverte") throw new Refus(409, "Cette carte n'est plus au comptoir.");
   const date = maintenant();
-  const requetes = [env.DB.prepare("INSERT INTO clotures (nature, id) VALUES ('annonce', ?)").bind(id)];
+  const requetes = [env.DB.prepare("INSERT INTO clotures (nature, id) VALUES ('annonce', ?)").bind(id), ...offresCaduques(env, id, date)];
   if (action === "retirer") {
     if (a.vendeur !== joueur) throw new Refus(403, "Cette carte du comptoir n'est pas la vôtre.");
     requetes.push(env.DB.prepare("UPDATE annonces SET statut = 'retiree', maj = ? WHERE id = ?").bind(date, id),
@@ -542,6 +584,77 @@ async function cloreAnnonce(env, joueur, id, action) {
     await notifier(env, a.vendeur, `Une de vos cartes s'est vendue ${a.prix} voix au comptoir.`);
   }
   return json({ok: true});
+}
+// Contre-offre : moins que le prix demandé, sans retenue de voix (vérifiées à l'acceptation, sous la contrainte points >= 0)
+async function faireOffre(env, requete, joueur, id) {
+  const c = await lireCorps(requete);
+  const a = await env.DB.prepare("SELECT * FROM annonces WHERE id = ?").bind(id).first();
+  if (!a || a.statut !== "ouverte") throw new Refus(409, "Cette carte n'est plus au comptoir.");
+  if (a.vendeur === joueur) throw new Refus(400, "Vous ne pouvez pas faire d'offre sur votre propre carte.");
+  if (a.prix < 2) throw new Refus(400, "Cette carte est déjà au plus bas prix.");
+  const prix = entier(c.prix, 1, a.prix - 1);
+  if (!prix) throw new Refus(400, `Une offre va de 1 à ${(a.prix - 1).toLocaleString("fr-FR")} voix ; au prix demandé, achetez la carte.`);
+  const [moi, enCours] = await env.DB.batch([
+    env.DB.prepare("SELECT points FROM joueurs WHERE id = ?").bind(joueur),
+    env.DB.prepare("SELECT COUNT(*) AS n FROM offres WHERE acheteur = ? AND statut = 'proposee' AND annonce != ?").bind(joueur, id),
+  ]);
+  if (moi.results[0].points < prix) throw new Refus(409, "Vous n'avez pas assez de voix pour cette offre.");
+  if (enCours.results[0].n >= MAX_OFFRES_EN_COURS) throw new Refus(429, `Vous avez déjà ${MAX_OFFRES_EN_COURS} offres en attente.`);
+  const date = maintenant();
+  await lot(env, [
+    // La nouvelle offre remplace celle que l'acheteur avait déjà faite sur cette annonce
+    env.DB.prepare("INSERT INTO clotures (nature, id) SELECT 'offre', id FROM offres WHERE annonce = ? AND acheteur = ? AND statut = 'proposee'").bind(id, joueur),
+    env.DB.prepare("UPDATE offres SET statut = 'remplacee', maj = ? WHERE annonce = ? AND acheteur = ? AND statut = 'proposee'").bind(date, id, joueur),
+    env.DB.prepare("INSERT INTO offres (annonce, acheteur, prix, statut, cree, maj) VALUES (?, ?, ?, 'proposee', ?, ?)").bind(id, joueur, prix, date, date),
+  ], "Votre offre précédente vient d'être acceptée ou refusée.");
+  await notifier(env, a.vendeur, `${await pseudoDe(env, joueur)} vous offre ${prix.toLocaleString("fr-FR")} voix pour une de vos cartes au comptoir.`);
+  return json({ok: true}, 201);
+}
+// Accepter ou refuser (le vendeur), retirer (l'acheteur) ; acceptée, l'offre vaut achat au prix offert
+async function cloreOffre(env, joueur, id, action) {
+  const o = await env.DB.prepare(`SELECT o.*, a.vendeur, a.carte, a.statut AS etat_annonce FROM offres o JOIN annonces a ON a.id = o.annonce
+    WHERE o.id = ?`).bind(id).first();
+  if (!o || o.statut !== "proposee") throw new Refus(409, "Cette offre n'est plus en attente.");
+  if ((action === "annuler" ? o.acheteur : o.vendeur) !== joueur) throw new Refus(403, "Cette offre ne vous est pas adressée.");
+  const date = maintenant(), requetes = [env.DB.prepare("INSERT INTO clotures (nature, id) VALUES ('offre', ?)").bind(id)];
+  if (action !== "accepter") {
+    requetes.push(env.DB.prepare("UPDATE offres SET statut = ?, maj = ? WHERE id = ?").bind(action === "refuser" ? "refusee" : "annulee", date, id));
+    await lot(env, requetes, "Cette offre n'est plus en attente.");
+    if (action === "refuser") await notifier(env, o.acheteur, `${await pseudoDe(env, joueur)} a refusé votre offre de ${o.prix.toLocaleString("fr-FR")} voix au comptoir.`);
+    return json({ok: true});
+  }
+  if (o.etat_annonce !== "ouverte") throw new Refus(409, "Cette carte n'est plus au comptoir.");
+  requetes.push(
+    env.DB.prepare("INSERT INTO clotures (nature, id) VALUES ('annonce', ?)").bind(o.annonce),
+    ...offresCaduques(env, o.annonce, date, id),
+    env.DB.prepare("UPDATE offres SET statut = 'acceptee', maj = ? WHERE id = ?").bind(date, id),
+    // Prix de vente : celui de l'offre (historique, prix médians du comptoir)
+    env.DB.prepare("UPDATE annonces SET statut = 'vendue', acheteur = ?, prix = ?, maj = ? WHERE id = ?").bind(o.acheteur, o.prix, date, o.annonce),
+    env.DB.prepare("UPDATE joueurs SET points = points - ? WHERE id = ?").bind(o.prix, o.acheteur),
+    env.DB.prepare("UPDATE joueurs SET points = points + ? WHERE id = ?").bind(o.prix, o.vendeur),
+    env.DB.prepare("UPDATE possessions SET n = n - 1, reserve = reserve - 1 WHERE joueur = ? AND carte = ?").bind(o.vendeur, o.carte),
+    ajoutCartes(env, o.acheteur, o.carte, 1),
+    noterJournal(env, o.acheteur, "achat", {annonce: o.annonce, carte: o.carte, prix: o.prix, offre: id}),
+    noterJournal(env, o.vendeur, "vente", {annonce: o.annonce, carte: o.carte, prix: o.prix, offre: id}));
+  await lot(env, requetes, "Vente impossible : l'acheteur n'a plus assez de voix, ou la carte a déjà quitté le comptoir.");
+  await notifier(env, o.acheteur, `${await pseudoDe(env, joueur)} accepte votre offre de ${o.prix.toLocaleString("fr-FR")} voix : la carte est dans votre hémicycle.`);
+  return json({ok: true});
+}
+// Alertes de vente : posées ou retirées depuis la grande carte (MAX_ALERTES au plus)
+async function changerAlerte(env, requete, joueur, cat) {
+  const c = await lireCorps(requete), carte = String(c.carte || "");
+  if (!cat.parId[carte]) throw new Refus(400, "Carte inconnue.");
+  if (c.actif) {
+    const n = await env.DB.prepare("SELECT COUNT(*) AS n FROM alertes WHERE joueur = ? AND carte != ?").bind(joueur, carte).first();
+    if (n.n >= MAX_ALERTES) throw new Refus(409, `${MAX_ALERTES} alertes au plus : retirez-en une d'abord.`);
+    await env.DB.prepare("INSERT INTO alertes (joueur, carte, nom, date) VALUES (?, ?, ?, ?) ON CONFLICT (joueur, carte) DO UPDATE SET nom = excluded.nom")
+      .bind(joueur, carte, String(c.nom || "").replace(/\s+/g, " ").trim().slice(0, 80), maintenant()).run();
+  } else await env.DB.prepare("DELETE FROM alertes WHERE joueur = ? AND carte = ?").bind(joueur, carte).run();
+  return listeAlertes(env, joueur);
+}
+async function listeAlertes(env, joueur) {
+  const r = await env.DB.prepare("SELECT carte FROM alertes WHERE joueur = ? ORDER BY date").bind(joueur).all();
+  return json({alertes: r.results.map(x => x.carte)});
 }
 
 /* ---------- Notifications (Web Push) ---------- */
@@ -645,13 +758,14 @@ async function detenteurs(env, url) {
   return json({carte, joueurs: r.n}, 200, {"cache-control": "public, max-age=600"});
 }
 async function attente(env, joueur) {
-  const [e, d, a] = await env.DB.batch([
+  const [e, d, a, o] = await env.DB.batch([
     env.DB.prepare("SELECT COUNT(*) AS n FROM echanges WHERE vers = ? AND statut = 'proposee'").bind(joueur),
     env.DB.prepare("SELECT COUNT(*) AS n FROM amis WHERE vers = ? AND statut = 'demande'").bind(joueur),
     env.DB.prepare(`SELECT COUNT(*) AS n FROM duels WHERE statut IN ('propose', 'accepte')
       AND ((de = ?1 AND score_de IS NULL) OR (vers = ?1 AND score_vers IS NULL AND statut = 'accepte') OR (vers = ?1 AND statut = 'propose'))`).bind(joueur),
+    env.DB.prepare(`SELECT COUNT(*) AS n FROM annonces a JOIN offres o ON o.annonce = a.id WHERE a.vendeur = ? AND a.statut = 'ouverte' AND o.statut = 'proposee'`).bind(joueur),
   ]);
-  return json({echanges: e.results[0].n, amis: d.results[0].n, duels: a.results[0].n});
+  return json({echanges: e.results[0].n, amis: d.results[0].n, duels: a.results[0].n, offres: o.results[0].n});
 }
 const MAX_VITRINE = 6;
 async function changerVitrine(env, requete, joueur) {
@@ -819,6 +933,10 @@ async function supprimerCompte(env, requete, joueur) {
     env.DB.prepare("UPDATE joueurs SET points = points + ?, offerts = offerts + ? WHERE id = ?").bind(d.mise_voix, d.mise_paquets, d.de === joueur ? d.vers : d.de));
   await env.DB.batch([
     ...rendus,
+    // Offres sur ses annonces ouvertes, closes avec elles ; ses propres offres, effacées
+    env.DB.prepare("UPDATE offres SET statut = 'caduque', maj = ? WHERE statut = 'proposee' AND annonce IN (SELECT id FROM annonces WHERE vendeur = ? AND statut = 'ouverte')").bind(date, joueur),
+    env.DB.prepare("DELETE FROM offres WHERE acheteur = ?").bind(joueur),
+    env.DB.prepare("DELETE FROM alertes WHERE joueur = ?").bind(joueur),
     env.DB.prepare("UPDATE annonces SET statut = 'retiree', maj = ? WHERE vendeur = ? AND statut = 'ouverte'").bind(date, joueur),
     env.DB.prepare("UPDATE echanges SET statut = 'annulee', maj = ? WHERE (de = ?2 OR vers = ?2) AND statut = 'proposee'").bind(date, joueur),
     // Clôtures des duels effacés d'abord : leur numéro peut resservir à un nouveau duel (clé sans AUTOINCREMENT)
@@ -954,13 +1072,7 @@ async function cloreDuel(env, d) {
       ...(gagnant ? [credit(gagnant, 2)] : [credit(d.de, 1), credit(d.vers, 1)]),
     ]);
   } catch (e) { if (contrainte(e)) return null; throw e; }
-  const gain = [d.mise_voix ? d.mise_voix * 2 + " voix" : "", d.mise_paquets ? d.mise_paquets * 2 + " paquets" : ""].filter(Boolean).join(" et ");
-  for (const [moi, lui, monScore, sonScore] of [[d.de, d.vers, sd, sv], [d.vers, d.de, sv, sd]]) {
-    const texte = gagnant === 0 ? `Égalité ${monScore} à ${sonScore} contre ${await pseudoDe(env, lui)} : votre mise vous est rendue.`
-      : gagnant === moi ? `Duel gagné ${monScore} à ${sonScore} contre ${await pseudoDe(env, lui)}${gain ? ` : vous remportez ${gain}` : ""}.`
-      : `Duel perdu ${monScore} à ${sonScore} contre ${await pseudoDe(env, lui)}.`;
-    await notifier(env, moi, texte);
-  }
+  // Pas de notification de résultat (retirée à la demande de l'utilisateur, octobre 2026) : le résultat se lit dans la Séance
   return {score: [sd, sv], gagnant};
 }
 async function terminerSiComplet(env, id) {
@@ -1072,6 +1184,8 @@ async function api(requete, env, url) {
     return avecEtat(await appliquer(env, joueur, e => Regles.dissoudre(e, cat, String(c.carte || ""), c.tout === true)));
   }
   if (methode === "POST" && chemin === "/api/favori") return changerFavori(env, requete, joueur, await catalogueDuJeu());
+  if (methode === "GET" && chemin === "/api/alertes") return listeAlertes(env, joueur);
+  if (methode === "POST" && chemin === "/api/alertes") return changerAlerte(env, requete, joueur, await catalogueDuJeu());
   if (methode === "GET" && chemin === "/api/amis") return listeAmis(env, joueur);
   if (methode === "GET" && chemin === "/api/amis/carte") return amisAvecCarte(env, url, joueur);
   if (methode === "GET" && chemin === "/api/prix") return prixComptoir(env, url, await catalogueDuJeu());
@@ -1096,6 +1210,8 @@ async function api(requete, env, url) {
   if (methode === "GET" && chemin === "/api/annonces") return mesAnnonces(env, joueur);
   if (methode === "POST" && chemin === "/api/annonces") return vendre(env, requete, joueur, await catalogueDuJeu());
   if (methode === "POST" && (m = chemin.match(/^\/api\/annonces\/(\d+)\/(acheter|retirer)$/))) return cloreAnnonce(env, joueur, Number(m[1]), m[2]);
+  if (methode === "POST" && (m = chemin.match(/^\/api\/annonces\/(\d+)\/offre$/))) return faireOffre(env, requete, joueur, Number(m[1]));
+  if (methode === "POST" && (m = chemin.match(/^\/api\/offres\/(\d+)\/(accepter|refuser|annuler)$/))) return cloreOffre(env, joueur, Number(m[1]), m[2]);
   throw new Refus(404, "Adresse inconnue.");
 }
 

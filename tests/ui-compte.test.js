@@ -119,6 +119,33 @@ const sx = Date.now().toString(36).slice(-4);
   await Bp.click('nav [data-vue="buvette"]'); await Bp.click('.onglets [data-sous="historique"]');
   await Bp.waitForFunction(() => /Achetée à Anne/i.test(document.getElementById("historique").textContent));
   await Bp.screenshot({path: T + "/historique-tel.png", fullPage: true});
+  // Contre-offre : Anne pose une carte à 10 voix ; Bob offre 6, Anne l'accepte sous sa carte (pastille de la buvette)
+  await A.click('.onglets [data-sous="comptoir"]');
+  await A.click('[data-choisir-vente]'); await A.waitForSelector("#choix-carte[open] [data-choisir]");
+  await A.click("#choix-carte [data-choisir]"); await A.waitForSelector("#zone-vente .vente .carte");
+  await A.fill('#zone-vente [name=prix]', "10"); await A.click('#zone-vente button[type=submit]');
+  await A.waitForFunction(() => document.querySelectorAll("#mes-annonces .etal").length === 1);
+  await Bp.reload(); await Bp.click('nav [data-vue="buvette"]'); await Bp.click('.onglets [data-sous="comptoir"]');
+  await Bp.waitForSelector("[data-offre]"); await Bp.click("[data-offre]");
+  await Bp.fill("[data-form-offre] [name=prix]", "6"); await Bp.click("[data-form-offre] button[type=submit]");
+  await Bp.waitForSelector(".offre-faite");
+  await Bp.screenshot({path: T + "/offre-tel.png", fullPage: true});
+  await A.reload(); await A.waitForFunction(() => document.getElementById("pastille-buvette").textContent === "1");
+  await A.click('nav [data-vue="buvette"]'); await A.click('.onglets [data-sous="comptoir"]');
+  await A.waitForSelector('.offre-recue [data-action$=":accepter"]');
+  await A.screenshot({path: T + "/offre-recue.png", fullPage: true});
+  await A.click('.offre-recue [data-action$=":accepter"]');
+  await A.waitForFunction(() => etat.points === 18 && !document.querySelector(".offre-recue"));
+  // Voix d'un échange affichées avec les cartes ; alerte de vente posée depuis la grande carte
+  assert.match(await A.evaluate(() => lotVoix({}, 5) + "|" + lotVoix({[cartes[0].id]: 1}, 3)), /^<span class="voix-lot">5 voix<\/span>\|.*\+ 3 voix/);
+  await Bp.evaluate(() => apercu(cartes[0].id)); await Bp.click("[data-alerte]");
+  await Bp.waitForSelector('[data-alerte][aria-pressed="true"]'); await Bp.click("#fermer-apercu");
+  assert.strictEqual(await Bp.evaluate(() => alertes.size), 1);
+  // Voix remises comme avant la contre-offre pour la suite du parcours (Anne 12, Bob 18)
+  require("child_process").execSync(`cd ${require("path").join(__dirname, "..")} && ${process.env.WR} d1 execute hemicycle --local --persist-to ${process.env.ETAT} --command "UPDATE joueurs SET points = CASE pseudo WHEN 'Anne${sx}' THEN 12 ELSE 18 END WHERE pseudo IN ('Anne${sx}', 'Bob${sx}')"`, {stdio: "ignore"});
+  await A.reload(); await A.waitForFunction(() => compte && etat.points === 12);
+  await Bp.reload(); await Bp.waitForFunction(() => compte && etat.points === 18);
+  await A.click('nav [data-vue="buvette"]'); await A.click('.onglets [data-sous="historique"]');
   // Aperçu d'une carte depuis l'historique
   await A.click('#historique .mini-ami'); await A.waitForSelector("#apercu[open] .carte");
   await A.click("#fermer-apercu");

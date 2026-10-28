@@ -170,8 +170,8 @@ le bouton « Voir mes doubles » pose le même filtre (`doubles`) ; l'échange d
 (Séance et encart des voix seulement, demande de l'utilisateur) ; toucher une carte l'ouvre en grand (`apercu`) avec ses exemplaires, la dissolution de ses doubles (`dissoudre`,
 `POST /api/dissoudre`) ou, sans double, de la carte elle-même avec sa valeur en voix (`tout`, confirmation demandée ;
 retirée de la vitrine), la vente au comptoir et « Mettre en vitrine » ou « Retirer de ma vitrine » (vitrine pleine : choix de la carte à
-remplacer, qui cède sa case, demande de l'utilisateur) ; tri par défaut par rareté puis par score. Reflets des mythiques et
-légendaires espacés (11 et 15 s), dégradé sans répétition pour que la carte reste nette entre deux passages.
+remplacer, qui cède sa case, demande de l'utilisateur) ; tri par défaut par rareté puis par score. Reflets de l'unique, des mythiques et
+légendaires toutes les 6, 8 et 11 s (rapprochés à la demande de l'utilisateur, octobre 2026, après 8, 11 et 15 s), dégradé sans répétition pour que la carte reste nette entre deux passages.
 Première ouverture (`demarrerAccueil`, étape gardée dans `hemicycle-accueil`) : fenêtre d'accueil (créer un compte,
 recommandé ; ouvrir ses cartes dans le navigateur ; « J'ai déjà un compte ») ; après le compte, tutoriel
 d'installation selon l'appareil (iPhone : bouton Partager puis « Sur l'écran d'accueil » ; Android et ordinateur :
@@ -223,6 +223,21 @@ serveur), filtre « Mes favoris » dans l'Hémicycle. Pas de zoom au double touc
   marqués réclamés ; voix reprises aussi (demande de l'utilisateur, octobre 2026), 1 000 au plus (`MAX_VOIX_REPRISES`) ;
   paquets offerts non repris. Une carte en vente est « réservée », verrouillée.
 - Monnaie du marché : les voix (champ `points`), gagnées en dissolvant des doubles. Pas d'argent réel.
+- Voix dans les échanges (demande de l'utilisateur, octobre 2026) : colonnes `voix_donne` et `voix_recoit` d'`echanges`,
+  d'un seul côté, une carte au moins dans l'échange ; vérifiées à la proposition pour celui qui donne (pas pour l'autre,
+  ce serait dévoiler son solde), virées à l'acceptation sous la contrainte `points >= 0`, qui annule tout l'échange.
+- Contre-offres au comptoir (demande de l'utilisateur, octobre 2026) : table `offres` (`AUTOINCREMENT`, clôture `offre`),
+  prix de 1 au prix demandé moins un, une offre en attente par acheteur et par annonce (index unique partiel, la nouvelle
+  remplace l'ancienne : `remplacee`), 20 au plus par acheteur, voix non retenues (vérifiées à l'acceptation) ; acceptée
+  (`cloreOffre`), elle vaut achat au prix offert (`prix` de l'annonce réécrit, pour l'historique et les prix médians) ;
+  achat, retrait ou offre acceptée closent les autres (`offresCaduques`, statut `caduque`). Routes
+  `POST /api/annonces/:id/offre`, `POST /api/offres/:id/(accepter|refuser|annuler)` ; offres reçues et faites dans
+  `GET /api/annonces` (`offres`, `mesOffres`), compte `offres` de `/api/attente` ajouté à la pastille de la buvette.
+  Notifications : offre reçue (vendeur), offre acceptée ou refusée (acheteur).
+- Alertes de vente (demande de l'utilisateur, octobre 2026) : bouton « M'avertir quand elle est en vente » de la grande
+  carte (Hémicycle et « Toutes les cartes »), table `alertes` (50 par joueur), `GET` et `POST /api/alertes` ; à la mise en
+  vente, notification à chaque joueur qui guette la carte (200 au plus, après la réponse). Le nom de la carte, envoyé par
+  le navigateur, ne sert qu'au texte de la notification de ce joueur (le catalogue du serveur n'a pas les noms).
 - Lignes lues (limite gratuite de D1 : 5 millions par jour) : `appliquer` garde l'état écrit (`env.etatEcrit`), la
   réponse ne relit donc pas la collection (mesure, joueur de 300 cartes : 745 lignes par paquet avant, 372 après) ;
   pastilles d'attente relues seulement quand la page est visible. Mesurer : `wrangler dev --var MESURE_LECTURES:1`,
@@ -247,7 +262,8 @@ serveur), filtre « Mes favoris » dans l'Hémicycle. Pas de zoom au double touc
 - Notifications (Web Push, RFC 8030 et 8292) : poussée sans contenu, signée VAPID (ES256, clés créées à la première
   demande et gardées dans `reglages`) ; le texte attend dans `notifications` et le service de travail le lit
   (`GET /api/notifications`, qui le supprime). Abonnements par appareil (`abonnements`, services de poussée connus
-  seulement), préférences « buvette » (échanges, amis, duels, ventes) et « réserve ». Déclencheur planifié horaire
+  seulement), préférences « buvette » (échanges, amis, défis de duel, ventes, offres, alertes de vente) et « réserve » ; plus de
+  notification de résultat de duel (retirée à la demande de l'utilisateur, octobre 2026 : le défi et son refus restent). Déclencheur planifié horaire
   (`triggers.crons` de `wrangler.jsonc`, `scheduled`) : réserve pleine, une fois par remplissage (`reserve_vue`),
   seulement si la moitié au moins de la réserve s'est remplie depuis le dernier paquet (`RESERVE_MIN_AVIS` ; un paquet
   ouvert d'une réserve pleine la remplissait en une heure, d'où une notification presque à chaque paquet) ; un
