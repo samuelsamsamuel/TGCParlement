@@ -258,6 +258,20 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
     compter(etat, "dissous", k);
     return {exemplaires: k, points};
   }
+  // Plusieurs cartes à la fois (sélection de l'hémicycle) : leurs doubles seuls si garder, sinon tous leurs exemplaires libres
+  const MAX_SELECTION = 200;
+  function dissoudreSelection(etat, cat, ids, garder = true) {
+    const r = {cartes: 0, exemplaires: 0, points: 0};
+    for (const id of [...new Set(ids)].slice(0, MAX_SELECTION)) {
+      const c = cat.parId[id], k = c ? (garder ? recyclables(etat, id) : disponibles(etat, id)) : 0;
+      if (!k) continue;
+      etat.possedees[id] -= k;
+      r.cartes += 1; r.exemplaires += k; r.points += k * VALEUR_RECYCLAGE[c.rarete];
+    }
+    // Une seule ligne de journal pour toute la sélection
+    if (r.exemplaires) { etat.points += r.points; noter(etat, "recyclage", {selection: r.cartes, exemplaires: r.exemplaires, points: r.points}); compter(etat, "dissous", r.exemplaires); }
+    return r;
+  }
   function echangerPoints(etat) {
     if (etat.points < PRIX_PAQUET) return false;
     etat.points -= PRIX_PAQUET; etat.offerts += 1;
@@ -664,6 +678,6 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
 
   return {VERSION_ETAT, basculerFavori, RECHARGE_MS, QUIZ_QUESTIONS, graineDe, questions, compacterQuiz, catalogueQuiz, recompenseQuiz, validerQuiz, RESERVE_MAX, CARTES_PAR_PAQUET, reserveCourante, ORDRE, POIDS, VALEUR_RECYCLAGE, PRIX_PAQUET, PALIERS,
     etatVide, migrer, jourDuJeu, normer, cartesDeJeu, catalogue, compacter, catalogueCompact, paquetsDisponibles, ouvrirPaquet,
-    disponibles, recyclables, doubles, recycler, dissoudre, echangerPoints, avancement, clesAtteintes, reclamer, recompensesEnAttente,
+    disponibles, recyclables, doubles, recycler, dissoudre, MAX_SELECTION, dissoudreSelection, echangerPoints, avancement, clesAtteintes, reclamer, recompensesEnAttente,
     SERIE, serieDuJour, reclamerSerie, choisirLot, objectifsDuJour, preparerJour, etatDuJour, reclamerJour};
 });

@@ -236,6 +236,17 @@ main{max-width:1120px;margin:0 auto;padding:1.5rem 1rem 4rem}
 .outils{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;margin-bottom:1.2rem}
 .outils input,.outils select{background:var(--velours-fonce);color:var(--marbre);border:1px solid rgba(201,162,74,.5);border-radius:3px;padding:.55rem .7rem;font:inherit}
 .outils input{flex:1;min-width:12rem}
+/* Sélection multiple de l'hémicycle : case cochée sur la carte, barre de dissolution en bas de l'écran */
+#grille.en-selection .carte{cursor:pointer}
+#grille.en-selection .carte::before{content:"";position:absolute;z-index:3;top:16%;right:6%;width:1.5rem;height:1.5rem;border-radius:50%;border:2px solid #fff;background:rgba(0,0,0,.35);box-shadow:0 1px 4px rgba(0,0,0,.5)}
+#grille.en-selection .carte.choisie::before{content:"✓";display:grid;place-items:center;color:var(--encre);font-weight:700;font-size:.95rem;background:var(--dorure);border-color:var(--dorure-pale)}
+#grille.en-selection .carte.choisie .recto{outline:3px solid var(--dorure);outline-offset:2px}
+#grille.en-selection .carte:not(.choisie){opacity:.75}
+.barre-selection{position:sticky;bottom:.6rem;z-index:15;display:flex;flex-wrap:wrap;gap:.5rem 1rem;align-items:center;justify-content:space-between;margin-top:1rem;padding:.7rem .9rem;border:1px solid rgba(201,162,74,.6);border-radius:10px;background:rgba(46,7,16,.97);box-shadow:0 10px 26px rgba(0,0,0,.5)}
+.barre-selection[hidden]{display:none}
+.barre-selection p{margin:0;display:flex;gap:.7rem;align-items:baseline;flex-wrap:wrap}
+.barre-selection .garder{display:flex;gap:.4rem;align-items:center;font-size:.88rem}
+@media (max-width:700px){.barre-selection{bottom:calc(4.6rem + env(safe-area-inset-bottom))}.barre-selection .bouton{width:100%}}
 .progression{display:flex;flex-wrap:wrap;gap:.3rem .4rem;align-items:center;margin:0 0 .9rem;padding:0;list-style:none;font-size:.76rem;color:var(--pierre)}
 .progression strong{font-weight:700;color:var(--dorure-pale)}
 .atelier.calme{border:0;background:none;padding:0;margin:0 0 .8rem;font-size:.8rem;color:var(--pierre)}
@@ -704,7 +715,7 @@ html.presentation{font-size:15px}
     <h3>Questions au Gouvernement</h3>
     <p>Sous les paquets de la séance, cinq questions par jour sur la Ve République, tirées des fiches officielles des cartes : un portrait à reconnaître, le titulaire actuel d'un poste, un département d'élection, une fonction et la personne qui l'a exercée. Chaque bonne réponse rapporte 2 voix, et un sans-faute 5 de plus. Avec un compte, on peut aussi défier un autre joueur, pour la gloire ou contre une mise de 10 à 100 voix ou de 1 à 3 paquets offerts, retenue dès le défi. L'adversaire relève le défi en mettant la même mise, ou le refuse et la vôtre vous revient. Les deux reçoivent les mêmes questions, et le serveur juge chaque réponse : le meilleur score emporte les deux mises, une égalité rend la sienne à chacun. Un défi laissé trois jours sans réponse est remboursé ; un duel relevé mais pas fini au bout de trois jours est clos avec les réponses données.</p>
     <h3>Hémicycle et favoris</h3>
-    <p>Dans l'hémicycle, une carte touchée s'ouvre en grand : on y voit ses exemplaires, on peut dissoudre ses doubles ou, avec un compte, la vendre au comptoir. L'étoile d'une carte la met dans vos favoris ; les pastilles du haut de l'hémicycle filtrent les favoris ou une rareté. L'onglet Plus montre toutes les cartes du jeu, celles qui manquent étant grisées.</p>
+    <p>Dans l'hémicycle, une carte touchée s'ouvre en grand : on y voit ses exemplaires, on peut dissoudre ses doubles ou, avec un compte, la vendre au comptoir. Le bouton « Sélectionner » permet de choisir plusieurs cartes et de les dissoudre d'un coup, en gardant ou non un exemplaire de chacune. L'étoile d'une carte la met dans vos favoris ; les pastilles du haut de l'hémicycle filtrent les favoris ou une rareté. L'onglet Plus montre toutes les cartes du jeu, celles qui manquent étant grisées.</p>
     <h3>Amis et vitrine</h3>
     <p>Avec un compte, on ajoute des amis par leur pseudo : une fois la demande acceptée, on voit leur vitrine, six cartes choisies dans leur collection, on leur propose un échange ou on les défie en un toucher.</p>
     <h3>Compte, échanges et comptoir</h3>
@@ -744,8 +755,10 @@ html.presentation{font-size:15px}
       <input id="recherche" type="search" aria-label="Rechercher dans mon hémicycle" placeholder="Rechercher un nom, un département, un ministère">
       <select id="filtre" aria-label="Filtrer"><option value="">Toutes les cartes</option><option value="favoris">★ Mes favoris</option><option value="doubles">Mes doubles</option></select>
       <select id="tri" aria-label="Trier"><option value="rarete">Par rareté</option><option value="score">Par score</option><option value="nom">Par nom</option><option value="annee">Par date</option></select>
+      <button class="bouton discret" id="selectionner" aria-pressed="false">Sélectionner</button>
     </div>
     <div class="grille" id="grille"></div>
+    <div class="barre-selection" id="barre-selection" hidden></div>
   </section>
   <section class="vue panneau" id="vue-compte" hidden><div id="compte-principal"></div><div id="compte-extras"></div></section>
   <section class="vue panneau" id="vue-buvette" hidden></section>
@@ -854,6 +867,10 @@ const actions = {
   async dissoudre(id, tout = false){
     if (!compte) { const r = Regles.dissoudre(etat, cat, id, tout); sauver(); return r; }
     return (await appel("dissoudre", {carte: id, tout})).resultat;
+  },
+  async dissoudreSelection(ids, garder){
+    if (!compte) { const r = Regles.dissoudreSelection(etat, cat, ids, garder); sauver(); return r; }
+    return (await appel("dissoudre", {cartes: ids, garder})).resultat;
   },
   async reclamer(id){
     if (!compte) { const n = Regles.reclamer(etat, cat, id); sauver(); return n; }
@@ -2537,16 +2554,74 @@ function majCollection(){
     .sort(tri==="nom" ? (a,b)=>a.nom.localeCompare(b.nom,"fr") : tri==="annee" ? (a,b)=>(a.debut||0)-(b.debut||0)
       : tri==="rarete" ? (a,b)=>ORDRE.indexOf(b.rarete)-ORDRE.indexOf(a.rarete) || b.score-a.score : (a,b)=>b.score-a.score);
   const grille = document.getElementById("grille");
-  grille.innerHTML = liste.length ? liste.slice(0,200).map(c => htmlCarte(c)).join("")
+  visibles = liste.slice(0, 200).map(c => c.id);
+  grille.classList.toggle("en-selection", !!selection);
+  grille.innerHTML = liste.length ? liste.slice(0,200).map(c => htmlCarte(c, {classe: selection?.has(c.id) ? "choisie" : ""})).join("")
     : `<p class="vide">${f === "favoris" && !q ? "Aucun favori pour l'instant : touchez l'étoile d'une carte pour l'ajouter." : f === "doubles" && !q ? "Aucune carte en double pour l'instant." : possedees.length ? "Aucune carte de votre collection ne correspond à cette recherche." : "Votre collection est vide. Ouvrez un paquet pour obtenir vos premières cartes."}</p>`;
   if (liste.length > 200) grille.insertAdjacentHTML("beforeend", `<p class="vide">${liste.length-200} autres cartes : affinez la recherche pour les afficher.</p>`);
+  majSelection();
 }
+// Sélection multiple : « Sélectionner » fait des cartes de l'hémicycle des cases à cocher ; la barre du bas dissout
+// d'un coup les doubles des cartes choisies, ou les cartes elles-mêmes si « Garder un exemplaire » est décoché
+let selection = null, visibles = [], garderUn = true;
+function voixSelection(){
+  let exemplaires = 0, voix = 0;
+  for (const id of selection || []) {
+    const k = garderUn ? Regles.recyclables(etat, id) : Regles.disponibles(etat, id);
+    exemplaires += k; voix += k * VALEUR_RECYCLAGE[cat.parId[id].rarete];
+  }
+  return {exemplaires, voix};
+}
+function majSelection(){
+  const barre = document.getElementById("barre-selection"), b = document.getElementById("selectionner");
+  if (!barre) return;
+  b.setAttribute("aria-pressed", !!selection); b.textContent = selection ? "Terminer" : "Sélectionner";
+  barre.hidden = !selection;
+  if (!selection) return;
+  for (const id of [...selection]) if (!etat.possedees[id]) selection.delete(id);
+  const {exemplaires, voix} = voixSelection(), tous = visibles.length && visibles.every(id => selection.has(id));
+  barre.innerHTML = `<p><b>${pluriel(selection.size, "carte choisie", "cartes choisies")}</b>
+      <button class="lien-carte" data-tout-choisir>${tous ? "Tout désélectionner" : "Tout sélectionner"}</button></p>
+    <label class="garder"><input type="checkbox" id="garder-un" ${garderUn ? "checked" : ""}> Garder un exemplaire de chaque</label>
+    <button class="bouton" id="dissoudre-selection" ${exemplaires ? "" : "disabled"}>${exemplaires
+      ? `Dissoudre ${pluriel(exemplaires, "exemplaire")} : +${pluriel(voix, "voix", "voix")}` : selection.size ? "Rien à dissoudre" : "Touchez des cartes"}</button>`;
+}
+function basculerSelection(actif){
+  selection = actif ? new Set() : null;
+  majCollection();
+}
+document.getElementById("selectionner").addEventListener("click", () => basculerSelection(!selection));
+document.getElementById("barre-selection").addEventListener("change", e => { if (e.target.id === "garder-un") { garderUn = e.target.checked; majSelection(); } });
+document.getElementById("barre-selection").addEventListener("click", e => {
+  if (e.target.closest("[data-tout-choisir]")) {
+    const tous = visibles.every(id => selection.has(id));
+    for (const id of visibles) tous ? selection.delete(id) : selection.add(id);
+    majCollection(); return;
+  }
+  const b = e.target.closest("#dissoudre-selection");
+  if (!b) return;
+  const {exemplaires, voix} = voixSelection(), ids = [...selection];
+  if (!confirm(garderUn ? `Dissoudre ${pluriel(exemplaires, "double")} de ${pluriel(ids.length, "carte")} contre ${pluriel(voix, "voix", "voix")} ? Un exemplaire de chaque est gardé.`
+    : `Dissoudre ${pluriel(exemplaires, "exemplaire")} contre ${pluriel(voix, "voix", "voix")} ? Les cartes choisies quitteront votre hémicycle, sauf celles qui sont au comptoir.`)) return;
+  occupe(b, async () => {
+    const r = await actions.dissoudreSelection(ids, garderUn);
+    // Cartes sorties de la collection : retirées de la vitrine
+    if (compte && vitrineCompte().some(id => !etat.possedees[id])) await exposerVitrine(vitrineCompte().filter(id => etat.possedees[id])).catch(() => {});
+    selection = null; majTout();
+    signaler(`${pluriel(r.exemplaires, "exemplaire")} dissous : +${pluriel(r.points, "voix", "voix")}.`);
+  });
+});
 // Toucher une carte de l'hémicycle ou du catalogue l'ouvre en grand ; dans le récapitulatif d'un paquet, la
 // retourne (recto / verso). Les liens et l'étoile restent cliquables.
 document.addEventListener("click", e => {
   if (e.target.closest("a, [data-favori]")) return;
   const el = e.target.closest(".grille .carte");
   if (!el) return;
+  if (selection && el.closest("#grille")) {
+    const id = el.dataset.id;
+    selection.has(id) ? selection.delete(id) : selection.add(id);
+    el.classList.toggle("choisie", selection.has(id)); majSelection(); return;
+  }
   if (el.closest("#grille, #cat-grille")) { apercu(el.dataset.id); return; }
   el.classList.remove("statique"); el.classList.toggle("envers");
 });

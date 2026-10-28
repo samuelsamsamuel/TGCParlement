@@ -141,6 +141,18 @@ assert.strictEqual(quizEtat.points, 36);
   assert.strictEqual(e3.possedees[c.id], 1);
   assert.deepStrictEqual(R.dissoudre(e3, cat, c.id), {exemplaires: 0, points: 0});
 }
+// Sélection de l'hémicycle : doubles seuls en gardant un exemplaire ; sinon tout ce qui est libre, verrous respectés
+{
+  const e4 = R.etatVide(), [a, b] = cat.parRarete.commune, r = cat.parRarete.rare[1];
+  e4.possedees = {[a.id]: 3, [b.id]: 1, [r.id]: 2}; e4.verrous = {[r.id]: 1};
+  // La rare a un exemplaire au comptoir : son double libre se dissout, l'exemplaire réservé reste
+  assert.deepStrictEqual(R.dissoudreSelection(e4, cat, [a.id, b.id, r.id, a.id, "inconnue"], true), {cartes: 2, exemplaires: 3, points: 2 + R.VALEUR_RECYCLAGE.rare});
+  assert.deepStrictEqual(e4.possedees, {[a.id]: 1, [b.id]: 1, [r.id]: 1});
+  assert.deepStrictEqual(R.dissoudreSelection(e4, cat, [a.id, b.id, r.id], false), {cartes: 2, exemplaires: 2, points: 2});
+  assert.deepStrictEqual(e4.possedees, {[a.id]: 0, [b.id]: 0, [r.id]: 1}, "l'exemplaire au comptoir reste");
+  assert.strictEqual(e4.points, 4 + R.VALEUR_RECYCLAGE.rare);
+  assert.strictEqual(e4.journal.length, 2, "une ligne de journal par sélection");
+}
 // Duels jugés par le serveur : ses données réduites (compacterQuiz, relu par catalogueQuiz) donnent les mêmes questions
 {
   const q = R.catalogueQuiz(JSON.parse(JSON.stringify(R.compacterQuiz(cat))));
