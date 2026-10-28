@@ -296,7 +296,9 @@ const preuve = c => require("crypto").createHash("sha256").update(c).digest("hex
   assert.deepStrictEqual((await Bc("alertes")).d.alertes, [carteO]);
   // Le faux abonnement est effacé à la première poussée (FCM répond 410) : réabonné avant chaque message attendu ;
   // les avis partent après la réponse, d'où quelques essais
-  const abonnerBob = () => Bc("notifications/abonner", {abonnement: {endpoint: "https://fcm.googleapis.com/fcm/send/essai" + suffixe}, reserve: false});
+  // Adresse neuve à chaque fois : la réponse tardive d'une poussée précédente n'efface que l'ancienne
+  let abonnements = 0;
+  const abonnerBob = () => Bc("notifications/abonner", {abonnement: {endpoint: "https://fcm.googleapis.com/fcm/send/essai" + suffixe + "-" + (++abonnements)}, reserve: false});
   const avisBob = async motif => {
     let textes = "";
     for (let k = 0; k < 20 && !motif.test(textes); k++) { textes += (await Bc("notifications")).d.notifications.map(n => n.texte).join(); if (!motif.test(textes)) await new Promise(f => setTimeout(f, 250)); }
