@@ -136,7 +136,8 @@ const T = process.argv[2] || require("os").tmpdir();
   const voixSerie = await page.evaluate(() => etat.points);
   await page.click("#recevoir-lot"); await page.waitForFunction(v => etat.points === v + 10, voixSerie);
   assert.ok(!(await page.isVisible("#recevoir-lot"))); assert.match(await page.textContent("#journee"), /Lot du jour reçu/);
-  assert.strictEqual(await page.locator("#journee .objectif").count(), 3);
+  assert.strictEqual(await page.locator("#journee .cases-objectifs li").count(), 3);
+  await page.screenshot({path: T + "/journee.png"});
   // Lot à choisir : la carte touchée est montrée en grand et doit être confirmée ; « Revenir » rouvre le choix
   const proposees = await page.evaluate(() => {
     const ids = cartes.filter(c => !etat.possedees[c.id] && c.rarete === "commune").slice(0, 3).map(c => c.id);

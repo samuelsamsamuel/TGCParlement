@@ -303,8 +303,12 @@ footer{max-width:1120px;margin:0 auto;padding:0 1rem 3rem;font-size:.85rem;color
 .cases-serie li.faite{background:rgba(201,162,74,.12)}
 .cases-serie li.faite b{color:var(--dorure)}
 .cases-serie li.courante{border-color:var(--dorure);box-shadow:0 0 0 1px var(--dorure) inset;color:var(--marbre)}
-.titre-jour{margin:.2rem 0 .5rem}
-@media (max-width:480px){.cases-serie{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.cases-objectifs{grid-template-columns:repeat(3,minmax(0,1fr))}
+.cases-objectifs li{min-height:6.2rem;font-size:.78rem;padding:.5rem .35rem;justify-content:flex-start}
+.cases-objectifs li span{flex:1;display:flex;align-items:center;color:var(--marbre)}
+.cases-objectifs li i{font-style:normal;color:var(--pierre)}
+.cases-objectifs .bouton{padding:.3rem .55rem;font-size:.78rem;width:100%}
+@media (max-width:480px){.cases-serie:not(.cases-objectifs){grid-template-columns:repeat(4,minmax(0,1fr))}}
 .liste-objectifs{list-style:none;margin:0;padding:0;display:grid;gap:.6rem;grid-template-columns:repeat(auto-fill,minmax(min(100%,330px),1fr))}
 .objectif{border:1px solid rgba(201,162,74,.3);border-radius:6px;padding:.75rem .9rem;background:rgba(46,7,16,.6);display:flex;flex-direction:column;gap:.35rem}
 .objectif.pret{border-color:var(--dorure);box-shadow:0 0 0 1px var(--dorure) inset}
@@ -1211,12 +1215,14 @@ function majJournee(){
   const geste = j.lot ? `<button class="bouton" id="choisir-lot">Choisir ma carte (${j.lot.cartes.length} proposées)</button>`
     : s.disponible ? `<button class="bouton" id="recevoir-lot">Recevoir : ${texteLot(s.lot)}</button>`
     : `<span class="note">Lot du jour reçu. Revenez demain pour le suivant.</span>`;
-  const ligne = o => `<li class="objectif${o.fait && !o.recu ? " pret" : ""}${o.recu ? " recu" : ""}"><div class="tete-obj">
-      <span class="marque-obj" aria-hidden="true">${o.recu ? "✓" : o.fait ? "★" : ""}</span><h3>${echapper(o.titre)}</h3>
-      ${o.recu ? `<span class="gain-obj">reçu</span>` : o.fait ? `<button class="bouton" data-objectif-jour="${o.cle}">+ ${gainTexte(o.gain)}</button>`
-        : `<span class="gain-obj">${o.cible > 1 ? `${o.avance}/${o.cible} · ` : ""}${gainTexte(o.gain)}</span>`}</div></li>`;
+  // Objectifs du jour dans le même cadre que la série : une case par objectif (reçu, à réclamer ou en cours)
+  const caseObj = o => `<li class="${o.recu ? "faite" : o.fait ? "courante" : ""}"><b>${o.recu ? "✓ Reçu" : o.fait ? "★ Atteint" : o.cible > 1 ? `${o.avance}/${o.cible}` : "À faire"}</b>
+      <span>${echapper(o.titre)}</span>
+      ${o.recu ? "" : o.fait ? `<button class="bouton" data-objectif-jour="${o.cle}">+ ${gainTexte(o.gain)}</button>` : `<i>${gainTexte(o.gain)}</i>`}</li>`;
+  const faits = j.objectifs.filter(o => o.recu).length;
   zone.innerHTML = `<div class="serie"><div class="tete-serie"><h2>Série de connexion</h2>${geste}</div><ol class="cases-serie">${cases}</ol></div>
-    <h2 class="titre-jour">Objectifs du jour</h2><ul class="liste-objectifs petits">${j.objectifs.map(ligne).join("")}</ul>`;
+    <div class="serie"><div class="tete-serie"><h2>Objectifs du jour</h2><span class="note">${faits}/${j.objectifs.length} reçus</span></div>
+      <ul class="cases-serie cases-objectifs">${j.objectifs.map(caseObj).join("")}</ul></div>`;
 }
 function confirmerLot(id, revenir){
   const d = document.getElementById("confirmer-lot");

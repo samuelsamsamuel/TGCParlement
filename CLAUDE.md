@@ -117,7 +117,8 @@ de chaque année depuis 1943, anciens noms compris ; écrit `site/departements.j
   mêmes pour tous, tirés de la date : deux tâches de `TACHES` à 10 voix, comptées par les opérations des règles,
   `compter`, et une carte recherchée à 1 paquet : une carte de plus dans un thème (époque, Sénat, Gouvernement, femmes,
   rare ou mieux) que le compte noté au premier passage du jour, `preparerJour`, appelé à l'ouverture et par
-  `ouvrirPaquet`). État `quotidien` (colonne `quotidien` de `joueurs`, écrite par `appliquer`), routes `POST /api/jour`,
+  `ouvrirPaquet`) ; présentés dans le même cadre que la série, une case par objectif (`cases-objectifs`, demande de
+  l'utilisateur). État `quotidien` (colonne `quotidien` de `joueurs`, écrite par `appliquer`), routes `POST /api/jour`,
   `/api/serie`, `/api/lot`, `/api/objectif-du-jour`. Le catalogue du serveur porte époque, chambres et sexe pour les thèmes.
   Pastille de l'ordre du jour : objectifs ordinaires plus lot et objectifs du jour à recevoir (`aReclamerDuJour`).
 - Économie : Recyclage d'un exemplaire en trop : commune 1,
