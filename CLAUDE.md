@@ -111,8 +111,9 @@ de chaque année depuis 1943, anciens noms compris ; écrit `site/departements.j
 - Journée (demande de l'utilisateur, octobre 2026), en tête de l'ordre du jour (`majJournee`) : série de connexion « Choix »
   (`SERIE`, `reclamerSerie`, `choisirLot` : 10 voix, 1 commune parmi 3, 1 paquet, 25 voix, 1 parmi 5 peu communes ou mieux,
   2 paquets, 1 parmi 5 dont une épique ; cartes proposées jamais possédées ; un jour manqué redescend d'un palier, le
-  lendemain du 7e on recommence ; lot à choisir en attente bloque le suivant ; la carte touchée parmi les propositions
-  s'affiche en grand dans la fenêtre `confirmer-lot`, « Confirmer mon choix » ou « Revenir aux cartes proposées », demande de
+  lendemain du 7e on recommence ; lot à choisir en attente bloque le suivant ; cartes proposées en grand dans un carrousel
+  sans recherche (`carrouselLot`, fenêtre `choix-lot` : glisser, flèches sur ordinateur, points), « Garder cette carte » ouvre
+  la fenêtre `confirmer-lot`, « Confirmer mon choix » ou « Revenir aux cartes proposées », demande de
   l'utilisateur) ; objectifs du jour (`objectifsDuJour`,
   mêmes pour tous, tirés de la date : deux tâches de `TACHES` à 10 voix, comptées par les opérations des règles,
   `compter`, et une carte recherchée à 1 paquet : une carte de plus dans un thème (époque, Sénat, Gouvernement, femmes,

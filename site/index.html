@@ -463,6 +463,26 @@ footer{max-width:1120px;margin:0 auto;padding:0 1rem 3rem;font-size:.85rem;color
 #choix-carte .tete{display:flex;justify-content:space-between;align-items:center;gap:1rem}
 #choix-carte h2{font:400 1.3rem var(--serif);margin:0}
 #choix-carte .defile{overflow-y:auto;min-height:0}
+/* Lot du jour : grandes cartes en carrousel (défilement horizontal aimanté, flèches sur ordinateur, points) */
+#choix-lot{width:min(980px,98vw)}
+#choix-lot .fenetre{background:var(--velours-fonce);border:1px solid rgba(201,162,74,.5);border-radius:8px;padding:1rem .6rem;max-height:94vh;display:flex;flex-direction:column;gap:.6rem;overflow:hidden}
+#choix-lot .tete{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:0 .4rem}
+#choix-lot h2{font:400 1.3rem var(--serif);margin:0}
+#choix-lot .tete .bouton{white-space:nowrap}
+.carrousel-zone{display:flex;align-items:center;gap:.3rem;min-height:0}
+.carrousel{flex:1;display:flex;gap:1rem;overflow-x:auto;scroll-snap-type:x mandatory;padding:.4rem 0 .6rem;scrollbar-width:none;overscroll-behavior-x:contain}
+.carrousel::-webkit-scrollbar{display:none}
+.diapo{flex:0 0 min(270px,74vw);scroll-snap-align:center;display:flex;flex-direction:column;align-items:center;gap:.6rem}
+@media (max-width:700px){.diapo:first-child{margin-left:calc(50% - min(270px,74vw) / 2)}.diapo:last-child{margin-right:calc(50% - min(270px,74vw) / 2)}}
+@media (min-width:701px){.carrousel{justify-content:safe center}}
+.diapo .carte{width:100%;max-height:62vh;cursor:pointer}
+.diapo .bouton{width:100%}
+.fleche{flex:none;width:2.4rem;height:2.4rem;border-radius:50%;border:1px solid rgba(201,162,74,.6);background:rgba(46,7,16,.8);color:var(--dorure-pale);font-size:1.5rem;line-height:1;cursor:pointer}
+.fleche:disabled{opacity:.3;cursor:default}
+@media (max-width:700px){.fleche{display:none}}
+.points-carrousel{display:flex;justify-content:center;gap:.4rem}
+.points-carrousel i{width:.5rem;height:.5rem;border-radius:50%;background:rgba(201,162,74,.3)}
+.points-carrousel i.actif{background:var(--dorure)}
 .choix-cartes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.6rem}
 @media (min-width:640px){.choix-cartes{grid-template-columns:repeat(5,minmax(0,1fr))}}
 .choix-cartes > button{border:0;background:none;padding:0;color:inherit;text-align:center;font-size:.75rem}
@@ -794,6 +814,9 @@ html.presentation{font-size:15px}
 <dialog id="choix-carte"><div class="fenetre"><div class="tete"><h2 id="choix-titre">Choisir une carte</h2><button class="bouton discret" id="fermer-choix">Fermer</button></div>
   <input class="champ" id="choix-recherche" type="search" placeholder="Rechercher une carte" aria-label="Rechercher une carte">
   <div class="defile"><div class="choix-cartes" id="choix-grille"></div></div></div></dialog>
+<dialog id="choix-lot"><div class="fenetre"><div class="tete"><h2>Choisissez votre carte</h2><button class="bouton discret" id="fermer-lot">Plus tard</button></div>
+  <div class="carrousel-zone"><button class="fleche" id="lot-prec" aria-label="Carte précédente">‹</button><div class="carrousel" id="carrousel-lot"></div><button class="fleche" id="lot-suiv" aria-label="Carte suivante">›</button></div>
+  <div class="points-carrousel" id="points-lot" aria-hidden="true"></div></div></dialog>
 <p class="toast" id="toast" role="status" aria-live="polite" hidden></p>
 
 <script src="regles.js"></script>
@@ -1224,6 +1247,31 @@ function majJournee(){
     <div class="serie"><div class="tete-serie"><h2>Objectifs du jour</h2><span class="note">${faits}/${j.objectifs.length} reçus</span></div>
       <ul class="cases-serie cases-objectifs">${j.objectifs.map(caseObj).join("")}</ul></div>`;
 }
+// Cartes du lot en grand, une par une : glisser (téléphone) ou flèches (ordinateur) ; toucher une carte la retourne
+function carrouselLot(ids, garder){
+  const d = document.getElementById("choix-lot"), c = document.getElementById("carrousel-lot"), points = document.getElementById("points-lot");
+  c.innerHTML = ids.map(id => `<div class="diapo">${htmlCarte(cat.parId[id], {classe: "grande", etoile: false})}
+    <button class="bouton" data-garder="${echapper(id)}">Garder cette carte</button></div>`).join("");
+  points.innerHTML = ids.map(() => "<i></i>").join("");
+  const courante = () => Math.round(c.scrollLeft / (c.scrollWidth - c.clientWidth || 1) * (ids.length - 1));
+  const maj = () => {
+    const k = courante();
+    points.querySelectorAll("i").forEach((p, i) => p.classList.toggle("actif", i === k));
+    document.getElementById("lot-prec").disabled = c.scrollLeft < 5;
+    document.getElementById("lot-suiv").disabled = c.scrollLeft > c.scrollWidth - c.clientWidth - 5;
+  };
+  const aller = k => c.children[Math.max(0, Math.min(ids.length - 1, k))]?.scrollIntoView({behavior: reduit() ? "auto" : "smooth", inline: "center", block: "nearest"});
+  c.onscroll = maj;
+  document.getElementById("lot-prec").onclick = () => aller(courante() - 1);
+  document.getElementById("lot-suiv").onclick = () => aller(courante() + 1);
+  document.getElementById("fermer-lot").onclick = () => d.close();
+  c.onclick = e => {
+    const b = e.target.closest("[data-garder]");
+    if (b) { d.close(); garder(b.dataset.garder); return; }
+    const el = e.target.closest(".carte"); if (el && !e.target.closest("a")) { el.classList.remove("statique"); el.classList.toggle("envers"); }
+  };
+  d.showModal(); c.scrollLeft = 0; maj();
+}
 function confirmerLot(id, revenir){
   const d = document.getElementById("confirmer-lot");
   document.getElementById("lot-carte").innerHTML = htmlCarte(cat.parId[id], {classe: "grande", etoile: false});
@@ -1241,7 +1289,7 @@ document.getElementById("journee").addEventListener("click", e => {
   const b = e.target.closest("#recevoir-lot, #choisir-lot, [data-objectif-jour]");
   if (!b) return;
   // Carte touchée : montrée en grand, à confirmer ; « Revenir » rouvre les cartes proposées
-  const proposer = cartes => choisirCarte("Choisissez votre carte", cartes.map(id => [id, null]), id => confirmerLot(id, () => proposer(cartes)));
+  const proposer = cartes => carrouselLot(cartes, id => confirmerLot(id, () => proposer(cartes)));
   if (b.id === "choisir-lot") { proposer(Regles.etatDuJour(etat, cat).lot.cartes); return; }
   occupe(b, async () => {
     if (b.id === "recevoir-lot") {
