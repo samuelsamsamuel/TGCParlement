@@ -209,7 +209,7 @@ main{max-width:1120px;margin:0 auto;padding:1.5rem 1rem 4rem}
 .r-mythique{--cadre:conic-gradient(from 0deg,#e6d29a,#b8293a,#2c3e7a,#8ad0c8,#e6d29a,#c9a24a,#e6d29a);--sur-cadre:#2e0710;--rarete-texte:#7a1a2e}
 .r-mythique .entete{background:linear-gradient(90deg,#f1dc9a,#e6d29a)}
 .r-mythique.retournee .recto,.r-mythique.retournee .verso{box-shadow:0 0 0 1px #fff,0 0 50px rgba(184,41,58,.55),0 0 90px rgba(44,62,122,.45)}
-.r-mythique .recto::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.5) 45%,transparent 60%);background-size:250% 100%;background-repeat:no-repeat;animation:reflet 11s ease-in-out infinite}
+.r-mythique .recto::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.5) 45%,transparent 60%);background-size:250% 100%;background-repeat:no-repeat;animation:reflet 8s ease-in-out infinite}
 .r-legendaire{--cadre:linear-gradient(145deg,#f1dc9a,#c9a24a 40%,#8a6a1c 70%,#e6d29a);--sur-cadre:#2e0710;--rarete-texte:#8a6a1c}
 .r-epique{--cadre:linear-gradient(145deg,#b07ac2,#6d3480);--sur-cadre:#fff;--rarete-texte:#6d3480}
 .r-rare{--cadre:linear-gradient(145deg,#6d9bcb,#2c5583);--sur-cadre:#fff;--rarete-texte:#2c5583}
@@ -221,9 +221,9 @@ main{max-width:1120px;margin:0 auto;padding:1.5rem 1rem 4rem}
 .r-unique{--cadre:conic-gradient(from 210deg,#1d2b63,#2c3e7a,#f4efe4,#efe9df,#b8293a,#8f1d2c,#e6d29a,#1d2b63);--sur-cadre:#1a1014;--rarete-texte:#1d2b63}
 .r-unique .entete{background:linear-gradient(90deg,#f6e7b0,#e6d29a 50%,#f6e7b0)}
 .r-unique.retournee .recto,.r-unique.retournee .verso{box-shadow:0 0 0 2px #e6d29a,0 0 45px rgba(230,210,154,.7),0 0 90px rgba(44,62,122,.5),0 0 120px rgba(184,41,58,.35)}
-.r-unique .recto::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:linear-gradient(115deg,transparent 30%,rgba(255,246,214,.6) 45%,transparent 60%);background-size:250% 100%;background-repeat:no-repeat;animation:reflet 8s ease-in-out infinite}
+.r-unique .recto::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:linear-gradient(115deg,transparent 30%,rgba(255,246,214,.6) 45%,transparent 60%);background-size:250% 100%;background-repeat:no-repeat;animation:reflet 6s ease-in-out infinite}
 .r-legendaire.retournee .recto{box-shadow:0 0 0 1px #f1dc9a,0 0 40px rgba(201,162,74,.6),0 10px 26px rgba(0,0,0,.4)}
-.r-legendaire .recto::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:linear-gradient(115deg,transparent 35%,rgba(255,255,255,.35) 45%,transparent 55%);background-size:250% 100%;background-repeat:no-repeat;animation:reflet 15s ease-in-out infinite}
+.r-legendaire .recto::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:linear-gradient(115deg,transparent 35%,rgba(255,255,255,.35) 45%,transparent 55%);background-size:250% 100%;background-repeat:no-repeat;animation:reflet 11s ease-in-out infinite}
 /* Bande de lumière à 45 % d'un dégradé large de 2,5 cartes : hors de la carte à 120 % comme à -20 % */
 @keyframes reflet{0%{background-position:120% 0}14%,100%{background-position:-20% 0}}
 
@@ -480,6 +480,20 @@ details.historique summary{cursor:pointer;font-size:.85rem;color:var(--pierre);p
 .vide-etals{grid-column:1/-1;border:1px dashed rgba(201,162,74,.35);border-radius:10px;padding:1rem;text-align:center}
 .vendre-etal{display:grid;place-items:center;gap:.2rem;width:100%;border:1.5px dashed rgba(201,162,74,.55);border-radius:10px;background:none;color:var(--dorure-pale);padding:1rem;font:inherit;cursor:pointer}
 .vendre-etal b{font-size:1.6rem;line-height:1}
+/* Contre-offres : lien et petit formulaire sous l'étal ; offres reçues sous ses propres cartes */
+.etal > .lien-carte{align-self:center;font-size:.8rem}
+.form-offre{display:flex;flex-wrap:wrap;gap:.3rem;align-items:center}
+.form-offre input{flex:1 1 4rem;min-width:0;padding:.35rem .45rem;font:inherit;font-size:.85rem;border-radius:6px;border:1px solid rgba(201,162,74,.45);background:rgba(0,0,0,.25);color:inherit}
+.etal .form-offre .bouton{margin-top:0;width:auto;flex:1 1 auto}
+.form-offre .lien-carte{font-size:.8rem}
+.offre-faite{margin:.1rem 0 0;font-size:.78rem;text-align:center}
+.offre-recue{display:flex;flex-wrap:wrap;gap:.3rem;border-top:1px solid rgba(201,162,74,.25);padding-top:.35rem;margin-top:.2rem}
+.offre-recue p{flex:1 1 100%;margin:0;font-size:.8rem}
+.etal .offre-recue .bouton{margin-top:0;flex:1;width:auto}
+/* Voix ajoutées à un échange */
+.voix-echange{display:flex;align-items:center;gap:.5rem;margin:.45rem 0 0;font-size:.85rem;opacity:.9}
+.voix-echange input{width:6.5rem;padding:.35rem .45rem;font:inherit;border-radius:6px;border:1px solid rgba(201,162,74,.45);background:rgba(0,0,0,.25);color:inherit}
+.voix-lot{font-weight:600;color:var(--dorure-pale)}
 :root[data-theme="clair"] .etal{background:rgba(255,255,255,.65);border-color:rgba(92,16,32,.22)}
 .vente{display:grid;grid-template-columns:minmax(0,170px) 1fr;gap:1rem;align-items:start;border:1px solid rgba(201,162,74,.35);border-radius:6px;padding:1rem;background:rgba(92,16,32,.35);margin:.6rem 0 1rem}
 @media (max-width:520px){.vente{grid-template-columns:minmax(0,130px) 1fr}}
@@ -628,7 +642,7 @@ html.presentation{font-size:15px}
   .presentation h1{margin-bottom:.4rem}
   .presentation main{padding:.7rem .8rem calc(6rem + env(safe-area-inset-bottom))}
 }
-@media (prefers-reduced-motion:reduce){.face,.paquet *{transition:none!important;animation:none!important}.r-legendaire .recto::after,.r-unique .recto::after{animation:none}}
+@media (prefers-reduced-motion:reduce){.face,.paquet *{transition:none!important;animation:none!important}.r-legendaire .recto::after,.r-mythique .recto::after,.r-unique .recto::after{animation:none}}
 </style>
 </head>
 <body>
@@ -695,7 +709,7 @@ html.presentation{font-size:15px}
     <p>Avec un compte, on ajoute des amis par leur pseudo : une fois la demande acceptée, on voit leur vitrine, six cartes choisies dans leur collection, on leur propose un échange ou on les défie en un toucher.</p>
     <h3>Compte, échanges et comptoir</h3>
     <p>Sans compte, la collection reste dans ce navigateur. Avec un compte (pseudo et mot de passe), la collection est gardée par le serveur et se retrouve sur tous vos appareils, et c'est alors le serveur qui tire les cartes. À la création du compte, la collection de ce navigateur est reprise une fois, et ses cartes deviennent des cartes du compte comme les autres. Les objectifs déjà réclamés dans le navigateur ne se réclament pas une seconde fois, Les voix du navigateur sont reprises aussi, jusqu'à 1 000 ; les paquets offerts ne le sont pas.</p>
-    <p>À la buvette, on propose à un autre joueur un échange de cartes, qu'il accepte ou refuse. On y tient aussi le comptoir, où les joueurs se vendent et s'achètent des cartes contre des voix. Une carte posée au comptoir est réservée : elle ne peut être ni dissoute ni échangée tant qu'elle y reste.</p>
+    <p>À la buvette, on propose à un autre joueur un échange de cartes, qu'il accepte ou refuse ; des voix peuvent s'ajouter d'un côté de l'échange, données ou demandées, et ne changent de main qu'à l'acceptation. On y tient aussi le comptoir, où les joueurs se vendent et s'achètent des cartes contre des voix. Le premier qui paie le prix demandé emporte la carte ; on peut aussi offrir moins, et le vendeur accepte ou refuse l'offre. Une carte posée au comptoir est réservée : elle ne peut être ni dissoute ni échangée tant qu'elle y reste. Sur la grande carte, « M'avertir quand elle est en vente » envoie une notification dès qu'un joueur la pose au comptoir.</p>
     <h3>Raretés</h3>
     <p>La rareté d'une carte dépend de son score, comparé à celui des autres parlementaires de la même époque. Par carte tirée : mythique 0,4 %, légendaire 1,6 %, épique 6 %, rare 15 %, peu commune 30 %, commune 46 %. Les élus en exercice gagnent un niveau de rareté. Quand une carte tirée est déjà dans votre hémicycle, ou déjà sortie dans le même paquet, elle est le plus souvent tirée une seconde fois dans la même rareté : les doubles restent possibles, mais rares tant que la collection est jeune (environ un sur dix entre le 700e et le 1 500e paquet). Au-dessus de toutes, la rareté unique ne compte qu'une carte, Charles de Gaulle, plus rare au tirage que n'importe quelle carte mythique : en moyenne une fois sur 25 000 cartes, soit environ un paquet sur 6 000.</p>
     <h3>Score</h3>
@@ -955,7 +969,8 @@ async function majAttente(){
   if (!a) return;
   pa.hidden = !a.amis; pa.textContent = a.amis;
   ps.hidden = !a.duels; ps.textContent = a.duels;
-  pb.hidden = !a.echanges; pb.textContent = a.echanges;
+  const buvette = a.echanges + (a.offres || 0);
+  pb.hidden = !buvette; pb.textContent = buvette;
 }
 // Seulement quand la page est visible (chaque appel compte dans les limites gratuites du serveur), et aussitôt revenue
 setInterval(() => { if (!document.hidden) majAttente(); }, 120000);
@@ -1432,6 +1447,8 @@ function majActionsApercu(id){
         : `<button class="bouton discret" data-vitrine-ajouter="${echapper(id)}">Mettre en vitrine</button>`) : ""}`
     : (etat.deja || []).includes(id) ? `<p class="note">Vous l'avez eue, puis cédée : elle n'est plus dans votre hémicycle. Touchez la carte pour voir sa carrière au verso.</p>`
     : `<p class="note">Pas encore dans votre hémicycle. Touchez la carte pour voir sa carrière au verso.</p>`;
+  if (compte) zone.insertAdjacentHTML("beforeend", `<button class="bouton discret" data-alerte="${echapper(id)}" aria-pressed="${alertes.has(id)}">${alertes.has(id)
+    ? "Ne plus m'avertir des ventes" : "M'avertir quand elle est en vente"}</button>`);
   zone.insertAdjacentHTML("beforeend", `<p class="detenteurs" id="detenteurs"></p><p class="detenteurs" id="amis-carte"></p>`);
   afficherDetenteurs(id); afficherAmisCarte(id);
 }
@@ -1455,7 +1472,16 @@ async function afficherDetenteurs(id){
 }
 document.getElementById("apercu").addEventListener("click", e => {
   const d = e.target.closest("[data-dissoudre]"), v = e.target.closest("[data-vendre]");
-  const va = e.target.closest("[data-vitrine-ajouter]"), vr = e.target.closest("[data-vitrine-retirer]");
+  const va = e.target.closest("[data-vitrine-ajouter]"), vr = e.target.closest("[data-vitrine-retirer]"), al = e.target.closest("[data-alerte]");
+  if (al) {
+    const id = al.dataset.alerte, actif = !alertes.has(id);
+    occupe(al, async () => {
+      alertes = new Set((await appel("alertes", {carte: id, actif, nom: cat.parId[id].nom})).alertes);
+      majActionsApercu(id);
+      const avis = pushPossible() && Notification.permission === "granted" ? "" : " Activez les notifications dans Paramètres pour la recevoir.";
+      signaler(actif ? `Vous serez averti quand ${cat.parId[id].nom} sera mise en vente.${avis}` : "Alerte retirée.");
+    });
+  }
   if (va) {
     const id = va.dataset.vitrineAjouter, v = vitrineCompte();
     if (v.length < 6) occupe(va, async () => { await exposerVitrine([...v, id]); majActionsApercu(id); signaler("Carte placée dans votre vitrine."); });
@@ -1504,6 +1530,11 @@ function carteNommee(id, q = 1){
   return `<span class="carte-nommee">${miniature(id, q)}<button type="button" class="lien-carte" data-apercu="${echapper(id)}">${echapper(c.nom)}</button><span class="etiquette">${LIBELLES[c.rarete]}</span></span>`;
 }
 function miniatures(l){ const e = Object.entries(l || {}); return e.length ? e.map(([id, q]) => carteNommee(id, q)).join("") : `<span class="note">rien</span>`; }
+// Côté d'un échange : cartes et voix ajoutées
+function lotVoix(l, v){
+  const cartes = Object.keys(l || {}).length;
+  return (cartes || !v ? miniatures(l) : "") + (v ? `<span class="voix-lot">${cartes ? "+ " : ""}${pluriel(v, "voix", "voix")}</span>` : "");
+}
 function lotTexte(l){ const e = Object.entries(l||{}); return e.length ? e.map(([id,q]) => (q>1?q+" × ":"")+nomCarte(id)).join(", ") : "rien"; }
 
 /* ---------- Compte ---------- */
@@ -1563,7 +1594,7 @@ function majCompte(){
     bouton.disabled = true; bouton.textContent = "Vérification…";
     etirer(pseudo, mdp).then(preuve => appel(ongletCompte, {pseudo, preuve,
       ...(ongletCompte === "inscription" && f.reprise?.checked ? {collection: depot.charger().possedees, voix: depot.charger().points} : {})}))
-      .then(() => { majTout(); afficherPaquet(); majAttente(); chargerDuels(); chargerAmis(); signaler(ongletCompte === "inscription" ? "Compte créé. Bienvenue dans l'hémicycle !" : "Vous êtes connecté."); apresCompteAccueil(); })
+      .then(() => { majTout(); afficherPaquet(); majAttente(); chargerDuels(); chargerAmis(); chargerAlertes(); signaler(ongletCompte === "inscription" ? "Compte créé. Bienvenue dans l'hémicycle !" : "Vous êtes connecté."); apresCompteAccueil(); })
       .catch(x => { erreur.textContent = x.message; bouton.disabled = false; bouton.textContent = ongletCompte==="inscription" ? "Créer le compte" : "Se connecter"; });
   });
 }
@@ -2123,9 +2154,11 @@ async function choisirPartenaire(pseudo){
   document.getElementById("etapes-echange").hidden = false;
   dessinerPartenaires(); majProposer();
 }
+// Voix ajoutées à l'échange : d'un seul côté (saisir l'un efface l'autre), une carte au moins dans l'échange
+const voixSaisie = id => Math.max(0, Math.floor(Number(document.getElementById(id)?.value) || 0));
 function majProposer(){
   const b = document.getElementById("proposer");
-  if (b) b.disabled = !partenaire || !Object.keys(selDonne.choix).length && !Object.keys(selRecoit.choix).length;
+  if (b) b.disabled = !partenaire || !Object.keys(selDonne.choix).length && !Object.keys(selRecoit.choix).length || voixSaisie("voix-donne") > etat.points;
 }
 // Raccourci depuis l'onglet Amis : la buvette s'ouvre sur un échange avec cet ami
 async function proposerEchangeA(pseudo, carte){
@@ -2137,7 +2170,7 @@ async function proposerEchangeA(pseudo, carte){
 function construireBuvette(vue){
   buvetteConstruite = true;
   vue.innerHTML = `<h2>Buvette</h2>
-    <div class="onglets" role="tablist"><button role="tab" data-sous="echanges" aria-selected="true">Échanges <span class="pastille" id="pastille-echanges" hidden></span></button><button role="tab" data-sous="comptoir" aria-selected="false">Comptoir</button><button role="tab" data-sous="historique" aria-selected="false">Historique</button></div>
+    <div class="onglets" role="tablist"><button role="tab" data-sous="echanges" aria-selected="true">Échanges <span class="pastille" id="pastille-echanges" hidden></span></button><button role="tab" data-sous="comptoir" aria-selected="false">Comptoir <span class="pastille" id="pastille-comptoir" hidden></span></button><button role="tab" data-sous="historique" aria-selected="false">Historique</button></div>
     <div data-panneau="echanges">
       <div id="zone-en-cours" hidden><h3>En attente</h3><ul class="fiches-echange" id="liste-echanges"></ul></div>
       <h3 id="etape-partenaire">Proposer un échange</h3>
@@ -2146,12 +2179,14 @@ function construireBuvette(vue){
       <div id="etapes-echange" hidden>
         <p class="note" id="partenaire-choisi" aria-live="polite"></p>
         <p class="etape"><b>Vous donnez</b></p><div id="sel-donne"></div>
+        <label class="voix-echange">Et des voix <input type="number" id="voix-donne" min="0" max="100000" step="1" inputmode="numeric" placeholder="0"></label>
         <p class="etape"><b>Vous demandez</b></p><div id="sel-recoit"></div>
+        <label class="voix-echange">Et des voix <input type="number" id="voix-recoit" min="0" max="100000" step="1" inputmode="numeric" placeholder="0"></label>
         <button class="bouton" id="proposer" disabled>Proposer l'échange</button>
       </div>
     </div>
     <div data-panneau="comptoir" hidden>
-      <div class="tete-comptoir"><span class="bourse-voix">Vous avez <b id="voix-buvette"></b></span><span class="note">Le premier qui achète l'emporte.</span></div>
+      <div class="tete-comptoir"><span class="bourse-voix">Vous avez <b id="voix-buvette"></b></span><span class="note">Le premier qui achète l'emporte. Une offre plus basse attend la réponse du vendeur.</span></div>
       <div class="outils"><input id="recherche-marche" type="search" placeholder="Rechercher une carte au comptoir" aria-label="Rechercher une carte au comptoir">
         <select id="tri-marche" aria-label="Trier le comptoir"><option value="recent">Les plus récentes</option><option value="prix">Les moins chères</option></select></div>
       <ul class="etals" id="liste-marche"></ul>
@@ -2195,11 +2230,27 @@ function construireBuvette(vue){
     occupe(e.target.querySelector("button"), () => choisirPartenaire(e.target.pseudo.value));
   });
   document.getElementById("proposer").addEventListener("click", e => occupe(e.target, async () => {
-    await appel("echanges", {vers: partenaire, donne: selDonne.choix, recoit: selRecoit.choix});
-    selDonne.vider(); selRecoit.vider(); majProposer(); signaler(`Échange proposé à ${partenaire}.`); chargerEchanges();
+    await appel("echanges", {vers: partenaire, donne: selDonne.choix, recoit: selRecoit.choix, voix_donne: voixSaisie("voix-donne"), voix_recoit: voixSaisie("voix-recoit")});
+    selDonne.vider(); selRecoit.vider(); document.getElementById("voix-donne").value = document.getElementById("voix-recoit").value = ""; majProposer(); signaler(`Échange proposé à ${partenaire}.`); chargerEchanges();
   }));
+  for (const [id, autre] of [["voix-donne", "voix-recoit"], ["voix-recoit", "voix-donne"]])
+    document.getElementById(id).addEventListener("input", e => { if (e.target.value) document.getElementById(autre).value = ""; majProposer(); });
   document.getElementById("recherche-marche").addEventListener("input", dessinerMarche);
   document.getElementById("tri-marche").addEventListener("input", chargerMarche);
+  // Contre-offre : « Faire une offre » ouvre un petit formulaire sous l'étal
+  document.getElementById("liste-marche").addEventListener("click", e => {
+    const b = e.target.closest("[data-offre]"), f = e.target.closest("[data-fermer-offre]");
+    if (b) { offreOuverte = Number(b.dataset.offre); dessinerMarche(); document.querySelector(`[data-form-offre="${offreOuverte}"] input`)?.focus(); }
+    if (f) { offreOuverte = null; dessinerMarche(); }
+  });
+  document.getElementById("liste-marche").addEventListener("submit", e => {
+    e.preventDefault();
+    const id = Number(e.target.dataset.formOffre);
+    occupe(e.target.querySelector("button[type=submit]"), async () => {
+      await appel(`annonces/${id}/offre`, {prix: Number(e.target.prix.value)});
+      offreOuverte = null; await chargerAnnonces(); dessinerMarche(); signaler("Offre envoyée : le vendeur l'accepte ou la refuse.");
+    });
+  });
   vue.addEventListener("click", e => {
     const b = e.target.closest("[data-action]");
     if (!b) return;
@@ -2209,8 +2260,9 @@ function construireBuvette(vue){
       await appel("moi"); majTout();
       if (type === "echanges") chargerEchanges(); else { chargerMarche(); chargerAnnonces(); }
       majAttente();
-      signaler({accepter: "Échange accepté : les cartes ont changé de main.", refuser: "Échange refusé.", annuler: "Proposition retirée.",
-        acheter: "Carte achetée : elle a pris place dans votre hémicycle.", retirer: "Carte retirée du comptoir."}[action]);
+      signaler({"echanges:accepter": "Échange accepté : les cartes ont changé de main.", "echanges:refuser": "Échange refusé.", "echanges:annuler": "Proposition retirée.",
+        "annonces:acheter": "Carte achetée : elle a pris place dans votre hémicycle.", "annonces:retirer": "Carte retirée du comptoir.",
+        "offres:accepter": "Offre acceptée : la carte est vendue.", "offres:refuser": "Offre refusée.", "offres:annuler": "Offre retirée."}[type + ":" + action]);
     });
   });
   chargerEchanges(); chargerMarche(); chargerAnnonces();
@@ -2220,13 +2272,13 @@ async function chargerEchanges(){
   if (!d) return;
   // Du point de vue du joueur : ce qu'il donne et ce qu'il reçoit
   const fiche = x => {
-    const [donne, recoit] = x.recu ? [x.recoit, x.donne] : [x.donne, x.recoit];
+    const [donne, recoit] = x.recu ? [x.recoit, x.donne] : [x.donne, x.recoit], [vd, vr] = x.recu ? [x.voixRecoit, x.voixDonne] : [x.voixDonne, x.voixRecoit];
     const gestes = x.recu
       ? `<button class="bouton" data-action="echanges:${x.id}:accepter">Accepter</button><button class="bouton discret" data-action="echanges:${x.id}:refuser">Refuser</button>`
       : `<span class="note">en attente de sa réponse</span><button class="lien-carte" data-action="echanges:${x.id}:annuler">Retirer</button>`;
     return `<li class="fiche-echange${x.recu ? " recue" : ""}"><p class="titre-echange">${x.recu ? `<b>${echapper(x.avec)}</b> vous propose un échange` : `Votre proposition à <b>${echapper(x.avec)}</b>`}</p>
-      <div class="sens"><span>Vous donnez</span><div class="minis">${miniatures(donne)}</div></div>
-      <div class="sens"><span>Vous recevez</span><div class="minis">${miniatures(recoit)}</div></div>
+      <div class="sens"><span>Vous donnez</span><div class="minis">${lotVoix(donne, vd)}</div></div>
+      <div class="sens"><span>Vous recevez</span><div class="minis">${lotVoix(recoit, vr)}</div></div>
       <div class="gestes-ami">${gestes}</div></li>`;
   };
   const enCours = d.echanges.filter(x => x.statut === "proposee");
@@ -2245,12 +2297,13 @@ function dessinerHistorique(){
   const entrees = [];
   if (filtreHistorique !== "comptoir") for (const x of histoire.echanges) {
     const [donne, recoit] = x.recu ? [x.recoit, x.donne] : [x.donne, x.recoit], fait = x.statut === "acceptee";
+    const [vd, vr] = x.recu ? [x.voixRecoit, x.voixDonne] : [x.voixDonne, x.voixRecoit];
     const titre = fait ? `Échange avec <b>${echapper(x.avec)}</b>`
       : x.statut === "refusee" ? (x.recu ? `Proposition de <b>${echapper(x.avec)}</b> refusée` : `Proposition refusée par <b>${echapper(x.avec)}</b>`)
       : x.recu ? `Proposition de <b>${echapper(x.avec)}</b> retirée` : `Proposition à <b>${echapper(x.avec)}</b> retirée`;
     entrees.push({date: x.maj, classe: fait ? "faite" : "close", icone: "⇄", titre, etat: STATUTS[x.statut],
-      corps: `<div class="sens"><span>${fait ? "Donné" : "Proposé"}</span><div class="minis">${miniatures(donne)}</div></div>
-        <div class="sens"><span>${fait ? "Reçu" : "Demandé"}</span><div class="minis">${miniatures(recoit)}</div></div>`});
+      corps: `<div class="sens"><span>${fait ? "Donné" : "Proposé"}</span><div class="minis">${lotVoix(donne, vd)}</div></div>
+        <div class="sens"><span>${fait ? "Reçu" : "Demandé"}</span><div class="minis">${lotVoix(recoit, vr)}</div></div>`});
   }
   if (filtreHistorique !== "echanges") {
     for (const a of histoire.ventes) entrees.push({date: a.maj, classe: a.statut === "vendue" ? "faite" : "close", icone: "◉",
@@ -2270,7 +2323,14 @@ function dessinerHistorique(){
   }
   zone.innerHTML = html + "</ul>";
 }
-let annoncesMarche = [], annoncesOuvertes = [];
+let annoncesMarche = [], annoncesOuvertes = [], offresRecues = [], mesOffres = [], offreOuverte = null;
+// Alertes de vente : cartes guettées par le joueur, qui reçoit une notification quand l'une d'elles est mise au comptoir
+let alertes = new Set();
+async function chargerAlertes(){
+  if (!compte) { alertes = new Set(); return; }
+  const d = await appel("alertes").catch(() => null);
+  if (d) alertes = new Set(d.alertes);
+}
 async function chargerMarche(){
   const d = await appel("marche?tri=" + document.getElementById("tri-marche").value).catch(e => { signaler(e.message); return null; });
   if (d) { annoncesMarche = d.annonces; dessinerMarche(); }
@@ -2288,17 +2348,29 @@ function dessinerMarche(){
   const q = Regles.normer(document.getElementById("recherche-marche").value);
   const liste = annoncesMarche.filter(a => cat.parId[a.carte] && (!q || cat.parId[a.carte].cherche.includes(q)));
   document.getElementById("liste-marche").innerHTML = liste.length ? liste.map(a => {
-    const miennes = a.vendeur === compte.pseudo;
+    const miennes = a.vendeur === compte.pseudo, offre = mesOffres.find(o => o.annonce === a.id);
+    // Sous le bouton d'achat : l'offre déjà faite, le formulaire ouvert, ou le lien pour en faire une
+    const contre = offre ? `<p class="note offre-faite">Votre offre : ${pluriel(offre.prix, "voix", "voix")} <button class="lien-carte" data-action="offres:${offre.id}:annuler">Retirer</button></p>`
+      : offreOuverte === a.id ? `<form class="form-offre" data-form-offre="${a.id}"><input type="number" name="prix" min="1" max="${a.prix - 1}" step="1" inputmode="numeric" required placeholder="Voix" aria-label="Votre offre en voix">
+          <button class="bouton" type="submit">Offrir</button><button class="lien-carte" type="button" data-fermer-offre>Annuler</button></form>`
+      : a.prix > 1 ? `<button class="lien-carte" data-offre="${a.id}">Faire une offre</button>` : "";
     return etal(a, miennes ? `<span class="note">votre carte</span>`
-      : `<button class="bouton" data-action="annonces:${a.id}:acheter" ${etat.points < a.prix ? "disabled" : ""}>${etat.points < a.prix ? "Pas assez de voix" : "Acheter"}</button>`,
-      miennes ? "mise en vente par vous" : "par " + echapper(a.vendeur));
+      : `<button class="bouton" data-action="annonces:${a.id}:acheter" ${etat.points < a.prix ? "disabled" : ""}>${etat.points < a.prix ? "Pas assez de voix" : "Acheter"}</button>${contre}`,
+      (miennes ? "mise en vente par vous" : "par " + echapper(a.vendeur)) + (alertes.has(a.carte) && !miennes ? " · guettée" : ""));
   }).join("") : `<li class="vide-etals note">${annoncesMarche.length ? "Aucune carte du comptoir ne correspond." : "Le comptoir est vide pour l'instant : soyez le premier à y poser une carte."}</li>`;
 }
 async function chargerAnnonces(){
   const d = await appel("annonces").catch(e => { signaler(e.message); return null; });
   if (!d) return;
-  const ligne = a => etal(a, `<button class="bouton discret" data-action="annonces:${a.id}:retirer">Retirer</button>`, "en vente");
+  offresRecues = d.offres || []; mesOffres = d.mesOffres || [];
+  // Offres reçues sous chaque carte en vente : accepter (vente au prix offert) ou refuser
+  const offresDe = a => offresRecues.filter(o => o.annonce === a.id).map(o => `<div class="offre-recue"><p class="note"><b>${echapper(o.acheteur)}</b> offre ${pluriel(o.prix, "voix", "voix")}</p>
+    <button class="bouton" data-action="offres:${o.id}:accepter">Accepter</button><button class="bouton discret" data-action="offres:${o.id}:refuser">Refuser</button></div>`).join("");
+  const ligne = a => etal(a, `<button class="bouton discret" data-action="annonces:${a.id}:retirer">Retirer</button>${offresDe(a)}`, "en vente");
   const ouvertes = d.annonces.filter(a => a.statut === "ouverte"), passees = d.annonces.filter(a => a.statut !== "ouverte");
+  const pc = document.getElementById("pastille-comptoir");
+  if (pc) { pc.hidden = !offresRecues.length; pc.textContent = offresRecues.length; }
+  if (document.getElementById("liste-marche")) dessinerMarche();
   annoncesOuvertes = ouvertes.map(a => a.carte);
   document.getElementById("mes-annonces").innerHTML = ouvertes.map(ligne).join("");
   histoire.ventes = passees; histoire.achats = d.achats || []; dessinerHistorique();
@@ -2542,7 +2614,7 @@ fetch("jeu.json").then(r => { if (!r.ok) throw new Error(r.status); return r.jso
   return fetch("/api/moi", {credentials: "same-origin"}).then(r => r.ok ? r.json() : null).catch(() => null).then(m => {
     serveur = !!(m && typeof m.connecte === "boolean");
     if (m && m.connecte) { etat = Regles.migrer(m.etat); compte = {pseudo: m.pseudo, cree: m.cree, vitrine: m.vitrine || []}; }
-    afficherPaquet(); majTout(); majAttente(); chargerDuels(); chargerAmis(); demarrerAccueil();
+    afficherPaquet(); majTout(); majAttente(); chargerDuels(); chargerAmis(); chargerAlertes(); demarrerAccueil();
   });
 }).catch(e => { console.error(e); document.getElementById("restants").textContent = "Les cartes n'ont pas pu être chargées. Vérifiez que le fichier jeu.json est publié à côté de cette page, puis rechargez."; });
 // Application installable : le service de travail garde le site et les cartes pour les visites suivantes
