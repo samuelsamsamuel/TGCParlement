@@ -152,6 +152,11 @@ const sx = Date.now().toString(36).slice(-4);
   await A.click("#fermer-apercu");
   // Duel avec mise : Anne défie Bob pour 10 voix, Bob relève le défi depuis la pastille ; le serveur juge chaque réponse
   await A.click('nav [data-vue="paquet"]');
+  // Pastille d'un ami : son pseudo passe dans le champ, la pastille est marquée
+  await A.click(`#form-duel [data-defier="Bob${sx}"] .avatar-ami`);
+  assert.strictEqual(await A.inputValue('#form-duel [name=pseudo]'), "Bob" + sx);
+  assert.strictEqual(await A.getAttribute(`#form-duel [data-defier="Bob${sx}"]`, "aria-pressed"), "true");
+  await A.screenshot({path: T + "/duel-amis.png"});
   await A.fill('#form-duel [name=pseudo]', "bob" + sx);
   await A.selectOption('#form-duel [name=mise]', "v10");
   await A.click('#form-duel button[type=submit]');

@@ -99,7 +99,7 @@ de chaque année depuis 1943, anciens noms compris ; écrit `site/departements.j
   complet, vérifié par le test) ; à la dixième réponse, `cloreDuel` (clôture `duel-fini`) : le gagnant emporte les deux
   mises, une égalité rend la sienne à chacun. Tâche horaire `expirerDuels` : défi ignoré trois jours remboursé (`expire`),
   duel relevé non fini au bout de trois jours clos avec les réponses données. Vingt duels en cours au plus par joueur.
-  Accès : bloc Duels de la Séance (défis à relever, duels à jouer ou reprendre, formulaire avec les amis en puces et la mise),
+  Accès : bloc Duels de la Séance (défis à relever, duels à jouer ou reprendre, formulaire avec les amis et la mise),
   bouton Défier de l'onglet Amis qui y mène, formulaire prérempli.
 - Doubles réduits (demande de l'utilisateur, octobre 2026 : 10 % entre le 700e et le 1 500e paquet) : une carte déjà
   possédée ou déjà sortie dans le paquet est retirée dans la même rareté avec la probabilité `RELANCE_DOUBLE` (0,9) ;
@@ -182,7 +182,7 @@ et `garder` ; les cartes sorties de la collection quittent la vitrine.
 Cartes gardées (« Ne pas dissoudre », demande de l'utilisateur, octobre 2026) : bouton de la barre de sélection et de la grande
 carte, état `gardes` (1 000 au plus, `garderCartes`, colonne `gardes` de `joueurs`, `POST /api/gardes`) ; leurs doubles sortent
 du compte de l'atelier, de la dissolution par rareté et du filtre des doubles, mention « gardée » sur la carte, filtre « Cartes
-gardées » ; la dissolution choisie carte par carte reste possible. Reflets de l'unique, des mythiques et
+gardées » ; bouton « Ne pas dissoudre ses doubles » de l'atelier, qui ouvre la sélection sur les cartes en double ; la dissolution choisie carte par carte reste possible. Reflets de l'unique, des mythiques et
 légendaires toutes les 6, 8 et 11 s (rapprochés à la demande de l'utilisateur, octobre 2026, après 8, 11 et 15 s), dégradé sans répétition pour que la carte reste nette entre deux passages.
 Première ouverture (`demarrerAccueil`, étape gardée dans `hemicycle-accueil`) : fenêtre d'accueil (créer un compte,
 recommandé ; ouvrir ses cartes dans le navigateur ; « J'ai déjà un compte ») ; après le compte, tutoriel
@@ -261,6 +261,8 @@ serveur), filtre « Mes favoris » dans l'Hémicycle. Pas de zoom au double touc
   (aucune possession, aucun journal) est repris par une nouvelle inscription avec le même mot de passe.
 - Concurrence des opérations des règles : version du joueur incrémentée dans le même lot ; une insertion dans la
   table `garde` (contrainte `ok = 0`) n'a lieu que si la version a changé (`changes() = 0`) et annule tout.
+- Choix d'un ami (échange, duel) : une seule rangée de pastilles (initiale, pseudo) qui défile de côté (`rangeeAmis`, demande de
+  l'utilisateur : le nuage de puces était lourd), au-dessus du champ de pseudo.
 - Amis (table `amis`, une ligne par sens) : `GET /api/amis`, `POST /api/amis/(demander|accepter|retirer)` ; une demande
   croisée vaut acceptation, retirer efface les deux sens (refus, annulation, fin d'amitié) ; `GET /api/amis` renvoie
   aussi `vitrines` (trois premières cartes de la vitrine de chaque ami, lues dans la même ligne, sans lecture de plus).

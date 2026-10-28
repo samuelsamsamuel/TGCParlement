@@ -546,6 +546,14 @@ details.historique summary{cursor:pointer;font-size:.85rem;color:var(--pierre);p
 .etape i{flex:none;display:inline-grid;place-items:center;width:1.5rem;height:1.5rem;border-radius:50%;background:var(--dorure);color:var(--encre);font-style:normal;font-weight:700;font-size:.85rem}
 .etape b{color:var(--dorure-pale)}
 .puces-amis{display:flex;flex-wrap:wrap;gap:.4rem;margin:.4rem 0}
+/* Rangée d'amis : pastilles et pseudos sur une ligne qui défile de côté */
+.rangee-amis{display:flex;gap:.35rem;overflow-x:auto;scroll-snap-type:x proximity;padding:.2rem 0 .5rem;margin:.3rem 0 .4rem;scrollbar-width:none;overscroll-behavior-x:contain}
+.rangee-amis::-webkit-scrollbar{display:none}
+.rangee-amis button{flex:0 0 4.2rem;scroll-snap-align:start;display:flex;flex-direction:column;align-items:center;gap:.25rem;background:none;border:0;padding:.2rem 0;color:var(--marbre);cursor:pointer;font:inherit}
+.rangee-amis button span:last-child{max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:.72rem;opacity:.85}
+.rangee-amis .avatar-ami{width:2.6rem;height:2.6rem;font-size:1.1rem}
+.rangee-amis button[aria-pressed="true"] .avatar-ami{border-color:var(--dorure);box-shadow:0 0 0 3px rgba(201,162,74,.45)}
+.rangee-amis button[aria-pressed="true"] span:last-child{color:var(--dorure-pale);opacity:1;font-weight:600}
 .puces-amis button{background:none;border:1px solid rgba(201,162,74,.5);color:var(--marbre);border-radius:2rem;padding:.3rem .8rem}
 .puces-amis button[aria-pressed="true"]{background:var(--dorure);color:var(--encre)}
 details.reglages{border:1px solid rgba(201,162,74,.3);border-radius:6px;margin:.5rem 0;background:rgba(46,7,16,.5)}
@@ -1179,7 +1187,8 @@ function majAtelier(){
   }
   const voirDoubles = document.getElementById("filtre").value === "doubles";
   atelier.innerHTML = `<div class="ligne"><p>${total ? `<b>${pluriel(total, "double")}</b> à dissoudre.` : "Aucun double à dissoudre pour l'instant."} ${etat.points ? `Voix : <b>${etat.points.toLocaleString("fr-FR")}</b>.` : ""}${verrouilles ? ` ${pluriel(verrouilles, "exemplaire", "exemplaires")} au comptoir.` : ""}</p>
-      <div class="boutons">${total ? `<button class="bouton discret" id="voir-doubles" aria-pressed="${voirDoubles}">${voirDoubles ? "Toutes mes cartes" : "Voir mes doubles"}</button>` : ""}</div></div>
+      <div class="boutons">${total ? `<button class="bouton discret" id="voir-doubles" aria-pressed="${voirDoubles}">${voirDoubles ? "Toutes mes cartes" : "Voir mes doubles"}</button>
+        <button class="bouton discret" id="garder-doubles">Ne pas dissoudre ses doubles</button>` : ""}</div></div>
     ${total ? `<ul class="choix">${ORDRE.filter(r => dbl[r]).map(r => `<li><label><input type="checkbox" value="${r}" ${recyclageChoisi.has(r)?"checked":""}> ${LIBELLES[r]} : ${pluriel(dbl[r].exemplaires, "double")}, ${pluriel(dbl[r].points, "voix", "voix")}</label></li>`).join("")}</ul>
       <div class="boutons"><button class="bouton discret" id="recycler" ${exemplaires?"":"disabled"}>${exemplaires ? `Dissoudre ${pluriel(exemplaires, "double")} contre ${pluriel(points, "voix", "voix")}` : "Cochez une rareté à dissoudre"}</button></div>
       <p class="aide">Le premier exemplaire de chaque carte est toujours gardé.${(etat.gardes || []).length ? ` ${pluriel(etat.gardes.length, "carte gardée", "cartes gardées")} : leurs doubles ne sont pas comptés. <button class="lien-carte" id="voir-gardees">Les voir</button>` : ""}</p>` : ""}
@@ -1196,6 +1205,12 @@ function majAtelier(){
     });
   });
   document.getElementById("voir-gardees")?.addEventListener("click", () => { document.getElementById("filtre").value = "gardees"; majCollection(); });
+  // Garder plusieurs cartes d'un coup : la sélection s'ouvre sur les cartes en double, « Ne pas dissoudre » dans la barre du bas
+  document.getElementById("garder-doubles")?.addEventListener("click", () => {
+    document.getElementById("filtre").value = "doubles"; selection = new Set(); majCollection();
+    document.getElementById("progression").scrollIntoView({behavior: reduit() ? "auto" : "smooth", block: "start"});
+    signaler("Touchez les cartes dont vous gardez les doubles, puis « Ne pas dissoudre ».");
+  });
   document.getElementById("voir-doubles")?.addEventListener("click", () => {
     document.getElementById("filtre").value = voirDoubles ? "" : "doubles";
     majCollection();
@@ -1462,7 +1477,7 @@ function majQag(){
       ${aJouer.length ? `<ul class="duels">${aJouer.map(d => ligne(d, `Contre <b>${echapper(d.avec)}</b>${d.repondues ? ` · ${d.repondues} sur 5` : ""}`,
         `<button class="bouton" data-duel="${d.id}">${d.repondues ? "Reprendre" : "Jouer"}</button>`)).join("")}</ul>` : ""}
       <form class="defier" id="form-duel"><p class="note">Mêmes cinq questions pour les deux ; le meilleur score emporte les deux mises, une égalité rend la sienne à chacun.</p>
-        ${amis.amis.length ? `<div class="puces-amis">${amis.amis.map(p => `<button type="button" data-defier="${echapper(p)}">${echapper(p)}</button>`).join("")}</div>` : ""}
+        ${amis.amis.length ? rangeeAmis("data-defier") : ""}
         <div class="ligne-defi"><input type="text" name="pseudo" required autocapitalize="off" spellcheck="false" placeholder="Pseudo de l'adversaire" aria-label="Adversaire">
           <select name="mise" aria-label="Mise">${MISES_DUEL.map(([v, l]) => `<option value="${v}">${l}</option>`).join("")}</select>
           <button class="bouton" type="submit">Défier</button></div></form>
@@ -1479,7 +1494,11 @@ document.getElementById("qag").addEventListener("click", e => {
   if (t.dataset.relever) { const d = duel(t.dataset.relever); if (d) occupe(t, async () => { await appel(`duels/${d.id}/relever`, {}); await appel("moi"); majTout(); await chargerDuels(); majAttente(); await demarrerDuel(d.id, d.avec); }); }
   if (t.dataset.refuser) occupe(t, async () => { await appel(`duels/${t.dataset.refuser}/refuser`, {}); await chargerDuels(); majAttente(); signaler("Défi refusé : la mise est rendue à son lanceur."); });
   if (t.dataset.annulerDuel) occupe(t, async () => { await appel(`duels/${t.dataset.annulerDuel}/annuler`, {}); await appel("moi"); majTout(); await chargerDuels(); signaler("Défi annulé : votre mise vous est rendue."); });
-  if (t.dataset.defier) { const f = document.getElementById("form-duel"); f.pseudo.value = t.dataset.defier; f.mise.focus(); }
+  const df = t.closest("[data-defier]");
+  if (df) {
+    const f = document.getElementById("form-duel"); f.pseudo.value = df.dataset.defier;
+    f.querySelectorAll("[data-defier]").forEach(x => x.setAttribute("aria-pressed", x === df)); f.mise.focus();
+  }
   if (t.dataset.choix !== undefined && quiz && quiz.repondu === null && !quiz.attente) {
     const choix = Number(t.dataset.choix);
     if (quiz.mode === "duel") {
@@ -2249,7 +2268,7 @@ function ouvrirSousBuvette(nom){
 function dessinerPartenaires(){
   const zone = document.getElementById("puces-partenaires");
   if (!zone) return;
-  zone.innerHTML = amis.amis.length ? amis.amis.map(p => `<button type="button" data-partenaire="${echapper(p)}" aria-pressed="${p === partenaire}">${echapper(p)}</button>`).join("")
+  zone.innerHTML = amis.amis.length ? rangeeAmis("data-partenaire", partenaire)
     : `<span class="note">Vos amis apparaîtront ici. Vous pouvez aussi saisir n'importe quel pseudo.</span>`;
 }
 async function choisirPartenaire(pseudo){
@@ -2280,7 +2299,7 @@ function construireBuvette(vue){
     <div data-panneau="echanges">
       <div id="zone-en-cours" hidden><h3>En attente</h3><ul class="fiches-echange" id="liste-echanges"></ul></div>
       <h3 id="etape-partenaire">Proposer un échange</h3>
-      <div class="puces-amis" id="puces-partenaires"></div>
+      <div id="puces-partenaires"></div>
       <form class="ligne-pseudo" id="form-partenaire"><input class="champ" type="text" name="pseudo" required autocapitalize="off" spellcheck="false" placeholder="Pseudo d'un joueur" aria-label="Pseudo du joueur"><button class="bouton discret" type="submit">Choisir</button></form>
       <div id="etapes-echange" hidden>
         <p class="note" id="partenaire-choisi" aria-live="polite"></p>
@@ -2524,6 +2543,12 @@ document.addEventListener("click", e => {
   document.getElementById("apercu").close?.();
   proposerEchangeA(b.dataset.demanderAmi, b.dataset.carte);
 });
+// Pastille d'un joueur : initiale sur une couleur tirée du pseudo (toujours la même pour un joueur)
+const pastilleAmi = p => `<span class="avatar-ami" style="--teinte:${[...p].reduce((h, c) => (h * 31 + c.charCodeAt(0)) % 360, 7)}" aria-hidden="true">${echapper(p.slice(0, 1).toUpperCase())}</span>`;
+// Amis à choisir (échange, duel) : une seule rangée de pastilles qui défile de côté, au lieu d'un nuage de puces
+function rangeeAmis(attribut, choisi = null){
+  return `<div class="rangee-amis">${amis.amis.map(p => `<button type="button" ${attribut}="${echapper(p)}" aria-pressed="${p === choisi}" title="${echapper(p)}">${pastilleAmi(p)}<span>${echapper(p)}</span></button>`).join("")}</div>`;
+}
 function relation(pseudo){
   const p = pseudo.toLowerCase(), dans = l => l.some(x => x.toLowerCase() === p);
   return dans(amis.amis) ? "ami" : dans(amis.recues) ? "recue" : dans(amis.envoyees) ? "envoyee" : "";
@@ -2546,7 +2571,7 @@ function majAmis(){
   const champ = vue.querySelector("#form-ami [name=pseudo]"), saisie = champ ? champ.value : "", actif = !!champ && document.activeElement === champ;
   const e = echapper;
   // Pastille du joueur : initiale sur une couleur tirée du pseudo (toujours la même pour un joueur)
-  const pastille = p => `<span class="avatar-ami" style="--teinte:${[...p].reduce((h, c) => (h * 31 + c.charCodeAt(0)) % 360, 7)}" aria-hidden="true">${e(p.slice(0, 1).toUpperCase())}</span>`;
+  const pastille = pastilleAmi;
   const mini = id => miniature(id).replace("<button", "<span").replace(/<\/button>$/, "</span>");
   const fiche = p => { const v = (amis.vitrines || {})[p] || [];
     return `<li class="fiche-ami"><button class="tete-ami" data-profil="${e(p)}">${pastille(p)}<span class="nom-ami">${e(p)}</span>
