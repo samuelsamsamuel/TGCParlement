@@ -46,7 +46,7 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
 
   /* ---------- État ---------- */
   function etatVide() {
-    return {version: VERSION_ETAT, possedees: {}, reserve: RESERVE_MAX, ancre: 0, points: 0, offerts: 0, objectifs: {}, quiz: "", favoris: [], journal: [], deja: []};
+    return {version: VERSION_ETAT, possedees: {}, reserve: RESERVE_MAX, ancre: 0, points: 0, offerts: 0, objectifs: {}, quiz: "", favoris: [], journal: [], deja: [], quotidien: {}};
   }
   function entier(v) { v = Math.floor(Number(v)); return Number.isFinite(v) && v > 0 ? v : 0; }
   // Accepte les états des versions précédentes (paquets du jour : jour, ouverts) et tout état abîmé ; le passage
@@ -65,6 +65,7 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
     e.offerts = entier(brut.offerts);
     if (brut.objectifs && typeof brut.objectifs === "object") Object.assign(e.objectifs, brut.objectifs);
     if (Array.isArray(brut.journal)) e.journal = brut.journal.slice(-JOURNAL_MAX);
+    if (brut.quotidien && typeof brut.quotidien === "object" && !Array.isArray(brut.quotidien)) e.quotidien = brut.quotidien;
     if (brut.verrous && typeof brut.verrous === "object")
       for (const [id, n] of Object.entries(brut.verrous)) if (entier(n)) (e.verrous ||= {})[id] = entier(n);
     return e;
@@ -121,13 +122,17 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
   }
   function compacter(cat) {
     const raretes = ORDRE.slice(), index = new Map(cat.cartes.map((c, i) => [c.id, i]));
-    return {raretes, cartes: cat.cartes.map(c => [c.id, raretes.indexOf(c.rarete), c.actuel ? 1 : 0, c.score]),
+    // Époque, chambres et sexe : thèmes de la carte recherchée du jour, comptés aussi par le serveur
+    const epoques = [...new Set(cat.cartes.map(c => c.epoque).filter(Boolean))].sort();
+    return {raretes, epoques, cartes: cat.cartes.map(c => [c.id, raretes.indexOf(c.rarete), c.actuel ? 1 : 0, c.score,
+        c.epoque ? epoques.indexOf(c.epoque) : -1, c.chambres || "", c.sexe === "F" ? 1 : 0]),
       objectifs: cat.objectifs.map(o => [o.id, o.famille, o.titre, o.sousTitre, enPlages(o.ids.map(id => index.get(id)))])};
   }
   // Catalogue du serveur. Les membres d'un objectif ne sont décodés qu'à sa première évaluation (réclamation,
   // reprise d'une collection) : le serveur reste ainsi sous la limite de calcul d'une requête du plan gratuit.
   function catalogueCompact(data) {
-    const cartes = data.cartes.map(([id, r, actuel, score]) => ({id, rarete: data.raretes[r], actuel: !!actuel, score}));
+    const cartes = data.cartes.map(([id, r, actuel, score, e, chambres, f]) => ({id, rarete: data.raretes[r], actuel: !!actuel, score,
+      epoque: data.epoques && e >= 0 ? data.epoques[e] : null, chambres: chambres || "", sexe: f ? "F" : null}));
     const cat = catalogue(cartes, [], []);
     cat.indexDe = Object.fromEntries(cartes.map((c, i) => [c.id, i]));
     cat.objectifs = data.objectifs.map(([id, famille, titre, sous, plages]) => {
@@ -191,6 +196,7 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
   }
   // Consomme un paquet de la réserve s'il en reste, sinon un paquet offert. Renvoie null si aucun n'est disponible.
   function ouvrirPaquet(etat, cat, {maintenant = Date.now(), aleatoire = Math.random} = {}) {
+    preparerJour(etat, cat, jourDuJeu(new Date(maintenant)));
     const r = reserveCourante(etat, maintenant);
     if (r.n + etat.offerts <= 0) return null;
     let origine;
@@ -208,6 +214,7 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
     const neuves = new Set(tirage.filter(c => !etat.possedees[c.id]).map(c => c.id));
     for (const c of tirage) etat.possedees[c.id] = (etat.possedees[c.id] || 0) + 1;
     noter(etat, "paquet", {origine, cartes: tirage.map(c => c.id)});
+    compter(etat, "paquets", 1, jourDuJeu(new Date(maintenant)));
     return {tirage, neuves, origine};
   }
 
@@ -237,7 +244,7 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
       exemplaires += k; points += k * VALEUR_RECYCLAGE[c.rarete];
       etat.possedees[id] -= k;
     }
-    if (exemplaires) { etat.points += points; noter(etat, "recyclage", {raretes: [...choisies], exemplaires, points}); }
+    if (exemplaires) { etat.points += points; noter(etat, "recyclage", {raretes: [...choisies], exemplaires, points}); compter(etat, "dissous", exemplaires); }
     return {exemplaires, points};
   }
   // Dissolution des exemplaires en trop d'une seule carte (le premier exemplaire est toujours gardé)
@@ -248,6 +255,7 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
     const points = k * VALEUR_RECYCLAGE[c.rarete];
     etat.possedees[id] -= k; etat.points += points;
     noter(etat, "recyclage", {carte: id, exemplaires: k, points});
+    compter(etat, "dissous", k);
     return {exemplaires: k, points};
   }
   function echangerPoints(etat) {
@@ -369,7 +377,7 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
       etat.objectifs[e.cle] = new Date().toISOString();
       gain.paquets += e.paquets; gain.voix += e.voix;
     }
-    if (gain.paquets || gain.voix) { etat.offerts += gain.paquets; etat.points += gain.voix; noter(etat, "objectif", {id, ...gain}); }
+    if (gain.paquets || gain.voix) { etat.offerts += gain.paquets; etat.points += gain.voix; noter(etat, "objectif", {id, ...gain}); compter(etat, "objectifs", 1); }
     return gain;
   }
   // Récompenses en attente : {paquets, voix, objectifs} (objectifs : nombre d'objectifs à réclamer)
@@ -390,6 +398,136 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
     if (actif && f.length < 300) f.push(String(id));
     etat.favoris = f;
     return f;
+  }
+
+  /* ---------- Journée : série de connexion et objectifs du jour ---------- */
+  // État : etat.quotidien = {serie: {jour, rang}, lot: {cartes, rang} | null, compteurs: {jour, paquets, dissous,
+  // objectifs}, recherche: {jour, base}, recus: {jour, cles}}. Jours de Paris (jourDuJeu).
+  const veille = jour => new Date(Date.parse(jour + "T12:00:00Z") - 86400000).toISOString().slice(0, 10);
+  const quotidien = etat => (etat.quotidien && typeof etat.quotidien === "object" ? etat.quotidien : (etat.quotidien = {}));
+  function compter(etat, cle, n, jour = jourDuJeu()) {
+    const q = quotidien(etat);
+    if (!q.compteurs || q.compteurs.jour !== jour) q.compteurs = {jour};
+    q.compteurs[cle] = (q.compteurs[cle] || 0) + n;
+  }
+
+  // Série de connexion « Choix » (décision de l'utilisateur, octobre 2026) : un lot par jour de Paris, sept lots qui
+  // montent ; le lendemain du septième, on recommence au premier. Un jour manqué fait redescendre d'un palier (le lot
+  // suivant est celui d'avant le dernier reçu) : sauter des jours ne rapporte jamais plus que venir chaque jour.
+  // « choix » : le joueur choisit une carte parmi n cartes qu'il n'a pas encore.
+  const SERIE = [
+    {voix: 10},
+    {choix: 3, raretes: ["commune"], titre: "une carte parmi 3 communes"},
+    {paquets: 1},
+    {voix: 25},
+    {choix: 5, raretes: ["peu-commune", "rare", "epique", "legendaire", "mythique"], titre: "une carte parmi 5 peu communes ou mieux"},
+    {paquets: 2},
+    {choix: 5, garantie: "epique", titre: "une carte parmi 5, dont une épique"},
+  ];
+  // Rang du prochain lot (1 à 7) et s'il est disponible aujourd'hui
+  function serieDuJour(etat, jour) {
+    const s = quotidien(etat).serie || {jour: null, rang: 0};
+    if (s.jour === jour) return {rang: s.rang, disponible: false, lot: SERIE[s.rang - 1]};
+    const rang = !s.rang ? 1 : s.jour === veille(jour) ? s.rang % SERIE.length + 1 : Math.max(1, s.rang - 1);
+    return {rang, disponible: true, lot: SERIE[rang - 1]};
+  }
+  // Propositions d'un lot « choix » : cartes pas encore possédées, des raretés demandées, au hasard selon les poids
+  // de tirage (la carte unique et les hors catégorie en sont exclues, sauf tirage ordinaire pour les cartes libres)
+  function propositions(etat, cat, lot, aleatoire) {
+    const pris = new Set(), libre = c => !etat.possedees[c.id] && !pris.has(c.id);
+    const tirer = pool => { for (let k = 0; k < 30; k++) { const c = tirerCarte(pool, aleatoire); if (libre(c)) return c; } return null; };
+    const filtre = r => Object.fromEntries(Object.entries(cat.parRarete).filter(([x]) => r.includes(x)));
+    const choix = [];
+    if (lot.garantie) { const c = tirer({[lot.garantie]: cat.parRarete[lot.garantie]}); if (c) { pris.add(c.id); choix.push(c.id); } }
+    const pool = lot.raretes ? filtre(lot.raretes) : filtre(ORDRE.filter(r => r !== "unique" && r !== "hors-categorie"));
+    for (let k = 0; choix.length < lot.choix && k < 50; k++) { const c = tirer(pool); if (c) { pris.add(c.id); choix.push(c.id); } }
+    for (let i = choix.length - 1; i > 0; i--) { const j = Math.floor(aleatoire() * (i + 1)); [choix[i], choix[j]] = [choix[j], choix[i]]; }
+    return choix;
+  }
+  // Recevoir le lot du jour : voix et paquets crédités, ou propositions à choisir (choisirLot). Un lot à choisir
+  // encore en attente doit être choisi avant le suivant.
+  function reclamerSerie(etat, cat, jour, aleatoire = Math.random) {
+    const q = quotidien(etat), s = serieDuJour(etat, jour);
+    if (!s.disponible || q.lot) return null;
+    const lot = s.lot, gain = {voix: lot.voix || 0, paquets: lot.paquets || 0, choix: null};
+    etat.points += gain.voix; etat.offerts += gain.paquets;
+    if (lot.choix) gain.choix = (q.lot = {cartes: propositions(etat, cat, lot, aleatoire), rang: s.rang}).cartes;
+    q.serie = {jour, rang: s.rang};
+    noter(etat, "serie", {rang: s.rang, voix: gain.voix, paquets: gain.paquets, choix: gain.choix});
+    return gain;
+  }
+  function choisirLot(etat, cat, id) {
+    const q = quotidien(etat);
+    if (!q.lot || !q.lot.cartes.map(String).includes(String(id)) || !cat.parId[id]) return null;
+    etat.possedees[id] = (etat.possedees[id] || 0) + 1;
+    noter(etat, "lot", {carte: id, rang: q.lot.rang});
+    q.lot = null;
+    return {carte: id};
+  }
+
+  // Objectifs du jour (décision de l'utilisateur, octobre 2026 : dans l'ordre du jour, deux petites tâches et une carte
+  // recherchée). Les mêmes pour tous les joueurs, tirés de la date. Tâches comptées par les opérations des règles ;
+  // carte recherchée : une carte de plus, ce jour-là, dans un thème (époque, chambre, Gouvernement, femmes, rare ou
+  // mieux), quel que soit le moyen (paquet, échange, comptoir) : le compte du thème est noté au premier passage du jour.
+  const TACHES = [
+    {cle: "paquets3", titre: "Ouvrir 3 paquets", compteur: "paquets", cible: 3},
+    {cle: "paquets6", titre: "Ouvrir 6 paquets", compteur: "paquets", cible: 6},
+    {cle: "dissous3", titre: "Dissoudre 3 cartes en trop", compteur: "dissous", cible: 3},
+    {cle: "quiz", titre: "Répondre aux questions au Gouvernement", quiz: true, cible: 1},
+    {cle: "objectif", titre: "Réclamer une récompense de l'ordre du jour", compteur: "objectifs", cible: 1},
+  ];
+  const VOIX_TACHE = 10, PAQUETS_RECHERCHE = 1;
+  function themes(cat) {
+    if (cat.themes) return cat.themes;
+    const epoques = [...new Set(cat.cartes.map(c => c.epoque).filter(Boolean))].sort();
+    return cat.themes = [
+      ...epoques.map(e => ({titre: `une nouvelle carte de l'époque « ${e} »`, test: c => c.epoque === e})),
+      {titre: "un nouveau sénateur ou une nouvelle sénatrice", test: c => (c.chambres || "").includes("S")},
+      {titre: "un nouveau membre du Gouvernement", test: c => (c.chambres || "").includes("G")},
+      {titre: "une nouvelle femme parlementaire ou ministre", test: c => c.sexe === "F"},
+      {titre: "une nouvelle carte rare ou mieux", test: c => ["rare", "epique", "hors-categorie", "legendaire", "mythique", "unique"].includes(c.rarete)},
+    ];
+  }
+  function objectifsDuJour(cat, jour) {
+    const h = hasard(graineDe("jour|" + jour)), t = TACHES.slice();
+    for (let i = t.length - 1; i > 0; i--) { const j = Math.floor(h() * (i + 1)); [t[i], t[j]] = [t[j], t[i]]; }
+    // Deux tâches qui ne comptent pas la même chose (pas « 3 paquets » et « 6 paquets » ensemble)
+    const taches = [t[0], t.slice(1).find(x => (x.compteur || "quiz") !== (t[0].compteur || "quiz"))];
+    const th = themes(cat);
+    return {taches, theme: th[Math.floor(h() * th.length)]};
+  }
+  const compteTheme = (etat, cat, theme) => Object.keys(etat.possedees).filter(id => etat.possedees[id] > 0 && cat.parId[id] && theme.test(cat.parId[id])).length;
+  // Premier passage du jour : compte du thème recherché (idempotent)
+  function preparerJour(etat, cat, jour = jourDuJeu()) {
+    const q = quotidien(etat);
+    if (q.recherche && q.recherche.jour === jour) return false;
+    q.recherche = {jour, base: compteTheme(etat, cat, objectifsDuJour(cat, jour).theme)};
+    return true;
+  }
+  // Avancement des objectifs du jour, pour l'interface et la réclamation
+  function etatDuJour(etat, cat, jour = jourDuJeu()) {
+    const q = quotidien(etat), o = objectifsDuJour(cat, jour);
+    const compteurs = q.compteurs && q.compteurs.jour === jour ? q.compteurs : {};
+    const recus = new Set(q.recus && q.recus.jour === jour ? q.recus.cles : []);
+    const taches = o.taches.map(t => {
+      const avance = Math.min(t.cible, t.quiz ? (etat.quiz === jour ? 1 : 0) : compteurs[t.compteur] || 0);
+      return {cle: t.cle, titre: t.titre, avance, cible: t.cible, fait: avance >= t.cible, recu: recus.has(t.cle), gain: {voix: VOIX_TACHE, paquets: 0}};
+    });
+    const base = q.recherche && q.recherche.jour === jour ? q.recherche.base : null;
+    const fait = base !== null && compteTheme(etat, cat, o.theme) > base;
+    const recherche = {cle: "recherche", titre: "Carte recherchée : " + o.theme.titre, avance: fait ? 1 : 0, cible: 1, fait, recu: recus.has("recherche"),
+      gain: {voix: 0, paquets: PAQUETS_RECHERCHE}};
+    return {jour, objectifs: [...taches, recherche], serie: serieDuJour(etat, jour), lot: q.lot || null};
+  }
+  function reclamerJour(etat, cat, jour, cle) {
+    const o = etatDuJour(etat, cat, jour).objectifs.find(x => x.cle === cle);
+    if (!o || !o.fait || o.recu) return null;
+    const q = quotidien(etat);
+    if (!q.recus || q.recus.jour !== jour) q.recus = {jour, cles: []};
+    q.recus.cles.push(cle);
+    etat.points += o.gain.voix; etat.offerts += o.gain.paquets;
+    noter(etat, "jour", {cle, ...o.gain});
+    return o.gain;
   }
 
   /* ---------- Questions au Gouvernement ---------- */
@@ -526,5 +664,6 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
 
   return {VERSION_ETAT, basculerFavori, RECHARGE_MS, QUIZ_QUESTIONS, graineDe, questions, compacterQuiz, catalogueQuiz, recompenseQuiz, validerQuiz, RESERVE_MAX, CARTES_PAR_PAQUET, reserveCourante, ORDRE, POIDS, VALEUR_RECYCLAGE, PRIX_PAQUET, PALIERS,
     etatVide, migrer, jourDuJeu, normer, cartesDeJeu, catalogue, compacter, catalogueCompact, paquetsDisponibles, ouvrirPaquet,
-    disponibles, recyclables, doubles, recycler, dissoudre, echangerPoints, avancement, clesAtteintes, reclamer, recompensesEnAttente};
+    disponibles, recyclables, doubles, recycler, dissoudre, echangerPoints, avancement, clesAtteintes, reclamer, recompensesEnAttente,
+    SERIE, serieDuJour, reclamerSerie, choisirLot, objectifsDuJour, preparerJour, etatDuJour, reclamerJour};
 });

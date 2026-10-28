@@ -280,6 +280,20 @@ footer{max-width:1120px;margin:0 auto;padding:0 1rem 3rem;font-size:.85rem;color
 .objectifs h2{font:400 1.45rem var(--serif);margin:1.6rem 0 .3rem}
 .objectifs h2:first-child{margin-top:0}
 .objectifs .intro{color:var(--dorure-pale);margin:0 0 .9rem;font-size:.92rem}
+/* Aujourd'hui : série de connexion (sept cases) et objectifs du jour, en tête de l'ordre du jour */
+.journee{margin:0 0 1.2rem}
+.journee h2{font:400 1.25rem var(--serif);margin:0}
+.serie{border:1px solid rgba(201,162,74,.45);border-radius:8px;padding:.8rem .9rem;margin:0 0 1rem;background:rgba(92,16,32,.35)}
+.tete-serie{display:flex;flex-wrap:wrap;gap:.5rem 1rem;align-items:center;justify-content:space-between;margin-bottom:.7rem}
+.tete-serie .bouton{padding:.55rem .9rem;font-size:.9rem}
+.cases-serie{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:.35rem}
+.cases-serie li{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:.15rem;min-height:4.2rem;padding:.35rem .2rem;border:1px solid rgba(201,162,74,.25);border-radius:6px;font-size:.68rem;line-height:1.2;color:var(--pierre)}
+.cases-serie li b{font-size:.72rem;color:var(--dorure-pale)}
+.cases-serie li.faite{background:rgba(201,162,74,.12)}
+.cases-serie li.faite b{color:var(--dorure)}
+.cases-serie li.courante{border-color:var(--dorure);box-shadow:0 0 0 1px var(--dorure) inset;color:var(--marbre)}
+.titre-jour{margin:.2rem 0 .5rem}
+@media (max-width:480px){.cases-serie{grid-template-columns:repeat(4,minmax(0,1fr))}}
 .liste-objectifs{list-style:none;margin:0;padding:0;display:grid;gap:.6rem;grid-template-columns:repeat(auto-fill,minmax(min(100%,330px),1fr))}
 .objectif{border:1px solid rgba(201,162,74,.3);border-radius:6px;padding:.75rem .9rem;background:rgba(46,7,16,.6);display:flex;flex-direction:column;gap:.35rem}
 .objectif.pret{border-color:var(--dorure);box-shadow:0 0 0 1px var(--dorure) inset}
@@ -671,6 +685,8 @@ html.presentation{font-size:15px}
     <p>Toutes les 30 minutes, un paquet de cinq cartes s'ajoute à votre réserve, qui en garde dix au plus : en passant matin, midi et soir, on en ouvre une trentaine par jour. Chaque paquet contient un parlementaire ou un ministre en exercice, sauf si celui qui sort est déjà dans votre hémicycle : il laisse alors la place à une autre carte de la même rareté. Les cartes obtenues prennent place dans votre hémicycle, votre collection.</p>
     <h3>Paquets offerts</h3>
     <p>L'ordre du jour récompense chaque objectif atteint. Les plus simples rapportent des voix pour lancer la partie : premiers pas (premier membre du Gouvernement, premier sénateur, première carte épique…) et premiers paliers de l'hémicycle. Les plus difficiles rapportent des paquets offerts : grands paliers de l'hémicycle, Quatre-vingts, Compagnons de la Libération, présidents de l'Assemblée, députés d'une législature, élus d'un département. La dissolution des doubles rapporte aussi des voix : chaque exemplaire en trop dissous rapporte des voix selon sa rareté (commune 1, peu commune 2, rare 5, épique 15, légendaire et hors catégorie 40, mythique 100, unique 250), et 25 voix s'échangent contre un paquet. Ici, acheter des voix est parfaitement réglementaire. Le premier exemplaire de chaque carte n'est jamais dissous. Les paquets offerts s'ouvrent une fois la réserve vide, sans limite de date.</p>
+    <h3>Série de connexion et objectifs du jour</h3>
+    <p>En tête de l'ordre du jour, un lot par jour : 10 voix, une carte à choisir parmi 3 communes, un paquet, 25 voix, une carte à choisir parmi 5 peu communes ou mieux, deux paquets, puis une carte à choisir parmi 5 dont une épique. Les cartes proposées sont toujours des cartes que vous n'avez pas. Le lendemain du septième jour, la série recommence. Un jour manqué fait redescendre d'un palier : venir chaque jour rapporte toujours le plus. Chaque jour aussi, trois objectifs, les mêmes pour tous : deux petites tâches à 10 voix et une carte recherchée, une carte d'un thème que vous n'aviez pas encore, obtenue par paquet, échange ou au comptoir, qui rapporte un paquet.</p>
     <h3>Questions au Gouvernement</h3>
     <p>Sous les paquets de la séance, cinq questions par jour sur la Ve République, tirées des fiches officielles des cartes : un portrait à reconnaître, le titulaire actuel d'un poste, un département d'élection, une fonction et la personne qui l'a exercée. Chaque bonne réponse rapporte 2 voix, et un sans-faute 5 de plus. Avec un compte, on peut aussi défier un autre joueur, pour la gloire ou contre une mise de 10 à 100 voix ou de 1 à 3 paquets offerts, retenue dès le défi. L'adversaire relève le défi en mettant la même mise, ou le refuse et la vôtre vous revient. Les deux reçoivent les mêmes questions, et le serveur juge chaque réponse : le meilleur score emporte les deux mises, une égalité rend la sienne à chacun. Un défi laissé trois jours sans réponse est remboursé ; un duel relevé mais pas fini au bout de trois jours est clos avec les réponses données.</p>
     <h3>Hémicycle et favoris</h3>
@@ -691,6 +707,7 @@ html.presentation{font-size:15px}
   <section class="vue panneau" id="vue-parametres" hidden></section>
 
   <section class="vue objectifs" id="vue-objectifs" hidden>
+    <section class="journee" id="journee" aria-live="polite"></section>
     <div class="synthese" id="synthese-objectifs"></div>
     <details class="rubrique" open><summary><span>Premiers pas</span><span class="etat-rubrique" id="etat-premiers"></span></summary>
       <ul class="liste-objectifs petits" id="obj-premiers"></ul>
@@ -798,6 +815,23 @@ const actions = {
   async echangerPoints(){
     if (!compte) { const ok = Regles.echangerPoints(etat); sauver(); return ok; }
     return (await appel("echanger-points", {})).resultat;
+  },
+  // Journée : premier passage du jour, lot de la série, carte choisie, objectif du jour
+  async jour(){
+    if (!compte) { if (Regles.preparerJour(etat, cat)) sauver(); return; }
+    await appel("jour", {});
+  },
+  async serie(){
+    if (!compte) { const r = Regles.reclamerSerie(etat, cat, Regles.jourDuJeu()); sauver(); return r; }
+    return (await appel("serie", {})).resultat;
+  },
+  async lot(id){
+    if (!compte) { const r = Regles.choisirLot(etat, cat, id); sauver(); return r; }
+    return (await appel("lot", {carte: id})).resultat;
+  },
+  async objectifJour(cle){
+    if (!compte) { const r = Regles.reclamerJour(etat, cat, Regles.jourDuJeu(), cle); sauver(); return r; }
+    return (await appel("objectif-du-jour", {cle})).resultat;
   },
   async validerQuiz(bonnes){
     if (!compte) { const v = Regles.validerQuiz(etat, Regles.jourDuJeu(), bonnes); sauver(); return v; }
@@ -907,10 +941,10 @@ function majCompteur(){
   const attente = cat ? Regles.recompensesEnAttente(etat, cat) : {objectifs: 0};
   if (attente.objectifs) infos.push(`<span><b>${gainTexte(attente)}</b> à réclamer à l'ordre du jour</span>`);
   document.getElementById("reserve").innerHTML = infos.join("");
-  const pastille = document.getElementById("pastille");
-  pastille.hidden = !attente.objectifs; pastille.textContent = attente.objectifs;
+  const pastille = document.getElementById("pastille"), jour = cat ? aReclamerDuJour() : 0;
+  pastille.hidden = !(attente.objectifs + jour); pastille.textContent = attente.objectifs + jour;
 }
-function majTout(){ majCompteur(); majCollection(); majObjectifs(); majCompte(); majBuvette(); majAmis(); majQag(); }
+function majTout(){ majCompteur(); majCollection(); majJournee(); majObjectifs(); majCompte(); majBuvette(); majAmis(); majQag(); }
 // Délai lisible : « 42 min », « 1 h 05 »
 function delai(ms){ const m = Math.max(1, Math.ceil(ms / 60000)); return m < 60 ? m + " min" : Math.floor(m / 60) + " h " + String(m % 60).padStart(2, "0"); }
 // Pastilles des onglets : échanges reçus (Buvette), demandes d'ami (Amis) et duels à jouer (Séance), relues toutes les deux minutes
@@ -1115,6 +1149,57 @@ function htmlObjectif(o){
     <div class="jauge" aria-hidden="true"><i style="width:${part}%"></i></div>
     <div class="compte"><span>${a.obtenues.toLocaleString("fr-FR")} sur ${o.total.toLocaleString("fr-FR")}</span><span>${suite}</span></div></li>`;
 }
+// Aujourd'hui, en tête de l'ordre du jour : série de connexion (sept lots, un par jour) et objectifs du jour (deux
+// tâches et une carte recherchée). Le premier passage du jour note le compte du thème recherché (actions.jour).
+let jourPrepare = null;
+function preparerJournee(){
+  // Une fois par jour et par compte (le premier passage fait sans compte ne vaut pas pour le compte créé ensuite)
+  const jour = Regles.jourDuJeu() + "|" + (compte ? compte.pseudo : "");
+  if (!cat || jourPrepare === jour) return;
+  jourPrepare = jour;
+  actions.jour().then(() => { majJournee(); majCompteur(); }).catch(() => { jourPrepare = null; });
+}
+const texteLot = l => l.choix ? `1 carte parmi ${l.choix}${l.garantie ? ", dont une épique" : ""}` : l.paquets ? pluriel(l.paquets, "paquet") : pluriel(l.voix, "voix", "voix");
+function aReclamerDuJour(){
+  const j = Regles.etatDuJour(etat, cat);
+  return (j.serie.disponible && !j.lot ? 1 : 0) + (j.lot ? 1 : 0) + j.objectifs.filter(o => o.fait && !o.recu).length;
+}
+function majJournee(){
+  const zone = document.getElementById("journee"); if (!zone || !cat) return;
+  preparerJournee();
+  const j = Regles.etatDuJour(etat, cat), s = j.serie, recu = !s.disponible;
+  const cases = Regles.SERIE.map((l, k) => {
+    const n = k + 1, faite = n < s.rang || (n === s.rang && recu), courante = n === s.rang && !recu;
+    return `<li class="${faite ? "faite" : ""}${courante ? " courante" : ""}"><b>${faite ? "✓" : "Jour " + n}</b><span>${texteLot(l)}</span></li>`;
+  }).join("");
+  const geste = j.lot ? `<button class="bouton" id="choisir-lot">Choisir ma carte (${j.lot.cartes.length} proposées)</button>`
+    : s.disponible ? `<button class="bouton" id="recevoir-lot">Recevoir : ${texteLot(s.lot)}</button>`
+    : `<span class="note">Lot du jour reçu. Revenez demain pour le suivant.</span>`;
+  const ligne = o => `<li class="objectif${o.fait && !o.recu ? " pret" : ""}${o.recu ? " recu" : ""}"><div class="tete-obj">
+      <span class="marque-obj" aria-hidden="true">${o.recu ? "✓" : o.fait ? "★" : ""}</span><h3>${echapper(o.titre)}</h3>
+      ${o.recu ? `<span class="gain-obj">reçu</span>` : o.fait ? `<button class="bouton" data-objectif-jour="${o.cle}">+ ${gainTexte(o.gain)}</button>`
+        : `<span class="gain-obj">${o.cible > 1 ? `${o.avance}/${o.cible} · ` : ""}${gainTexte(o.gain)}</span>`}</div></li>`;
+  zone.innerHTML = `<div class="serie"><div class="tete-serie"><h2>Série de connexion</h2>${geste}</div><ol class="cases-serie">${cases}</ol></div>
+    <h2 class="titre-jour">Objectifs du jour</h2><ul class="liste-objectifs petits">${j.objectifs.map(ligne).join("")}</ul>`;
+}
+document.getElementById("journee").addEventListener("click", e => {
+  const b = e.target.closest("#recevoir-lot, #choisir-lot, [data-objectif-jour]");
+  if (!b) return;
+  const proposer = cartes => choisirCarte("Choisissez votre carte", cartes.map(id => [id, null]), id => occupe(null, async () => {
+    await actions.lot(id); majTout(); signaler(`${cat.parId[id].nom} rejoint votre hémicycle.`);
+  }));
+  if (b.id === "choisir-lot") { proposer(Regles.etatDuJour(etat, cat).lot.cartes); return; }
+  occupe(b, async () => {
+    if (b.id === "recevoir-lot") {
+      const g = await actions.serie();
+      majTout();
+      if (g && g.choix) proposer(g.choix); else if (g) signaler(`Lot du jour : ${gainTexte(g)}.`);
+      return;
+    }
+    const g = await actions.objectifJour(b.dataset.objectifJour);
+    majTout(); if (g) signaler(`Objectif du jour atteint : ${gainTexte(g)}.`);
+  });
+});
 // Ordre du jour : une synthèse en tête (bouton « Tout réclamer »), puis des rubriques repliables dont
 // l'en-tête dit l'avancement et le nombre d'objectifs à réclamer
 // Numéros des départements (Code officiel géographique de l'Insee depuis 1943, scripts/numeros_departements.py),

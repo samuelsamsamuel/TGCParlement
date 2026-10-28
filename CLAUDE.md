@@ -108,6 +108,16 @@ de chaque année depuis 1943, anciens noms compris ; écrit `site/departements.j
   doubles). Raretés inchangées, aussi au serveur (même `regles.js`). Simulation de 1 500 paquets, douze joueurs : 0,1 %,
   0,7 %, 2,8 % et 9,9 % de doubles sur les paquets 1-100, 101-300, 301-700 et 701-1 500 (avant : 3, 9, 19 et 33 %) ;
   vérifié par le test (entre 7 et 13 % du 701e au 1 500e).
+- Journée (demande de l'utilisateur, octobre 2026), en tête de l'ordre du jour (`majJournee`) : série de connexion « Choix »
+  (`SERIE`, `reclamerSerie`, `choisirLot` : 10 voix, 1 commune parmi 3, 1 paquet, 25 voix, 1 parmi 5 peu communes ou mieux,
+  2 paquets, 1 parmi 5 dont une épique ; cartes proposées jamais possédées ; un jour manqué redescend d'un palier, le
+  lendemain du 7e on recommence ; lot à choisir en attente bloque le suivant) ; objectifs du jour (`objectifsDuJour`,
+  mêmes pour tous, tirés de la date : deux tâches de `TACHES` à 10 voix, comptées par les opérations des règles,
+  `compter`, et une carte recherchée à 1 paquet : une carte de plus dans un thème (époque, Sénat, Gouvernement, femmes,
+  rare ou mieux) que le compte noté au premier passage du jour, `preparerJour`, appelé à l'ouverture et par
+  `ouvrirPaquet`). État `quotidien` (colonne `quotidien` de `joueurs`, écrite par `appliquer`), routes `POST /api/jour`,
+  `/api/serie`, `/api/lot`, `/api/objectif-du-jour`. Le catalogue du serveur porte époque, chambres et sexe pour les thèmes.
+  Pastille de l'ordre du jour : objectifs ordinaires plus lot et objectifs du jour à recevoir (`aReclamerDuJour`).
 - Économie : Recyclage d'un exemplaire en trop : commune 1,
   peu commune 2, rare 5, épique 15, légendaire et hors catégorie 40, mythique 100 points ; 25 points font un
   paquet. Un paquet de doubles rapporte en moyenne 21 points : le prix doit rester au-dessus, sans quoi le
