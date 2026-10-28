@@ -241,8 +241,9 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
     return {exemplaires, points};
   }
   // Dissolution des exemplaires en trop d'une seule carte (le premier exemplaire est toujours gardé)
-  function dissoudre(etat, cat, id) {
-    const c = cat.parId[id], k = c ? recyclables(etat, id) : 0;
+  // Doubles d'une carte ; avec « tout », aussi le dernier exemplaire libre (la carte quitte alors la collection)
+  function dissoudre(etat, cat, id, tout = false) {
+    const c = cat.parId[id], k = c ? (tout ? disponibles(etat, id) : recyclables(etat, id)) : 0;
     if (!k) return {exemplaires: 0, points: 0};
     const points = k * VALEUR_RECYCLAGE[c.rarete];
     etat.possedees[id] -= k; etat.points += points;

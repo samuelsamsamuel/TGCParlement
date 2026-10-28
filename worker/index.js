@@ -22,6 +22,7 @@ import {CODES} from "./codes.js";
 const DUREE_SESSION = 90 * 24 * 3600;           // secondes
 const COOKIE = "hemicycle_session";
 const MAX_PAR_CARTE = 999;                       // exemplaires repris au plus par carte
+const MAX_VOIX_REPRISES = 1000;                  // voix du navigateur reprises au plus à l'inscription
 const MAX_ECHANGE = 40;                          // cartes au plus dans un échange (deux côtés)
 const MAX_ECHANGES_EN_COURS = 20, MAX_ANNONCES = 50;
 const PRIX_MAX = 100000;
@@ -370,8 +371,10 @@ async function inscription(env, requete, cat) {
   }
   // Reprise de la collection du navigateur, une seule fois : les cartes deviennent des cartes ordinaires du
   // compte (décision de l'utilisateur, octobre 2026 : vendre les cartes du navigateur doit être possible, au prix
-  // d'une collection locale que le serveur ne peut pas vérifier). Les paliers déjà atteints sont marqués comme réclamés : le navigateur les a déjà payés. Voix et paquets
-  // offerts ne sont pas repris. En cas d'échec, le compte reste vide et une nouvelle inscription le reprend.
+  // d'une collection locale que le serveur ne peut pas vérifier). Les paliers déjà atteints sont marqués comme réclamés : le navigateur les a déjà payés. Les voix
+  // sont reprises aussi (demande de l'utilisateur, octobre 2026), jusqu'à MAX_VOIX_REPRISES : comme les cartes, le
+  // serveur ne peut pas les vérifier, et le plafond borne ce qu'un navigateur retouché ferait entrer dans le comptoir.
+  // Les paquets offerts ne sont pas repris. En cas d'échec, le compte reste vide et une nouvelle inscription le reprend.
   const repris = {};
   const brut = c.collection && typeof c.collection === "object" ? c.collection : {};
   for (const [id, n] of Object.entries(brut)) {
@@ -379,12 +382,14 @@ async function inscription(env, requete, cat) {
     if (k && cat.parId[id]) repris[id] = k;
   }
   const ids = Object.keys(repris), date = maintenant();
+  const voix = Math.min(MAX_VOIX_REPRISES, entier(c.voix, 0, 1e9) || 0);
   const requetes = [
     ...insertionsGroupees(env, "INSERT INTO possessions (joueur, carte, n)", 3, ids.map(id => [joueur, id, repris[id]])),
     ...insertionsGroupees(env, "INSERT OR IGNORE INTO reclames (joueur, cle, date)", 3, Regles.clesAtteintes(cat, repris).map(cle => [joueur, cle, date])),
+    ...(voix ? [env.DB.prepare("UPDATE joueurs SET points = points + ? WHERE id = ?").bind(voix, joueur)] : []),
   ];
   // Le journal en dernier : sa présence marque une reprise terminée
-  if (ids.length) requetes.push(noterJournal(env, joueur, "reprise", {cartes: ids.length, exemplaires: ids.reduce((a, id) => a + repris[id], 0)}));
+  if (ids.length || voix) requetes.push(noterJournal(env, joueur, "reprise", {cartes: ids.length, exemplaires: ids.reduce((a, id) => a + repris[id], 0), voix}));
   // Un seul lot, exécuté comme une transaction : la reprise passe en entier ou pas du tout
   if (requetes.length) await env.DB.batch(requetes);
   return json({connecte: true, ...(await chargerEtat(env, joueur))}, 201, {"set-cookie": await ouvrirSession(env, joueur)});
@@ -1037,7 +1042,7 @@ async function api(requete, env, url) {
   if (methode === "POST" && chemin === "/api/dissoudre") {
     const c = await lireCorps(requete);
     const cat = await catalogueDuJeu();
-    return avecEtat(await appliquer(env, joueur, e => Regles.dissoudre(e, cat, String(c.carte || ""))));
+    return avecEtat(await appliquer(env, joueur, e => Regles.dissoudre(e, cat, String(c.carte || ""), c.tout === true)));
   }
   if (methode === "POST" && chemin === "/api/favori") return changerFavori(env, requete, joueur, await catalogueDuJeu());
   if (methode === "GET" && chemin === "/api/amis") return listeAmis(env, joueur);
