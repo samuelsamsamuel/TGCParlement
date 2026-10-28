@@ -1342,8 +1342,7 @@ function majActionsApercu(id){
         : libres ? `<button class="bouton discret" data-dissoudre="${echapper(id)}" data-tout>Dissoudre la carte : +${pluriel(VALEUR_RECYCLAGE[c.rarete], "voix", "voix")}</button>` : ""}
       ${compte && libres ? `<button class="bouton discret" data-vendre="${echapper(id)}">Vendre au comptoir</button>` : ""}
       ${compte ? (vitrineCompte().includes(id) ? `<button class="bouton discret" data-vitrine-retirer="${echapper(id)}">Retirer de ma vitrine</button>`
-        : vitrineCompte().length < 6 ? `<button class="bouton discret" data-vitrine-ajouter="${echapper(id)}">Mettre en vitrine</button>`
-        : `<p class="note">Vitrine pleine : retirez une carte dans Mon siège pour placer celle-ci.</p>`) : ""}`
+        : `<button class="bouton discret" data-vitrine-ajouter="${echapper(id)}">Mettre en vitrine</button>`) : ""}`
     : (etat.deja || []).includes(id) ? `<p class="note">Vous l'avez eue, puis cédée : elle n'est plus dans votre hémicycle. Touchez la carte pour voir sa carrière au verso.</p>`
     : `<p class="note">Pas encore dans votre hémicycle. Touchez la carte pour voir sa carrière au verso.</p>`;
   zone.insertAdjacentHTML("beforeend", `<p class="detenteurs" id="detenteurs"></p><p class="detenteurs" id="amis-carte"></p>`);
@@ -1370,7 +1369,15 @@ async function afficherDetenteurs(id){
 document.getElementById("apercu").addEventListener("click", e => {
   const d = e.target.closest("[data-dissoudre]"), v = e.target.closest("[data-vendre]");
   const va = e.target.closest("[data-vitrine-ajouter]"), vr = e.target.closest("[data-vitrine-retirer]");
-  if (va) occupe(va, async () => { await exposerVitrine([...vitrineCompte(), va.dataset.vitrineAjouter].slice(0, 6)); majActionsApercu(va.dataset.vitrineAjouter); signaler("Carte placée dans votre vitrine."); });
+  if (va) {
+    const id = va.dataset.vitrineAjouter, v = vitrineCompte();
+    if (v.length < 6) occupe(va, async () => { await exposerVitrine([...v, id]); majActionsApercu(id); signaler("Carte placée dans votre vitrine."); });
+    // Vitrine pleine : la nouvelle carte prend la place de celle que le joueur choisit parmi les six
+    else choisirCarte(`Vitrine pleine : quelle carte remplacer par ${cat.parId[id].nom} ?`, v.map(x => [x, null]), ancienne => occupe(null, async () => {
+      await exposerVitrine(vitrineCompte().map(x => x === ancienne ? id : x)); majActionsApercu(id);
+      signaler(`${cat.parId[id].nom} remplace ${cat.parId[ancienne].nom} dans votre vitrine.`);
+    }));
+  }
   if (vr) occupe(vr, async () => { await exposerVitrine(vitrineCompte().filter(x => x !== vr.dataset.vitrineRetirer)); majActionsApercu(vr.dataset.vitrineRetirer); signaler("Carte retirée de votre vitrine."); });
   if (d) {
     const id = d.dataset.dissoudre, tout = d.dataset.tout !== undefined, k = tout ? 1 : Regles.recyclables(etat, id), nom = cat.parId[id].nom;

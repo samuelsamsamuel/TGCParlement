@@ -173,6 +173,12 @@ const sx = Date.now().toString(36).slice(-4);
   await A.click(`[data-dissoudre="${seule}"][data-tout]`);
   await A.waitForFunction(([id, v]) => !etat.possedees[id] && etat.points > v && etat.deja.includes(id), [seule, voixAvantDissolution]);
   await A.click("#fermer-apercu");
+  // Vitrine pleine : « Mettre en vitrine » fait choisir la carte à remplacer, qui cède sa case
+  const six = await A.evaluate(async () => { const ids = Object.keys(etat.possedees).filter(id => etat.possedees[id] > 0).slice(0, 7); await exposerVitrine(ids.slice(0, 6)); return ids; });
+  await A.evaluate(id => apercu(id), six[6]); await A.click(`[data-vitrine-ajouter="${six[6]}"]`);
+  await A.waitForSelector(`#choix-carte[open] [data-choisir="${six[2]}"]`); await A.click(`#choix-carte [data-choisir="${six[2]}"]`);
+  await A.waitForFunction(([nouvelle, ancienne]) => compte.vitrine[2] === nouvelle && !compte.vitrine.includes(ancienne) && compte.vitrine.length === 6, [six[6], six[2]]);
+  await A.click("#fermer-apercu");
   await vers(A, "parametres");
   await A.waitForSelector("#zone-suppression summary");
   await vers(A, "compte");
