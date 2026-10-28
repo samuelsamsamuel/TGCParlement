@@ -102,7 +102,8 @@ const sx = Date.now().toString(36).slice(-4);
   await A.screenshot({path: T + "/vente.png", fullPage: true});
   await A.fill('#zone-vente [name=prix]', "12");
   await A.click('#zone-vente button[type=submit]');
-  await A.waitForFunction(() => /en vente/.test(document.getElementById("mes-annonces").textContent));
+  // Ses cartes en vente : en tête du comptoir, avec Retirer sur l'étal
+  await A.waitForFunction(() => document.querySelectorAll('#liste-marche [data-action$=":retirer"]').length === 1);
   require("child_process").execSync(`cd ${require("path").join(__dirname, "..")} && ${process.env.WR} d1 execute hemicycle --local --persist-to ${process.env.ETAT} --command "UPDATE joueurs SET points = 30 WHERE pseudo = 'Bob${sx}'"`, {stdio: "ignore"});
   await Bp.reload(); await Bp.click('nav [data-vue="buvette"]'); await Bp.click('.onglets [data-sous="comptoir"]');
   await Bp.waitForSelector('[data-action$=":acheter"]:not([disabled])');
@@ -124,7 +125,7 @@ const sx = Date.now().toString(36).slice(-4);
   await A.click('[data-choisir-vente]'); await A.waitForSelector("#choix-carte[open] [data-choisir]");
   await A.click("#choix-carte [data-choisir]"); await A.waitForSelector("#zone-vente .vente .carte");
   await A.fill('#zone-vente [name=prix]', "10"); await A.click('#zone-vente button[type=submit]');
-  await A.waitForFunction(() => document.querySelectorAll("#mes-annonces .etal").length === 1);
+  await A.waitForFunction(() => document.querySelectorAll('#liste-marche [data-action$=":retirer"]').length === 1);
   await Bp.reload(); await Bp.click('nav [data-vue="buvette"]'); await Bp.click('.onglets [data-sous="comptoir"]');
   await Bp.waitForSelector("[data-offre]"); await Bp.click("[data-offre]");
   await Bp.fill("[data-form-offre] [name=prix]", "6"); await Bp.click("[data-form-offre] button[type=submit]");
