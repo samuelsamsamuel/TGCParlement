@@ -173,6 +173,7 @@ const COLONNES = {
     ["vitrine", "TEXT NOT NULL DEFAULT '[]'"],    // cartes choisies pour la vitrine publique
     ["quiz", "TEXT NOT NULL DEFAULT ''"],         // jour des dernières questions au Gouvernement récompensées
     ["favoris", "TEXT NOT NULL DEFAULT '[]'"],    // cartes marquées d'une étoile par le joueur
+    ["gardes", "TEXT NOT NULL DEFAULT '[]'"],     // cartes dont les doubles ne sont pas proposés à la dissolution
     ["quotidien", "TEXT NOT NULL DEFAULT '{}'"],  // série de connexion, lot à choisir, objectifs du jour (règles : quotidien)
   ],
   annonces: [
@@ -280,7 +281,7 @@ async function joueurConnecte(env, requete) {
 /* ---------- État d'un joueur ---------- */
 async function chargerEtat(env, joueur) {
   const [j, p, r, h] = await env.DB.batch([
-    env.DB.prepare("SELECT pseudo, cree, points, offerts, stock, ancre, version, quiz, vitrine, favoris, quotidien FROM joueurs WHERE id = ?").bind(joueur),
+    env.DB.prepare("SELECT pseudo, cree, points, offerts, stock, ancre, version, quiz, vitrine, favoris, gardes, quotidien FROM joueurs WHERE id = ?").bind(joueur),
     // Toutes les lignes : celles à zéro (cartes cédées) se lisent de toute façon avec les autres par la clé du joueur
     env.DB.prepare("SELECT carte, n, importes, reserve FROM possessions WHERE joueur = ?").bind(joueur),
     env.DB.prepare("SELECT cle, date FROM reclames WHERE joueur = ?").bind(joueur),
@@ -298,6 +299,7 @@ async function chargerEtat(env, joueur) {
   for (const x of r.results) etat.objectifs[x.cle] = x.date;
   etat.journal = h.results.reverse().map(x => [x.date, x.operation, x.detail ? JSON.parse(x.detail) : null]);
   etat.favoris = JSON.parse(ligne.favoris || "[]");
+  etat.gardes = JSON.parse(ligne.gardes || "[]");
   try { etat.quotidien = JSON.parse(ligne.quotidien || "{}"); } catch (_) { etat.quotidien = {}; }
   return {pseudo: ligne.pseudo, cree: ligne.cree, etat, version: ligne.version, vitrine: JSON.parse(ligne.vitrine || "[]")};
 }
@@ -806,6 +808,17 @@ async function changerFavori(env, requete, joueur, cat) {
   await env.DB.prepare("UPDATE joueurs SET favoris = ? WHERE id = ?").bind(JSON.stringify(favoris), joueur).run();
   return json({favoris});
 }
+// Cartes gardées (« Ne pas dissoudre ») : posées ou levées par lot depuis la sélection de l'hémicycle ou la grande carte
+async function changerGardes(env, requete, joueur, cat) {
+  const c = await lireCorps(requete);
+  const ids = (Array.isArray(c.cartes) ? c.cartes : []).map(String).slice(0, Regles.MAX_GARDES);
+  if (!ids.length || ids.some(id => !cat.parId[id])) throw new Refus(400, "Carte inconnue.");
+  const j = await env.DB.prepare("SELECT gardes FROM joueurs WHERE id = ?").bind(joueur).first();
+  const etat = {gardes: JSON.parse(j.gardes || "[]")};
+  Regles.garderCartes(etat, ids, c.actif === true);
+  await env.DB.prepare("UPDATE joueurs SET gardes = ? WHERE id = ?").bind(JSON.stringify(etat.gardes), joueur).run();
+  return json({gardes: etat.gardes});
+}
 // Amis : demande, acceptation (une demande croisée vaut acceptation), retrait (refus, annulation, fin d'amitié)
 const MAX_AMIS = 200;
 // Amis qui ont une carte : exemplaires et exemplaires libres (hors vente), pour leur proposer un échange
@@ -1187,6 +1200,7 @@ async function api(requete, env, url) {
   }
   if (methode === "POST" && chemin === "/api/favori") return changerFavori(env, requete, joueur, await catalogueDuJeu());
   if (methode === "GET" && chemin === "/api/alertes") return listeAlertes(env, joueur);
+  if (methode === "POST" && chemin === "/api/gardes") return changerGardes(env, requete, joueur, await catalogueDuJeu());
   if (methode === "POST" && chemin === "/api/alertes") return changerAlerte(env, requete, joueur, await catalogueDuJeu());
   if (methode === "GET" && chemin === "/api/amis") return listeAmis(env, joueur);
   if (methode === "GET" && chemin === "/api/amis/carte") return amisAvecCarte(env, url, joueur);

@@ -92,10 +92,24 @@ const T = process.argv[2] || require("os").tmpdir();
   assert.match(await page.textContent("#dissoudre-selection"), /Rien à dissoudre/);
   await page.click("#garder-un");
   assert.match(await page.textContent("#dissoudre-selection"), /Dissoudre 2 exemplaires/);
+  await page.fill("#recherche", ""); assert.strictEqual(await page.locator("#grille .carte.choisie").count(), 2, "cases gardées au redessin");
   await page.screenshot({path: T + "/selection.png"});
   page.once("dialog", d => d.accept()); await page.click("#dissoudre-selection");
   await page.waitForFunction(ids => ids.every(id => !etat.possedees[id]) && !selection, seules);
   assert.ok(await page.isHidden("#barre-selection"));
+  // « Ne pas dissoudre » : une carte en double sélectionnée sort du compte des doubles et du filtre, puis y revient
+  const aGarder = await page.evaluate(() => Object.keys(etat.possedees).find(id => Regles.recyclables(etat, id) > 0));
+  const doublesAvant = await page.evaluate(() => Object.values(Regles.doubles(etat, cat)).reduce((a, r) => a + r.exemplaires, 0));
+  await page.fill("#recherche", ""); await page.click("#selectionner");
+  await page.evaluate(id => { selection.add(id); majSelection(); }, aGarder);
+  await page.click("#garder-selection");
+  await page.waitForFunction(id => etat.gardes.includes(id) && !selection, aGarder);
+  assert.strictEqual(await page.evaluate(() => Object.values(Regles.doubles(etat, cat)).reduce((a, r) => a + r.exemplaires, 0)),
+    doublesAvant - await page.evaluate(id => Regles.recyclables(etat, id), aGarder));
+  await page.selectOption("#filtre", "gardees"); await page.waitForSelector(`#grille .carte[data-id="${aGarder}"] .double.gardee`);
+  await page.evaluate(id => apercu(id), aGarder); await page.click("[data-garder-carte]");
+  await page.waitForFunction(id => !etat.gardes.includes(id), aGarder); await page.click("#fermer-apercu");
+  await page.selectOption("#filtre", "");
   // Vue des doubles : seules les cartes en plusieurs exemplaires, puis retour à toute la collection
   await page.click("#voir-doubles"); assert.strictEqual(await page.inputValue("#filtre"), "doubles");
   const vues = await page.evaluate(() => [...document.querySelectorAll("#grille .carte")].map(c => etat.possedees[c.dataset.id]));
@@ -151,7 +165,6 @@ const T = process.argv[2] || require("os").tmpdir();
   await page.screenshot({path: T + "/confirmer-lot.png"});
   await page.click("#lot-non"); await page.waitForSelector("#choix-lot[open]");
   assert.ok(!(await page.evaluate(id => etat.possedees[id], proposees[0])), "rien de reçu sans confirmation");
-  await page.click("#lot-suiv"); await page.waitForTimeout(400);
   await page.click(`#choix-lot [data-garder="${proposees[1]}"]`);
   await page.click("#lot-oui");
   await page.waitForFunction(id => etat.possedees[id] === 1 && !etat.quotidien.lot, proposees[1]);

@@ -203,6 +203,7 @@ main{max-width:1120px;margin:0 auto;padding:1.5rem 1rem 4rem}
 .actions .bouton{flex:1;padding:.7rem .6rem;font-size:.92rem}
 .pied{display:flex;justify-content:space-between;align-items:center;padding:.25em .55em .35em;font-size:.6em;border-top:1px solid #d8ccb8}
 .pied .score{font-weight:700}
+.pied .double.gardee{background:var(--pierre-fonce,#5f554b)}
 .pied .double{background:var(--velours);color:var(--marbre);border-radius:1em;padding:0 .5em;font-weight:600}
 .pied .neuve{color:var(--velours);font-weight:700}
 
@@ -779,7 +780,7 @@ html.presentation{font-size:15px}
     <div class="atelier" id="atelier"></div>
     <div class="outils">
       <input id="recherche" type="search" aria-label="Rechercher dans mon hémicycle" placeholder="Rechercher un nom, un département, un ministère">
-      <select id="filtre" aria-label="Filtrer"><option value="">Toutes les cartes</option><option value="favoris">★ Mes favoris</option><option value="doubles">Mes doubles</option></select>
+      <select id="filtre" aria-label="Filtrer"><option value="">Toutes les cartes</option><option value="favoris">★ Mes favoris</option><option value="doubles">Mes doubles</option><option value="gardees">Cartes gardées</option></select>
       <select id="tri" aria-label="Trier"><option value="rarete">Par rareté</option><option value="score">Par score</option><option value="nom">Par nom</option><option value="annee">Par date</option></select>
       <button class="bouton discret" id="selectionner" aria-pressed="false">Sélectionner</button>
     </div>
@@ -899,6 +900,11 @@ const actions = {
     if (!compte) { const r = Regles.dissoudre(etat, cat, id, tout); sauver(); return r; }
     return (await appel("dissoudre", {carte: id, tout})).resultat;
   },
+  // Cartes gardées : leurs doubles ne sont plus proposés à la dissolution
+  async garder(ids, actif){
+    if (!compte) { const g = Regles.garderCartes(etat, ids, actif); sauver(); return g; }
+    return (etat.gardes = (await appel("gardes", {cartes: ids, actif})).gardes);
+  },
   async dissoudreSelection(ids, garder){
     if (!compte) { const r = Regles.dissoudreSelection(etat, cat, ids, garder); sauver(); return r; }
     return (await appel("dissoudre", {cartes: ids, garder})).resultat;
@@ -952,6 +958,7 @@ function listeLignes(items){ return items.map(([k,t,d]) => `<li class="${k}"><b>
 
 function estFavori(id){ return (etat.favoris || []).includes(String(id)); }
 function htmlEtoile(id){ const f = estFavori(id); return `<button class="etoile" data-favori="${echapper(id)}" aria-pressed="${f}" aria-label="${f ? "Retirer des favoris" : "Ajouter aux favoris"}">${f ? "★" : "☆"}</button>`; }
+const estGardee = id => (etat.gardes || []).includes(String(id));
 function htmlCarte(c, {retournee=true, neuve=false, classe="", id="", etoile=true}={}){
   const n = etat.possedees[c.id] || 0;
   const src = srcPortrait(c);
@@ -961,7 +968,7 @@ function htmlCarte(c, {retournee=true, neuve=false, classe="", id="", etoile=tru
   const autresFonctions = c.fonctions.slice(1).map(f => ["fonction", f[0], dates(f[1], f[2], false)]);
   const mandats = c.mandats.map(m => ["mandat", ...mandatLigne(m)]).filter(x => !(c.fonctions.length === 0 && x[1] === pt));
   const distinctions = c.distinctions.filter(d => AUTRES[d]).map(d => AUTRES[d]);
-  const pied = `<div class="pied"><span class="score">Score : ${c.score.toLocaleString("fr-FR")}</span>${neuve?'<span class="neuve">Nouvelle</span>':(n>1?`<span class="double">×${n}</span>`:"")}</div>`;
+  const pied = `<div class="pied"><span class="score">Score : ${c.score.toLocaleString("fr-FR")}</span>${neuve?'<span class="neuve">Nouvelle</span>':(n>1?`<span class="double${estGardee(c.id) ? " gardee" : ""}"${estGardee(c.id) ? ' title="Doubles gardés : jamais dissous par rareté"' : ""}>×${n}${estGardee(c.id) ? " · gardée" : ""}</span>`:"")}</div>`;
   return `<div class="carte r-${c.rarete} ${retournee?"retournee statique":""} ${classe}" data-id="${c.id}" ${id?`id="${id}"`:""} style="--ep:${EPOQUES[c.epoque]||EPOQUES[""]}">
     <div class="face dos"><span>Hémicycle</span></div>
     <div class="face recto"><div class="interieur">
@@ -1165,13 +1172,17 @@ function majAtelier(){
   const verrouilles = Object.values(etat.verrous || {}).reduce((a,n) => a+n, 0);
   // L'échange de voix contre un paquet se fait dans la Séance et dans l'encart des voix, pas ici
   atelier.classList.toggle("calme", !total && !annonceRecyclage);
-  if (!total && !annonceRecyclage) { atelier.innerHTML = "Aucun double à dissoudre."; return; }
+  if (!total && !annonceRecyclage) {
+    atelier.innerHTML = "Aucun double à dissoudre." + ((etat.gardes || []).length ? ` ${pluriel(etat.gardes.length, "carte gardée", "cartes gardées")}. <button class="lien-carte" id="voir-gardees">Les voir</button>` : "");
+    document.getElementById("voir-gardees")?.addEventListener("click", () => { document.getElementById("filtre").value = "gardees"; majCollection(); });
+    return;
+  }
   const voirDoubles = document.getElementById("filtre").value === "doubles";
   atelier.innerHTML = `<div class="ligne"><p>${total ? `<b>${pluriel(total, "double")}</b> à dissoudre.` : "Aucun double à dissoudre pour l'instant."} ${etat.points ? `Voix : <b>${etat.points.toLocaleString("fr-FR")}</b>.` : ""}${verrouilles ? ` ${pluriel(verrouilles, "exemplaire", "exemplaires")} au comptoir.` : ""}</p>
       <div class="boutons">${total ? `<button class="bouton discret" id="voir-doubles" aria-pressed="${voirDoubles}">${voirDoubles ? "Toutes mes cartes" : "Voir mes doubles"}</button>` : ""}</div></div>
     ${total ? `<ul class="choix">${ORDRE.filter(r => dbl[r]).map(r => `<li><label><input type="checkbox" value="${r}" ${recyclageChoisi.has(r)?"checked":""}> ${LIBELLES[r]} : ${pluriel(dbl[r].exemplaires, "double")}, ${pluriel(dbl[r].points, "voix", "voix")}</label></li>`).join("")}</ul>
       <div class="boutons"><button class="bouton discret" id="recycler" ${exemplaires?"":"disabled"}>${exemplaires ? `Dissoudre ${pluriel(exemplaires, "double")} contre ${pluriel(points, "voix", "voix")}` : "Cochez une rareté à dissoudre"}</button></div>
-      <p class="aide">Le premier exemplaire de chaque carte est toujours gardé.</p>` : ""}
+      <p class="aide">Le premier exemplaire de chaque carte est toujours gardé.${(etat.gardes || []).length ? ` ${pluriel(etat.gardes.length, "carte gardée", "cartes gardées")} : leurs doubles ne sont pas comptés. <button class="lien-carte" id="voir-gardees">Les voir</button>` : ""}</p>` : ""}
     <p class="annonce" aria-live="polite">${annonceRecyclage}</p>`;
   atelier.querySelectorAll("input[type=checkbox]").forEach(i => i.addEventListener("change", () => {
     i.checked ? recyclageChoisi.add(i.value) : recyclageChoisi.delete(i.value); annonceRecyclage = ""; majAtelier();
@@ -1184,6 +1195,7 @@ function majAtelier(){
       majTout(); afficherPaquet();
     });
   });
+  document.getElementById("voir-gardees")?.addEventListener("click", () => { document.getElementById("filtre").value = "gardees"; majCollection(); });
   document.getElementById("voir-doubles")?.addEventListener("click", () => {
     document.getElementById("filtre").value = voirDoubles ? "" : "doubles";
     majCollection();
@@ -1529,6 +1541,7 @@ function majActionsApercu(id){
       <p>${n > 1 ? `${n} exemplaires dans votre hémicycle` : "Un exemplaire dans votre hémicycle"}${verrous ? `, dont ${verrous} au comptoir` : ""}.</p>
       ${k ? `<button class="bouton discret" data-dissoudre="${echapper(id)}">Dissoudre ${pluriel(k, "double")} : +${pluriel(k * VALEUR_RECYCLAGE[c.rarete], "voix", "voix")}</button>`
         : libres ? `<button class="bouton discret" data-dissoudre="${echapper(id)}" data-tout>Dissoudre la carte : +${pluriel(VALEUR_RECYCLAGE[c.rarete], "voix", "voix")}</button>` : ""}
+      ${n > 1 || estGardee(id) ? `<button class="bouton discret" data-garder-carte="${echapper(id)}">${estGardee(id) ? "Autoriser la dissolution de ses doubles" : "Ne pas dissoudre ses doubles"}</button>` : ""}
       ${compte && libres ? `<button class="bouton discret" data-vendre="${echapper(id)}">Vendre au comptoir</button>` : ""}
       ${compte ? (vitrineCompte().includes(id) ? `<button class="bouton discret" data-vitrine-retirer="${echapper(id)}">Retirer de ma vitrine</button>`
         : `<button class="bouton discret" data-vitrine-ajouter="${echapper(id)}">Mettre en vitrine</button>`) : ""}`
@@ -1560,6 +1573,12 @@ async function afficherDetenteurs(id){
 document.getElementById("apercu").addEventListener("click", e => {
   const d = e.target.closest("[data-dissoudre]"), v = e.target.closest("[data-vendre]");
   const va = e.target.closest("[data-vitrine-ajouter]"), vr = e.target.closest("[data-vitrine-retirer]"), al = e.target.closest("[data-alerte]");
+  const gc = e.target.closest("[data-garder-carte]");
+  if (gc) {
+    const id = gc.dataset.garderCarte, actif = !estGardee(id);
+    occupe(gc, async () => { await actions.garder([id], actif); majTout(); majActionsApercu(id);
+      signaler(actif ? "Ses doubles ne seront plus proposés à la dissolution." : "Ses doubles sont de nouveau proposés à la dissolution."); });
+  }
   if (al) {
     const id = al.dataset.alerte, actif = !alertes.has(id);
     occupe(al, async () => {
@@ -2611,7 +2630,7 @@ document.getElementById("cat-plus").addEventListener("click", () => { catalogueM
 function majCollection(){
   if (cat) majAtelier();
   const possedees = cartes.filter(c => etat.possedees[c.id]);
-  const enDouble = possedees.filter(c => etat.possedees[c.id] > 1).length;
+  const enDouble = possedees.filter(c => etat.possedees[c.id] > 1 && !estGardee(c.id)).length;
   // Pastilles : chacune filtre l'hémicycle (favoris, doubles, une rareté) ; un second toucher retire le filtre
   const f = document.getElementById("filtre").value, tri = document.getElementById("tri").value;
   const pastille = (valeur, contenu) => `<li${valeur === "" ? ' class="total"' : ""}><button data-pastille="${valeur}" aria-pressed="${valeur !== "" && f === valeur}">${contenu}</button></li>`;
@@ -2620,14 +2639,14 @@ function majCollection(){
     (enDouble || f === "doubles" ? pastille("doubles", `<strong>${enDouble.toLocaleString("fr-FR")}</strong> en double`) : "") +
     ORDRE.slice().reverse().filter(r => parRarete[r]?.length).map(r => pastille(r, `${LIBELLES[r]} <strong>${possedees.filter(c=>c.rarete===r).length}</strong>/${parRarete[r].length.toLocaleString("fr-FR")}`)).join("");
   const q = document.getElementById("recherche").value.trim().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");
-  const liste = possedees.filter(c => (!f || c.rarete===f || (f==="actuel" && c.actuel) || (f==="favoris" && estFavori(c.id)) || (f==="doubles" && etat.possedees[c.id] > 1)) && (!q || c.cherche.includes(q)))
+  const liste = possedees.filter(c => (!f || c.rarete===f || (f==="actuel" && c.actuel) || (f==="favoris" && estFavori(c.id)) || (f==="doubles" && etat.possedees[c.id] > 1 && !estGardee(c.id)) || (f==="gardees" && estGardee(c.id))) && (!q || c.cherche.includes(q)))
     .sort(tri==="nom" ? (a,b)=>a.nom.localeCompare(b.nom,"fr") : tri==="annee" ? (a,b)=>(a.debut||0)-(b.debut||0)
       : tri==="rarete" ? (a,b)=>ORDRE.indexOf(b.rarete)-ORDRE.indexOf(a.rarete) || b.score-a.score : (a,b)=>b.score-a.score);
   const grille = document.getElementById("grille");
-  visibles = liste.slice(0, 200).map(c => c.id);
+  visibles = liste.slice(0, 200).map(c => String(c.id));
   grille.classList.toggle("en-selection", !!selection);
-  grille.innerHTML = liste.length ? liste.slice(0,200).map(c => htmlCarte(c, {classe: selection?.has(c.id) ? "choisie" : ""})).join("")
-    : `<p class="vide">${f === "favoris" && !q ? "Aucun favori pour l'instant : touchez l'étoile d'une carte pour l'ajouter." : f === "doubles" && !q ? "Aucune carte en double pour l'instant." : possedees.length ? "Aucune carte de votre collection ne correspond à cette recherche." : "Votre collection est vide. Ouvrez un paquet pour obtenir vos premières cartes."}</p>`;
+  grille.innerHTML = liste.length ? liste.slice(0,200).map(c => htmlCarte(c, {classe: selection?.has(String(c.id)) ? "choisie" : ""})).join("")
+    : `<p class="vide">${f === "favoris" && !q ? "Aucun favori pour l'instant : touchez l'étoile d'une carte pour l'ajouter." : f === "doubles" && !q ? "Aucune carte en double pour l'instant." : f === "gardees" && !q ? "Aucune carte gardée : dans la sélection, « Ne pas dissoudre » écarte des cartes de la dissolution." : possedees.length ? "Aucune carte de votre collection ne correspond à cette recherche." : "Votre collection est vide. Ouvrez un paquet pour obtenir vos premières cartes."}</p>`;
   if (liste.length > 200) grille.insertAdjacentHTML("beforeend", `<p class="vide">${liste.length-200} autres cartes : affinez la recherche pour les afficher.</p>`);
   majSelection();
 }
@@ -2653,6 +2672,7 @@ function majSelection(){
   barre.innerHTML = `<p><b>${pluriel(selection.size, "carte choisie", "cartes choisies")}</b>
       <button class="lien-carte" data-tout-choisir>${tous ? "Tout désélectionner" : "Tout sélectionner"}</button></p>
     <label class="garder"><input type="checkbox" id="garder-un" ${garderUn ? "checked" : ""}> Garder un exemplaire de chaque</label>
+    ${selection.size ? `<button class="bouton discret" id="garder-selection">${[...selection].every(estGardee) ? "Autoriser la dissolution" : "Ne pas dissoudre"}</button>` : ""}
     <button class="bouton" id="dissoudre-selection" ${exemplaires ? "" : "disabled"}>${exemplaires
       ? `Dissoudre ${pluriel(exemplaires, "exemplaire")} : +${pluriel(voix, "voix", "voix")}` : selection.size ? "Rien à dissoudre" : "Touchez des cartes"}</button>`;
 }
@@ -2667,6 +2687,15 @@ document.getElementById("barre-selection").addEventListener("click", e => {
     const tous = visibles.every(id => selection.has(id));
     for (const id of visibles) tous ? selection.delete(id) : selection.add(id);
     majCollection(); return;
+  }
+  const g = e.target.closest("#garder-selection");
+  if (g) {
+    const ids = [...selection], actif = !ids.every(estGardee);
+    occupe(g, async () => {
+      await actions.garder(ids, actif); selection = null; majTout();
+      signaler(actif ? `${pluriel(ids.length, "carte gardée", "cartes gardées")} : leurs doubles ne seront plus proposés à la dissolution.` : `${pluriel(ids.length, "carte", "cartes")} de nouveau proposée${ids.length > 1 ? "s" : ""} à la dissolution.`);
+    });
+    return;
   }
   const b = e.target.closest("#dissoudre-selection");
   if (!b) return;

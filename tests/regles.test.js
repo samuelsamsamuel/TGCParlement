@@ -153,6 +153,18 @@ assert.strictEqual(quizEtat.points, 36);
   assert.strictEqual(e4.points, 4 + R.VALEUR_RECYCLAGE.rare);
   assert.strictEqual(e4.journal.length, 2, "une ligne de journal par sélection");
 }
+// Cartes gardées : leurs doubles ne sont ni comptés ni dissous par rareté ; la dissolution carte par carte reste possible
+{
+  const e5 = R.etatVide(), [a, b] = cat.parRarete.commune;
+  e5.possedees = {[a.id]: 3, [b.id]: 2};
+  assert.deepStrictEqual(R.garderCartes(e5, [a.id], true), [String(a.id)]);
+  assert.strictEqual(R.doubles(e5, cat).commune.exemplaires, 1);
+  assert.deepStrictEqual(R.recycler(e5, cat, ["commune"]), {exemplaires: 1, points: 1});
+  assert.strictEqual(e5.possedees[a.id], 3, "carte gardée intacte");
+  assert.strictEqual(R.dissoudre(e5, cat, a.id).exemplaires, 2, "dissolution choisie carte par carte");
+  assert.deepStrictEqual(R.garderCartes(e5, [a.id], false), []);
+  assert.deepStrictEqual(R.migrer({possedees: {}, gardes: [a.id, a.id, 5]}).gardes, [String(a.id), "5"]);
+}
 // Duels jugés par le serveur : ses données réduites (compacterQuiz, relu par catalogueQuiz) donnent les mêmes questions
 {
   const q = R.catalogueQuiz(JSON.parse(JSON.stringify(R.compacterQuiz(cat))));
