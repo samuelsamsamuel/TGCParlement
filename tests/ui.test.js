@@ -97,6 +97,10 @@ const T = process.argv[2] || require("os").tmpdir();
   page.once("dialog", d => d.accept()); await page.click("#dissoudre-selection");
   await page.waitForFunction(ids => ids.every(id => !etat.possedees[id]) && !selection, seules);
   assert.ok(await page.isHidden("#barre-selection"));
+  // Bouton de l'atelier : la sélection s'ouvre sur les cartes en double
+  await page.click("#garder-doubles");
+  assert.strictEqual(await page.inputValue("#filtre"), "doubles"); await page.waitForSelector("#barre-selection:not([hidden]) #dissoudre-selection");
+  await page.click("#selectionner"); await page.selectOption("#filtre", "");
   // « Ne pas dissoudre » : une carte en double sélectionnée sort du compte des doubles et du filtre, puis y revient
   const aGarder = await page.evaluate(() => Object.keys(etat.possedees).find(id => Regles.recyclables(etat, id) > 0));
   const doublesAvant = await page.evaluate(() => Object.values(Regles.doubles(etat, cat)).reduce((a, r) => a + r.exemplaires, 0));
