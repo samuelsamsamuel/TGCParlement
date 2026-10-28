@@ -407,5 +407,12 @@ const preuve = c => require("crypto").createHash("sha256").update(c).digest("hex
   assert.strictEqual((await C("moi")).d.connecte, false);
   assert.strictEqual((await C("connexion", {pseudo: "carole" + suffixe, preuve: preuve("c")})).statut, 401);
   assert.deepStrictEqual((await A("amis")).d.amis, [], "amitiés effacées avec le compte");
+  // Dissolution d'une sélection : plusieurs cartes en une opération, tous les exemplaires libres
+  const avantS = (await A("moi")).d.etat, choisies = Object.keys(avantS.possedees).filter(id => R.disponibles(avantS, id) > 0).slice(0, 3);
+  const voixS = choisies.reduce((t, id) => t + R.disponibles(avantS, id) * R.VALEUR_RECYCLAGE[cat.parId[id].rarete], 0);
+  r = await A("dissoudre", {cartes: choisies, garder: false});
+  assert.strictEqual(r.statut, 200, JSON.stringify(r.d)); assert.strictEqual(r.d.resultat.points, voixS);
+  for (const id of choisies) assert.strictEqual((r.d.etat.possedees[id] || 0), avantS.possedees[id] - R.disponibles(avantS, id));
+  assert.strictEqual(r.d.etat.points, avantS.points + voixS);
   console.log("API : tous les tests passent");
 })().catch(e => { console.error(e); process.exit(1); });

@@ -76,6 +76,23 @@ const T = process.argv[2] || require("os").tmpdir();
   await page.click("[data-dissoudre]");
   await page.waitForFunction(id => etat.possedees[id] === 1, dbl);
   await page.click("#fermer-apercu");
+  // Sélection multiple : deux cartes sans double, rien à dissoudre en gardant un exemplaire ; décoché, elles partent d'un coup
+  await page.click("#selectionner"); await page.waitForSelector("#barre-selection:not([hidden])");
+  // Cartes sans incidence sur les objectifs en attente, que la suite du parcours compte
+  const seules = await page.evaluate(() => {
+    const avant = Regles.recompensesEnAttente(etat, cat).objectifs, sans = id => { const e = structuredClone(etat); delete e.possedees[id]; return Regles.recompensesEnAttente(e, cat).objectifs; };
+    return [...document.querySelectorAll("#grille .carte")].map(c => c.dataset.id).filter(id => etat.possedees[id] === 1 && sans(id) === avant).slice(0, 2);
+  });
+  assert.strictEqual(seules.length, 2);
+  for (const id of seules) await page.click(`#grille .carte[data-id="${id}"] .portrait`);
+  assert.strictEqual(await page.locator("#grille .carte.choisie").count(), 2);
+  assert.match(await page.textContent("#dissoudre-selection"), /Rien à dissoudre/);
+  await page.click("#garder-un");
+  assert.match(await page.textContent("#dissoudre-selection"), /Dissoudre 2 exemplaires/);
+  await page.screenshot({path: T + "/selection.png"});
+  page.once("dialog", d => d.accept()); await page.click("#dissoudre-selection");
+  await page.waitForFunction(ids => ids.every(id => !etat.possedees[id]) && !selection, seules);
+  assert.ok(await page.isHidden("#barre-selection"));
   // Vue des doubles : seules les cartes en plusieurs exemplaires, puis retour à toute la collection
   await page.click("#voir-doubles"); assert.strictEqual(await page.inputValue("#filtre"), "doubles");
   const vues = await page.evaluate(() => [...document.querySelectorAll("#grille .carte")].map(c => etat.possedees[c.dataset.id]));

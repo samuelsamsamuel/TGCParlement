@@ -170,7 +170,10 @@ le bouton « Voir mes doubles » pose le même filtre (`doubles`) ; l'échange d
 (Séance et encart des voix seulement, demande de l'utilisateur) ; toucher une carte l'ouvre en grand (`apercu`) avec ses exemplaires, la dissolution de ses doubles (`dissoudre`,
 `POST /api/dissoudre`) ou, sans double, de la carte elle-même avec sa valeur en voix (`tout`, confirmation demandée ;
 retirée de la vitrine), la vente au comptoir et « Mettre en vitrine » ou « Retirer de ma vitrine » (vitrine pleine : choix de la carte à
-remplacer, qui cède sa case, demande de l'utilisateur) ; tri par défaut par rareté puis par score. Reflets de l'unique, des mythiques et
+remplacer, qui cède sa case, demande de l'utilisateur) ; tri par défaut par rareté puis par score. Sélection multiple (demande de l'utilisateur, octobre 2026) : bouton « Sélectionner »,
+cases sur les cartes, barre du bas (« Tout sélectionner » des cartes affichées, « Garder un exemplaire de chaque » coché par
+défaut, total en voix), `dissoudreSelection` des règles (200 cartes au plus, une ligne de journal), `POST /api/dissoudre` avec `cartes`
+et `garder` ; les cartes sorties de la collection quittent la vitrine. Reflets de l'unique, des mythiques et
 légendaires toutes les 6, 8 et 11 s (rapprochés à la demande de l'utilisateur, octobre 2026, après 8, 11 et 15 s), dégradé sans répétition pour que la carte reste nette entre deux passages.
 Première ouverture (`demarrerAccueil`, étape gardée dans `hemicycle-accueil`) : fenêtre d'accueil (créer un compte,
 recommandé ; ouvrir ses cartes dans le navigateur ; « J'ai déjà un compte ») ; après le compte, tutoriel

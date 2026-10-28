@@ -1181,6 +1181,8 @@ async function api(requete, env, url) {
   if (methode === "POST" && chemin === "/api/dissoudre") {
     const c = await lireCorps(requete);
     const cat = await catalogueDuJeu();
+    // Sélection de l'hémicycle : plusieurs cartes en une opération
+    if (Array.isArray(c.cartes)) return avecEtat(await appliquer(env, joueur, e => Regles.dissoudreSelection(e, cat, c.cartes.slice(0, Regles.MAX_SELECTION).map(String), c.garder !== false)));
     return avecEtat(await appliquer(env, joueur, e => Regles.dissoudre(e, cat, String(c.carte || ""), c.tout === true)));
   }
   if (methode === "POST" && chemin === "/api/favori") return changerFavori(env, requete, joueur, await catalogueDuJeu());
