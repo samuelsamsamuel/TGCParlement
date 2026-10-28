@@ -111,7 +111,9 @@ de chaque année depuis 1943, anciens noms compris ; écrit `site/departements.j
 - Journée (demande de l'utilisateur, octobre 2026), en tête de l'ordre du jour (`majJournee`) : série de connexion « Choix »
   (`SERIE`, `reclamerSerie`, `choisirLot` : 10 voix, 1 commune parmi 3, 1 paquet, 25 voix, 1 parmi 5 peu communes ou mieux,
   2 paquets, 1 parmi 5 dont une épique ; cartes proposées jamais possédées ; un jour manqué redescend d'un palier, le
-  lendemain du 7e on recommence ; lot à choisir en attente bloque le suivant) ; objectifs du jour (`objectifsDuJour`,
+  lendemain du 7e on recommence ; lot à choisir en attente bloque le suivant ; la carte touchée parmi les propositions
+  s'affiche en grand dans la fenêtre `confirmer-lot`, « Confirmer mon choix » ou « Revenir aux cartes proposées », demande de
+  l'utilisateur) ; objectifs du jour (`objectifsDuJour`,
   mêmes pour tous, tirés de la date : deux tâches de `TACHES` à 10 voix, comptées par les opérations des règles,
   `compter`, et une carte recherchée à 1 paquet : une carte de plus dans un thème (époque, Sénat, Gouvernement, femmes,
   rare ou mieux) que le compte noté au premier passage du jour, `preparerJour`, appelé à l'ouverture et par
@@ -154,8 +156,9 @@ repliables ; un objectif par ligne : marque, titre, bouton « + gain » ou proch
 en-tête de rubrique sur une ligne, terminés/total et nombre à réclamer ; législatures et départements limités aux
 huit plus avancés, `LIMITE_RUBRIQUE`, avec « Afficher les autres » ; départements cherchés par nom ou numéro, « 1 » et « 01 »
 trouvant l'Ain, numéro affiché à côté du nom, `departements.json` chargé à la première ouverture), Buvette (sous-onglets Échanges : propositions en attente en fiches « Vous donnez / Vous recevez », et proposer ; Comptoir en
-étals, grille de tuiles portrait, rareté, prix, vendeur, Acheter ou « Pas assez de voix », puis « Mes cartes au comptoir »
-avec la tuile « Mettre une carte en vente » ;
+étals, grille de tuiles portrait, rareté, prix, vendeur, Acheter ou « Pas assez de voix » ; ses propres cartes en tête du
+comptoir avec Retirer et les offres reçues sur l'étal même (plus de liste « Mes cartes au comptoir », demande de
+l'utilisateur), puis « Vendre une carte » avec la tuile « Mettre une carte en vente » ;
 Historique : échanges terminés, ventes et achats au comptoir, par mois, filtre Tout / Échanges / Comptoir, cartes nommées
 avec miniature ; `GET /api/annonces` renvoie aussi les achats, index `annonces_acheteur`), Amis, Plus : six onglets, assez
 grands pour le téléphone ; le menu Plus ouvre quatre vues, Mon siège (chiffres et vitrine en six cases, libellé du

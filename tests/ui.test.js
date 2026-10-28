@@ -80,8 +80,11 @@ const T = process.argv[2] || require("os").tmpdir();
   await page.click("#selectionner"); await page.waitForSelector("#barre-selection:not([hidden])");
   // Cartes sans incidence sur les objectifs en attente, que la suite du parcours compte
   const seules = await page.evaluate(() => {
-    const avant = Regles.recompensesEnAttente(etat, cat).objectifs, sans = id => { const e = structuredClone(etat); delete e.possedees[id]; return Regles.recompensesEnAttente(e, cat).objectifs; };
-    return [...document.querySelectorAll("#grille .carte")].map(c => c.dataset.id).filter(id => etat.possedees[id] === 1 && sans(id) === avant).slice(0, 2);
+    const avant = Regles.recompensesEnAttente(etat, cat).objectifs;
+    const sans = ids => { const e = structuredClone(etat); for (const id of ids) delete e.possedees[id]; return Regles.recompensesEnAttente(e, cat).objectifs; };
+    const ids = [...document.querySelectorAll("#grille .carte")].map(c => c.dataset.id).filter(id => etat.possedees[id] === 1 && sans([id]) === avant);
+    for (let i = 0; i < ids.length; i++) for (let j = i + 1; j < ids.length; j++) if (sans([ids[i], ids[j]]) === avant) return [ids[i], ids[j]];
+    return [];
   });
   assert.strictEqual(seules.length, 2);
   for (const id of seules) await page.click(`#grille .carte[data-id="${id}"] .portrait`);
@@ -134,6 +137,20 @@ const T = process.argv[2] || require("os").tmpdir();
   await page.click("#recevoir-lot"); await page.waitForFunction(v => etat.points === v + 10, voixSerie);
   assert.ok(!(await page.isVisible("#recevoir-lot"))); assert.match(await page.textContent("#journee"), /Lot du jour reçu/);
   assert.strictEqual(await page.locator("#journee .objectif").count(), 3);
+  // Lot à choisir : la carte touchée est montrée en grand et doit être confirmée ; « Revenir » rouvre le choix
+  const proposees = await page.evaluate(() => {
+    const ids = cartes.filter(c => !etat.possedees[c.id] && c.rarete === "commune").slice(0, 3).map(c => c.id);
+    etat.quotidien.lot = {cartes: ids, rang: 2}; sauver(); majJournee(); return ids;
+  });
+  await page.click("#choisir-lot"); await page.click(`#choix-carte [data-choisir="${proposees[0]}"]`);
+  await page.waitForSelector("#confirmer-lot[open] #lot-carte .carte");
+  await page.screenshot({path: T + "/confirmer-lot.png"});
+  await page.click("#lot-non"); await page.waitForSelector("#choix-carte[open]");
+  assert.ok(!(await page.evaluate(id => etat.possedees[id], proposees[0])), "rien de reçu sans confirmation");
+  await page.click(`#choix-carte [data-choisir="${proposees[1]}"]`);
+  await page.click("#lot-oui");
+  await page.waitForFunction(id => etat.possedees[id] === 1 && !etat.quotidien.lot, proposees[1]);
+  assert.ok(await page.isHidden("#confirmer-lot"));
   // Rubriques longues : huit objectifs, puis un bouton pour le reste
   await page.click("details.rubrique:has(#obj-legislatures) summary");
   assert.strictEqual(await page.locator("#obj-legislatures .objectif").count(), 8);

@@ -414,7 +414,9 @@ footer{max-width:1120px;margin:0 auto;padding:0 1rem 3rem;font-size:.85rem;color
 .toast{position:fixed;left:50%;bottom:1.2rem;transform:translateX(-50%);z-index:40;background:var(--marbre);color:var(--encre);padding:.7rem 1.1rem;border-radius:5px;box-shadow:0 8px 24px rgba(0,0,0,.5);max-width:min(92vw,34rem);font-size:.92rem}
 .toast[hidden]{display:none}
 @media (max-width:700px){.toast{bottom:5.5rem}}
-#apercu .detail{grid-template-columns:1fr;justify-items:center}
+#apercu .detail,#confirmer-lot .detail{grid-template-columns:1fr;justify-items:center}
+#confirmer-lot h2{margin:0;font-family:var(--serif)}
+#confirmer-lot .carte{width:min(260px,70vw)}
 
 /* ---------- Questions au Gouvernement ---------- */
 .qag{max-width:46rem;margin:2.2rem auto 0;border-top:1px solid rgba(201,162,74,.35);padding-top:1.2rem}
@@ -765,6 +767,8 @@ html.presentation{font-size:15px}
   <section class="vue panneau" id="vue-amis" hidden></section>
 </main>
 <dialog id="apercu"><div class="detail"><div id="apercu-carte"></div><button class="bouton discret" id="fermer-apercu">Fermer</button></div></dialog>
+<dialog id="confirmer-lot"><div class="detail"><h2>Garder cette carte ?</h2><div id="lot-carte"></div><p class="note">Les autres cartes proposées ne le seront plus.</p>
+  <div class="actions-apercu"><button class="bouton" id="lot-oui">Confirmer mon choix</button><button class="bouton discret" id="lot-non">Revenir aux cartes proposées</button></div></div></dialog>
 <dialog id="accueil" class="fenetre-accueil"><div class="fenetre">
   <div class="eventail-accueil" id="eventail-accueil" aria-hidden="true"></div>
   <p class="sur-titre">Bienvenue dans</p><h2>l'Hémicycle</h2>
@@ -1214,12 +1218,24 @@ function majJournee(){
   zone.innerHTML = `<div class="serie"><div class="tete-serie"><h2>Série de connexion</h2>${geste}</div><ol class="cases-serie">${cases}</ol></div>
     <h2 class="titre-jour">Objectifs du jour</h2><ul class="liste-objectifs petits">${j.objectifs.map(ligne).join("")}</ul>`;
 }
+function confirmerLot(id, revenir){
+  const d = document.getElementById("confirmer-lot");
+  document.getElementById("lot-carte").innerHTML = htmlCarte(cat.parId[id], {classe: "grande", etoile: false});
+  const oui = document.getElementById("lot-oui"), non = document.getElementById("lot-non");
+  oui.onclick = () => occupe(oui, async () => {
+    await actions.lot(id); d.close(); majTout(); signaler(`${cat.parId[id].nom} rejoint votre hémicycle.`);
+  });
+  non.onclick = () => { d.close(); revenir(); };
+  d.showModal();
+}
+document.getElementById("confirmer-lot").addEventListener("click", e => {
+  const el = e.target.closest("#lot-carte .carte"); if (el && !e.target.closest("a")) { el.classList.remove("statique"); el.classList.toggle("envers"); }
+});
 document.getElementById("journee").addEventListener("click", e => {
   const b = e.target.closest("#recevoir-lot, #choisir-lot, [data-objectif-jour]");
   if (!b) return;
-  const proposer = cartes => choisirCarte("Choisissez votre carte", cartes.map(id => [id, null]), id => occupe(null, async () => {
-    await actions.lot(id); majTout(); signaler(`${cat.parId[id].nom} rejoint votre hémicycle.`);
-  }));
+  // Carte touchée : montrée en grand, à confirmer ; « Revenir » rouvre les cartes proposées
+  const proposer = cartes => choisirCarte("Choisissez votre carte", cartes.map(id => [id, null]), id => confirmerLot(id, () => proposer(cartes)));
   if (b.id === "choisir-lot") { proposer(Regles.etatDuJour(etat, cat).lot.cartes); return; }
   occupe(b, async () => {
     if (b.id === "recevoir-lot") {
@@ -2207,9 +2223,8 @@ function construireBuvette(vue){
       <div class="outils"><input id="recherche-marche" type="search" placeholder="Rechercher une carte au comptoir" aria-label="Rechercher une carte au comptoir">
         <select id="tri-marche" aria-label="Trier le comptoir"><option value="recent">Les plus récentes</option><option value="prix">Les moins chères</option></select></div>
       <ul class="etals" id="liste-marche"></ul>
-      <h3>Mes cartes au comptoir</h3>
+      <h3>Vendre une carte</h3>
       <div id="zone-vente"></div>
-      <ul class="etals" id="mes-annonces"></ul>
     </div>
     <div data-panneau="historique" hidden>
       <div class="bascule" role="group" aria-label="Filtrer l'historique" id="filtre-historique">${[["tout", "Tout"], ["echanges", "Échanges"], ["comptoir", "Comptoir"]]
@@ -2340,7 +2355,7 @@ function dessinerHistorique(){
   }
   zone.innerHTML = html + "</ul>";
 }
-let annoncesMarche = [], annoncesOuvertes = [], offresRecues = [], mesOffres = [], offreOuverte = null;
+let annoncesMarche = [], annoncesOuvertes = [], mesOuvertes = [], offresRecues = [], mesOffres = [], offreOuverte = null;
 // Alertes de vente : cartes guettées par le joueur, qui reçoit une notification quand l'une d'elles est mise au comptoir
 let alertes = new Set();
 async function chargerAlertes(){
@@ -2361,9 +2376,14 @@ function etal(a, geste, sous){
       <span class="etiquette">${LIBELLES[c.rarete]}</span></button>
     <p class="nom-etal">${echapper(c.nom)}</p><p class="prix-etal">${pluriel(a.prix, "voix", "voix")}</p><p class="note sous-etal">${sous}</p>${geste}</li>`;
 }
+// Offres reçues sous une de ses cartes en vente : accepter (vente au prix offert) ou refuser
+const offresDe = a => offresRecues.filter(o => o.annonce === a.id).map(o => `<div class="offre-recue"><p class="note"><b>${echapper(o.acheteur)}</b> offre ${pluriel(o.prix, "voix", "voix")}</p>
+  <button class="bouton" data-action="offres:${o.id}:accepter">Accepter</button><button class="bouton discret" data-action="offres:${o.id}:refuser">Refuser</button></div>`).join("");
 function dessinerMarche(){
   const q = Regles.normer(document.getElementById("recherche-marche").value);
-  const liste = annoncesMarche.filter(a => cat.parId[a.carte] && (!q || cat.parId[a.carte].cherche.includes(q)));
+  // Ses propres cartes en tête du comptoir, avec Retirer et les offres reçues ; puis celles des autres
+  const liste = [...mesOuvertes, ...annoncesMarche.filter(a => a.vendeur !== compte.pseudo)]
+    .filter(a => cat.parId[a.carte] && (!q || cat.parId[a.carte].cherche.includes(q)));
   document.getElementById("liste-marche").innerHTML = liste.length ? liste.map(a => {
     const miennes = a.vendeur === compte.pseudo, offre = mesOffres.find(o => o.annonce === a.id);
     // Sous le bouton d'achat : l'offre déjà faite, le formulaire ouvert, ou le lien pour en faire une
@@ -2371,25 +2391,21 @@ function dessinerMarche(){
       : offreOuverte === a.id ? `<form class="form-offre" data-form-offre="${a.id}"><input type="number" name="prix" min="1" max="${a.prix - 1}" step="1" inputmode="numeric" required placeholder="Voix" aria-label="Votre offre en voix">
           <button class="bouton" type="submit">Offrir</button><button class="lien-carte" type="button" data-fermer-offre>Annuler</button></form>`
       : a.prix > 1 ? `<button class="lien-carte" data-offre="${a.id}">Faire une offre</button>` : "";
-    return etal(a, miennes ? `<span class="note">votre carte</span>`
+    return etal(a, miennes ? `<button class="bouton discret" data-action="annonces:${a.id}:retirer">Retirer</button>${offresDe(a)}`
       : `<button class="bouton" data-action="annonces:${a.id}:acheter" ${etat.points < a.prix ? "disabled" : ""}>${etat.points < a.prix ? "Pas assez de voix" : "Acheter"}</button>${contre}`,
       (miennes ? "mise en vente par vous" : "par " + echapper(a.vendeur)) + (alertes.has(a.carte) && !miennes ? " · guettée" : ""));
-  }).join("") : `<li class="vide-etals note">${annoncesMarche.length ? "Aucune carte du comptoir ne correspond." : "Le comptoir est vide pour l'instant : soyez le premier à y poser une carte."}</li>`;
+  }).join("") : `<li class="vide-etals note">${annoncesMarche.length || mesOuvertes.length ? "Aucune carte du comptoir ne correspond." : "Le comptoir est vide pour l'instant : soyez le premier à y poser une carte."}</li>`;
 }
 async function chargerAnnonces(){
   const d = await appel("annonces").catch(e => { signaler(e.message); return null; });
   if (!d) return;
   offresRecues = d.offres || []; mesOffres = d.mesOffres || [];
-  // Offres reçues sous chaque carte en vente : accepter (vente au prix offert) ou refuser
-  const offresDe = a => offresRecues.filter(o => o.annonce === a.id).map(o => `<div class="offre-recue"><p class="note"><b>${echapper(o.acheteur)}</b> offre ${pluriel(o.prix, "voix", "voix")}</p>
-    <button class="bouton" data-action="offres:${o.id}:accepter">Accepter</button><button class="bouton discret" data-action="offres:${o.id}:refuser">Refuser</button></div>`).join("");
-  const ligne = a => etal(a, `<button class="bouton discret" data-action="annonces:${a.id}:retirer">Retirer</button>${offresDe(a)}`, "en vente");
   const ouvertes = d.annonces.filter(a => a.statut === "ouverte"), passees = d.annonces.filter(a => a.statut !== "ouverte");
+  mesOuvertes = ouvertes.map(a => ({...a, vendeur: compte.pseudo}));
   const pc = document.getElementById("pastille-comptoir");
   if (pc) { pc.hidden = !offresRecues.length; pc.textContent = offresRecues.length; }
   if (document.getElementById("liste-marche")) dessinerMarche();
   annoncesOuvertes = ouvertes.map(a => a.carte);
-  document.getElementById("mes-annonces").innerHTML = ouvertes.map(ligne).join("");
   histoire.ventes = passees; histoire.achats = d.achats || []; dessinerHistorique();
 }
 
