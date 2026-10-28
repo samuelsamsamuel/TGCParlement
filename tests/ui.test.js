@@ -13,7 +13,7 @@ const T = process.argv[2] || require("os").tmpdir();
   const page = await b.newPage({viewport: {width: 1200, height: 900}});
   const erreurs = []; page.on("pageerror", e => erreurs.push(e.message)); page.on("console", m => m.type()==="error" && !/404|Failed to load resource/.test(m.text()) && erreurs.push(m.text()));
   await page.addInitScript(() => localStorage.setItem("hemicycle-accueil", "fait"));
-  await page.goto("http://localhost:8765/");
+  await page.goto("http://localhost:8765/"); await page.waitForSelector("#paquet");
   // État de la version 1, comme chez un joueur actuel : deux paquets ouverts aujourd'hui, des doubles
   await page.evaluate(() => {
     const d = new Date(), jour = d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
@@ -52,7 +52,9 @@ const T = process.argv[2] || require("os").tmpdir();
     localStorage.setItem("hemicycle-collection", JSON.stringify(e));
   });
   await page.reload(); await page.waitForSelector("#pastille:not([hidden])");
-  const attente = Number(await page.textContent("#pastille")); const attendu = await page.evaluate(() => Regles.recompensesEnAttente(etat, cat).objectifs); assert.strictEqual(attente, attendu); assert.ok(attente >= 3); console.log("paquets à réclamer :", attente);
+  const attente = Number(await page.textContent("#pastille")); const objectifsAttente = await page.evaluate(() => Regles.recompensesEnAttente(etat, cat).objectifs);
+  // La pastille compte aussi la série de connexion et les objectifs du jour
+  const attendu = objectifsAttente + await page.evaluate(() => aReclamerDuJour()); assert.strictEqual(attente, attendu); assert.ok(attente >= 3); console.log("paquets à réclamer :", attente);
   await page.screenshot({path: T + "/paquets-desktop.png"});
   // Collection : recyclage des communes seulement (cochées par défaut avec peu communes et rares)
   await page.click('nav [data-vue="collection"]');
@@ -100,7 +102,7 @@ const T = process.argv[2] || require("os").tmpdir();
   await page.click('[data-reclamer="quatre-vingts"]');
   const e4 = await page.evaluate(() => JSON.parse(localStorage.getItem("hemicycle-collection")));
   assert.strictEqual(e4.offerts, 3); assert.ok(e4.objectifs["quatre-vingts@1"] && e4.objectifs["quatre-vingts@5"]);
-  assert.strictEqual(await page.evaluate(() => Regles.recompensesEnAttente(etat, cat).objectifs), attente - 1);
+  assert.strictEqual(await page.evaluate(() => Regles.recompensesEnAttente(etat, cat).objectifs), objectifsAttente - 1);
   assert.ok(await page.isVisible("#synthese-objectifs"));
   await page.click("details.rubrique:has(#recherche-dep) summary");
   await page.fill("#recherche-dep", "gironde");
@@ -110,6 +112,11 @@ const T = process.argv[2] || require("os").tmpdir();
     await page.fill("#recherche-dep", q);
     await page.waitForFunction(n => [...document.querySelectorAll("#obj-departements .objectif h3")].map(h => h.firstChild.textContent.trim()).join("|") === n, nom);
   }
+  // Série de connexion : le lot du premier jour (10 voix), une fois par jour ; trois objectifs du jour
+  const voixSerie = await page.evaluate(() => etat.points);
+  await page.click("#recevoir-lot"); await page.waitForFunction(v => etat.points === v + 10, voixSerie);
+  assert.ok(!(await page.isVisible("#recevoir-lot"))); assert.match(await page.textContent("#journee"), /Lot du jour reçu/);
+  assert.strictEqual(await page.locator("#journee .objectif").count(), 3);
   // Rubriques longues : huit objectifs, puis un bouton pour le reste
   await page.click("details.rubrique:has(#obj-legislatures) summary");
   assert.strictEqual(await page.locator("#obj-legislatures .objectif").count(), 8);

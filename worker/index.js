@@ -161,6 +161,7 @@ const COLONNES = {
     ["vitrine", "TEXT NOT NULL DEFAULT '[]'"],    // cartes choisies pour la vitrine publique
     ["quiz", "TEXT NOT NULL DEFAULT ''"],         // jour des dernières questions au Gouvernement récompensées
     ["favoris", "TEXT NOT NULL DEFAULT '[]'"],    // cartes marquées d'une étoile par le joueur
+    ["quotidien", "TEXT NOT NULL DEFAULT '{}'"],  // série de connexion, lot à choisir, objectifs du jour (règles : quotidien)
   ],
   annonces: [
     ["rarete", "TEXT NOT NULL DEFAULT ''"],       // rareté de la carte, pour les prix médians par rareté
@@ -262,7 +263,7 @@ async function joueurConnecte(env, requete) {
 /* ---------- État d'un joueur ---------- */
 async function chargerEtat(env, joueur) {
   const [j, p, r, h] = await env.DB.batch([
-    env.DB.prepare("SELECT pseudo, cree, points, offerts, stock, ancre, version, quiz, vitrine, favoris FROM joueurs WHERE id = ?").bind(joueur),
+    env.DB.prepare("SELECT pseudo, cree, points, offerts, stock, ancre, version, quiz, vitrine, favoris, quotidien FROM joueurs WHERE id = ?").bind(joueur),
     // Toutes les lignes : celles à zéro (cartes cédées) se lisent de toute façon avec les autres par la clé du joueur
     env.DB.prepare("SELECT carte, n, importes, reserve FROM possessions WHERE joueur = ?").bind(joueur),
     env.DB.prepare("SELECT cle, date FROM reclames WHERE joueur = ?").bind(joueur),
@@ -280,6 +281,7 @@ async function chargerEtat(env, joueur) {
   for (const x of r.results) etat.objectifs[x.cle] = x.date;
   etat.journal = h.results.reverse().map(x => [x.date, x.operation, x.detail ? JSON.parse(x.detail) : null]);
   etat.favoris = JSON.parse(ligne.favoris || "[]");
+  try { etat.quotidien = JSON.parse(ligne.quotidien || "{}"); } catch (_) { etat.quotidien = {}; }
   return {pseudo: ligne.pseudo, cree: ligne.cree, etat, version: ligne.version, vitrine: JSON.parse(ligne.vitrine || "[]")};
 }
 // Ajout : la ligne est créée au besoin. Retrait : simple mise à jour, car SQLite vérifie les contraintes CHECK
@@ -315,6 +317,8 @@ async function appliquer(env, joueur, operation) {
   const dPoints = apres.points - avant.points, dOfferts = apres.offerts - avant.offerts;
   if (dPoints || dOfferts) requetes.push(env.DB.prepare("UPDATE joueurs SET points = points + ?, offerts = offerts + ? WHERE id = ?").bind(dPoints, dOfferts, joueur));
   if (apres.quiz !== avant.quiz) requetes.push(env.DB.prepare("UPDATE joueurs SET quiz = ? WHERE id = ?").bind(apres.quiz, joueur));
+  const quotidien = JSON.stringify(apres.quotidien || {});
+  if (quotidien !== JSON.stringify(avant.quotidien || {})) requetes.push(env.DB.prepare("UPDATE joueurs SET quotidien = ? WHERE id = ?").bind(quotidien, joueur));
   if (apres.reserve !== avant.reserve || apres.ancre !== avant.ancre)
     requetes.push(env.DB.prepare("UPDATE joueurs SET stock = ?, ancre = ? WHERE id = ?").bind(apres.reserve, apres.ancre, joueur));
   for (const cle of Object.keys(apres.objectifs)) if (!avant.objectifs[cle])
@@ -1022,6 +1026,29 @@ async function api(requete, env, url) {
     const c = await lireCorps(requete);
     const cat = await catalogueDuJeu();
     return avecEtat(await appliquer(env, joueur, e => Regles.reclamer(e, cat, String(c.id || ""))));
+  }
+  // Journée : premier passage du jour (compte du thème recherché), série de connexion, lot à choisir, objectifs du jour
+  if (methode === "POST" && chemin === "/api/jour") {
+    const cat = await catalogueDuJeu();
+    return avecEtat(await appliquer(env, joueur, e => Regles.preparerJour(e, cat, Regles.jourDuJeu())));
+  }
+  if (methode === "POST" && chemin === "/api/serie") {
+    const cat = await catalogueDuJeu();
+    const gain = await appliquer(env, joueur, e => Regles.reclamerSerie(e, cat, Regles.jourDuJeu(), aleatoire));
+    if (!gain) throw new Refus(409, "Le lot du jour est déjà reçu, ou une carte reste à choisir.");
+    return avecEtat(gain);
+  }
+  if (methode === "POST" && chemin === "/api/lot") {
+    const c = await lireCorps(requete), cat = await catalogueDuJeu();
+    const r = await appliquer(env, joueur, e => Regles.choisirLot(e, cat, String(c.carte || "")));
+    if (!r) throw new Refus(409, "Cette carte ne fait pas partie du lot à choisir.");
+    return avecEtat(r);
+  }
+  if (methode === "POST" && chemin === "/api/objectif-du-jour") {
+    const c = await lireCorps(requete), cat = await catalogueDuJeu();
+    const gain = await appliquer(env, joueur, e => Regles.reclamerJour(e, cat, Regles.jourDuJeu(), String(c.cle || "")));
+    if (!gain) throw new Refus(409, "Cet objectif n'est pas encore atteint, ou déjà reçu.");
+    return avecEtat(gain);
   }
   if (methode === "POST" && chemin === "/api/quiz") {
     const c = await lireCorps(requete);

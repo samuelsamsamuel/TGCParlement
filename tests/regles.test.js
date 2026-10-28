@@ -160,3 +160,39 @@ console.log("tous les tests passent");
   const part = doubles / cartesTirees;
   assert.ok(part > 0.07 && part < 0.13, "doubles du 701e au 1 500e paquet : " + (100 * part).toFixed(1) + " %");
 }
+
+// Série de connexion : un lot par jour, sept lots, un jour manqué fait redescendre d'un palier ; lots « choix »
+{
+  const e = R.etatVide(), j = k => new Date(Date.UTC(2026, 10, 1 + k, 12)).toISOString().slice(0, 10);
+  assert.deepStrictEqual(R.reclamerSerie(e, cat, j(0), alea), {voix: 10, paquets: 0, choix: null});
+  assert.strictEqual(R.reclamerSerie(e, cat, j(0), alea), null, "une fois par jour");
+  const g = R.reclamerSerie(e, cat, j(1), alea);
+  assert.strictEqual(g.choix.length, 3); assert.ok(g.choix.every(id => cat.parId[id].rarete === "commune" && !e.possedees[id]));
+  assert.strictEqual(R.reclamerSerie(e, cat, j(2), alea), null, "lot à choisir d'abord");
+  assert.strictEqual(R.choisirLot(e, cat, "inconnue"), null);
+  assert.deepStrictEqual(R.choisirLot(e, cat, g.choix[1]), {carte: g.choix[1]}); assert.strictEqual(e.possedees[g.choix[1]], 1);
+  assert.strictEqual(R.reclamerSerie(e, cat, j(2), alea).paquets, 1, "jour 3");
+  assert.strictEqual(R.serieDuJour(e, j(4)).rang, 2, "un jour manqué : un palier de moins que le dernier reçu");
+  // Sept jours d'affilée : 35 voix, 3 paquets et trois cartes choisies, dont une épique proposée le septième jour
+  const f = R.etatVide();
+  for (let k = 0; k < 7; k++) { const r = R.reclamerSerie(f, cat, j(k), alea); if (r.choix) {
+    if (k === 6) assert.ok(r.choix.some(id => cat.parId[id].rarete === "epique") && r.choix.length === 5);
+    R.choisirLot(f, cat, r.choix[0]); } }
+  assert.strictEqual(f.points, 35); assert.strictEqual(f.offerts, 3); assert.strictEqual(Object.keys(f.possedees).length, 3);
+  assert.strictEqual(R.serieDuJour(f, j(7)).rang, 1, "après le septième jour, le premier");
+}
+// Objectifs du jour : mêmes pour tous, tâches comptées par les opérations, carte recherchée par thème, une fois chacun
+{
+  const jour = R.jourDuJeu(), e = R.etatVide();
+  R.preparerJour(e, cat, jour);
+  let d = R.etatDuJour(e, cat, jour);
+  assert.strictEqual(d.objectifs.length, 3); assert.ok(d.objectifs.every(o => !o.fait));
+  for (let k = 0; k < 8; k++) { e.reserve = 10; e.ancre = Date.now(); R.ouvrirPaquet(e, cat, {aleatoire: alea}); }
+  e.quiz = jour; e.quotidien.compteurs.dissous = 5; e.quotidien.compteurs.objectifs = 1;
+  d = R.etatDuJour(e, cat, jour);
+  assert.ok(d.objectifs.slice(0, 2).every(o => o.fait), "deux tâches faites");
+  for (const o of d.objectifs.filter(x => x.fait)) assert.ok(R.reclamerJour(e, cat, jour, o.cle));
+  assert.strictEqual(R.reclamerJour(e, cat, jour, d.objectifs[0].cle), null, "une fois");
+  assert.deepStrictEqual(R.objectifsDuJour(cat, jour).taches.map(t => t.cle), R.objectifsDuJour(R.catalogueCompact(require("../site/serveur.json")), jour).taches.map(t => t.cle));
+}
+console.log("série et objectifs du jour : tests passés");

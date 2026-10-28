@@ -158,6 +158,28 @@ const preuve = c => require("crypto").createHash("sha256").update(c).digest("hex
     assert.ok(e.deja.includes("ZZ-cedee") && !e.possedees["ZZ-cedee"]);
     assert.strictEqual(Object.keys(e.possedees).length, Object.keys(j.possedees).length);
   }
+  // Série de connexion et objectifs du jour, tenus par le serveur (colonne quotidien)
+  {
+    const sh = c => require("child_process").execSync(`cd ${require("path").join(__dirname, "..")} && ${process.env.WR} d1 execute hemicycle --local --persist-to ${process.env.ETAT} --command "${c.replace(/"/g, '\\"')}"`, {stdio: "ignore"});
+    const jour = R.jourDuJeu(), hier = new Date(Date.parse(jour + "T12:00:00Z") - 864e5).toISOString().slice(0, 10);
+    sh(`UPDATE joueurs SET quotidien = '{}' WHERE pseudo = 'alice${suffixe}'`);
+    assert.strictEqual((await A("jour", {})).statut, 200);
+    const v0 = (await A("moi")).d.etat.points;
+    r = await A("serie", {}); assert.strictEqual(r.statut, 200, JSON.stringify(r.d)); assert.strictEqual(r.d.resultat.voix, 10);
+    assert.strictEqual(r.d.etat.points, v0 + 10);
+    assert.strictEqual((await A("serie", {})).statut, 409, "une fois par jour");
+    sh(`UPDATE joueurs SET quotidien = json_set(quotidien, '$.serie', json('{"jour":"${hier}","rang":1}')) WHERE pseudo = 'alice${suffixe}'`);
+    r = await A("serie", {}); const choix = r.d.resultat.choix;
+    assert.strictEqual(choix.length, 3); assert.ok(choix.every(id => !r.d.etat.possedees[id]), "cartes pas encore possédées");
+    r = await A("lot", {carte: choix[2]}); assert.strictEqual(r.statut, 200); assert.strictEqual(r.d.etat.possedees[choix[2]], 1);
+    assert.strictEqual((await A("lot", {carte: choix[0]})).statut, 409, "une carte par lot");
+    // Objectifs du jour : compteurs posés en base, deux tâches réclamées une fois
+    sh(`UPDATE joueurs SET quiz = '${jour}', quotidien = json_set(quotidien, '$.compteurs', json('{"jour":"${jour}","paquets":9,"dissous":9,"objectifs":9}')) WHERE pseudo = 'alice${suffixe}'`);
+    const taches = R.objectifsDuJour(cat, jour).taches.map(t => t.cle), v1 = (await A("moi")).d.etat.points;
+    for (const cle of taches) assert.strictEqual((await A("objectif-du-jour", {cle})).statut, 200, cle);
+    assert.strictEqual((await A("moi")).d.etat.points, v1 + 20);
+    assert.strictEqual((await A("objectif-du-jour", {cle: taches[0]})).statut, 409);
+  }
   // Duels jugés par le serveur, avec mise : la graine ne quitte pas le serveur ; le test la lit en base pour répondre
   const base = c => require("child_process").execSync(`cd ${require("path").join(__dirname, "..")} && ${process.env.WR} d1 execute hemicycle --local --persist-to ${process.env.ETAT} --json --command "${c}"`).toString();
   const lire = c => JSON.parse(base(c))[0].results;
