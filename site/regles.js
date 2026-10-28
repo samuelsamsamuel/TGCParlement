@@ -163,7 +163,32 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
     for (const [r, p] of dispo) if ((x -= p) < 0) return r;
     return dispo[dispo.length - 1][0];
   }
-  function tirerCarte(pool, aleatoire) { const l = pool[tirerRarete(pool, aleatoire)]; return l[Math.floor(aleatoire() * l.length)]; }
+  // Doubles réduits (demande de l'utilisateur, octobre 2026 : 10 % de doubles entre le 700e et le 1 500e paquet).
+  // Une carte déjà possédée, ou déjà sortie dans le paquet, est retirée dans la même rareté avec la probabilité
+  // RELANCE_DOUBLE ; l'élu en exercice garanti, quand il est déjà possédé, est remplacé par une carte de la même rareté
+  // prise parmi toutes (les élus en exercice, un millier, sont presque tous possédés vers le 700e paquet et faisaient
+  // alors l'essentiel des doubles). Raretés inchangées. Simulation de 1 500 paquets, douze joueurs : doubles de 0,1 %
+  // (1er au 100e paquet), 0,7 % (101e-300e), 2,8 % (301e-700e) et 9,9 % (701e-1 500e) ; avant : 3, 9, 19 et 33 %.
+  const RELANCE_DOUBLE = 0.9;
+  // Jamais deux fois la même carte dans un paquet : une carte déjà sortie est toujours retirée (vingt essais au plus,
+  // pour la rareté unique qui n'a qu'une carte)
+  function auHasard(l, aleatoire, sortie = () => false) {
+    let c = l[Math.floor(aleatoire() * l.length)];
+    for (let k = 0; k < 20 && sortie(c.id); k++) c = l[Math.floor(aleatoire() * l.length)];
+    return c;
+  }
+  function tirerDans(l, aleatoire, possedee, sortie) {
+    const c = auHasard(l, aleatoire, sortie);
+    return possedee(c.id) && aleatoire() < RELANCE_DOUBLE ? auHasard(l, aleatoire, sortie) : c;
+  }
+  function tirerCarte(pool, aleatoire, possedee = () => false, sortie = () => false) {
+    return tirerDans(pool[tirerRarete(pool, aleatoire)], aleatoire, possedee, sortie);
+  }
+  // Carte des élus et ministres en exercice ; déjà possédée, une carte de la même rareté parmi toutes
+  function tirerActuel(cat, aleatoire, possedee, sortie) {
+    const r = tirerRarete(cat.actuelsParRarete, aleatoire), c = auHasard(cat.actuelsParRarete[r], aleatoire, sortie);
+    return possedee(c.id) ? tirerDans(cat.parRarete[r], aleatoire, possedee, sortie) : c;
+  }
   // Consomme un paquet de la réserve s'il en reste, sinon un paquet offert. Renvoie null si aucun n'est disponible.
   function ouvrirPaquet(etat, cat, {maintenant = Date.now(), aleatoire = Math.random} = {}) {
     const r = reserveCourante(etat, maintenant);
@@ -174,9 +199,11 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
       etat.ancre = r.pleine ? maintenant : (etat.ancre || 0) + r.heures * RECHARGE_MS;
       etat.reserve = r.n - 1; origine = "reserve";
     } else { etat.offerts -= 1; origine = "offert"; }
-    // Une carte au moins parmi les élus et ministres en exercice, les autres au hasard
-    const tirage = [tirerCarte(cat.actuelsParRarete, aleatoire)]
-      .concat(Array.from({length: CARTES_PAR_PAQUET - 1}, () => tirerCarte(cat.parRarete, aleatoire)))
+    // Une carte parmi les élus et ministres en exercice (sauf s'il est déjà possédé), les autres au hasard
+    const sortis = new Set(), possedee = id => !!etat.possedees[id], sortie = id => sortis.has(id);
+    const garder = c => { sortis.add(c.id); return c; };
+    const tirage = [garder(tirerActuel(cat, aleatoire, possedee, sortie))]
+      .concat(Array.from({length: CARTES_PAR_PAQUET - 1}, () => garder(tirerCarte(cat.parRarete, aleatoire, possedee, sortie))))
       .sort((a, b) => ORDRE.indexOf(a.rarete) - ORDRE.indexOf(b.rarete) || a.score - b.score);
     const neuves = new Set(tirage.filter(c => !etat.possedees[c.id]).map(c => c.id));
     for (const c of tirage) etat.possedees[c.id] = (etat.possedees[c.id] || 0) + 1;
