@@ -148,11 +148,15 @@ avec miniature ; `GET /api/annonces` renvoie aussi les achats, index `annonces_a
 grands pour le téléphone ; le menu Plus ouvre quatre vues, Mon siège (chiffres et vitrine en six cases, libellé du
 pseudo une fois connecté), « Toutes les cartes » (catalogue complet, cartes non obtenues grisées),
 Règlement (règles et sources) et Paramètres (infos du compte, déconnexion et suppression, thème sombre, clair ou comme
-l'appareil gardé dans le navigateur, notifications, contact, mentions légales). Pas de pied de page.
+l'appareil gardé dans le navigateur, notifications, contact, mentions légales). Pas de pied de page. Au-delà de 1 180 px
+de large, ces quatre vues sont des onglets (`onglet-large`) et « Plus » disparaît ; sur ordinateur, la barre d'onglets se
+fixe en haut de l'écran une fois l'en-tête passé (`nav-flottante`, demande de l'utilisateur : changer d'onglet à tout
+moment, après un paquet). Après le dernier paquet, le récapitulatif propose « Revenir en séance » et « Voir mon hémicycle ».
 Hémicycle : les pastilles du haut filtrent (favoris, doubles, une rareté) et se désélectionnent au second toucher ;
 le bouton « Voir mes doubles » pose le même filtre (`doubles`) ; l'échange de voix contre un paquet n'y figure pas
-(Séance et encart des voix seulement, demande de l'utilisateur) ; toucher une carte l'ouvre en grand (`apercu`) avec ses exemplaires, la dissolution de ses seuls doubles (`dissoudre`,
-`POST /api/dissoudre`) et la vente au comptoir ; tri par défaut par rareté puis par score. Reflets des mythiques et
+(Séance et encart des voix seulement, demande de l'utilisateur) ; toucher une carte l'ouvre en grand (`apercu`) avec ses exemplaires, la dissolution de ses doubles (`dissoudre`,
+`POST /api/dissoudre`) ou, sans double, de la carte elle-même avec sa valeur en voix (`tout`, confirmation demandée ;
+retirée de la vitrine), la vente au comptoir et « Mettre en vitrine » ou « Retirer de ma vitrine » ; tri par défaut par rareté puis par score. Reflets des mythiques et
 légendaires espacés (11 et 15 s), dégradé sans répétition pour que la carte reste nette entre deux passages.
 Première ouverture (`demarrerAccueil`, étape gardée dans `hemicycle-accueil`) : fenêtre d'accueil (créer un compte,
 recommandé ; ouvrir ses cartes dans le navigateur ; « J'ai déjà un compte ») ; après le compte, tutoriel
@@ -202,7 +206,8 @@ serveur), filtre « Mes favoris » dans l'Hémicycle. Pas de zoom au double touc
   reprises sont des cartes ordinaires, vendables et échangeables, alors que le serveur ne peut pas vérifier une
   collection locale (risque accepté : un joueur peut s'écrire des cartes dans son navigateur avant l'inscription).
   Colonne `importes` gardée à 0 (migration unique `importes-liberes`, table `reglages`) ; paliers déjà atteints
-  marqués réclamés ; points et paquets offerts non repris. Une carte en vente est « réservée », verrouillée.
+  marqués réclamés ; voix reprises aussi (demande de l'utilisateur, octobre 2026), 1 000 au plus (`MAX_VOIX_REPRISES`) ;
+  paquets offerts non repris. Une carte en vente est « réservée », verrouillée.
 - Monnaie du marché : les voix (champ `points`), gagnées en dissolvant des doubles. Pas d'argent réel.
 - Lignes lues (limite gratuite de D1 : 5 millions par jour) : `appliquer` garde l'état écrit (`env.etatEcrit`), la
   réponse ne relit donc pas la collection (mesure, joueur de 300 cartes : 745 lignes par paquet avant, 372 après) ;
@@ -252,7 +257,8 @@ serveur), filtre « Mes favoris » dans l'Hémicycle. Pas de zoom au double touc
   l'état, cartes dont la ligne de possession est à zéro (jamais supprimée), lue avec les autres par `chargerEtat`.
 - Migrations uniques : `MIGRATIONS` (worker), notées dans `reglages`.
 - Colonnes ajoutées après la mise en service : déclarées dans `COLONNES` (worker), ajoutées à la volée.
-- Vitrine (six cases, chacune remplie ou vidée à part, enregistrée aussitôt), profil, prix du comptoir
+- Vitrine (six cases, chacune remplie ou vidée à part, enregistrée aussitôt ; ordre changé par glisser-déposer à la souris
+  ou au doigt, événements de pointeur, `glisserVitrine`, `touch-action: none` sur les cases pleines), profil, prix du comptoir
   (dernières ventes, médiane par rareté), compteur d'attente (échanges reçus, demandes d'ami, duels à jouer), suppression du
   compte, formulaire de contact (table `messages`, effacée après un an) ; signalement de pseudo retiré à la demande de
   l'utilisateur (octobre 2026 ; table `signalements` gardée pour les lignes déjà écrites, effacées avec le compte).

@@ -13,6 +13,11 @@ const sx = Date.now().toString(36).slice(-4);
   require("child_process").execSync(`cd ${require("path").join(__dirname, "..")} && ${process.env.WR} d1 execute hemicycle --local --persist-to ${process.env.ETAT} --command "DELETE FROM tentatives"`, {stdio: "ignore"});
   const b = await chromium.launch();
   const erreurs = [];
+  // Vues du menu Plus : onglet direct sur grand écran, menu Plus ailleurs
+  const vers = async (P, vue) => {
+    if (await P.isVisible(`nav [data-vue="${vue}"]`)) await P.click(`nav [data-vue="${vue}"]`);
+    else { await P.click('nav [data-vue="plus"]'); await P.click(`[data-menu="${vue}"]`); }
+  };
   const nouvelle = async (largeur = 1200) => {
     const ctx = await b.newContext({viewport: {width: largeur, height: 900}});
     await ctx.addInitScript(() => localStorage.setItem("hemicycle-accueil", "fait"));
@@ -27,7 +32,7 @@ const sx = Date.now().toString(36).slice(-4);
   await A.click("#paquet"); await A.waitForSelector("#suite");
   const locales = await A.evaluate(() => Object.keys(etat.possedees).length);
   // Création du compte avec reprise
-  await A.click('nav [data-vue="plus"]'); await A.click('[data-menu="compte"]');
+  await vers(A, "compte");
   await A.fill('#form-compte [name=pseudo]', "Anne" + sx);
   await A.fill('#form-compte [name=mdp]', "motdepasse-long");
   await A.fill('#form-compte [name=mdp2]', "motdepasse-long");
@@ -47,7 +52,7 @@ const sx = Date.now().toString(36).slice(-4);
   // Bob : un autre navigateur, inscription sans collection, un paquet
   const Bp = await nouvelle(390);
   await Bp.goto(U); await Bp.waitForSelector("#paquet");
-  await Bp.click('nav [data-vue="plus"]'); await Bp.click('[data-menu="compte"]');
+  await vers(Bp, "compte");
   await Bp.fill('#form-compte [name=pseudo]', "Bob" + sx);
   await Bp.fill('#form-compte [name=mdp]', "autre-mot-de-passe");
   await Bp.fill('#form-compte [name=mdp2]', "autre-mot-de-passe");
@@ -140,7 +145,7 @@ const sx = Date.now().toString(36).slice(-4);
   // Vitrine d'Anne, faite de ses favoris, visible par Bob depuis ses amis
   await A.click('nav [data-vue="collection"]'); await A.click('#grille [data-favori]');
   await A.waitForFunction(() => etat.favoris.length === 1);
-  await A.click('nav [data-vue="plus"]'); await A.click('[data-menu="compte"]');
+  await vers(A, "compte");
   for (let k = 0; k < 2; k++) {
     await A.click('#ma-vitrine [data-ajout-vitrine]'); await A.waitForSelector("#choix-carte[open] [data-choisir]");
     await A.click("#choix-carte [data-choisir]");
@@ -148,9 +153,29 @@ const sx = Date.now().toString(36).slice(-4);
   }
   await A.click('#ma-vitrine [data-retirer-vitrine]');
   await A.waitForFunction(() => document.querySelectorAll("#ma-vitrine .carte").length === 1 && compte.vitrine.length === 1);
-  await A.click('nav [data-vue="plus"]'); await A.click('[data-menu="parametres"]');
+  // Grande carte : « Mettre en vitrine », puis glisser-déposer pour changer l'ordre dans Mon siège
+  const autre = await A.evaluate(() => Object.keys(etat.possedees).find(id => !compte.vitrine.includes(id)));
+  await A.click('nav [data-vue="collection"]'); await A.evaluate(id => apercu(id), autre);
+  await A.click(`[data-vitrine-ajouter="${autre}"]`);
+  await A.waitForFunction(id => compte.vitrine.length === 2 && compte.vitrine[1] === id, autre);
+  await A.waitForSelector(`[data-vitrine-retirer="${autre}"]`); await A.click("#fermer-apercu");
+  await vers(A, "compte"); await A.waitForFunction(() => document.querySelectorAll("#ma-vitrine .case-vitrine.pleine").length === 2);
+  const [c0, c1] = [await A.locator("#ma-vitrine .case-vitrine.pleine").nth(0).boundingBox(), await A.locator("#ma-vitrine .case-vitrine.pleine").nth(1).boundingBox()];
+  await A.mouse.move(c1.x + c1.width / 2, c1.y + c1.height / 2); await A.mouse.down();
+  await A.mouse.move(c1.x + c1.width / 2 - 20, c1.y + c1.height / 2, {steps: 3});
+  await A.mouse.move(c0.x + c0.width / 2, c0.y + c0.height / 2, {steps: 8}); await A.mouse.up();
+  await A.waitForFunction(id => compte.vitrine[0] === id, autre);
+  assert.strictEqual((await A.evaluate(() => fetch("/api/moi").then(r => r.json()))).vitrine[0], autre, "ordre enregistré");
+  // Dissoudre une carte sans double : elle quitte la collection contre ses voix
+  const seule = await A.evaluate(() => Object.keys(etat.possedees).find(id => etat.possedees[id] === 1 && Regles.disponibles(etat, id) === 1 && !compte.vitrine.includes(id)));
+  const voixAvantDissolution = await A.evaluate(() => etat.points);
+  await A.click('nav [data-vue="collection"]'); await A.evaluate(id => apercu(id), seule);
+  await A.click(`[data-dissoudre="${seule}"][data-tout]`);
+  await A.waitForFunction(([id, v]) => !etat.possedees[id] && etat.points > v && etat.deja.includes(id), [seule, voixAvantDissolution]);
+  await A.click("#fermer-apercu");
+  await vers(A, "parametres");
   await A.waitForSelector("#zone-suppression summary");
-  await A.click('nav [data-vue="plus"]'); await A.click('[data-menu="compte"]');
+  await vers(A, "compte");
   assert.strictEqual(await A.locator("text=Classement").count(), 0);
   assert.strictEqual(await A.locator("text=Ce que votre compte permet").count(), 0);
   // Code saisi dans Mon siège : voix créditées, puis refus à la seconde saisie
@@ -172,7 +197,7 @@ const sx = Date.now().toString(36).slice(-4);
   assert.strictEqual(await Bp.locator("#apercu [data-signaler]").count(), 0);
   await Bp.evaluate(() => document.getElementById("apercu").close());
   // Changement de mot de passe depuis les Paramètres : un mauvais mot de passe actuel est refusé, puis le bon
-  await A.click('nav [data-vue="plus"]'); await A.click('[data-menu="parametres"]'); await A.waitForSelector("#zone-mdp");
+  await vers(A, "parametres"); await A.waitForSelector("#zone-mdp");
   await A.click("#zone-mdp summary");
   await A.fill('#form-mdp [name=ancien]', "pas-le-bon-mdp"); await A.fill('#form-mdp [name=nouveau]', "nouveau-motdepasse"); await A.fill('#form-mdp [name=nouveau2]', "nouveau-motdepasse");
   await A.click('#form-mdp button[type=submit]');
@@ -181,7 +206,7 @@ const sx = Date.now().toString(36).slice(-4);
   await A.waitForFunction(() => !document.getElementById("zone-mdp").open, null, {timeout: 20000});
   // Déconnexion : retour à la collection locale du navigateur
   await A.waitForSelector("#deconnexion"); await A.click("#deconnexion");
-  await A.waitForFunction(() => !compte); await A.click('nav [data-vue="plus"]'); await A.click('[data-menu="compte"]'); await A.waitForSelector("#form-compte");
+  await A.waitForFunction(() => !compte); await vers(A, "compte"); await A.waitForSelector("#form-compte");
   assert.strictEqual(await A.evaluate(() => Object.keys(etat.possedees).length), locales);
   // Reconnexion avec la casse différente du pseudo
   await A.click('[data-onglet="connexion"]');

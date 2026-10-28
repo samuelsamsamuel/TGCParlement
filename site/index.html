@@ -53,6 +53,14 @@ nav{display:flex;justify-content:center;gap:.25rem;border-top:1px solid rgba(201
 nav button{background:none;border:0;color:var(--marbre);padding:.75rem 1.1rem;border-bottom:3px solid transparent;font-weight:500;display:flex;align-items:center;gap:.45rem}
 nav button svg{width:1.25rem;height:1.25rem;flex:none}
 nav button[aria-selected="true"]{border-bottom-color:var(--dorure);color:var(--dorure-pale)}
+/* Grand écran : les quatre vues du menu Plus deviennent des onglets ; la barre reste en haut de l'écran au défilement */
+nav .onglet-large{display:none}
+@media (min-width:1180px){nav [data-vue="plus"]{display:none}nav .onglet-large{display:flex}nav button{padding:.75rem .8rem}}
+@media (min-width:701px){
+  body.nav-flottante nav{position:fixed;top:0;left:0;right:0;z-index:20;background:rgba(46,7,16,.97);backdrop-filter:blur(8px);border-bottom:1px solid rgba(201,162,74,.35)}
+  :root[data-theme="clair"] body.nav-flottante nav{background:rgba(92,16,32,.97)}
+  body.nav-flottante .menu-plus{position:fixed;top:3.3rem}
+}
 @media (max-width:700px){
   header{padding-top:1rem}
   .chapeau{display:none}
@@ -410,6 +418,11 @@ footer{max-width:1120px;margin:0 auto;padding:0 1rem 3rem;font-size:.85rem;color
 .cases-vitrine{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.6rem;margin:.7rem 0}
 @media (min-width:640px){.cases-vitrine{grid-template-columns:repeat(6,minmax(0,1fr))}}
 .case-vitrine{position:relative}
+.case-vitrine.pleine{touch-action:none;cursor:grab;user-select:none;-webkit-user-select:none}
+.case-vitrine.pleine img{-webkit-user-drag:none;pointer-events:none}
+.case-vitrine.glissee{z-index:5;cursor:grabbing;opacity:.9;pointer-events:none}
+.case-vitrine.glissee .carte{box-shadow:0 12px 28px rgba(0,0,0,.5)}
+.case-vitrine.visee{outline:2px dashed var(--dorure);outline-offset:3px;border-radius:8px}
 .case-vide{width:100%;aspect-ratio:5/7.2;border:2px dashed rgba(201,162,74,.5);border-radius:6px;background:rgba(46,7,16,.4);color:var(--dorure-pale);display:grid;place-items:center;align-content:center;gap:.2rem;font-size:.8rem}
 .case-vide b{font:400 2rem/1 var(--serif)}
 .case-vitrine .retirer{position:absolute;top:-.45rem;right:-.45rem;z-index:3;width:1.7rem;height:1.7rem;border-radius:50%;border:1px solid var(--dorure);background:var(--velours-fonce);color:var(--marbre);font-size:1rem;line-height:1;padding:0}
@@ -619,6 +632,10 @@ html.presentation{font-size:15px}
     <button role="tab" aria-selected="false" data-vue="buvette"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 8h13l-3-3M20 16H7l3 3"/></svg>Buvette <span class="pastille" id="pastille-buvette" hidden></span></button>
     <button role="tab" aria-selected="false" data-vue="amis"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><circle cx="17" cy="9" r="2.8"/><path d="M16 14.2a5.5 5.5 0 0 1 6 5.8"/></svg>Amis <span class="pastille" id="pastille-amis" hidden></span></button>
     <button role="tab" aria-selected="false" data-vue="plus" aria-haspopup="menu" aria-controls="menu-plus"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg>Plus</button>
+    <button role="tab" aria-selected="false" data-vue="compte" class="onglet-large"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span class="nom-compte">Mon siège</span></button>
+    <button role="tab" aria-selected="false" data-vue="catalogue" class="onglet-large"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="9" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>Toutes les cartes</button>
+    <button role="tab" aria-selected="false" data-vue="apropos" class="onglet-large"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 4h11l3 3v13H5z"/><path d="M8 10h8M8 14h8M8 18h5"/></svg>Règlement</button>
+    <button role="tab" aria-selected="false" data-vue="parametres" class="onglet-large"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1 7 17M17 7l2.1-2.1"/></svg>Paramètres</button>
   </nav>
   <div class="menu-plus" id="menu-plus" role="menu" hidden>
     <button role="menuitem" data-menu="compte"><span id="nav-compte">Mon siège</span></button>
@@ -660,7 +677,7 @@ html.presentation{font-size:15px}
     <h3>Amis et vitrine</h3>
     <p>Avec un compte, on ajoute des amis par leur pseudo : une fois la demande acceptée, on voit leur vitrine, six cartes choisies dans leur collection, on leur propose un échange ou on les défie en un toucher.</p>
     <h3>Compte, échanges et comptoir</h3>
-    <p>Sans compte, la collection reste dans ce navigateur. Avec un compte (pseudo et mot de passe), la collection est gardée par le serveur et se retrouve sur tous vos appareils, et c'est alors le serveur qui tire les cartes. À la création du compte, la collection de ce navigateur est reprise une fois, et ses cartes deviennent des cartes du compte comme les autres. Les objectifs déjà réclamés dans le navigateur ne se réclament pas une seconde fois, et les voix et paquets offerts du navigateur ne sont pas repris.</p>
+    <p>Sans compte, la collection reste dans ce navigateur. Avec un compte (pseudo et mot de passe), la collection est gardée par le serveur et se retrouve sur tous vos appareils, et c'est alors le serveur qui tire les cartes. À la création du compte, la collection de ce navigateur est reprise une fois, et ses cartes deviennent des cartes du compte comme les autres. Les objectifs déjà réclamés dans le navigateur ne se réclament pas une seconde fois, Les voix du navigateur sont reprises aussi, jusqu'à 1 000 ; les paquets offerts ne le sont pas.</p>
     <p>À la buvette, on propose à un autre joueur un échange de cartes, qu'il accepte ou refuse. On y tient aussi le comptoir, où les joueurs se vendent et s'achètent des cartes contre des voix. Une carte posée au comptoir est réservée : elle ne peut être ni dissoute ni échangée tant qu'elle y reste.</p>
     <h3>Raretés</h3>
     <p>La rareté d'une carte dépend de son score, comparé à celui des autres parlementaires de la même époque. Par carte tirée : mythique 0,4 %, légendaire 1,6 %, épique 6 %, rare 15 %, peu commune 30 %, commune 46 %. Les élus en exercice gagnent un niveau de rareté. Quand une carte tirée est déjà dans votre hémicycle, ou déjà sortie dans le même paquet, elle est le plus souvent tirée une seconde fois dans la même rareté : les doubles restent possibles, mais rares tant que la collection est jeune (environ un sur dix entre le 700e et le 1 500e paquet). Au-dessus de toutes, la rareté unique ne compte qu'une carte, Charles de Gaulle, plus rare au tirage que n'importe quelle carte mythique : en moyenne une fois sur 25 000 cartes, soit environ un paquet sur 6 000.</p>
@@ -785,9 +802,9 @@ const actions = {
     if (!compte) { const v = Regles.validerQuiz(etat, Regles.jourDuJeu(), bonnes); sauver(); return v; }
     return (await appel("quiz", {bonnes})).resultat;
   },
-  async dissoudre(id){
-    if (!compte) { const r = Regles.dissoudre(etat, cat, id); sauver(); return r; }
-    return (await appel("dissoudre", {carte: id})).resultat;
+  async dissoudre(id, tout = false){
+    if (!compte) { const r = Regles.dissoudre(etat, cat, id, tout); sauver(); return r; }
+    return (await appel("dissoudre", {carte: id, tout})).resultat;
   },
   async reclamer(id){
     if (!compte) { const n = Regles.reclamer(etat, cat, id); sauver(); return n; }
@@ -958,8 +975,9 @@ function montrer(tirage, neuves, i, vues = new Set()){
   const scene = document.getElementById("scene");
   if (i >= tirage.length) {
     scene.innerHTML = `<div class="grille recap">${tirage.map(c => htmlCarte(c,{neuve:neuves.has(c.id)})).join("")}</div>
-      <div class="actions petites">${Regles.paquetsDisponibles(etat).total>0?'<button class="bouton" id="suivant">Ouvrir un autre paquet</button>':'<button class="bouton discret" id="voir">Voir mon hémicycle</button>'}</div>`;
+      <div class="actions petites">${Regles.paquetsDisponibles(etat).total>0?'<button class="bouton" id="suivant">Ouvrir un autre paquet</button>':'<button class="bouton" id="revenir">Revenir en séance</button><button class="bouton discret" id="voir">Voir mon hémicycle</button>'}</div>`;
     document.getElementById("suivant")?.addEventListener("click", () => { afficherPaquet(); recentrer(); });
+    document.getElementById("revenir")?.addEventListener("click", () => { afficherPaquet(); window.scrollTo({top: 0, behavior: reduit() ? "auto" : "smooth"}); });
     document.getElementById("voir")?.addEventListener("click", () => allerA("collection"));
     paquetTermine();
     return;
@@ -1320,8 +1338,12 @@ function majActionsApercu(id){
   const verrous = n - libres;
   zone.innerHTML = n ? `<p class="note">Touchez la carte pour voir toute sa carrière au verso.</p>
       <p>${n > 1 ? `${n} exemplaires dans votre hémicycle` : "Un exemplaire dans votre hémicycle"}${verrous ? `, dont ${verrous} au comptoir` : ""}.</p>
-      ${k ? `<button class="bouton discret" data-dissoudre="${echapper(id)}">Dissoudre ${pluriel(k, "double")} : +${pluriel(k * VALEUR_RECYCLAGE[c.rarete], "voix", "voix")}</button>` : ""}
-      ${compte && libres ? `<button class="bouton discret" data-vendre="${echapper(id)}">Vendre au comptoir</button>` : ""}`
+      ${k ? `<button class="bouton discret" data-dissoudre="${echapper(id)}">Dissoudre ${pluriel(k, "double")} : +${pluriel(k * VALEUR_RECYCLAGE[c.rarete], "voix", "voix")}</button>`
+        : libres ? `<button class="bouton discret" data-dissoudre="${echapper(id)}" data-tout>Dissoudre la carte : +${pluriel(VALEUR_RECYCLAGE[c.rarete], "voix", "voix")}</button>` : ""}
+      ${compte && libres ? `<button class="bouton discret" data-vendre="${echapper(id)}">Vendre au comptoir</button>` : ""}
+      ${compte ? (vitrineCompte().includes(id) ? `<button class="bouton discret" data-vitrine-retirer="${echapper(id)}">Retirer de ma vitrine</button>`
+        : vitrineCompte().length < 6 ? `<button class="bouton discret" data-vitrine-ajouter="${echapper(id)}">Mettre en vitrine</button>`
+        : `<p class="note">Vitrine pleine : retirez une carte dans Mon siège pour placer celle-ci.</p>`) : ""}`
     : (etat.deja || []).includes(id) ? `<p class="note">Vous l'avez eue, puis cédée : elle n'est plus dans votre hémicycle. Touchez la carte pour voir sa carrière au verso.</p>`
     : `<p class="note">Pas encore dans votre hémicycle. Touchez la carte pour voir sa carrière au verso.</p>`;
   zone.insertAdjacentHTML("beforeend", `<p class="detenteurs" id="detenteurs"></p><p class="detenteurs" id="amis-carte"></p>`);
@@ -1347,12 +1369,18 @@ async function afficherDetenteurs(id){
 }
 document.getElementById("apercu").addEventListener("click", e => {
   const d = e.target.closest("[data-dissoudre]"), v = e.target.closest("[data-vendre]");
+  const va = e.target.closest("[data-vitrine-ajouter]"), vr = e.target.closest("[data-vitrine-retirer]");
+  if (va) occupe(va, async () => { await exposerVitrine([...vitrineCompte(), va.dataset.vitrineAjouter].slice(0, 6)); majActionsApercu(va.dataset.vitrineAjouter); signaler("Carte placée dans votre vitrine."); });
+  if (vr) occupe(vr, async () => { await exposerVitrine(vitrineCompte().filter(x => x !== vr.dataset.vitrineRetirer)); majActionsApercu(vr.dataset.vitrineRetirer); signaler("Carte retirée de votre vitrine."); });
   if (d) {
-    const id = d.dataset.dissoudre, k = Regles.recyclables(etat, id);
-    if (!confirm(`Dissoudre ${pluriel(k, "double")} de ${cat.parId[id].nom} ? Un exemplaire est gardé.`)) return;
+    const id = d.dataset.dissoudre, tout = d.dataset.tout !== undefined, k = tout ? 1 : Regles.recyclables(etat, id), nom = cat.parId[id].nom;
+    if (!confirm(tout ? `Dissoudre ${nom} ? La carte quittera votre hémicycle contre ${pluriel(VALEUR_RECYCLAGE[cat.parId[id].rarete], "voix", "voix")}.`
+      : `Dissoudre ${pluriel(k, "double")} de ${nom} ? Un exemplaire est gardé.`)) return;
     occupe(d, async () => {
-      const r = await actions.dissoudre(id);
-      majTout(); apercu(id); signaler(`${pluriel(r.exemplaires, "double")} dissous : +${pluriel(r.points, "voix", "voix")}.`);
+      const r = await actions.dissoudre(id, tout);
+      if (tout && compte && vitrineCompte().includes(id)) await exposerVitrine(vitrineCompte().filter(x => x !== id)).catch(() => {});
+      majTout(); apercu(id);
+      signaler(tout ? `${nom} dissous : +${pluriel(r.points, "voix", "voix")}.` : `${pluriel(r.exemplaires, "double")} dissous : +${pluriel(r.points, "voix", "voix")}.`);
     });
   }
   if (v) {
@@ -1398,6 +1426,7 @@ function etirer(pseudo, motDePasse){
 function majCompte(){
   const vue = document.getElementById("compte-principal");
   document.getElementById("nav-compte").textContent = compte ? compte.pseudo : "Mon siège";
+  document.querySelectorAll(".nom-compte").forEach(x => x.textContent = compte ? compte.pseudo : "Mon siège");
   construireExtras();
   if (!cat) return;
   if (compte) {
@@ -1412,7 +1441,7 @@ function majCompte(){
     vue.innerHTML = `<h2>Mon siège</h2><p>Les comptes ne sont pas encore ouverts sur ce site. Votre collection reste enregistrée dans ce navigateur.</p>`;
     return;
   }
-  const locales = Object.keys(depot.charger().possedees).length;
+  const locales = Object.keys(depot.charger().possedees).length, voixLocales = Math.min(1000, depot.charger().points || 0);
   const local = depot.charger();
   vue.innerHTML = `<h2>Mon siège</h2>
     <p>Sans compte, votre collection reste dans ce navigateur. Avec un pseudo et un mot de passe, sans adresse e-mail, elle vous suit sur tous vos appareils, et vous ouvrez la buvette, les amis et les duels.</p>
@@ -1421,7 +1450,7 @@ function majCompte(){
       <label>Pseudo<input type="text" name="pseudo" autocomplete="username" required minlength="3" maxlength="20" autocapitalize="off" spellcheck="false"></label>
       <label>Mot de passe<input type="password" name="mdp" autocomplete="${ongletCompte==="inscription"?"new-password":"current-password"}" required minlength="10"></label>
       ${ongletCompte==="inscription" ? `<label>Confirmation du mot de passe<input type="password" name="mdp2" autocomplete="new-password" required></label>
-      ${locales ? `<label class="case"><input type="checkbox" name="reprise" checked> <span>Reprendre les ${pluriel(locales, "carte")} de ce navigateur dans le compte.</span></label>` : ""}
+      ${locales || voixLocales ? `<label class="case"><input type="checkbox" name="reprise" checked> <span>Reprendre ${[locales ? "les " + pluriel(locales, "carte") : "", voixLocales ? pluriel(voixLocales, "voix", "voix") : ""].filter(Boolean).join(" et ")} de ce navigateur dans le compte.</span></label>` : ""}
       ${local.points || local.offerts ? `<p class="note">Vos ${local.points ? pluriel(local.points, "voix", "voix") : ""}${local.points && local.offerts ? " et " : ""}${local.offerts ? pluriel(local.offerts, "paquet offert", "paquets offerts") : ""} ne seront pas repris : utilisez-les avant de créer le compte.</p>` : ""}
       <p class="note">Le mot de passe doit faire au moins 10 caractères. Il ne peut pas encore être récupéré en cas d'oubli : notez-le.</p>` : ""}
       <button class="bouton" type="submit">${ongletCompte==="inscription" ? "Créer le compte" : "Se connecter"}</button>
@@ -1439,7 +1468,7 @@ function majCompte(){
     const bouton = f.querySelector("button[type=submit]");
     bouton.disabled = true; bouton.textContent = "Vérification…";
     etirer(pseudo, mdp).then(preuve => appel(ongletCompte, {pseudo, preuve,
-      ...(ongletCompte === "inscription" && f.reprise?.checked ? {collection: depot.charger().possedees} : {})}))
+      ...(ongletCompte === "inscription" && f.reprise?.checked ? {collection: depot.charger().possedees, voix: depot.charger().points} : {})}))
       .then(() => { majTout(); afficherPaquet(); majAttente(); chargerDuels(); chargerAmis(); signaler(ongletCompte === "inscription" ? "Compte créé. Bienvenue dans l'hémicycle !" : "Vous êtes connecté."); apresCompteAccueil(); })
       .catch(x => { erreur.textContent = x.message; bouton.disabled = false; bouton.textContent = ongletCompte==="inscription" ? "Créer le compte" : "Se connecter"; });
   });
@@ -1480,6 +1509,51 @@ document.getElementById("choix-carte").addEventListener("click", e => {
 });
 
 /* ---------- Mon siège : vitrine ---------- */
+// Glisser-déposer des cartes de la vitrine, à la souris comme au doigt (événements de pointeur) : la carte suit le
+// pointeur, la case visée s'éclaire, et l'ordre est enregistré au lâcher. Un déplacement de moins de 8 px n'est pas
+// un glissement.
+function glisserVitrine(zone){
+  let prise = null;
+  const finir = () => {
+    if (!prise) return;
+    prise.caseV.classList.remove("glissee"); prise.caseV.style.transform = "";
+    zone.querySelectorAll(".visee").forEach(x => x.classList.remove("visee"));
+    prise = null;
+  };
+  zone.addEventListener("pointerdown", e => {
+    const caseV = e.target.closest(".case-vitrine.pleine");
+    if (!caseV || e.target.closest(".retirer") || e.button > 0) return;
+    prise = {caseV, depart: Number(caseV.dataset.place), x: e.clientX, y: e.clientY, actif: false, cible: -1, pointeur: e.pointerId};
+    zone.setPointerCapture?.(e.pointerId);
+  });
+  zone.addEventListener("pointermove", e => {
+    if (!prise || e.pointerId !== prise.pointeur) return;
+    const dx = e.clientX - prise.x, dy = e.clientY - prise.y;
+    if (!prise.actif) { if (Math.hypot(dx, dy) < 8) return; prise.actif = true; prise.caseV.classList.add("glissee"); }
+    e.preventDefault();
+    prise.caseV.style.transform = `translate(${dx}px, ${dy}px)`;
+    const visee = document.elementFromPoint(e.clientX, e.clientY)?.closest(".case-vitrine");
+    zone.querySelectorAll(".visee").forEach(x => x.classList.toggle("visee", x === visee));
+    if (visee && zone.contains(visee) && visee !== prise.caseV) visee.classList.add("visee");
+    prise.cible = visee && zone.contains(visee) ? [...zone.children].indexOf(visee) : -1;
+  });
+  zone.addEventListener("pointerup", e => {
+    if (!prise || e.pointerId !== prise.pointeur) return;
+    const {actif, depart, cible} = prise;
+    finir();
+    if (!actif || cible < 0) return;
+    const v = vitrineCompte(), arrivee = Math.min(cible, v.length - 1);
+    if (arrivee === depart) return;
+    const [id] = v.splice(depart, 1); v.splice(arrivee, 0, id);
+    compte.vitrine = v; dessinerVitrine();
+    occupe(null, () => exposerVitrine(v));
+  });
+  zone.addEventListener("pointercancel", finir);
+}
+// Vitrine du compte (ordre des cases), enregistrée aussitôt ; la grande carte et Mon siège s'en servent
+const vitrineCompte = () => ((compte && compte.vitrine) || []).filter(id => cat.parId[id]);
+let dessinerVitrine = () => {};
+async function exposerVitrine(ids){ const r = await appel("vitrine", {cartes: ids}); compte.vitrine = r.vitrine; dessinerVitrine(); }
 let extrasPour = undefined;
 function construireExtras(){
   const cle = compte ? compte.pseudo : (serveur ? "" : null);
@@ -1488,21 +1562,22 @@ function construireExtras(){
   const zone = document.getElementById("compte-extras");
   if (cle === null) { zone.innerHTML = ""; return; }
   zone.innerHTML = `${compte ? `<h2 id="ma-vitrine-titre">Ma vitrine</h2>
-      <p>Six cartes montrées à tout joueur qui ouvre votre profil. Touchez une case vide pour y placer une carte, la croix pour la retirer. <button class="lien-carte" data-profil="${echapper(compte.pseudo)}">Voir mon profil</button></p>
+      <p>Six cartes montrées à tout joueur qui ouvre votre profil. Touchez une case vide pour y placer une carte, la croix pour la retirer ; faites glisser une carte pour changer sa place. <button class="lien-carte" data-profil="${echapper(compte.pseudo)}">Voir mon profil</button></p>
       <div class="cases-vitrine" id="ma-vitrine"></div>
       <h2>Un code ?</h2>
       <form class="ajout-ami" id="form-code"><input type="text" name="code" required maxlength="60" autocapitalize="characters" spellcheck="false" autocomplete="off" placeholder="Saisissez un code" aria-label="Code"><button class="bouton" type="submit">Valider</button></form>
       <p class="note" id="code-annonce" aria-live="polite"></p>` : ""}`;
   if (compte) {
-    const vitrine = () => (compte.vitrine || []).filter(id => cat.parId[id]);
-    const dessinerVitrine = () => {
+    const vitrine = vitrineCompte, exposer = exposerVitrine;
+    dessinerVitrine = () => {
+      const zone = document.getElementById("ma-vitrine"); if (!zone) return;
       const v = vitrine();
-      document.getElementById("ma-vitrine").innerHTML = Array.from({length: 6}, (_, k) => v[k]
-        ? `<div class="case-vitrine">${htmlCarte(cat.parId[v[k]], {etoile: false})}<button class="retirer" data-retirer-vitrine="${echapper(v[k])}" aria-label="Retirer de la vitrine">×</button></div>`
+      zone.innerHTML = Array.from({length: 6}, (_, k) => v[k]
+        ? `<div class="case-vitrine pleine" data-place="${k}">${htmlCarte(cat.parId[v[k]], {etoile: false})}<button class="retirer" data-retirer-vitrine="${echapper(v[k])}" aria-label="Retirer de la vitrine">×</button></div>`
         : `<div class="case-vitrine"><button class="case-vide" data-ajout-vitrine><b>+</b>Ajouter</button></div>`).join("");
     };
-    const exposer = async ids => { const r = await appel("vitrine", {cartes: ids}); compte.vitrine = r.vitrine; dessinerVitrine(); };
     dessinerVitrine();
+    glisserVitrine(document.getElementById("ma-vitrine"));
     // Code : voix, paquets offerts ou cartes, une fois par compte
     document.getElementById("form-code").addEventListener("submit", e => {
       e.preventDefault();
@@ -1615,6 +1690,8 @@ document.getElementById("installation").addEventListener("click", async e => {
   if (e.target.id === "installation-plus-tard") installationReussie();
 });
 // Visite guidée : chaque étape éclaire un élément ; certaines attendent le geste du joueur (ouvrir le paquet…)
+// Cible d'une étape : le premier sélecteur qui désigne un élément affiché (« Plus » sur téléphone, onglets sur ordinateur)
+const cibleVisite = c => [c].flat().map(s => document.querySelector(s)).find(el => el && el.getClientRects().length) || null;
 const ETAPES_VISITE = [
   {cible: "#paquet", texte: "Voici votre premier paquet : touchez-le pour l'ouvrir.", attendre: () => document.getElementById("courante")},
   {cible: "#courante", texte: "Chaque carte est un parlementaire ou un ministre. Touchez-la pour la retourner et lire toute sa carrière au verso.", attendre: () => document.querySelector("#courante.envers"), suivantPermis: true},
@@ -1626,7 +1703,7 @@ const ETAPES_VISITE = [
   {cible: 'nav [data-vue="objectifs"]', texte: "L'ordre du jour : vos objectifs. Les récompenses (voix, paquets offerts) se réclament ici."},
   {cible: 'nav [data-vue="buvette"]', texte: "La buvette : échanges entre joueurs et comptoir, où l'on vend ses doubles contre des voix. Il faut un compte."},
   {cible: 'nav [data-vue="amis"]', texte: "Vos amis : leur vitrine, un échange ou un duel en un toucher."},
-  {cible: 'nav [data-vue="plus"]', texte: "Plus : votre siège (compte et vitrine), toutes les cartes du jeu, le règlement et les paramètres (thème, notifications)."},
+  {cible: ['nav [data-vue="plus"]', 'nav [data-vue="compte"]'], texte: "Et encore : votre siège (compte et vitrine), toutes les cartes du jeu, le règlement et les paramètres (thème, notifications)."},
   {cible: null, texte: "C'est parti ! Sous les paquets, les questions au Gouvernement rapportent des voix chaque jour. Bonne séance."},
 ];
 let visite = null;
@@ -1649,7 +1726,7 @@ function finirVisite(){
 }
 function placerGuide(){
   if (!visite) return;
-  const etape = ETAPES_VISITE[visite.i], el = etape.cible && document.querySelector(etape.cible);
+  const etape = ETAPES_VISITE[visite.i], el = etape.cible && cibleVisite(etape.cible);
   const trou = document.getElementById("guide-trou"), bulle = document.getElementById("guide-bulle");
   if (!el || !el.getClientRects().length) { trou.classList.add("sans-cible"); bulle.style.top = "50%"; bulle.style.bottom = ""; bulle.style.transform = "translate(-50%,-50%)"; return; }
   const r = el.getBoundingClientRect(), marge = 6;
@@ -1665,7 +1742,7 @@ function montrerEtape(){
   clearInterval(visite.minuteur);
   let etape = ETAPES_VISITE[visite.i];
   // Étape sans objet (élément absent, paquet déjà ouvert…) : on passe
-  while (etape && etape.cible && !document.querySelector(etape.cible) && visite.i < ETAPES_VISITE.length - 1) etape = ETAPES_VISITE[++visite.i];
+  while (etape && etape.cible && !cibleVisite(etape.cible) && visite.i < ETAPES_VISITE.length - 1) etape = ETAPES_VISITE[++visite.i];
   if (!etape) { finirVisite(); return; }
   etape.avant?.();
   document.getElementById("guide-texte").textContent = etape.texte;
@@ -2316,7 +2393,7 @@ function allerA(vue){
   vueCourante = vue;
   document.getElementById("menu-plus").hidden = true;
   const onglet = VUES_PLUS.includes(vue) ? "plus" : vue;
-  document.querySelectorAll("nav button").forEach(x => x.setAttribute("aria-selected", x.dataset.vue === onglet));
+  document.querySelectorAll("nav button").forEach(x => x.setAttribute("aria-selected", x.dataset.vue === onglet || x.dataset.vue === vue));
   document.querySelectorAll("#menu-plus [data-menu]").forEach(x => x.setAttribute("aria-current", x.dataset.menu === vue));
   document.querySelectorAll(".vue").forEach(v => v.hidden = v.id !== "vue-"+vue);
   if (vue === "paquet" && depuis !== "paquet" && cat && !document.getElementById("courante")) afficherPaquet();
@@ -2326,6 +2403,18 @@ function allerA(vue){
   if (vue === "parametres") majParametres();
   if (vue === "compte" && depuis !== "compte") construireExtras();
   if (depuis !== vue) window.scrollTo({top: 0});
+}
+// Sur ordinateur, la barre d'onglets se fixe en haut de l'écran une fois l'en-tête passé : on change d'onglet à tout
+// moment, après un paquet comme au milieu d'une liste ; l'en-tête garde sa hauteur pour que la page ne saute pas
+{
+  const barre = document.querySelector("nav"), repere = document.createElement("div"), tete = barre.closest("header");
+  barre.before(repere);
+  new IntersectionObserver(([e]) => {
+    const flotte = !e.isIntersecting && e.boundingClientRect.top < 0 && innerWidth > 700;
+    if (flotte === document.body.classList.contains("nav-flottante")) return;
+    tete.style.paddingBottom = flotte ? barre.offsetHeight + "px" : "";
+    document.body.classList.toggle("nav-flottante", flotte);
+  }).observe(repere);
 }
 document.querySelectorAll("nav button").forEach(b => b.addEventListener("click", e => {
   if (b.dataset.vue !== "plus") { allerA(b.dataset.vue); return; }
