@@ -276,6 +276,7 @@ footer{max-width:1120px;margin:0 auto;padding:0 1rem 3rem;font-size:.85rem;color
 .objectif{border:1px solid rgba(201,162,74,.3);border-radius:6px;padding:.75rem .9rem;background:rgba(46,7,16,.6);display:flex;flex-direction:column;gap:.35rem}
 .objectif.pret{border-color:var(--dorure);box-shadow:0 0 0 1px var(--dorure) inset}
 .objectif h3{font:700 1rem/1.25 var(--serif);margin:0}
+.num-dep{font:600 .72em/1 var(--sans);color:var(--pierre);margin-left:.25em;white-space:nowrap}
 .objectif .sous{font-size:.8rem;color:var(--pierre);margin:0}
 .objectif .compte{display:flex;justify-content:space-between;font-size:.86rem}
 .jauge{height:.45rem;border-radius:1rem;background:rgba(239,233,223,.12);overflow:hidden}
@@ -360,8 +361,15 @@ footer{max-width:1120px;margin:0 auto;padding:0 1rem 3rem;font-size:.85rem;color
 .demande-ami{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;border:1px solid rgba(201,162,74,.25);border-radius:8px;padding:.5rem .7rem;background:rgba(46,7,16,.6)}
 .demande-ami .nom-ami{text-align:left}
 .demandes-ami.recues .demande-ami{border-color:var(--dorure)}
+.carte-chez-amis{margin:1.2rem 0}
+.carte-chez-amis .champ{width:100%;margin:.2rem 0 .6rem}
+.propositions-carte{display:grid;gap:.35rem}
+.propositions-carte button{display:flex;align-items:center;gap:.6rem;text-align:left;font:inherit;color:inherit;background:rgba(46,7,16,.6);border:1px solid rgba(201,162,74,.25);border-radius:8px;padding:.35rem .6rem;cursor:pointer}
+.propositions-carte button > span:nth-child(2){flex:1;min-width:0}
+.carte-cherchee{display:flex;align-items:center;justify-content:space-between;gap:.6rem;flex-wrap:wrap;margin-bottom:.6rem}
+#amis-carte .lien-carte{font-size:inherit}
 .vide-amis{line-height:1.5}
-:root[data-theme="clair"] :is(.fiche-ami,.demande-ami,.ajout-ami input){background:rgba(255,255,255,.65);border-color:rgba(92,16,32,.22)}
+:root[data-theme="clair"] :is(.fiche-ami,.demande-ami,.ajout-ami input,.propositions-carte button){background:rgba(255,255,255,.65);border-color:rgba(92,16,32,.22)}
 .lignes-buvette{list-style:none;margin:.4rem 0;padding:0;display:grid;gap:.4rem}
 .lignes-buvette li{display:flex;flex-wrap:wrap;gap:.3rem .8rem;align-items:center;justify-content:space-between;border:1px solid rgba(201,162,74,.25);border-radius:5px;padding:.5rem .7rem;background:rgba(46,7,16,.6);font-size:.9rem}
 .lignes-buvette .quoi{flex:1;min-width:12rem}
@@ -676,7 +684,7 @@ html.presentation{font-size:15px}
     <details class="rubrique"><summary><span>Législatures</span><span class="etat-rubrique" id="etat-legislatures"></span></summary>
       <ul class="liste-objectifs compacts" id="obj-legislatures"></ul></details>
     <details class="rubrique"><summary><span>Départements</span><span class="etat-rubrique" id="etat-departements"></span></summary>
-      <div class="outils"><input id="recherche-dep" type="search" aria-label="Rechercher un département" placeholder="Rechercher un département"></div>
+      <div class="outils"><input id="recherche-dep" type="search" aria-label="Rechercher un département par nom ou numéro" placeholder="Rechercher un département, par nom ou numéro"></div>
       <ul class="liste-objectifs compacts" id="obj-departements"></ul></details>
   </section>
 
@@ -1083,12 +1091,27 @@ function htmlObjectif(o){
   if (o.famille === "premier") return `<li class="${classe}"><div class="tete-obj">${marque}<h3>${echapper(o.titre)}</h3>${droite}</div></li>`;
   const part = Math.min(100, Math.round(100 * a.obtenues / (a.prochain ? a.prochain.seuil : o.total)));
   const suite = a.prochain ? `prochain palier : ${a.prochain.seuil === o.total ? "complète" : a.prochain.seuil.toLocaleString("fr-FR")}` : "terminé";
-  return `<li class="${classe}"><div class="tete-obj">${marque}<h3>${echapper(o.titre)}</h3>${droite}</div>
+  const num = o.famille === "departement" ? numerosDep(o.titre) : [];
+  return `<li class="${classe}"><div class="tete-obj">${marque}<h3>${echapper(o.titre)}${num.length ? ` <span class="num-dep">${num.join(", ")}</span>` : ""}</h3>${droite}</div>
     <div class="jauge" aria-hidden="true"><i style="width:${part}%"></i></div>
     <div class="compte"><span>${a.obtenues.toLocaleString("fr-FR")} sur ${o.total.toLocaleString("fr-FR")}</span><span>${suite}</span></div></li>`;
 }
 // Ordre du jour : une synthèse en tête (bouton « Tout réclamer »), puis des rubriques repliables dont
 // l'en-tête dit l'avancement et le nombre d'objectifs à réclamer
+// Numéros des départements (Code officiel géographique de l'Insee depuis 1943, scripts/numeros_departements.py),
+// chargés à la première ouverture de l'ordre du jour : affichés à côté du nom et cherchés par la recherche
+let numerosDeps = null;
+function chargerNumerosDeps(){
+  if (numerosDeps) return;
+  numerosDeps = {};
+  fetch("departements.json").then(r => r.ok ? r.json() : {}).then(d => {
+    for (const [nom, codes] of Object.entries(d)) numerosDeps[Regles.normer(nom)] = codes;
+    majObjectifs();
+  }).catch(() => {});
+}
+const numerosDep = titre => (numerosDeps && numerosDeps[Regles.normer(titre)]) || [];
+// « 1 », « 01 » et « 2a » trouvent l'Ain et la Corse-du-Sud
+const sansZero = t => t.toLowerCase().replace(/^0+(?=.)/, "");
 const pretsVus = {}, toutVoir = {legislatures: false, departements: false}, LIMITE_RUBRIQUE = 8;
 // Les plus avancés d'abord ; au-delà de LIMITE_RUBRIQUE, un bouton affiche le reste
 function listeLimitee(liste, cle){
@@ -1130,8 +1153,9 @@ function majObjectifs(){
     .sort(([o1,a1],[o2,a2]) => (a2.aReclamer.length>0)-(a1.aReclamer.length>0) || a2.obtenues/o2.total-a1.obtenues/o1.total || 0).map(([o]) => o);
   const legislatures = parFamille("legislature");
   document.getElementById("obj-legislatures").innerHTML = listeLimitee(parAvance(legislatures), "legislatures");
-  const q = Regles.normer(document.getElementById("recherche-dep").value);
-  const tousDeps = parFamille("departement"), deps = tousDeps.filter(o => !q || Regles.normer(o.titre).includes(q));
+  chargerNumerosDeps();
+  const q = Regles.normer(document.getElementById("recherche-dep").value), numero = /^\d{1,3}[ab]?$/.test(q) ? sansZero(q) : null;
+  const tousDeps = parFamille("departement"), deps = tousDeps.filter(o => !q || (numero ? numerosDep(o.titre).some(c => sansZero(c) === numero) : Regles.normer(o.titre).includes(q)));
   document.getElementById("obj-departements").innerHTML = deps.length ? (q ? parAvance(deps).map(htmlObjectif).join("") : listeLimitee(parAvance(deps), "departements")) : `<p class="vide">Aucun département ne correspond à cette recherche.</p>`;
   etatRubrique("etat-premiers", premiers); etatRubrique("etat-collection", collection); etatRubrique("etat-historiques", historiques);
   etatRubrique("etat-legislatures", legislatures); etatRubrique("etat-departements", tousDeps);
@@ -1300,8 +1324,15 @@ function majActionsApercu(id){
       ${compte && libres ? `<button class="bouton discret" data-vendre="${echapper(id)}">Vendre au comptoir</button>` : ""}`
     : (etat.deja || []).includes(id) ? `<p class="note">Vous l'avez eue, puis cédée : elle n'est plus dans votre hémicycle. Touchez la carte pour voir sa carrière au verso.</p>`
     : `<p class="note">Pas encore dans votre hémicycle. Touchez la carte pour voir sa carrière au verso.</p>`;
-  zone.insertAdjacentHTML("beforeend", `<p class="detenteurs" id="detenteurs"></p>`);
-  afficherDetenteurs(id);
+  zone.insertAdjacentHTML("beforeend", `<p class="detenteurs" id="detenteurs"></p><p class="detenteurs" id="amis-carte"></p>`);
+  afficherDetenteurs(id); afficherAmisCarte(id);
+}
+// Amis qui ont la carte : un nom touché ouvre l'échange avec cet ami, la carte déjà demandée
+async function afficherAmisCarte(id){
+  if (!compte || !amis.amis.length) return;
+  const d = await appel("amis/carte?carte=" + encodeURIComponent(id)).catch(() => null), el = document.getElementById("amis-carte");
+  if (!d || !el || !d.amis.length || document.getElementById("apercu-carte")?.querySelector(".carte")?.dataset.id !== String(id)) return;
+  el.innerHTML = "Chez vos amis : " + d.amis.map(x => x.libres > 0 ? `<button class="lien-carte" data-demander-ami="${echapper(x.pseudo)}" data-carte="${echapper(id)}">${echapper(x.pseudo)}</button>` : echapper(x.pseudo)).join(", ");
 }
 // Nombre de joueurs qui ont la carte (comptes seulement : une collection gardée dans un navigateur n'est pas connue)
 const detenteursConnus = new Map();
@@ -1926,9 +1957,10 @@ function majProposer(){
   if (b) b.disabled = !partenaire || !Object.keys(selDonne.choix).length && !Object.keys(selRecoit.choix).length;
 }
 // Raccourci depuis l'onglet Amis : la buvette s'ouvre sur un échange avec cet ami
-async function proposerEchangeA(pseudo){
+async function proposerEchangeA(pseudo, carte){
   allerA("buvette"); ouvrirSousBuvette("echanges");
   await occupe(null, () => choisirPartenaire(pseudo));
+  if (carte && sesLibres[carte] > 0 && partenaire) { selRecoit.choix[carte] = 1; selRecoit.redessiner(); majProposer(); }
   document.getElementById("etape-partenaire")?.scrollIntoView({behavior: reduit() ? "auto" : "smooth"});
 }
 function construireBuvette(vue){
@@ -2103,6 +2135,46 @@ async function chargerAnnonces(){
 
 /* ---------- Amis ---------- */
 let amis = {amis: [], recues: [], envoyees: []};
+// « Qui a cette carte ? » : saisie, cartes proposées, puis amis qui l'ont (GET /api/amis/carte, exemplaires libres)
+const carteAmis = {q: "", id: null, resultat: null, actif: false};
+function dessinerCarteAmis(){
+  const e = echapper;
+  if (carteAmis.id) {
+    const r = carteAmis.resultat;
+    return `<div class="carte-cherchee">${carteNommee(carteAmis.id)}<button class="lien-carte" data-carte-amis-effacer>Autre carte</button></div>
+      ${!r ? `<p class="note">Recherche chez vos amis…</p>` : r.length ? `<ul class="demandes-ami">${r.map(x => `<li class="demande-ami"><span class="nom-ami">${e(x.pseudo)}</span>
+        <span class="note">${x.n > 1 ? x.n + " exemplaires" : "un exemplaire"}${x.libres < x.n ? `, ${x.libres || "aucun"} libre${x.libres > 1 ? "s" : ""}` : ""}</span>
+        <span class="gestes-ami">${x.libres > 0 ? `<button class="bouton" data-demander-ami="${e(x.pseudo)}" data-carte="${e(carteAmis.id)}">Lui demander</button>` : ""}</span></li>`).join("")}</ul>`
+        : `<p class="note">Aucun de vos amis ne l'a dans son hémicycle.</p>`}`;
+  }
+  const q = Regles.normer(carteAmis.q);
+  if (q.length < 2) return "";
+  const liste = cartes.filter(c => Regles.normer(c.nom).includes(q)).sort((a, b) => b.score - a.score).slice(0, 6);
+  return liste.length ? `<div class="propositions-carte">${liste.map(c => `<button type="button" data-carte-amis="${e(c.id)}">${miniature(c.id).replace("<button", "<span").replace(/<\/button>$/, "</span>")}<span>${e(c.nom)}</span><span class="etiquette">${LIBELLES[c.rarete]}</span></button>`).join("")}</div>`
+    : `<p class="note">Aucune carte ne porte ce nom.</p>`;
+}
+function majCarteAmis(){ const z = document.getElementById("carte-amis-zone"); if (z) z.innerHTML = dessinerCarteAmis(); }
+async function chercherCarteAmis(id){
+  carteAmis.id = id; carteAmis.resultat = null; majCarteAmis();
+  const d = await appel("amis/carte?carte=" + encodeURIComponent(id)).catch(e => { signaler(e.message); return null; });
+  if (d && carteAmis.id === id) { carteAmis.resultat = d.amis; majCarteAmis(); }
+}
+document.getElementById("vue-amis").addEventListener("input", e => {
+  if (e.target.id !== "carte-amis") return;
+  carteAmis.q = e.target.value; carteAmis.id = null; carteAmis.resultat = null; majCarteAmis();
+});
+document.getElementById("vue-amis").addEventListener("click", e => {
+  const c = e.target.closest("[data-carte-amis]");
+  if (c) { chercherCarteAmis(c.dataset.carteAmis); return; }
+  if (e.target.closest("[data-carte-amis-effacer]")) { carteAmis.id = null; carteAmis.resultat = null; majCarteAmis(); document.getElementById("carte-amis")?.focus(); }
+});
+// « Lui demander » (onglet Amis, grande carte) : échange avec cet ami, la carte déjà dans « Vous demandez »
+document.addEventListener("click", e => {
+  const b = e.target.closest("[data-demander-ami]");
+  if (!b) return;
+  document.getElementById("apercu").close?.();
+  proposerEchangeA(b.dataset.demanderAmi, b.dataset.carte);
+});
 function relation(pseudo){
   const p = pseudo.toLowerCase(), dans = l => l.some(x => x.toLowerCase() === p);
   return dans(amis.amis) ? "ami" : dans(amis.recues) ? "recue" : dans(amis.envoyees) ? "envoyee" : "";
@@ -2121,6 +2193,7 @@ function majAmis(){
     return;
   }
   // La liste est redessinée quand le serveur répond : un pseudo en cours de saisie est gardé, curseur compris
+  carteAmis.actif = document.activeElement?.id === "carte-amis";
   const champ = vue.querySelector("#form-ami [name=pseudo]"), saisie = champ ? champ.value : "", actif = !!champ && document.activeElement === champ;
   const e = echapper;
   // Pastille du joueur : initiale sur une couleur tirée du pseudo (toujours la même pour un joueur)
@@ -2138,10 +2211,15 @@ function majAmis(){
       `<button class="bouton" data-ami="accepter:${e(p)}">Accepter</button><button class="bouton discret" data-ami="retirer:${e(p)}">Refuser</button>`)).join("")}</ul>` : ""}
     ${amis.amis.length ? `<ul class="fiches-amis">${amis.amis.map(fiche).join("")}</ul>`
       : `<p class="note vide-amis">Pas encore d'amis. Ajoutez un joueur par son pseudo : il acceptera depuis son onglet Amis. Vous verrez alors sa vitrine, vous pourrez lui proposer des échanges et le défier aux questions au Gouvernement.</p>`}
+    ${amis.amis.length ? `<section class="carte-chez-amis"><h3>Qui a cette carte ?</h3>
+      <input class="champ" id="carte-amis" type="search" autocomplete="off" placeholder="Nom d'un parlementaire" aria-label="Chercher une carte chez vos amis">
+      <div id="carte-amis-zone" aria-live="polite">${dessinerCarteAmis()}</div></section>` : ""}
     ${(amis.suggestions || []).length ? `<h3>Vous connaissez peut-être</h3><ul class="demandes-ami suggestions">${amis.suggestions.map(x => demande(x.pseudo,
       `<span class="note">${pluriel(x.communs, "ami en commun", "amis en commun")}</span><button class="bouton discret" data-ami="demander:${e(x.pseudo)}">Ajouter</button>`)).join("")}</ul>` : ""}
     ${amis.envoyees.length ? `<h3>Demandes envoyées</h3><ul class="demandes-ami">${amis.envoyees.map(p => demande(p,
       `<span class="note">en attente</span><button class="lien-carte" data-ami="retirer:${e(p)}">Annuler</button>`)).join("")}</ul>` : ""}`;
+  const champCarte = vue.querySelector("#carte-amis");
+  if (champCarte) { champCarte.value = carteAmis.q; if (carteAmis.actif) { champCarte.focus(); champCarte.setSelectionRange(carteAmis.q.length, carteAmis.q.length); } }
   const nouveauChamp = vue.querySelector("#form-ami [name=pseudo]");
   if (nouveauChamp && saisie) nouveauChamp.value = saisie;
   if (nouveauChamp && actif) nouveauChamp.focus();

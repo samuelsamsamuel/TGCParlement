@@ -105,6 +105,11 @@ const T = process.argv[2] || require("os").tmpdir();
   await page.click("details.rubrique:has(#recherche-dep) summary");
   await page.fill("#recherche-dep", "gironde");
   assert.strictEqual(await page.locator("#obj-departements .objectif").count(), 1);
+  // Par numéro (Code officiel géographique de l'Insee) : « 33 », « 1 » pour l'Ain, « 2a » pour la Corse-du-Sud
+  for (const [q, nom] of [["33", "Gironde"], ["1", "Ain"], ["2A", "Corse-du-Sud"]]) {
+    await page.fill("#recherche-dep", q);
+    await page.waitForFunction(n => [...document.querySelectorAll("#obj-departements .objectif h3")].map(h => h.firstChild.textContent.trim()).join("|") === n, nom);
+  }
   // Rubriques longues : huit objectifs, puis un bouton pour le reste
   await page.click("details.rubrique:has(#obj-legislatures) summary");
   assert.strictEqual(await page.locator("#obj-legislatures .objectif").count(), 8);
