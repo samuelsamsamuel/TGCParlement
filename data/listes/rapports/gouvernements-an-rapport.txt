@@ -1,8 +1,8 @@
 Composition officielle du Gouvernement indisponible : HTTP Error 403: Forbidden
-Fonctions au sein de l'Assemblée : bureau-secretaire 104, presidence-commission 58, bureau-vp-questeur 68, presidence-groupe 52, rapporteur-general 13 ; non rattachées : 1
-Fichier lu : https://data.assemblee-nationale.fr/static/openData/repository/17/amo/tous_acteurs_mandats_organes_xi_legislature/AMO30_tous_acteurs_tous_mandats_tous_organes_historique.json.zip (13716205 octets, essai 1)
+Fonctions au sein de l'Assemblée : bureau-secretaire 104, presidence-commission 58, bureau-vp-questeur 68, presidence-groupe 53, rapporteur-general 13 ; non rattachées : 1
+Fichier lu : https://data.assemblee-nationale.fr/static/openData/repository/17/amo/tous_acteurs_mandats_organes_xi_legislature/AMO30_tous_acteurs_tous_mandats_tous_organes_historique.json.zip (13717578 octets, essai 1)
 https://data.assemblee-nationale.fr/static/openData/repository/18/amo/deputes_senateurs_ministres_legislature/AMO20_dep_sen_min_tous_mandats_et_organes.json.zip : HTTP Error 404: Not Found
-Fichier lu : https://data.assemblee-nationale.fr/static/openData/repository/17/amo/deputes_senateurs_ministres_legislature/AMO20_dep_sen_min_tous_mandats_et_organes.json.zip (2663526 octets, essai 1)
+Fichier lu : https://data.assemblee-nationale.fr/static/openData/repository/17/amo/deputes_senateurs_ministres_legislature/AMO20_dep_sen_min_tous_mandats_et_organes.json.zip (2664559 octets, essai 1)
 Circonscriptions rattachées : 2094 députés
 Mandats gouvernementaux présents dans les fichiers : 837 ; le plus récent commence le 2026-02-27
 Fonctions gouvernementales postérieures au 2025-03-13 : 60 (intitulés : compositions officielles d'info.gouv.fr)
