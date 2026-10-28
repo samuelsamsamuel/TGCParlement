@@ -97,6 +97,9 @@ jobs:
       - name: Plus grande ville des circonscriptions
         continue-on-error: true
         run: python3 scripts/villes_circonscriptions.py
+      - name: Numéros des départements (Insee)
+        continue-on-error: true
+        run: python3 scripts/numeros_departements.py
 
       - name: Export pour l'application
         run: python3 scripts/export_jeu.py

@@ -626,10 +626,12 @@ async function prixComptoir(env, url, cat) {
   const mediane = prix.length ? (prix.length % 2 ? prix[(prix.length - 1) / 2] : Math.round((prix[prix.length / 2 - 1] + prix[prix.length / 2]) / 2)) : null;
   return json({ventes: ventes.results, rarete, mediane, ventesRarete: prix.length});
 }
+// Identifiant de carte : numéro Sycomore, « S » et matricule, ou « G- » et nom (Gouvernement sans mandat, 41 signes)
+const ID_CARTE = /^[A-Za-z0-9-]{1,60}$/;
 // Nombre de joueurs qui ont au moins un exemplaire d'une carte, sans dire lesquels ; gardé dix minutes en cache
 async function detenteurs(env, url) {
   const carte = String(url.searchParams.get("carte") || "");
-  if (!/^[A-Za-z0-9]{1,20}$/.test(carte)) throw new Refus(400, "Carte inconnue.");
+  if (!ID_CARTE.test(carte)) throw new Refus(400, "Carte inconnue.");
   const r = await env.DB.prepare("SELECT COUNT(*) AS n FROM possessions WHERE carte = ? AND n > 0").bind(carte).first();
   return json({carte, joueurs: r.n}, 200, {"cache-control": "public, max-age=600"});
 }
@@ -683,6 +685,15 @@ async function changerFavori(env, requete, joueur, cat) {
 }
 // Amis : demande, acceptation (une demande croisée vaut acceptation), retrait (refus, annulation, fin d'amitié)
 const MAX_AMIS = 200;
+// Amis qui ont une carte : exemplaires et exemplaires libres (hors vente), pour leur proposer un échange
+async function amisAvecCarte(env, url, joueur) {
+  const carte = String(url.searchParams.get("carte") || "");
+  if (!ID_CARTE.test(carte)) throw new Refus(400, "Carte inconnue.");
+  const r = await env.DB.prepare(`SELECT j.pseudo, p.n, p.n - p.importes - p.reserve AS libres FROM amis a
+    JOIN possessions p ON p.joueur = a.vers AND p.carte = ?2 JOIN joueurs j ON j.id = a.vers
+    WHERE a.de = ?1 AND a.statut = 'accepte' AND p.n > 0 ORDER BY libres DESC, j.pseudo COLLATE NOCASE`).bind(joueur, carte).all();
+  return json({carte, amis: r.results});
+}
 async function listeAmis(env, joueur) {
   const r = await env.DB.prepare(`SELECT a.de, a.vers, a.statut, j.pseudo, j.vitrine FROM amis a JOIN joueurs j ON j.id = CASE WHEN a.de = ?1 THEN a.vers ELSE a.de END
     WHERE a.de = ?1 OR a.vers = ?1 ORDER BY j.pseudo COLLATE NOCASE`).bind(joueur).all();
@@ -1030,6 +1041,7 @@ async function api(requete, env, url) {
   }
   if (methode === "POST" && chemin === "/api/favori") return changerFavori(env, requete, joueur, await catalogueDuJeu());
   if (methode === "GET" && chemin === "/api/amis") return listeAmis(env, joueur);
+  if (methode === "GET" && chemin === "/api/amis/carte") return amisAvecCarte(env, url, joueur);
   if (methode === "GET" && chemin === "/api/prix") return prixComptoir(env, url, await catalogueDuJeu());
   if (methode === "POST" && chemin === "/api/vitrine") return changerVitrine(env, requete, joueur);
   if (methode === "POST" && chemin === "/api/supprimer-compte") return supprimerCompte(env, requete, joueur);

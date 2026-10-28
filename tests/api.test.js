@@ -223,6 +223,12 @@ const preuve = c => require("crypto").createHash("sha256").update(c).digest("hex
   assert.strictEqual((await Bc("attente")).d.amis, 0);
   assert.strictEqual((await A("amis/demander", {pseudo: carole})).statut, 200);
   assert.strictEqual((await C("amis/accepter", {pseudo: alice})).d.statut, "accepte");
+  // Amis qui ont une carte (identifiant à tirets compris) : Carole, amie d'Alice, en a deux, dont une en vente
+  require("child_process").execSync(`cd ${require("path").join(__dirname, "..")} && ${process.env.WR} d1 execute hemicycle --local --persist-to ${process.env.ETAT} --command "INSERT INTO possessions (joueur, carte, n, reserve) SELECT id, 'G-de-gaulle-charles', 2, 1 FROM joueurs WHERE pseudo = '${carole}'"`, {stdio: "ignore"});
+  assert.deepStrictEqual((await A("amis/carte?carte=G-de-gaulle-charles")).d.amis, [{pseudo: carole, n: 2, libres: 1}]);
+  assert.deepStrictEqual((await Bc("amis/carte?carte=G-de-gaulle-charles")).d.amis, [], "pas encore ami de Carole");
+  assert.strictEqual((await A("amis/carte?carte=x;y")).statut, 400);
+  assert.ok((await (await fetch("http://localhost:8787/api/detenteurs?carte=G-de-gaulle-charles")).json()).joueurs >= 1);
   assert.strictEqual((await A("amis/retirer", {pseudo: bob})).statut, 200);
   assert.deepStrictEqual((await Bc("amis")).d, {amis: [], recues: [], envoyees: [], vitrines: {}, suggestions: []});
   assert.strictEqual((await C("amis/accepter", {pseudo: bob})).statut, 409);

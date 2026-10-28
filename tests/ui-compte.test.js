@@ -63,6 +63,14 @@ const sx = Date.now().toString(36).slice(-4);
   await Bp.click('[data-ami^="accepter:"]');
   await Bp.waitForSelector('[data-echange-ami="Anne' + sx + '"]');
   await Bp.screenshot({path: T + "/amis-tel.png", fullPage: true});
+  // « Qui a cette carte ? » : Anne cherche une carte de Bob, puis « Lui demander » prépare l'échange
+  const carteBob = await Bp.evaluate(() => { const id = Object.keys(etat.possedees)[0]; return {id, nom: cat.parId[id].nom}; });
+  await A.reload(); await A.click('nav [data-vue="amis"]'); await A.waitForSelector("#carte-amis");
+  await A.fill("#carte-amis", carteBob.nom); await A.click(`[data-carte-amis="${carteBob.id}"]`);
+  await A.waitForSelector(`[data-demander-ami="Bob${sx}"]`);
+  await A.screenshot({path: T + "/amis-carte.png", fullPage: true});
+  await A.click(`[data-demander-ami="Bob${sx}"]`);
+  await A.waitForSelector(`#sel-recoit [data-retrait="${carteBob.id}"]`);
   // Anne propose un échange à Bob depuis l'onglet Amis : une carte libre contre une carte de Bob
   await A.reload(); await A.click('nav [data-vue="amis"]');
   await A.waitForSelector('[data-echange-ami="Bob' + sx + '"]'); await A.click('[data-echange-ami="Bob' + sx + '"]');

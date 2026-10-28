@@ -52,7 +52,9 @@ image retenue à la deuxième exécution sur 550 images principales libres, le r
 retenus et écartés), `portraits_commons.py` (fichiers de Commons qui ne dépeignent que la personne, recherche
 `haswbstatement:P180=…` par lots de 16, reprise de 10 minutes par exécution, jamais sondés d'abord, dates dans
 `data/portraits_commons_sondes.json` ; nom de famille exigé dans le nom de fichier ; premier passage complet : 35
-personnes sur 6 761 ont un fichier qui les dépeint, 2 portraits retenus), `villes_circonscriptions.py`, `export_jeu.py` (écrit
+personnes sur 6 761 ont un fichier qui les dépeint, 2 portraits retenus), `villes_circonscriptions.py`, `numeros_departements.py` (numéros des départements pour la recherche de
+l'ordre du jour, Code officiel géographique de l'Insee par l'API Métadonnées sans clé, départements en vigueur au 1er janvier
+de chaque année depuis 1943, anciens noms compris ; écrit `site/departements.json`), `export_jeu.py` (écrit
 `site/jeu.json`), puis
 `node scripts/catalogue_serveur.js` (écrit `site/serveur.json`).
 
@@ -130,7 +132,8 @@ personnes sur 6 761 ont un fichier qui les dépeint, 2 portraits retenus), `vill
 Onglets : Séance (paquets du jour), Hémicycle (collection), Ordre du jour (objectifs, synthèse et rubriques
 repliables ; un objectif par ligne : marque, titre, bouton « + gain » ou prochaine récompense, jauge pour ceux à compter ;
 en-tête de rubrique sur une ligne, terminés/total et nombre à réclamer ; législatures et départements limités aux
-huit plus avancés, `LIMITE_RUBRIQUE`, avec « Afficher les autres »), Buvette (sous-onglets Échanges : propositions en attente en fiches « Vous donnez / Vous recevez », et proposer ; Comptoir en
+huit plus avancés, `LIMITE_RUBRIQUE`, avec « Afficher les autres » ; départements cherchés par nom ou numéro, « 1 » et « 01 »
+trouvant l'Ain, numéro affiché à côté du nom, `departements.json` chargé à la première ouverture), Buvette (sous-onglets Échanges : propositions en attente en fiches « Vous donnez / Vous recevez », et proposer ; Comptoir en
 étals, grille de tuiles portrait, rareté, prix, vendeur, Acheter ou « Pas assez de voix », puis « Mes cartes au comptoir »
 avec la tuile « Mettre une carte en vente » ;
 Historique : échanges terminés, ventes et achats au comptoir, par mois, filtre Tout / Échanges / Comptoir, cartes nommées
@@ -211,6 +214,10 @@ serveur), filtre « Mes favoris » dans l'Hémicycle. Pas de zoom au double touc
   Onglet Amis : ajout en une ligne, fiche par ami (pastille de couleur tirée du pseudo, aperçu de la vitrine qui ouvre
   le profil, Échanger, Défier, Retirer en lien discret), demandes reçues mises en avant ; « Vous connaissez peut-être » :
   `suggestions` de `GET /api/amis`, amis d'amis sans lien avec le joueur, les plus d'amis en commun d'abord (6 au plus).
+  « Qui a cette carte ? » (demande de l'utilisateur, octobre 2026) : champ de l'onglet Amis, six cartes proposées par nom,
+  puis les amis qui l'ont (`GET /api/amis/carte?carte=`, exemplaires et libres) avec « Lui demander », qui ouvre l'échange
+  avec la carte déjà demandée (`proposerEchangeA(pseudo, carte)`) ; même liste sous la grande carte (« Chez vos amis »).
+  Identifiants de carte acceptés par ces routes : `ID_CARTE` (tirets compris, cartes « G- » du Gouvernement).
 - Notifications (Web Push, RFC 8030 et 8292) : poussée sans contenu, signée VAPID (ES256, clés créées à la première
   demande et gardées dans `reglages`) ; le texte attend dans `notifications` et le service de travail le lit
   (`GET /api/notifications`, qui le supprime). Abonnements par appareil (`abonnements`, services de poussée connus
