@@ -163,7 +163,16 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
     for (const [r, p] of dispo) if ((x -= p) < 0) return r;
     return dispo[dispo.length - 1][0];
   }
-  function tirerCarte(pool, aleatoire) { const l = pool[tirerRarete(pool, aleatoire)]; return l[Math.floor(aleatoire() * l.length)]; }
+  // Une carte déjà possédée (ou déjà sortie dans ce paquet) est retirée une fois, dans la même rareté : moitié moins de
+  // doubles environ, raretés inchangées (demande de l'utilisateur, octobre 2026 ; simulation de 1 500 paquets :
+  // 33 % de doubles entre le 700e et le 1 500e paquet sans relance, 21 % avec)
+  const RELANCES_DOUBLE = 1;
+  function tirerCarte(pool, aleatoire, deja = () => false) {
+    const l = pool[tirerRarete(pool, aleatoire)];
+    let c = l[Math.floor(aleatoire() * l.length)];
+    for (let k = 0; k < RELANCES_DOUBLE && deja(c.id); k++) c = l[Math.floor(aleatoire() * l.length)];
+    return c;
+  }
   // Consomme un paquet de la réserve s'il en reste, sinon un paquet offert. Renvoie null si aucun n'est disponible.
   function ouvrirPaquet(etat, cat, {maintenant = Date.now(), aleatoire = Math.random} = {}) {
     const r = reserveCourante(etat, maintenant);
@@ -175,8 +184,10 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
       etat.reserve = r.n - 1; origine = "reserve";
     } else { etat.offerts -= 1; origine = "offert"; }
     // Une carte au moins parmi les élus et ministres en exercice, les autres au hasard
-    const tirage = [tirerCarte(cat.actuelsParRarete, aleatoire)]
-      .concat(Array.from({length: CARTES_PAR_PAQUET - 1}, () => tirerCarte(cat.parRarete, aleatoire)))
+    const sortis = new Set(), deja = id => !!etat.possedees[id] || sortis.has(id);
+    const tirer = pool => { const c = tirerCarte(pool, aleatoire, deja); sortis.add(c.id); return c; };
+    const tirage = [tirer(cat.actuelsParRarete)]
+      .concat(Array.from({length: CARTES_PAR_PAQUET - 1}, () => tirer(cat.parRarete)))
       .sort((a, b) => ORDRE.indexOf(a.rarete) - ORDRE.indexOf(b.rarete) || a.score - b.score);
     const neuves = new Set(tirage.filter(c => !etat.possedees[c.id]).map(c => c.id));
     for (const c of tirage) etat.possedees[c.id] = (etat.possedees[c.id] || 0) + 1;

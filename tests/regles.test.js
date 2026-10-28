@@ -147,3 +147,15 @@ assert.strictEqual(quizEtat.points, 36);
   for (const g of [1, 42, 123456789, 4294967295]) assert.deepStrictEqual(R.questions(q, g), R.questions(cat, g), "questions du serveur, graine " + g);
 }
 console.log("tous les tests passent");
+
+// Doubles réduits : une carte déjà possédée est retirée une fois ; jamais deux fois la même carte dans un paquet
+{
+  const e = R.etatVide(); let doubles = 0, cartesTirees = 0;
+  for (let k = 0; k < 300; k++) {
+    e.reserve = 10; e.ancre = Date.now();
+    const avant = {...e.possedees}, r = R.ouvrirPaquet(e, cat, {aleatoire: alea});
+    assert.strictEqual(new Set(r.tirage.map(c => c.id)).size, r.tirage.length, "même carte deux fois dans un paquet");
+    doubles += r.tirage.filter(c => avant[c.id]).length; cartesTirees += r.tirage.length;
+  }
+  assert.ok(doubles / cartesTirees < 0.03, "doubles sur 300 paquets : " + doubles);
+}

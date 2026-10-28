@@ -98,6 +98,10 @@ de chaque année depuis 1943, anciens noms compris ; écrit `site/departements.j
   duel relevé non fini au bout de trois jours clos avec les réponses données. Vingt duels en cours au plus par joueur.
   Accès : bloc Duels de la Séance (défis à relever, duels à jouer ou reprendre, formulaire avec les amis en puces et la mise),
   bouton Défier de l'onglet Amis qui y mène, formulaire prérempli.
+- Doubles réduits (demande de l'utilisateur, octobre 2026) : une carte déjà possédée ou déjà sortie dans le paquet est
+  retirée une fois dans la même rareté (`RELANCES_DOUBLE`, `tirerCarte`, regles.js, donc aussi au serveur) ; raretés
+  inchangées ; simulation de 1 500 paquets : doubles de 3 à 0 % sur les 100 premiers paquets, 19 à 8 % du 300e au
+  700e, 33 à 21 % au-delà ; 6 497 cartes différentes au lieu de 5 695.
 - Économie : Recyclage d'un exemplaire en trop : commune 1,
   peu commune 2, rare 5, épique 15, légendaire et hors catégorie 40, mythique 100 points ; 25 points font un
   paquet. Un paquet de doubles rapporte en moyenne 21 points : le prix doit rester au-dessus, sans quoi le
