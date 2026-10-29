@@ -1,6 +1,7 @@
-Portraits Wikipédia : 1 retenus, 550 écartés, sur 7430 cartes sans portrait ayant un article rattaché par identifiant officiel (7745 cartes sans portrait en tout)
+Portraits Wikipédia : 2 retenus, 550 écartés, sur 7429 cartes sans portrait ayant un article rattaché par identifiant officiel (7744 cartes sans portrait en tout)
 
 Retenus :
+19483	Patricia Lemoine	Patricia Lemoine, député de la cinquième circonscription de Seine-et-Marne.jpg
 S20066E	Annick Jacquemet	Annick Jacquemet (2026-06-20).jpg
 
 Écartés :
@@ -379,6 +380,7 @@ S20066E	Annick Jacquemet	Annick Jacquemet (2026-06-20).jpg
 16745	Antoine Louis Boissière	Père-Lachaise_-_Division_31_-_Boissière_02.jpg	nom de fichier
 16751	Louis de Hercé	Blason_famille_fr_Hercé.svg	format
 16766	Charles-François-Alexandre de Mostuéjouls	Blason_famille_fr_de_Mostuéjouls.svg	format
+16772	Henri Jules de Berbis	Blason_famille_fr_de_Berbis.svg	format
 16782	Pierre Durand du Repaire	Blason-gueules-aigle-or.svg	format
 16784	François du Cheyron du Pavillon	Blason_d'azur_à_trois_rocs_d'or.svg	format
 16796	Paul Émile Louis Marie de La Fruglaye	Blason-argent-lion-sable-armé-lampassé-gueules.svg	format
@@ -487,7 +489,6 @@ S20066E	Annick Jacquemet	Annick Jacquemet (2026-06-20).jpg
 18280	Michel Veilande	P_vip.svg	format
 18285	Armand Brunet de Villeneuve	Cimetière_vieux_de_Béziers_-_tombe_d’Armand_Brunet_de_Villeuneuve_et_Agathe_de_Bastard_d'Estang.jpg	nom de fichier
 20058	Marie-Philippe Lubet	Image_manquante.png	la fiche Commons ne dit pas représenter la personne
-2311	Arthur Delmas	Delmas,_en_gibus,_député_de_la_Corrèze_(rentrée_parlementaire,_le_22_octobre_1907)_-_btv1b532251137.jpg	la fiche Commons ne dit pas représenter la personne
 301	Émile Aymé de La Chevrelière	Blason_de_la_famille_Aymé_de_La_Chevrelière.svg	format
 302	Jean-Marie Aymé de La Chevrelière	Blason_de_la_famille_Aymé_de_La_Chevrelière.svg	format
 3484	Henri Gorce-Franklin	HC_GORCE-FRANKLIN_H_CIM-Neuilly-Nouveau_2015-10.jpg	nom de fichier
