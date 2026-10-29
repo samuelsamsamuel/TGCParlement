@@ -223,6 +223,16 @@ def main():
         with open(os.path.join("data", "portraits_sycomore.json"), encoding="utf-8") as f:
             sycomore = json.load(f)
     assemblees, assemblees_carte = table_assemblees(cartes)
+    # Commissions permanentes (scripts/commissions.py) : table des intitulés [intitulé, chambre A ou S, familles] et,
+    # par carte, [index dans la table, année de début, année de fin (None si en cours)]
+    commissions, index_commission, commissions_carte = [], {}, {}
+    for k, v in lire(os.path.join("data", "gouvernement", "commissions.json")).items():
+        for x in v:
+            cle = (x["commission"], x["chambre"])
+            if cle not in index_commission:
+                index_commission[cle] = len(commissions)
+                commissions.append([x["commission"], "S" if x["chambre"] == "Sénat" else "A", x["familles"]])
+            commissions_carte.setdefault(k, []).append([index_commission[cle], an(x["debut"]), an(x["fin"])])
     sortie = []
     for c in cartes:
         debut, fin = annees(c)
@@ -242,7 +252,7 @@ def main():
                        or senat.get(str(c["id"]))
                        or (vignette(wikipedia[str(c["id"])]) if wikipedia.get(str(c["id"])) else None)
                        or (vignette(commons[str(c["id"])]) if commons.get(str(c["id"])) else None),
-                       assemblees_carte.get(str(c["id"]), [])])
+                       assemblees_carte.get(str(c["id"]), []), commissions_carte.get(str(c["id"]), [])])
     os.makedirs("site", exist_ok=True)
     # Date de la version des sources utilisée (Licence Ouverte 2.0 : mention de la source et de la date de dernière
     # mise à jour) : jour de l'export, qui suit le téléchargement des sources par le workflow ; maj.json pour la page
@@ -250,7 +260,7 @@ def main():
     import datetime
     jour = datetime.datetime.now(datetime.timezone.utc).date().isoformat()
     with open(os.path.join("site", "jeu.json"), "w", encoding="utf-8") as f:
-        json.dump({"maj": jour, "raretes": RARETES, "assemblees": assemblees, "cartes": sortie}, f, ensure_ascii=False, separators=(",", ":"))
+        json.dump({"maj": jour, "raretes": RARETES, "assemblees": assemblees, "commissions": commissions, "cartes": sortie}, f, ensure_ascii=False, separators=(",", ":"))
     with open(os.path.join("site", "maj.json"), "w", encoding="utf-8") as f:
         json.dump({"maj": jour}, f)
     print(f"Cartes avec portrait : {sum(1 for x in sortie if x[9] or x[16])} (dont Sycomore : {sum(1 for x in sortie if x[16] and 'sycomore' in x[16])})")

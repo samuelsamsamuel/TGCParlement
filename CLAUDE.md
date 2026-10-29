@@ -52,7 +52,13 @@ image retenue à la deuxième exécution sur 550 images principales libres, le r
 retenus et écartés), `portraits_commons.py` (fichiers de Commons qui ne dépeignent que la personne, recherche
 `haswbstatement:P180=…` par lots de 16, reprise de 10 minutes par exécution, jamais sondés d'abord, dates dans
 `data/portraits_commons_sondes.json` ; nom de famille exigé dans le nom de fichier ; premier passage complet : 35
-personnes sur 6 761 ont un fichier qui les dépeint, 2 portraits retenus), `villes_circonscriptions.py`, `numeros_departements.py` (numéros des départements pour la recherche de
+personnes sur 6 761 ont un fichier qui les dépeint, 2 portraits retenus), `villes_circonscriptions.py`, `commissions.py` (appartenances aux
+commissions permanentes, après `senat_bureau.py` dans le workflow : Sénat par ODSEN_COMS.csv depuis 1959, Assemblée par AMO30
+(mandats COMPER) depuis 2002 ; périodes renouvelées fusionnées ; familles lois, finances, affaires étrangères, défense,
+affaires sociales, culture et éducation, économie, territoires, tirées de l'intitulé officiel, `DECISION_FAMILLES` ;
+première exécution, octobre 2026 : 3 283 cartes, 14 587 périodes, 26 députés sans carte ; écrit
+`data/gouvernement/commissions.json`, exporté dans `jeu.json` (table `commissions` et 19e champ des cartes), verso
+« Commissions »), `numeros_departements.py` (numéros des départements pour la recherche de
 l'ordre du jour, Code officiel géographique de l'Insee par l'API Métadonnées sans clé, départements en vigueur au 1er janvier
 de chaque année depuis 1943, anciens noms compris ; écrit `site/departements.json`), `export_jeu.py` (écrit
 `site/jeu.json`), puis
@@ -329,6 +335,16 @@ serveur), filtre « Mes favoris » dans l'Hémicycle. Pas de zoom au double touc
   pas gêner les connexions partagées ; 10 essais par quart d'heure et par pseudo) ; pas de modération des pseudos.
 
 ## Prochaines tâches
+
+0. Jeu du Gouvernement (décidé avec l'utilisateur, octobre 2026) : 50 thèmes (environ 36 politiques publiques et 14
+   territoires ; thèmes historiques écartés), dix annoncés, sept tirés ; gouvernement d'un chef et huit ministres (cinq
+   gouvernements enregistrés au plus, 10 voix chacun) ; force = stature (1 à 5, score, un point de moins sans mandat
+   parlementaire) + 3 par étoile de spécialité (1 : cinq ans dans la commission liée ou élu de la région ; 2 : présidence
+   de la commission ou secrétariat d'État ; 3 : ministre du domaine) + liens (même département, même groupe que le chef,
+   même gouvernement réel, a servi sous le chef ; +1 chacun, +3 au plus) ; plafond de stature 24 ; gouvernement adverse
+   visible, choix cachés ; 49.3 une fois (stature du chef ajoutée) ; égalité : stature puis années de mandat ; premier à
+   quatre manches. Mise contre un ami, série 1 à 5 contre un joueur au hasard ou l'ordinateur. Lien de parité non tranché.
+   Étapes : commissions (fait), fiches de jeu et liste des thèmes à soumettre, simulation de réglage, jeu.
 
 1. Application en service. À confirmer par l'utilisateur : l'éditeur reste anonyme dans `mentions.html`
    (article 1-1 de la loi du 21 juin 2004, texte officiel non consulté, Légifrance refusant les requêtes

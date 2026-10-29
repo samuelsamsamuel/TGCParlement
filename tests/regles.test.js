@@ -165,6 +165,16 @@ assert.strictEqual(quizEtat.points, 36);
   assert.deepStrictEqual(R.garderCartes(e5, [a.id], false), []);
   assert.deepStrictEqual(R.migrer({possedees: {}, gardes: [a.id, a.id, 5]}).gardes, [String(a.id), "5"]);
 }
+// Commissions permanentes (scripts/commissions.py) : lues par cartesDeJeu, chambre, familles et années
+{
+  const avec = cartes.filter(c => c.commissions.length);
+  assert.ok(avec.length > 3000, "cartes avec commissions : " + avec.length);
+  for (const c of avec.slice(0, 200)) for (const x of c.commissions) {
+    assert.ok(x.intitule && ["A", "S"].includes(x.chambre) && Array.isArray(x.familles) && x.debut >= 1959, JSON.stringify(x));
+    assert.ok(x.fin === null || x.fin >= x.debut);
+  }
+  assert.ok(avec.some(c => c.commissions.some(x => x.familles.includes("lois"))));
+}
 // Duels jugés par le serveur : ses données réduites (compacterQuiz, relu par catalogueQuiz) donnent les mêmes questions
 {
   const q = R.catalogueQuiz(JSON.parse(JSON.stringify(R.compacterQuiz(cat))));

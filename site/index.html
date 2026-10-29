@@ -1003,6 +1003,7 @@ function htmlCarte(c, {retournee=true, neuve=false, classe="", id="", etoile=tru
       <div class="corps">
         ${c.fonctions.length?`<h4>Fonctions</h4><ul class="lignes">${listeLignes(c.fonctions.map(f => ["fonction", f[0], dates(f[1], f[2], false)]))}</ul>`:""}
         ${c.mandats.length?`<h4>Mandats</h4><ul class="lignes">${listeLignes(c.mandats.map(m => ["mandat", ...mandatLigne(m)]))}</ul>`:""}
+        ${c.commissions.length?`<h4>Commissions</h4><ul class="lignes">${listeLignes(c.commissions.map(x => ["mandat", `${x.intitule} (${x.chambre === "S" ? "Sénat" : "Assemblée"})`, dates(x.debut, x.fin)]))}</ul>`:""}
         ${c.groupe?`<h4>Groupe politique</h4><ul class="lignes"><li><b>${echapper(c.groupe)}</b></li></ul>`:""}
         ${distinctions.length?`<h4>Distinctions</h4><ul class="lignes">${distinctions.map(d=>`<li><b>${d}</b></li>`).join("")}</ul>`:""}
       </div>

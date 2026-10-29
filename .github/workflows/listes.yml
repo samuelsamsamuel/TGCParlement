@@ -45,6 +45,10 @@ jobs:
         continue-on-error: true
         run: python3 scripts/senat_bureau.py
 
+      - name: Appartenances aux commissions permanentes
+        continue-on-error: true
+        run: python3 scripts/commissions.py
+
       - name: Gouvernements (Libération, IVe et Ve Républiques)
         run: python3 scripts/gouvernements.py
 
