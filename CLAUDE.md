@@ -61,7 +61,12 @@ première exécution, octobre 2026 : 3 283 cartes, 14 587 périodes, 26 député
 « Commissions » : une ligne par commission et par chambre, réunies par domaine malgré les changements de nom (`NOM_COMMISSION`,
 `export_jeu.py`), périodes à la suite, passages de moins de trois mois non affichés, demande de l'utilisateur), `numeros_departements.py` (numéros des départements pour la recherche de
 l'ordre du jour, Code officiel géographique de l'Insee par l'API Métadonnées sans clé, départements en vigueur au 1er janvier
-de chaque année depuis 1943, anciens noms compris ; écrit `site/departements.json`), `export_jeu.py` (écrit
+de chaque année depuis 1943, anciens noms compris ; écrit `site/departements.json`), `fiches_gouvernement.py` (fiches du jeu du
+Gouvernement : stature de 1 à 5 par tranches de score, `TRANCHES`, un point de moins sans mandat ; étoiles par thème lues dans
+l'intitulé de la fonction, partie « chargé de… » seulement, motifs de `POLITIQUES` ; présidences de commission, Bureau, groupes et
+années de commission comptés depuis le 19 juin 2002 ; territoires par les régions actuelles du Code officiel géographique,
+`DECISION_TERRITOIRES` ; groupe, départements et périodes de gouvernement pour les liens ; écrit `site/gouvernement.json`,
+première exécution : 19 816 fiches, entre 180 et 650 cartes étoilées par politique publique), `export_jeu.py` (écrit
 `site/jeu.json`), puis
 `node scripts/catalogue_serveur.js` (écrit `site/serveur.json`).
 
@@ -340,7 +345,7 @@ serveur), filtre « Mes favoris » dans l'Hémicycle. Pas de zoom au double touc
 0. Jeu du Gouvernement (décidé avec l'utilisateur, octobre 2026) : 50 thèmes (environ 36 politiques publiques et 14
    territoires ; thèmes historiques écartés), dix annoncés, sept tirés ; gouvernement d'un chef et huit ministres (cinq
    gouvernements enregistrés au plus, 10 voix chacun) ; force = stature (1 à 5, score, un point de moins sans mandat
-   parlementaire) + 3 par étoile de spécialité (1 : cinq ans dans la commission liée ou élu de la région ; 2 : présidence
+   parlementaire) + 2 par étoile de spécialité (3 à l'origine) (1 : cinq ans dans la commission liée ou élu de la région ; 2 : présidence
    de la commission ou secrétariat d'État ; 3 : ministre du domaine) + liens (même département, même groupe que le chef,
    même gouvernement réel, a servi sous le chef ; +1 chacun, +3 au plus) ; plafond de stature 24 ; gouvernement adverse
    visible, choix cachés ; 49.3 une fois (stature du chef ajoutée) ; égalité : stature puis années de mandat ; premier à
@@ -348,7 +353,13 @@ serveur), filtre « Mes favoris » dans l'Hémicycle. Pas de zoom au double touc
    Validé par l'utilisateur : 34 thèmes de politiques publiques (dont Relations avec le Parlement, étoiles par les
    fonctions dans les chambres) et 16 territoires (13 régions actuelles, Paris, Outre-mer, Français de l'étranger) ; années
    en commission comptées depuis juin 2002 seulement (symétrie) ; lacune acceptée des ministres d'avant 1944.
-   Étapes : commissions (fait), fiches de jeu, simulation de réglage, jeu.
+   Règles partagées dans `site/gouvernement.js` (force, liens, plafond, manche ; réglages `ETOILE`, `PLAFOND_STATURE`,
+   `LIENS_MAX`), simulation `node scripts/simulation_gouvernement.js [parties]` (collections tirées par `regles.js`,
+   réglages par variables d'environnement). Mesure (octobre 2026, 100 parties par duel) : à 3 points par étoile, spécialiste
+   trois étoiles contre vedette sans étoile 98 %, mythiques et légendaires composés contre collection sans légendaires 47 %,
+   égalités après départage 0,9 % ; à 2 points, 90 % et 53 %. Retenu : 2 points par étoile (décision de l'utilisateur,
+   octobre 2026 : le spécialiste reste favori, la vedette garde une chance avec ses liens et le 49.3).
+   Étapes : commissions (fait), fiches de jeu (fait), simulation de réglage (fait), jeu.
 
 1. Application en service. À confirmer par l'utilisateur : l'éditeur reste anonyme dans `mentions.html`
    (article 1-1 de la loi du 21 juin 2004, texte officiel non consulté, Légifrance refusant les requêtes
