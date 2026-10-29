@@ -196,12 +196,22 @@ const sx = Date.now().toString(36).slice(-4);
     }
     await A.reload(); await A.waitForFunction(() => compte);
     await vers(A, "gouvernement"); await A.waitForSelector("#vue-gouvernement [data-former]");
+    // Règles expliquées d'emblée au premier passage
+    await A.waitForSelector(".regles-gouv"); assert.ok(await A.evaluate(() => document.querySelector(".regles-gouv").open));
+    await A.screenshot({path: T + "/gouvernement-regles.png", fullPage: true});
     await A.click("[data-former]"); await A.waitForSelector("#vue-gouvernement [data-completer]");
-    await A.click('[data-poste="chef"]'); await A.waitForSelector("#choix-carte[open]");
-    await A.fill("#choix-recherche", ""); await A.click(`#choix-carte [data-choisir="${gA.chef}"]`).catch(async () => {
-      await A.evaluate(id => { document.getElementById("choix-carte").close(); edition.chef = id; majGouvernement(); }, gA.chef); });
+    // Choix du chef : liste triable avec stature et compétences
+    await A.click('[data-poste="chef"]'); await A.waitForSelector("#choix-ministre[open] [data-choisir-ministre]");
+    await A.selectOption("#tri-ministre", "etoiles");
+    await A.screenshot({path: T + "/gouvernement-choix.png"});
+    await A.fill("#cherche-ministre", await A.evaluate(id => cat.parId[id].nom, gA.chef));
+    await A.click(`#choix-ministre [data-choisir-ministre="${gA.chef}"]`);
+    await A.waitForFunction(id => edition.chef === id, gA.chef);
     await A.click("[data-completer]");
     await A.waitForFunction(() => edition && edition.ministres.every(Boolean));
+    // Une carte choisie se retire par sa croix, puis le poste se pourvoit de nouveau
+    await A.click('[data-vider="0"]'); await A.waitForFunction(() => edition.ministres[0] === null);
+    await A.click("[data-completer]"); await A.waitForFunction(() => edition.ministres.every(Boolean));
     await A.fill('#form-edition [name=nom]', "Cabinet d'essai");
     await A.screenshot({path: T + "/gouvernement-composition.png", fullPage: true});
     const pointsAvant = await A.evaluate(() => etat.points);
@@ -217,18 +227,25 @@ const sx = Date.now().toString(36).slice(-4);
     for (let k = 0; k < 7; k++) {
       if (await A.evaluate(() => partie.fini)) break;
       await A.click("[data-ministre]:not([disabled])");
-      if (k === 0) await A.check("#case-493");
-      await A.click("[data-envoyer]");
-      // La vue est redessinée après la réponse du serveur (et, en fin de partie, après la série relue)
-      await A.waitForFunction(n => partie && (partie.fini ? !!document.querySelector("[data-retour-gouv]") && !document.querySelector(".theme-manche")
-        : (partie.manches || []).length === n && !!document.querySelector("[data-envoyer][disabled]")), k + 1);
+      if (k === 0) { await A.click("[data-joker]"); await A.waitForSelector('[data-joker][aria-pressed="true"]'); await A.screenshot({path: T + "/gouvernement-joker.png"}); }
+      await A.click(".barre-envoi [data-envoyer]");
+      // Chaque manche se révèle en grand : les deux ministres, le détail des forces, le verdict
+      await A.waitForSelector("#revelation[open] .verdict");
+      if (k === 0) { await A.waitForTimeout(1300); await A.screenshot({path: T + "/gouvernement-revelation.png"}); }
+      await A.click("#fermer-revelation"); await A.waitForSelector("#revelation:not([open])", {state: "attached"});
     }
     await A.waitForSelector("[data-retour-gouv]"); assert.ok(await A.evaluate(() => partie.fini));
     assert.match(await A.textContent("#vue-gouvernement h2"), /Victoire|Défaite|Match nul/);
     await A.screenshot({path: T + "/gouvernement-fin.png", fullPage: true});
+    // Série : rien n'est versé à la victoire ; la récompense s'encaisse
+    if (await A.evaluate(() => partie.issue === "gagne")) {
+      const avant = await A.evaluate(() => etat.points);
+      await A.click("[data-encaisser]"); await A.waitForFunction(p => etat.points === p + 15, avant);
+    }
     await A.click("[data-retour-gouv]"); await A.waitForSelector("#vue-gouvernement .cabinet");
     await A.waitForLoadState("networkidle").catch(() => {});  // la vue est redessinée quand gouvernements et parties sont relus
     // Défi à Bob, sans mise ; Bob forme son gouvernement sur son téléphone et relève le défi
+    await A.click(".repli-gouv:has(#form-gouv-ami) > summary");
     await A.fill('#form-gouv-ami [name=pseudo]', "Bob" + sx); await A.click('#form-gouv-ami button[type=submit]');
     await A.waitForSelector("[data-choisir-gouv]"); await A.click("[data-choisir-gouv]");
     await A.waitForFunction(() => partie && partie.statut === "propose");
@@ -239,14 +256,15 @@ const sx = Date.now().toString(36).slice(-4);
     await Bp.waitForSelector('#vue-gouvernement [data-quitter$=":refuser"]');
     await Bp.click("#vue-gouvernement .duel-ligne [data-partie]"); await Bp.waitForSelector("[data-choisir-gouv]");
     await Bp.click("[data-choisir-gouv]"); await Bp.waitForSelector(".theme-manche");
-    await Bp.click("[data-ministre]:not([disabled])"); await Bp.click("[data-envoyer]");
+    await Bp.click("[data-ministre]:not([disabled])"); await Bp.screenshot({path: T + "/gouvernement-envoi-tel.png"}); await Bp.click(".barre-envoi [data-envoyer]");
     await Bp.waitForFunction(() => partie && partie.attente);
     assert.match(await Bp.textContent("#vue-gouvernement h2"), new RegExp("Contre Anne" + sx));
     await Bp.screenshot({path: T + "/gouvernement-attente-tel.png", fullPage: true});
     await A.reload(); await A.waitForFunction(() => compte); await vers(A, "gouvernement");
     await A.waitForSelector('#vue-gouvernement .duel-ligne [data-partie]');
     await A.click('#vue-gouvernement .duel-ligne:has-text("à vous de jouer") [data-partie]'); await A.waitForSelector(".theme-manche");
-    await A.click("[data-ministre]:not([disabled])"); await A.click("[data-envoyer]");
+    await A.click("[data-ministre]:not([disabled])"); await A.click(".barre-envoi [data-envoyer]");
+    await A.waitForSelector("#revelation[open] .verdict"); await A.click("#fermer-revelation");
     await A.waitForFunction(() => partie && partie.manches.length === 1);
     assert.match(await A.textContent("#vue-gouvernement .manches"), /1\. /);
   }
