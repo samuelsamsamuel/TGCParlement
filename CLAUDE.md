@@ -376,10 +376,13 @@ serveur), filtre « Mes favoris » dans l'Hémicycle. Pas de zoom au double touc
    continuer, la défaite fait tout perdre ; complète au palier 5, encaissée d'elle-même ; `ENCAISSEMENTS_JOUR` (3) par jour ;
    carte choisie dans le carrousel du lot (`choisirLotGouv`, `POST /api/gouvernements/lot`) ; état `quotidien.gouv`,
    écrit par `appliquer` dans le même lot que la clôture de la partie (`liees`). Interface refaite (demande de l'utilisateur) :
-   « Comment jouer » pas à pas, ouvert au premier passage ; choix des cartes en liste triable (stature, étoiles, compétence
+   « Comment jouer » pas à pas en phrases courtes avec un exemple chiffré, ouvert au premier passage ; suggestions en tête du
+   choix d'une carte (`suggerer` : thèmes apportés à l'équipe, liens avec le chef et l'équipe, stature qui laisse de quoi
+   pourvoir les autres postes ; pour le chef, stature et cartes du joueur qui ont servi sous lui), couverture de l'équipe
+   (thèmes étoilés, points forts) ; rubriques dépliées gardées au rendu (`replisOuverts`) ; choix des cartes en liste triable (stature, étoiles, compétence
    sur un thème) avec leurs qualités, fenêtre `choix-ministre` ; croix pour retirer une carte ; liens écrits en clair
-   (« +1 a gouverné avec … », `avec` de `liens`) ; adversaire montré par stature et compétences, sans forces ; 49.3 en carte
-   dorée à reflet ; barre d'envoi collante ; chaque manche révélée en grand (fenêtre `revelation`, détail des forces ;
+   (« +1 a gouverné avec … », `avec` de `liens`) ; adversaire montré par stature et compétences, sans forces ; 49.3 en joker doré sobre
+   (léger reflet, demande de l'utilisateur) ; barre d'envoi collante ; chaque manche révélée en grand (fenêtre `revelation`, détail des forces ;
    manches déjà vues gardées dans `hemicycle-manches-vues`). Entre amis : mise
    comme aux duels, coups à son rythme, thème d'une manche révélé quand la précédente est jouée des deux côtés ; tâche
    horaire `expirerParties` (défi oublié remboursé, partie en cours close au bout de trois jours, la manche jouée d'un
