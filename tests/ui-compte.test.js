@@ -153,7 +153,7 @@ const sx = Date.now().toString(36).slice(-4);
   await A.click('#historique .mini-ami'); await A.waitForSelector("#apercu[open] .carte");
   await A.click("#fermer-apercu");
   // Duel avec mise : Anne défie Bob pour 10 voix, Bob relève le défi depuis la pastille ; le serveur juge chaque réponse
-  await A.click('nav [data-vue="duels"]');
+  await vers(A, "duels");
   // Pastille d'un ami : son pseudo passe dans le champ, la pastille est marquée
   await A.click(`#form-duel [data-defier="Bob${sx}"] .avatar-ami`);
   assert.strictEqual(await A.inputValue('#form-duel [name=pseudo]'), "Bob" + sx);
@@ -168,7 +168,7 @@ const sx = Date.now().toString(36).slice(-4);
     await P.waitForSelector("#qag-suite"); await P.click("#qag-suite"); } };
   await repondre(A, 0);
   await A.waitForSelector("#qag-fermer"); await A.click("#qag-fermer");
-  await Bp.reload(); await Bp.waitForSelector("#pastille-duels:not([hidden])");
+  await Bp.reload(); await Bp.waitForSelector("#pastille-plus:not([hidden])");
   // Séance : un renvoi vers l'onglet Duels, qui porte défis, parties et historique
   await Bp.waitForSelector("#qag [data-aller-duels]"); await Bp.click("#qag [data-aller-duels]");
   await Bp.waitForSelector("#vue-duels [data-relever]"); await Bp.waitForLoadState("networkidle"); await Bp.screenshot({path: T + "/duels-tel.png"});
@@ -212,7 +212,11 @@ const sx = Date.now().toString(36).slice(-4);
   await A.click(`[data-dissoudre="${seule}"][data-tout]`);
   await A.waitForFunction(([id, v]) => !etat.possedees[id] && etat.points > v && etat.deja.includes(id), [seule, voixAvantDissolution]);
   await A.click("#fermer-apercu");
-  // Vitrine pleine : « Mettre en vitrine » fait choisir la carte à remplacer, qui cède sa case
+  // Vitrine pleine : « Mettre en vitrine » fait choisir la carte à remplacer, qui cède sa case. Sept cartes au moins sont
+  // nécessaires ; selon les paquets tirés plus haut, Anne peut en avoir moins : on lui en donne en base
+  const septCartes = await A.evaluate(() => cartes.slice(0, 7).map(c => c.id));
+  require("child_process").execSync(`cd ${require("path").join(__dirname, "..")} && ${process.env.WR} d1 execute hemicycle --local --persist-to ${process.env.ETAT} --command "INSERT INTO possessions (joueur, carte, n) SELECT j.id, CAST(c.value AS TEXT), 1 FROM joueurs j, json_each('${JSON.stringify(septCartes)}') c WHERE j.pseudo = 'Anne${sx}' ON CONFLICT (joueur, carte) DO UPDATE SET n = n + 1"`, {stdio: "ignore"});
+  await A.reload(); await A.waitForFunction(() => compte && Object.values(etat.possedees).filter(n => n > 0).length >= 7);
   const six = await A.evaluate(async () => { const ids = Object.keys(etat.possedees).filter(id => etat.possedees[id] > 0).slice(0, 7); await exposerVitrine(ids.slice(0, 6)); return ids; });
   await A.evaluate(id => apercu(id), six[6]); await A.click(`[data-vitrine-ajouter="${six[6]}"]`);
   await A.waitForSelector(`#choix-carte[open] [data-choisir="${six[2]}"]`); await A.click(`#choix-carte [data-choisir="${six[2]}"]`);
