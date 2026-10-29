@@ -376,7 +376,12 @@ serveur), filtre « Mes favoris » dans l'Hémicycle. Pas de zoom au double touc
    continuer, la défaite fait tout perdre ; complète au palier 5, encaissée d'elle-même ; `ENCAISSEMENTS_JOUR` (3) par jour ;
    carte choisie dans le carrousel du lot (`choisirLotGouv`, `POST /api/gouvernements/lot`) ; état `quotidien.gouv`,
    écrit par `appliquer` dans le même lot que la clôture de la partie (`liees`). Interface refaite (demande de l'utilisateur) :
-   « Comment jouer » pas à pas en phrases courtes avec un exemple chiffré, ouvert au premier passage ; suggestions en tête du
+   règles en tutoriel illustré de sept écrans (fenêtre `tuto-gouv`, `ecransTuto` : principe, deux qualités d'une carte,
+   une manche chiffrée, la partie, la limite de stature, 49.3 et liens, la série ; mini-cartes dessinées), ouvert de lui-même
+   à la première visite puis par « Comment jouer ? » (demande de l'utilisateur : règles beaucoup plus claires) ; échelle de la
+   série (`echelleSerie`) aussi sur la page de résultat, paliers dépassés grisés, palier atteint en or, prochain en pointillé ;
+   récapitulatif des manches en tableau (`recapManches` : thème, ministres face à face, forces, résultat, 49.3 signalé) ;
+   49.3 sous la liste des ministres ; suggestions en tête du
    choix d'une carte (`suggerer` : thèmes apportés à l'équipe, liens avec le chef et l'équipe, stature qui laisse de quoi
    pourvoir les autres postes ; pour le chef, stature et cartes du joueur qui ont servi sous lui), couverture de l'équipe
    (thèmes étoilés, points forts) ; rubriques dépliées gardées au rendu (`replisOuverts`) ; choix des cartes en liste triable (stature, étoiles, compétence

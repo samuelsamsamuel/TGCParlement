@@ -196,8 +196,14 @@ const sx = Date.now().toString(36).slice(-4);
     }
     await A.reload(); await A.waitForFunction(() => compte);
     await vers(A, "gouvernement"); await A.waitForSelector("#vue-gouvernement [data-former]");
-    // Règles expliquées d'emblée au premier passage
-    await A.waitForSelector(".regles-gouv"); assert.ok(await A.evaluate(() => document.querySelector(".regles-gouv").open));
+    // Règles en tutoriel illustré, ouvert de lui-même au premier passage : on le parcourt jusqu'au bout
+    await A.waitForSelector("#tuto-gouv[open]");
+    for (let k = 0; ; k++) {
+      if (k === 2) await A.screenshot({path: T + "/gouvernement-tuto.png"});
+      if (await A.isVisible("#tuto-gouv [data-tuto-fin]")) { await A.click("#tuto-gouv [data-tuto-fin]"); break; }
+      await A.click(`#tuto-gouv [data-tuto="${k + 1}"]`);
+    }
+    await A.waitForSelector("#tuto-gouv:not([open])", {state: "attached"});
     await A.screenshot({path: T + "/gouvernement-regles.png", fullPage: true});
     await A.click("[data-former]"); await A.waitForSelector("#vue-gouvernement [data-completer]");
     // Choix du chef : liste triable avec stature et compétences
@@ -255,7 +261,8 @@ const sx = Date.now().toString(36).slice(-4);
     await A.waitForSelector("[data-choisir-gouv]"); await A.click("[data-choisir-gouv]");
     await A.waitForFunction(() => partie && partie.statut === "propose");
     await Bp.reload(); await Bp.waitForFunction(() => compte);
-    await vers(Bp, "gouvernement"); await Bp.waitForSelector("#vue-gouvernement [data-former]");
+    await vers(Bp, "gouvernement"); await Bp.waitForSelector("#tuto-gouv[open]"); await Bp.click("#fermer-tuto");
+    await Bp.waitForSelector("#vue-gouvernement [data-former]");
     await Bp.evaluate(g => { edition = {id: null, nom: "Cabinet de Bob", chef: g.chef, ministres: g.ministres.slice()}; majGouvernement(); }, gB);
     await Bp.click("[data-enregistrer]"); await Bp.waitForSelector("#vue-gouvernement .cabinet");
     await Bp.waitForSelector('#vue-gouvernement [data-quitter$=":refuser"]');
@@ -271,7 +278,7 @@ const sx = Date.now().toString(36).slice(-4);
     await A.click("[data-ministre]:not([disabled])"); await A.click(".barre-envoi [data-envoyer]");
     await A.waitForSelector("#revelation[open] .verdict"); await A.click("#fermer-revelation");
     await A.waitForFunction(() => partie && partie.manches.length === 1);
-    assert.match(await A.textContent("#vue-gouvernement .manches"), /1\. /);
+    assert.match(await A.textContent("#vue-gouvernement .recap-manches"), /Gagnée|Perdue|Égalité/);
   }
   // Vitrine d'Anne, faite de ses favoris, visible par Bob depuis ses amis
   await A.click('nav [data-vue="collection"]'); await A.click('#grille [data-favori]');

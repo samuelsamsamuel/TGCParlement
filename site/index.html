@@ -462,8 +462,63 @@ footer{max-width:1120px;margin:0 auto;padding:0 1rem 3rem;font-size:.85rem;color
 .serie-gouv{display:grid;grid-template-columns:repeat(5,1fr);gap:.3rem;margin:.4rem 0}
 .serie-gouv span{text-align:center;font-size:.7rem;line-height:1.25;padding:.45rem .2rem;border-radius:8px;border:1px solid rgba(201,162,74,.25);color:var(--pierre);min-height:4.2rem}
 .serie-gouv span b{display:block;font:600 1.05rem var(--sans);color:var(--marbre);margin-bottom:.15rem}
-.serie-gouv span.atteint{border-color:var(--dorure);background:rgba(201,162,74,.2);color:var(--dorure-pale)}
-.serie-gouv span.courant{box-shadow:0 0 0 2px var(--dorure);color:var(--marbre)}
+.serie-gouv span em{display:block;font-style:normal;font-size:.62rem;text-transform:uppercase;letter-spacing:.04em;margin-top:.25rem}
+.serie-gouv span.passe{opacity:.38;filter:grayscale(1)}
+.serie-gouv span.passe b::after{content:" ✓"}
+.serie-gouv span.courant{border-color:var(--dorure);background:rgba(201,162,74,.25);color:var(--marbre);box-shadow:0 0 0 2px var(--dorure)}
+.serie-gouv span.courant em{color:var(--dorure-pale)}
+.serie-gouv span.prochain{border-style:dashed;border-color:rgba(201,162,74,.6)}
+.tete-gouv{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap}
+.tete-gouv .titre-gouv{margin:0}
+/* Tutoriel du Gouvernement */
+#tuto-gouv{width:min(520px,96vw)}
+#tuto-gouv .fenetre{position:relative;background:var(--velours-fonce);border:1px solid var(--dorure);border-radius:14px;padding:1.1rem 1rem 1rem;text-align:center}
+#tuto-gouv h2{font:400 1.55rem var(--serif);margin:.2rem 0 .7rem}
+.fermer-tuto{position:absolute;top:.7rem;right:.9rem}
+.tuto-dessin{min-height:8.5rem;display:grid;place-items:center;margin:0 0 .8rem}
+.tuto-texte{font-size:1rem;line-height:1.55;margin:0 0 .8rem}
+.tuto-boutons{display:flex;justify-content:center;gap:.6rem;margin-top:.7rem}
+.mock{display:grid;justify-items:center;gap:.3rem;padding:.6rem .7rem;border-radius:10px;border:1px solid rgba(201,162,74,.5);background:rgba(46,7,16,.8);min-width:9rem}
+.mock .stature-ex{width:2rem;height:2rem;font-size:1rem}
+.mock.gagne{border-color:#3f8f5a;box-shadow:0 0 12px rgba(63,143,90,.4)}
+.tuto-duel{display:flex;align-items:center;gap:.5rem;justify-content:center}
+.tuto-duel>span{color:var(--pierre)}
+.tuto-duel p{margin:.3rem 0 0;font-size:.85rem}
+.tuto-duel p b{font-size:1.2rem;color:var(--dorure-pale)}
+.tuto-manche{display:grid;gap:.6rem;justify-items:center}
+.tuto-verdict{margin:0;color:#9fd8b0}
+.tuto-equipes{display:grid;gap:.5rem;justify-items:center}
+.tuto-equipes>div{display:grid;justify-items:center;gap:.2rem;font-size:.8rem;color:var(--pierre)}
+.tuto-equipes p{display:flex;gap:.25rem;margin:0}
+.tuto-equipes i{width:1.3rem;height:1.8rem;border-radius:3px;border:1px solid var(--dorure);background:rgba(201,162,74,.15)}
+.tuto-equipes i:first-child{background:var(--dorure)}
+.tuto-points{display:flex;gap:.4rem}
+.tuto-points i{width:1.4rem;height:1.4rem;border-radius:50%;border:1px solid rgba(201,162,74,.5)}
+.tuto-points i.g{background:#3f8f5a;border-color:#3f8f5a}
+.tuto-points i.p{background:#8f3f3f;border-color:#8f3f3f}
+.tuto-somme{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:.2rem;color:var(--pierre)}
+.tuto-somme b{margin-left:.4rem;font-size:1.2rem;color:var(--dorure-pale)}
+.tuto-pouces{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;justify-content:center}
+.joker-ex{font:700 1rem var(--sans);color:#21161a;background:var(--dorure);border-radius:6px;padding:.3rem .6rem}
+#tuto-gouv .points-carrousel i.actif{background:var(--dorure)}
+/* Récapitulatif des manches */
+.recap-manches{list-style:none;padding:0;margin:.4rem 0 1rem;display:grid;gap:.45rem}
+.recap-manches button{width:100%;display:grid;gap:.45rem;text-align:left;font:inherit;color:inherit;cursor:pointer;padding:.55rem .7rem;border-radius:10px;border:1px solid rgba(201,162,74,.3);background:rgba(46,7,16,.6);border-left-width:4px}
+.recap-manches .gagnee button{border-left-color:#3f8f5a}
+.recap-manches .perdue button{border-left-color:#c0504d}
+.tete-m{display:flex;align-items:center;gap:.5rem}
+.tete-m .num{display:grid;place-items:center;width:1.4rem;height:1.4rem;border-radius:50%;background:rgba(201,162,74,.2);font-size:.75rem;font-weight:700}
+.tete-m b{flex:1;font-weight:600}
+.tete-m .res{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em}
+.gagnee .res{color:#9fd8b0}.perdue .res{color:#e7908c}.nulle .res{color:var(--pierre)}
+.duel-m{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:.4rem}
+.duel-m .cote{display:flex;align-items:center;gap:.4rem;min-width:0}
+.duel-m .cote.lui{flex-direction:row-reverse;text-align:right}
+.duel-m .cote .mini-ami{width:1.8rem;height:2.4rem;flex:none}
+.duel-m .nom-m{font-size:.8rem;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1}
+.duel-m .cote b{font:700 1.15rem var(--sans);color:var(--dorure-pale)}
+.duel-m .vs{font-size:.72rem;color:var(--pierre)}
+.badge-493{font-size:.62rem;font-weight:700;color:#21161a;background:var(--dorure);border-radius:3px;padding:0 .25rem}
 .encaisser{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin:.6rem 0 0}
 .jouer-gouv{display:flex;gap:.5rem;flex-wrap:wrap;margin:.7rem 0 0}
 .jouer-gouv .bouton{flex:1 1 12rem;padding:.8rem 1rem}
@@ -967,6 +1022,7 @@ html.presentation{font-size:15px}
     <select class="champ" id="tri-ministre" aria-label="Trier"></select></div>
   <p class="note" id="note-ministre"></p>
   <div class="liste-m" id="liste-ministre"></div></div></dialog>
+<dialog id="tuto-gouv"><div class="fenetre"><button class="lien-carte fermer-tuto" id="fermer-tuto">Fermer</button><div id="tuto-contenu"></div></div></dialog>
 <dialog id="revelation"><div class="fenetre" id="revelation-contenu"></div></dialog>
 <p class="toast" id="toast" role="status" aria-live="polite" hidden></p>
 
@@ -1775,6 +1831,8 @@ async function chargerGouvernement(){
     gouv = g; parties = p.parties;
   });
   majGouvernement();
+  let vu = true; try { vu = !!localStorage.getItem("hemicycle-regles-gouv"); } catch (_) {}
+  if (!vu && gouvJeu && vueCourante === "gouvernement") montrerTuto(0);
 }
 // Manches déjà vues dans cette partie (navigateur) : seules les nouvelles sont révélées en grand
 function manchesVues(id, n){
@@ -1807,36 +1865,68 @@ function majGouvernement(){
   if (!gouvJeu) { zone.innerHTML = `<h2 class="titre-gouv">Gouvernement</h2><p class="note">Chargement…</p>`; return; }
   zone.innerHTML = edition ? htmlEdition() : partie ? htmlPartie() : htmlAccueilGouv();
 }
-// Règles, pas à pas, pour un joueur qui découvre le jeu : phrases courtes, un exemple chiffré (demande de l'utilisateur :
-// « encore plus claires et compréhensibles facilement »)
-function htmlRegles(ouvert){
-  const E = Gouvernement.ETOILE;
-  return `<details class="regles-gouv" ${ouvert ? "open" : ""}><summary>Comment jouer</summary><ol class="etapes-gouv">
-    <li><b>Formez une équipe</b>Prenez dans vos cartes un chef et huit ministres. Une équipe coûte ${gouv.prix} voix.</li>
-    <li><b>Chaque carte a deux qualités</b>La <span class="stature-ex">3</span> stature, de 1 à 5 : son poids politique.<br>
-      Les étoiles : ses compétences, par thème. <span class="puce etoiles">Justice <i>★★★</i></span> veut dire ancien ministre de la Justice.</li>
-    <li><b>Une limite</b>Vos huit ministres ne dépassent pas ${Gouvernement.PLAFOND_STATURE} de stature au total. Mélangez grandes figures et spécialistes.</li>
-    <li><b>Une partie, sept manches</b>Chaque manche porte sur un thème : la Justice, la Bretagne… Vous envoyez un ministre, l'adversaire aussi, en secret. Le plus fort gagne la manche. Premier à quatre manches.</li>
-    <li><b>Qui est le plus fort ?</b>Stature + ${E} par étoile sur le thème + bonus d'équipe.
-      <span class="exemple">Sur la Justice : un ancien ministre de la Justice (stature 3, ★★★) fait 3 + ${3 * E} = ${3 + 3 * E}. Une grande figure sans étoile (stature 5) fait 5.</span></li>
-    <li><b>Chaque ministre ne joue qu'une fois</b>Gardez vos spécialistes pour leur thème. Les dix thèmes possibles sont annoncés au début.</li>
-    <li><b>Bonus d'équipe : +1 par point commun</b>Même département qu'un coéquipier, même parti que le chef, a déjà gouverné avec un coéquipier, a servi sous ce chef. ${Gouvernement.LIENS_MAX} au plus.</li>
-    <li><b>Le 49.3, une fois par partie</b>La stature de votre chef s'ajoute à votre ministre pour une manche.</li>
-    <li><b>La série</b>Chaque victoire fait grimper la récompense. Prenez-la quand vous voulez : une défaite fait tout perdre.</li>
-  </ol></details>`;
+// Règles en tutoriel illustré (demande de l'utilisateur : des règles beaucoup plus claires, « innove si besoin ») : sept
+// écrans d'une idée chacun, avec un dessin fait de mini-cartes ; ouvert de lui-même à la première visite, puis par le bouton
+// « Comment jouer ? »
+const mockCarte = (nom, stature, etoiles, theme, classe = "") => `<div class="mock ${classe}"><span class="stature-ex">${stature}</span><b>${nom}</b>${etoiles ? `<span class="puce etoiles">${theme} <i>${"★".repeat(etoiles)}</i></span>` : `<span class="puce">aucune étoile en ${theme}</span>`}</div>`;
+function ecransTuto(){
+  const E = Gouvernement.ETOILE, P = Gouvernement.PLAFOND_STATURE;
+  return [
+    {titre: "Le principe", texte: "Avec vos cartes, vous formez un gouvernement. Vous l'opposez à un autre gouvernement, thème par thème.",
+     dessin: `<div class="tuto-equipes"><div><span>Vous</span><p>${"<i></i>".repeat(9)}</p></div><span class="puce etoiles">Justice</span><div><span>Adversaire</span><p>${"<i></i>".repeat(9)}</p></div></div>`},
+    {titre: "Chaque carte a deux qualités", texte: `<b>Le chiffre rond, c'est la stature</b> : son poids politique, de 1 à 5. Elle compte sur tous les thèmes.<br><b>Les étoiles, ce sont ses compétences</b> : elles ne comptent que sur leur thème. Trois étoiles en Justice : ancien ministre de la Justice.`,
+     dessin: mockCarte("Ancien garde des Sceaux", 3, 3, "Justice")},
+    {titre: "Une manche", texte: `Un thème est tiré. Vous envoyez un ministre, l'adversaire aussi, sans voir le choix de l'autre. <b>Le plus fort gagne.</b> Force = stature + ${E} par étoile du thème.`,
+     dessin: `<div class="tuto-manche"><span class="puce etoiles">Thème : Justice</span><div class="tuto-duel">
+       <div>${mockCarte("Le spécialiste", 3, 3, "Justice", "gagne")}<p>3 + ${E} + ${E} + ${E} = <b>${3 + 3 * E}</b></p></div><span>contre</span>
+       <div>${mockCarte("La grande figure", 5, 0, "Justice")}<p>5 = <b>5</b></p></div></div><p class="tuto-verdict">${3 + 3 * E} contre 5 : le spécialiste gagne.</p></div>`},
+    {titre: "La partie", texte: "Premier à quatre manches gagnées. Un ministre ne joue qu'une fois : gardez chaque spécialiste pour son thème. Les dix thèmes possibles sont annoncés au début ; sept seront tirés.",
+     dessin: `<div class="tuto-points">${[1, 1, 0, 1, 0, 1].map(g => `<i class="${g ? "g" : "p"}"></i>`).join("")}<i></i></div><p class="note centre">Ici, 4 manches à 2 : partie gagnée.</p>`},
+    {titre: "Former son gouvernement", texte: `Un chef et huit ministres. <b>Les huit ministres ne dépassent pas ${P} de stature à eux tous</b> : il faut mêler grandes figures et spécialistes. Le chef ne joue pas de manche.`,
+     dessin: `<div class="tuto-somme">${[5, 5, 4, 3, 3, 2, 1, 1].map(n => `<span class="stature-ex">${n}</span>`).join("+")}<b>= ${P}</b></div>`},
+    {titre: "Deux coups de pouce", texte: `<b>Le 49.3</b>, une fois par partie : la stature du chef s'ajoute à votre ministre pour une manche.<br><b>Les liens</b> : +1 par point commun avec l'équipe (même département, même parti que le chef, ont gouverné ensemble, a servi sous ce chef), 3 au plus.`,
+     dessin: `<div class="tuto-pouces"><span class="joker-ex">49.3</span><span class="puce lien"><b>+1</b> a servi sous ce chef</span></div>`},
+    {titre: "La série", texte: "Contre l'ordinateur ou un autre joueur, chaque victoire fait monter votre série d'une marche. Encaissez la récompense quand vous voulez, ou continuez pour viser plus haut : une défaite fait tout perdre.",
+     dessin: `<div class="serie-gouv">${RECOMPENSES_COURTES.map((r, i) => `<span class="${i < 2 ? "passe" : i === 2 ? "courant" : ""}"><b>${i + 1}</b>${echapper(r)}</span>`).join("")}</div>`},
+  ];
 }
-function htmlSerie(){
+let ecranTuto = 0;
+function montrerTuto(k = 0){
+  const ecrans = ecransTuto(); ecranTuto = Math.max(0, Math.min(ecrans.length - 1, k));
+  const e = ecrans[ecranTuto], dernier = ecranTuto === ecrans.length - 1;
+  document.getElementById("tuto-contenu").innerHTML = `<span class="note">${ecranTuto + 1} sur ${ecrans.length}</span><h2>${e.titre}</h2>
+    <div class="tuto-dessin">${e.dessin}</div><p class="tuto-texte">${e.texte}</p>
+    <div class="points-carrousel">${ecrans.map((_, i) => `<i class="${i === ecranTuto ? "actif" : ""}"></i>`).join("")}</div>
+    <div class="tuto-boutons"><button class="bouton discret" data-tuto="${ecranTuto - 1}" ${ecranTuto ? "" : "hidden"}>Précédent</button>
+      <button class="bouton" ${dernier ? "data-tuto-fin" : `data-tuto="${ecranTuto + 1}"`}>${dernier ? "C'est parti" : "Suivant"}</button></div>`;
+  const d = document.getElementById("tuto-gouv"); if (!d.open) d.showModal();
+  try { localStorage.setItem("hemicycle-regles-gouv", "vu"); } catch (_) {}
+}
+document.getElementById("tuto-gouv").addEventListener("click", e => {
+  const b = e.target.closest("[data-tuto]");
+  if (b) { montrerTuto(Number(b.dataset.tuto)); return; }
+  if (e.target.closest("[data-tuto-fin]") || e.target.id === "tuto-gouv" || e.target.id === "fermer-tuto") document.getElementById("tuto-gouv").close();
+});
+// Échelle de la série : paliers déjà dépassés grisés, palier atteint (à encaisser) en or, suivant marqué « prochaine »
+function echelleSerie(n){
+  return `<div class="serie-gouv">${RECOMPENSES_COURTES.map((r, i) => {
+    const etatP = i < n - 1 ? "passe" : i === n - 1 ? "courant" : i === n ? "prochain" : "";
+    const marque = {passe: "dépassé", courant: "à encaisser", prochain: "prochaine victoire"}[etatP] || "";
+    return `<span class="${etatP}"><b>${i + 1}</b>${echapper(r)}${marque ? `<em>${marque}</em>` : ""}</span>`;
+  }).join("")}</div>`;
+}
+function htmlSerie(jouer = true){
   const s = gouv.serie, actions = [];
   if (s.lot) actions.push(`<button class="bouton" data-lot-gouv>Choisir ma carte</button>`);
   else if (s.serie) actions.push(s.encaissesDuJour < s.max
     ? `<button class="bouton" data-encaisser>Encaisser : ${echapper(RECOMPENSES_COURTES[s.serie - 1])}</button>`
     : `<span class="note">Déjà ${s.max} séries encaissées aujourd'hui : celle-ci attend demain.</span>`);
   return `<div class="bloc-gouv"><h3>Votre série${s.serie ? ` : ${pluriel(s.serie, "victoire")}` : ""}</h3>
-    <div class="serie-gouv">${RECOMPENSES_COURTES.map((r, i) => `<span class="${i < s.serie ? "atteint" : ""}${i === s.serie - 1 ? " courant" : ""}"><b>${i + 1}</b>${echapper(r)}</span>`).join("")}</div>
+    ${echelleSerie(s.serie)}
     <p class="note">${s.serie ? `Encaissez maintenant, ou gagnez encore pour atteindre « ${echapper(RECOMPENSES_COURTES[Math.min(4, s.serie)])} ». Une défaite fait tout perdre.`
       : "Chaque victoire contre l'ordinateur ou un autre joueur fait monter d'un palier."}</p>
     ${actions.length ? `<div class="encaisser">${actions.join("")}</div>` : ""}
-    ${gouv.gouvernements.some(g => !g.vacants.length) ? `<div class="jouer-gouv"><button class="bouton" data-jouer="ordi">Jouer contre l'ordinateur</button><button class="bouton discret" data-jouer="hasard">Jouer contre un autre joueur</button></div>`
+    ${gouv.gouvernements.some(g => !g.vacants.length) ? `<div class="jouer-gouv"><button class="bouton${jouer ? "" : " discret"}" data-jouer="ordi">${jouer ? "Jouer" : "Rejouer"} contre l'ordinateur</button><button class="bouton discret" data-jouer="hasard">${jouer ? "Jouer" : "Rejouer"} contre un autre joueur</button></div>`
       : `<p class="note">Formez d'abord un gouvernement complet pour jouer.</p>`}</div>`;
 }
 function htmlAccueilGouv(){
@@ -1849,9 +1939,7 @@ function htmlAccueilGouv(){
   const action = p => p.aRelever ? `<button class="bouton" data-partie="${p.id}">Voir le défi</button><button class="lien-carte" data-quitter="${p.id}:refuser">Refuser</button>`
     : p.aPreparer || p.aJouer ? `<button class="bouton" data-partie="${p.id}">${p.aJouer ? "Jouer" : "Choisir"}</button>`
     : `<button class="bouton discret" data-partie="${p.id}">Voir</button>${p.statut === "propose" && p.lance ? `<button class="lien-carte" data-quitter="${p.id}:annuler">Annuler</button>` : ""}`;
-  let reglesVues = false; try { reglesVues = !!localStorage.getItem("hemicycle-regles-gouv"); } catch (_) {}
-  return `<h2 class="titre-gouv">Gouvernement</h2>
-    ${htmlRegles(!reglesVues || !gouv.gouvernements.length)}
+  return `<div class="tete-gouv"><h2 class="titre-gouv">Gouvernement</h2><button class="bouton discret" data-tuto-ouvrir>Comment jouer ?</button></div>
     ${enCours.length ? `<div class="bloc-gouv"><h3>Parties en cours</h3><ul class="duels">${enCours.map(p => ligne(p, `${contre(p)} : ${etatPartie(p)}`, action(p))).join("")}</ul></div>` : ""}
     ${htmlSerie()}
     <div class="bloc-gouv"><h3>Mes gouvernements (${gouv.gouvernements.length} sur ${gouv.max})</h3>
@@ -2044,8 +2132,7 @@ function htmlPartie(){
   const pris = new Set((p.manches || []).map(m => m.moi && m.moi[0]).filter(x => x !== null && x !== undefined));
   if (p.attente) pris.add(p.attente[0]);
   const sesPris = new Set((p.manches || []).map(m => m.lui && m.lui[0]).filter(x => x !== null && x !== undefined));
-  const manches = (p.manches || []).map((m, i) => `<li class="${m.gagne === null ? "" : m.gagne ? "gagnee" : "perdue"}"><button class="lien-carte" data-revoir="${i}">${i + 1}. ${echapper(nomTheme(m.theme))}</button> :
-    ${m.forfait ? (m.gagne ? "gagnée, l'adversaire n'a pas joué" : "perdue, faute d'avoir joué") : `${echapper(nomG(p.moi.ministres[m.moi[0]]))} (${m.forces[0]}) contre ${echapper(nomG(p.lui.ministres[m.lui[0]]))} (${m.forces[1]}), ${m.gagne === null ? "égalité" : m.gagne ? "gagnée" : "perdue"}`}</li>`).reverse().join("");
+  const manches = recapManches(p);
   const score = `<div class="tableau-score"><span>${p.score[0]} <small>vous</small></span><span>–</span><span>${p.score[1]} <small>${p.mode === "ordi" ? "l'ordinateur" : echapper(p.adversaire || "")}</small></span></div>`;
   if (p.fini) return htmlFinPartie(p, contre, score, manches, retour);
   const chef = ficheG(p.moi.chef), choisi = ministreChoisi !== null ? ficheG(p.moi.ministres[ministreChoisi]) : null;
@@ -2055,27 +2142,34 @@ function htmlPartie(){
     ${p.attente ? `<p class="centre">Vous avez envoyé ${echapper(nomG(p.moi.ministres[p.attente[0]]))}${p.attente[1] ? ", avec le 49.3" : ""}. La manche se révélera quand ${echapper(p.adversaire || "votre adversaire")} aura joué.</p>` : ""}
     <div class="deux-colonnes"><div><h3>Vos ministres</h3>
       ${p.attente ? "" : `<p class="note">Touchez le ministre à envoyer. Le grand chiffre est sa force sur « ${echapper(nomTheme(p.theme))} ».</p>`}
+
+      ${lignesMiennes(p, pris)}
       ${p.attente ? "" : `<button class="joker" data-joker aria-pressed="${avec493}" ${p.a493[0] ? "disabled" : ""}><span class="num">49.3</span><span class="txt"><b class="etat-joker">${p.a493[0] ? "Déjà utilisé" : avec493 ? `Joué : +${chef.stature} pour cette manche` : `Jouer le 49.3 : +${chef.stature}`}</b>
-        ${p.a493[0] ? "Une seule fois par partie." : `La stature de votre chef, ${echapper(nomG(chef.id))}, s'ajoute. Une fois par partie.`}</span></button>`}
-      ${lignesMiennes(p, pris)}</div>
+        ${p.a493[0] ? "Une seule fois par partie." : `La stature de votre chef, ${echapper(nomG(chef.id))}, s'ajoute. Une fois par partie.`}</span></button>`}</div>
       <div><h3>${nomCamp(p.lui) || "Gouvernement adverse"}</h3><p class="note">Son choix reste secret jusqu'à la révélation. ${p.a493[1] ? "Son 49.3 est déjà utilisé." : "Il a encore son 49.3."}</p>${lignesAdverses(p.lui, p.annonces, sesPris)}</div></div>
-    ${manches ? `<h3>Manches jouées</h3><ul class="manches">${manches}</ul>` : ""}
+    ${manches ? `<h3>Manches jouées</h3>${manches}` : ""}
     ${p.mode === "ami" ? "" : `<p><button class="lien-carte" data-quitter="${p.id}:abandonner">Abandonner (défaite)</button></p>`}${retour}
     ${choisi && !p.attente ? `<div class="barre-envoi"><span class="quoi"><b>${echapper(nomG(choisi.id))}</b>force ${forceChoisi}${avec493 ? " avec le 49.3" : ""}</span><button class="bouton" data-envoyer>Envoyer</button></div>` : ""}`;
+}
+// Récapitulatif des manches : une ligne par manche, numéro et thème, les deux ministres face à face avec leur force, le
+// résultat ; toucher une manche la rejoue en grand
+function recapManches(p){
+  if (!(p.manches || []).length) return "";
+  const cote = (camp, coup, force, k) => {
+    if (!coup) return `<span class="cote${k ? " lui" : ""}"><span class="note">n'a pas joué</span></span>`;
+    const id = camp.ministres[coup[0]];
+    return `<span class="cote${k ? " lui" : ""}">${portraitG(id)}<span class="nom-m">${echapper(nomG(id))}${coup[1] ? ` <span class="badge-493">49.3</span>` : ""}</span><b>${force ?? "–"}</b></span>`;
+  };
+  return `<ol class="recap-manches">${p.manches.map((m, i) => `<li class="${m.gagne === null ? "nulle" : m.gagne ? "gagnee" : "perdue"}"><button data-revoir="${i}">
+    <span class="tete-m"><span class="num">${i + 1}</span><b>${echapper(nomTheme(m.theme))}</b><span class="res">${m.gagne === null ? "Égalité" : m.gagne ? "Gagnée" : "Perdue"}</span></span>
+    <span class="duel-m">${cote(p.moi, m.moi, m.forces?.[0], 0)}<span class="vs">contre</span>${cote(p.lui, m.lui, m.forces?.[1], 1)}</span></button></li>`).join("")}</ol>`;
 }
 function htmlFinPartie(p, contre, score, manches, retour){
   const titre = {gagne: "Victoire", perdu: "Défaite", egalite: "Match nul"}[p.issue] || "Partie terminée";
   let suite = "";
   if (p.mode === "ami") suite = `<p>${p.issue === "gagne" && (p.voix || p.paquets) ? `Vous remportez ${texteMise({voix: p.voix * 2, paquets: p.paquets * 2})}.` : p.issue === "egalite" ? "Chacun récupère sa mise." : ""}</p>`;
-  else {
-    const s = gouv.serie;
-    suite = s.lot ? `<p>Série complète : choisissez votre carte.</p><div class="encaisser"><button class="bouton" data-lot-gouv>Choisir ma carte</button></div>`
-      : p.issue === "gagne" && s.serie ? `<p>Votre série : <b>${pluriel(s.serie, "victoire")}</b>. Encaissez « ${echapper(RECOMPENSES_COURTES[s.serie - 1])} » maintenant, ou rejouez pour viser « ${echapper(RECOMPENSES_COURTES[Math.min(4, s.serie)])} » : une défaite ferait tout perdre.</p>
-        <div class="encaisser">${s.encaissesDuJour < s.max ? `<button class="bouton" data-encaisser>Encaisser</button>` : ""}<button class="bouton discret" data-jouer="ordi">Rejouer contre l'ordinateur</button><button class="bouton discret" data-jouer="hasard">Rejouer contre un joueur</button></div>`
-      : p.issue === "perdu" ? `<p>Votre série retombe à zéro.</p><div class="encaisser"><button class="bouton" data-jouer="ordi">Rejouer</button></div>`
-      : `<div class="encaisser"><button class="bouton" data-jouer="ordi">Rejouer</button></div>`;
-  }
-  return `<h2 class="titre-gouv">${titre} contre ${contre}</h2>${score}<div class="bloc-gouv">${suite}</div><h3>Les manches</h3><ul class="manches">${manches}</ul>${retour}`;
+  else suite = `${p.issue === "perdu" ? `<p class="alerte-cab">Défaite : votre série repart de zéro.</p>` : p.issue === "egalite" ? `<p class="note">Match nul : votre série ne bouge pas.</p>` : ""}${htmlSerie(false)}`;
+  return `<h2 class="titre-gouv">${titre} contre ${contre}</h2>${score}${p.mode === "ami" ? `<div class="bloc-gouv">${suite}</div>` : suite}<h3>Les manches</h3>${manches}${retour}`;
 }
 // Révélation d'une manche, en grand : les deux ministres, le détail de leur force, le verdict
 function montrerManche(i){
@@ -2121,7 +2215,7 @@ function choisirCarteSerie(ids){
 document.getElementById("vue-gouvernement").addEventListener("click", e => {
   const t = e.target, b = sel => t.closest(sel);
   if (b("[data-aller-compte]")) { allerA("compte"); return; }
-  if (b(".regles-gouv>summary")) { try { localStorage.setItem("hemicycle-regles-gouv", "vu"); } catch (_) {} return; }
+  if (b("[data-tuto-ouvrir]")) { montrerTuto(0); return; }
   if (b("[data-retour-gouv]")) { partie = null; chargerGouvernement(); window.scrollTo({top: 0}); return; }
   if (b("[data-former]")) { edition = {id: null, nom: "", chef: null, ministres: Array(Gouvernement.MINISTRES).fill(null)}; majGouvernement(); window.scrollTo({top: 0}); return; }
   if (b("[data-recomposer]")) {
