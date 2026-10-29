@@ -230,3 +230,37 @@ console.log("tous les tests passent");
   assert.deepStrictEqual(R.objectifsDuJour(cat, jour).taches.map(t => t.cle), R.objectifsDuJour(R.catalogueCompact(require("../site/serveur.json")), jour).taches.map(t => t.cle));
 }
 console.log("série et objectifs du jour : tests passés");
+// Jeu du Gouvernement : fiches (scripts/fiches_gouvernement.py) et règles partagées (site/gouvernement.js)
+{
+  const G = require("../site/gouvernement.js"), {fiches, themes} = G.fichesDeJeu(require("../site/gouvernement.json"));
+  assert.strictEqual(themes.length, 50, "34 politiques publiques et 16 territoires");
+  assert.ok(fiches.size >= 19000);
+  const t = code => themes.findIndex(x => x[0] === code);
+  const drian = fiches.get("7570");
+  assert.strictEqual(drian.etoiles.get(t("diplomatie")), 3, "ministre des affaires étrangères");
+  assert.strictEqual(drian.etoiles.get(t("defense")), 3);
+  assert.ok(drian.etoiles.get(t("bretagne")) >= 1, "élu du Morbihan");
+  assert.strictEqual(fiches.get("S86034E").etoiles.get(t("parlement")), 3, "président du Sénat");
+  assert.ok([...fiches.values()].every(f => f.stature >= 1 && f.stature <= 5));
+  // Force, plafond, liens et départage
+  const f = (id, stature, etoiles = {}, extra = {}) => ({id, stature, etoiles: new Map(Object.entries(etoiles).map(([k, v]) => [Number(k), v])),
+                                                       annees: 0, groupe: -1, deps: [], gouv: [], chefs: [], ...extra});
+  const chef = f("c", 5, {}, {groupe: 1, chefs: [["2000-01-01", "2002-01-01"]]});
+  const ministres = [1, 2, 3, 4, 5, 6, 7, 8].map(i => f("m" + i, 3, {}, {deps: [i]}));
+  assert.strictEqual(G.verifierGouvernement(chef, ministres), null, "24 de stature");
+  assert.ok(G.verifierGouvernement(chef, [...ministres.slice(1), f("x", 4)]), "25 : refusé");
+  assert.ok(G.verifierGouvernement(chef, [...ministres.slice(1), ministres[1]]), "deux fois la même carte");
+  ministres[0].deps = [2]; ministres[0].groupe = 1; ministres[0].gouv = [["2001-01-01", "2001-06-01"]]; ministres[2].gouv = [["2001-05-01", null]];
+  const l = G.liens(chef, ministres);
+  assert.deepStrictEqual(l[0].detail, {departement: true, groupe: true, solidarite: true, sousLeChef: true});
+  assert.strictEqual(l[0].total, G.LIENS_MAX, "liens plafonnés");
+  assert.strictEqual(l[1].total, 1, "même département que le premier");
+  assert.strictEqual(l[3].total, 0);
+  const sp = f("s", 2, {0: 3}), vedette = f("v", 5);
+  assert.strictEqual(G.jugerManche(0, {ministre: sp, bonus: 0}, {ministre: vedette, bonus: 0}).gagnant, 1, "le spécialiste");
+  assert.strictEqual(G.jugerManche(1, {ministre: sp, bonus: 0}, {ministre: vedette, bonus: 0}).gagnant, 2, "hors de son domaine");
+  assert.strictEqual(G.jugerManche(1, {ministre: sp, bonus: 3, chef}, {ministre: vedette, bonus: 0}).gagnant, 1, "49.3");
+  const r = G.jugerManche(1, {ministre: f("a", 3, {}, {annees: 10}), bonus: 0}, {ministre: f("b", 3, {}, {annees: 4}), bonus: 0});
+  assert.deepStrictEqual([r.gagnant, r.departage], [1, "annees"]);
+}
+console.log("jeu du Gouvernement : tests passés");
