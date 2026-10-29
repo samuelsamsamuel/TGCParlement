@@ -1,5 +1,5 @@
 /* Test de l'API sur un serveur local, à lancer depuis la racine du dépôt :
-     npx wrangler dev --port 8787 --test-scheduled --var CODE_ESSAI:1 --var GOUVERNEMENT_OUVERT:1 --persist-to /tmp/hemicycle-d1     (dans un premier terminal)
+     npx wrangler dev --port 8787 --test-scheduled --var CODE_ESSAI:1 --var ANNONCE_TOUTE_HEURE:1 --persist-to /tmp/hemicycle-d1     (dans un premier terminal)
      WR="npx wrangler" ETAT=/tmp/hemicycle-d1 node tests/api.test.js   (dans un second)
    Il crée trois joueurs et vérifie inscription avec reprise, paquets, recyclage, marché et échanges,
    y compris des demandes simultanées (une seule doit aboutir). */
@@ -467,6 +467,15 @@ const preuve = c => require("crypto").createHash("sha256").update(c).digest("hex
   // Réserve pleine (tâche horaire, wrangler dev --test-scheduled) : seulement après un vrai remplissage, une fois
   const sql = c => require("child_process").execSync(`cd ${require("path").join(__dirname, "..")} && ${process.env.WR} d1 execute hemicycle --local --persist-to ${process.env.ETAT} --command "${c}"`, {stdio: "ignore"});
   const horaire = async () => assert.strictEqual((await fetch("http://localhost:8787/cdn-cgi/handler/scheduled")).status, 200);
+  assert.strictEqual((await C("notifications/abonner", {abonnement: {endpoint: "https://fcm.googleapis.com/fcm/send/reserve" + suffixe}})).statut, 200);
+  // Annonce du jeu du Gouvernement (tâche horaire, --var ANNONCE_TOUTE_HEURE:1) : une fois par joueur abonné, par lots
+  sql("DELETE FROM reglages WHERE cle = 'annonce-gouv'");
+  let annonces = "";
+  for (let k = 0; k < 50 && !/Nouveau mode de jeu/.test(annonces); k++) { await horaire(); annonces += (await C("notifications")).d.notifications.map(n => n.texte).join(); }
+  assert.strictEqual(annonces.match(/Nouveau mode de jeu : le Gouvernement/g)?.length, 1, annonces);
+  for (let k = 0; k < 3; k++) await horaire();
+  assert.deepStrictEqual((await C("notifications")).d.notifications, [], "annonce envoyée une seule fois");
+  // un abonnement que le service de poussée ne connaît pas (ici fictif) est effacé à l'envoi : Carole se réabonne
   assert.strictEqual((await C("notifications/abonner", {abonnement: {endpoint: "https://fcm.googleapis.com/fcm/send/reserve" + suffixe}})).statut, 200);
   sql(`UPDATE joueurs SET stock = 7, ancre = ${Date.now() - 2 * 3600e3} WHERE pseudo = '${carole}'`);
   await horaire();

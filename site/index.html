@@ -1284,7 +1284,7 @@ function majCompteur(){
   const pastille = document.getElementById("pastille"), jour = cat ? aReclamerDuJour() : 0;
   pastille.hidden = !(attente.objectifs + jour); pastille.textContent = attente.objectifs + jour;
 }
-// Jeu du Gouvernement réservé pour l'instant aux comptes autorisés par le serveur (demande de l'utilisateur, octobre 2026)
+// Jeu du Gouvernement ouvert à tout compte connecté (le serveur le dit dans /api/moi) ; sans compte, onglet Amis à sa place
 let compteConnu = false;  // réponse de /api/moi reçue : avant, l'accès retenu dans le navigateur fait foi
 function majAccesGouv(){
   if (!compteConnu) return;

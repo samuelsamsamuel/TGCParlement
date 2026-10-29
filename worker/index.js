@@ -326,7 +326,7 @@ async function chargerEtat(env, joueur) {
   etat.gardes = JSON.parse(ligne.gardes || "[]");
   try { etat.quotidien = JSON.parse(ligne.quotidien || "{}"); } catch (_) { etat.quotidien = {}; }
   return {pseudo: ligne.pseudo, cree: ligne.cree, etat, version: ligne.version, vitrine: JSON.parse(ligne.vitrine || "[]"),
-          gouvernement: accesGouvernement(env, ligne.pseudo)};
+          gouvernement: true};
 }
 // Ajout : la ligne est créée au besoin. Retrait : simple mise à jour, car SQLite vérifie les contraintes CHECK
 // d'une insertion avant de résoudre le conflit (une insertion négative échouerait toujours). Les lignes de
@@ -1151,10 +1151,28 @@ async function expirerDuels(env) {
 // Contre l'ordinateur ou un joueur tiré au hasard, la partie fait avancer la série (règles : issueSerieGouv, récompense
 // encaissée à la fin) ; l'adversaire est vu avant de choisir son gouvernement, et une partie commencée ne se
 // relance pas (une seule à la fois) : l'abandon vaut défaite. Contre un ami, mise comme aux duels, rendue sur un nul.
-// Accès réservé pendant la mise au point (demande de l'utilisateur, octobre 2026) : comptes de TESTEURS_GOUVERNEMENT,
-// ou tous les comptes avec la variable GOUVERNEMENT_OUVERT (serveur local des tests : wrangler dev --var GOUVERNEMENT_OUVERT:1)
-const TESTEURS_GOUVERNEMENT = ["samsam", "alh", "lgum", "youyougui-oh"];  // pseudos en minuscules
-const accesGouvernement = (env, pseudo) => !!env.GOUVERNEMENT_OUVERT || TESTEURS_GOUVERNEMENT.includes(String(pseudo || "").toLowerCase());
+// Ouvert à tous les comptes (demande de l'utilisateur, octobre 2026), après une mise au point réservée à quatre testeurs.
+// Annonce du nouveau mode (même demande) : une notification, une seule fois, à chaque joueur dont un appareil accepte une
+// notification (buvette ou réserve), par la tâche horaire entre 10 h et 20 h à Paris (ANNONCE_TOUTE_HEURE pour les tests),
+// par lots de ANNONCE_LOT joueurs (limite de sous-requêtes du plan gratuit) ; avancement noté dans reglages
+const ANNONCE_GOUV = "Nouveau mode de jeu : le Gouvernement ! Formez votre équipe de ministres (le premier gouvernement est offert) et enchaînez les victoires pour gagner des récompenses.";
+const ANNONCE_LOT = 15;
+async function annoncerGouvernement(env) {
+  const etape = await env.DB.prepare("SELECT valeur FROM reglages WHERE cle = 'annonce-gouv'").first();
+  if (etape?.valeur === "fini") return;
+  const heure = Number(new Intl.DateTimeFormat("fr-FR", {timeZone: "Europe/Paris", hour: "numeric", hourCycle: "h23"}).format(new Date()));
+  if (!env.ANNONCE_TOUTE_HEURE && (heure < 10 || heure >= 20)) return;
+  const dernier = Number(etape?.valeur || 0);
+  const r = (await env.DB.prepare("SELECT DISTINCT joueur FROM abonnements WHERE (buvette = 1 OR reserve = 1) AND joueur > ? ORDER BY joueur LIMIT ?")
+    .bind(dernier, ANNONCE_LOT).all()).results;
+  const suite = r.length < ANNONCE_LOT ? "fini" : String(r[r.length - 1].joueur);
+  // avancement noté d'abord : une exécution interrompue ne renvoie jamais deux fois l'annonce au même joueur
+  await env.DB.prepare("INSERT INTO reglages (cle, valeur) VALUES ('annonce-gouv', ?) ON CONFLICT (cle) DO UPDATE SET valeur = excluded.valeur").bind(suite).run();
+  for (const {joueur} of r) {
+    const genre = (await env.DB.prepare("SELECT 1 FROM abonnements WHERE joueur = ? AND buvette = 1").bind(joueur).first()) ? "buvette" : "reserve";
+    await notifier(env, joueur, ANNONCE_GOUV, genre).catch(e => console.error("annonce", e));
+  }
+}
 const MAX_GOUVERNEMENTS = 5, PRIX_GOUVERNEMENT = 10, MAX_PARTIES_AMIS = 20;
 // Le premier gouvernement est offert (demande de l'utilisateur, octobre 2026) ; un compte qui a déjà formé un gouvernement,
 // même supprimé depuis, paie les suivants (gouv_formes ; avant cette colonne, un gouvernement encore enregistré compte aussi)
@@ -1552,8 +1570,6 @@ async function api(requete, env, url) {
   if (methode === "POST" && chemin === "/api/mot-de-passe") return changerMotDePasse(env, requete, joueur);
   if (methode === "POST" && chemin === "/api/code") return utiliserCode(env, requete, joueur, await catalogueDuJeu());
   if (methode === "POST" && chemin === "/api/duels") return lancerDuel(env, requete, joueur);
-  if (/^\/api\/(gouvernements|parties)(\/|$)/.test(chemin) && !accesGouvernement(env, await pseudoDe(env, joueur)))
-    throw new Refus(403, "Le jeu du Gouvernement n'est pas encore ouvert.");
   if (methode === "GET" && chemin === "/api/gouvernements") return listeGouvernements(env, joueur);
   if (methode === "POST" && chemin === "/api/gouvernements") return enregistrerGouvernement(env, requete, joueur, url);
   if (methode === "GET" && chemin === "/api/parties") return listeParties(env, joueur);
@@ -1629,6 +1645,6 @@ export default {
   },
   async scheduled(evenement, env, ctx) {
     const e = Object.assign(Object.create(env), {ctx});
-    ctx.waitUntil(surveillerReserves(e).then(() => expirerDuels(e)).then(() => expirerParties(e)));
+    ctx.waitUntil(surveillerReserves(e).then(() => expirerDuels(e)).then(() => expirerParties(e)).then(() => annoncerGouvernement(e)));
   },
 };
