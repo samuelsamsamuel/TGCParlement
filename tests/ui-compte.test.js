@@ -15,7 +15,8 @@ const sx = Date.now().toString(36).slice(-4);
   const erreurs = [];
   // Vues du menu Plus : onglet direct sur grand écran, menu Plus ailleurs
   const vers = async (P, vue) => {
-    if (await P.isVisible(`nav [data-vue="${vue}"]`)) await P.click(`nav [data-vue="${vue}"]`);
+    const onglet = P.locator(`nav [data-vue="${vue}"]:visible`);
+    if (await onglet.count()) await onglet.first().click();
     else { await P.click('nav [data-vue="plus"]'); await P.click(`[data-menu="${vue}"]`); }
   };
   const nouvelle = async (largeur = 1200) => {
@@ -60,24 +61,24 @@ const sx = Date.now().toString(36).slice(-4);
   await Bp.click('nav [data-vue="paquet"]'); await Bp.waitForSelector("#paquet");
   await Bp.click("#paquet"); await Bp.waitForSelector("#suite");
   // Amis : Anne envoie une demande, Bob voit la pastille et accepte
-  await A.click('nav [data-vue="amis"]'); await A.waitForSelector("#form-ami");
+  await vers(A, "amis"); await A.waitForSelector("#form-ami");
   await A.fill('#form-ami [name=pseudo]', "bob" + sx); await A.click('#form-ami button');
   await A.waitForFunction(() => /Demandes envoyées/.test(document.getElementById("vue-amis").textContent));
-  await Bp.reload(); await Bp.waitForSelector("#pastille-amis:not([hidden])");
-  await Bp.click('nav [data-vue="amis"]'); await Bp.waitForSelector('[data-ami^="accepter:"]');
+  await Bp.reload(); await Bp.waitForFunction(() => !document.getElementById(document.documentElement.classList.contains("gouv-ouvert") ? "pastille-amis-menu" : "pastille-amis").hidden && !document.getElementById("pastille-plus").hidden === document.documentElement.classList.contains("gouv-ouvert"));
+  await vers(Bp, "amis"); await Bp.waitForSelector('[data-ami^="accepter:"]');
   await Bp.click('[data-ami^="accepter:"]');
   await Bp.waitForSelector('[data-echange-ami="Anne' + sx + '"]');
   await Bp.screenshot({path: T + "/amis-tel.png", fullPage: true});
   // « Qui a cette carte ? » : Anne cherche une carte de Bob, puis « Lui demander » prépare l'échange
   const carteBob = await Bp.evaluate(() => { const id = Object.keys(etat.possedees)[0]; return {id, nom: cat.parId[id].nom}; });
-  await A.reload(); await A.click('nav [data-vue="amis"]'); await A.waitForSelector("#carte-amis");
+  await A.reload(); await vers(A, "amis"); await A.waitForSelector("#carte-amis");
   await A.fill("#carte-amis", carteBob.nom); await A.click(`[data-carte-amis="${carteBob.id}"]`);
   await A.waitForSelector(`[data-demander-ami="Bob${sx}"]`);
   await A.screenshot({path: T + "/amis-carte.png", fullPage: true});
   await A.click(`[data-demander-ami="Bob${sx}"]`);
   await A.waitForSelector(`#sel-recoit [data-retrait="${carteBob.id}"]`);
   // Anne propose un échange à Bob depuis l'onglet Amis : une carte libre contre une carte de Bob
-  await A.reload(); await A.click('nav [data-vue="amis"]');
+  await A.reload(); await vers(A, "amis");
   await A.waitForSelector('[data-echange-ami="Bob' + sx + '"]'); await A.click('[data-echange-ami="Bob' + sx + '"]');
   assert.ok(await A.isVisible('#vue-buvette [data-partenaire="Bob' + sx + '"]'));
   await A.waitForSelector('#etapes-echange:not([hidden]) #sel-recoit [data-ajout]');
@@ -338,7 +339,7 @@ const sx = Date.now().toString(36).slice(-4);
   await A.waitForFunction(() => /déjà utilisé/.test(document.getElementById("code-annonce").textContent));
   await A.screenshot({path: T + "/compte-connecte.png", fullPage: true});
   // Fiche d'ami : aperçu de la vitrine d'Anne ; la toucher ouvre son profil, sans bouton de signalement
-  await Bp.reload(); await Bp.click('nav [data-vue="amis"]');
+  await Bp.reload(); await vers(Bp, "amis");
   await Bp.waitForSelector('#vue-amis .tete-ami[data-profil="Anne' + sx + '"] .mini-ami');
   await Bp.screenshot({path: T + "/amis-vitrine-tel.png", fullPage: true});
   await Bp.click('#vue-amis .tete-ami[data-profil="Anne' + sx + '"]');

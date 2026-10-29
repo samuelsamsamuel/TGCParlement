@@ -56,6 +56,8 @@ nav button[aria-selected="true"]{border-bottom-color:var(--dorure);color:var(--d
 /* Grand écran : les quatre vues du menu Plus deviennent des onglets ; la barre reste en haut de l'écran au défilement */
 nav .onglet-large{display:none}
 nav button[hidden],.menu-plus button[hidden]{display:none!important}
+/* Comptes qui ont le jeu du Gouvernement : son onglet prend la place d'Amis, qui passe dans Plus (demande de l'utilisateur) */
+html.gouv-ouvert nav [data-vue="amis"]:not(.onglet-large){display:none!important}
 /* Onglet Gouvernement ouvert (comptes autorisés) : un onglet de plus, les vues du menu Plus en onglets à partir de 1 420 px */
 @media (min-width:1260px) and (max-width:1419px){nav:has([data-vue="gouvernement"]:not([hidden])) .onglet-large{display:none}nav:has([data-vue="gouvernement"]:not([hidden])) [data-vue="plus"]{display:flex}}
 @media (min-width:1260px){nav [data-vue="plus"]{display:none}nav .onglet-large{display:flex}nav button{padding:.75rem .8rem}}
@@ -536,6 +538,7 @@ footer{max-width:1120px;margin:0 auto;padding:0 1rem 3rem;font-size:.85rem;color
 .duel-m .cote{display:flex;align-items:center;gap:.4rem;min-width:0}
 .duel-m .cote.lui{flex-direction:row-reverse;text-align:right}
 .duel-m .cote .mini-ami{width:1.8rem;height:2.4rem;flex:none}
+.duel-m .cote .mini-ami b,.poste .mini-ami b{font-size:.65rem}
 .duel-m .nom-m{font-size:.8rem;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1}
 .duel-m .cote b{font:700 1.15rem var(--sans);color:var(--dorure-pale)}
 .duel-m .vs{font-size:.72rem;color:var(--pierre)}
@@ -637,7 +640,8 @@ body.nav-flottante .jauge-ligne{top:3.3rem}
 #choix-ministre .note{margin:0}
 #choix-ministre .outils-m{display:flex;gap:.4rem;flex-wrap:wrap}
 #choix-ministre .outils-m>*{flex:1 1 10rem}
-#choix-ministre .liste-m{overflow:auto;display:grid;gap:.4rem;padding:.2rem}
+#choix-ministre .liste-m{overflow-y:auto;overflow-x:hidden;display:grid;grid-template-columns:minmax(0,1fr);gap:.4rem;padding:.2rem}
+.puce{max-width:100%;overflow:hidden;text-overflow:ellipsis}
 #choix-ministre .titre-conseils{margin:.4rem 0 0;font-size:.85rem}
 .poste.conseil{border-color:rgba(201,162,74,.6)}
 .poste .raison{color:#9fd8b0;font-size:.76rem;white-space:normal}
@@ -870,6 +874,21 @@ footer a{color:var(--pierre)}
 :root[data-theme="clair"] .bouton.discret{border-color:rgba(92,16,32,.35)}
 :root[data-theme="clair"] dialog::backdrop{background:rgba(46,7,16,.55)}
 :root[data-theme="clair"] .paquet .mention,:root[data-theme="clair"] .paquet .logo{color:#fff}
+/* Jeu du Gouvernement en mode clair : fonds clairs, verts et rouges assombris pour rester lisibles */
+:root[data-theme="clair"] :is(.bloc-gouv,.cabinet,.poste,.mock,.forces-ex li,.recap-manches button,.serie-gouv span,.face-a-face .camp,.tuto-frise li,.tuto-liens li,.theme-manche,.joker){background:rgba(255,255,255,.72);border-color:rgba(92,16,32,.25)}
+:root[data-theme="clair"] :is(#tuto-gouv .fenetre,#revelation .fenetre,#choix-ministre .fenetre){border-color:var(--dorure)}
+:root[data-theme="clair"] .poste[aria-pressed="true"],:root[data-theme="clair"] .joker[aria-pressed="true"]{background:rgba(201,162,74,.28);border-color:var(--dorure)}
+:root[data-theme="clair"] .serie-gouv span.courant{background:rgba(201,162,74,.35)}
+:root[data-theme="clair"] .puce{background:rgba(92,16,32,.08);color:#21161a}
+:root[data-theme="clair"] .puce.etoiles i,:root[data-theme="clair"] .etoiles i{color:#9a6b00}
+:root[data-theme="clair"] .puce.lien{background:rgba(46,125,74,.14)}
+:root[data-theme="clair"] :is(.puce.lien b,.tuto-liens li>b,.poste .raison,.legende-liens b,.tuto-verdict,.verdict.gagne,.gagnee .res,.tuto-frise li.g em){color:#226b3c}
+:root[data-theme="clair"] :is(.verdict.perdu,.perdue .res,.tuto-frise li.p em){color:#a3322e}
+:root[data-theme="clair"] .alerte-cab{color:#9a4a12}
+:root[data-theme="clair"] .face-a-face .camp.gagne,:root[data-theme="clair"] .mock.gagne{background:rgba(46,125,74,.12);border-color:#2e7d4a}
+:root[data-theme="clair"] .tuto-equipes i{background:rgba(201,162,74,.3)}
+:root[data-theme="clair"] .barre-envoi{box-shadow:0 -8px 24px rgba(46,7,16,.18)}
+:root[data-theme="clair"] .joker .txt{color:#5c5048}
 /* ---------- Présentation : le temps de la visite guidée, tout est resserré pour que séance et découverte
    tiennent dans l'écran sans défiler ; hors visite, les tailles habituelles ---------- */
 html.presentation{font-size:15px}
@@ -912,22 +931,31 @@ html.presentation{font-size:15px}
     <button role="tab" aria-selected="false" data-vue="objectifs"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M8 4h8v5a4 4 0 0 1-8 0z"/><path d="M8 6H5a3 3 0 0 0 3 4M16 6h3a3 3 0 0 1-3 4M12 13v4M8 20h8"/></svg>Ordre du jour <span class="pastille" id="pastille" hidden></span></button>
     <button role="tab" aria-selected="false" data-vue="buvette"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 8h13l-3-3M20 16H7l3 3"/></svg>Buvette <span class="pastille" id="pastille-buvette" hidden></span></button>
     <button role="tab" aria-selected="false" data-vue="amis"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><circle cx="17" cy="9" r="2.8"/><path d="M16 14.2a5.5 5.5 0 0 1 6 5.8"/></svg>Amis <span class="pastille" id="pastille-amis" hidden></span></button>
+    <button role="tab" aria-selected="false" data-vue="gouvernement" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M3 9.5 12 4l9 5.5M4.5 10h15M6 10v8M10 10v8M14 10v8M18 10v8M3.5 20.5h17"/></svg>Gouvernement <span class="pastille" id="pastille-gouv" hidden></span></button>
     <button role="tab" aria-selected="false" data-vue="plus" aria-haspopup="menu" aria-controls="menu-plus"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg>Plus <span class="pastille" id="pastille-plus" hidden></span></button>
-    <button role="tab" aria-selected="false" data-vue="gouvernement" class="onglet-large" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M3 9.5 12 4l9 5.5M4.5 10h15M6 10v8M10 10v8M14 10v8M18 10v8M3.5 20.5h17"/></svg>Gouvernement <span class="pastille" id="pastille-gouv" hidden></span></button>
-    <button role="tab" aria-selected="false" data-vue="duels" class="onglet-large"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 4l10 10M4 4h3.5M4 4v3.5M20 4 10 14M20 4h-3.5M20 4v3.5M12.5 15.5l3 3M11.5 15.5l-3 3M17 17l-2 2M7 17l2 2M16.5 18.5l2 2M7.5 18.5l-2 2"/></svg>Duels <span class="pastille" id="pastille-duels" hidden></span></button>
     <button role="tab" aria-selected="false" data-vue="compte" class="onglet-large"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span class="nom-compte">Mon siège</span></button>
+    <button role="tab" aria-selected="false" data-vue="amis" class="onglet-large" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><circle cx="17" cy="9" r="2.8"/><path d="M16 14.2a5.5 5.5 0 0 1 6 5.8"/></svg>Amis <span class="pastille" id="pastille-amis-large" hidden></span></button>
+    <button role="tab" aria-selected="false" data-vue="duels" class="onglet-large"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 4l10 10M4 4h3.5M4 4v3.5M20 4 10 14M20 4h-3.5M20 4v3.5M12.5 15.5l3 3M11.5 15.5l-3 3M17 17l-2 2M7 17l2 2M16.5 18.5l2 2M7.5 18.5l-2 2"/></svg>Duels <span class="pastille" id="pastille-duels" hidden></span></button>
     <button role="tab" aria-selected="false" data-vue="catalogue" class="onglet-large"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="9" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>Toutes les cartes</button>
     <button role="tab" aria-selected="false" data-vue="apropos" class="onglet-large"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 4h11l3 3v13H5z"/><path d="M8 10h8M8 14h8M8 18h5"/></svg>Règlement</button>
     <button role="tab" aria-selected="false" data-vue="parametres" class="onglet-large"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1 7 17M17 7l2.1-2.1"/></svg>Paramètres</button>
   </nav>
   <div class="menu-plus" id="menu-plus" role="menu" hidden>
-    <button role="menuitem" data-menu="gouvernement" hidden>Gouvernement <span class="pastille" id="pastille-gouv-menu" hidden></span></button>
-    <button role="menuitem" data-menu="duels">Duels <span class="pastille" id="pastille-duels-menu" hidden></span></button>
     <button role="menuitem" data-menu="compte"><span id="nav-compte">Mon siège</span></button>
+    <button role="menuitem" data-menu="amis" hidden>Amis <span class="pastille" id="pastille-amis-menu" hidden></span></button>
+    <button role="menuitem" data-menu="duels">Duels <span class="pastille" id="pastille-duels-menu" hidden></span></button>
     <button role="menuitem" data-menu="catalogue">Toutes les cartes</button>
     <button role="menuitem" data-menu="apropos">Règlement</button>
     <button role="menuitem" data-menu="parametres">Paramètres</button>
   </div>
+  <script>
+  // Onglets du Gouvernement placés dès le chargement (accès retenu du dernier passage), sans attendre le compte : pas
+  // d'onglet Amis qui s'affiche puis disparaît ; majAccesGouv confirme ou corrige une fois le compte lu
+  try { if (localStorage.getItem("hemicycle-gouv") === "1") {
+    document.documentElement.classList.add("gouv-ouvert");
+    document.querySelectorAll('nav [data-vue="gouvernement"], nav .onglet-large[data-vue="amis"], #menu-plus [data-menu="amis"]').forEach(x => x.hidden = false);
+  } } catch (_) {}
+  </script>
 </header>
 <main>
   <section class="vue" id="vue-paquet">
@@ -1257,9 +1285,13 @@ function majCompteur(){
   pastille.hidden = !(attente.objectifs + jour); pastille.textContent = attente.objectifs + jour;
 }
 // Jeu du Gouvernement réservé pour l'instant aux comptes autorisés par le serveur (demande de l'utilisateur, octobre 2026)
+let compteConnu = false;  // réponse de /api/moi reçue : avant, l'accès retenu dans le navigateur fait foi
 function majAccesGouv(){
+  if (!compteConnu) return;
   const ouvert = !!(compte && compte.gouvernement);
-  document.querySelectorAll('nav [data-vue="gouvernement"], #menu-plus [data-menu="gouvernement"]').forEach(x => x.hidden = !ouvert);
+  document.documentElement.classList.toggle("gouv-ouvert", ouvert);
+  try { ouvert ? localStorage.setItem("hemicycle-gouv", "1") : localStorage.removeItem("hemicycle-gouv"); } catch (_) {}
+  document.querySelectorAll('nav [data-vue="gouvernement"], nav .onglet-large[data-vue="amis"], #menu-plus [data-menu="amis"]').forEach(x => x.hidden = !ouvert);
   if (!ouvert && vueCourante === "gouvernement") allerA("paquet");
 }
 function majTout(){ majAccesGouv(); majCompteur(); majCollection(); if (!decouverte) { majJournee(); majObjectifs(); } majCompte(); majBuvette(); majAmis(); majQag(); }
@@ -1268,16 +1300,17 @@ function delai(ms){ const m = Math.max(1, Math.ceil(ms / 60000)); return m < 60 
 // Pastilles des onglets : échanges reçus (Buvette), demandes d'ami (Amis) et duels à jouer (Duels), relues toutes les deux minutes
 async function majAttente(){
   const ps = document.getElementById("pastille-duels"), pdm = document.getElementById("pastille-duels-menu"), pp = document.getElementById("pastille-plus"), pb = document.getElementById("pastille-buvette"), pa = document.getElementById("pastille-amis");
-  const pg = document.getElementById("pastille-gouv"), pgm = document.getElementById("pastille-gouv-menu");
-  if (!compte) { ps.hidden = pdm.hidden = pp.hidden = pb.hidden = pa.hidden = pg.hidden = pgm.hidden = true; return; }
+  const pg = document.getElementById("pastille-gouv"), pam = document.getElementById("pastille-amis-menu"), pal = document.getElementById("pastille-amis-large");
+  if (!compte) { ps.hidden = pdm.hidden = pp.hidden = pb.hidden = pa.hidden = pg.hidden = pam.hidden = pal.hidden = true; return; }
   const a = await appel("attente").catch(() => null);
   if (!a) return;
-  pa.hidden = !a.amis; pa.textContent = a.amis;
+  for (const x of [pa, pam, pal]) { x.hidden = !a.amis; x.textContent = a.amis; }
   // Duels : dans le menu Plus sur téléphone (pastille sur Plus et sur l'entrée du menu), onglet sur grand écran
   for (const x of [ps, pdm]) { x.hidden = !a.duels; x.textContent = a.duels; }
-  // Jeu du Gouvernement : défi reçu, gouvernement à choisir, coup à jouer ; Plus réunit les deux
-  for (const x of [pg, pgm]) { x.hidden = !a.gouvernement; x.textContent = a.gouvernement || 0; }
-  const plus = a.duels + (a.gouvernement || 0); pp.hidden = !plus; pp.textContent = plus;
+  // Jeu du Gouvernement (défi reçu, gouvernement à choisir, coup à jouer) sur son onglet ; Plus réunit les duels, et les
+  // demandes d'ami quand Amis y est passé
+  pg.hidden = !a.gouvernement; pg.textContent = a.gouvernement || 0;
+  const plus = a.duels + (document.documentElement.classList.contains("gouv-ouvert") ? a.amis : 0); pp.hidden = !plus; pp.textContent = plus;
   const buvette = a.echanges + (a.offres || 0);
   pb.hidden = !buvette; pb.textContent = buvette;
 }
@@ -2750,7 +2783,7 @@ const ETAPES_VISITE = [
   {cible: 'nav [data-vue="collection"]', texte: "L'Hémicycle : votre collection. Touchez une carte pour l'ouvrir en grand, dissoudre ses doubles ou la vendre."},
   {cible: 'nav [data-vue="objectifs"]', texte: "L'ordre du jour : vos objectifs. Les récompenses (voix, paquets offerts) se réclament ici."},
   {cible: 'nav [data-vue="buvette"]', texte: "La buvette : échanges entre joueurs et comptoir, où l'on vend ses doubles contre des voix. Il faut un compte."},
-  {cible: 'nav [data-vue="amis"]', texte: "Vos amis : leur vitrine, un échange ou un duel en un toucher."},
+  {cible: ['nav [data-vue="amis"]', 'nav [data-vue="plus"]'], texte: "Vos amis : leur vitrine, un échange ou un duel en un toucher."},
   {cible: ['nav [data-vue="plus"]', 'nav [data-vue="compte"]'], texte: "Et encore : votre siège (compte et vitrine), toutes les cartes du jeu, le règlement et les paramètres (thème, notifications)."},
   {cible: null, texte: "C'est parti ! Sous les paquets, les questions au Gouvernement rapportent des voix chaque jour. Bonne séance."},
 ];
@@ -3551,12 +3584,13 @@ document.addEventListener("click", e => {
 // Changement de vue. En revenant aux paquets depuis un autre onglet, la scène reflète les paquets gagnés
 // entre-temps ; un paquet en cours de découverte n'est jamais interrompu par un toucher sur l'onglet déjà ouvert
 let vueCourante = "paquet";
-const VUES_PLUS = ["gouvernement", "duels", "compte", "catalogue", "apropos", "parametres"];
+// Vues du menu Plus, le profil toujours en tête ; Amis y passe quand l'onglet Gouvernement prend sa place
+const vuesPlus = () => document.documentElement.classList.contains("gouv-ouvert") ? ["compte", "amis", "duels", "catalogue", "apropos", "parametres"] : ["compte", "duels", "catalogue", "apropos", "parametres"];
 function allerA(vue){
   const depuis = vueCourante;
   vueCourante = vue;
   document.getElementById("menu-plus").hidden = true;
-  const onglet = VUES_PLUS.includes(vue) ? "plus" : vue;
+  const onglet = vuesPlus().includes(vue) ? "plus" : vue;
   document.querySelectorAll("nav button").forEach(x => x.setAttribute("aria-selected", x.dataset.vue === onglet || x.dataset.vue === vue));
   document.querySelectorAll("#menu-plus [data-menu]").forEach(x => x.setAttribute("aria-current", x.dataset.menu === vue));
   document.querySelectorAll(".vue").forEach(v => v.hidden = v.id !== "vue-"+vue);
@@ -3612,7 +3646,7 @@ fetch("jeu.json").then(r => { if (!r.ok) throw new Error(r.status); return r.jso
   ORDRE.slice().reverse().filter(r => parRarete[r]?.length).forEach(r => filtre.insertAdjacentHTML("beforeend", `<option value="${r}">${LIBELLES[r]}</option>`));
   // Session ouverte sur le serveur ? Sinon, mode navigateur. Sans serveur (site statique seul), le jeu reste local.
   return fetch("/api/moi", {credentials: "same-origin"}).then(r => r.ok ? r.json() : null).catch(() => null).then(m => {
-    serveur = !!(m && typeof m.connecte === "boolean");
+    serveur = !!(m && typeof m.connecte === "boolean"); compteConnu = true;
     if (m && m.connecte) { etat = Regles.migrer(m.etat); compte = {pseudo: m.pseudo, cree: m.cree, vitrine: m.vitrine || [], gouvernement: !!m.gouvernement}; }
     afficherPaquet(); majTout(); majAttente(); chargerDuels(); chargerAmis(); chargerAlertes(); demarrerAccueil();
   });
