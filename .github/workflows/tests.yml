@@ -46,7 +46,7 @@ jobs:
       - name: Site statique et Worker local
         run: |
           (cd site && python3 -m http.server 8765 > /tmp/site.log 2>&1 &)
-          (npx wrangler dev --port 8787 --test-scheduled --var CODE_ESSAI:1 --var GOUVERNEMENT_OUVERT:1 --persist-to "$ETAT" > /tmp/wrangler.log 2>&1 &)
+          (npx wrangler dev --port 8787 --test-scheduled --var CODE_ESSAI:1 --var ANNONCE_TOUTE_HEURE:1 --persist-to "$ETAT" > /tmp/wrangler.log 2>&1 &)
           for i in $(seq 1 90); do curl -s localhost:8787/api/moi > /dev/null && curl -s localhost:8765/ > /dev/null && exit 0; sleep 2; done
           cat /tmp/wrangler.log; exit 1
       - name: API

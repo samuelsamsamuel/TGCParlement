@@ -359,9 +359,12 @@ serveur), filtre « Mes favoris » dans l'Hémicycle. Pas de zoom au double touc
    trois étoiles contre vedette sans étoile 98 %, mythiques et légendaires composés contre collection sans légendaires 47 %,
    égalités après départage 0,9 % ; à 2 points, 90 % et 53 %. Retenu : 2 points par étoile (décision de l'utilisateur,
    octobre 2026 : le spécialiste reste favori, la vedette garde une chance avec ses liens et le 49.3).
-   Jeu (octobre 2026) : réservé pour l'instant aux comptes Samsam, Alh, lgum et youyougui-oh (demande de l'utilisateur ;
-   `TESTEURS_GOUVERNEMENT` du worker, pseudos en minuscules, ou `--var GOUVERNEMENT_OUVERT:1` pour tous, serveur local des tests ;
-   champ `gouvernement` de l'état). Pour eux, l'onglet Gouvernement prend la place d'Amis, qui passe dans le menu Plus (classe
+   Jeu (octobre 2026) : ouvert à tous les comptes (demande de l'utilisateur, après une mise au point réservée à quatre
+   testeurs ; champ `gouvernement` de l'état, toujours vrai pour un compte). Annonce (même demande) : notification unique
+   `ANNONCE_GOUV` (premier gouvernement offert, récompenses de la série) à chaque joueur dont un appareil accepte une
+   notification (buvette ou réserve), par la tâche horaire entre 10 h et 20 h à Paris, par lots de 15 joueurs, avancement
+   dans `reglages` (`annonce-gouv`, « fini » à la fin ; `annoncerGouvernement`, `--var ANNONCE_TOUTE_HEURE:1` pour les
+   tests). Pour un compte, l'onglet Gouvernement prend la place d'Amis, qui passe dans le menu Plus (classe
    `gouv-ouvert` de `html`, `vuesPlus`, pastille d'amis sur Plus et sur l'entrée du menu ; accès retenu dans le navigateur,
    `hemicycle-gouv`, pour placer les onglets dès le chargement, `majAccesGouv` n'agissant qu'une fois `/api/moi` lu) ; menu
    Plus toujours ouvert par le profil (Mon siège) ; au-delà de 1 420 px, les vues de Plus en onglets. Mode clair vérifié

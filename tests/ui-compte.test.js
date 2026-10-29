@@ -1,5 +1,5 @@
 /* Parcours avec comptes (deux joueurs : amis, échange, comptoir, duel, vitrine) contre le Worker local :
-     npx wrangler dev --port 8787 --var GOUVERNEMENT_OUVERT:1 --persist-to /tmp/hemicycle-d1
+     npx wrangler dev --port 8787 --persist-to /tmp/hemicycle-d1
      WR="npx wrangler" ETAT=/tmp/hemicycle-d1 node tests/ui-compte.test.js [dossier des captures] */
 const { chromium } = (() => {
   try { return require("playwright"); }
@@ -256,8 +256,10 @@ const sx = Date.now().toString(36).slice(-4);
     await A.click("[data-retour-gouv]"); await A.waitForSelector("#vue-gouvernement .cabinet");
     await A.click('[data-jouer="ordi"]'); await A.waitForSelector("[data-choisir-gouv]");
     await A.click('[data-quitter$=":abandonner"]'); await A.waitForFunction(() => /renoncé/.test(document.getElementById("vue-gouvernement").textContent));
+    // la vue est dessinée aussitôt, puis redessinée quand gouvernements et parties sont relus : attendre cette relecture
+    await A.evaluate(() => { window.gouvAvant = gouv; });
     await A.click("[data-retour-gouv]"); await A.waitForSelector("#vue-gouvernement .cabinet");
-    await A.waitForLoadState("networkidle").catch(() => {});  // la vue est redessinée quand gouvernements et parties sont relus
+    await A.waitForFunction(() => gouv !== window.gouvAvant);
     // Défi à Bob, sans mise ; Bob forme son gouvernement sur son téléphone et relève le défi
     await A.click(".repli-gouv:has(#form-gouv-ami) > summary");
     await A.fill('#form-gouv-ami [name=pseudo]', "Bob" + sx); await A.click('#form-gouv-ami button[type=submit]');
