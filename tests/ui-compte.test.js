@@ -211,6 +211,14 @@ const sx = Date.now().toString(36).slice(-4);
     await A.click('[data-poste="chef"]'); await A.waitForSelector("#choix-ministre[open] [data-choisir-ministre]");
     await A.waitForSelector("#choix-ministre .titre-conseils"); await A.screenshot({path: T + "/gouvernement-suggestions.png"});
     await A.selectOption("#tri-ministre", "etoiles");
+    // Filtre par parti (familles politiques) : seules les cartes de ce parti restent
+    const partiA = await A.evaluate(() => document.querySelector("#parti-ministre option:nth-child(2)")?.value);
+    if (partiA) {
+      await A.selectOption("#parti-ministre", partiA);
+      assert.ok(await A.evaluate(p => [...document.querySelectorAll("#liste-ministre [data-choisir-ministre]")].every(b => ficheG(b.dataset.choisirMinistre).groupe === Number(p)), partiA));
+      await A.selectOption("#parti-ministre", "");
+    }
+    await A.selectOption("#tri-ministre", "parti"); await A.selectOption("#tri-ministre", "etoiles");
     await A.screenshot({path: T + "/gouvernement-choix.png"});
     await A.fill("#cherche-ministre", await A.evaluate(id => cat.parId[id].nom, gA.chef));
     await A.click(`#choix-ministre [data-choisir-ministre="${gA.chef}"]`);
