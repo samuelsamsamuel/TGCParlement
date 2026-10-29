@@ -501,6 +501,27 @@ footer{max-width:1120px;margin:0 auto;padding:0 1rem 3rem;font-size:.85rem;color
 .tuto-pouces{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;justify-content:center}
 .joker-ex{font:700 1rem var(--sans);color:#21161a;background:var(--dorure);border-radius:6px;padding:.3rem .6rem}
 #tuto-gouv .points-carrousel i.actif{background:var(--dorure)}
+.tuto-force{display:grid;gap:.5rem;justify-items:center;width:100%}
+.formule{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:.3rem;font-size:.85rem}
+.formule span{padding:.25rem .5rem;border-radius:6px;background:rgba(201,162,74,.15);border:1px solid rgba(201,162,74,.4)}
+.formule b{padding:.25rem .6rem;border-radius:6px;background:var(--dorure);color:#21161a}
+.forces-ex{list-style:none;padding:0;margin:0;display:grid;gap:.3rem;width:100%;max-width:26rem;text-align:left}
+.forces-ex li{display:grid;grid-template-columns:1fr auto auto;align-items:center;gap:.5rem;padding:.35rem .6rem;border-radius:8px;background:rgba(46,7,16,.8);border:1px solid rgba(201,162,74,.3);font-size:.85rem}
+.forces-ex .calc{color:var(--pierre);font-size:.78rem;display:flex;align-items:center;gap:.15rem}
+.forces-ex .calc .stature-ex{width:1.2rem;height:1.2rem;font-size:.7rem}
+.forces-ex b{font:700 1.15rem var(--sans);color:var(--dorure-pale);min-width:1.6rem;text-align:right}
+.tuto-frise{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(3,1fr);gap:.35rem;width:100%;max-width:24rem}
+.tuto-frise li{display:grid;gap:.1rem;padding:.35rem;border-radius:8px;font-size:.78rem;border:1px solid rgba(201,162,74,.3)}
+.tuto-frise li b{font-size:.7rem;color:var(--pierre)}
+.tuto-frise li em{font-style:normal;font-size:.7rem;font-weight:700;text-transform:uppercase}
+.tuto-frise li.g{border-color:#3f8f5a}.tuto-frise li.g em{color:#9fd8b0}
+.tuto-frise li.p{border-color:#c0504d}.tuto-frise li.p em{color:#e7908c}
+.tuto-liens{list-style:none;padding:0;margin:0;display:grid;gap:.35rem;width:100%;max-width:26rem;text-align:left}
+.tuto-liens li{display:flex;gap:.6rem;align-items:flex-start;padding:.4rem .6rem;border-radius:8px;background:rgba(63,143,90,.15);font-size:.8rem}
+.tuto-liens li>b{flex:none;color:#9fd8b0;font-size:1rem}
+.tuto-liens li span b{display:block;font-size:.88rem}
+@media (max-width:520px){#tuto-gouv .fenetre{padding:1rem .7rem .8rem}#tuto-gouv h2{font-size:1.3rem;margin-top:1.2rem}.tuto-texte{font-size:.92rem}
+  .tuto-duel{flex-direction:column}.mock{min-width:0}.forces-ex li{grid-template-columns:1fr auto;}.forces-ex .calc{grid-column:1}.forces-ex b{grid-row:1/3;grid-column:2}}
 /* Récapitulatif des manches */
 .recap-manches{list-style:none;padding:0;margin:.4rem 0 1rem;display:grid;gap:.45rem}
 .recap-manches button{width:100%;display:grid;gap:.45rem;text-align:left;font:inherit;color:inherit;cursor:pointer;padding:.55rem .7rem;border-radius:10px;border:1px solid rgba(201,162,74,.3);background:rgba(46,7,16,.6);border-left-width:4px}
@@ -1870,22 +1891,33 @@ function majGouvernement(){
 // « Comment jouer ? »
 const mockCarte = (nom, stature, etoiles, theme, classe = "") => `<div class="mock ${classe}"><span class="stature-ex">${stature}</span><b>${nom}</b>${etoiles ? `<span class="puce etoiles">${theme} <i>${"★".repeat(etoiles)}</i></span>` : `<span class="puce">aucune étoile en ${theme}</span>`}</div>`;
 function ecransTuto(){
-  const E = Gouvernement.ETOILE, P = Gouvernement.PLAFOND_STATURE;
+  const E = Gouvernement.ETOILE, P = Gouvernement.PLAFOND_STATURE, L = Gouvernement.LIENS_MAX;
+  const ligneForce = (nom, st, et, li, theme) => `<li><span>${nom}</span><span class="calc"><span class="stature-ex">${st}</span>${et ? ` + ${"★".repeat(et)} (${et * E})` : ""}${li ? ` + liens +${li}` : ""}</span><b>${st + et * E + li}</b></li>`;
   return [
-    {titre: "Le principe", texte: "Avec vos cartes, vous formez un gouvernement. Vous l'opposez à un autre gouvernement, thème par thème.",
+    {titre: "Le principe", texte: "Avec vos cartes, vous formez un gouvernement. Vous l'opposez à un autre gouvernement, thème par thème : Justice, Défense, Bretagne…",
      dessin: `<div class="tuto-equipes"><div><span>Vous</span><p>${"<i></i>".repeat(9)}</p></div><span class="puce etoiles">Justice</span><div><span>Adversaire</span><p>${"<i></i>".repeat(9)}</p></div></div>`},
     {titre: "Chaque carte a deux qualités", texte: `<b>Le chiffre rond, c'est la stature</b> : son poids politique, de 1 à 5. Elle compte sur tous les thèmes.<br><b>Les étoiles, ce sont ses compétences</b> : elles ne comptent que sur leur thème. Trois étoiles en Justice : ancien ministre de la Justice.`,
      dessin: mockCarte("Ancien garde des Sceaux", 3, 3, "Justice")},
-    {titre: "Une manche", texte: `Un thème est tiré. Vous envoyez un ministre, l'adversaire aussi, sans voir le choix de l'autre. <b>Le plus fort gagne.</b> Force = stature + ${E} par étoile du thème.`,
-     dessin: `<div class="tuto-manche"><span class="puce etoiles">Thème : Justice</span><div class="tuto-duel">
-       <div>${mockCarte("Le spécialiste", 3, 3, "Justice", "gagne")}<p>3 + ${E} + ${E} + ${E} = <b>${3 + 3 * E}</b></p></div><span>contre</span>
-       <div>${mockCarte("La grande figure", 5, 0, "Justice")}<p>5 = <b>5</b></p></div></div><p class="tuto-verdict">${3 + 3 * E} contre 5 : le spécialiste gagne.</p></div>`},
-    {titre: "La partie", texte: "Premier à quatre manches gagnées. Un ministre ne joue qu'une fois : gardez chaque spécialiste pour son thème. Les dix thèmes possibles sont annoncés au début ; sept seront tirés.",
-     dessin: `<div class="tuto-points">${[1, 1, 0, 1, 0, 1].map(g => `<i class="${g ? "g" : "p"}"></i>`).join("")}<i></i></div><p class="note centre">Ici, 4 manches à 2 : partie gagnée.</p>`},
-    {titre: "Former son gouvernement", texte: `Un chef et huit ministres. <b>Les huit ministres ne dépassent pas ${P} de stature à eux tous</b> : il faut mêler grandes figures et spécialistes. Le chef ne joue pas de manche.`,
+    {titre: "La force d'un ministre", texte: `C'est le nombre qui décide d'une manche. On l'obtient en additionnant <b>sa stature</b>, <b>${E} points par étoile sur le thème de la manche</b>, et <b>ses liens</b> avec le reste de l'équipe (voir plus loin). La force change donc d'un thème à l'autre.`,
+     dessin: `<div class="tuto-force"><div class="formule"><span>Stature</span>+<span>${E} × étoiles du thème</span>+<span>liens</span>=<b>Force</b></div>
+       <p class="note">Le même ministre (stature 3, Justice ★★★, liens +1) :</p>
+       <ul class="forces-ex"><li><span>sur la Justice</span><span class="calc">3 + ${3 * E} + 1</span><b>${3 + 3 * E + 1}</b></li><li><span>sur la Défense</span><span class="calc">3 + 0 + 1</span><b>4</b></li></ul></div>`},
+    {titre: "Une manche", texte: "Un thème est tiré. Chacun choisit un de ses ministres, sans voir le choix de l'autre. On compare les deux forces sur ce thème : <b>la plus haute gagne la manche</b>. À égalité, la plus grande stature l'emporte.",
+     dessin: `<div class="tuto-force"><span class="puce etoiles">Thème : Justice</span><p class="note">Vos ministres, avec leur force sur la Justice :</p>
+       <ul class="forces-ex">${ligneForce("Ancien garde des Sceaux", 3, 3, 0)}${ligneForce("Député, membre de la commission des lois", 2, 1, 1)}${ligneForce("Grande figure, sans étoile", 5, 0, 0)}</ul>
+       <p class="tuto-verdict">Vous envoyez le garde des Sceaux (9), l'adversaire un ministre de force 7 : manche gagnée.</p></div>`},
+    {titre: "La partie", texte: "Au début, <b>dix thèmes sont annoncés</b>. Ensuite, manche après manche, l'un d'eux est tiré au sort. <b>Chaque ministre ne joue qu'une seule manche</b> : gardez chaque spécialiste pour son thème. <b>Le premier à gagner quatre manches</b> remporte la partie (sept manches au plus).",
+     dessin: `<ol class="tuto-frise">${[["Justice", "g"], ["Bretagne", "p"], ["Défense", "g"], ["Santé", "g"], ["Culture", "p"], ["Budget", "g"]].map(([t, r], i) => `<li class="${r}"><b>${i + 1}</b>${t}<em>${r === "g" ? "gagnée" : "perdue"}</em></li>`).join("")}</ol><p class="note centre">4 manches gagnées sur 6 : partie gagnée.</p>`},
+    {titre: "Former son gouvernement", texte: `Un chef et huit ministres. <b>Les huit ministres ne dépassent pas ${P} de stature à eux tous</b> : il faut mêler grandes figures et spécialistes. Le chef ne joue pas de manche : il sert au 49.3 et aux liens.`,
      dessin: `<div class="tuto-somme">${[5, 5, 4, 3, 3, 2, 1, 1].map(n => `<span class="stature-ex">${n}</span>`).join("+")}<b>= ${P}</b></div>`},
-    {titre: "Deux coups de pouce", texte: `<b>Le 49.3</b>, une fois par partie : la stature du chef s'ajoute à votre ministre pour une manche.<br><b>Les liens</b> : +1 par point commun avec l'équipe (même département, même parti que le chef, ont gouverné ensemble, a servi sous ce chef), 3 au plus.`,
-     dessin: `<div class="tuto-pouces"><span class="joker-ex">49.3</span><span class="puce lien"><b>+1</b> a servi sous ce chef</span></div>`},
+    {titre: "Les liens : jouer en équipe", texte: `Un ministre gagne <b>+1 de force sur toutes les manches</b> pour chacun de ces points communs avec son gouvernement, ${L} au plus. Ils s'affichent en vert quand vous composez votre équipe.`,
+     dessin: `<ul class="tuto-liens">
+       <li><b>+1</b><span><b>Même parti que le chef</b>Il siégeait dans le même groupe politique.</span></li>
+       <li><b>+1</b><span><b>A servi sous ce chef</b>Il a été ministre quand le chef dirigeait le Gouvernement.</span></li>
+       <li><b>+1</b><span><b>A gouverné avec un coéquipier</b>Ils ont été ministres en même temps.</span></li>
+       <li><b>+1</b><span><b>Même département qu'un coéquipier</b>Ils ont été élus dans le même département.</span></li></ul>`},
+    {titre: "Le 49.3", texte: "Une fois par partie, vous pouvez jouer le 49.3 en envoyant un ministre : <b>la stature de votre chef s'ajoute à sa force</b> pour cette manche. Gardez-le pour une manche serrée.",
+     dessin: `<div class="tuto-force"><ul class="forces-ex"><li><span>Votre ministre</span><span class="calc"></span><b>6</b></li><li><span>+ 49.3 (chef de stature 5)</span><span class="calc"></span><b>11</b></li></ul></div>`},
     {titre: "La série", texte: "Contre l'ordinateur ou un autre joueur, chaque victoire fait monter votre série d'une marche. Encaissez la récompense quand vous voulez, ou continuez pour viser plus haut : une défaite fait tout perdre.",
      dessin: `<div class="serie-gouv">${RECOMPENSES_COURTES.map((r, i) => `<span class="${i < 2 ? "passe" : i === 2 ? "courant" : ""}"><b>${i + 1}</b>${echapper(r)}</span>`).join("")}</div>`},
   ];
