@@ -153,7 +153,7 @@ const sx = Date.now().toString(36).slice(-4);
   await A.click('#historique .mini-ami'); await A.waitForSelector("#apercu[open] .carte");
   await A.click("#fermer-apercu");
   // Duel avec mise : Anne défie Bob pour 10 voix, Bob relève le défi depuis la pastille ; le serveur juge chaque réponse
-  await A.click('nav [data-vue="duels"]');
+  await vers(A, "duels");
   // Pastille d'un ami : son pseudo passe dans le champ, la pastille est marquée
   await A.click(`#form-duel [data-defier="Bob${sx}"] .avatar-ami`);
   assert.strictEqual(await A.inputValue('#form-duel [name=pseudo]'), "Bob" + sx);
@@ -168,7 +168,7 @@ const sx = Date.now().toString(36).slice(-4);
     await P.waitForSelector("#qag-suite"); await P.click("#qag-suite"); } };
   await repondre(A, 0);
   await A.waitForSelector("#qag-fermer"); await A.click("#qag-fermer");
-  await Bp.reload(); await Bp.waitForSelector("#pastille-duels:not([hidden])");
+  await Bp.reload(); await Bp.waitForSelector("#pastille-plus:not([hidden])");
   // Séance : un renvoi vers l'onglet Duels, qui porte défis, parties et historique
   await Bp.waitForSelector("#qag [data-aller-duels]"); await Bp.click("#qag [data-aller-duels]");
   await Bp.waitForSelector("#vue-duels [data-relever]"); await Bp.waitForLoadState("networkidle"); await Bp.screenshot({path: T + "/duels-tel.png"});

@@ -102,7 +102,7 @@ de chaque année depuis 1943, anciens noms compris ; écrit `site/departements.j
   Accès : onglet Duels (demande de l'utilisateur, octobre 2026 : plus d'historique des duels en Séance) avec défis reçus,
   duels à jouer, « Lancer un défi » (amis et mise), en attente et historique ; la partie d'un duel s'y joue aussi (`majQag`
   rend la Séance et l'onglet, `htmlQuestion`, `clicQuiz` commun) ; la Séance garde les questions du jour et un renvoi quand un
-  duel attend ; pastille `pastille-duels` ; bouton Défier de l'onglet Amis qui y mène, formulaire prérempli.
+  duel attend ; pastille sur l'onglet large, sur Plus et sur l'entrée Duels du menu ; bouton Défier de l'onglet Amis qui y mène, formulaire prérempli.
 - Doubles réduits (demande de l'utilisateur, octobre 2026 : 10 % entre le 700e et le 1 500e paquet) : une carte déjà
   possédée ou déjà sortie dans le paquet est retirée dans la même rareté avec la probabilité `RELANCE_DOUBLE` (0,9) ;
   l'élu en exercice garanti, s'il est déjà possédé, laisse la place à une carte de la même rareté parmi toutes
@@ -164,12 +164,11 @@ trouvant l'Ain, numéro affiché à côté du nom, `departements.json` chargé �
 comptoir avec Retirer et les offres reçues sur l'étal même (plus de liste « Mes cartes au comptoir », demande de
 l'utilisateur), puis « Vendre une carte » avec la tuile « Mettre une carte en vente » ;
 Historique : échanges terminés, ventes et achats au comptoir, par mois, filtre Tout / Échanges / Comptoir, cartes nommées
-avec miniature ; `GET /api/annonces` renvoie aussi les achats, index `annonces_acheteur`), Duels, Amis, Plus : sept onglets sur téléphone ; le menu Plus ouvre quatre vues, Mon siège (chiffres et vitrine en six cases, libellé du
+avec miniature ; `GET /api/annonces` renvoie aussi les achats, index `annonces_acheteur`), Amis, Plus : six onglets sur téléphone ; Duels est dans le menu Plus (demande de l'utilisateur : onglets gardés à leur taille) ; le menu Plus ouvre cinq vues, Duels, Mon siège (chiffres et vitrine en six cases, libellé du
 pseudo une fois connecté), « Toutes les cartes » (catalogue complet, cartes non obtenues grisées),
 Règlement (règles et sources) et Paramètres (infos du compte, déconnexion et suppression, thème sombre, clair ou comme
-l'appareil gardé dans le navigateur, notifications, contact, mentions légales). Pas de pied de page. Au-delà de 1 180 px
-de large, ces quatre vues sont des onglets (`onglet-large`) et « Plus » disparaît (onze onglets sur une ligne, resserrés jusqu'à
-1 400 px) ; sur ordinateur, la barre d'onglets se
+l'appareil gardé dans le navigateur, notifications, contact, mentions légales). Pas de pied de page. Au-delà de 1 260 px
+de large (1 180 avant l'onglet Duels), ces cinq vues sont des onglets (`onglet-large`) et « Plus » disparaît ; sur ordinateur, la barre d'onglets se
 fixe en haut de l'écran une fois l'en-tête passé (`nav-flottante`, demande de l'utilisateur : changer d'onglet à tout
 moment, après un paquet). Après le dernier paquet, le récapitulatif propose « Revenir en séance » et « Voir mon hémicycle ».
 Hémicycle : les pastilles du haut filtrent (favoris, doubles, une rareté) et se désélectionnent au second toucher ;
@@ -184,7 +183,8 @@ et `garder` ; les cartes sorties de la collection quittent la vitrine.
 Cartes gardées (« Ne pas dissoudre », demande de l'utilisateur, octobre 2026) : bouton de la barre de sélection et de la grande
 carte, état `gardes` (1 000 au plus, `garderCartes`, colonne `gardes` de `joueurs`, `POST /api/gardes`) ; leurs doubles sortent
 du compte de l'atelier, de la dissolution par rareté et du filtre des doubles, mention « gardée » sur la carte, filtre « Cartes
-gardées » ; bouton « Ne pas dissoudre ses doubles » de l'atelier, qui ouvre la sélection sur les cartes en double ; la dissolution choisie carte par carte reste possible. Reflets de l'unique, des mythiques et
+gardées » ; dans l'atelier, « Ne pas dissoudre » à côté de « Dissoudre » garde d'un coup les doubles des raretés cochées
+(demande de l'utilisateur : un simple bouton, pas la sélection) ; la dissolution choisie carte par carte reste possible. Reflets de l'unique, des mythiques et
 légendaires toutes les 6, 8 et 11 s (rapprochés à la demande de l'utilisateur, octobre 2026, après 8, 11 et 15 s), dégradé sans répétition pour que la carte reste nette entre deux passages.
 Première ouverture (`demarrerAccueil`, étape gardée dans `hemicycle-accueil`) : fenêtre d'accueil (créer un compte,
 recommandé ; ouvrir ses cartes dans le navigateur ; « J'ai déjà un compte ») ; après le compte, tutoriel
