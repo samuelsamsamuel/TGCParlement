@@ -331,9 +331,12 @@ serveur), filtre « Mes favoris » dans l'Hémicycle. Pas de zoom au double touc
 - Site : application installable (`manifest.webmanifest`, `sw.js` réseau d'abord, copie hors connexion ; icônes
   écrites par `scripts/icone.py` : éventail de trois cartes bleue, blanche et rouge sur fond de marbre, choisi par
   l'utilisateur, avec une version « maskable » réduite pour la zone sûre d'Android ; changer `CACHE` dans `sw.js`
-  à chaque changement d'icône ; l'application installée, gardée en mémoire par iOS, compare au retour au premier plan
-  la page en ligne à celle du démarrage, au plus toutes les dix minutes, et se recharge si elle a changé, hors
-  découverte d'un paquet, visite guidée ou saisie),
+  à chaque changement d'icône ; nouvelle version : chaque réponse de l'API porte l'identifiant du déploiement
+  (`x-version`, liaison `CF_VERSION_METADATA` de `wrangler.jsonc`, route `/api/version` sans base) ; la page retient celui de
+  son chargement et, s'il change (déploiement, données de la nuit), se recharge au premier moment sûr, changement d'onglet
+  ou retour au premier plan (`/api/version` au plus une fois par minute), hors découverte d'un paquet, visite guidée,
+  fenêtre ouverte ou saisie, puis rouvre l'onglet demandé (`hemicycle-vue` de `sessionStorage`) ; demande de
+  l'utilisateur, octobre 2026 : une page restée ouverte faisait tourner l'ancien code face au nouveau serveur),
   polices servies par le site (`site/polices/`, licence OFL), page `mentions.html` (mentions légales,
   conditions d'utilisation, dont l'interdiction de vendre cartes, voix ou comptes contre de l'argent hors du jeu,
   confidentialité ; date de la version des sources, Licence Ouverte 2.0, lue dans `maj.json`, écrit par `export_jeu.py`,

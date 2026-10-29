@@ -1630,21 +1630,28 @@ export default {
   async fetch(requete, env, ctx) {
     const url = new URL(requete.url);
     if (!url.pathname.startsWith("/api/")) return env.ASSETS.fetch(requete);
-    if (env.MESURE_LECTURES) {
-      const total = {n: 0}, monde = Object.assign(Object.create(env), {ctx, DB: compterLectures(env.DB, total)});
-      const r = await api(requete, monde, url).catch(e => e instanceof Refus ? json({erreur: e.message}, e.statut) : Promise.reject(e));
-      const copie = new Response(r.body, r); copie.headers.set("x-lignes-lues", String(total.n)); return copie;
-    }
-    // Le contexte suit l'environnement, pour les envois en arrière-plan (notifications)
-    try { return await api(requete, Object.assign(Object.create(env), {ctx}), url); }
-    catch (e) {
-      if (e instanceof Refus) return json({erreur: e.message}, e.statut);
-      console.error(e);
-      return json({erreur: "Le serveur a rencontré une erreur. Réessayez dans un instant."}, 500);
-    }
+    // Version du déploiement dans chaque réponse de l'API : une page ouverte avant un déploiement se recharge
+    // (index.html, versionNouvelle) au lieu de faire tourner l'ancien code face au nouveau serveur
+    const version = env.CF_VERSION_METADATA?.id || "locale";
+    const r = url.pathname === "/api/version" ? json({version}) : await repondre(requete, env, ctx, url);
+    const copie = new Response(r.body, r); copie.headers.set("x-version", version); return copie;
   },
   async scheduled(evenement, env, ctx) {
     const e = Object.assign(Object.create(env), {ctx});
     ctx.waitUntil(surveillerReserves(e).then(() => expirerDuels(e)).then(() => expirerParties(e)).then(() => annoncerGouvernement(e)));
   },
 };
+async function repondre(requete, env, ctx, url) {
+  if (env.MESURE_LECTURES) {
+    const total = {n: 0}, monde = Object.assign(Object.create(env), {ctx, DB: compterLectures(env.DB, total)});
+    const r = await api(requete, monde, url).catch(e => e instanceof Refus ? json({erreur: e.message}, e.statut) : Promise.reject(e));
+    const copie = new Response(r.body, r); copie.headers.set("x-lignes-lues", String(total.n)); return copie;
+  }
+  // Le contexte suit l'environnement, pour les envois en arrière-plan (notifications)
+  try { return await api(requete, Object.assign(Object.create(env), {ctx}), url); }
+  catch (e) {
+    if (e instanceof Refus) return json({erreur: e.message}, e.statut);
+    console.error(e);
+    return json({erreur: "Le serveur a rencontré une erreur. Réessayez dans un instant."}, 500);
+  }
+}
