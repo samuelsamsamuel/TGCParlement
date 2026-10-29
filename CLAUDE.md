@@ -345,7 +345,7 @@ serveur), filtre « Mes favoris » dans l'Hémicycle. Pas de zoom au double touc
 0. Jeu du Gouvernement (décidé avec l'utilisateur, octobre 2026) : 50 thèmes (environ 36 politiques publiques et 14
    territoires ; thèmes historiques écartés), dix annoncés, sept tirés ; gouvernement d'un chef et huit ministres (cinq
    gouvernements enregistrés au plus, 10 voix chacun) ; force = stature (1 à 5, score, un point de moins sans mandat
-   parlementaire) + 3 par étoile de spécialité (1 : cinq ans dans la commission liée ou élu de la région ; 2 : présidence
+   parlementaire) + 2 par étoile de spécialité (3 à l'origine) (1 : cinq ans dans la commission liée ou élu de la région ; 2 : présidence
    de la commission ou secrétariat d'État ; 3 : ministre du domaine) + liens (même département, même groupe que le chef,
    même gouvernement réel, a servi sous le chef ; +1 chacun, +3 au plus) ; plafond de stature 24 ; gouvernement adverse
    visible, choix cachés ; 49.3 une fois (stature du chef ajoutée) ; égalité : stature puis années de mandat ; premier à
@@ -357,7 +357,8 @@ serveur), filtre « Mes favoris » dans l'Hémicycle. Pas de zoom au double touc
    `LIENS_MAX`), simulation `node scripts/simulation_gouvernement.js [parties]` (collections tirées par `regles.js`,
    réglages par variables d'environnement). Mesure (octobre 2026, 100 parties par duel) : à 3 points par étoile, spécialiste
    trois étoiles contre vedette sans étoile 98 %, mythiques et légendaires composés contre collection sans légendaires 47 %,
-   égalités après départage 0,9 % ; à 2 points, 90 % et 53 %. Valeur de l'étoile à trancher par l'utilisateur.
+   égalités après départage 0,9 % ; à 2 points, 90 % et 53 %. Retenu : 2 points par étoile (décision de l'utilisateur,
+   octobre 2026 : le spécialiste reste favori, la vedette garde une chance avec ses liens et le 49.3).
    Étapes : commissions (fait), fiches de jeu (fait), simulation de réglage (fait), jeu.
 
 1. Application en service. À confirmer par l'utilisateur : l'éditeur reste anonyme dans `mentions.html`

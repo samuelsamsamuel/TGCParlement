@@ -1,7 +1,7 @@
 // Jeu du Gouvernement : règles, sans interface ni stockage (comme regles.js), exécutées aussi sous Node par le serveur
 // et par la simulation de réglage (scripts/simulation_gouvernement.js). Conception décidée avec l'utilisateur (octobre
 // 2026, CLAUDE.md) : un chef et huit ministres, dix thèmes annoncés, sept tirés, premier à quatre manches ; force d'un
-// ministre sur un thème = stature + ETOILE par étoile de spécialité + liens (plafonnés) ; 49.3 une fois (stature du
+// ministre sur un thème = stature + ETOILE (2) par étoile de spécialité + liens (plafonnés) ; 49.3 une fois (stature du
 // chef ajoutée) ; égalité départagée par la stature puis les années de mandat.
 // Fiches : site/gouvernement.json, écrit par scripts/fiches_gouvernement.py.
 (function (racine, fabrique) {
@@ -10,7 +10,7 @@
   else racine.Gouvernement = Gouvernement;
 })(typeof self !== "undefined" ? self : this, function () {
   "use strict";
-  const ETOILE = 3, PLAFOND_STATURE = 24, LIENS_MAX = 3, MINISTRES = 8, ANNONCES = 10, MANCHES = 7, VICTOIRE = 4;
+  const ETOILE = 2, PLAFOND_STATURE = 24, LIENS_MAX = 3, MINISTRES = 8, ANNONCES = 10, MANCHES = 7, VICTOIRE = 4;
 
   // Fiches compactes -> objets ; fiche : [stature, étoiles (thème × 4 + nombre), années, groupe, départements,
   // périodes de fonction gouvernementale, périodes à la tête du Gouvernement]
