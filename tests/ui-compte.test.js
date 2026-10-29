@@ -202,6 +202,7 @@ const sx = Date.now().toString(36).slice(-4);
     await A.click("[data-former]"); await A.waitForSelector("#vue-gouvernement [data-completer]");
     // Choix du chef : liste triable avec stature et compétences
     await A.click('[data-poste="chef"]'); await A.waitForSelector("#choix-ministre[open] [data-choisir-ministre]");
+    await A.waitForSelector("#choix-ministre .titre-conseils"); await A.screenshot({path: T + "/gouvernement-suggestions.png"});
     await A.selectOption("#tri-ministre", "etoiles");
     await A.screenshot({path: T + "/gouvernement-choix.png"});
     await A.fill("#cherche-ministre", await A.evaluate(id => cat.parId[id].nom, gA.chef));
@@ -242,6 +243,10 @@ const sx = Date.now().toString(36).slice(-4);
       const avant = await A.evaluate(() => etat.points);
       await A.click("[data-encaisser]"); await A.waitForFunction(p => etat.points === p + 15, avant);
     }
+    // Renoncer avant de choisir son gouvernement : la partie compte comme perdue (l'écran ne plante plus)
+    await A.click("[data-retour-gouv]"); await A.waitForSelector("#vue-gouvernement .cabinet");
+    await A.click('[data-jouer="ordi"]'); await A.waitForSelector("[data-choisir-gouv]");
+    await A.click('[data-quitter$=":abandonner"]'); await A.waitForFunction(() => /renoncé/.test(document.getElementById("vue-gouvernement").textContent));
     await A.click("[data-retour-gouv]"); await A.waitForSelector("#vue-gouvernement .cabinet");
     await A.waitForLoadState("networkidle").catch(() => {});  // la vue est redessinée quand gouvernements et parties sont relus
     // Défi à Bob, sans mise ; Bob forme son gouvernement sur son téléphone et relève le défi
