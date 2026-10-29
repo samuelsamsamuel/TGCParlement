@@ -376,8 +376,9 @@ serveur), filtre « Mes favoris » dans l'Hémicycle. Pas de zoom au double touc
    continuer, la défaite fait tout perdre ; complète au palier 5, encaissée d'elle-même ; `ENCAISSEMENTS_JOUR` (3) par jour ;
    carte choisie dans le carrousel du lot (`choisirLotGouv`, `POST /api/gouvernements/lot`) ; état `quotidien.gouv`,
    écrit par `appliquer` dans le même lot que la clôture de la partie (`liees`). Interface refaite (demande de l'utilisateur) :
-   règles en tutoriel illustré de sept écrans (fenêtre `tuto-gouv`, `ecransTuto` : principe, deux qualités d'une carte,
-   une manche chiffrée, la partie, la limite de stature, 49.3 et liens, la série ; mini-cartes dessinées), ouvert de lui-même
+   règles en tutoriel illustré de neuf écrans (fenêtre `tuto-gouv`, `ecransTuto` : principe, deux qualités d'une carte, la
+   force (formule et même ministre sur deux thèmes), une manche (trois ministres de forces différentes), la partie (frise de
+   manches), la limite de stature, les liens (quatre cas expliqués), le 49.3, la série ; lisible sur téléphone), ouvert de lui-même
    à la première visite puis par « Comment jouer ? » (demande de l'utilisateur : règles beaucoup plus claires) ; échelle de la
    série (`echelleSerie`) aussi sur la page de résultat, paliers dépassés grisés, palier atteint en or, prochain en pointillé ;
    récapitulatif des manches en tableau (`recapManches` : thème, ministres face à face, forces, résultat, 49.3 signalé) ;
