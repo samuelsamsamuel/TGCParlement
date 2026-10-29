@@ -1844,7 +1844,7 @@ document.getElementById("vue-duels").addEventListener("submit", e => {
 // Règles : gouvernement.js (le serveur juge les parties) et regles.js (série) ; fiches de jeu (gouvernement.json)
 // chargées à la première ouverture. Vue : accueil (règles pas à pas, série, jouer, parties, gouvernements), composition
 // d'un gouvernement (choix des ministres en liste triable), partie (choix du gouvernement, manches révélées une à une)
-let gouvJeu = null, gouv = {gouvernements: [], serie: {serie: 0, lot: null, encaissesDuJour: 0, max: 3}, prix: 10, max: 5}, parties = [];
+let gouvJeu = null, gouv = {gouvernements: [], serie: {serie: 0, lot: null, encaissesDuJour: 0}, prix: 10, max: 5}, parties = [];
 let partie = null, edition = null, ministreChoisi = null, avec493 = false, choixMinistre = null;
 const replisOuverts = new Set();  // rubriques dépliées, gardées quand la vue est redessinée
 async function chargerFiches(){
@@ -1984,9 +1984,7 @@ function echelleSerie(n){
 function htmlSerie(jouer = true){
   const s = gouv.serie, actions = [];
   if (s.lot) actions.push(`<button class="bouton" data-lot-gouv>Choisir ma carte</button>`);
-  else if (s.serie) actions.push(s.encaissesDuJour < s.max
-    ? `<button class="bouton" data-encaisser>Encaisser : ${echapper(RECOMPENSES_COURTES[s.serie - 1])}</button>`
-    : `<span class="note">Déjà ${s.max} séries encaissées aujourd'hui : celle-ci attend demain.</span>`);
+  else if (s.serie) actions.push(`<button class="bouton" data-encaisser>Encaisser : ${echapper(RECOMPENSES_COURTES[s.serie - 1])}</button>`);
   return `<div class="bloc-gouv"><h3>Votre série${s.serie ? ` : ${pluriel(s.serie, "victoire")}` : ""}</h3>
     ${echelleSerie(s.serie)}
     <p class="note">${s.serie ? `Encaissez maintenant, ou gagnez encore pour atteindre « ${echapper(RECOMPENSES_COURTES[Math.min(4, s.serie)])} ». Une défaite fait tout perdre.`

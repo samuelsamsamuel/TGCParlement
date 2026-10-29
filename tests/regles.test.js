@@ -319,9 +319,7 @@ console.log("jeu du Gouvernement : tests passés");
   assert.strictEqual(fin.gain.palier, 5, "complète : encaissée d'elle-même"); assert.strictEqual(fin.gain.paquets, 2);
   assert.ok(fin.gain.choix.every(id => ["legendaire", "mythique"].includes(cg.parId[id].rarete)));
   R.choisirLotGouv(es, cg, fin.gain.choix[0]);
-  R.issueSerieGouv(es, cg, "gagne", jour, alea); assert.ok(R.encaisserSerieGouv(es, cg, jour, alea), "troisième encaissement");
-  R.issueSerieGouv(es, cg, "gagne", jour, alea);
-  assert.strictEqual(R.encaisserSerieGouv(es, cg, jour, alea), null, `${R.ENCAISSEMENTS_JOUR} encaissements par jour`);
-  assert.ok(R.encaisserSerieGouv(es, cg, "2026-10-30", alea), "le lendemain");
+  for (let k = 0; k < 5; k++) { R.issueSerieGouv(es, cg, "gagne", jour, alea); assert.ok(R.encaisserSerieGouv(es, cg, jour, alea), "pas de limite par jour"); }
+  assert.strictEqual(R.encaisserSerieGouv(es, cg, jour, alea), null, "rien à encaisser sans victoire");
 }
 console.log("partie du Gouvernement : tests passés");

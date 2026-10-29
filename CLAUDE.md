@@ -380,7 +380,8 @@ serveur), filtre « Mes favoris » dans l'Hémicycle. Pas de zoom au double touc
    récompense reçue à la fin de la série, cartes à choisir) : `SERIE_GOUV` de `regles.js` (15 voix, 1 paquet, une carte
    parmi 3 rares ou mieux, une parmi 3 épiques ou mieux et un paquet, une parmi 3 légendaires ou mieux et deux paquets) ;
    après une victoire, encaisser (`encaisserSerieGouv`, `POST /api/gouvernements/encaisser`, la série repart de zéro) ou
-   continuer, la défaite fait tout perdre ; complète au palier 5, encaissée d'elle-même ; `ENCAISSEMENTS_JOUR` (3) par jour ;
+   continuer, la défaite fait tout perdre ; complète au palier 5, encaissée d'elle-même ; pas de limite d'encaissements par jour
+   (trois à l'origine, limite retirée à la demande de l'utilisateur) ;
    carte choisie dans le carrousel du lot (`choisirLotGouv`, `POST /api/gouvernements/lot`) ; état `quotidien.gouv`,
    écrit par `appliquer` dans le même lot que la clôture de la partie (`liees`). Interface refaite (demande de l'utilisateur) :
    règles en tutoriel illustré de neuf écrans, explication avant le dessin (fenêtre `tuto-gouv`, `ecransTuto`, ordre voulu par

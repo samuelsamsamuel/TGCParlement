@@ -498,9 +498,8 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
   // et des cartes à choisir la rendent plus intéressante). Chaque victoire contre l'ordinateur ou un joueur tiré au hasard
   // fait monter d'un palier ; après une victoire, le joueur encaisse la récompense du palier atteint (la série repart de
   // zéro) ou continue pour viser plus haut, au risque de tout perdre à la défaite. Au cinquième palier, la série est
-  // complète et s'encaisse d'elle-même. ENCAISSEMENTS_JOUR encaissements par jour de Paris au plus ; au-delà, la série
-  // attend le lendemain (les victoires au palier 5 ne la font plus monter). État : quotidien.gouv = {serie, jour,
-  // encaisses, lot}.
+  // complète et s'encaisse d'elle-même. Pas de limite d'encaissements par jour (retirée à la demande de l'utilisateur,
+  // octobre 2026, après trois par jour). État : quotidien.gouv = {serie, jour, encaisses, lot}.
   const SERIE_GOUV = [
     {voix: 15},
     {paquets: 1},
@@ -508,11 +507,10 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
     {paquets: 1, choix: 3, raretes: ["epique", "legendaire", "mythique"], titre: "une carte parmi 3 épiques ou mieux, et un paquet"},
     {paquets: 2, choix: 3, raretes: ["legendaire", "mythique"], titre: "une carte parmi 3 légendaires ou mieux, et deux paquets"},
   ];
-  const ENCAISSEMENTS_JOUR = 3;
   function serieGouv(etat, jour = jourDuJeu()) {
     const q = quotidien(etat);
     const g = q.gouv && typeof q.gouv === "object" ? q.gouv : (q.gouv = {serie: 0, jour: "", encaisses: 0, lot: null});
-    return {serie: g.serie || 0, lot: g.lot || null, encaissesDuJour: g.jour === jour ? g.encaisses || 0 : 0, max: ENCAISSEMENTS_JOUR,
+    return {serie: g.serie || 0, lot: g.lot || null, encaissesDuJour: g.jour === jour ? g.encaisses || 0 : 0,
             recompense: g.serie ? SERIE_GOUV[g.serie - 1] : null, suivante: SERIE_GOUV[g.serie || 0] || null};
   }
   // Issue d'une partie de série : victoire (un palier de plus), défaite (tout est perdu), nul (rien ne change)
@@ -528,7 +526,7 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
   // Encaisser : voix et paquets du palier crédités, cartes proposées à choisir (choisirLotGouv) ; la série repart de zéro
   function encaisserSerieGouv(etat, cat, jour = jourDuJeu(), aleatoire = Math.random) {
     const s = serieGouv(etat, jour), g = quotidien(etat).gouv;
-    if (!s.serie || s.lot || s.encaissesDuJour >= ENCAISSEMENTS_JOUR) return null;
+    if (!s.serie || s.lot) return null;
     const lot = SERIE_GOUV[s.serie - 1], gain = {palier: s.serie, voix: lot.voix || 0, paquets: lot.paquets || 0, choix: null};
     etat.points += gain.voix; etat.offerts += gain.paquets;
     if (lot.choix) gain.choix = (g.lot = {cartes: propositions(etat, cat, lot, aleatoire), palier: s.serie}).cartes;
@@ -742,7 +740,7 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
     return voix;
   }
 
-  return {VERSION_ETAT, SERIE_GOUV, ENCAISSEMENTS_JOUR, serieGouv, issueSerieGouv, encaisserSerieGouv, choisirLotGouv, basculerFavori, MAX_GARDES, garderCartes, RECHARGE_MS, QUIZ_QUESTIONS, graineDe, questions, compacterQuiz, catalogueQuiz, recompenseQuiz, validerQuiz, RESERVE_MAX, CARTES_PAR_PAQUET, reserveCourante, ORDRE, POIDS, VALEUR_RECYCLAGE, PRIX_PAQUET, PALIERS,
+  return {VERSION_ETAT, SERIE_GOUV, serieGouv, issueSerieGouv, encaisserSerieGouv, choisirLotGouv, basculerFavori, MAX_GARDES, garderCartes, RECHARGE_MS, QUIZ_QUESTIONS, graineDe, questions, compacterQuiz, catalogueQuiz, recompenseQuiz, validerQuiz, RESERVE_MAX, CARTES_PAR_PAQUET, reserveCourante, ORDRE, POIDS, VALEUR_RECYCLAGE, PRIX_PAQUET, PALIERS,
     etatVide, migrer, jourDuJeu, normer, cartesDeJeu, catalogue, compacter, catalogueCompact, paquetsDisponibles, ouvrirPaquet,
     disponibles, recyclables, doubles, recycler, dissoudre, MAX_SELECTION, dissoudreSelection, echangerPoints, avancement, clesAtteintes, reclamer, recompensesEnAttente,
     SERIE, serieDuJour, reclamerSerie, choisirLot, objectifsDuJour, preparerJour, etatDuJour, reclamerJour};
