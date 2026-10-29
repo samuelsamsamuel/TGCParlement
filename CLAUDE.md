@@ -369,8 +369,18 @@ serveur), filtre « Mes favoris » dans l'Hémicycle. Pas de zoom au double touc
    (`imprevu`, part du vivier composée pour les thèmes ; simulation, joueur régulier : 71, 63, 61, 55, 44 et 36 % de
    victoires des paliers 0 à 5). Contre un joueur : gouvernement enregistré d'un autre joueur, joué par l'ordinateur, son
    propriétaire averti du résultat (repli sur l'ordinateur si aucun). Une partie de série à la fois ; l'adversaire est vu
-   avant le choix du gouvernement, renoncer vaut défaite. Série : `GAINS_SERIE` (5, 10, 15, 20 voix, puis un paquet à chaque
-   victoire au palier 5), une défaite ramène à 0, `GAINS_GOUV_JOUR` (10) victoires récompensées par jour. Entre amis : mise
+   avant le choix du gouvernement, renoncer vaut défaite. Série (refaite à la demande de l'utilisateur, octobre 2026 :
+   récompense reçue à la fin de la série, cartes à choisir) : `SERIE_GOUV` de `regles.js` (15 voix, 1 paquet, une carte
+   parmi 3 rares ou mieux, une parmi 3 épiques ou mieux et un paquet, une parmi 3 légendaires ou mieux et deux paquets) ;
+   après une victoire, encaisser (`encaisserSerieGouv`, `POST /api/gouvernements/encaisser`, la série repart de zéro) ou
+   continuer, la défaite fait tout perdre ; complète au palier 5, encaissée d'elle-même ; `ENCAISSEMENTS_JOUR` (3) par jour ;
+   carte choisie dans le carrousel du lot (`choisirLotGouv`, `POST /api/gouvernements/lot`) ; état `quotidien.gouv`,
+   écrit par `appliquer` dans le même lot que la clôture de la partie (`liees`). Interface refaite (demande de l'utilisateur) :
+   « Comment jouer » pas à pas, ouvert au premier passage ; choix des cartes en liste triable (stature, étoiles, compétence
+   sur un thème) avec leurs qualités, fenêtre `choix-ministre` ; croix pour retirer une carte ; liens écrits en clair
+   (« +1 a gouverné avec … », `avec` de `liens`) ; adversaire montré par stature et compétences, sans forces ; 49.3 en carte
+   dorée à reflet ; barre d'envoi collante ; chaque manche révélée en grand (fenêtre `revelation`, détail des forces ;
+   manches déjà vues gardées dans `hemicycle-manches-vues`). Entre amis : mise
    comme aux duels, coups à son rythme, thème d'une manche révélé quand la précédente est jouée des deux côtés ; tâche
    horaire `expirerParties` (défi oublié remboursé, partie en cours close au bout de trois jours, la manche jouée d'un
    seul côté lui revenant). Le serveur lit les fiches découpées (`site/fiches/pNNN.json`, 256 paquets par empreinte

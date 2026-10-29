@@ -299,11 +299,29 @@ console.log("jeu du Gouvernement : tests passés");
   const q = {graine: 3, annonces, camps: [g1, g2], coups: [[[0, 0]], []]};
   const x = G.resoudre(q, fiches, {expire: true});
   assert.deepStrictEqual([x.fini, x.score, x.gagnant], [true, [1, 0], 1]);
-  // Série
-  assert.deepStrictEqual(G.progresserSerie(0, "gagne"), {serie: 1, gain: {voix: 5}});
-  assert.deepStrictEqual(G.progresserSerie(4, "gagne"), {serie: 5, gain: {paquets: 1}});
-  assert.deepStrictEqual(G.progresserSerie(5, "gagne"), {serie: 5, gain: {paquets: 1}}, "le palier 5 se répète");
-  assert.deepStrictEqual(G.progresserSerie(3, "perdu"), {serie: 0, gain: null});
-  assert.deepStrictEqual(G.progresserSerie(3, "egalite"), {serie: 3, gain: null});
+  // Série : récompense encaissée à la fin, tout perdu à la défaite, complète au cinquième palier
+  const es = R.etatVide(), jour = "2026-10-29", cg = R.catalogue(R.cartesDeJeu(require("../site/jeu.json")), []);
+  assert.strictEqual(R.encaisserSerieGouv(es, cg, jour, alea), null, "rien à encaisser");
+  R.issueSerieGouv(es, cg, "gagne", jour, alea); R.issueSerieGouv(es, cg, "gagne", jour, alea);
+  assert.strictEqual(R.serieGouv(es, jour).serie, 2);
+  assert.deepStrictEqual(R.issueSerieGouv(es, cg, "perdu", jour, alea), {serie: 0, perdue: 2, gain: null}, "la défaite fait tout perdre");
+  for (let k = 0; k < 3; k++) R.issueSerieGouv(es, cg, "gagne", jour, alea);
+  R.issueSerieGouv(es, cg, "egalite", jour, alea);
+  assert.strictEqual(R.serieGouv(es, jour).serie, 3, "un nul ne change rien");
+  const g3 = R.encaisserSerieGouv(es, cg, jour, alea);
+  assert.strictEqual(g3.palier, 3); assert.strictEqual(g3.choix.length, 3);
+  assert.ok(g3.choix.every(id => ["rare", "epique", "legendaire", "mythique"].includes(cg.parId[id].rarete)));
+  assert.strictEqual(R.serieGouv(es, jour).serie, 0, "la série repart de zéro");
+  assert.strictEqual(R.choisirLotGouv(es, cg, "inconnue"), null);
+  assert.deepStrictEqual(R.choisirLotGouv(es, cg, g3.choix[1]), {carte: g3.choix[1]}); assert.strictEqual(es.possedees[g3.choix[1]], 1);
+  let fin;
+  for (let k = 0; k < 5; k++) fin = R.issueSerieGouv(es, cg, "gagne", jour, alea);
+  assert.strictEqual(fin.gain.palier, 5, "complète : encaissée d'elle-même"); assert.strictEqual(fin.gain.paquets, 2);
+  assert.ok(fin.gain.choix.every(id => ["legendaire", "mythique"].includes(cg.parId[id].rarete)));
+  R.choisirLotGouv(es, cg, fin.gain.choix[0]);
+  R.issueSerieGouv(es, cg, "gagne", jour, alea); assert.ok(R.encaisserSerieGouv(es, cg, jour, alea), "troisième encaissement");
+  R.issueSerieGouv(es, cg, "gagne", jour, alea);
+  assert.strictEqual(R.encaisserSerieGouv(es, cg, jour, alea), null, `${R.ENCAISSEMENTS_JOUR} encaissements par jour`);
+  assert.ok(R.encaisserSerieGouv(es, cg, "2026-10-30", alea), "le lendemain");
 }
 console.log("partie du Gouvernement : tests passés");

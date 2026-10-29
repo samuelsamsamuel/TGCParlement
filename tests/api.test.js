@@ -224,7 +224,7 @@ const preuve = c => require("crypto").createHash("sha256").update(c).digest("hex
     let gC; do gC = G.gouvernementOrdinateur(reels, annonces, alea, 0); while (gC.chef === gA.chef);
     const donner = (pseudo, g) => base(`INSERT INTO possessions (joueur, carte, n) SELECT j.id, CAST(c.value AS TEXT), 1 FROM joueurs j, json_each('${JSON.stringify([g.chef, ...g.ministres]).replace(/"/g, '\\"')}') c WHERE j.pseudo = '${pseudo}' ON CONFLICT (joueur, carte) DO UPDATE SET n = n + 1`);
     let g = (await A("gouvernements")).d;
-    assert.deepStrictEqual([g.gouvernements.length, g.serie, g.prix, g.max], [0, 0, 10, 5]);
+    assert.deepStrictEqual([g.gouvernements.length, g.serie.serie, g.prix, g.max], [0, 0, 10, 5]);
     assert.strictEqual((await A("gouvernements", {nom: "Essai", ...gA})).statut, 409, "cartes hors de la collection");
     const vedettes = [...fiches.values()].filter(f => f.stature === 5).slice(0, 9).map(f => f.id);
     assert.strictEqual((await A("gouvernements", {chef: vedettes[0], ministres: vedettes.slice(1)})).statut, 400, "plafond de stature");
@@ -254,9 +254,16 @@ const preuve = c => require("crypto").createHash("sha256").update(c).digest("hex
       assert.strictEqual(v.manches.length, i + 1, "l'ordinateur répond aussitôt");
     }
     assert.strictEqual((await A("parties/" + solo + "/coup", {ministre: 7})).statut, 409, "partie finie");
+    // Série : la victoire fait monter d'un palier, la récompense s'encaisse à la fin (la défaite fait tout perdre)
     const serie = (await A("gouvernements")).d.serie;
-    assert.strictEqual(serie, v.issue === "gagne" ? 1 : 0);
-    assert.strictEqual(await voixDe(A), 90 + (v.issue === "gagne" ? 5 : 0), "gain du premier palier");
+    assert.strictEqual(serie.serie, v.issue === "gagne" ? 1 : 0);
+    assert.strictEqual(await voixDe(A), 90, "rien avant d'encaisser");
+    if (v.issue === "gagne") {
+      r = await A("gouvernements/encaisser", {}); assert.strictEqual(r.statut, 200, JSON.stringify(r.d));
+      assert.deepStrictEqual([r.d.resultat.palier, r.d.resultat.voix, r.d.etat.points], [1, 15, 105]);
+      assert.strictEqual((await A("gouvernements")).d.serie.serie, 0, "la série repart de zéro");
+    }
+    assert.strictEqual((await A("gouvernements/encaisser", {})).statut, 409, "rien à encaisser");
     // Entre amis, avec mise : coups à son rythme, révélés quand les deux ont joué
     const voixA = await voixDe(A);
     r = await A("parties", {mode: "ami", vers: "carole" + suffixe, voix: 10}); assert.strictEqual(r.statut, 201, JSON.stringify(r.d));

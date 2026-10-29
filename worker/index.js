@@ -189,8 +189,9 @@ const COLONNES = {
     ["favoris", "TEXT NOT NULL DEFAULT '[]'"],    // cartes marquées d'une étoile par le joueur
     ["gardes", "TEXT NOT NULL DEFAULT '[]'"],     // cartes dont les doubles ne sont pas proposés à la dissolution
     ["quotidien", "TEXT NOT NULL DEFAULT '{}'"],  // série de connexion, lot à choisir, objectifs du jour (règles : quotidien)
-    ["serie_gouv", "INTEGER NOT NULL DEFAULT 0 CHECK (serie_gouv BETWEEN 0 AND 5)"],  // série du jeu du Gouvernement
-    ["gains_gouv", "TEXT NOT NULL DEFAULT ''"],   // « jour|n » : victoires récompensées ce jour-là (GAINS_GOUV_JOUR au plus)
+    // Première version de la série du Gouvernement (octobre 2026), remplacée par quotidien.gouv (règles) : inutilisées
+    ["serie_gouv", "INTEGER NOT NULL DEFAULT 0 CHECK (serie_gouv BETWEEN 0 AND 5)"],
+    ["gains_gouv", "TEXT NOT NULL DEFAULT ''"],
   ],
   annonces: [
     ["rarete", "TEXT NOT NULL DEFAULT ''"],       // rareté de la carte, pour les prix médians par rareté
@@ -337,7 +338,8 @@ const noterJournal = (env, joueur, operation, detail) => env.DB.prepare(
 // passée entre-temps (deux paquets ouverts à la même seconde, par exemple), la garde échoue et rien n'est écrit.
 // L'état écrit est gardé pour la réponse (env.etatEcrit) : la renvoyer ne demande pas de relire la collection,
 // ce qui divise par deux les lignes lues en base à chaque opération (D1 facture les lignes lues).
-async function appliquer(env, joueur, operation) {
+// `liees` : écritures à faire dans le même lot (transaction), quel que soit le résultat de l'opération
+async function appliquer(env, joueur, operation, liees = []) {
   const lu = await chargerEtat(env, joueur), {etat: avant, version} = lu;
   const apres = structuredClone(avant);
   const resultat = operation(apres);
@@ -360,6 +362,7 @@ async function appliquer(env, joueur, operation) {
   for (const cle of Object.keys(apres.objectifs)) if (!avant.objectifs[cle])
     requetes.push(env.DB.prepare("INSERT INTO reclames (joueur, cle, date) VALUES (?, ?, ?)").bind(joueur, cle, apres.objectifs[cle]));
   for (const [, op, detail] of apres.journal.slice(avant.journal.length)) requetes.push(noterJournal(env, joueur, op, detail));
+  requetes.push(...liees);
   if (requetes.length > 2) await lot(env, requetes);
   // Même forme que chargerEtat : exemplaires à zéro retirés, vingt dernières lignes du journal
   for (const id of Object.keys(apres.possedees)) if (!apres.possedees[id]) { delete apres.possedees[id]; if (avant.possedees[id]) apres.deja.push(id); }
@@ -1138,14 +1141,14 @@ async function expirerDuels(env) {
 /* ---------- Jeu du Gouvernement ---------- */
 // Règles : site/gouvernement.js. Le fichier complet des fiches est trop long à lire dans la limite de calcul du plan
 // gratuit : le serveur lit les fiches découpées par scripts/fiches_gouvernement.py (site/fiches/), en cache ensuite.
-// Contre l'ordinateur ou un joueur tiré au hasard, la partie fait avancer la série (GAINS_SERIE, GAINS_GOUV_JOUR
-// victoires récompensées par jour) ; l'adversaire est vu avant de choisir son gouvernement, et une partie commencée ne se
+// Contre l'ordinateur ou un joueur tiré au hasard, la partie fait avancer la série (règles : issueSerieGouv, récompense
+// encaissée à la fin) ; l'adversaire est vu avant de choisir son gouvernement, et une partie commencée ne se
 // relance pas (une seule à la fois) : l'abandon vaut défaite. Contre un ami, mise comme aux duels, rendue sur un nul.
 // Accès réservé pendant la mise au point (demande de l'utilisateur, octobre 2026) : comptes de TESTEURS_GOUVERNEMENT,
 // ou tous les comptes avec la variable GOUVERNEMENT_OUVERT (serveur local des tests : wrangler dev --var GOUVERNEMENT_OUVERT:1)
 const TESTEURS_GOUVERNEMENT = ["samsam"];
 const accesGouvernement = (env, pseudo) => !!env.GOUVERNEMENT_OUVERT || TESTEURS_GOUVERNEMENT.includes(String(pseudo || "").toLowerCase());
-const MAX_GOUVERNEMENTS = 5, PRIX_GOUVERNEMENT = 10, GAINS_GOUV_JOUR = 10, MAX_PARTIES_AMIS = 20;
+const MAX_GOUVERNEMENTS = 5, PRIX_GOUVERNEMENT = 10, MAX_PARTIES_AMIS = 20;
 const DUREE_PARTIE = 3 * 86400 * 1000, DUREE_PREPARATION = 86400 * 1000;
 const ORIGINE_INTERNE = "https://hemicycle.interne/";  // adresse des fichiers du site pour la tâche planifiée (ASSETS)
 const paquetsFiches = new Map();
@@ -1194,14 +1197,12 @@ async function vacants(env, joueur, gouvs) {
 async function listeGouvernements(env, joueur) {
   const [g, j] = await env.DB.batch([
     env.DB.prepare("SELECT id, nom, chef, ministres, maj FROM gouvernements WHERE joueur = ? ORDER BY id").bind(joueur),
-    env.DB.prepare("SELECT serie_gouv, gains_gouv FROM joueurs WHERE id = ?").bind(joueur),
+    env.DB.prepare("SELECT quotidien FROM joueurs WHERE id = ?").bind(joueur),
   ]);
   const manquent = await vacants(env, joueur, g.results);
-  const [jour, n] = String(j.results[0].gains_gouv || "").split("|");
   return json({gouvernements: g.results.map(x => ({id: x.id, nom: x.nom, chef: x.chef, ministres: lireJson(x.ministres, []),
                  vacants: [x.chef, ...lireJson(x.ministres, [])].filter(id => manquent.has(id))})),
-               serie: j.results[0].serie_gouv, gainsDuJour: jour === Regles.jourDuJeu() ? Number(n) : 0, gainsMax: GAINS_GOUV_JOUR,
-               prix: PRIX_GOUVERNEMENT, max: MAX_GOUVERNEMENTS});
+               serie: Regles.serieGouv({quotidien: lireJson(j.results[0].quotidien, {})}), prix: PRIX_GOUVERNEMENT, max: MAX_GOUVERNEMENTS});
 }
 // Création (PRIX_GOUVERNEMENT voix) ou recomposition (gratuite) d'un gouvernement enregistré
 async function enregistrerGouvernement(env, requete, joueur, url) {
@@ -1280,7 +1281,7 @@ async function nouvellePartie(env, requete, joueur, url) {
   }
   const ouverte = await env.DB.prepare("SELECT id FROM parties WHERE a = ? AND mode IN ('ordi', 'hasard') AND statut IN ('preparation', 'en-cours')").bind(joueur).first();
   if (ouverte) return json({id: ouverte.id, reprise: true});
-  const niveau = (await env.DB.prepare("SELECT serie_gouv FROM joueurs WHERE id = ?").bind(joueur).first()).serie_gouv;
+  const niveau = Regles.serieGouv({quotidien: lireJson((await env.DB.prepare("SELECT quotidien FROM joueurs WHERE id = ?").bind(joueur).first()).quotidien, {})}).serie;
   let fantome = mode === "hasard" ? await campFantome(env, joueur) : null, camp, b = null, modeReel = mode;
   if (fantome) { camp = {chef: fantome.chef, ministres: lireJson(fantome.ministres, []), nom: fantome.nom}; b = fantome.joueur; }
   else { camp = await campOrdinateur(env, url, annonces, niveau); modeReel = "ordi"; }
@@ -1318,8 +1319,10 @@ async function quitterPartie(env, joueur, id, action) {
     if (d.statut !== "en-cours" && !(d.statut === "preparation" && d.mode !== "ami")) throw new Refus(409, "Cette partie ne se joue pas en ce moment.");
     if (d.statut === "preparation") {
       // Adversaire vu, gouvernement pas encore choisi : la partie compte comme perdue (pas de nouveau tirage gratuit)
-      await lot(env, [env.DB.prepare("UPDATE parties SET statut = 'fini', gagnant = ?, maj = ? WHERE id = ? AND statut = 'preparation'").bind(d.b || -1, date, id),
-                      env.DB.prepare("UPDATE joueurs SET serie_gouv = 0 WHERE id = ?").bind(joueur)]);
+      const cat = await lireCatalogue(env, ORIGINE_INTERNE);
+      await appliquer(env, joueur, e => Regles.issueSerieGouv(e, cat, "perdu", Regles.jourDuJeu(), aleatoire), [
+        env.DB.prepare("INSERT INTO clotures (nature, id) VALUES ('partie-finie', ?)").bind(id),
+        env.DB.prepare("UPDATE parties SET statut = 'fini', gagnant = ?, maj = ? WHERE id = ?").bind(d.b || -1, date, id)]);
       return json({ok: true});
     }
     return json({resultat: await clorePartie(env, d, {forfait: d.a === joueur ? 1 : 2})});
@@ -1358,36 +1361,30 @@ async function jouerPartie(env, requete, joueur, id, url) {
 }
 // Clôture : une fois (clôture « partie-finie ») ; série et gains contre l'ordinateur ou un joueur au hasard, mises entre amis.
 // `forfait` : camp (1 ou 2) qui abandonne ; `expire` : délai passé, la manche jouée d'un seul côté lui revient
-async function clorePartie(env, d, {fiches = null, forfait = 0, expire = false, url = null} = {}) {
+async function clorePartie(env, d, {fiches = null, forfait = 0, expire = false} = {}) {
   const p = partieDe(d);
-  let gagnant;
-  if (forfait) gagnant = forfait === 1 ? 2 : 1;
-  else gagnant = Gouvernement.resoudre(p, fiches, {expire}).gagnant;
+  const gagnant = forfait ? (forfait === 1 ? 2 : 1) : Gouvernement.resoudre(p, fiches, {expire}).gagnant;
   const gagnantId = gagnant === 1 ? d.a : gagnant === 2 ? (d.b || -1) : 0, date = maintenant();
-  const ecritures = [
+  const cloture = [
     env.DB.prepare("INSERT INTO clotures (nature, id) VALUES ('partie-finie', ?)").bind(d.id),
     env.DB.prepare("UPDATE parties SET statut = 'fini', gagnant = ?, maj = ? WHERE id = ?").bind(gagnantId, date, d.id),
   ];
-  let gain = null;
-  if (d.mode === "ami") {
-    const credit = (id, fois) => env.DB.prepare("UPDATE joueurs SET points = points + ?, offerts = offerts + ? WHERE id = ?").bind(d.mise_voix * fois, d.mise_paquets * fois, id);
-    ecritures.push(...(gagnant ? [credit(gagnantId, 2)] : [credit(d.a, 1), credit(d.b, 1)]));
-  } else {
-    const j = await env.DB.prepare("SELECT serie_gouv, gains_gouv FROM joueurs WHERE id = ?").bind(d.a).first();
-    const issue = gagnant === 1 ? "gagne" : gagnant === 2 ? "perdu" : "egalite";
-    const s = Gouvernement.progresserSerie(j.serie_gouv, issue), jour = Regles.jourDuJeu();
-    const [jg, ng] = String(j.gains_gouv || "").split("|"), deja = jg === jour ? Number(ng) || 0 : 0;
-    gain = s.gain && deja < GAINS_GOUV_JOUR ? s.gain : null;
-    ecritures.push(env.DB.prepare("UPDATE joueurs SET serie_gouv = ?, points = points + ?, offerts = offerts + ?, gains_gouv = ? WHERE id = ?")
-      .bind(s.serie, gain?.voix || 0, gain?.paquets || 0, gain ? `${jour}|${deja + 1}` : j.gains_gouv, d.a));
-    gain = {serie: s.serie, gain, plafond: !!s.gain && !gain};
-  }
-  try { await env.DB.batch(ecritures); } catch (e) { if (contrainte(e)) return null; throw e; }
+  let serie = null;
+  try {
+    if (d.mode === "ami") {
+      const credit = (id, fois) => env.DB.prepare("UPDATE joueurs SET points = points + ?, offerts = offerts + ? WHERE id = ?").bind(d.mise_voix * fois, d.mise_paquets * fois, id);
+      await lot(env, [...cloture, ...(gagnant ? [credit(gagnantId, 2)] : [credit(d.a, 1), credit(d.b, 1)])]);
+    } else {
+      // Série du joueur (règles : issueSerieGouv), écrite dans le même lot que la clôture de la partie
+      const issue = gagnant === 1 ? "gagne" : gagnant === 2 ? "perdu" : "egalite", cat = await lireCatalogue(env, ORIGINE_INTERNE);
+      serie = await appliquer(env, d.a, e => Regles.issueSerieGouv(e, cat, issue, Regles.jourDuJeu(), aleatoire), cloture);
+    }
+  } catch (e) { if (e instanceof Refus && e.statut === 409) return null; throw e; }
   if (d.mode === "hasard" && d.b) {
     const nom = lireJson(d.camp_b, {}).nom || "Votre gouvernement";
     await notifier(env, d.b, `« ${nom} » ${gagnant === 2 ? "a battu" : gagnant === 1 ? "a été battu par" : "a fait match nul contre"} ${await pseudoDe(env, d.a)} au jeu du Gouvernement.`);
   }
-  return {gagnant, ...(gain || {})};
+  return {gagnant, serie};
 }
 // Ce que voit le joueur : la partie (règles : vuePartie), le mode, l'adversaire, la mise ; avant le choix du gouvernement,
 // les thèmes annoncés et le gouvernement adverse s'il est connu
@@ -1544,6 +1541,19 @@ async function api(requete, env, url) {
   if (methode === "GET" && chemin === "/api/gouvernements") return listeGouvernements(env, joueur);
   if (methode === "POST" && chemin === "/api/gouvernements") return enregistrerGouvernement(env, requete, joueur, url);
   if (methode === "GET" && chemin === "/api/parties") return listeParties(env, joueur);
+  // Série : encaisser la récompense du palier atteint, puis choisir la carte proposée
+  if (methode === "POST" && chemin === "/api/gouvernements/encaisser") {
+    const cat = await catalogueDuJeu();
+    const gain = await appliquer(env, joueur, e => Regles.encaisserSerieGouv(e, cat, Regles.jourDuJeu(), aleatoire));
+    if (!gain) throw new Refus(409, `Rien à encaisser, ou déjà ${Regles.ENCAISSEMENTS_JOUR} séries encaissées aujourd'hui.`);
+    return avecEtat(gain);
+  }
+  if (methode === "POST" && chemin === "/api/gouvernements/lot") {
+    const c = await lireCorps(requete), cat = await catalogueDuJeu();
+    const r = await appliquer(env, joueur, e => Regles.choisirLotGouv(e, cat, String(c.carte || "")));
+    if (!r) throw new Refus(409, "Cette carte ne fait pas partie des cartes proposées.");
+    return avecEtat(r);
+  }
   if (methode === "POST" && chemin === "/api/parties") return nouvellePartie(env, requete, joueur, url);
   let m;
   if (methode === "POST" && (m = chemin.match(/^\/api\/gouvernements\/(\d+)\/supprimer$/))) return supprimerGouvernement(env, joueur, Number(m[1]));

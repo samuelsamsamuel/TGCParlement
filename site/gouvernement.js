@@ -22,7 +22,7 @@
   function fichesDeJeu(data) {
     const fiches = new Map();
     for (const [id, f] of Object.entries(data.fiches)) fiches.set(id, ficheDe(id, f));
-    return {themes: data.themes, fiches};
+    return {themes: data.themes, fiches, groupes: data.groupes || [], departements: data.departements || []};
   }
   // Paquet des fiches du serveur (site/fiches/pNNN.json) : empreinte FNV-1a de l'identifiant, modulo PAQUETS_FICHES
   const PAQUETS_FICHES = 256;
@@ -38,18 +38,22 @@
   }
 
   // Liens de chaque ministre (+1 chacun, LIENS_MAX au plus) : même département qu'un autre membre, même groupe que le
-  // chef, a siégé dans un même gouvernement réel qu'un autre membre, a servi sous le chef
+  // chef, a siégé dans un même gouvernement réel qu'un autre membre, a servi sous le chef. `avec` : qui crée le lien
+  // (pour l'affichage : département commun et membre concerné)
   function liens(chef, ministres) {
     const membres = [chef, ...ministres];
     return ministres.map(m => {
       const autres = membres.filter(x => x !== m);
+      const dep = autres.find(x => x.deps.some(d => m.deps.includes(d)));
+      const ensemble = m.gouv.length ? autres.find(x => chevauche(m.gouv, x.gouv)) : null;
       const detail = {
-        departement: autres.some(x => x.deps.some(d => m.deps.includes(d))),
+        departement: !!dep,
         groupe: m.groupe >= 0 && m.groupe === chef.groupe,
-        solidarite: m.gouv.length > 0 && autres.some(x => chevauche(m.gouv, x.gouv)),
+        solidarite: !!ensemble,
         sousLeChef: m.gouv.length > 0 && chef.chefs.length > 0 && chevauche(m.gouv, chef.chefs),
       };
-      return {detail, total: Math.min(api.LIENS_MAX, Object.values(detail).filter(Boolean).length)};
+      const avec = {departement: dep ? {id: dep.id, dep: m.deps.find(d => dep.deps.includes(d))} : null, solidarite: ensemble ? ensemble.id : null};
+      return {detail, avec, total: Math.min(api.LIENS_MAX, Object.values(detail).filter(Boolean).length)};
     });
   }
 
@@ -229,21 +233,10 @@
     return null;
   }
 
-  /* ---------- Série (contre l'ordinateur ou un joueur au hasard) ---------- */
-  // Une victoire fait monter d'un palier (5 au plus) et paie le gain du palier atteint ; une défaite ramène à 0 ; un nul
-  // ne change rien. Au palier 5, chaque victoire rapporte un paquet tant que la série tient.
-  const GAINS_SERIE = [{voix: 5}, {voix: 10}, {voix: 15}, {voix: 20}, {paquets: 1}];
-  function progresserSerie(serie, issue) {
-    if (issue === "perdu") return {serie: 0, gain: null};
-    if (issue !== "gagne") return {serie, gain: null};
-    const s = Math.min(GAINS_SERIE.length, serie + 1);
-    return {serie: s, gain: GAINS_SERIE[s - 1]};
-  }
-
   // Réglages lus à l'appel (la simulation les fait varier)
-  const api = {ETOILE, PLAFOND_STATURE, LIENS_MAX, MINISTRES, ANNONCES, MANCHES, VICTOIRE, GAINS_SERIE, fichesDeJeu, liens, force,
+  const api = {ETOILE, PLAFOND_STATURE, LIENS_MAX, MINISTRES, ANNONCES, MANCHES, VICTOIRE, fichesDeJeu, liens, force, chevauche,
                verifierGouvernement, jugerManche, hasard, annoncesDePartie, resoudre, jouerCoup, vuePartie, choixOrdinateur,
-               valeur, composer, composerVite, gouvernementsReels, gouvernementOrdinateur, progresserSerie, ficheDe, paquetDeFiche,
+               valeur, composer, composerVite, gouvernementsReels, gouvernementOrdinateur, ficheDe, paquetDeFiche,
                PAQUETS_FICHES};
   return api;
 });
