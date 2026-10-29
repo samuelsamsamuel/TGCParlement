@@ -866,6 +866,7 @@ function sauver(){ if (!compte) depot.sauver(etat); }
 // Sans compte, les actions s'exécutent ici avec les règles ; avec un compte, le serveur les exécute
 // (mêmes règles, site/regles.js) et renvoie l'état à jour, qui remplace l'état affiché.
 let compte = null, serveur = false;
+let decouverte = false;   // paquet en cours de découverte, du déchirement au récapitulatif
 async function appel(chemin, corps){
   const options = corps === undefined ? {credentials: "same-origin"}
     : {method: "POST", credentials: "same-origin", headers: {"content-type": "application/json", "x-hemicycle": "1"}, body: JSON.stringify(corps)};
@@ -1023,13 +1024,16 @@ function majCompteur(){
   const infos = [];
   if (d.echangeables) infos.push(`<span>Vos voix permettent d'échanger <b>${pluriel(d.echangeables, "paquet")}</b></span>`);
   document.getElementById("voix-nombre").textContent = etat.points.toLocaleString("fr-FR");
+  // Pendant la découverte d'un paquet, l'ordre du jour (rappel et pastille) attend le récapitulatif : rien ne dévoile
+  // dès la première carte ce que la dernière va débloquer
+  if (decouverte) return;
   const attente = cat ? Regles.recompensesEnAttente(etat, cat) : {objectifs: 0};
   if (attente.objectifs) infos.push(`<span><b>${gainTexte(attente)}</b> à réclamer à l'ordre du jour</span>`);
   document.getElementById("reserve").innerHTML = infos.join("");
   const pastille = document.getElementById("pastille"), jour = cat ? aReclamerDuJour() : 0;
   pastille.hidden = !(attente.objectifs + jour); pastille.textContent = attente.objectifs + jour;
 }
-function majTout(){ majCompteur(); majCollection(); majJournee(); majObjectifs(); majCompte(); majBuvette(); majAmis(); majQag(); }
+function majTout(){ majCompteur(); majCollection(); if (!decouverte) { majJournee(); majObjectifs(); } majCompte(); majBuvette(); majAmis(); majQag(); }
 // Délai lisible : « 42 min », « 1 h 05 »
 function delai(ms){ const m = Math.max(1, Math.ceil(ms / 60000)); return m < 60 ? m + " min" : Math.floor(m / 60) + " h " + String(m % 60).padStart(2, "0"); }
 // Pastilles des onglets : échanges reçus (Buvette), demandes d'ami (Amis) et duels à jouer (Duels), relues toutes les deux minutes
@@ -1054,10 +1058,13 @@ setInterval(() => {
   const scene = document.getElementById("scene");
   if (Regles.paquetsDisponibles(etat).total > 0 && !scene.querySelector("#paquet, #courante, .recap")) afficherPaquet();
 }, 30000);
-function afficherPaquet(){
+// Un paquet en cours (déchiré ou carte affichée) n'est jamais remplacé, sauf par ses propres boutons (force) : réclamer
+// un objectif ou dissoudre ailleurs pendant l'ouverture ne le fait plus disparaître ; le récapitulatif, lui, peut céder la place
+function afficherPaquet(force = false){
   majCompteur();
-  document.getElementById("qag").hidden = false;
   const scene = document.getElementById("scene");
+  if (!force && scene.querySelector("#courante, #paquet.ouvert")) return;
+  document.getElementById("qag").hidden = false;
   const d = Regles.paquetsDisponibles(etat);
   scene.classList.toggle("vide", d.total <= 0);
   document.getElementById("qag").classList.toggle("serre", d.total <= 0);
@@ -1084,6 +1091,7 @@ async function ouvrir(){
   const p = document.getElementById("paquet");
   const r = await occupe(p, () => actions.ouvrir());
   if (!r) { majCompteur(); return; }
+  decouverte = true;
   document.getElementById("qag").hidden = true;
   precharger(r.tirage);
   majTout();
@@ -1096,10 +1104,11 @@ function reduit(){ return matchMedia("(prefers-reduced-motion: reduce)").matches
 function montrer(tirage, neuves, i, vues = new Set()){
   const scene = document.getElementById("scene");
   if (i >= tirage.length) {
+    if (decouverte) { decouverte = false; majCompteur(); majJournee(); majObjectifs(); }
     scene.innerHTML = `<div class="grille recap">${tirage.map(c => htmlCarte(c,{neuve:neuves.has(c.id)})).join("")}</div>
       <div class="actions petites">${Regles.paquetsDisponibles(etat).total>0?'<button class="bouton" id="suivant">Ouvrir un autre paquet</button>':'<button class="bouton" id="revenir">Revenir en séance</button><button class="bouton discret" id="voir">Voir mon hémicycle</button>'}</div>`;
-    document.getElementById("suivant")?.addEventListener("click", () => { afficherPaquet(); recentrer(); });
-    document.getElementById("revenir")?.addEventListener("click", () => { afficherPaquet(); window.scrollTo({top: 0, behavior: reduit() ? "auto" : "smooth"}); });
+    document.getElementById("suivant")?.addEventListener("click", () => { afficherPaquet(true); recentrer(); });
+    document.getElementById("revenir")?.addEventListener("click", () => { afficherPaquet(true); window.scrollTo({top: 0, behavior: reduit() ? "auto" : "smooth"}); });
     document.getElementById("voir")?.addEventListener("click", () => allerA("collection"));
     paquetTermine();
     return;
@@ -1742,7 +1751,7 @@ function majCompte(){
     bouton.disabled = true; bouton.textContent = "Vérification…";
     etirer(pseudo, mdp).then(preuve => appel(ongletCompte, {pseudo, preuve,
       ...(ongletCompte === "inscription" && f.reprise?.checked ? {collection: depot.charger().possedees, voix: depot.charger().points} : {})}))
-      .then(() => { majTout(); afficherPaquet(); majAttente(); chargerDuels(); chargerAmis(); chargerAlertes(); signaler(ongletCompte === "inscription" ? "Compte créé. Bienvenue dans l'hémicycle !" : "Vous êtes connecté."); apresCompteAccueil(); })
+      .then(() => { majTout(); afficherPaquet(true); majAttente(); chargerDuels(); chargerAmis(); chargerAlertes(); signaler(ongletCompte === "inscription" ? "Compte créé. Bienvenue dans l'hémicycle !" : "Vous êtes connecté."); apresCompteAccueil(); })
       .catch(x => { erreur.textContent = x.message; bouton.disabled = false; bouton.textContent = ongletCompte==="inscription" ? "Créer le compte" : "Se connecter"; });
   });
 }
@@ -2153,7 +2162,7 @@ document.getElementById("vue-parametres").addEventListener("click", e => {
   if (e.target.closest("[data-menu-vue]")) { allerA(e.target.closest("[data-menu-vue]").dataset.menuVue); return; }
   if (e.target.id === "deconnexion") occupe(e.target, async () => {
     await desactiverNotifications().catch(() => {});
-    await appel("deconnexion", {}); compte = null; duels = []; amis = {amis: [], recues: [], envoyees: []}; etat = depot.charger(); majTout(); majAttente(); afficherPaquet(); majParametres(); signaler("Vous êtes déconnecté.");
+    await appel("deconnexion", {}); compte = null; duels = []; amis = {amis: [], recues: [], envoyees: []}; etat = depot.charger(); majTout(); majAttente(); afficherPaquet(true); majParametres(); signaler("Vous êtes déconnecté.");
   });
 });
 document.getElementById("vue-parametres").addEventListener("change", e => {
@@ -2195,7 +2204,7 @@ document.getElementById("vue-parametres").addEventListener("submit", e => {
       const preuve = await etirer(compte.pseudo, e.target.mdp.value);
       await desactiverNotifications().catch(() => {});
       await appel("supprimer-compte", {preuve});
-      compte = null; amis = {amis: [], recues: [], envoyees: []}; etat = depot.charger(); majTout(); afficherPaquet(); majAttente(); majParametres(); signaler("Votre compte a été supprimé.");
+      compte = null; amis = {amis: [], recues: [], envoyees: []}; etat = depot.charger(); majTout(); afficherPaquet(true); majAttente(); majParametres(); signaler("Votre compte a été supprimé.");
     });
   }
 });
