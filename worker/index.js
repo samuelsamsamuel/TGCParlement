@@ -217,6 +217,11 @@ const COLONNES = {
 const MIGRATIONS = {
   // Les exemplaires repris du navigateur ne sont plus verrouillés (vente et échange permis)
   "importes-liberes": "UPDATE possessions SET importes = 0 WHERE importes > 0",
+  // Comptes qui ont formé un gouvernement avant la colonne gouv_formes (octobre 2026) : marqués comme l'ayant fait, pour que
+  // supprimer leur dernier gouvernement ne rende pas le suivant gratuit (gouvernement encore enregistré, ou partie jouée
+  // avec un gouvernement)
+  "gouv-formes-anciens": `UPDATE joueurs SET gouv_formes = 1 WHERE gouv_formes = 0 AND (id IN (SELECT joueur FROM gouvernements)
+    OR id IN (SELECT a FROM parties WHERE camp_a IS NOT NULL) OR id IN (SELECT b FROM parties WHERE mode = 'ami' AND camp_b IS NOT NULL))`,
 };
 async function migrationsUniques(env) {
   const faites = new Set((await env.DB.prepare("SELECT cle FROM reglages").all()).results.map(x => x.cle));
@@ -248,11 +253,12 @@ async function leverPlafondStock(env) {
 async function preparerBase(env) {
   schemaPret ||= (async () => {
     await env.DB.batch(SCHEMA.map(sql => env.DB.prepare(sql)));
-    await migrationsUniques(env);
+    // Colonnes d'abord : une migration peut s'en servir (gouv-formes-anciens)
     for (const [table, colonnes] of Object.entries(COLONNES)) {
       const existantes = new Set((await env.DB.prepare(`PRAGMA table_info(${table})`).all()).results.map(c => c.name));
       for (const [nom, def] of colonnes) if (!existantes.has(nom)) await env.DB.prepare(`ALTER TABLE ${table} ADD COLUMN ${nom} ${def}`).run();
     }
+    await migrationsUniques(env);
     await leverPlafondStock(env);
   })().catch(e => { schemaPret = null; throw e; });
   return schemaPret;

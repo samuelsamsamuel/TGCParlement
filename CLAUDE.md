@@ -384,7 +384,9 @@ serveur), filtre « Mes favoris » dans l'Hémicycle. Pas de zoom au double touc
    l'utilisateur : principe, former son gouvernement et limite de stature, deux qualités d'une carte, liens (quatre cas), force
    (formule, même ministre sur deux thèmes), une manche (trois ministres), la partie (frise), le 49.3, la série ; lisible sur
    téléphone) ; « Premier ministre » partout dans l'interface (« chef » seulement dans le code) ; premier gouvernement offert,
-   les suivants à 10 voix même après suppression de tous (`prixGouvernement`, colonne `gouv_formes`, garde de concurrence), ouvert de lui-même
+   les suivants à 10 voix même après suppression de tous (`prixGouvernement`, colonne `gouv_formes`, garde de concurrence ; migration unique
+   `gouv-formes-anciens` pour les comptes d'avant la colonne, sans quoi supprimer leur dernier gouvernement rendait le
+   suivant gratuit ; les colonnes sont désormais ajoutées avant les migrations), ouvert de lui-même
    à la première visite puis par « Comment jouer ? » (demande de l'utilisateur : règles beaucoup plus claires) ; échelle de la
    série (`echelleSerie`) aussi sur la page de résultat, paliers dépassés grisés, palier atteint en or, prochain en pointillé ;
    récapitulatif des manches en tableau (`recapManches` : thème, ministres face à face, forces, résultat, 49.3 signalé) ;
