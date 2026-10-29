@@ -24,7 +24,13 @@ const T = process.argv[2] || require("os").tmpdir();
   await page.click("#voix-tete"); assert.ok(await page.isVisible("#encart-voix"));
   await page.click("h1"); assert.ok(!(await page.isVisible("#encart-voix")));
   // Ouvrir le dernier paquet du jour et aller au récapitulatif
+  const pastilleAvant = await page.evaluate(() => [document.getElementById("pastille").hidden, document.getElementById("pastille").textContent]);
   await page.click("#paquet"); await page.waitForSelector("#suite");
+  // Pendant la découverte, l'ordre du jour ne bouge pas ; aller le voir puis revenir ne fait pas disparaître le paquet,
+  // même si la séance est redemandée (réclamation d'un objectif)
+  assert.deepStrictEqual(await page.evaluate(() => [document.getElementById("pastille").hidden, document.getElementById("pastille").textContent]), pastilleAvant);
+  await page.click('nav [data-vue="objectifs"]'); await page.evaluate(() => afficherPaquet());
+  await page.click('nav [data-vue="paquet"]'); await page.waitForSelector("#courante");
   assert.strictEqual(await page.locator("#envers").count(), 0, "plus de bouton Verso");
   // Toucher la carte la retourne ; l'étoile la met en favori sans la retourner
   await page.waitForSelector("#courante.retournee");
@@ -39,6 +45,7 @@ const T = process.argv[2] || require("os").tmpdir();
   assert.ok(avantEnvers && !(await page.isVisible("#qag")), "questions masquées pendant la découverte");
   for (let i = 0; i < 5; i++) await page.click("#suite");
   await page.waitForSelector(".recap");
+  assert.ok(!(await page.evaluate(() => decouverte)), "ordre du jour mis à jour au récapitulatif");
   assert.strictEqual(await page.locator("#revoir").count(), 0);
   const etat = await page.evaluate(() => JSON.parse(localStorage.getItem("hemicycle-collection")));
   assert.strictEqual(etat.version, 3); assert.strictEqual(etat.reserve, 9); assert.strictEqual(etat.possedees["2922"] >= 3, true);

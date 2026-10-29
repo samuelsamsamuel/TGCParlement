@@ -204,7 +204,11 @@ quota et risquerait l'effacement des données du site, collection locale compris
 (vitrine, vente, lots d'un échange) : fenêtre `choisirCarte` en miniatures, favoris d'abord ; à la vente, toute la
 collection y figure, les cartes verrouillées grisées avec leur raison. Buvette et Ordre du jour allégés : pas de
 paragraphes d'introduction, historique et objectifs déjà reçus repliés. Pendant la découverte d'un
-paquet et son récapitulatif, les questions au Gouvernement sont masquées.
+paquet et son récapitulatif, les questions au Gouvernement sont masquées. Pendant la découverte (`decouverte`, du
+déchirement au récapitulatif), l'ordre du jour, sa pastille et le rappel de la séance restent figés : rien ne dévoile dès la
+première carte ce que la dernière débloque ; un paquet déchiré ou une carte affichée n'est jamais remplacé par
+`afficherPaquet()` appelé ailleurs (réclamation, dissolution), seulement par ses boutons (`afficherPaquet(true)`) (demande de
+l'utilisateur, octobre 2026 : le paquet disparaissait après un passage par l'ordre du jour).
 Classement des joueurs retiré à la demande de l'utilisateur. Dissoudre des doubles (recyclage) rapporte des voix, la
 monnaie du jeu (« acheter des voix est parfaitement réglementaire ») ; à la buvette, les joueurs échangent
 des cartes et se les vendent au comptoir. Pas plus de termes : compte, connexion et échanges gardent des mots
