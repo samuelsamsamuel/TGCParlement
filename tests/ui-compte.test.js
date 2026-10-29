@@ -366,6 +366,11 @@ const sx = Date.now().toString(36).slice(-4);
   await A.fill('#form-compte [name=pseudo]', "anne" + sx);
   await A.fill('#form-compte [name=mdp]', "nouveau-motdepasse");
   await A.click('#form-compte button[type=submit]'); await A.waitForSelector("#compte-principal .chiffres", {timeout: 20000});
+  // Nouvelle version en ligne (x-version changée) : la page se recharge au changement d'onglet et ouvre l'onglet demandé
+  assert.ok(await A.evaluate(() => versionPage && !versionNouvelle), "version du serveur notée au chargement");
+  await A.evaluate(() => noterVersion(new Response("{}", {headers: {"x-version": "deploiement-suivant"}})));
+  await Promise.all([A.waitForEvent("load"), vers(A, "buvette")]);
+  await A.waitForFunction(() => compte && vueCourante === "buvette" && !versionNouvelle);
   const deborde = await Bp.evaluate(() => document.documentElement.scrollWidth > innerWidth);
   assert.ok(!deborde, "défilement horizontal sur téléphone");
   assert.deepStrictEqual(erreurs, []);

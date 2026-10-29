@@ -24,6 +24,10 @@ const preuve = c => require("crypto").createHash("sha256").update(c).digest("hex
   const A = client(), Bc = client(), C = client();
   // Inscription avec reprise : deux exemplaires d'une commune, un Quatre-vingts
   const com = cat.parRarete.commune[0].id, qv = cat.objectifParId["quatre-vingts"].ids[0];
+  // Version du déploiement dans chaque réponse (rechargement des pages ouvertes avant un déploiement)
+  const v = await fetch("http://localhost:8787/api/version");
+  assert.ok(v.headers.get("x-version")); assert.strictEqual((await v.json()).version, v.headers.get("x-version"));
+  assert.strictEqual((await fetch("http://localhost:8787/api/moi")).headers.get("x-version"), v.headers.get("x-version"));
   let r = await A("inscription", {pseudo: "alice" + suffixe, preuve: preuve("a"), collection: {[com]: 2, [qv]: 1, "inconnue": 5}}, {"cf-connecting-ip": "10.0.0." + (++ip)});
   assert.strictEqual(r.statut, 201, JSON.stringify(r.d));
   assert.deepStrictEqual(r.d.etat.possedees, {[com]: 2, [qv]: 1});

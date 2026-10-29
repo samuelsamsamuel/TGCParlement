@@ -1112,6 +1112,7 @@ async function appel(chemin, corps){
     : {method: "POST", credentials: "same-origin", headers: {"content-type": "application/json", "x-hemicycle": "1"}, body: JSON.stringify(corps)};
   let r;
   try { r = await fetch("/api/" + chemin, options); } catch (_) { throw new Error("Le serveur ne répond pas. Vérifiez votre connexion."); }
+  noterVersion(r);
   const d = await r.json().catch(() => null);
   if (!d) throw new Error("Le serveur n'est pas disponible pour l'instant.");
   if (!r.ok) throw new Error(d.erreur || "Erreur " + r.status);
@@ -3585,6 +3586,7 @@ let vueCourante = "paquet";
 // Vues du menu Plus, le profil toujours en tête ; Amis y passe quand l'onglet Gouvernement prend sa place
 const vuesPlus = () => document.documentElement.classList.contains("gouv-ouvert") ? ["compte", "amis", "duels", "catalogue", "apropos", "parametres"] : ["compte", "duels", "catalogue", "apropos", "parametres"];
 function allerA(vue){
+  if (rechargerSiNouvelle(vue)) return;
   const depuis = vueCourante;
   vueCourante = vue;
   document.getElementById("menu-plus").hidden = true;
@@ -3643,28 +3645,40 @@ fetch("jeu.json").then(r => { if (!r.ok) throw new Error(r.status); return r.jso
   ORDRE.slice().reverse().filter(r => parRarete[r]?.length).forEach(r => document.getElementById("cat-rarete").insertAdjacentHTML("beforeend", `<option value="${r}">${LIBELLES[r]}</option>`));
   ORDRE.slice().reverse().filter(r => parRarete[r]?.length).forEach(r => filtre.insertAdjacentHTML("beforeend", `<option value="${r}">${LIBELLES[r]}</option>`));
   // Session ouverte sur le serveur ? Sinon, mode navigateur. Sans serveur (site statique seul), le jeu reste local.
-  return fetch("/api/moi", {credentials: "same-origin"}).then(r => r.ok ? r.json() : null).catch(() => null).then(m => {
+  return fetch("/api/moi", {credentials: "same-origin"}).then(r => { noterVersion(r); return r.ok ? r.json() : null; }).catch(() => null).then(m => {
     serveur = !!(m && typeof m.connecte === "boolean"); compteConnu = true;
     if (m && m.connecte) { etat = Regles.migrer(m.etat); compte = {pseudo: m.pseudo, cree: m.cree, vitrine: m.vitrine || [], gouvernement: !!m.gouvernement}; }
     afficherPaquet(); majTout(); majAttente(); chargerDuels(); chargerAmis(); chargerAlertes(); demarrerAccueil();
+    // Onglet ouvert avant un rechargement pour nouvelle version : on y revient
+    let vue = null; try { vue = sessionStorage.getItem("hemicycle-vue"); sessionStorage.removeItem("hemicycle-vue"); } catch (_) {}
+    if (vue && vue !== "paquet" && document.getElementById("vue-" + vue) && (vue !== "gouvernement" || compte)) allerA(vue);
   });
 }).catch(e => { console.error(e); document.getElementById("restants").textContent = "Les cartes n'ont pas pu être chargées. Vérifiez que le fichier jeu.json est publié à côté de cette page, puis rechargez."; });
 // Application installable : le service de travail garde le site et les cartes pour les visites suivantes
 if ("serviceWorker" in navigator) navigator.serviceWorker.register("sw.js").catch(() => {});
-// Mise à jour : l'application installée reste en mémoire sans se recharger (iPhone surtout). Au retour au premier
-// plan, au plus toutes les dix minutes, la page en ligne est comparée à celle du démarrage ; si elle a changé,
-// rechargement, sauf pendant la découverte d'un paquet, la visite guidée ou une saisie
-const empreintePage = () => fetch("./", {cache: "no-store"}).then(r => r.ok ? r.text() : null)
-  .then(t => t && crypto.subtle.digest("SHA-256", new TextEncoder().encode(t))).then(h => h && [...new Uint8Array(h)].join(".")).catch(() => null);
-let empreinteDepart = null, dernierControle = Date.now();
-setTimeout(() => empreintePage().then(h => { empreinteDepart = h; }), 5000);
+// Nouvelle version en ligne (déploiement, données de la nuit) : chaque réponse de l'API porte la version du serveur
+// (x-version). La page retient celle de son chargement ; si le serveur en change, elle se recharge au premier moment
+// sûr : changement d'onglet ou retour au premier plan, jamais pendant la découverte d'un paquet, la visite guidée, une
+// fenêtre ouverte ou une saisie. Sans cela, une page restée ouverte faisait tourner l'ancien code face au nouveau
+// serveur (signalé par l'utilisateur, octobre 2026). Au retour au premier plan, la version est demandée (/api/version,
+// sans base), au plus une fois par minute.
+let versionPage = null, versionNouvelle = false, dernierControle = 0;
+function noterVersion(r){
+  const v = r && r.headers && r.headers.get("x-version"); if (!v) return;
+  if (!versionPage) versionPage = v; else if (v !== versionPage) versionNouvelle = true;
+}
+const momentSur = () => !(decouverte || document.getElementById("courante") || document.documentElement.classList.contains("presentation")
+  || document.querySelector("dialog[open]") || ["INPUT", "TEXTAREA", "SELECT"].includes(document.activeElement?.tagName));
+function rechargerSiNouvelle(vue){
+  if (!versionNouvelle || !momentSur()) return false;
+  try { sessionStorage.setItem("hemicycle-vue", vue || vueCourante); } catch (_) {}
+  location.reload(); return true;
+}
 document.addEventListener("visibilitychange", async () => {
-  if (document.hidden || !empreinteDepart || Date.now() - dernierControle < 600000) return;
+  if (document.hidden || Date.now() - dernierControle < 60000) return;
   dernierControle = Date.now();
-  const h = await empreintePage();
-  const enCours = document.getElementById("courante") || document.documentElement.classList.contains("presentation")
-    || document.querySelector("dialog[open]") || ["INPUT", "TEXTAREA", "SELECT"].includes(document.activeElement?.tagName);
-  if (h && h !== empreinteDepart && !enCours) location.reload();
+  noterVersion(await fetch("/api/version", {cache: "no-store"}).catch(() => null));
+  rechargerSiNouvelle();
 });
 </script>
 </body>
