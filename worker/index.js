@@ -1147,7 +1147,7 @@ async function expirerDuels(env) {
 // relance pas (une seule à la fois) : l'abandon vaut défaite. Contre un ami, mise comme aux duels, rendue sur un nul.
 // Accès réservé pendant la mise au point (demande de l'utilisateur, octobre 2026) : comptes de TESTEURS_GOUVERNEMENT,
 // ou tous les comptes avec la variable GOUVERNEMENT_OUVERT (serveur local des tests : wrangler dev --var GOUVERNEMENT_OUVERT:1)
-const TESTEURS_GOUVERNEMENT = ["samsam"];
+const TESTEURS_GOUVERNEMENT = ["samsam", "alh", "lgum", "youyougui-oh"];  // pseudos en minuscules
 const accesGouvernement = (env, pseudo) => !!env.GOUVERNEMENT_OUVERT || TESTEURS_GOUVERNEMENT.includes(String(pseudo || "").toLowerCase());
 const MAX_GOUVERNEMENTS = 5, PRIX_GOUVERNEMENT = 10, MAX_PARTIES_AMIS = 20;
 // Le premier gouvernement est offert (demande de l'utilisateur, octobre 2026) ; un compte qui a déjà formé un gouvernement,

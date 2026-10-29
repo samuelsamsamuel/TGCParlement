@@ -359,9 +359,13 @@ serveur), filtre « Mes favoris » dans l'Hémicycle. Pas de zoom au double touc
    trois étoiles contre vedette sans étoile 98 %, mythiques et légendaires composés contre collection sans légendaires 47 %,
    égalités après départage 0,9 % ; à 2 points, 90 % et 53 %. Retenu : 2 points par étoile (décision de l'utilisateur,
    octobre 2026 : le spécialiste reste favori, la vedette garde une chance avec ses liens et le 49.3).
-   Jeu (octobre 2026) : réservé pour l'instant au compte Samsam (demande de l'utilisateur ; `TESTEURS_GOUVERNEMENT` du
-   worker, ou `--var GOUVERNEMENT_OUVERT:1` pour tous, serveur local des tests ; onglet et entrée du menu Plus cachés aux
-   autres, `majAccesGouv`, champ `gouvernement` de l'état ; au-delà de 1 420 px seulement en onglets quand il est visible).
+   Jeu (octobre 2026) : réservé pour l'instant aux comptes Samsam, Alh, lgum et youyougui-oh (demande de l'utilisateur ;
+   `TESTEURS_GOUVERNEMENT` du worker, pseudos en minuscules, ou `--var GOUVERNEMENT_OUVERT:1` pour tous, serveur local des tests ;
+   champ `gouvernement` de l'état). Pour eux, l'onglet Gouvernement prend la place d'Amis, qui passe dans le menu Plus (classe
+   `gouv-ouvert` de `html`, `vuesPlus`, pastille d'amis sur Plus et sur l'entrée du menu ; accès retenu dans le navigateur,
+   `hemicycle-gouv`, pour placer les onglets dès le chargement, `majAccesGouv` n'agissant qu'une fois `/api/moi` lu) ; menu
+   Plus toujours ouvert par le profil (Mon siège) ; au-delà de 1 420 px, les vues de Plus en onglets. Mode clair vérifié
+   (fonds clairs, verts et rouges assombris).
    Tables `gouvernements` (cinq, 10 voix la création, recomposition gratuite, postes vacants si une carte quitte la
    collection) et `parties` (modes `ordi`, `hasard`, `ami` ; statuts `preparation`, `propose`, `en-cours`, `fini`, `refuse`,
    `annule`, `expire` ; camps figés au choix, coups [ministre, 49.3] jugés par `site/gouvernement.js`). Contre l'ordinateur :
