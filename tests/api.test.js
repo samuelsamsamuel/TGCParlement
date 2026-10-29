@@ -224,7 +224,7 @@ const preuve = c => require("crypto").createHash("sha256").update(c).digest("hex
     let gC; do gC = G.gouvernementOrdinateur(reels, annonces, alea, 0); while (gC.chef === gA.chef);
     const donner = (pseudo, g) => base(`INSERT INTO possessions (joueur, carte, n) SELECT j.id, CAST(c.value AS TEXT), 1 FROM joueurs j, json_each('${JSON.stringify([g.chef, ...g.ministres]).replace(/"/g, '\\"')}') c WHERE j.pseudo = '${pseudo}' ON CONFLICT (joueur, carte) DO UPDATE SET n = n + 1`);
     let g = (await A("gouvernements")).d;
-    assert.deepStrictEqual([g.gouvernements.length, g.serie.serie, g.prix, g.max], [0, 0, 10, 5]);
+    assert.deepStrictEqual([g.gouvernements.length, g.serie.serie, g.prix, g.max], [0, 0, 0, 5], "le premier gouvernement est offert");
     assert.strictEqual((await A("gouvernements", {nom: "Essai", ...gA})).statut, 409, "cartes hors de la collection");
     const vedettes = [...fiches.values()].filter(f => f.stature === 5).slice(0, 9).map(f => f.id);
     assert.strictEqual((await A("gouvernements", {chef: vedettes[0], ministres: vedettes.slice(1)})).statut, 400, "plafond de stature");
@@ -232,9 +232,18 @@ const preuve = c => require("crypto").createHash("sha256").update(c).digest("hex
     base(`UPDATE joueurs SET points = 100 WHERE pseudo IN ('alice${suffixe}', 'carole${suffixe}')`);
     r = await A("gouvernements", {nom: "Cabinet d'Alice", ...gA}); assert.strictEqual(r.statut, 201, JSON.stringify(r.d));
     const idGA = r.d.id;
-    assert.strictEqual(await voixDe(A), 90, "10 voix la création");
+    assert.strictEqual(await voixDe(A), 100, "le premier est offert");
     assert.strictEqual((await A("gouvernements", {id: idGA, nom: "Cabinet recomposé", ...gA})).statut, 200);
-    assert.strictEqual(await voixDe(A), 90, "recomposition gratuite");
+    assert.strictEqual(await voixDe(A), 100, "recomposition gratuite");
+    assert.strictEqual((await A("gouvernements")).d.prix, 10, "les suivants coûtent 10 voix");
+    // Un deuxième gouvernement coûte 10 voix ; même après avoir tout supprimé, le suivant n'est plus offert
+    r = await A("gouvernements", {nom: "Second", ...gA}); assert.strictEqual(r.statut, 201); assert.strictEqual(await voixDe(A), 90);
+    assert.strictEqual((await A(`gouvernements/${r.d.id}/supprimer`, {})).statut, 200);
+    assert.strictEqual((await A(`gouvernements/${idGA}/supprimer`, {})).statut, 200);
+    assert.strictEqual((await A("gouvernements")).d.prix, 10);
+    r = await A("gouvernements", {nom: "Cabinet recomposé", ...gA}); assert.strictEqual(await voixDe(A), 80);
+    const idGA2 = r.d.id;
+    base(`UPDATE joueurs SET points = 90 WHERE pseudo = 'alice${suffixe}'`);
     const idGC = (await C("gouvernements", {nom: "Cabinet de Carole", ...gC})).d.id;
     g = (await A("gouvernements")).d;
     assert.deepStrictEqual([g.gouvernements.length, g.gouvernements[0].nom, g.gouvernements[0].vacants], [1, "Cabinet recomposé", []]);
@@ -246,7 +255,7 @@ const preuve = c => require("crypto").createHash("sha256").update(c).digest("hex
     assert.deepStrictEqual([v.statut, v.annonces.length, v.moi, v.lui.ministres.length], ["preparation", 10, null, 8]);
     assert.strictEqual((await A("attente")).d.gouvernement, 1);
     assert.strictEqual((await A("parties/" + solo + "/coup", {ministre: 0})).statut, 409, "gouvernement d'abord");
-    v = (await A("parties/" + solo + "/gouvernement", {gouvernement: idGA})).d;
+    v = (await A("parties/" + solo + "/gouvernement", {gouvernement: idGA2})).d;
     assert.strictEqual(v.statut, "en-cours"); assert.ok(v.annonces.includes(v.theme)); assert.strictEqual(v.manches.length, 0);
     for (let i = 0; !v.fini; i++) {
       r = await A("parties/" + solo + "/coup", {ministre: i, avec493: i === 0});
@@ -270,10 +279,10 @@ const preuve = c => require("crypto").createHash("sha256").update(c).digest("hex
     const amie = r.d.id;
     assert.strictEqual(await voixDe(A), voixA - 10, "mise retenue");
     assert.strictEqual((await C("parties/" + amie + "/gouvernement", {gouvernement: idGC})).statut, 409, "le lanceur choisit d'abord");
-    assert.strictEqual((await A("parties/" + amie + "/gouvernement", {gouvernement: idGA})).d.statut, "propose");
+    assert.strictEqual((await A("parties/" + amie + "/gouvernement", {gouvernement: idGA2})).d.statut, "propose");
     assert.ok((await C("parties")).d.parties.find(x => x.id === amie).aRelever);
     v = (await C("parties/" + amie + "/gouvernement", {gouvernement: idGC})).d;
-    assert.strictEqual(v.statut, "en-cours"); assert.strictEqual(await voixDe(C), 80, "mise retenue à l'ami");
+    assert.strictEqual(v.statut, "en-cours"); assert.strictEqual(await voixDe(C), 90, "mise retenue à l'ami (son premier gouvernement était offert)");
     assert.deepStrictEqual(v.lui.ministres, gA.ministres, "gouvernement adverse visible");
     for (let i = 0; !v.fini; i++) {
       assert.strictEqual((await A("parties/" + amie + "/coup", {ministre: i})).statut, 200);
@@ -286,7 +295,7 @@ const preuve = c => require("crypto").createHash("sha256").update(c).digest("hex
     }
     const va = (await A("parties/" + amie)).d;
     assert.strictEqual(va.fini, true);
-    const attendues = va.issue === "gagne" ? [voixA + 10, 80] : va.issue === "perdu" ? [voixA - 10, 100] : [voixA, 90];
+    const attendues = va.issue === "gagne" ? [voixA + 10, 90] : va.issue === "perdu" ? [voixA - 10, 110] : [voixA, 100];
     assert.deepStrictEqual([await voixDe(A), await voixDe(C)], attendues, "le gagnant emporte les deux mises");
     // Contre un joueur tiré au hasard : un gouvernement enregistré par un autre ; abandon : défaite
     r = await C("parties", {mode: "hasard"}); assert.strictEqual(r.statut, 201, JSON.stringify(r.d));
@@ -304,7 +313,7 @@ const preuve = c => require("crypto").createHash("sha256").update(c).digest("hex
     assert.strictEqual(await voixDe(A), avantExp, "défi oublié remboursé");
     // Partie en cours au délai : close, la manche jouée d'un seul côté lui revient
     r = await A("parties", {mode: "ami", vers: "carole" + suffixe});
-    await A("parties/" + r.d.id + "/gouvernement", {gouvernement: idGA}); await C("parties/" + r.d.id + "/gouvernement", {gouvernement: idGC});
+    await A("parties/" + r.d.id + "/gouvernement", {gouvernement: idGA2}); await C("parties/" + r.d.id + "/gouvernement", {gouvernement: idGC});
     await A("parties/" + r.d.id + "/coup", {ministre: 0});
     base(`UPDATE parties SET maj = '2020-01-01T00:00:00.000Z' WHERE id = ${r.d.id}`);
     await fetch("http://localhost:8787/cdn-cgi/handler/scheduled");
@@ -314,7 +323,7 @@ const preuve = c => require("crypto").createHash("sha256").update(c).digest("hex
     base(`UPDATE possessions SET n = 0 WHERE carte = '${gA.ministres[0]}' AND joueur = (SELECT id FROM joueurs WHERE pseudo = 'alice${suffixe}')`);
     assert.deepStrictEqual((await A("gouvernements")).d.gouvernements[0].vacants, [gA.ministres[0]]);
     assert.strictEqual((await A("parties", {mode: "ordi"})).statut, 201);
-    assert.strictEqual((await A("parties/" + (await A("parties")).d.parties[0].id + "/gouvernement", {gouvernement: idGA})).statut, 409, "gouvernement incomplet");
+    assert.strictEqual((await A("parties/" + (await A("parties")).d.parties[0].id + "/gouvernement", {gouvernement: idGA2})).statut, 409, "gouvernement incomplet");
   }
   // Vitrine et profil : seulement des cartes de la collection
   const mienne = Object.keys((await A("moi")).d.etat.possedees)[0];

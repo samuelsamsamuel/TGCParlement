@@ -343,8 +343,8 @@ serveur), filtre « Mes favoris » dans l'Hémicycle. Pas de zoom au double touc
 ## Prochaines tâches
 
 0. Jeu du Gouvernement (décidé avec l'utilisateur, octobre 2026) : 50 thèmes (environ 36 politiques publiques et 14
-   territoires ; thèmes historiques écartés), dix annoncés, sept tirés ; gouvernement d'un chef et huit ministres (cinq
-   gouvernements enregistrés au plus, 10 voix chacun) ; force = stature (1 à 5, score, un point de moins sans mandat
+   territoires ; thèmes historiques écartés), dix annoncés, sept tirés ; gouvernement d'un Premier ministre (« chef » dans le code) et huit ministres
+   (cinq gouvernements enregistrés au plus, le premier offert, 10 voix les suivants) ; force = stature (1 à 5, score, un point de moins sans mandat
    parlementaire) + 2 par étoile de spécialité (3 à l'origine) (1 : cinq ans dans la commission liée ou élu de la région ; 2 : présidence
    de la commission ou secrétariat d'État ; 3 : ministre du domaine) + liens (même département, même groupe que le chef,
    même gouvernement réel, a servi sous le chef ; +1 chacun, +3 au plus) ; plafond de stature 24 ; gouvernement adverse
@@ -376,9 +376,11 @@ serveur), filtre « Mes favoris » dans l'Hémicycle. Pas de zoom au double touc
    continuer, la défaite fait tout perdre ; complète au palier 5, encaissée d'elle-même ; `ENCAISSEMENTS_JOUR` (3) par jour ;
    carte choisie dans le carrousel du lot (`choisirLotGouv`, `POST /api/gouvernements/lot`) ; état `quotidien.gouv`,
    écrit par `appliquer` dans le même lot que la clôture de la partie (`liees`). Interface refaite (demande de l'utilisateur) :
-   règles en tutoriel illustré de neuf écrans (fenêtre `tuto-gouv`, `ecransTuto` : principe, deux qualités d'une carte, la
-   force (formule et même ministre sur deux thèmes), une manche (trois ministres de forces différentes), la partie (frise de
-   manches), la limite de stature, les liens (quatre cas expliqués), le 49.3, la série ; lisible sur téléphone), ouvert de lui-même
+   règles en tutoriel illustré de neuf écrans, explication avant le dessin (fenêtre `tuto-gouv`, `ecransTuto`, ordre voulu par
+   l'utilisateur : principe, former son gouvernement et limite de stature, deux qualités d'une carte, liens (quatre cas), force
+   (formule, même ministre sur deux thèmes), une manche (trois ministres), la partie (frise), le 49.3, la série ; lisible sur
+   téléphone) ; « Premier ministre » partout dans l'interface (« chef » seulement dans le code) ; premier gouvernement offert,
+   les suivants à 10 voix même après suppression de tous (`prixGouvernement`, colonne `gouv_formes`, garde de concurrence), ouvert de lui-même
    à la première visite puis par « Comment jouer ? » (demande de l'utilisateur : règles beaucoup plus claires) ; échelle de la
    série (`echelleSerie`) aussi sur la page de résultat, paliers dépassés grisés, palier atteint en or, prochain en pointillé ;
    récapitulatif des manches en tableau (`recapManches` : thème, ministres face à face, forces, résultat, 49.3 signalé) ;

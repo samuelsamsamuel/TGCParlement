@@ -1836,9 +1836,9 @@ function pucesLiens(l){
   if (!l) return "";
   const p = [];
   if (l.detail.departement) p.push(`même département que ${echapper(nomG(l.avec.departement.id))} (${echapper(gouvJeu.departements[l.avec.departement.dep] || "")})`);
-  if (l.detail.groupe) p.push("même groupe que le chef");
+  if (l.detail.groupe) p.push("même parti que le Premier ministre");
   if (l.detail.solidarite) p.push(`a gouverné avec ${echapper(nomG(l.avec.solidarite))}`);
-  if (l.detail.sousLeChef) p.push("a servi sous ce chef");
+  if (l.detail.sousLeChef) p.push("a servi sous ce Premier ministre");
   return p.map(x => `<span class="puce lien"><b>+1</b> ${x}</span>`).join("") + (p.length > Gouvernement.LIENS_MAX ? `<span class="puce">bonus plafonné à +${Gouvernement.LIENS_MAX}</span>` : "");
 }
 const RECOMPENSES_COURTES = ["15 voix", "1 paquet", "1 carte rare ou mieux", "1 carte épique ou mieux + 1 paquet", "1 carte légendaire ou mieux + 2 paquets"];
@@ -1892,13 +1892,21 @@ function majGouvernement(){
 const mockCarte = (nom, stature, etoiles, theme, classe = "") => `<div class="mock ${classe}"><span class="stature-ex">${stature}</span><b>${nom}</b>${etoiles ? `<span class="puce etoiles">${theme} <i>${"★".repeat(etoiles)}</i></span>` : `<span class="puce">aucune étoile en ${theme}</span>`}</div>`;
 function ecransTuto(){
   const E = Gouvernement.ETOILE, P = Gouvernement.PLAFOND_STATURE, L = Gouvernement.LIENS_MAX;
-  const ligneForce = (nom, st, et, li, theme) => `<li><span>${nom}</span><span class="calc"><span class="stature-ex">${st}</span>${et ? ` + ${"★".repeat(et)} (${et * E})` : ""}${li ? ` + liens +${li}` : ""}</span><b>${st + et * E + li}</b></li>`;
+  const ligneForce = (nom, st, et, li) => `<li><span>${nom}</span><span class="calc"><span class="stature-ex">${st}</span>${et ? ` + ${"★".repeat(et)} (${et * E})` : ""}${li ? ` + liens +${li}` : ""}</span><b>${st + et * E + li}</b></li>`;
   return [
     {titre: "Le principe", texte: "Avec vos cartes, vous formez un gouvernement. Vous l'opposez à un autre gouvernement, thème par thème : Justice, Défense, Bretagne…",
      dessin: `<div class="tuto-equipes"><div><span>Vous</span><p>${"<i></i>".repeat(9)}</p></div><span class="puce etoiles">Justice</span><div><span>Adversaire</span><p>${"<i></i>".repeat(9)}</p></div></div>`},
+    {titre: "Former son gouvernement", texte: `Un Premier ministre et huit ministres, pris dans vos cartes. Le premier gouvernement est offert ; les suivants coûtent ${PRIX_GOUV_AFFICHE} voix. <b>Les huit ministres ne dépassent pas ${P} de stature à eux tous</b> : il faut mêler grandes figures et spécialistes. Le Premier ministre ne joue pas de manche : il sert au 49.3 et aux liens.`,
+     dessin: `<div class="tuto-somme">${[5, 5, 4, 3, 3, 2, 1, 1].map(n => `<span class="stature-ex">${n}</span>`).join("+")}<b>= ${P}</b></div>`},
     {titre: "Chaque carte a deux qualités", texte: `<b>Le chiffre rond, c'est la stature</b> : son poids politique, de 1 à 5. Elle compte sur tous les thèmes.<br><b>Les étoiles, ce sont ses compétences</b> : elles ne comptent que sur leur thème. Trois étoiles en Justice : ancien ministre de la Justice.`,
      dessin: mockCarte("Ancien garde des Sceaux", 3, 3, "Justice")},
-    {titre: "La force d'un ministre", texte: `C'est le nombre qui décide d'une manche. On l'obtient en additionnant <b>sa stature</b>, <b>${E} points par étoile sur le thème de la manche</b>, et <b>ses liens</b> avec le reste de l'équipe (voir plus loin). La force change donc d'un thème à l'autre.`,
+    {titre: "Les liens : jouer en équipe", texte: `Un ministre gagne <b>+1 sur toutes les manches</b> pour chacun de ces points communs avec son gouvernement, ${L} au plus. Ils s'affichent en vert quand vous composez votre équipe.`,
+     dessin: `<ul class="tuto-liens">
+       <li><b>+1</b><span><b>Même parti que le Premier ministre</b>Il siégeait dans le même groupe politique.</span></li>
+       <li><b>+1</b><span><b>A servi sous ce Premier ministre</b>Il a été ministre quand ce Premier ministre dirigeait le Gouvernement.</span></li>
+       <li><b>+1</b><span><b>A gouverné avec un coéquipier</b>Ils ont été ministres en même temps.</span></li>
+       <li><b>+1</b><span><b>Même département qu'un coéquipier</b>Ils ont été élus dans le même département.</span></li></ul>`},
+    {titre: "La force d'un ministre", texte: `C'est le nombre qui décide d'une manche. On additionne <b>sa stature</b>, <b>${E} points par étoile sur le thème de la manche</b> et <b>ses liens</b>. La force change donc d'un thème à l'autre.`,
      dessin: `<div class="tuto-force"><div class="formule"><span>Stature</span>+<span>${E} × étoiles du thème</span>+<span>liens</span>=<b>Force</b></div>
        <p class="note">Le même ministre (stature 3, Justice ★★★, liens +1) :</p>
        <ul class="forces-ex"><li><span>sur la Justice</span><span class="calc">3 + ${3 * E} + 1</span><b>${3 + 3 * E + 1}</b></li><li><span>sur la Défense</span><span class="calc">3 + 0 + 1</span><b>4</b></li></ul></div>`},
@@ -1908,26 +1916,19 @@ function ecransTuto(){
        <p class="tuto-verdict">Vous envoyez le garde des Sceaux (9), l'adversaire un ministre de force 7 : manche gagnée.</p></div>`},
     {titre: "La partie", texte: "Au début, <b>dix thèmes sont annoncés</b>. Ensuite, manche après manche, l'un d'eux est tiré au sort. <b>Chaque ministre ne joue qu'une seule manche</b> : gardez chaque spécialiste pour son thème. <b>Le premier à gagner quatre manches</b> remporte la partie (sept manches au plus).",
      dessin: `<ol class="tuto-frise">${[["Justice", "g"], ["Bretagne", "p"], ["Défense", "g"], ["Santé", "g"], ["Culture", "p"], ["Budget", "g"]].map(([t, r], i) => `<li class="${r}"><b>${i + 1}</b>${t}<em>${r === "g" ? "gagnée" : "perdue"}</em></li>`).join("")}</ol><p class="note centre">4 manches gagnées sur 6 : partie gagnée.</p>`},
-    {titre: "Former son gouvernement", texte: `Un chef et huit ministres. <b>Les huit ministres ne dépassent pas ${P} de stature à eux tous</b> : il faut mêler grandes figures et spécialistes. Le chef ne joue pas de manche : il sert au 49.3 et aux liens.`,
-     dessin: `<div class="tuto-somme">${[5, 5, 4, 3, 3, 2, 1, 1].map(n => `<span class="stature-ex">${n}</span>`).join("+")}<b>= ${P}</b></div>`},
-    {titre: "Les liens : jouer en équipe", texte: `Un ministre gagne <b>+1 de force sur toutes les manches</b> pour chacun de ces points communs avec son gouvernement, ${L} au plus. Ils s'affichent en vert quand vous composez votre équipe.`,
-     dessin: `<ul class="tuto-liens">
-       <li><b>+1</b><span><b>Même parti que le chef</b>Il siégeait dans le même groupe politique.</span></li>
-       <li><b>+1</b><span><b>A servi sous ce chef</b>Il a été ministre quand le chef dirigeait le Gouvernement.</span></li>
-       <li><b>+1</b><span><b>A gouverné avec un coéquipier</b>Ils ont été ministres en même temps.</span></li>
-       <li><b>+1</b><span><b>Même département qu'un coéquipier</b>Ils ont été élus dans le même département.</span></li></ul>`},
-    {titre: "Le 49.3", texte: "Une fois par partie, vous pouvez jouer le 49.3 en envoyant un ministre : <b>la stature de votre chef s'ajoute à sa force</b> pour cette manche. Gardez-le pour une manche serrée.",
-     dessin: `<div class="tuto-force"><ul class="forces-ex"><li><span>Votre ministre</span><span class="calc"></span><b>6</b></li><li><span>+ 49.3 (chef de stature 5)</span><span class="calc"></span><b>11</b></li></ul></div>`},
+    {titre: "Le 49.3", texte: "Une fois par partie, vous pouvez jouer le 49.3 en envoyant un ministre : <b>la stature de votre Premier ministre s'ajoute à sa force</b> pour cette manche. Gardez-le pour une manche serrée.",
+     dessin: `<div class="tuto-force"><ul class="forces-ex"><li><span>Votre ministre</span><span class="calc"></span><b>6</b></li><li><span>+ 49.3 (Premier ministre de stature 5)</span><span class="calc"></span><b>11</b></li></ul></div>`},
     {titre: "La série", texte: "Contre l'ordinateur ou un autre joueur, chaque victoire fait monter votre série d'une marche. Encaissez la récompense quand vous voulez, ou continuez pour viser plus haut : une défaite fait tout perdre.",
      dessin: `<div class="serie-gouv">${RECOMPENSES_COURTES.map((r, i) => `<span class="${i < 2 ? "passe" : i === 2 ? "courant" : ""}"><b>${i + 1}</b>${echapper(r)}</span>`).join("")}</div>`},
   ];
 }
+const PRIX_GOUV_AFFICHE = 10;
 let ecranTuto = 0;
 function montrerTuto(k = 0){
   const ecrans = ecransTuto(); ecranTuto = Math.max(0, Math.min(ecrans.length - 1, k));
   const e = ecrans[ecranTuto], dernier = ecranTuto === ecrans.length - 1;
   document.getElementById("tuto-contenu").innerHTML = `<span class="note">${ecranTuto + 1} sur ${ecrans.length}</span><h2>${e.titre}</h2>
-    <div class="tuto-dessin">${e.dessin}</div><p class="tuto-texte">${e.texte}</p>
+    <p class="tuto-texte">${e.texte}</p><div class="tuto-dessin">${e.dessin}</div>
     <div class="points-carrousel">${ecrans.map((_, i) => `<i class="${i === ecranTuto ? "actif" : ""}"></i>`).join("")}</div>
     <div class="tuto-boutons"><button class="bouton discret" data-tuto="${ecranTuto - 1}" ${ecranTuto ? "" : "hidden"}>Précédent</button>
       <button class="bouton" ${dernier ? "data-tuto-fin" : `data-tuto="${ecranTuto + 1}"`}>${dernier ? "C'est parti" : "Suivant"}</button></div>`;
@@ -1977,12 +1978,12 @@ function htmlAccueilGouv(){
     <div class="bloc-gouv"><h3>Mes gouvernements (${gouv.gouvernements.length} sur ${gouv.max})</h3>
     <ul class="cabinets">${gouv.gouvernements.map(g => {
       const stature = g.ministres.reduce((t, id) => t + (ficheG(id)?.stature || 0), 0);
-      return `<li class="cabinet${g.vacants.length ? " incomplet" : ""}"><div class="tete-cab"><b>${echapper(g.nom)}</b><span class="note">chef : ${echapper(nomG(g.chef))} · stature ${stature}/${Gouvernement.PLAFOND_STATURE}</span></div>
+      return `<li class="cabinet${g.vacants.length ? " incomplet" : ""}"><div class="tete-cab"><b>${echapper(g.nom)}</b><span class="note">Premier ministre : ${echapper(nomG(g.chef))} · stature ${stature}/${Gouvernement.PLAFOND_STATURE}</span></div>
         <div class="minis">${[g.chef, ...g.ministres].map(id => miniature(id)).join("")}</div>
         ${g.vacants.length ? `<span class="alerte-cab">${pluriel(g.vacants.length, "poste vacant", "postes vacants")} : une carte a quitté votre collection.</span>` : ""}
         <div class="gestes-ami"><button class="bouton discret" data-recomposer="${g.id}">Recomposer</button><button class="lien-carte" data-supprimer-gouv="${g.id}">Supprimer</button></div></li>`;
     }).join("")}</ul>
-    ${gouv.gouvernements.length < gouv.max ? `<button class="bouton" data-former>Former un gouvernement (${gouv.prix} voix)</button>` : ""}</div>
+    ${gouv.gouvernements.length < gouv.max ? `<button class="bouton" data-former>Former un gouvernement (${gouv.prix ? gouv.prix + " voix" : "offert"})</button>` : ""}</div>
     <details class="repli-gouv" data-repli="ami" ${replisOuverts.has("ami") ? "open" : ""}><summary>Défier un ami</summary>
     ${gouv.gouvernements.some(g => !g.vacants.length) ? `<form class="defier" id="form-gouv-ami"><p class="note">Vous voyez les dix thèmes avant de choisir votre gouvernement ; votre ami voit le vôtre avant de choisir le sien. Chacun joue ses manches quand il veut. Le gagnant emporte les deux mises.</p>
       ${amis.amis.length ? rangeeAmis("data-defier-gouv") : ""}
@@ -2007,7 +2008,7 @@ function htmlEdition(){
   };
   return `<h2 class="titre-gouv">${e.id ? "Recomposer" : "Former"} un gouvernement</h2>
     <form class="formulaire" id="form-edition"><label>Nom du gouvernement<input type="text" name="nom" maxlength="40" value="${echapper(e.nom)}" placeholder="Mon gouvernement"></label></form>
-    <p class="note">Choisissez un chef et huit ministres. Le chiffre rond est la stature ; les étoiles, les compétences par thème ; en vert, les liens qui donnent +1 en partie (${Gouvernement.LIENS_MAX} au plus par ministre).</p>
+    <p class="note">Choisissez un Premier ministre et huit ministres. Le chiffre rond est la stature ; les étoiles, les compétences par thème ; en vert, les liens qui donnent +1 en partie (${Gouvernement.LIENS_MAX} au plus par ministre).</p>
     <div class="jauge-ligne"><span>Stature des ministres : <b>${stature}</b> / ${plafond}</span><div class="jauge-stature${stature > plafond ? " depasse" : ""}"><i style="width:${Math.min(100, 100 * stature / plafond)}%"></i></div></div>
     ${pleins.length ? (() => {
       const couverts = new Map();
@@ -2015,11 +2016,11 @@ function htmlEdition(){
       const forts = [...couverts].filter(([, n]) => n >= 2).sort((a, b) => b[1] - a[1]).slice(0, 6).map(([t]) => nomTheme(t));
       return `<p class="note">Votre équipe a des étoiles sur <b>${couverts.size}</b> thèmes sur ${gouvJeu.themes.length}${forts.length ? ` ; points forts : ${echapper(forts.join(", "))}` : ""}.</p>`;
     })() : ""}
-    <h3>Chef du Gouvernement</h3><p class="note">Il ne joue pas de manche : sa stature sert au 49.3, son groupe et ses gouvernements créent des liens.</p>
-    <ul class="postes">${poste("Chef", e.chef, "chef")}</ul>
+    <h3>Premier ministre</h3><p class="note">Il ne joue pas de manche : sa stature sert au 49.3, son parti et ses gouvernements créent des liens.</p>
+    <ul class="postes">${poste("Premier ministre", e.chef, "chef")}</ul>
     <h3>Ministres (${pleins.length} sur ${Gouvernement.MINISTRES})</h3>
     <ul class="postes">${e.ministres.map((id, i) => poste("Ministre " + (i + 1), id, i)).join("")}</ul>
-    <div class="jouer-gouv"><button class="bouton" data-enregistrer ${!chef || pleins.length < Gouvernement.MINISTRES || stature > plafond ? "disabled" : ""}>${e.id ? "Enregistrer" : `Former ce gouvernement (${gouv.prix} voix)`}</button>
+    <div class="jouer-gouv"><button class="bouton" data-enregistrer ${!chef || pleins.length < Gouvernement.MINISTRES || stature > plafond ? "disabled" : ""}>${e.id ? "Enregistrer" : `Former ce gouvernement (${gouv.prix ? gouv.prix + " voix" : "offert"})`}</button>
       <button class="bouton discret" data-completer>Compléter pour moi</button></div>
     <p><button class="lien-carte" data-fermer-edition>Annuler</button></p>`;
 }
@@ -2037,8 +2038,8 @@ function choisirPoste(cle){
   });
   suggerer(cle, entrees, reste, vides);
   choixMinistre = {cle, entrees, max: 60};
-  document.getElementById("titre-ministre").textContent = cle === "chef" ? "Choisir le chef du Gouvernement" : "Choisir un ministre";
-  document.getElementById("note-ministre").textContent = cle === "chef" ? "La stature du chef compte au 49.3." : `Stature disponible pour ce poste : ${reste} au plus.`;
+  document.getElementById("titre-ministre").textContent = cle === "chef" ? "Choisir le Premier ministre" : "Choisir un ministre";
+  document.getElementById("note-ministre").textContent = cle === "chef" ? "La stature du Premier ministre compte au 49.3." : `Stature disponible pour ce poste : ${reste} au plus.`;
   const tri = document.getElementById("tri-ministre");
   tri.innerHTML = `<option value="suggestion">Suggestions</option><option value="stature">Par stature</option><option value="etoiles">Par compétences (étoiles)</option>`
     + gouvJeu.themes.map(([, nom], i) => `<option value="t${i}">Compétence : ${echapper(nom)}</option>`).join("");
@@ -2072,7 +2073,7 @@ function suggerer(cle, entrees, reste, vides){
     let liens = 0;
     if (chef) {
       const l = Gouvernement.liens(chef, [...equipe, f]).at(-1); liens = l.total;
-      const textes = [l.detail.sousLeChef && "a servi sous le chef", l.detail.groupe && "même parti que le chef", l.detail.solidarite && "a gouverné avec un coéquipier", l.detail.departement && "même département qu'un coéquipier"].filter(Boolean);
+      const textes = [l.detail.sousLeChef && "a servi sous le Premier ministre", l.detail.groupe && "même parti que le Premier ministre", l.detail.solidarite && "a gouverné avec un coéquipier", l.detail.departement && "même département qu'un coéquipier"].filter(Boolean);
       if (textes.length) raisons.push(`+${l.total} : ${textes.join(", ")}`);
     }
     const ecart = f.stature - cible;
@@ -2146,7 +2147,7 @@ function htmlPartie(){
     const valeur = c => Gouvernement.valeur(ficheG(c.chef), c.ministres.map(ficheG), p.annonces);
     return `<h2 class="titre-gouv">Contre ${contre}</h2>${p.mode === "ami" ? `<p class="note">Mise : ${texteMise(p)}.</p>` : ""}
       <div class="bloc-gouv"><h3>Les dix thèmes annoncés</h3>${themes}<p class="note">Sept seront tirés, un par manche, dans un ordre inconnu. Choisissez le gouvernement le plus compétent sur ces thèmes.</p></div>
-      ${p.lui ? `<div class="bloc-gouv"><h3>Gouvernement adverse : ${nomCamp(p.lui)}</h3><p class="note">Chef : ${echapper(nomG(p.lui.chef))} (stature ${ficheG(p.lui.chef).stature}). Compétences sur les thèmes annoncés :</p>${lignesAdverses(p.lui, p.annonces)}</div>` : ""}
+      ${p.lui ? `<div class="bloc-gouv"><h3>Gouvernement adverse : ${nomCamp(p.lui)}</h3><p class="note">Premier ministre : ${echapper(nomG(p.lui.chef))} (stature ${ficheG(p.lui.chef).stature}). Compétences sur les thèmes annoncés :</p>${lignesAdverses(p.lui, p.annonces)}</div>` : ""}
       ${aChoisir ? `<div class="bloc-gouv"><h3>Votre gouvernement</h3><p class="note">L'indice estime la force du gouvernement sur ces dix thèmes${p.lui ? ` (adversaire : ${valeur(p.lui)})` : ""}.</p><ul class="cabinets">${gouv.gouvernements.map(g => `<li class="cabinet${g.vacants.length ? " incomplet" : ""}"><div class="tete-cab"><b>${echapper(g.nom)}</b>
           ${g.vacants.length ? `<span class="alerte-cab">incomplet</span>` : `<span class="note">indice ${valeur(g)}</span>`}</div>
           <div class="minis">${[g.chef, ...g.ministres].map(id => miniature(id)).join("")}</div>
@@ -2177,7 +2178,7 @@ function htmlPartie(){
 
       ${lignesMiennes(p, pris)}
       ${p.attente ? "" : `<button class="joker" data-joker aria-pressed="${avec493}" ${p.a493[0] ? "disabled" : ""}><span class="num">49.3</span><span class="txt"><b class="etat-joker">${p.a493[0] ? "Déjà utilisé" : avec493 ? `Joué : +${chef.stature} pour cette manche` : `Jouer le 49.3 : +${chef.stature}`}</b>
-        ${p.a493[0] ? "Une seule fois par partie." : `La stature de votre chef, ${echapper(nomG(chef.id))}, s'ajoute. Une fois par partie.`}</span></button>`}</div>
+        ${p.a493[0] ? "Une seule fois par partie." : `La stature de votre Premier ministre, ${echapper(nomG(chef.id))}, s'ajoute. Une fois par partie.`}</span></button>`}</div>
       <div><h3>${nomCamp(p.lui) || "Gouvernement adverse"}</h3><p class="note">Son choix reste secret jusqu'à la révélation. ${p.a493[1] ? "Son 49.3 est déjà utilisé." : "Il a encore son 49.3."}</p>${lignesAdverses(p.lui, p.annonces, sesPris)}</div></div>
     ${manches ? `<h3>Manches jouées</h3>${manches}` : ""}
     ${p.mode === "ami" ? "" : `<p><button class="lien-carte" data-quitter="${p.id}:abandonner">Abandonner (défaite)</button></p>`}${retour}
@@ -2265,7 +2266,7 @@ document.getElementById("vue-gouvernement").addEventListener("click", e => {
       const neuf = !edition.id;
       await appel("gouvernements", {id: edition.id, nom: nom || "Mon gouvernement", chef: edition.chef, ministres: edition.ministres});
       edition = null; if (neuf) { await appel("moi"); majTout(); }
-      signaler(neuf ? `Gouvernement formé (${gouv.prix} voix).` : "Gouvernement enregistré."); await chargerGouvernement();
+      signaler(neuf ? `Gouvernement formé${gouv.prix ? ` (${gouv.prix} voix)` : " : le premier est offert"}.` : "Gouvernement enregistré."); await chargerGouvernement();
     });
     return;
   }
