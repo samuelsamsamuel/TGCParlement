@@ -262,6 +262,29 @@ console.log("série et objectifs du jour : tests passés");
   assert.strictEqual(G.jugerManche(1, {ministre: sp, bonus: 3, chef}, {ministre: vedette, bonus: 0}).gagnant, 1, "49.3");
   const r = G.jugerManche(1, {ministre: f("a", 3, {}, {annees: 10}), bonus: 0}, {ministre: f("b", 3, {}, {annees: 4}), bonus: 0});
   assert.deepStrictEqual([r.gagnant, r.departage], [1, "annees"]);
+  // Même parti malgré le nom ou la chambre (DECISION_FAMILLES) : UMP (Daubresse), groupe LR du Sénat (Larcher), RPR
+  // (Chaban-Delmas) ; groupe socialiste de l'Assemblée (Fabius) et SER du Sénat (Bel)
+  const parti = id => fiches.get(id).groupe;
+  assert.ok(parti("2154") >= 0 && parti("2154") === parti("S86034E") && parti("S86034E") === parti("10179"), "UMP, LR et RPR");
+  assert.ok(parti("2876") >= 0 && parti("2876") === parti("S98006P") && parti("2876") !== parti("2154"), "socialistes des deux chambres");
+  // Compléter pour moi : meilleure note que la composition rapide, plafond respecté, ministres déjà choisis gardés
+  {
+    let g = 3; const alea = () => { g = (g * 1664525 + 1013904223) >>> 0; return g / 4294967296; };
+    const toutes = [...fiches.values()], coll = toutes.filter(() => alea() < 0.05), nb = themes.length;
+    const chefC = G.meilleurChef(coll, nb), tirages = G.tiragesThemes(nb);
+    assert.ok(chefC && coll.includes(chefC));
+    const mieux = G.composerMieux(chefC, coll, nb, [], {duree: 0});
+    assert.strictEqual(mieux.length, G.MINISTRES); assert.strictEqual(new Set(mieux).size, G.MINISTRES);
+    assert.ok(!mieux.includes(chefC)); assert.strictEqual(G.verifierGouvernement(chefC, mieux), null, "dans le plafond");
+    const vite = G.composerVite(chefC, coll, [...Array(nb).keys()]);
+    assert.ok(G.noteMoyenne(chefC, mieux, tirages) > G.noteMoyenne(chefC, vite, tirages), "meilleur que la composition rapide");
+    const gardes = [mieux[0], vite.find(x => !mieux.includes(x))].filter(Boolean);
+    const suite = G.composerMieux(chefC, coll.filter(x => !gardes.includes(x)), nb, gardes, {duree: 0});
+    assert.strictEqual(suite.length, G.MINISTRES - gardes.length);
+    assert.strictEqual(G.verifierGouvernement(chefC, [...gardes, ...suite]), null, "complété dans le plafond");
+    // l'évaluation rapide de la recherche donne au moins l'affectation gloutonne de `valeur`
+    for (const t of tirages.slice(0, 10)) assert.ok(G.noteMoyenne(chefC, mieux, [t]) >= G.valeur(chefC, mieux, t) + chefC.stature - 1e-9);
+  }
 }
 console.log("jeu du Gouvernement : tests passés");
 // Partie du Gouvernement : thèmes cachés, coups validés, ordinateur, série

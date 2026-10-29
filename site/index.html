@@ -645,6 +645,7 @@ body.nav-flottante .jauge-ligne{top:3.3rem}
 #choix-ministre .titre-conseils{margin:.4rem 0 0;font-size:.85rem}
 .poste.conseil{border-color:rgba(201,162,74,.6)}
 .poste .raison{color:#9fd8b0;font-size:.76rem;white-space:normal}
+.poste .parti{font-size:.74rem;opacity:.75;font-style:italic;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .renvoi-duels{margin-top:.8rem}
 .vitrine{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.6rem;margin:.6rem 0}
 @media (min-width:640px){.vitrine{grid-template-columns:repeat(6,minmax(0,1fr))}}
@@ -1068,7 +1069,8 @@ html.presentation{font-size:15px}
   <div class="points-carrousel" id="points-lot" aria-hidden="true"></div></div></dialog>
 <dialog id="choix-ministre"><div class="fenetre"><div class="tete"><h2 id="titre-ministre">Choisir un ministre</h2><button class="bouton discret" id="fermer-ministre">Fermer</button></div>
   <div class="outils-m"><input class="champ" id="cherche-ministre" type="search" placeholder="Rechercher un nom" aria-label="Rechercher un nom">
-    <select class="champ" id="tri-ministre" aria-label="Trier"></select></div>
+    <select class="champ" id="tri-ministre" aria-label="Trier"></select>
+    <select class="champ" id="parti-ministre" aria-label="Filtrer par parti"></select></div>
   <p class="note" id="note-ministre"></p>
   <div class="liste-m" id="liste-ministre"></div></div></dialog>
 <dialog id="tuto-gouv"><div class="fenetre"><button class="lien-carte fermer-tuto" id="fermer-tuto">Fermer</button><div id="tuto-contenu"></div></div></dialog>
@@ -1856,6 +1858,7 @@ async function chargerFiches(){
 }
 const ficheG = id => gouvJeu.fiches.get(String(id));
 const nomTheme = t => gouvJeu.themes[t][1];
+const nomParti = g => g >= 0 ? gouvJeu.groupes[g] || "" : "Sans parti";
 const nomG = id => cat.parId[id]?.nom || "?";
 // Portrait d'un poste (le poste est lui-même un bouton : pas de bouton dans un bouton)
 const portraitG = id => miniature(id).replace(/^<button type="button"/, "<span").replace(/ data-apercu="[^"]*"/, "").replace(/<\/button>$/, "</span>");
@@ -1936,7 +1939,7 @@ function ecransTuto(){
      dessin: mockCarte("Ancien garde des Sceaux", 3, 3, "Justice")},
     {titre: "Les liens : jouer en équipe", texte: `Un ministre gagne <b>+1 sur toutes les manches</b> pour chacun de ces points communs avec son gouvernement, ${L} au plus. Ils s'affichent en vert quand vous composez votre équipe.`,
      dessin: `<ul class="tuto-liens">
-       <li><b>+1</b><span><b>Même parti que le Premier ministre</b>Il siégeait dans le même groupe politique.</span></li>
+       <li><b>+1</b><span><b>Même parti que le Premier ministre</b>Il siégeait dans un groupe du même parti, quel que soit son nom ou sa chambre (UMP et Les Républicains, par exemple).</span></li>
        <li><b>+1</b><span><b>A servi sous ce Premier ministre</b>Il a été ministre quand ce Premier ministre dirigeait le Gouvernement.</span></li>
        <li><b>+1</b><span><b>A gouverné avec un coéquipier</b>Ils ont été ministres en même temps.</span></li>
        <li><b>+1</b><span><b>Même département qu'un coéquipier</b>Ils ont été élus dans le même département.</span></li></ul>`},
@@ -2072,10 +2075,20 @@ function choisirPoste(cle){
   choixMinistre = {cle, entrees, max: 60};
   document.getElementById("titre-ministre").textContent = cle === "chef" ? "Choisir le Premier ministre" : "Choisir un ministre";
   document.getElementById("note-ministre").textContent = cle === "chef" ? "La stature du Premier ministre compte au 49.3." : `Stature disponible pour ce poste : ${reste} au plus.`;
-  const tri = document.getElementById("tri-ministre");
+  const tri = document.getElementById("tri-ministre"), chef = cle !== "chef" && e.chef ? ficheG(e.chef) : null;
   tri.innerHTML = `<option value="suggestion">Suggestions</option><option value="stature">Par stature</option><option value="etoiles">Par compétences (étoiles)</option>`
+    + (chef ? `<option value="liens">Par liens avec l'équipe</option>` : "")
+    + `<option value="parti">Par parti</option><option value="annees">Par années de mandat</option>`
     + gouvJeu.themes.map(([, nom], i) => `<option value="t${i}">Compétence : ${echapper(nom)}</option>`).join("");
   tri.value = "suggestion";
+  // Partis (familles politiques, scripts/fiches_gouvernement.py) : ceux de vos cartes, les plus nombreux d'abord
+  const partis = new Map();
+  for (const x of entrees) if (x.f.groupe >= 0) partis.set(x.f.groupe, (partis.get(x.f.groupe) || 0) + 1);
+  const filtre = document.getElementById("parti-ministre");
+  filtre.innerHTML = `<option value="">Tous les partis</option>`
+    + (chef && chef.groupe >= 0 ? `<option value="chef">Parti du Premier ministre (${echapper(nomParti(chef.groupe))})</option>` : "")
+    + [...partis].sort((a, b) => b[1] - a[1]).map(([g, n]) => `<option value="${g}">${echapper(nomParti(g))} (${n})</option>`).join("");
+  filtre.value = "";
   document.getElementById("cherche-ministre").value = "";
   dessinerChoixMinistre();
   document.getElementById("choix-ministre").showModal();
@@ -2094,7 +2107,7 @@ function suggerer(cle, entrees, reste, vides){
       const sous = f.chefs.length ? possedees.filter(m => m !== f && m.gouv.length && Gouvernement.chevauche(m.gouv, f.chefs)).length : 0;
       const groupe = f.groupe >= 0 ? possedees.filter(m => m !== f && m.groupe === f.groupe).length : 0;
       if (sous) raisons.push(`${pluriel(sous, "de vos cartes a servi", "de vos cartes ont servi")} sous lui`);
-      if (groupe >= 3) raisons.push(`${groupe} de vos cartes dans son groupe`);
+      if (groupe >= 3) raisons.push(`${groupe} de vos cartes de son parti`);
       if (f.stature >= 4) raisons.push(`stature ${f.stature} : un 49.3 puissant`);
       x.suggestion = {score: f.stature * 3 + sous * 1.5 + Math.min(groupe, 20) * .2, raisons};
       continue;
@@ -2116,14 +2129,21 @@ function suggerer(cle, entrees, reste, vides){
 function dessinerChoixMinistre(){
   const c = choixMinistre, q = Regles.normer(document.getElementById("cherche-ministre").value), tri = document.getElementById("tri-ministre").value;
   const theme = tri[0] === "t" ? Number(tri.slice(1)) : null, somme = f => [...f.etoiles.values()].reduce((a, b) => a + b, 0);
-  const note = x => tri === "suggestion" ? x.suggestion.score : theme !== null ? (x.f.etoiles.get(theme) || 0) * 10 + x.f.stature : tri === "etoiles" ? somme(x.f) * 10 + x.f.stature : x.f.stature * 100 + somme(x.f);
-  const liste = c.entrees.filter(x => !q || cat.parId[x.id].cherche.includes(q)).sort((a, b) => !!a.raison - !!b.raison || note(b) - note(a));
+  const e = edition, chef = c.cle !== "chef" && e.chef ? ficheG(e.chef) : null, parti = document.getElementById("parti-ministre").value;
+  const equipe = e.ministres.filter((id, i) => id && i !== c.cle).map(ficheG);
+  const liensDe = x => chef ? (x.liens ??= Gouvernement.liens(chef, [...equipe, x.f]).at(-1).total) : 0;
+  const note = x => tri === "suggestion" ? x.suggestion.score : theme !== null ? (x.f.etoiles.get(theme) || 0) * 10 + x.f.stature
+    : tri === "etoiles" ? somme(x.f) * 10 + x.f.stature : tri === "liens" ? liensDe(x) * 100 + somme(x.f) * 2 + x.f.stature
+    : tri === "annees" ? x.f.annees : tri === "parti" ? 0 : x.f.stature * 100 + somme(x.f);
+  const garder = x => !parti || (parti === "chef" ? chef && x.f.groupe === chef.groupe : x.f.groupe === Number(parti));
+  const ordreParti = (a, b) => tri !== "parti" ? 0 : (a.f.groupe < 0) - (b.f.groupe < 0) || nomParti(a.f.groupe).localeCompare(nomParti(b.f.groupe), "fr") || b.f.stature - a.f.stature;
+  const liste = c.entrees.filter(x => (!q || cat.parId[x.id].cherche.includes(q)) && garder(x)).sort((a, b) => !!a.raison - !!b.raison || ordreParti(a, b) || note(b) - note(a));
   const ligne = (x, conseil) => `<button class="poste${conseil ? " conseil" : ""}" ${x.raison ? "disabled" : `data-choisir-ministre="${echapper(x.id)}"`}>
-      ${portraitG(x.id)}<span class="qui"><b>${echapper(nomG(x.id))}</b><span class="puces">${pucesCompetences(x.f, {enAvant: theme})}</span>${x.raison ? `<small>${echapper(x.raison)}</small>`
+      ${portraitG(x.id)}<span class="qui"><b>${echapper(nomG(x.id))}</b>${x.f.groupe >= 0 ? `<small class="parti">${echapper(nomParti(x.f.groupe))}${tri === "annees" ? ` · ${Math.round(x.f.annees)} ans de mandat` : ""}</small>` : ""}<span class="puces">${pucesCompetences(x.f, {enAvant: theme})}</span>${x.raison ? `<small>${echapper(x.raison)}</small>`
         : conseil && x.suggestion.raisons.length ? `<small class="raison">${echapper(x.suggestion.raisons.join(" · "))}</small>` : ""}</span>
       <span class="stature" title="Stature">${x.f.stature}</span></button>`;
   // En tête, les quatre meilleures suggestions avec leurs raisons (sans recherche en cours)
-  const conseils = !q ? c.entrees.filter(x => !x.raison).sort((a, b) => b.suggestion.score - a.suggestion.score).slice(0, 4) : [];
+  const conseils = !q && !parti ? c.entrees.filter(x => !x.raison).sort((a, b) => b.suggestion.score - a.suggestion.score).slice(0, 4) : [];
   document.getElementById("liste-ministre").innerHTML = (conseils.length ? `<h3 class="titre-conseils">Suggestions</h3>${conseils.map(x => ligne(x, true)).join("")}<h3 class="titre-conseils">Toutes vos cartes</h3>` : "")
     + liste.slice(0, c.max).map(x => ligne(x, tri === "suggestion")).join("")
     + (liste.length > c.max ? `<button class="bouton discret" id="plus-ministres">Afficher plus (${liste.length - c.max})</button>` : "")
@@ -2131,6 +2151,7 @@ function dessinerChoixMinistre(){
 }
 document.getElementById("cherche-ministre").addEventListener("input", dessinerChoixMinistre);
 document.getElementById("tri-ministre").addEventListener("change", dessinerChoixMinistre);
+document.getElementById("parti-ministre").addEventListener("change", dessinerChoixMinistre);
 document.getElementById("fermer-ministre").addEventListener("click", () => document.getElementById("choix-ministre").close());
 document.getElementById("choix-ministre").addEventListener("click", e => {
   if (e.target.id === "choix-ministre") { e.target.close(); return; }
@@ -2140,20 +2161,26 @@ document.getElementById("choix-ministre").addEventListener("click", e => {
   if (choixMinistre.cle === "chef") edition.chef = b.dataset.choisirMinistre; else edition.ministres[choixMinistre.cle] = b.dataset.choisirMinistre;
   majGouvernement();
 });
-// Complète les postes vides : chef de plus haute stature si besoin, puis ministres choisis par les règles pour tous les thèmes
-function completerEdition(){
+// Complète les postes vides au mieux (demande de l'utilisateur : « toujours le meilleur gouvernement avec les cartes à
+// disposition et les espaces restants ») : ministres déjà choisis gardés, Premier ministre choisi s'il manque, postes
+// vides pourvus par la recherche des règles (Gouvernement.composerMieux : note moyenne sur des tirages de thèmes)
+function completerEdition(bouton){
   const e = edition, possedees = Object.keys(etat.possedees).filter(id => etat.possedees[id] > 0).map(ficheG).filter(Boolean);
-  if (!e.chef) e.chef = possedees.slice().sort((a, b) => b.stature - a.stature || b.annees - a.annees)[0]?.id || null;
-  if (!e.chef) return signaler("Votre collection est vide.");
-  const gardes = e.ministres.filter(Boolean), places = Gouvernement.MINISTRES - gardes.length;
-  if (!places) return majGouvernement();
-  const reste = Gouvernement.PLAFOND_STATURE - gardes.reduce((t, id) => t + ficheG(id).stature, 0);
-  const candidats = possedees.filter(f => f.id !== e.chef && !gardes.includes(f.id));
-  const choix = Gouvernement.composerVite(ficheG(e.chef), candidats, gouvJeu.themes.map((_, i) => i), places, reste);
-  if (!choix) return signaler("Pas assez de cartes pour compléter dans le plafond de stature.");
-  const nouveaux = choix.map(f => f.id);
-  e.ministres = e.ministres.map(id => id || nouveaux.shift() || null);
-  majGouvernement();
+  if (!possedees.length) return signaler("Votre collection est vide.");
+  const gardes = e.ministres.filter(Boolean).map(ficheG), places = Gouvernement.MINISTRES - gardes.length;
+  if (!places && e.chef) return majGouvernement();
+  if (bouton) { bouton.disabled = true; bouton.textContent = "Recherche du meilleur gouvernement…"; }
+  // laisse le navigateur afficher le message avant le calcul (une à quelques secondes)
+  setTimeout(() => {
+    const nb = gouvJeu.themes.length;
+    if (!e.chef) e.chef = (Gouvernement.meilleurChef(possedees, nb, gardes) || possedees.slice().sort((a, b) => b.stature - a.stature)[0])?.id || null;
+    const chef = ficheG(e.chef), candidats = possedees.filter(f => f.id !== e.chef && !gardes.includes(f));
+    const choix = places ? Gouvernement.composerMieux(chef, candidats, nb, gardes) : [];
+    if (!choix) { signaler("Pas assez de cartes pour compléter dans le plafond de stature."); majGouvernement(); return; }
+    const nouveaux = choix.map(f => f.id);
+    e.ministres = e.ministres.map(id => id || nouveaux.shift() || null);
+    majGouvernement();
+  }, 30);
 }
 
 /* Partie */
@@ -2291,7 +2318,7 @@ document.getElementById("vue-gouvernement").addEventListener("click", e => {
   if (b("[data-fermer-edition]")) { edition = null; majGouvernement(); return; }
   if (b("[data-vider]")) { const k = b("[data-vider]").dataset.vider; if (k === "chef") edition.chef = null; else edition.ministres[Number(k)] = null; majGouvernement(); return; }
   if (b("[data-poste]")) { const k = b("[data-poste]").dataset.poste; choisirPoste(k === "chef" ? "chef" : Number(k)); return; }
-  if (b("[data-completer]")) { completerEdition(); return; }
+  if (b("[data-completer]")) { completerEdition(b("[data-completer]")); return; }
   if (b("[data-enregistrer]")) {
     const nom = document.querySelector("#form-edition [name=nom]").value.trim();
     occupe(b("[data-enregistrer]"), async () => {

@@ -67,7 +67,11 @@ de chaque année depuis 1943, anciens noms compris ; écrit `site/departements.j
 Gouvernement : stature de 1 à 5 par tranches de score, `TRANCHES`, un point de moins sans mandat ; étoiles par thème lues dans
 l'intitulé de la fonction, partie « chargé de… » seulement, motifs de `POLITIQUES` ; présidences de commission, Bureau, groupes et
 années de commission comptés depuis le 19 juin 2002 ; territoires par les régions actuelles du Code officiel géographique,
-`DECISION_TERRITOIRES` ; groupe, départements et périodes de gouvernement pour les liens ; écrit `site/gouvernement.json`,
+`DECISION_TERRITOIRES` ; parti, départements et périodes de gouvernement pour les liens ; parti : famille politique du
+groupe affiché sur la carte (`DECISION_FAMILLES`, demande de l'utilisateur, octobre 2026 : groupes d'un même parti réunis
+malgré les renommages et d'une chambre à l'autre, UMP, RPR et LR du Sénat par exemple ; coalitions à part ; autres intitulés
+réunis s'ils ne diffèrent que par l'écriture ; non-inscrits sans parti ; 372 intitulés pour 246 partis), table `groupes` de
+`gouvernement.json` = noms des partis ; écrit `site/gouvernement.json`,
 première exécution : 19 816 fiches, entre 180 et 650 cartes étoilées par politique publique), `export_jeu.py` (écrit
 `site/jeu.json`), puis
 `node scripts/catalogue_serveur.js` (écrit `site/serveur.json`).
@@ -351,7 +355,7 @@ serveur), filtre « Mes favoris » dans l'Hémicycle. Pas de zoom au double touc
    territoires ; thèmes historiques écartés), dix annoncés, sept tirés ; gouvernement d'un Premier ministre (« chef » dans le code) et huit ministres
    (cinq gouvernements enregistrés au plus, le premier offert, 10 voix les suivants) ; force = stature (1 à 5, score, un point de moins sans mandat
    parlementaire) + 2 par étoile de spécialité (3 à l'origine) (1 : cinq ans dans la commission liée ou élu de la région ; 2 : présidence
-   de la commission ou secrétariat d'État ; 3 : ministre du domaine) + liens (même département, même groupe que le chef,
+   de la commission ou secrétariat d'État ; 3 : ministre du domaine) + liens (même département, même parti que le chef,
    même gouvernement réel, a servi sous le chef ; +1 chacun, +3 au plus) ; plafond de stature 24 ; gouvernement adverse
    visible, choix cachés ; 49.3 une fois (stature du chef ajoutée) ; égalité : stature puis années de mandat ; premier à
    quatre manches. Mise contre un ami, série 1 à 5 contre un joueur au hasard ou l'ordinateur. Lien de parité non tranché.
@@ -380,7 +384,7 @@ serveur), filtre « Mes favoris » dans l'Hémicycle. Pas de zoom au double touc
    un gouvernement réel (chef et membres qui ont servi sous lui, `site/fiches/gNN.json`), niveau = palier de la série
    (`imprevu`, part du vivier composée pour les thèmes ; simulation, joueur régulier : 71, 63, 61, 55, 44 et 36 % de
    victoires des paliers 0 à 5). Contre un joueur : gouvernement enregistré d'un autre joueur, joué par l'ordinateur, son
-   propriétaire averti d'une défaite ou d'un nul, pas de ses victoires (demande de l'utilisateur, octobre 2026) (repli sur l'ordinateur si aucun). Une partie de série à la fois ; l'adversaire est vu
+   propriétaire jamais averti du résultat (demande de l'utilisateur, octobre 2026) (repli sur l'ordinateur si aucun). Une partie de série à la fois ; l'adversaire est vu
    avant le choix du gouvernement, renoncer vaut défaite. Série (refaite à la demande de l'utilisateur, octobre 2026 :
    récompense reçue à la fin de la série, cartes à choisir) : `SERIE_GOUV` de `regles.js` (15 voix, 1 paquet, une carte
    parmi 3 rares ou mieux, une parmi 3 épiques ou mieux et un paquet, une parmi 3 légendaires ou mieux et deux paquets) ;
@@ -402,8 +406,15 @@ serveur), filtre « Mes favoris » dans l'Hémicycle. Pas de zoom au double touc
    49.3 sous la liste des ministres ; suggestions en tête du
    choix d'une carte (`suggerer` : thèmes apportés à l'équipe, liens avec le chef et l'équipe, stature qui laisse de quoi
    pourvoir les autres postes ; pour le chef, stature et cartes du joueur qui ont servi sous lui), couverture de l'équipe
-   (thèmes étoilés, points forts) ; rubriques dépliées gardées au rendu (`replisOuverts`) ; choix des cartes en liste triable (stature, étoiles, compétence
-   sur un thème) avec leurs qualités, fenêtre `choix-ministre` ; croix pour retirer une carte ; liens écrits en clair
+   (thèmes étoilés, points forts) ; rubriques dépliées gardées au rendu (`replisOuverts`) ; choix des cartes en liste triable (stature, étoiles, liens avec l'équipe, parti,
+   années de mandat, compétence sur un thème) et filtrable par parti, parti affiché sur chaque ligne, fenêtre `choix-ministre`
+   (demande de l'utilisateur) ; « Compléter pour moi » (demande de l'utilisateur : toujours le meilleur gouvernement avec
+   les cartes et les postes restants) : `meilleurChef` si le Premier ministre manque, puis `composerMieux` (`gouvernement.js`) :
+   note moyenne sur 60 tirages équilibrés de dix thèmes (forces affectées aux thèmes, liens compris, plus la stature du chef),
+   évaluation rapide (`evaluateur` : liens précalculés, thèmes étoilés seulement), vivier (meilleurs par thème et par
+   stature, liés au chef par stature), glouton puis échanges d'un et de deux ministres, relances dans 0,6 s ; mesure
+   (octobre 2026) : égale à une recherche exhaustive sur sept collections sur huit, note réelle de 60 à 80 contre 42 à 50
+   pour l'ancienne composition, une à quatre secondes de calcul ; croix pour retirer une carte ; liens écrits en clair
    (« +1 a gouverné avec … », `avec` de `liens`) ; adversaire montré par stature et compétences, sans forces ; 49.3 en joker doré sobre
    (léger reflet, demande de l'utilisateur) ; barre d'envoi collante ; chaque manche révélée en grand (fenêtre `revelation`, détail des forces ;
    manches déjà vues gardées dans `hemicycle-manches-vues`). Entre amis : mise

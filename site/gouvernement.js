@@ -219,6 +219,220 @@
     return prendreDansPlafond(candidats.filter(c => c !== chef)
       .map(c => [Math.max(...annonces.map(t => force(c, t, 0))) - 0.3 * c.stature, c]).sort((a, b) => b[0] - a[0]).map(x => x[1]), places, plafond);
   }
+  // Meilleur gouvernement avec les cartes disponibles (« Compléter pour moi », demande de l'utilisateur, octobre 2026) :
+  // les thèmes ne sont connus qu'à la partie, d'où une note moyenne sur des tirages de dix thèmes (graine fixe : même
+  // proposition à chaque fois) : forces des ministres affectés aux thèmes (valeur, liens compris) plus la stature du chef
+  // (49.3). Recherche gloutonne, puis échanges un à un tant que la note monte, dans le plafond de stature ; les ministres
+  // déjà choisis (`gardes`) restent.
+  // Tirages équilibrés : chaque série de tirages partage tous les thèmes en groupes de dix, chacun revient donc aussi
+  // souvent que les autres (moins de hasard dans la note qu'avec des tirages indépendants)
+  function tiragesThemes(nbThemes, n = 60) {
+    const alea = hasard(0x3e3e), tirages = [], groupes = Math.max(1, Math.floor(nbThemes / ANNONCES));
+    while (tirages.length < n) {
+      const ordre = melanger([...Array(nbThemes).keys()], alea);
+      for (let g = 0; g < groupes && tirages.length < n; g++) tirages.push(ordre.slice(g * ANNONCES, (g + 1) * ANNONCES));
+    }
+    return tirages;
+  }
+  function noteMoyenne(chef, ministres, tirages) {
+    return evaluateur(chef, ministres, tirages, Math.max(0, ...tirages.flat()) + 1)(ministres.map((_, i) => i));
+  }
+  // Vivier : les meilleurs sur leur meilleur thème, les trois meilleurs de chaque thème, ceux qui ont un lien avec le chef
+  const meilleure = c => c.stature + api.ETOILE * Math.max(0, ...c.etoiles.values());
+  // La somme des statures est plafonnée : ce qui départage, ce sont les étoiles (et les liens) obtenues pour peu de stature
+  const etoilesDe = c => [...c.etoiles.values()].reduce((a, b) => a + b, 0);
+  function vivierCommun(candidats, nbThemes, taille = 60) {
+    const garde = new Set(), parTheme = Array.from({length: nbThemes}, () => []);
+    candidats.slice().sort((a, b) => meilleure(b) - meilleure(a) || a.stature - b.stature).slice(0, taille).forEach(c => garde.add(c));
+    candidats.slice().sort((a, b) => etoilesDe(b) * 2 - b.stature - (etoilesDe(a) * 2 - a.stature)).slice(0, taille).forEach(c => garde.add(c));
+    for (const c of candidats) for (const t of c.etoiles.keys()) if (t < nbThemes) parTheme[t].push(c);
+    // par thème : les meilleurs pour chaque stature (le plus d'étoiles à stature égale)
+    parTheme.forEach((l, t) => {
+      const parStature = new Map();
+      for (const c of l.sort((a, b) => b.etoiles.get(t) - a.etoiles.get(t) || etoilesDe(b) - etoilesDe(a)))
+        if ((parStature.get(c.stature) || 0) < 2) { parStature.set(c.stature, (parStature.get(c.stature) || 0) + 1); garde.add(c); }
+    });
+    // petites statures, pour qu'un gouvernement reste possible sous le plafond
+    candidats.slice().sort((a, b) => a.stature - b.stature || meilleure(b) - meilleure(a)).slice(0, MINISTRES * 2).forEach(c => garde.add(c));
+    return garde;
+  }
+  function vivier(chef, candidats, nbThemes, commun = vivierCommun(candidats, nbThemes)) {
+    const garde = new Set(commun), parStature = new Map();
+    // liés au chef (même parti, ont servi sous lui) : les meilleurs de chaque stature, les petites statures liées
+    // valant souvent mieux qu'une grande sans lien
+    candidats.filter(c => (c.gouv.length && chef.chefs.length && chevauche(c.gouv, chef.chefs)) || (c.groupe >= 0 && c.groupe === chef.groupe))
+      .sort((a, b) => etoilesDe(b) - etoilesDe(a) || b.gouv.length - a.gouv.length)
+      .forEach(c => { const k = parStature.get(c.stature) || 0; if (k < 10) { parStature.set(c.stature, k + 1); garde.add(c); } });
+    garde.delete(chef);
+    return [...garde];
+  }
+  // Évaluation rapide pour la recherche : liens entre toutes les cartes du vivier calculés une fois (mêmes règles que
+  // `liens`) ; pour chaque tirage, affectation gloutonne des ministres aux thèmes, forces décroissantes (comme `valeur`) :
+  // seuls les thèmes où un ministre a des étoiles sont examinés, un ministre sans étoile sur les thèmes restants y siège
+  // à sa force de base (dix thèmes pour huit ministres : il en reste toujours un qu'aucun autre ne réclame)
+  function evaluateur(chef, cartes, tirages, nbThemes) {
+    const n = cartes.length;
+    const seul = new Uint8Array(n), dep = new Uint8Array(n * n), sol = new Uint8Array(n * n);
+    const depChef = new Uint8Array(n), solChef = new Uint8Array(n), etoiles = new Uint8Array(n * nbThemes);
+    cartes.forEach((c, i) => {
+      for (const [t, e] of c.etoiles) if (t < nbThemes) etoiles[i * nbThemes + t] = e;
+      seul[i] = (c.groupe >= 0 && c.groupe === chef.groupe ? 1 : 0) + (c.gouv.length && chef.chefs.length && chevauche(c.gouv, chef.chefs) ? 1 : 0);
+      depChef[i] = c.deps.some(d => chef.deps.includes(d)) ? 1 : 0;
+      solChef[i] = c.gouv.length && chef.gouv.length && chevauche(c.gouv, chef.gouv) ? 1 : 0;
+      for (let j = 0; j < i; j++) {
+        const d = cartes[j];
+        dep[i * n + j] = dep[j * n + i] = c.deps.some(x => d.deps.includes(x)) ? 1 : 0;
+        sol[i * n + j] = sol[j * n + i] = c.gouv.length && d.gouv.length && chevauche(c.gouv, d.gouv) ? 1 : 0;
+      }
+    });
+    // annonce[t] : rang du tirage + 1 où le thème t est annoncé, pour chaque tirage (marques sans remise à zéro)
+    // pour chaque carte et chaque tirage, les thèmes annoncés où elle a des étoiles (listes à plat)
+    const nbTirages = tirages.length, debut = new Int32Array(n * nbTirages + 1), hitT = [], hitE = [];
+    for (let i = 0; i < n; i++) for (let r = 0; r < nbTirages; r++) {
+      for (const t of tirages[r]) { const e = etoiles[i * nbThemes + t]; if (e) { hitT.push(t); hitE.push(e); } }
+      debut[i * nbTirages + r + 1] = hitT.length;
+    }
+    const themesVus = Int16Array.from(hitT), etoilesVues = Uint8Array.from(hitE);
+    const K = MINISTRES + 2, defaut = new Float64Array(K), pf = new Float64Array(K * ANNONCES), pa = new Int8Array(K * ANNONCES), pt = new Int16Array(K * ANNONCES);
+    const libre = new Uint8Array(K), pris = new Int32Array(nbThemes), ordre = new Int8Array(K);
+    let marque = 0;  // thème pris dans le tirage en cours : pris[t] === marque (sans remise à zéro)
+    return equipe => {
+      const k = equipe.length;
+      for (let a = 0; a < k; a++) {
+        const i = equipe[a]; let d = depChef[i], s = solChef[i];
+        for (let b = 0; b < k && !(d && s); b++) if (b !== a) { const j = equipe[b]; d ||= dep[i * n + j]; s ||= sol[i * n + j]; }
+        defaut[a] = cartes[i].stature + Math.min(api.LIENS_MAX, seul[i] + d + s);
+      }
+      for (let a = 0; a < k; a++) {  // ministres par force de base décroissante
+        let x = a; while (x > 0 && defaut[ordre[x - 1]] < defaut[a]) { ordre[x] = ordre[x - 1]; x--; } ordre[x] = a;
+      }
+      let total = 0;
+      for (let r = 0; r < nbTirages; r++) {
+        let np = 0;
+        // paires (ministre, thème annoncé où il a des étoiles), triées par force décroissante (insertion)
+        for (let a = 0; a < k; a++) { const c = equipe[a] * nbTirages + r; for (let y = debut[c], fin = debut[c + 1]; y < fin; y++) {
+          const t = themesVus[y], f = defaut[a] + api.ETOILE * etoilesVues[y]; let x = np++;
+          while (x > 0 && pf[x - 1] < f) { pf[x] = pf[x - 1]; pa[x] = pa[x - 1]; pt[x] = pt[x - 1]; x--; }
+          pf[x] = f; pa[x] = a; pt[x] = t;
+        } }
+        libre.fill(1, 0, k); marque++;
+        // paires avec étoiles et forces de base fusionnées par force décroissante (à égalité, la force de base d'abord :
+        // elle ne prend aucun thème réclamé)
+        let x = 0, o = 0;
+        while (o < k || x < np) {
+          const etoile = x < np ? pf[x] : -Infinity, sans = o < k ? defaut[ordre[o]] : -Infinity;
+          if (etoile > sans) { const a = pa[x], t = pt[x]; x++; if (libre[a] && pris[t] !== marque) { libre[a] = 0; pris[t] = marque; total += etoile; } }
+          else { const a = ordre[o++]; if (libre[a]) { libre[a] = 0; total += sans; } }
+        }
+      }
+      return total / nbTirages + chef.stature;
+    };
+  }
+  function composerMieux(chef, candidats, nbThemes, gardes = [], options = {}) {
+    const tirages = options.tirages || tiragesThemes(nbThemes), places = MINISTRES - gardes.length;
+    const plafond = api.PLAFOND_STATURE - gardes.reduce((t, m) => t + m.stature, 0);
+    const libres = candidats.filter(c => c !== chef && !gardes.includes(c));
+    const pool = vivier(chef, libres, nbThemes, options.commun ? [...options.commun].filter(c => c !== chef && !gardes.includes(c)) : undefined);
+    if (pool.length < places) return null;
+    const cartes = [...gardes, ...pool], fixes = gardes.map((_, i) => i), P = pool.map((_, i) => gardes.length + i);
+    const st = cartes.map(c => c.stature), evaluer = evaluateur(chef, cartes, tirages, nbThemes);
+    const note = choix => evaluer([...fixes, ...choix]);
+    const tri = P.slice().sort((a, b) => st[a] - st[b]);
+    const petites = (sauf, n) => { let t = 0; for (const i of tri) { if (!n) break; if (!sauf.includes(i)) { t += st[i]; n--; } } return n ? Infinity : t; };
+    const choix = []; let reste = plafond;
+    while (choix.length < places) {
+      let meilleur = -1, v = -Infinity;
+      for (const c of P) {
+        if (choix.includes(c) || st[c] + petites([...choix, c], places - choix.length - 1) > reste) continue;
+        const x = note([...choix, c]);
+        if (x > v) { v = x; meilleur = c; }
+      }
+      if (meilleur < 0) return null;
+      choix.push(meilleur); reste -= st[meilleur];
+    }
+    let actuelle = note(choix);
+    const somme = l => l.reduce((t, i) => t + st[i], 0);
+    // Échanges d'un ministre, jusqu'à ne plus progresser ; au dernier passage, les meilleurs remplaçants de chaque poste
+    // sont gardés pour les échanges de deux ministres
+    let remplacants = [];
+    const unParUn = () => {
+      for (let tour = 0; tour < 30; tour++) {
+        let mieux = null; remplacants = [];
+        for (let a = 0; a < choix.length; a++) {
+          const sans = plafond - somme(choix) + st[choix[a]], essai = choix.slice(), notes = [];
+          for (const c of P) {
+            if (choix.includes(c) || st[c] > sans) continue;
+            essai[a] = c; const x = note(essai); notes.push([x, c]);
+            if (x > actuelle + 1e-9 && (!mieux || x > mieux.x)) mieux = {a, c, x};
+          }
+          remplacants.push(notes.sort((u, v) => v[0] - u[0]).slice(0, options.premiers || 8).map(u => u[1]));
+        }
+        if (!mieux) return;
+        choix[mieux.a] = mieux.c; actuelle = mieux.x;
+      }
+    };
+    // Puis deux ministres retirés ensemble et remplacés au mieux (ce qu'un échange seul ne voit pas : une forte stature
+    // contre deux petites, deux cartes liées entre elles), choisis parmi les meilleurs remplaçants d'un seul poste
+    const deuxParDeux = () => {
+      for (let a = 0; a < choix.length; a++) for (let b = a + 1; b < choix.length; b++) {
+        const reste2 = choix.filter((_, k) => k !== a && k !== b), sans = plafond - somme(reste2);
+        // remplaçants des deux postes, plus les petites statures (une grande contre deux petites)
+        const premiers = [...new Set([...remplacants[a], ...remplacants[b], ...tri.slice(0, 6)])].filter(c => !reste2.includes(c) && st[c] < sans);
+        let mieux = null;
+        for (const c of premiers) for (const d of premiers) {
+          if (d === c || reste2.includes(d) || st[c] + st[d] > sans) continue;
+          const x = note([...reste2, c, d]);
+          if (x > actuelle + 1e-9 && (!mieux || x > mieux.x)) mieux = {c, d, x};
+        }
+        if (mieux) { choix.splice(0, choix.length, ...reste2, mieux.c, mieux.d); actuelle = mieux.x; return true; }
+      }
+      return false;
+    };
+    const ameliorer = () => { unParUn(); for (let tour = 0; tour < 10 && deuxParDeux(); tour++) unParUn(); };
+    if (!options.rapide) {
+      ameliorer();
+      // Relances (graine fixe, dans la limite de 0,6 s environ) : trois postes tirés au hasard repourvus dans le
+      // plafond, puis amélioration ; la meilleure composition rencontrée est gardée
+      let meilleur = choix.slice(), note0 = actuelle;
+      const alea = hasard(0x49e3), fin = Date.now() + (options.duree ?? 600);
+      for (let r = 0; r < (options.relances ?? 4) && Date.now() < fin; r++) {
+        choix.splice(0, choix.length, ...meilleur);
+        for (const a of melanger([...choix.keys()], alea).slice(0, Math.min(3, choix.length))) {
+          const sans = plafond - somme(choix) + st[choix[a]], options_ = P.filter(c => !choix.includes(c) && st[c] <= sans);
+          if (options_.length) choix[a] = options_[Math.floor(alea() * options_.length)];
+        }
+        actuelle = note(choix); ameliorer();
+        if (actuelle > note0 + 1e-9) { note0 = actuelle; meilleur = choix.slice(); }
+      }
+      choix.splice(0, choix.length, ...meilleur);
+    }
+    return choix.map(i => cartes[i]);
+  }
+  // Premier ministre : parmi les plus hautes statures et ceux sous qui le plus de cartes disponibles ont servi ou qui
+  // partagent leur parti, les deux dont le gouvernement composé vite (glouton) a la meilleure note, départagés par une
+  // composition complète
+  function meilleurChef(candidats, nbThemes, gardes = []) {
+    const tirages = tiragesThemes(nbThemes, 30), libres = candidats.filter(c => !gardes.includes(c));
+    const membres = candidats.filter(m => m.gouv.length), parPartis = new Map();
+    for (const c of candidats) if (c.groupe >= 0) parPartis.set(c.groupe, (parPartis.get(c.groupe) || 0) + 1);
+    const sous = new Map(libres.filter(c => c.chefs.length).map(c => [c, membres.filter(m => m !== c && chevauche(m.gouv, c.chefs)).length]));
+    const parti = c => c.groupe >= 0 ? parPartis.get(c.groupe) - 1 : 0;
+    const essais = new Set([...libres.slice().sort((a, b) => b.stature - a.stature || b.annees - a.annees).slice(0, 8),
+      ...[...sous].sort((a, b) => b[1] - a[1]).slice(0, 6).map(x => x[0]),
+      ...libres.slice().sort((a, b) => parti(b) - parti(a) || b.stature - a.stature).slice(0, 4)]);
+    const commun = vivierCommun(libres, nbThemes), notes = [];
+    for (const chef of essais) {
+      const choix = composerMieux(chef, libres, nbThemes, gardes, {tirages, rapide: true, commun});
+      if (choix) notes.push([noteMoyenne(chef, [...gardes, ...choix], tirages), chef]);
+    }
+    let meilleur = null, v = -Infinity;
+    for (const [, chef] of notes.sort((a, b) => b[0] - a[0]).slice(0, 2)) {
+      const choix = composerMieux(chef, libres, nbThemes, gardes, {tirages, relances: 0, commun});
+      const n = choix ? noteMoyenne(chef, [...gardes, ...choix], tirages) : -Infinity;
+      if (n > v) { v = n; meilleur = chef; }
+    }
+    return meilleur;
+  }
   // Gouvernement de l'ordinateur : un chef du Gouvernement réel et huit de ses ministres, choisis pour les thèmes à partir
   // du niveau 3, au hasard (dans le plafond) en dessous ; `reels` : [[chef, membres]] (gouvernementsReels)
   function auHasardDansPlafond(membres, alea) { return prendreDansPlafond(melanger(membres, alea)); }
@@ -236,7 +450,7 @@
   // Réglages lus à l'appel (la simulation les fait varier)
   const api = {ETOILE, PLAFOND_STATURE, LIENS_MAX, MINISTRES, ANNONCES, MANCHES, VICTOIRE, fichesDeJeu, liens, force, chevauche,
                verifierGouvernement, jugerManche, hasard, annoncesDePartie, resoudre, jouerCoup, vuePartie, choixOrdinateur,
-               valeur, composer, composerVite, gouvernementsReels, gouvernementOrdinateur, ficheDe, paquetDeFiche,
+               valeur, composer, composerVite, composerMieux, meilleurChef, noteMoyenne, tiragesThemes, evaluateur, gouvernementsReels, gouvernementOrdinateur, ficheDe, paquetDeFiche,
                PAQUETS_FICHES};
   return api;
 });

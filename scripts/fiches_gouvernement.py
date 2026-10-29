@@ -50,6 +50,87 @@ TRANCHES = [10, 20, 35, 55]
 API_INSEE = "https://api.insee.fr/metadonnees/V1/geo/{}"
 UA = {"User-Agent": "TGCParlement/1.0", "Accept": "application/json"}
 
+# Familles politiques pour le lien « même parti que le Premier ministre » (DECISION_FAMILLES, demande de l'utilisateur,
+# octobre 2026 : « les groupes politiques qui sont presque les mêmes, LR au Sénat et UMP par exemple, doivent être
+# comptabilisés »). Les intitulés de groupe des sources officielles changent avec les renommages d'un même parti, et
+# diffèrent d'une chambre à l'autre pour un même parti. Décision : sont réunis sous une famille les groupes d'un même
+# parti ou de ses prédécesseurs directs (renommage ou fusion), dans les deux chambres ; les coalitions et groupes
+# mixtes (FGDS, LIOT, Constructifs…) restent à part, faute de filiation unique. Les autres intitulés ne sont réunis que
+# s'ils ne diffèrent que par l'écriture (accents, casse, tirets, numéro de législature collé). Non-inscrits et intitulés
+# vides ou de remplissage : aucun parti, donc aucun lien de parti.
+DECISION_FAMILLES = [
+    ("Gaullistes, RPR, UMP et Les Républicains", [
+        "Rassemblement du peuple français", "Républicains sociaux", "Union pour la nouvelle République", "U.N.R.",
+        "Union pour la nouvelle République-UDT", "Union démocratique pour la V° République",
+        "Union des démocrates pour la République", "U.D.R.", "Union des démocrates pour la République - Non inscrit",
+        "Rassemblement pour la République", "RPR", "Apparenté au Rassemblement pour la République",
+        "Union pour un mouvement populaire", "Union pour un Mouvement Populaire",
+        "Apparenté à l'Union pour un mouvement populaire", "Union pour la majorité présidentielle",
+        "Apparenté Union pour la majorité présidentielle", "Apparentée Union pour la majorité présidentielle",
+        "Les Républicains", "Groupe Les Républicains", "Droite Républicaine"]),
+    ("Socialistes", [
+        "Socialiste", "Parti socialiste", "Socialistes et apparentés", "Apparenté socialiste", "SER",
+        "Groupe Socialiste, Écologiste et Républicain", "Socialiste, écologiste et républicain",
+        "Socialiste écologiste et républicain", "Socialiste, républicain et citoyen",
+        "Socialiste, radical et citoyen et divers gauche", "Socialiste, radical et citoyen",
+        "Apparenté socialiste, radical et citoyen et divers gauche", "Parti socialiste et radicaux de gauche"]),
+    ("Communistes", [
+        "Communiste", "Communistes et républicains", "Union républicaine et résistante", "CRCE", "CRCE-K",
+        "Groupe Communiste Républicain Citoyen et Écologiste - Kanaky", "Gauche démocrate et républicaine",
+        "Gauche Démocrate et Républicaine", "Gauche démocrate et républicaine - NUPES"]),
+    ("Radicaux", [
+        "Radical", "Radical-socialiste", "Radical et radical-socialiste", "Républicain radical et radical-socialiste",
+        "Parti républicain radical et radical socialiste", "Parti radical et radical socialiste",
+        "Gauche radicale-socialiste", "Républicain radical", "Républicains radicaux", "Républicains radicaux-socialistes",
+        "Républicain radical-socialiste", "Républicain radical socialiste", "Gauche démocratique", "G.D.", "RDSE",
+        "Groupe du Rassemblement Démocratique et Social Européen", "Radical, citoyen et verts"]),
+    ("Démocrates-chrétiens et centristes (MRP, UDF, Union centriste, MoDem, UDI)", [
+        "Mouvement républicain populaire", "MRP", "Républicains populaires et centre démocratique",
+        "Centre démocratique", "Progrès et démocratie moderne", "U.C.D.P.",
+        "Réformateurs démocrates sociaux", "Union pour la démocratie française",
+        "Union pour la démocratie française et du centre", "Apparenté à l'Union pour la démocratie française",
+        "Apparenté Union pour la démocratie française", "UC", "Union centriste", "Groupe Union Centriste et Indépendants",
+        "Union du centre", "Nouveau Centre", "Union des démocrates et indépendants", "UDI et Indépendants",
+        "UDI, Agir et Indépendants", "UDI, Agir et indépendants", "Les Démocrates", "Mouvement Démocrate et apparentés",
+        "Mouvement Démocrate (MoDem) et Démocrates apparentés", "Démocrate (MoDem et Indépendants)"]),
+    ("Indépendants et paysans (CNIP)", [
+        "Indépendants et paysans d'action sociale", "C.N.I.P.", "Républicains indépendants et d'action sociale",
+        "R.I.A.S.", "Centre républicain d'action paysanne et sociale et des démocrates indépendants"]),
+    ("Républicains indépendants", ["Républicains indépendants", "RI", "U.R.E.I."]),
+    ("Renaissance (La République en marche)", [
+        "La République en Marche", "La République En Marche", "Renaissance", "Ensemble pour la République", "RDPI",
+        "Groupe Rassemblement des démocrates, progressistes et indépendants"]),
+    ("Horizons et Les Indépendants", [
+        "Horizons & Indépendants", "Horizons et apparentés", "Les Indépendants",
+        "Groupe Les Indépendants - République et Territoires"]),
+    ("Écologistes", ["Écologiste", "Écologiste et Social", "Écologiste - NUPES",
+                     "Groupe Écologiste - Solidarité et Territoires", "GEST"]),
+    ("La France insoumise", ["La France insoumise", "La France insoumise - Nouveau Front Populaire",
+                             "La France insoumise - Nouvelle Union Populaire écologique et sociale"]),
+    ("Front national et Rassemblement national", ["Front national", "Rassemblement National"]),
+]
+SANS_PARTI = ["Non inscrit", "NI", "Non-inscrit", "Députés non inscrits", "Députés non incrits",
+              "Députés n'appartenant à aucun groupe", "Non précisé", "ZZZ", "zzz",
+              "Réunion administrative des Sénateurs ne figurant sur la liste d'aucun groupe"]
+
+
+def cle_ecriture(nom):
+    """Intitulé réduit à ses lettres, sans accents ni casse ni numéro collé (« Front national -6 »)."""
+    nom = re.sub(r"\s*-\d+$", "", nom)
+    nom = unicodedata.normalize("NFD", nom).encode("ascii", "ignore").decode().lower()
+    return re.sub(r"[^a-z]", "", nom)
+
+
+def parti_du_groupe(nom):
+    """Clé du parti d'un groupe : famille de DECISION_FAMILLES, sinon intitulé réduit ; None pour les non-inscrits."""
+    if not nom or nom in SANS_PARTI or cle_ecriture(nom) in {cle_ecriture(x) for x in SANS_PARTI}:
+        return None
+    for libelle, groupes in DECISION_FAMILLES:
+        if nom in groupes:
+            return "famille:" + libelle
+    return "ecriture:" + cle_ecriture(nom)
+
+
 # Thèmes de politique publique : (code, libellé, motif de l'intitulé de la fonction, familles de commission)
 POLITIQUES = [
     ("interieur", "Intérieur", r"(?<!commerce )\binterieur|^securite\b|securite (publique|du quotidien)|citoyennete", ["lois"]),
@@ -294,7 +375,7 @@ def main():
     indice = {code: i for i, (code, _, _) in enumerate(themes)}
     region_theme = {r: code for code, _, regions in REGIONS for r in regions}
     fiches, inconnus, etoiles_par_theme, staturess = {}, Counter(), defaultdict(Counter), Counter()
-    groupes, index_groupe, departements, index_dep = [], {}, [], {}
+    partis, index_parti, noms_parti, departements, index_dep = [], {}, defaultdict(Counter), [], {}
     exemples_fonctions = defaultdict(set)
     for c in cartes:
         ident = str(c["id"])
@@ -361,11 +442,14 @@ def main():
         etoiles = {k: v for k, v in etoiles.items() if v}
         for k, v in etoiles.items():
             etoiles_par_theme[k][v] += 1
-        # Liens : groupe affiché sur la carte, départements des mandats (sénateurs : département de la fonction)
-        groupe = c.get("groupe") or ""
-        if groupe and groupe not in index_groupe:
-            index_groupe[groupe] = len(groupes)
-            groupes.append(groupe)
+        # Liens : parti du groupe affiché sur la carte (DECISION_FAMILLES), départements des mandats (sénateurs :
+        # département de la fonction)
+        parti = parti_du_groupe(c.get("groupe") or "")
+        if parti:
+            noms_parti[parti][c["groupe"]] += 1
+            if parti not in index_parti:
+                index_parti[parti] = len(partis)
+                partis.append(parti)
         deps = set()
         for m in c.get("mandats") or []:
             f = re.match(r"S[ée]nat(eur|rice) \((.+)\)$", m.get("fonction") or "")
@@ -376,11 +460,17 @@ def main():
                     departements.append(d)
                 deps.add(index_dep[d])
         fiche = [stature, sorted(indice[k] * 4 + v for k, v in etoiles.items()), round(c.get("annees_mandat") or 0, 1),
-                 index_groupe[groupe] if groupe else -1, sorted(deps)]
+                 index_parti[parti] if parti else -1, sorted(deps)]
         if periodes or chefs:
             fiche += [sorted(periodes, key=lambda p: p[0]), sorted(chefs, key=lambda p: p[0])]
         fiches[ident] = fiche
-    # fiche : [stature, étoiles (indice du thème × 4 + nombre), années de mandat, groupe (-1 sans groupe), départements,
+    # Nom de chaque parti : libellé de la famille, sinon l'écriture la plus fréquente de l'intitulé
+    groupes = [p.split(":", 1)[1] if p.startswith("famille:") else noms_parti[p].most_common(1)[0][0] for p in partis]
+    for libelle, _ in DECISION_FAMILLES:
+        reunis = noms_parti.get("famille:" + libelle)
+        if reunis:
+            rapport.append(f"Famille « {libelle} » : " + ", ".join(f"{g} ({n})" for g, n in reunis.most_common()))
+    # fiche : [stature, étoiles (indice du thème × 4 + nombre), années de mandat, parti (-1 sans parti), départements,
     #          puis, pour les membres du Gouvernement, périodes de fonction et périodes à la tête du Gouvernement]
     sortie = {"themes": [[code, lib, t] for code, lib, t in themes], "groupes": groupes, "departements": departements,
               "fiches": fiches}
