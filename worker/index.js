@@ -1577,7 +1577,7 @@ async function api(requete, env, url) {
   if (methode === "POST" && chemin === "/api/gouvernements/encaisser") {
     const cat = await catalogueDuJeu();
     const gain = await appliquer(env, joueur, e => Regles.encaisserSerieGouv(e, cat, Regles.jourDuJeu(), aleatoire));
-    if (!gain) throw new Refus(409, `Rien à encaisser, ou déjà ${Regles.ENCAISSEMENTS_JOUR} séries encaissées aujourd'hui.`);
+    if (!gain) throw new Refus(409, "Rien à encaisser.");
     return avecEtat(gain);
   }
   if (methode === "POST" && chemin === "/api/gouvernements/lot") {
