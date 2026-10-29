@@ -24,7 +24,8 @@ les anciens noms passent par leur numéro (site/departements.json, numeros_depar
 
 Entrées : data/cartes.json, data/gouvernement/{fonctions,fonctions_assemblee,presidences_an,presidences_senat,
 commissions}.json, site/departements.json.
-Sorties : site/gouvernement.json (thèmes, groupes, départements, fiches), data/listes/rapports/fiches-gouvernement-rapport.txt
+Sorties : site/gouvernement.json (thèmes, groupes, départements, fiches), site/fiches/ (fiches découpées pour le
+serveur), data/listes/rapports/fiches-gouvernement-rapport.txt
 """
 import datetime
 import json
@@ -43,6 +44,7 @@ SORTIE = os.path.join("site", "gouvernement.json")
 RAPPORT = os.path.join("data", "listes", "rapports", "fiches-gouvernement-rapport.txt")
 SYMETRIE = "2002-06-19"
 ANNEES_COMMISSION = 5
+PAQUETS_FICHES = 256  # comme PAQUETS_FICHES de site/gouvernement.js
 # Stature : score de la carte -> 1 à 5 (bornes basses des tranches 2 à 5)
 TRANCHES = [10, 20, 35, 55]
 API_INSEE = "https://api.insee.fr/metadonnees/V1/geo/{}"
@@ -384,6 +386,7 @@ def main():
               "fiches": fiches}
     with open(SORTIE, "w", encoding="utf-8") as f:
         json.dump(sortie, f, ensure_ascii=False, separators=(",", ":"))
+    ecrire_fiches_serveur(fiches, len(themes), rapport)
     rapport.insert(0, f"Fiches : {len(fiches)} cartes ; stature : " + ", ".join(f"{s} ({n})" for s, n in sorted(staturess.items())))
     rapport += ["", "Cartes par thème et par nombre d'étoiles (1, 2, 3) :"]
     for code, lib, _ in themes:
@@ -397,6 +400,47 @@ def main():
         rapport += ["", "Circonscriptions sans territoire : " + " ; ".join(f"{k} ({n})" for k, n in inconnus.most_common())]
     ecrire_rapport(rapport)
     print(rapport[0])
+
+
+def fnv(texte):
+    """FNV-1a 32 bits, comme paquetDeFiche (site/gouvernement.js)."""
+    h = 2166136261
+    for ch in texte:
+        h ^= ord(ch)
+        h = (h * 16777619) & 0xFFFFFFFF
+    return h
+
+
+def chevauche(a, b):
+    return any(d1 <= (f2 or "9999") and d2 <= (f1 or "9999") for d1, f1 in a for d2, f2 in b)
+
+
+def ecrire_fiches_serveur(fiches, nb_themes, rapport):
+    """Fiches découpées pour le serveur, qui ne peut pas lire le fichier entier dans sa limite de calcul : PAQUETS
+    fichiers rangés par empreinte de l'identifiant (site/fiches/pNNN.json), et un fichier par gouvernement réel (chef et
+    membres de gouvernement qui ont servi sous lui) pour l'ordinateur (site/fiches/gNN.json, liste dans reels.json)."""
+    dossier = os.path.join("site", "fiches")
+    os.makedirs(dossier, exist_ok=True)
+    for nom in os.listdir(dossier):
+        if nom.endswith(".json"):
+            os.remove(os.path.join(dossier, nom))
+    paquets = defaultdict(dict)
+    for ident, fiche in fiches.items():
+        paquets[fnv(ident) % PAQUETS_FICHES][ident] = fiche
+    for n in range(PAQUETS_FICHES):
+        with open(os.path.join(dossier, f"p{n:03d}.json"), "w", encoding="utf-8") as f:
+            json.dump(paquets[n], f, ensure_ascii=False, separators=(",", ":"))
+    membres_gouv = [(i, f) for i, f in fiches.items() if len(f) > 5 and f[5]]
+    chefs = []
+    for ident, fiche in fiches.items():
+        if len(fiche) > 6 and fiche[6]:
+            membres = [[i, f] for i, f in membres_gouv if i != ident and chevauche(f[5], fiche[6])]
+            with open(os.path.join(dossier, f"g{len(chefs):02d}.json"), "w", encoding="utf-8") as f:
+                json.dump({"chef": [ident, fiche], "membres": membres}, f, ensure_ascii=False, separators=(",", ":"))
+            chefs.append([ident, len(membres)])
+    with open(os.path.join(dossier, "reels.json"), "w", encoding="utf-8") as f:
+        json.dump({"themes": nb_themes, "chefs": chefs}, f, ensure_ascii=False, separators=(",", ":"))
+    rapport.append(f"Fichiers du serveur : {PAQUETS_FICHES} paquets de fiches, {len(chefs)} gouvernements réels")
 
 
 def ecrire_rapport(rapport):

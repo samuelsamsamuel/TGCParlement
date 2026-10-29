@@ -359,7 +359,24 @@ serveur), filtre « Mes favoris » dans l'Hémicycle. Pas de zoom au double touc
    trois étoiles contre vedette sans étoile 98 %, mythiques et légendaires composés contre collection sans légendaires 47 %,
    égalités après départage 0,9 % ; à 2 points, 90 % et 53 %. Retenu : 2 points par étoile (décision de l'utilisateur,
    octobre 2026 : le spécialiste reste favori, la vedette garde une chance avec ses liens et le 49.3).
-   Étapes : commissions (fait), fiches de jeu (fait), simulation de réglage (fait), jeu.
+   Jeu (octobre 2026) : réservé pour l'instant au compte Samsam (demande de l'utilisateur ; `TESTEURS_GOUVERNEMENT` du
+   worker, ou `--var GOUVERNEMENT_OUVERT:1` pour tous, serveur local des tests ; onglet et entrée du menu Plus cachés aux
+   autres, `majAccesGouv`, champ `gouvernement` de l'état ; au-delà de 1 420 px seulement en onglets quand il est visible).
+   Tables `gouvernements` (cinq, 10 voix la création, recomposition gratuite, postes vacants si une carte quitte la
+   collection) et `parties` (modes `ordi`, `hasard`, `ami` ; statuts `preparation`, `propose`, `en-cours`, `fini`, `refuse`,
+   `annule`, `expire` ; camps figés au choix, coups [ministre, 49.3] jugés par `site/gouvernement.js`). Contre l'ordinateur :
+   un gouvernement réel (chef et membres qui ont servi sous lui, `site/fiches/gNN.json`), niveau = palier de la série
+   (`imprevu`, part du vivier composée pour les thèmes ; simulation, joueur régulier : 71, 63, 61, 55, 44 et 36 % de
+   victoires des paliers 0 à 5). Contre un joueur : gouvernement enregistré d'un autre joueur, joué par l'ordinateur, son
+   propriétaire averti du résultat (repli sur l'ordinateur si aucun). Une partie de série à la fois ; l'adversaire est vu
+   avant le choix du gouvernement, renoncer vaut défaite. Série : `GAINS_SERIE` (5, 10, 15, 20 voix, puis un paquet à chaque
+   victoire au palier 5), une défaite ramène à 0, `GAINS_GOUV_JOUR` (10) victoires récompensées par jour. Entre amis : mise
+   comme aux duels, coups à son rythme, thème d'une manche révélé quand la précédente est jouée des deux côtés ; tâche
+   horaire `expirerParties` (défi oublié remboursé, partie en cours close au bout de trois jours, la manche jouée d'un
+   seul côté lui revenant). Le serveur lit les fiches découpées (`site/fiches/pNNN.json`, 256 paquets par empreinte
+   FNV-1a, `paquetDeFiche`) : le fichier complet coûterait 40 ms de calcul par requête. Routes `GET/POST /api/gouvernements`,
+   `POST /api/gouvernements/:id/supprimer`, `GET/POST /api/parties`, `GET /api/parties/:id`,
+   `POST /api/parties/:id/(gouvernement|coup|refuser|annuler|abandonner)` ; `attente` compte `gouvernement`.
 
 1. Application en service. À confirmer par l'utilisateur : l'éditeur reste anonyme dans `mentions.html`
    (article 1-1 de la loi du 21 juin 2004, texte officiel non consulté, Légifrance refusant les requêtes

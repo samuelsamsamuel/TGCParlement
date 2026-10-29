@@ -75,47 +75,23 @@ function vedettes(cartes, appoint = []) {
   return ministres.length === G.MINISTRES ? {chef, ministres} : null;
 }
 
-const stats = {manches: 0, egalitesForce: 0, egalitesCompletes: 0, departages: 0, avec493: 0};
+const stats = {manches: 0, egalitesForce: 0, egalitesCompletes: 0, avec493: 0};
 
-// Choix d'un ministre pour une manche : gagner au moindre coût, sacrifier le moins utile si la manche est perdue
-function choisir(camp, adverse, theme, restants) {
-  const meilleurAdverse = Math.max(...adverse.dispo.map(i => G.force(adverse.ministres[i], theme, adverse.bonus[i])));
-  const utilite = i => Math.max(0, ...restants.filter(t => t !== theme).map(t => G.force(camp.ministres[i], t, camp.bonus[i])));
-  const options = camp.dispo.map(i => ({i, f: G.force(camp.ministres[i], theme, camp.bonus[i]), u: utilite(i)}));
-  const gagnants = options.filter(o => o.f > meilleurAdverse).sort((a, b) => a.u - b.u);
-  let choix, chef = null;
-  if (gagnants.length) choix = gagnants[0];
-  else {
-    const proches = !camp.a493 && options.filter(o => o.f + camp.chef.stature > meilleurAdverse).sort((a, b) => a.u - b.u);
-    if (proches && proches.length) { choix = proches[0]; chef = camp.chef; camp.a493 = true; }
-    else choix = options.sort((a, b) => a.u - b.u)[0];
-  }
-  if (alea() < 0.15) choix = options[Math.floor(alea() * options.length)];  // part d'imprévu, comme un joueur
-  return {i: choix.i, chef};
-}
-
+// Partie jouée par les règles mêmes du jeu (site/gouvernement.js), l'ordinateur choisissant pour les deux camps
 function partie(g1, g2, annonces) {
-  const camps = [g1, g2].map(g => ({chef: g.chef, ministres: g.ministres, bonus: G.liens(g.chef, g.ministres).map(l => l.total),
-                                     dispo: g.ministres.map((_, i) => i), a493: false}));
-  const tirage = melanger(annonces).slice(0, G.MANCHES);
-  let restants = annonces.slice(), score = [0, 0];
-  for (const theme of tirage) {
-    const c1 = choisir(camps[0], camps[1], theme, restants), c2 = choisir(camps[1], camps[0], theme, restants);
-    const r = G.jugerManche(theme, {ministre: camps[0].ministres[c1.i], bonus: camps[0].bonus[c1.i], chef: c1.chef},
-                                   {ministre: camps[1].ministres[c2.i], bonus: camps[1].bonus[c2.i], chef: c2.chef});
-    stats.manches++;
-    if (r.departage) stats.egalitesForce++;
-    if (!r.gagnant) stats.egalitesCompletes++;
-    if (c1.chef || c2.chef) stats.avec493++;
-    if (r.gagnant) score[r.gagnant - 1]++;
-    camps[0].dispo = camps[0].dispo.filter(i => i !== c1.i); camps[1].dispo = camps[1].dispo.filter(i => i !== c2.i);
-    restants = restants.filter(t => t !== theme);
-    if (score[0] >= G.VICTOIRE || score[1] >= G.VICTOIRE) break;
+  const p = {graine: Math.floor(alea() * 2 ** 32), annonces,
+             camps: [g1, g2].map(g => ({chef: g.chef.id, ministres: g.ministres.map(m => m.id)})), coups: [[], []]};
+  for (;;) {
+    const e = G.resoudre(p, fiches);
+    if (e.fini) {
+      for (const m of e.manches) { stats.manches++; if (m.departage) stats.egalitesForce++; if (!m.gagnant) stats.egalitesCompletes++; if (m.coups[0][1] || m.coups[1][1]) stats.avec493++; }
+      return e.gagnant;
+    }
+    for (const k of [0, 1]) { const c = G.choixOrdinateur(p, k, fiches, alea, [g1, g2][k].niveau ?? 5); if (G.jouerCoup(p, k, c.ministre, c.avec493, fiches)) throw new Error("coup refusé"); }
   }
-  return score[0] > score[1] ? 1 : score[1] > score[0] ? 2 : 0;
 }
 
-const tirerAnnonces = () => melanger(themes.map((_, i) => i)).slice(0, G.ANNONCES);
+const tirerAnnonces = () => G.annoncesDePartie(Math.floor(alea() * 2 ** 32), themes.length);
 function duel(nom, fabriqueA, fabriqueB) {
   let a = 0, b = 0, n = 0;
   for (let k = 0; k < PARTIES; k++) {
@@ -154,5 +130,11 @@ duel("Mythiques et légendaires (composés, complétés) contre assidu sans lég
 duel("Assidu contre régulier", a => composer(assidu, a), a => composer(regulier, a));
 duel("Régulier contre débutant", a => composer(regulier, a), a => composer(debutant, a));
 duel("Assidu contre débutant", a => composer(assidu, a), a => composer(debutant, a));
+const reels = G.gouvernementsReels(fiches);
+const ordi = niveau => a => { const g = G.gouvernementOrdinateur(reels, a, alea, niveau); return g && {chef: fiches.get(g.chef), ministres: g.ministres.map(id => fiches.get(id)), niveau}; };
+for (const n of (process.env.NIVEAUX || "0,1,2,3,4,5").split(",").map(Number)) {
+  duel(`Ordinateur de niveau ${n} contre débutant`, ordi(n), a => composer(debutant, a));
+  duel(`Ordinateur de niveau ${n} contre régulier`, ordi(n), a => composer(regulier, a));
+}
 duel("Régulier, cohérent contre régulier, sans liens", a => composer(regulier, a), a => composer(regulier, a, {coherence: false}));
 console.log(`Manches : ${stats.manches} ; égalités de force ${(100 * stats.egalitesForce / stats.manches).toFixed(1)} % ; égalités après départage ${(100 * stats.egalitesCompletes / stats.manches).toFixed(1)} % ; 49.3 joué dans ${(100 * stats.avec493 / stats.manches).toFixed(1)} % des manches`);

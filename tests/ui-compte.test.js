@@ -1,5 +1,5 @@
 /* Parcours avec comptes (deux joueurs : amis, échange, comptoir, duel, vitrine) contre le Worker local :
-     npx wrangler dev --port 8787 --persist-to /tmp/hemicycle-d1
+     npx wrangler dev --port 8787 --var GOUVERNEMENT_OUVERT:1 --persist-to /tmp/hemicycle-d1
      WR="npx wrangler" ETAT=/tmp/hemicycle-d1 node tests/ui-compte.test.js [dossier des captures] */
 const { chromium } = (() => {
   try { return require("playwright"); }
@@ -181,6 +181,75 @@ const sx = Date.now().toString(36).slice(-4);
   await Bp.screenshot({path: T + "/duels-historique-tel.png", fullPage: true});
   assert.ok(!/Contre/.test(await Bp.textContent("#qag")), "plus d'historique des duels en séance");
   await A.reload(); await A.waitForFunction(() => compte && [2, 12, 22].includes(etat.points));
+  // Jeu du Gouvernement : Anne forme un gouvernement (cartes d'un gouvernement réel données en base, « Compléter pour
+  // moi »), joue contre l'ordinateur jusqu'au bout, puis défie Bob, qui relève le défi sur son téléphone
+  {
+    const G = require("../site/gouvernement.js"), {fiches} = G.fichesDeJeu(require("../site/gouvernement.json"));
+    let s = 5; const alea = () => { s = (s * 1664525 + 1013904223) >>> 0; return s / 4294967296; };
+    const reels = G.gouvernementsReels(fiches), annonces = G.annoncesDePartie(9, 50);
+    const gA = G.gouvernementOrdinateur(reels, annonces, alea, 0);
+    let gB; do gB = G.gouvernementOrdinateur(reels, annonces, alea, 0); while (gB.chef === gA.chef);
+    const sh = c => require("child_process").execSync(`cd ${require("path").join(__dirname, "..")} && ${process.env.WR} d1 execute hemicycle --local --persist-to ${process.env.ETAT} --command "${c.replace(/"/g, '\\"')}"`, {stdio: "ignore"});
+    for (const [pseudo, g] of [["Anne" + sx, gA], ["Bob" + sx, gB]]) {
+      sh(`INSERT INTO possessions (joueur, carte, n) SELECT j.id, CAST(c.value AS TEXT), 1 FROM joueurs j, json_each('${JSON.stringify([g.chef, ...g.ministres])}') c WHERE j.pseudo = '${pseudo}' ON CONFLICT (joueur, carte) DO NOTHING`);
+      sh(`UPDATE joueurs SET points = points + 20 WHERE pseudo = '${pseudo}'`);
+    }
+    await A.reload(); await A.waitForFunction(() => compte);
+    await vers(A, "gouvernement"); await A.waitForSelector("#vue-gouvernement [data-former]");
+    await A.click("[data-former]"); await A.waitForSelector("#vue-gouvernement [data-completer]");
+    await A.click('[data-poste="chef"]'); await A.waitForSelector("#choix-carte[open]");
+    await A.fill("#choix-recherche", ""); await A.click(`#choix-carte [data-choisir="${gA.chef}"]`).catch(async () => {
+      await A.evaluate(id => { document.getElementById("choix-carte").close(); edition.chef = id; majGouvernement(); }, gA.chef); });
+    await A.click("[data-completer]");
+    await A.waitForFunction(() => edition && edition.ministres.every(Boolean));
+    await A.fill('#form-edition [name=nom]', "Cabinet d'essai");
+    await A.screenshot({path: T + "/gouvernement-composition.png", fullPage: true});
+    const pointsAvant = await A.evaluate(() => etat.points);
+    await A.click("[data-enregistrer]"); await A.waitForSelector("#vue-gouvernement .cabinet");
+    await A.waitForFunction(p => etat.points === p - 10, pointsAvant);
+    assert.match(await A.textContent("#vue-gouvernement .cabinet"), /Cabinet d'essai/);
+    await A.screenshot({path: T + "/gouvernement-accueil.png", fullPage: true});
+    // Contre l'ordinateur : choix du gouvernement face à l'adversaire, puis sept manches au plus
+    await A.click('[data-jouer="ordi"]'); await A.waitForSelector("[data-choisir-gouv]");
+    await A.screenshot({path: T + "/gouvernement-preparation.png", fullPage: true});
+    await A.click("[data-choisir-gouv]"); await A.waitForSelector(".theme-manche");
+    await A.screenshot({path: T + "/gouvernement-manche.png", fullPage: true});
+    for (let k = 0; k < 7; k++) {
+      if (await A.evaluate(() => partie.fini)) break;
+      await A.click("[data-ministre]:not([disabled])");
+      if (k === 0) await A.check("#case-493");
+      await A.click("[data-envoyer]");
+      // La vue est redessinée après la réponse du serveur (et, en fin de partie, après la série relue)
+      await A.waitForFunction(n => partie && (partie.fini ? !!document.querySelector("[data-retour-gouv]") && !document.querySelector(".theme-manche")
+        : (partie.manches || []).length === n && !!document.querySelector("[data-envoyer][disabled]")), k + 1);
+    }
+    await A.waitForSelector("[data-retour-gouv]"); assert.ok(await A.evaluate(() => partie.fini));
+    assert.match(await A.textContent("#vue-gouvernement h2"), /Victoire|Défaite|Match nul/);
+    await A.screenshot({path: T + "/gouvernement-fin.png", fullPage: true});
+    await A.click("[data-retour-gouv]"); await A.waitForSelector("#vue-gouvernement .cabinet");
+    await A.waitForLoadState("networkidle").catch(() => {});  // la vue est redessinée quand gouvernements et parties sont relus
+    // Défi à Bob, sans mise ; Bob forme son gouvernement sur son téléphone et relève le défi
+    await A.fill('#form-gouv-ami [name=pseudo]', "Bob" + sx); await A.click('#form-gouv-ami button[type=submit]');
+    await A.waitForSelector("[data-choisir-gouv]"); await A.click("[data-choisir-gouv]");
+    await A.waitForFunction(() => partie && partie.statut === "propose");
+    await Bp.reload(); await Bp.waitForFunction(() => compte);
+    await vers(Bp, "gouvernement"); await Bp.waitForSelector("#vue-gouvernement [data-former]");
+    await Bp.evaluate(g => { edition = {id: null, nom: "Cabinet de Bob", chef: g.chef, ministres: g.ministres.slice()}; majGouvernement(); }, gB);
+    await Bp.click("[data-enregistrer]"); await Bp.waitForSelector("#vue-gouvernement .cabinet");
+    await Bp.waitForSelector('#vue-gouvernement [data-quitter$=":refuser"]');
+    await Bp.click("#vue-gouvernement .duel-ligne [data-partie]"); await Bp.waitForSelector("[data-choisir-gouv]");
+    await Bp.click("[data-choisir-gouv]"); await Bp.waitForSelector(".theme-manche");
+    await Bp.click("[data-ministre]:not([disabled])"); await Bp.click("[data-envoyer]");
+    await Bp.waitForFunction(() => partie && partie.attente);
+    assert.match(await Bp.textContent("#vue-gouvernement h2"), new RegExp("Contre Anne" + sx));
+    await Bp.screenshot({path: T + "/gouvernement-attente-tel.png", fullPage: true});
+    await A.reload(); await A.waitForFunction(() => compte); await vers(A, "gouvernement");
+    await A.waitForSelector('#vue-gouvernement .duel-ligne [data-partie]');
+    await A.click('#vue-gouvernement .duel-ligne:has-text("à vous de jouer") [data-partie]'); await A.waitForSelector(".theme-manche");
+    await A.click("[data-ministre]:not([disabled])"); await A.click("[data-envoyer]");
+    await A.waitForFunction(() => partie && partie.manches.length === 1);
+    assert.match(await A.textContent("#vue-gouvernement .manches"), /1\. /);
+  }
   // Vitrine d'Anne, faite de ses favoris, visible par Bob depuis ses amis
   await A.click('nav [data-vue="collection"]'); await A.click('#grille [data-favori]');
   await A.waitForFunction(() => etat.favoris.length === 1);

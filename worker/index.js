@@ -17,6 +17,7 @@ ne livre que des empreintes coûteuses à attaquer. Sessions : jeton aléatoire 
 base ne garde que l'empreinte.
 */
 import Regles from "../site/regles.js";
+import Gouvernement from "../site/gouvernement.js";
 import {CODES} from "./codes.js";
 
 const DUREE_SESSION = 90 * 24 * 3600;           // secondes
@@ -112,6 +113,19 @@ const SCHEMA = [
   // Garde de concurrence : une insertion n'y a lieu que lorsque la version du joueur a changé entre la lecture
   // et l'écriture ; sa contrainte échoue alors et annule tout le lot (voir appliquer)
   `CREATE TABLE IF NOT EXISTS garde (ok INTEGER NOT NULL CHECK (ok = 0))`,
+  // Jeu du Gouvernement (octobre 2026) : gouvernements enregistrés (cinq au plus, un chef et huit ministres) et parties
+  // (contre l'ordinateur, contre le gouvernement enregistré d'un joueur tiré au hasard, ou contre un ami avec mise) ;
+  // camps figés au choix du gouvernement, coups [ministre, 49.3] jugés par site/gouvernement.js
+  `CREATE TABLE IF NOT EXISTS gouvernements (id INTEGER PRIMARY KEY AUTOINCREMENT, joueur INTEGER NOT NULL, nom TEXT NOT NULL,
+     chef TEXT NOT NULL, ministres TEXT NOT NULL, cree TEXT NOT NULL, maj TEXT NOT NULL)`,
+  `CREATE INDEX IF NOT EXISTS gouvernements_joueur ON gouvernements (joueur)`,
+  `CREATE TABLE IF NOT EXISTS parties (id INTEGER PRIMARY KEY AUTOINCREMENT, mode TEXT NOT NULL, a INTEGER NOT NULL, b INTEGER,
+     graine INTEGER NOT NULL, annonces TEXT NOT NULL, camp_a TEXT, camp_b TEXT, coups_a TEXT NOT NULL DEFAULT '[]',
+     coups_b TEXT NOT NULL DEFAULT '[]', niveau INTEGER NOT NULL DEFAULT 0, fantome INTEGER, statut TEXT NOT NULL,
+     mise_voix INTEGER NOT NULL DEFAULT 0 CHECK (mise_voix >= 0), mise_paquets INTEGER NOT NULL DEFAULT 0 CHECK (mise_paquets >= 0),
+     gagnant INTEGER, cree TEXT NOT NULL, maj TEXT NOT NULL)`,
+  `CREATE INDEX IF NOT EXISTS parties_a ON parties (a, statut)`,
+  `CREATE INDEX IF NOT EXISTS parties_b ON parties (b, statut)`,
   // Une annonce ou un échange ne se clôt qu'une fois : achat, retrait, acceptation, refus, annulation
   `CREATE TABLE IF NOT EXISTS clotures (nature TEXT NOT NULL, id INTEGER NOT NULL, PRIMARY KEY (nature, id)) WITHOUT ROWID`,
 ];
@@ -175,6 +189,8 @@ const COLONNES = {
     ["favoris", "TEXT NOT NULL DEFAULT '[]'"],    // cartes marquées d'une étoile par le joueur
     ["gardes", "TEXT NOT NULL DEFAULT '[]'"],     // cartes dont les doubles ne sont pas proposés à la dissolution
     ["quotidien", "TEXT NOT NULL DEFAULT '{}'"],  // série de connexion, lot à choisir, objectifs du jour (règles : quotidien)
+    ["serie_gouv", "INTEGER NOT NULL DEFAULT 0 CHECK (serie_gouv BETWEEN 0 AND 5)"],  // série du jeu du Gouvernement
+    ["gains_gouv", "TEXT NOT NULL DEFAULT ''"],   // « jour|n » : victoires récompensées ce jour-là (GAINS_GOUV_JOUR au plus)
   ],
   annonces: [
     ["rarete", "TEXT NOT NULL DEFAULT ''"],       // rareté de la carte, pour les prix médians par rareté
@@ -301,7 +317,8 @@ async function chargerEtat(env, joueur) {
   etat.favoris = JSON.parse(ligne.favoris || "[]");
   etat.gardes = JSON.parse(ligne.gardes || "[]");
   try { etat.quotidien = JSON.parse(ligne.quotidien || "{}"); } catch (_) { etat.quotidien = {}; }
-  return {pseudo: ligne.pseudo, cree: ligne.cree, etat, version: ligne.version, vitrine: JSON.parse(ligne.vitrine || "[]")};
+  return {pseudo: ligne.pseudo, cree: ligne.cree, etat, version: ligne.version, vitrine: JSON.parse(ligne.vitrine || "[]"),
+          gouvernement: accesGouvernement(env, ligne.pseudo)};
 }
 // Ajout : la ligne est créée au besoin. Retrait : simple mise à jour, car SQLite vérifie les contraintes CHECK
 // d'une insertion avant de résoudre le conflit (une insertion négative échouerait toujours). Les lignes de
@@ -760,14 +777,18 @@ async function detenteurs(env, url) {
   return json({carte, joueurs: r.n}, 200, {"cache-control": "public, max-age=600"});
 }
 async function attente(env, joueur) {
-  const [e, d, a, o] = await env.DB.batch([
+  const [e, d, a, o, g] = await env.DB.batch([
     env.DB.prepare("SELECT COUNT(*) AS n FROM echanges WHERE vers = ? AND statut = 'proposee'").bind(joueur),
     env.DB.prepare("SELECT COUNT(*) AS n FROM amis WHERE vers = ? AND statut = 'demande'").bind(joueur),
     env.DB.prepare(`SELECT COUNT(*) AS n FROM duels WHERE statut IN ('propose', 'accepte')
       AND ((de = ?1 AND score_de IS NULL) OR (vers = ?1 AND score_vers IS NULL AND statut = 'accepte') OR (vers = ?1 AND statut = 'propose'))`).bind(joueur),
     env.DB.prepare(`SELECT COUNT(*) AS n FROM annonces a JOIN offres o ON o.annonce = a.id WHERE a.vendeur = ? AND a.statut = 'ouverte' AND o.statut = 'proposee'`).bind(joueur),
+    // Jeu du Gouvernement : défi reçu, gouvernement à choisir, coup à jouer
+    env.DB.prepare(`SELECT COUNT(*) AS n FROM parties WHERE (b = ?1 AND mode = 'ami' AND statut = 'propose') OR (a = ?1 AND statut = 'preparation')
+      OR (statut = 'en-cours' AND ((a = ?1 AND json_array_length(coups_a) <= json_array_length(coups_b))
+                                   OR (b = ?1 AND mode = 'ami' AND json_array_length(coups_b) <= json_array_length(coups_a))))`).bind(joueur),
   ]);
-  return json({echanges: e.results[0].n, amis: d.results[0].n, duels: a.results[0].n, offres: o.results[0].n});
+  return json({echanges: e.results[0].n, amis: d.results[0].n, duels: a.results[0].n, offres: o.results[0].n, gouvernement: g.results[0].n});
 }
 const MAX_VITRINE = 6;
 async function changerVitrine(env, requete, joueur) {
@@ -944,6 +965,10 @@ async function supprimerCompte(env, requete, joueur) {
   const ouverts = (await env.DB.prepare("SELECT * FROM duels WHERE (de = ?1 OR vers = ?1) AND statut IN ('propose', 'accepte')").bind(joueur).all()).results;
   const rendus = ouverts.filter(d => d.statut === "accepte" || d.de !== joueur).map(d =>
     env.DB.prepare("UPDATE joueurs SET points = points + ?, offerts = offerts + ? WHERE id = ?").bind(d.mise_voix, d.mise_paquets, d.de === joueur ? d.vers : d.de));
+  // Parties du Gouvernement entre amis : même chose (mise du lanceur rendue si le défi attendait ce joueur)
+  const parties = (await env.DB.prepare("SELECT * FROM parties WHERE mode = 'ami' AND (a = ?1 OR b = ?1) AND statut IN ('propose', 'en-cours')").bind(joueur).all()).results;
+  rendus.push(...parties.filter(d => d.statut === "en-cours" || d.a !== joueur).map(d =>
+    env.DB.prepare("UPDATE joueurs SET points = points + ?, offerts = offerts + ? WHERE id = ?").bind(d.mise_voix, d.mise_paquets, d.a === joueur ? d.b : d.a)));
   await env.DB.batch([
     ...rendus,
     // Offres sur ses annonces ouvertes, closes avec elles ; ses propres offres, effacées
@@ -955,6 +980,8 @@ async function supprimerCompte(env, requete, joueur) {
     // Clôtures des duels effacés d'abord : leur numéro peut resservir à un nouveau duel (clé sans AUTOINCREMENT)
     env.DB.prepare("DELETE FROM clotures WHERE nature IN ('duel-releve', 'duel-clos', 'duel-fini') AND id IN (SELECT id FROM duels WHERE de = ?1 OR vers = ?1)").bind(joueur),
     env.DB.prepare("DELETE FROM duels WHERE de = ?1 OR vers = ?1").bind(joueur),
+    env.DB.prepare("DELETE FROM parties WHERE a = ?1 OR (b = ?1 AND mode = 'ami')").bind(joueur),
+    env.DB.prepare("DELETE FROM gouvernements WHERE joueur = ?").bind(joueur),
     env.DB.prepare("DELETE FROM possessions WHERE joueur = ?").bind(joueur),
     env.DB.prepare("DELETE FROM reclames WHERE joueur = ?").bind(joueur),
     env.DB.prepare("DELETE FROM journal WHERE joueur = ?").bind(joueur),
@@ -1108,6 +1135,308 @@ async function expirerDuels(env) {
   for (const d of inacheves) await cloreDuel(env, d);
 }
 
+/* ---------- Jeu du Gouvernement ---------- */
+// Règles : site/gouvernement.js. Le fichier complet des fiches est trop long à lire dans la limite de calcul du plan
+// gratuit : le serveur lit les fiches découpées par scripts/fiches_gouvernement.py (site/fiches/), en cache ensuite.
+// Contre l'ordinateur ou un joueur tiré au hasard, la partie fait avancer la série (GAINS_SERIE, GAINS_GOUV_JOUR
+// victoires récompensées par jour) ; l'adversaire est vu avant de choisir son gouvernement, et une partie commencée ne se
+// relance pas (une seule à la fois) : l'abandon vaut défaite. Contre un ami, mise comme aux duels, rendue sur un nul.
+// Accès réservé pendant la mise au point (demande de l'utilisateur, octobre 2026) : comptes de TESTEURS_GOUVERNEMENT,
+// ou tous les comptes avec la variable GOUVERNEMENT_OUVERT (serveur local des tests : wrangler dev --var GOUVERNEMENT_OUVERT:1)
+const TESTEURS_GOUVERNEMENT = ["samsam"];
+const accesGouvernement = (env, pseudo) => !!env.GOUVERNEMENT_OUVERT || TESTEURS_GOUVERNEMENT.includes(String(pseudo || "").toLowerCase());
+const MAX_GOUVERNEMENTS = 5, PRIX_GOUVERNEMENT = 10, GAINS_GOUV_JOUR = 10, MAX_PARTIES_AMIS = 20;
+const DUREE_PARTIE = 3 * 86400 * 1000, DUREE_PREPARATION = 86400 * 1000;
+const ORIGINE_INTERNE = "https://hemicycle.interne/";  // adresse des fichiers du site pour la tâche planifiée (ASSETS)
+const paquetsFiches = new Map();
+let reelsServeur = null;
+function lireFichier(env, url, chemin) {
+  return env.ASSETS.fetch(new Request(new URL(chemin, url))).then(r => { if (!r.ok) throw new Error(chemin + " : " + r.status); return r.json(); });
+}
+async function fichesServeur(env, url, ids) {
+  const fiches = new Map();
+  for (const id of new Set(ids.map(String))) {
+    const n = Gouvernement.paquetDeFiche(id);
+    if (!paquetsFiches.has(n)) paquetsFiches.set(n, lireFichier(env, url, `/fiches/p${String(n).padStart(3, "0")}.json`).catch(e => { paquetsFiches.delete(n); throw e; }));
+    const brut = (await paquetsFiches.get(n))[id];
+    if (brut) fiches.set(id, Gouvernement.ficheDe(id, brut));
+  }
+  return fiches;
+}
+async function lireReels(env, url) {
+  reelsServeur ||= lireFichier(env, url, "/fiches/reels.json").catch(e => { reelsServeur = null; throw e; });
+  return reelsServeur;
+}
+const lireJson = (t, defaut) => { try { return JSON.parse(t); } catch (_) { return defaut; } };
+const idsCamp = c => [c.chef, ...c.ministres];
+
+// Gouvernement proposé par le joueur : neuf cartes de sa collection, plafond de stature respecté
+async function verifierCamp(env, url, joueur, chef, ministres) {
+  chef = String(chef || ""); ministres = Array.isArray(ministres) ? ministres.map(String) : [];
+  if (![chef, ...ministres].every(id => ID_CARTE.test(id))) throw new Refus(400, "Carte inconnue.");
+  const fiches = await fichesServeur(env, url, [chef, ...ministres]);
+  if (![chef, ...ministres].every(id => fiches.has(id))) throw new Refus(400, "Carte inconnue.");
+  const erreur = Gouvernement.verifierGouvernement(fiches.get(chef), ministres.map(id => fiches.get(id)));
+  if (erreur) throw new Refus(400, erreur);
+  const ids = [chef, ...ministres];
+  const r = await env.DB.prepare(`SELECT COUNT(*) AS n FROM possessions WHERE joueur = ? AND n > 0 AND carte IN (${ids.map(() => "?").join(",")})`).bind(joueur, ...ids).first();
+  if (r.n !== ids.length) throw new Refus(409, "Toutes les cartes du gouvernement doivent être dans votre collection.");
+  return {chef, ministres};
+}
+// Postes vacants : cartes du gouvernement sorties de la collection depuis (vente, échange, dissolution)
+async function vacants(env, joueur, gouvs) {
+  const ids = [...new Set(gouvs.flatMap(g => [g.chef, ...lireJson(g.ministres, [])]))];
+  if (!ids.length) return new Set();
+  const r = await env.DB.prepare(`SELECT carte FROM possessions WHERE joueur = ? AND n > 0 AND carte IN (SELECT value FROM json_each(?))`).bind(joueur, JSON.stringify(ids)).all();
+  const a = new Set(r.results.map(x => x.carte));
+  return new Set(ids.filter(id => !a.has(id)));
+}
+async function listeGouvernements(env, joueur) {
+  const [g, j] = await env.DB.batch([
+    env.DB.prepare("SELECT id, nom, chef, ministres, maj FROM gouvernements WHERE joueur = ? ORDER BY id").bind(joueur),
+    env.DB.prepare("SELECT serie_gouv, gains_gouv FROM joueurs WHERE id = ?").bind(joueur),
+  ]);
+  const manquent = await vacants(env, joueur, g.results);
+  const [jour, n] = String(j.results[0].gains_gouv || "").split("|");
+  return json({gouvernements: g.results.map(x => ({id: x.id, nom: x.nom, chef: x.chef, ministres: lireJson(x.ministres, []),
+                 vacants: [x.chef, ...lireJson(x.ministres, [])].filter(id => manquent.has(id))})),
+               serie: j.results[0].serie_gouv, gainsDuJour: jour === Regles.jourDuJeu() ? Number(n) : 0, gainsMax: GAINS_GOUV_JOUR,
+               prix: PRIX_GOUVERNEMENT, max: MAX_GOUVERNEMENTS});
+}
+// Création (PRIX_GOUVERNEMENT voix) ou recomposition (gratuite) d'un gouvernement enregistré
+async function enregistrerGouvernement(env, requete, joueur, url) {
+  const c = await lireCorps(requete);
+  const nom = String(c.nom || "").normalize("NFC").trim().slice(0, 40) || "Mon gouvernement";
+  const camp = await verifierCamp(env, url, joueur, c.chef, c.ministres), date = maintenant();
+  if (c.id !== undefined && c.id !== null) {
+    const id = entier(c.id, 1, Number.MAX_SAFE_INTEGER);
+    const r = await env.DB.prepare("UPDATE gouvernements SET nom = ?, chef = ?, ministres = ?, maj = ? WHERE id = ? AND joueur = ?")
+      .bind(nom, camp.chef, JSON.stringify(camp.ministres), date, id, joueur).run();
+    if (!r.meta.changes) throw new Refus(404, "Gouvernement introuvable.");
+    return json({id});
+  }
+  const n = await env.DB.prepare("SELECT COUNT(*) AS n FROM gouvernements WHERE joueur = ?").bind(joueur).first();
+  if (n.n >= MAX_GOUVERNEMENTS) throw new Refus(409, `${MAX_GOUVERNEMENTS} gouvernements au plus : recomposez-en un.`);
+  const [, ins] = await lot(env, [
+    env.DB.prepare("UPDATE joueurs SET points = points - ? WHERE id = ?").bind(PRIX_GOUVERNEMENT, joueur),
+    env.DB.prepare("INSERT INTO gouvernements (joueur, nom, chef, ministres, cree, maj) VALUES (?, ?, ?, ?, ?, ?) RETURNING id")
+      .bind(joueur, nom, camp.chef, JSON.stringify(camp.ministres), date, date),
+  ], `Il faut ${PRIX_GOUVERNEMENT} voix pour former un gouvernement.`);
+  return json({id: ins.results[0].id}, 201);
+}
+async function supprimerGouvernement(env, joueur, id) {
+  await env.DB.prepare("DELETE FROM gouvernements WHERE id = ? AND joueur = ?").bind(id, joueur).run();
+  return json({ok: true});
+}
+
+function partieDe(d) {
+  return {graine: d.graine, annonces: lireJson(d.annonces, []), camps: [lireJson(d.camp_a, null), lireJson(d.camp_b, null)],
+          coups: [lireJson(d.coups_a, []), lireJson(d.coups_b, [])]};
+}
+async function partieAvec(env, joueur, id) {
+  const d = await env.DB.prepare("SELECT * FROM parties WHERE id = ?").bind(id).first();
+  // Contre un joueur tiré au hasard, le propriétaire du gouvernement affronté n'a pas accès à la partie
+  if (!d || (d.a !== joueur && (d.b !== joueur || d.mode !== "ami"))) throw new Refus(404, "Partie introuvable.");
+  return d;
+}
+// Gouvernement de l'ordinateur : un gouvernement réel, au niveau de la série du joueur
+async function campOrdinateur(env, url, annonces, niveau) {
+  const reels = await lireReels(env, url);
+  const possibles = reels.chefs.map((c, i) => [i, c[1]]).filter(([, n]) => n >= Gouvernement.MINISTRES);
+  for (let essai = 0; essai < 8 && possibles.length; essai++) {
+    const [i] = possibles.splice(Math.floor(aleatoire() * possibles.length), 1)[0];
+    const g = await lireFichier(env, url, `/fiches/g${String(i).padStart(2, "0")}.json`);
+    const chef = Gouvernement.ficheDe(g.chef[0], g.chef[1]), membres = g.membres.map(([id, f]) => Gouvernement.ficheDe(id, f));
+    const camp = Gouvernement.gouvernementOrdinateur([[chef, membres]], annonces, aleatoire, niveau);
+    if (camp) return camp;
+  }
+  throw new Refus(503, "L'ordinateur n'a pas pu former de gouvernement. Réessayez.");
+}
+// Gouvernement enregistré d'un autre joueur, complet et toujours dans sa collection
+async function campFantome(env, joueur) {
+  const candidats = (await env.DB.prepare("SELECT * FROM gouvernements WHERE joueur != ? ORDER BY RANDOM() LIMIT 8").bind(joueur).all()).results;
+  for (const g of candidats) if (!(await vacants(env, g.joueur, [g])).size) return g;
+  return null;
+}
+// Nouvelle partie : contre l'ordinateur ou un joueur au hasard (une à la fois, reprise si elle existe), ou contre un ami
+async function nouvellePartie(env, requete, joueur, url) {
+  const c = await lireCorps(requete), mode = ["ordi", "hasard", "ami"].includes(c.mode) ? c.mode : null;
+  if (!mode) throw new Refus(400, "Mode de jeu inconnu.");
+  const date = maintenant(), graine = crypto.getRandomValues(new Uint32Array(1))[0];
+  const annonces = Gouvernement.annoncesDePartie(graine, (await lireReels(env, url)).themes);
+  if (mode === "ami") {
+    const adversaire = await idJoueur(env, c.vers);
+    if (adversaire.id === joueur) throw new Refus(400, "Vous ne pouvez pas vous défier vous-même.");
+    const voix = entier(c.voix ?? 0, 0, MISE_VOIX_MAX), paquets = entier(c.paquets ?? 0, 0, MISE_PAQUETS_MAX);
+    if (voix === null || paquets === null) throw new Refus(400, `Mise de 0 à ${MISE_VOIX_MAX} voix et de 0 à ${MISE_PAQUETS_MAX} paquets.`);
+    const n = await env.DB.prepare("SELECT COUNT(*) AS n FROM parties WHERE a = ? AND mode = 'ami' AND statut IN ('preparation', 'propose', 'en-cours')").bind(joueur).first();
+    if (n.n >= MAX_PARTIES_AMIS) throw new Refus(429, `Vous avez déjà ${MAX_PARTIES_AMIS} parties en cours.`);
+    const [ins] = await lot(env, [
+      env.DB.prepare(`INSERT INTO parties (mode, a, b, graine, annonces, statut, mise_voix, mise_paquets, cree, maj)
+        VALUES ('ami', ?, ?, ?, ?, 'preparation', ?, ?, ?, ?) RETURNING id`).bind(joueur, adversaire.id, graine, JSON.stringify(annonces), voix, paquets, date, date),
+      env.DB.prepare("UPDATE joueurs SET points = points - ?, offerts = offerts - ? WHERE id = ?").bind(voix, paquets, joueur),
+    ], "Vous n'avez pas assez de voix ou de paquets pour cette mise.");
+    return json({id: ins.results[0].id}, 201);
+  }
+  const ouverte = await env.DB.prepare("SELECT id FROM parties WHERE a = ? AND mode IN ('ordi', 'hasard') AND statut IN ('preparation', 'en-cours')").bind(joueur).first();
+  if (ouverte) return json({id: ouverte.id, reprise: true});
+  const niveau = (await env.DB.prepare("SELECT serie_gouv FROM joueurs WHERE id = ?").bind(joueur).first()).serie_gouv;
+  let fantome = mode === "hasard" ? await campFantome(env, joueur) : null, camp, b = null, modeReel = mode;
+  if (fantome) { camp = {chef: fantome.chef, ministres: lireJson(fantome.ministres, []), nom: fantome.nom}; b = fantome.joueur; }
+  else { camp = await campOrdinateur(env, url, annonces, niveau); modeReel = "ordi"; }
+  const ins = await env.DB.prepare(`INSERT INTO parties (mode, a, b, graine, annonces, camp_b, niveau, fantome, statut, cree, maj)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'preparation', ?, ?) RETURNING id`)
+    .bind(modeReel, joueur, b, graine, JSON.stringify(annonces), JSON.stringify(camp), niveau, fantome ? fantome.id : null, date, date).first();
+  return json({id: ins.id, mode: modeReel}, 201);
+}
+// Choix du gouvernement : le lanceur (avant d'inviter son ami, ou contre l'ordinateur), puis l'ami qui relève le défi
+async function choisirGouvernement(env, requete, joueur, id, url) {
+  const c = await lireCorps(requete), d = await partieAvec(env, joueur, id), date = maintenant();
+  const g = await env.DB.prepare("SELECT * FROM gouvernements WHERE id = ? AND joueur = ?").bind(entier(c.gouvernement, 1, Number.MAX_SAFE_INTEGER), joueur).first();
+  if (!g) throw new Refus(404, "Gouvernement introuvable.");
+  const camp = {...(await verifierCamp(env, url, joueur, g.chef, lireJson(g.ministres, []))), nom: g.nom};
+  if (d.a === joueur && d.statut === "preparation") {
+    const statut = d.mode === "ami" ? "propose" : "en-cours";
+    const r = await env.DB.prepare("UPDATE parties SET camp_a = ?, statut = ?, maj = ? WHERE id = ? AND statut = 'preparation'").bind(JSON.stringify(camp), statut, date, id).run();
+    if (!r.meta.changes) throw new Refus(409, "La partie a changé entre-temps.");
+    if (d.mode === "ami") await notifier(env, d.b, `${await pseudoDe(env, joueur)} vous défie au jeu du Gouvernement${texteMise(d)}.`);
+  } else if (d.b === joueur && d.mode === "ami" && d.statut === "propose") {
+    await lot(env, [
+      env.DB.prepare("INSERT INTO clotures (nature, id) VALUES ('partie-relevee', ?)").bind(id),
+      env.DB.prepare("UPDATE parties SET camp_b = ?, statut = 'en-cours', maj = ? WHERE id = ?").bind(JSON.stringify(camp), date, id),
+      env.DB.prepare("UPDATE joueurs SET points = points - ?, offerts = offerts - ? WHERE id = ?").bind(d.mise_voix, d.mise_paquets, joueur),
+    ], "Vous n'avez pas assez de voix ou de paquets pour relever ce défi.");
+    await notifier(env, d.a, `${await pseudoDe(env, joueur)} a relevé votre défi au jeu du Gouvernement.`);
+  } else throw new Refus(409, "Le gouvernement de cette partie est déjà choisi.");
+  return vuePartieServeur(env, joueur, id, url);
+}
+const texteMise = d => d.mise_voix || d.mise_paquets ? `, mise : ${[d.mise_voix ? d.mise_voix + " voix" : "", d.mise_paquets ? d.mise_paquets + (d.mise_paquets > 1 ? " paquets" : " paquet") : ""].filter(Boolean).join(" et ")}` : "";
+// Refuser (l'ami), annuler (le lanceur, avant que l'ami ne relève) : mise rendue ; abandonner une partie en cours : défaite
+async function quitterPartie(env, joueur, id, action) {
+  const d = await partieAvec(env, joueur, id), date = maintenant();
+  if (action === "abandonner") {
+    if (d.statut !== "en-cours" && !(d.statut === "preparation" && d.mode !== "ami")) throw new Refus(409, "Cette partie ne se joue pas en ce moment.");
+    if (d.statut === "preparation") {
+      // Adversaire vu, gouvernement pas encore choisi : la partie compte comme perdue (pas de nouveau tirage gratuit)
+      await lot(env, [env.DB.prepare("UPDATE parties SET statut = 'fini', gagnant = ?, maj = ? WHERE id = ? AND statut = 'preparation'").bind(d.b || -1, date, id),
+                      env.DB.prepare("UPDATE joueurs SET serie_gouv = 0 WHERE id = ?").bind(joueur)]);
+      return json({ok: true});
+    }
+    return json({resultat: await clorePartie(env, d, {forfait: d.a === joueur ? 1 : 2})});
+  }
+  if (d.mode !== "ami" || !["preparation", "propose"].includes(d.statut)) throw new Refus(409, "Ce défi n'est plus en attente.");
+  if ((action === "annuler") !== (d.a === joueur)) throw new Refus(403, action === "annuler" ? "Seul le lanceur peut annuler ce défi." : "Ce défi ne vous est pas adressé.");
+  await lot(env, [
+    env.DB.prepare("INSERT INTO clotures (nature, id) VALUES ('partie-relevee', ?)").bind(id),
+    env.DB.prepare("UPDATE parties SET statut = ?, maj = ? WHERE id = ?").bind(action === "refuser" ? "refuse" : "annule", date, id),
+    env.DB.prepare("UPDATE joueurs SET points = points + ?, offerts = offerts + ? WHERE id = ?").bind(d.mise_voix, d.mise_paquets, d.a),
+  ], "Ce défi vient d'être relevé ou clos.");
+  if (action === "refuser") await notifier(env, d.a, `${await pseudoDe(env, joueur)} a décliné votre défi au jeu du Gouvernement : votre mise vous est rendue.`);
+  return json({ok: true});
+}
+// Un coup : contre l'ordinateur ou un joueur au hasard, l'ordinateur répond aussitôt ; la partie finie est close
+async function jouerPartie(env, requete, joueur, id, url) {
+  const c = await lireCorps(requete), d = await partieAvec(env, joueur, id);
+  if (d.statut !== "en-cours") throw new Refus(409, "Cette partie ne se joue pas en ce moment.");
+  const p = partieDe(d), k = d.a === joueur ? 0 : 1, fiches = await fichesServeur(env, url, [...idsCamp(p.camps[0]), ...idsCamp(p.camps[1])]);
+  const avant = [d.coups_a, d.coups_b];
+  const erreur = Gouvernement.jouerCoup(p, k, entier(c.ministre, 0, Gouvernement.MINISTRES - 1) ?? -1, c.avec493 === true, fiches);
+  if (erreur) throw new Refus(409, erreur);
+  const solo = d.mode !== "ami";
+  if (solo) {
+    const r = Gouvernement.choixOrdinateur(p, 1, fiches, aleatoire, d.niveau);
+    Gouvernement.jouerCoup(p, 1, r.ministre, r.avec493, fiches);
+  }
+  const maj = await env.DB.prepare("UPDATE parties SET coups_a = ?, coups_b = ?, maj = ? WHERE id = ? AND coups_a = ? AND coups_b = ? AND statut = 'en-cours'")
+    .bind(JSON.stringify(p.coups[0]), JSON.stringify(p.coups[1]), maintenant(), id, avant[0], avant[1]).run();
+  if (!maj.meta.changes) throw new Refus(409, "La partie a changé entre-temps. Rechargez.");
+  const etat = Gouvernement.resoudre(p, fiches);
+  if (etat.fini) await clorePartie(env, {...d, coups_a: JSON.stringify(p.coups[0]), coups_b: JSON.stringify(p.coups[1])}, {fiches});
+  else if (!solo && p.coups[1 - k].length < p.coups[k].length)
+    await notifier(env, k ? d.a : d.b, `${await pseudoDe(env, joueur)} a joué : à vous, au jeu du Gouvernement.`);
+  return vuePartieServeur(env, joueur, id, url);
+}
+// Clôture : une fois (clôture « partie-finie ») ; série et gains contre l'ordinateur ou un joueur au hasard, mises entre amis.
+// `forfait` : camp (1 ou 2) qui abandonne ; `expire` : délai passé, la manche jouée d'un seul côté lui revient
+async function clorePartie(env, d, {fiches = null, forfait = 0, expire = false, url = null} = {}) {
+  const p = partieDe(d);
+  let gagnant;
+  if (forfait) gagnant = forfait === 1 ? 2 : 1;
+  else gagnant = Gouvernement.resoudre(p, fiches, {expire}).gagnant;
+  const gagnantId = gagnant === 1 ? d.a : gagnant === 2 ? (d.b || -1) : 0, date = maintenant();
+  const ecritures = [
+    env.DB.prepare("INSERT INTO clotures (nature, id) VALUES ('partie-finie', ?)").bind(d.id),
+    env.DB.prepare("UPDATE parties SET statut = 'fini', gagnant = ?, maj = ? WHERE id = ?").bind(gagnantId, date, d.id),
+  ];
+  let gain = null;
+  if (d.mode === "ami") {
+    const credit = (id, fois) => env.DB.prepare("UPDATE joueurs SET points = points + ?, offerts = offerts + ? WHERE id = ?").bind(d.mise_voix * fois, d.mise_paquets * fois, id);
+    ecritures.push(...(gagnant ? [credit(gagnantId, 2)] : [credit(d.a, 1), credit(d.b, 1)]));
+  } else {
+    const j = await env.DB.prepare("SELECT serie_gouv, gains_gouv FROM joueurs WHERE id = ?").bind(d.a).first();
+    const issue = gagnant === 1 ? "gagne" : gagnant === 2 ? "perdu" : "egalite";
+    const s = Gouvernement.progresserSerie(j.serie_gouv, issue), jour = Regles.jourDuJeu();
+    const [jg, ng] = String(j.gains_gouv || "").split("|"), deja = jg === jour ? Number(ng) || 0 : 0;
+    gain = s.gain && deja < GAINS_GOUV_JOUR ? s.gain : null;
+    ecritures.push(env.DB.prepare("UPDATE joueurs SET serie_gouv = ?, points = points + ?, offerts = offerts + ?, gains_gouv = ? WHERE id = ?")
+      .bind(s.serie, gain?.voix || 0, gain?.paquets || 0, gain ? `${jour}|${deja + 1}` : j.gains_gouv, d.a));
+    gain = {serie: s.serie, gain, plafond: !!s.gain && !gain};
+  }
+  try { await env.DB.batch(ecritures); } catch (e) { if (contrainte(e)) return null; throw e; }
+  if (d.mode === "hasard" && d.b) {
+    const nom = lireJson(d.camp_b, {}).nom || "Votre gouvernement";
+    await notifier(env, d.b, `« ${nom} » ${gagnant === 2 ? "a battu" : gagnant === 1 ? "a été battu par" : "a fait match nul contre"} ${await pseudoDe(env, d.a)} au jeu du Gouvernement.`);
+  }
+  return {gagnant, ...(gain || {})};
+}
+// Ce que voit le joueur : la partie (règles : vuePartie), le mode, l'adversaire, la mise ; avant le choix du gouvernement,
+// les thèmes annoncés et le gouvernement adverse s'il est connu
+async function vuePartieServeur(env, joueur, id, url) {
+  const d = await partieAvec(env, joueur, id), p = partieDe(d), k = d.a === joueur ? 0 : 1;
+  const autreId = k ? d.a : d.b, autre = autreId > 0 ? await pseudoDe(env, autreId) : null;
+  const base = {id: d.id, mode: d.mode, statut: d.statut, adversaire: d.mode === "ordi" ? null : autre, lance: k === 0,
+    voix: d.mise_voix, paquets: d.mise_paquets, niveau: d.niveau, annonces: p.annonces,
+    issue: d.gagnant === null ? null : d.gagnant === 0 ? "egalite" : d.gagnant === joueur ? "gagne" : "perdu",
+    echeance: new Date(Date.parse(d.maj) + (d.statut === "preparation" && d.mode !== "ami" ? DUREE_PREPARATION : DUREE_PARTIE)).toISOString()};
+  if (!p.camps[0] || !p.camps[1]) return json({...base, moi: p.camps[k], lui: p.camps[1 - k]});
+  const fiches = await fichesServeur(env, url, [...idsCamp(p.camps[0]), ...idsCamp(p.camps[1])]);
+  // Partie close (délai, abandon) : la manche jouée d'un seul côté compte comme à la clôture
+  const vue = Gouvernement.vuePartie(p, k, fiches, {expire: d.statut === "fini"});
+  // Partie close par abandon ou délai : l'issue enregistrée prime sur le décompte des manches
+  return json({...base, ...vue, issue: base.issue ?? vue.issue, fini: d.statut === "fini" || vue.fini});
+}
+async function listeParties(env, joueur) {
+  const r = await env.DB.prepare(`SELECT p.id, p.mode, p.a, p.b, p.statut, p.gagnant, p.mise_voix, p.mise_paquets, p.coups_a, p.coups_b, p.camp_a, p.camp_b, p.maj,
+      ja.pseudo AS pseudo_a, jb.pseudo AS pseudo_b FROM parties p JOIN joueurs ja ON ja.id = p.a LEFT JOIN joueurs jb ON jb.id = p.b
+    WHERE (p.a = ?1 OR (p.b = ?1 AND p.mode = 'ami')) AND p.statut NOT IN ('annule') ORDER BY p.id DESC LIMIT 30`).bind(joueur).all();
+  return json({parties: r.results.map(d => {
+    const k = d.a === joueur ? 0 : 1, coups = [lireJson(d.coups_a, []), lireJson(d.coups_b, [])];
+    const aJouer = d.statut === "en-cours" && coups[k].length <= coups[1 - k].length;
+    return {id: d.id, mode: d.mode, statut: d.statut, lance: k === 0, adversaire: d.mode === "ordi" ? null : (k ? d.pseudo_a : d.pseudo_b),
+      voix: d.mise_voix, paquets: d.mise_paquets, aJouer, aRelever: d.statut === "propose" && k === 1, aPreparer: d.statut === "preparation" && k === 0,
+      nomAdverse: (lireJson(k ? d.camp_a : d.camp_b, null) || {}).nom || null,
+      issue: d.gagnant === null ? null : d.gagnant === 0 ? "egalite" : d.gagnant === joueur ? "gagne" : "perdu", maj: d.maj};
+  })});
+}
+// Tâche horaire : préparations oubliées annulées (mise rendue entre amis), parties en cours closes au délai
+async function expirerParties(env) {
+  const limite = new Date(Date.now() - DUREE_PARTIE).toISOString(), limitePrep = new Date(Date.now() - DUREE_PREPARATION).toISOString();
+  const oubliees = (await env.DB.prepare(`SELECT * FROM parties WHERE (statut IN ('preparation', 'propose') AND mode = 'ami' AND maj < ?1)
+    OR (statut = 'preparation' AND mode != 'ami' AND maj < ?2)`).bind(limite, limitePrep).all()).results;
+  for (const d of oubliees) {
+    await env.DB.batch([
+      env.DB.prepare("INSERT INTO clotures (nature, id) VALUES ('partie-relevee', ?)").bind(d.id),
+      env.DB.prepare("UPDATE parties SET statut = 'expire', maj = ? WHERE id = ?").bind(maintenant(), d.id),
+      env.DB.prepare("UPDATE joueurs SET points = points + ?, offerts = offerts + ? WHERE id = ?").bind(d.mise_voix, d.mise_paquets, d.a),
+    ]).catch(e => { if (!contrainte(e)) throw e; });
+  }
+  const enCours = (await env.DB.prepare("SELECT * FROM parties WHERE statut = 'en-cours' AND maj < ?").bind(limite).all()).results;
+  for (const d of enCours) {
+    const p = partieDe(d), fiches = await fichesServeur(env, ORIGINE_INTERNE, [...idsCamp(p.camps[0]), ...idsCamp(p.camps[1])]);
+    await clorePartie(env, d, {fiches, expire: true});
+  }
+}
+
 /* ---------- Routage ---------- */
 async function api(requete, env, url) {
   const methode = requete.method, chemin = url.pathname.replace(/\/+$/, "");
@@ -1210,7 +1539,18 @@ async function api(requete, env, url) {
   if (methode === "POST" && chemin === "/api/mot-de-passe") return changerMotDePasse(env, requete, joueur);
   if (methode === "POST" && chemin === "/api/code") return utiliserCode(env, requete, joueur, await catalogueDuJeu());
   if (methode === "POST" && chemin === "/api/duels") return lancerDuel(env, requete, joueur);
+  if (/^\/api\/(gouvernements|parties)(\/|$)/.test(chemin) && !accesGouvernement(env, await pseudoDe(env, joueur)))
+    throw new Refus(403, "Le jeu du Gouvernement n'est pas encore ouvert.");
+  if (methode === "GET" && chemin === "/api/gouvernements") return listeGouvernements(env, joueur);
+  if (methode === "POST" && chemin === "/api/gouvernements") return enregistrerGouvernement(env, requete, joueur, url);
+  if (methode === "GET" && chemin === "/api/parties") return listeParties(env, joueur);
+  if (methode === "POST" && chemin === "/api/parties") return nouvellePartie(env, requete, joueur, url);
   let m;
+  if (methode === "POST" && (m = chemin.match(/^\/api\/gouvernements\/(\d+)\/supprimer$/))) return supprimerGouvernement(env, joueur, Number(m[1]));
+  if (methode === "GET" && (m = chemin.match(/^\/api\/parties\/(\d+)$/))) return vuePartieServeur(env, joueur, Number(m[1]), url);
+  if (methode === "POST" && (m = chemin.match(/^\/api\/parties\/(\d+)\/gouvernement$/))) return choisirGouvernement(env, requete, joueur, Number(m[1]), url);
+  if (methode === "POST" && (m = chemin.match(/^\/api\/parties\/(\d+)\/coup$/))) return jouerPartie(env, requete, joueur, Number(m[1]), url);
+  if (methode === "POST" && (m = chemin.match(/^\/api\/parties\/(\d+)\/(refuser|annuler|abandonner)$/))) return quitterPartie(env, joueur, Number(m[1]), m[2]);
   if (methode === "POST" && (m = chemin.match(/^\/api\/amis\/(demander|accepter|retirer)$/))) return actionAmi(env, requete, joueur, m[1]);
   if (methode === "GET" && (m = chemin.match(/^\/api\/duels\/(\d+)\/questions$/))) return questionsDuel(env, joueur, Number(m[1]), url);
   if (methode === "POST" && (m = chemin.match(/^\/api\/duels\/(\d+)\/reponse$/))) return repondreDuel(env, requete, joueur, Number(m[1]), url);
@@ -1263,6 +1603,6 @@ export default {
   },
   async scheduled(evenement, env, ctx) {
     const e = Object.assign(Object.create(env), {ctx});
-    ctx.waitUntil(surveillerReserves(e).then(() => expirerDuels(e)));
+    ctx.waitUntil(surveillerReserves(e).then(() => expirerDuels(e)).then(() => expirerParties(e)));
   },
 };
