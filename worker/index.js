@@ -192,6 +192,7 @@ const COLONNES = {
     // Première version de la série du Gouvernement (octobre 2026), remplacée par quotidien.gouv (règles) : inutilisées
     ["serie_gouv", "INTEGER NOT NULL DEFAULT 0 CHECK (serie_gouv BETWEEN 0 AND 5)"],
     ["gains_gouv", "TEXT NOT NULL DEFAULT ''"],
+    ["gouv_formes", "INTEGER NOT NULL DEFAULT 0"],  // gouvernements formés depuis l'ouverture du compte (le premier est offert)
   ],
   annonces: [
     ["rarete", "TEXT NOT NULL DEFAULT ''"],       // rareté de la carte, pour les prix médians par rareté
@@ -1149,6 +1150,9 @@ async function expirerDuels(env) {
 const TESTEURS_GOUVERNEMENT = ["samsam"];
 const accesGouvernement = (env, pseudo) => !!env.GOUVERNEMENT_OUVERT || TESTEURS_GOUVERNEMENT.includes(String(pseudo || "").toLowerCase());
 const MAX_GOUVERNEMENTS = 5, PRIX_GOUVERNEMENT = 10, MAX_PARTIES_AMIS = 20;
+// Le premier gouvernement est offert (demande de l'utilisateur, octobre 2026) ; un compte qui a déjà formé un gouvernement,
+// même supprimé depuis, paie les suivants (gouv_formes ; avant cette colonne, un gouvernement encore enregistré compte aussi)
+const prixGouvernement = (formes, enregistres) => formes || enregistres ? PRIX_GOUVERNEMENT : 0;
 const DUREE_PARTIE = 3 * 86400 * 1000, DUREE_PREPARATION = 86400 * 1000;
 const ORIGINE_INTERNE = "https://hemicycle.interne/";  // adresse des fichiers du site pour la tâche planifiée (ASSETS)
 const paquetsFiches = new Map();
@@ -1197,12 +1201,12 @@ async function vacants(env, joueur, gouvs) {
 async function listeGouvernements(env, joueur) {
   const [g, j] = await env.DB.batch([
     env.DB.prepare("SELECT id, nom, chef, ministres, maj FROM gouvernements WHERE joueur = ? ORDER BY id").bind(joueur),
-    env.DB.prepare("SELECT quotidien FROM joueurs WHERE id = ?").bind(joueur),
+    env.DB.prepare("SELECT quotidien, gouv_formes FROM joueurs WHERE id = ?").bind(joueur),
   ]);
   const manquent = await vacants(env, joueur, g.results);
   return json({gouvernements: g.results.map(x => ({id: x.id, nom: x.nom, chef: x.chef, ministres: lireJson(x.ministres, []),
                  vacants: [x.chef, ...lireJson(x.ministres, [])].filter(id => manquent.has(id))})),
-               serie: Regles.serieGouv({quotidien: lireJson(j.results[0].quotidien, {})}), prix: PRIX_GOUVERNEMENT, max: MAX_GOUVERNEMENTS});
+               serie: Regles.serieGouv({quotidien: lireJson(j.results[0].quotidien, {})}), prix: prixGouvernement(j.results[0].gouv_formes, g.results.length), max: MAX_GOUVERNEMENTS});
 }
 // Création (PRIX_GOUVERNEMENT voix) ou recomposition (gratuite) d'un gouvernement enregistré
 async function enregistrerGouvernement(env, requete, joueur, url) {
@@ -1216,13 +1220,19 @@ async function enregistrerGouvernement(env, requete, joueur, url) {
     if (!r.meta.changes) throw new Refus(404, "Gouvernement introuvable.");
     return json({id});
   }
-  const n = await env.DB.prepare("SELECT COUNT(*) AS n FROM gouvernements WHERE joueur = ?").bind(joueur).first();
-  if (n.n >= MAX_GOUVERNEMENTS) throw new Refus(409, `${MAX_GOUVERNEMENTS} gouvernements au plus : recomposez-en un.`);
-  const [, ins] = await lot(env, [
-    env.DB.prepare("UPDATE joueurs SET points = points - ? WHERE id = ?").bind(PRIX_GOUVERNEMENT, joueur),
+  const [n, j] = await env.DB.batch([
+    env.DB.prepare("SELECT COUNT(*) AS n FROM gouvernements WHERE joueur = ?").bind(joueur),
+    env.DB.prepare("SELECT gouv_formes FROM joueurs WHERE id = ?").bind(joueur),
+  ]);
+  if (n.results[0].n >= MAX_GOUVERNEMENTS) throw new Refus(409, `${MAX_GOUVERNEMENTS} gouvernements au plus : recomposez-en un.`);
+  const formes = j.results[0].gouv_formes, prix = prixGouvernement(formes, n.results[0].n);
+  // Le compte des gouvernements formés n'avance que s'il n'a pas bougé entre-temps (deux créations simultanées : une seule offerte)
+  const [, , ins] = await lot(env, [
+    env.DB.prepare("UPDATE joueurs SET points = points - ?, gouv_formes = gouv_formes + 1 WHERE id = ? AND gouv_formes = ?").bind(prix, joueur, formes),
+    env.DB.prepare("INSERT INTO garde (ok) SELECT 1 WHERE changes() = 0"),
     env.DB.prepare("INSERT INTO gouvernements (joueur, nom, chef, ministres, cree, maj) VALUES (?, ?, ?, ?, ?, ?) RETURNING id")
       .bind(joueur, nom, camp.chef, JSON.stringify(camp.ministres), date, date),
-  ], `Il faut ${PRIX_GOUVERNEMENT} voix pour former un gouvernement.`);
+  ], `Il faut ${prix} voix pour former un gouvernement.`);
   return json({id: ins.results[0].id}, 201);
 }
 async function supprimerGouvernement(env, joueur, id) {

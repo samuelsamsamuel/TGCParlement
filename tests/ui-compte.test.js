@@ -222,8 +222,10 @@ const sx = Date.now().toString(36).slice(-4);
     await A.fill('#form-edition [name=nom]', "Cabinet d'essai");
     await A.screenshot({path: T + "/gouvernement-composition.png", fullPage: true});
     const pointsAvant = await A.evaluate(() => etat.points);
+    assert.match(await A.textContent("[data-enregistrer]"), /offert/);
     await A.click("[data-enregistrer]"); await A.waitForSelector("#vue-gouvernement .cabinet");
-    await A.waitForFunction(p => etat.points === p - 10, pointsAvant);
+    assert.strictEqual(await A.evaluate(() => etat.points), pointsAvant, "le premier gouvernement est offert");
+    await A.waitForFunction(() => /10 voix/.test(document.querySelector("[data-former]")?.textContent || ""));  // les suivants coûtent 10 voix
     assert.match(await A.textContent("#vue-gouvernement .cabinet"), /Cabinet d'essai/);
     await A.screenshot({path: T + "/gouvernement-accueil.png", fullPage: true});
     // Contre l'ordinateur : choix du gouvernement face à l'adversaire, puis sept manches au plus
