@@ -264,3 +264,46 @@ console.log("série et objectifs du jour : tests passés");
   assert.deepStrictEqual([r.gagnant, r.departage], [1, "annees"]);
 }
 console.log("jeu du Gouvernement : tests passés");
+// Partie du Gouvernement : thèmes cachés, coups validés, ordinateur, série
+{
+  const G = require("../site/gouvernement.js"), {fiches, themes} = G.fichesDeJeu(require("../site/gouvernement.json"));
+  let s = 7; const alea = () => { s = (s * 1664525 + 1013904223) >>> 0; return s / 4294967296; };
+  const annonces = G.annoncesDePartie(42, themes.length);
+  assert.strictEqual(annonces.length, G.ANNONCES); assert.strictEqual(new Set(annonces).size, G.ANNONCES);
+  assert.deepStrictEqual(annonces, G.annoncesDePartie(42, themes.length), "même graine, mêmes annonces");
+  const reels = G.gouvernementsReels(fiches);
+  const g1 = G.gouvernementOrdinateur(reels, annonces, alea, 5), g2 = G.gouvernementOrdinateur(reels, annonces, alea, 0);
+  for (const g of [g1, g2]) assert.strictEqual(G.verifierGouvernement(fiches.get(g.chef), g.ministres.map(id => fiches.get(id))), null, "gouvernement de l'ordinateur valable");
+  assert.ok(fiches.get(g1.chef).chefs.length, "un chef du Gouvernement réel");
+  const p = {graine: 42, annonces, camps: [g1, g2], coups: [[], []]};
+  assert.strictEqual(G.jouerCoup(p, 0, 9, false, fiches), "Ministre inconnu.");
+  assert.strictEqual(G.jouerCoup(p, 0, 0, true, fiches), null);
+  assert.strictEqual(G.jouerCoup(p, 0, 1, false, fiches), "Attendez le coup de votre adversaire.");
+  let v = G.vuePartie(p, 1, fiches);
+  assert.ok(annonces.includes(v.theme)); assert.strictEqual(v.attente, null); assert.strictEqual(v.manches.length, 0, "rien de révélé tant que l'adversaire n'a pas joué");
+  assert.strictEqual(G.jouerCoup(p, 1, 3, false, fiches), null);
+  assert.strictEqual(G.jouerCoup(p, 0, 0, false, fiches), "Ce ministre a déjà siégé.");
+  assert.strictEqual(G.jouerCoup(p, 0, 1, true, fiches), "Le 49.3 a déjà servi.");
+  let e = G.resoudre(p, fiches);
+  while (!e.fini) {
+    for (const k of [0, 1]) { const c = G.choixOrdinateur(p, k, fiches, alea, 3); assert.strictEqual(G.jouerCoup(p, k, c.ministre, c.avec493, fiches), null); }
+    e = G.resoudre(p, fiches);
+  }
+  assert.ok(e.manches.length >= G.VICTOIRE && e.manches.length <= G.MANCHES);
+  assert.strictEqual(new Set(e.manches.map(m => m.theme)).size, e.manches.length, "sept thèmes différents au plus");
+  assert.ok(e.manches.every(m => annonces.includes(m.theme)));
+  v = G.vuePartie(p, 0, fiches);
+  assert.ok(v.fini && ["gagne", "perdu", "egalite"].includes(v.issue));
+  assert.strictEqual(G.jouerCoup(p, 0, 7, false, fiches), "La partie est terminée.");
+  // Expiration : la manche jouée d'un seul côté lui revient, et la partie s'arrête
+  const q = {graine: 3, annonces, camps: [g1, g2], coups: [[[0, 0]], []]};
+  const x = G.resoudre(q, fiches, {expire: true});
+  assert.deepStrictEqual([x.fini, x.score, x.gagnant], [true, [1, 0], 1]);
+  // Série
+  assert.deepStrictEqual(G.progresserSerie(0, "gagne"), {serie: 1, gain: {voix: 5}});
+  assert.deepStrictEqual(G.progresserSerie(4, "gagne"), {serie: 5, gain: {paquets: 1}});
+  assert.deepStrictEqual(G.progresserSerie(5, "gagne"), {serie: 5, gain: {paquets: 1}}, "le palier 5 se répète");
+  assert.deepStrictEqual(G.progresserSerie(3, "perdu"), {serie: 0, gain: null});
+  assert.deepStrictEqual(G.progresserSerie(3, "egalite"), {serie: 3, gain: null});
+}
+console.log("partie du Gouvernement : tests passés");

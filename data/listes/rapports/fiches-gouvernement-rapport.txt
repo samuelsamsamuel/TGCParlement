@@ -2,6 +2,7 @@ Fiches : 19816 cartes ; stature : 1 (11446), 2 (5402), 3 (2244), 4 (551), 5 (173
 Paris : le département de Paris et celui de la Seine (supprimé en 1968, chef-lieu Paris) ; Paris compte aussi pour l'Île-de-France, dont il fait partie. Outre-mer : les départements et régions d'outre-mer de l'Insee, les collectivités d'outre-mer, et les anciennes colonies et territoires d'outre-mer représentés au Parlement (`OUTRE_MER`), suivis par les ministères des colonies puis de la France d'outre-mer ; les départements d'Algérie (numéros 91 à 94 avant 1962, réattribués à l'Île-de-France en 1968) et les citoyens français du Maroc et de Tunisie n'appartiennent à aucun territoire du jeu, sauf ces derniers pour les Français de l'étranger, qu'ils représentaient. Les départements antérieurs à 1943 absents du Code officiel géographique (`ANCIENS`) sont rattachés à la région de leur chef-lieu ; ceux de l'Empire aujourd'hui hors de France, à aucune.
 
 Insee : 101 départements rattachés à une région
+Fichiers du serveur : 256 paquets de fiches, 50 gouvernements réels
 
 Cartes par thème et par nombre d'étoiles (1, 2, 3) :
   Intérieur : 183 / 27 / 54

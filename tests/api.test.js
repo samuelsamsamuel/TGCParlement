@@ -1,5 +1,5 @@
 /* Test de l'API sur un serveur local, à lancer depuis la racine du dépôt :
-     npx wrangler dev --port 8787 --test-scheduled --var CODE_ESSAI:1 --persist-to /tmp/hemicycle-d1     (dans un premier terminal)
+     npx wrangler dev --port 8787 --test-scheduled --var CODE_ESSAI:1 --var GOUVERNEMENT_OUVERT:1 --persist-to /tmp/hemicycle-d1     (dans un premier terminal)
      WR="npx wrangler" ETAT=/tmp/hemicycle-d1 node tests/api.test.js   (dans un second)
    Il crée trois joueurs et vérifie inscription avec reprise, paquets, recyclage, marché et échanges,
    y compris des demandes simultanées (une seule doit aboutir). */
@@ -214,6 +214,101 @@ const preuve = c => require("crypto").createHash("sha256").update(c).digest("hex
   assert.strictEqual((await fetch("http://localhost:8787/cdn-cgi/handler/scheduled")).status, 200);
   assert.strictEqual(await voixDe(A), 60, "défi expiré remboursé");
   assert.strictEqual((await A("duels")).d.duels.find(x => x.id === r.d.id).statut, "expire");
+  // Jeu du Gouvernement : gouvernements enregistrés (10 voix la création), parties contre l'ordinateur, entre amis avec
+  // mise, contre un joueur tiré au hasard, abandon et délai
+  {
+    const G = require("../site/gouvernement.js"), {fiches} = G.fichesDeJeu(require("../site/gouvernement.json"));
+    let s = 11; const alea = () => { s = (s * 1664525 + 1013904223) >>> 0; return s / 4294967296; };
+    const reels = G.gouvernementsReels(fiches), annonces = G.annoncesDePartie(5, 50);
+    const gA = G.gouvernementOrdinateur(reels, annonces, alea, 0);
+    let gC; do gC = G.gouvernementOrdinateur(reels, annonces, alea, 0); while (gC.chef === gA.chef);
+    const donner = (pseudo, g) => base(`INSERT INTO possessions (joueur, carte, n) SELECT j.id, CAST(c.value AS TEXT), 1 FROM joueurs j, json_each('${JSON.stringify([g.chef, ...g.ministres]).replace(/"/g, '\\"')}') c WHERE j.pseudo = '${pseudo}' ON CONFLICT (joueur, carte) DO UPDATE SET n = n + 1`);
+    let g = (await A("gouvernements")).d;
+    assert.deepStrictEqual([g.gouvernements.length, g.serie, g.prix, g.max], [0, 0, 10, 5]);
+    assert.strictEqual((await A("gouvernements", {nom: "Essai", ...gA})).statut, 409, "cartes hors de la collection");
+    const vedettes = [...fiches.values()].filter(f => f.stature === 5).slice(0, 9).map(f => f.id);
+    assert.strictEqual((await A("gouvernements", {chef: vedettes[0], ministres: vedettes.slice(1)})).statut, 400, "plafond de stature");
+    donner("alice" + suffixe, gA); donner("carole" + suffixe, gC);
+    base(`UPDATE joueurs SET points = 100 WHERE pseudo IN ('alice${suffixe}', 'carole${suffixe}')`);
+    r = await A("gouvernements", {nom: "Cabinet d'Alice", ...gA}); assert.strictEqual(r.statut, 201, JSON.stringify(r.d));
+    const idGA = r.d.id;
+    assert.strictEqual(await voixDe(A), 90, "10 voix la création");
+    assert.strictEqual((await A("gouvernements", {id: idGA, nom: "Cabinet recomposé", ...gA})).statut, 200);
+    assert.strictEqual(await voixDe(A), 90, "recomposition gratuite");
+    const idGC = (await C("gouvernements", {nom: "Cabinet de Carole", ...gC})).d.id;
+    g = (await A("gouvernements")).d;
+    assert.deepStrictEqual([g.gouvernements.length, g.gouvernements[0].nom, g.gouvernements[0].vacants], [1, "Cabinet recomposé", []]);
+    // Contre l'ordinateur : une partie à la fois, adversaire vu avant le choix du gouvernement
+    r = await A("parties", {mode: "ordi"}); assert.strictEqual(r.statut, 201, JSON.stringify(r.d));
+    const solo = r.d.id;
+    assert.deepStrictEqual((await A("parties", {mode: "ordi"})).d, {id: solo, reprise: true}, "pas de nouveau tirage");
+    let v = (await A("parties/" + solo)).d;
+    assert.deepStrictEqual([v.statut, v.annonces.length, v.moi, v.lui.ministres.length], ["preparation", 10, null, 8]);
+    assert.strictEqual((await A("attente")).d.gouvernement, 1);
+    assert.strictEqual((await A("parties/" + solo + "/coup", {ministre: 0})).statut, 409, "gouvernement d'abord");
+    v = (await A("parties/" + solo + "/gouvernement", {gouvernement: idGA})).d;
+    assert.strictEqual(v.statut, "en-cours"); assert.ok(v.annonces.includes(v.theme)); assert.strictEqual(v.manches.length, 0);
+    for (let i = 0; !v.fini; i++) {
+      r = await A("parties/" + solo + "/coup", {ministre: i, avec493: i === 0});
+      assert.strictEqual(r.statut, 200, JSON.stringify(r.d)); v = r.d;
+      assert.strictEqual(v.manches.length, i + 1, "l'ordinateur répond aussitôt");
+    }
+    assert.strictEqual((await A("parties/" + solo + "/coup", {ministre: 7})).statut, 409, "partie finie");
+    const serie = (await A("gouvernements")).d.serie;
+    assert.strictEqual(serie, v.issue === "gagne" ? 1 : 0);
+    assert.strictEqual(await voixDe(A), 90 + (v.issue === "gagne" ? 5 : 0), "gain du premier palier");
+    // Entre amis, avec mise : coups à son rythme, révélés quand les deux ont joué
+    const voixA = await voixDe(A);
+    r = await A("parties", {mode: "ami", vers: "carole" + suffixe, voix: 10}); assert.strictEqual(r.statut, 201, JSON.stringify(r.d));
+    const amie = r.d.id;
+    assert.strictEqual(await voixDe(A), voixA - 10, "mise retenue");
+    assert.strictEqual((await C("parties/" + amie + "/gouvernement", {gouvernement: idGC})).statut, 409, "le lanceur choisit d'abord");
+    assert.strictEqual((await A("parties/" + amie + "/gouvernement", {gouvernement: idGA})).d.statut, "propose");
+    assert.ok((await C("parties")).d.parties.find(x => x.id === amie).aRelever);
+    v = (await C("parties/" + amie + "/gouvernement", {gouvernement: idGC})).d;
+    assert.strictEqual(v.statut, "en-cours"); assert.strictEqual(await voixDe(C), 80, "mise retenue à l'ami");
+    assert.deepStrictEqual(v.lui.ministres, gA.ministres, "gouvernement adverse visible");
+    for (let i = 0; !v.fini; i++) {
+      assert.strictEqual((await A("parties/" + amie + "/coup", {ministre: i})).statut, 200);
+      if (i === 0) {
+        assert.strictEqual((await A("parties/" + amie + "/coup", {ministre: 1})).statut, 409, "attendre l'autre");
+        const vc = (await C("parties/" + amie)).d;
+        assert.strictEqual(vc.manches.length, 0, "coup adverse caché"); assert.strictEqual(vc.attente, null);
+      }
+      v = (await C("parties/" + amie + "/coup", {ministre: 7 - i})).d;
+    }
+    const va = (await A("parties/" + amie)).d;
+    assert.strictEqual(va.fini, true);
+    const attendues = va.issue === "gagne" ? [voixA + 10, 80] : va.issue === "perdu" ? [voixA - 10, 100] : [voixA, 90];
+    assert.deepStrictEqual([await voixDe(A), await voixDe(C)], attendues, "le gagnant emporte les deux mises");
+    // Contre un joueur tiré au hasard : un gouvernement enregistré par un autre ; abandon : défaite
+    r = await C("parties", {mode: "hasard"}); assert.strictEqual(r.statut, 201, JSON.stringify(r.d));
+    v = (await C("parties/" + r.d.id)).d;
+    assert.strictEqual(v.mode, "hasard"); assert.ok(v.adversaire && v.lui.nom, "gouvernement d'un joueur, nommé");
+    assert.strictEqual((await A("parties/" + r.d.id)).statut === 404 || v.adversaire !== "alice" + suffixe, true, "le propriétaire ne voit pas la partie");
+    assert.strictEqual((await C("parties/" + r.d.id + "/abandonner", {})).statut, 200);
+    assert.strictEqual((await C("parties/" + r.d.id)).d.issue, "perdu");
+    // Défi entre amis oublié : mise rendue par la tâche horaire
+    const avantExp = await voixDe(A);
+    r = await A("parties", {mode: "ami", vers: "carole" + suffixe, voix: 5});
+    assert.strictEqual(await voixDe(A), avantExp - 5);
+    base(`UPDATE parties SET maj = '2020-01-01T00:00:00.000Z' WHERE id = ${r.d.id}`);
+    assert.strictEqual((await fetch("http://localhost:8787/cdn-cgi/handler/scheduled")).status, 200);
+    assert.strictEqual(await voixDe(A), avantExp, "défi oublié remboursé");
+    // Partie en cours au délai : close, la manche jouée d'un seul côté lui revient
+    r = await A("parties", {mode: "ami", vers: "carole" + suffixe});
+    await A("parties/" + r.d.id + "/gouvernement", {gouvernement: idGA}); await C("parties/" + r.d.id + "/gouvernement", {gouvernement: idGC});
+    await A("parties/" + r.d.id + "/coup", {ministre: 0});
+    base(`UPDATE parties SET maj = '2020-01-01T00:00:00.000Z' WHERE id = ${r.d.id}`);
+    await fetch("http://localhost:8787/cdn-cgi/handler/scheduled");
+    v = (await A("parties/" + r.d.id)).d;
+    assert.deepStrictEqual([v.statut, v.issue, v.score], ["fini", "gagne", [1, 0]]);
+    // Carte cédée : poste vacant signalé
+    base(`UPDATE possessions SET n = 0 WHERE carte = '${gA.ministres[0]}' AND joueur = (SELECT id FROM joueurs WHERE pseudo = 'alice${suffixe}')`);
+    assert.deepStrictEqual((await A("gouvernements")).d.gouvernements[0].vacants, [gA.ministres[0]]);
+    assert.strictEqual((await A("parties", {mode: "ordi"})).statut, 201);
+    assert.strictEqual((await A("parties/" + (await A("parties")).d.parties[0].id + "/gouvernement", {gouvernement: idGA})).statut, 409, "gouvernement incomplet");
+  }
   // Vitrine et profil : seulement des cartes de la collection
   const mienne = Object.keys((await A("moi")).d.etat.possedees)[0];
   assert.strictEqual((await A("vitrine", {cartes: [mienne]})).statut, 200);

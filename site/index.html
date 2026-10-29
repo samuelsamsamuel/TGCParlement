@@ -55,6 +55,9 @@ nav button svg{width:1.25rem;height:1.25rem;flex:none}
 nav button[aria-selected="true"]{border-bottom-color:var(--dorure);color:var(--dorure-pale)}
 /* Grand écran : les quatre vues du menu Plus deviennent des onglets ; la barre reste en haut de l'écran au défilement */
 nav .onglet-large{display:none}
+nav button[hidden],.menu-plus button[hidden]{display:none!important}
+/* Onglet Gouvernement ouvert (comptes autorisés) : un onglet de plus, les vues du menu Plus en onglets à partir de 1 420 px */
+@media (min-width:1260px) and (max-width:1419px){nav:has([data-vue="gouvernement"]:not([hidden])) .onglet-large{display:none}nav:has([data-vue="gouvernement"]:not([hidden])) [data-vue="plus"]{display:flex}}
 @media (min-width:1260px){nav [data-vue="plus"]{display:none}nav .onglet-large{display:flex}nav button{padding:.75rem .8rem}}
 @media (min-width:701px){
   body.nav-flottante nav{position:fixed;top:0;left:0;right:0;z-index:20;background:rgba(46,7,16,.97);backdrop-filter:blur(8px);border-bottom:1px solid rgba(201,162,74,.35)}
@@ -440,6 +443,50 @@ footer{max-width:1120px;margin:0 auto;padding:0 1rem 3rem;font-size:.85rem;color
 .gestes-q{display:flex;gap:.5rem;width:100%}
 .gestes-q .bouton{flex:1;padding:.7rem .5rem;white-space:nowrap}
 .duels-vue{border-top:0;margin-top:0;padding-top:0}
+/* Jeu du Gouvernement */
+.serie-gouv{display:flex;gap:.3rem;margin:.4rem 0 .2rem}
+.serie-gouv span{flex:1;text-align:center;font-size:.72rem;padding:.45rem .2rem;border-radius:6px;border:1px solid rgba(201,162,74,.3);background:rgba(46,7,16,.6);color:var(--pierre)}
+.serie-gouv span b{display:block;font:600 1rem var(--sans);color:var(--marbre)}
+.serie-gouv span.atteint{border-color:var(--dorure);background:rgba(201,162,74,.22);color:var(--dorure-pale)}
+.jouer-gouv{display:flex;gap:.5rem;flex-wrap:wrap;margin:.6rem 0}
+.jouer-gouv .bouton{flex:1 1 12rem}
+.cabinets{display:grid;gap:.6rem;list-style:none;padding:0;margin:.4rem 0}
+.cabinet{border:1px solid rgba(201,162,74,.35);border-radius:10px;padding:.7rem;background:rgba(46,7,16,.6);display:grid;gap:.45rem}
+.cabinet .tete-cab{display:flex;align-items:baseline;gap:.6rem;flex-wrap:wrap}
+.cabinet .tete-cab b{font:400 1.15rem var(--serif);flex:1}
+.cabinet .minis{display:flex;gap:.25rem;flex-wrap:wrap}
+.cabinet.incomplet{border-style:dashed}
+.alerte-cab{color:#e0a46a;font-size:.85rem}
+.postes{display:grid;gap:.4rem;list-style:none;padding:0;margin:.5rem 0}
+.poste{display:flex;align-items:center;gap:.6rem;width:100%;text-align:left;font:inherit;color:inherit;border:1px solid rgba(201,162,74,.3);border-radius:8px;padding:.45rem .6rem;background:rgba(46,7,16,.6);cursor:pointer}
+.poste.vide{border-style:dashed;color:var(--pierre)}
+.poste .qui{flex:1;min-width:0;display:grid;gap:.1rem}
+.poste .qui b{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.poste .qui small{color:var(--pierre);font-size:.78rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.poste .role{font-size:.72rem;color:var(--dorure-pale);text-transform:uppercase;letter-spacing:.04em;flex:none;width:4.6rem}
+.poste .force{font:600 1.35rem var(--sans);min-width:2.2rem;text-align:right;color:var(--dorure-pale)}
+.poste[aria-pressed="true"]{border-color:var(--dorure);box-shadow:0 0 0 2px var(--dorure) inset}
+.poste:disabled{opacity:.4;cursor:default}
+.poste.lui{cursor:default}
+.jauge-stature{height:.45rem;border-radius:999px;background:rgba(201,162,74,.18);overflow:hidden}
+.jauge-stature i{display:block;height:100%;background:var(--dorure)}
+.jauge-stature.depasse i{background:#c0504d}
+.themes-annonces{display:flex;flex-wrap:wrap;gap:.3rem;margin:.4rem 0}
+.themes-annonces span{font-size:.78rem;padding:.2rem .55rem;border-radius:999px;border:1px solid rgba(201,162,74,.35);color:var(--marbre)}
+.themes-annonces span.joue{opacity:.4;text-decoration:line-through}
+.themes-annonces span.courant{background:var(--dorure);color:#21161a;border-color:var(--dorure)}
+.tableau-score{display:flex;justify-content:center;align-items:center;gap:1rem;font:400 2rem var(--serif);margin:.3rem 0}
+.tableau-score small{font:500 .8rem var(--sans);color:var(--pierre)}
+.theme-manche{text-align:center;margin:.4rem 0 .8rem}
+.theme-manche span{display:block;font-size:.8rem;color:var(--pierre)}
+.theme-manche b{font:400 1.6rem var(--serif);color:var(--dorure-pale)}
+.manches{list-style:none;padding:0;margin:.4rem 0;display:grid;gap:.3rem;font-size:.86rem}
+.manches li{border-left:3px solid rgba(201,162,74,.3);padding:.2rem .6rem}
+.manches li.gagnee{border-color:#3f8f5a}
+.manches li.perdue{border-color:#c0504d;opacity:.8}
+.deux-colonnes{display:grid;gap:1rem}
+@media (min-width:900px){.deux-colonnes{grid-template-columns:1fr 1fr}}
+.case-493{display:flex;gap:.5rem;align-items:center;margin:.5rem 0;font-size:.9rem}
 .renvoi-duels{margin-top:.8rem}
 .vitrine{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.6rem;margin:.6rem 0}
 @media (min-width:640px){.vitrine{grid-template-columns:repeat(6,minmax(0,1fr))}}
@@ -712,6 +759,7 @@ html.presentation{font-size:15px}
     <button role="tab" aria-selected="false" data-vue="buvette"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 8h13l-3-3M20 16H7l3 3"/></svg>Buvette <span class="pastille" id="pastille-buvette" hidden></span></button>
     <button role="tab" aria-selected="false" data-vue="amis"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><circle cx="17" cy="9" r="2.8"/><path d="M16 14.2a5.5 5.5 0 0 1 6 5.8"/></svg>Amis <span class="pastille" id="pastille-amis" hidden></span></button>
     <button role="tab" aria-selected="false" data-vue="plus" aria-haspopup="menu" aria-controls="menu-plus"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg>Plus <span class="pastille" id="pastille-plus" hidden></span></button>
+    <button role="tab" aria-selected="false" data-vue="gouvernement" class="onglet-large" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M3 9.5 12 4l9 5.5M4.5 10h15M6 10v8M10 10v8M14 10v8M18 10v8M3.5 20.5h17"/></svg>Gouvernement <span class="pastille" id="pastille-gouv" hidden></span></button>
     <button role="tab" aria-selected="false" data-vue="duels" class="onglet-large"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 4l10 10M4 4h3.5M4 4v3.5M20 4 10 14M20 4h-3.5M20 4v3.5M12.5 15.5l3 3M11.5 15.5l-3 3M17 17l-2 2M7 17l2 2M16.5 18.5l2 2M7.5 18.5l-2 2"/></svg>Duels <span class="pastille" id="pastille-duels" hidden></span></button>
     <button role="tab" aria-selected="false" data-vue="compte" class="onglet-large"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span class="nom-compte">Mon siège</span></button>
     <button role="tab" aria-selected="false" data-vue="catalogue" class="onglet-large"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="9" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>Toutes les cartes</button>
@@ -719,6 +767,7 @@ html.presentation{font-size:15px}
     <button role="tab" aria-selected="false" data-vue="parametres" class="onglet-large"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1 7 17M17 7l2.1-2.1"/></svg>Paramètres</button>
   </nav>
   <div class="menu-plus" id="menu-plus" role="menu" hidden>
+    <button role="menuitem" data-menu="gouvernement" hidden>Gouvernement <span class="pastille" id="pastille-gouv-menu" hidden></span></button>
     <button role="menuitem" data-menu="duels">Duels <span class="pastille" id="pastille-duels-menu" hidden></span></button>
     <button role="menuitem" data-menu="compte"><span id="nav-compte">Mon siège</span></button>
     <button role="menuitem" data-menu="catalogue">Toutes les cartes</button>
@@ -806,6 +855,7 @@ html.presentation{font-size:15px}
   <section class="vue panneau" id="vue-buvette" hidden></section>
   <section class="vue panneau" id="vue-amis" hidden></section>
   <section class="vue panneau qag duels-vue" id="vue-duels" hidden aria-live="polite"></section>
+  <section class="vue panneau" id="vue-gouvernement" hidden aria-live="polite"></section>
 </main>
 <dialog id="apercu"><div class="detail"><div id="apercu-carte"></div><button class="bouton discret" id="fermer-apercu">Fermer</button></div></dialog>
 <dialog id="confirmer-lot"><div class="detail"><h2>Garder cette carte ?</h2><div id="lot-carte"></div><p class="note">Les autres cartes proposées ne le seront plus.</p>
@@ -837,6 +887,7 @@ html.presentation{font-size:15px}
 <p class="toast" id="toast" role="status" aria-live="polite" hidden></p>
 
 <script src="regles.js"></script>
+<script src="gouvernement.js"></script>
 <script>
 const {ORDRE, VALEUR_RECYCLAGE, PRIX_PAQUET} = Regles;
 const LIBELLES = {"mythique":"Mythique","legendaire":"Légendaire","epique":"Épique","rare":"Rare","peu-commune":"Peu commune","commune":"Commune","hors-categorie":"Hors catégorie","unique":"Unique"};
@@ -875,7 +926,7 @@ async function appel(chemin, corps){
   const d = await r.json().catch(() => null);
   if (!d) throw new Error("Le serveur n'est pas disponible pour l'instant.");
   if (!r.ok) throw new Error(d.erreur || "Erreur " + r.status);
-  if (d.etat) { etat = Regles.migrer(d.etat); compte = {pseudo: d.pseudo, cree: d.cree || compte?.cree, vitrine: d.vitrine || compte?.vitrine || []}; }
+  if (d.etat) { etat = Regles.migrer(d.etat); compte = {pseudo: d.pseudo, cree: d.cree || compte?.cree, vitrine: d.vitrine || compte?.vitrine || [], gouvernement: d.gouvernement ?? compte?.gouvernement}; }
   return d;
 }
 const actions = {
@@ -1044,18 +1095,28 @@ function majCompteur(){
   const pastille = document.getElementById("pastille"), jour = cat ? aReclamerDuJour() : 0;
   pastille.hidden = !(attente.objectifs + jour); pastille.textContent = attente.objectifs + jour;
 }
-function majTout(){ majCompteur(); majCollection(); if (!decouverte) { majJournee(); majObjectifs(); } majCompte(); majBuvette(); majAmis(); majQag(); }
+// Jeu du Gouvernement réservé pour l'instant aux comptes autorisés par le serveur (demande de l'utilisateur, octobre 2026)
+function majAccesGouv(){
+  const ouvert = !!(compte && compte.gouvernement);
+  document.querySelectorAll('nav [data-vue="gouvernement"], #menu-plus [data-menu="gouvernement"]').forEach(x => x.hidden = !ouvert);
+  if (!ouvert && vueCourante === "gouvernement") allerA("paquet");
+}
+function majTout(){ majAccesGouv(); majCompteur(); majCollection(); if (!decouverte) { majJournee(); majObjectifs(); } majCompte(); majBuvette(); majAmis(); majQag(); }
 // Délai lisible : « 42 min », « 1 h 05 »
 function delai(ms){ const m = Math.max(1, Math.ceil(ms / 60000)); return m < 60 ? m + " min" : Math.floor(m / 60) + " h " + String(m % 60).padStart(2, "0"); }
 // Pastilles des onglets : échanges reçus (Buvette), demandes d'ami (Amis) et duels à jouer (Duels), relues toutes les deux minutes
 async function majAttente(){
   const ps = document.getElementById("pastille-duels"), pdm = document.getElementById("pastille-duels-menu"), pp = document.getElementById("pastille-plus"), pb = document.getElementById("pastille-buvette"), pa = document.getElementById("pastille-amis");
-  if (!compte) { ps.hidden = pdm.hidden = pp.hidden = pb.hidden = pa.hidden = true; return; }
+  const pg = document.getElementById("pastille-gouv"), pgm = document.getElementById("pastille-gouv-menu");
+  if (!compte) { ps.hidden = pdm.hidden = pp.hidden = pb.hidden = pa.hidden = pg.hidden = pgm.hidden = true; return; }
   const a = await appel("attente").catch(() => null);
   if (!a) return;
   pa.hidden = !a.amis; pa.textContent = a.amis;
   // Duels : dans le menu Plus sur téléphone (pastille sur Plus et sur l'entrée du menu), onglet sur grand écran
-  for (const x of [ps, pdm, pp]) { x.hidden = !a.duels; x.textContent = a.duels; }
+  for (const x of [ps, pdm]) { x.hidden = !a.duels; x.textContent = a.duels; }
+  // Jeu du Gouvernement : défi reçu, gouvernement à choisir, coup à jouer ; Plus réunit les deux
+  for (const x of [pg, pgm]) { x.hidden = !a.gouvernement; x.textContent = a.gouvernement || 0; }
+  const plus = a.duels + (a.gouvernement || 0); pp.hidden = !plus; pp.textContent = plus;
   const buvette = a.echanges + (a.offres || 0);
   pb.hidden = !buvette; pb.textContent = buvette;
 }
@@ -1583,6 +1644,298 @@ document.getElementById("vue-duels").addEventListener("submit", e => {
     await demarrerDuel(d.id, d.avec);
   });
 });
+
+/* ---------- Jeu du Gouvernement ---------- */
+// Règles : gouvernement.js (le serveur juge les parties) ; fiches de jeu (gouvernement.json) chargées à la première ouverture.
+// Vue : accueil (série, jouer, défier un ami, parties en cours, gouvernements enregistrés, historique), composition d'un
+// gouvernement, partie (choix du gouvernement face à l'adversaire, puis manches)
+let gouvJeu = null, gouv = {gouvernements: [], serie: 0, gainsDuJour: 0, gainsMax: 10, prix: 10, max: 5}, parties = [];
+let partie = null, edition = null, ministreChoisi = null, avec493 = false, finPartie = null;
+async function chargerFiches(){
+  if (gouvJeu) return gouvJeu;
+  const r = await fetch("gouvernement.json");
+  if (!r.ok) throw new Error("Les fiches du jeu ne sont pas disponibles.");
+  return (gouvJeu = Gouvernement.fichesDeJeu(await r.json()));
+}
+const ficheG = id => gouvJeu.fiches.get(String(id));
+// Portrait d'un poste (le poste est lui-même un bouton : pas de bouton dans un bouton)
+const portraitG = id => miniature(id).replace(/^<button type="button"/, "<span").replace(/ data-apercu="[^"]*"/, "").replace(/<\/button>$/, "</span>");
+const nomTheme = t => gouvJeu.themes[t][1];
+const etoilesG = n => "★".repeat(n);
+// Meilleures spécialités d'une carte (sur des thèmes donnés, ou toutes)
+function specialites(f, themes = null, n = 3){
+  return [...f.etoiles].filter(([t]) => !themes || themes.includes(t)).sort((a, b) => b[1] - a[1]).slice(0, n)
+    .map(([t, e]) => `${nomTheme(t)} ${etoilesG(e)}`).join(" · ");
+}
+async function chargerGouvernement(){
+  majGouvernement();
+  if (!compte) return;
+  await occupe(null, async () => {
+    await chargerFiches();
+    const [g, p] = await Promise.all([appel("gouvernements"), appel("parties")]);
+    gouv = g; parties = p.parties;
+    if (partie && !edition) partie = await appel("parties/" + partie.id);
+  });
+  majGouvernement();
+}
+async function ouvrirPartie(id){
+  await chargerFiches();
+  partie = await appel("parties/" + id); ministreChoisi = null; avec493 = false; finPartie = null; edition = null;
+  majGouvernement(); window.scrollTo({top: 0});
+}
+const LIBELLE_SERIE = g => g.voix ? g.voix + " voix" : pluriel(g.paquets, "paquet");
+const libelleMode = p => p.mode === "ordi" ? "l'ordinateur" : p.mode === "hasard" ? `le gouvernement de <b>${echapper(p.adversaire || "un joueur")}</b>` : `<b>${echapper(p.adversaire)}</b>`;
+function majGouvernement(){
+  const zone = document.getElementById("vue-gouvernement");
+  if (!compte) {
+    zone.innerHTML = `<h2>Gouvernement</h2><p>Formez un gouvernement avec vos cartes : un chef et huit ministres. Affrontez ensuite l'ordinateur, le gouvernement d'un autre joueur ou un ami, sur sept thèmes tirés parmi dix annoncés.</p>
+      ${serveur ? `<p>Il faut un compte pour jouer.</p><button class="bouton" data-aller-compte>Créer un compte</button>` : ""}`;
+    return;
+  }
+  if (!gouvJeu) { zone.innerHTML = `<h2>Gouvernement</h2><p class="note">Chargement…</p>`; return; }
+  zone.innerHTML = edition ? htmlEdition() : partie ? htmlPartie() : htmlAccueilGouv();
+}
+function htmlAccueilGouv(){
+  const complets = gouv.gouvernements.filter(g => !g.vacants.length);
+  const enCours = parties.filter(p => ["preparation", "propose", "en-cours"].includes(p.statut));
+  const finies = parties.filter(p => !["preparation", "propose", "en-cours"].includes(p.statut)).slice(0, 12);
+  const action = p => p.aRelever ? `<button class="bouton" data-partie="${p.id}">Voir le défi</button><button class="lien-carte" data-quitter="${p.id}:refuser">Refuser</button>`
+    : p.aPreparer ? `<button class="bouton" data-partie="${p.id}">Choisir mon gouvernement</button>`
+    : p.aJouer ? `<button class="bouton" data-partie="${p.id}">Jouer</button>`
+    : `<button class="bouton discret" data-partie="${p.id}">Voir</button>${p.statut === "propose" && p.lance ? `<button class="lien-carte" data-quitter="${p.id}:annuler">Annuler</button>` : ""}`;
+  const etatPartie = p => p.statut === "propose" ? (p.lance ? "en attente de sa réponse" : "vous défie") : p.statut === "preparation" ? "gouvernement à choisir"
+    : p.aJouer ? "à vous de jouer" : "en attente de son coup";
+  const issue = p => ({gagne: "gagnée", perdu: "perdue", egalite: "nulle"}[p.issue] || {refuse: "défi refusé, mise rendue", annule: "défi annulé, mise rendue", expire: "sans suite, mise rendue"}[p.statut] || "terminée");
+  const ligne = (p, contenu, gestes) => `<li class="duel-ligne${p.statut === "fini" ? " " + (p.issue || "") : ""}">${p.mode === "ami" ? `<span class="pastille-mise">${texteMise(p)}</span>` : ""}<span class="quoi">${contenu}</span><span class="gestes-ami">${gestes}</span></li>`;
+  const contre = p => p.mode === "ordi" ? "Contre l'ordinateur" : p.mode === "hasard" ? `Contre « ${echapper(p.nomAdverse || "un gouvernement")} » de <b>${echapper(p.adversaire || "un joueur")}</b>` : `Contre <b>${echapper(p.adversaire)}</b>`;
+  return `<h2>Gouvernement</h2>
+    <p class="note">Sept manches sur des thèmes tirés parmi dix annoncés ; à chaque manche, chacun envoie un ministre en secret. Force : stature, ${Gouvernement.ETOILE} points par étoile de spécialité et liens du gouvernement. Premier à quatre manches.</p>
+    <h3>Série contre l'ordinateur et les autres joueurs</h3>
+    <div class="serie-gouv" aria-label="Série de ${gouv.serie} victoire${gouv.serie > 1 ? "s" : ""}">${Gouvernement.GAINS_SERIE.map((g, i) => `<span class="${i < gouv.serie ? "atteint" : ""}"><b>${i + 1}</b>${LIBELLE_SERIE(g)}</span>`).join("")}</div>
+    <p class="note">Une victoire fait monter d'un palier et rapporte son gain (le cinquième se répète tant que la série tient) ; une défaite ramène à zéro. ${gouv.gainsDuJour} victoire${gouv.gainsDuJour > 1 ? "s" : ""} récompensée${gouv.gainsDuJour > 1 ? "s" : ""} aujourd'hui sur ${gouv.gainsMax}.</p>
+    ${complets.length ? `<div class="jouer-gouv"><button class="bouton" data-jouer="ordi">Contre l'ordinateur</button><button class="bouton" data-jouer="hasard">Contre un joueur</button></div>`
+      : `<p class="note">Formez d'abord un gouvernement complet pour jouer.</p>`}
+    ${enCours.length ? `<h3>En cours</h3><ul class="duels">${enCours.map(p => ligne(p, `${contre(p)} : ${etatPartie(p)}`, action(p))).join("")}</ul>` : ""}
+    <h3>Mes gouvernements (${gouv.gouvernements.length} sur ${gouv.max})</h3>
+    <ul class="cabinets">${gouv.gouvernements.map(g => {
+      const stature = g.ministres.reduce((t, id) => t + (ficheG(id)?.stature || 0), 0), chef = cat.parId[g.chef];
+      return `<li class="cabinet${g.vacants.length ? " incomplet" : ""}"><div class="tete-cab"><b>${echapper(g.nom)}</b><span class="note">stature ${stature} sur ${Gouvernement.PLAFOND_STATURE}</span></div>
+        <span class="note">Chef : ${chef ? echapper(chef.nom) : "?"}</span>
+        <div class="minis">${[g.chef, ...g.ministres].map(id => miniature(id)).join("")}</div>
+        ${g.vacants.length ? `<span class="alerte-cab">${pluriel(g.vacants.length, "poste vacant", "postes vacants")} : carte sortie de votre collection.</span>` : ""}
+        <div class="gestes-ami"><button class="bouton discret" data-recomposer="${g.id}">Recomposer</button><button class="lien-carte" data-supprimer-gouv="${g.id}">Supprimer</button></div></li>`;
+    }).join("")}</ul>
+    ${gouv.gouvernements.length < gouv.max ? `<button class="bouton" data-former>Former un gouvernement (${gouv.prix} voix)</button>` : ""}
+    <h3>Défier un ami</h3>
+    ${complets.length ? `<form class="defier" id="form-gouv-ami"><p class="note">Vous choisissez votre gouvernement après avoir vu les dix thèmes ; votre ami voit le vôtre avant de choisir le sien. Le gagnant emporte les deux mises.</p>
+      ${amis.amis.length ? rangeeAmis("data-defier-gouv") : ""}
+      <div class="ligne-defi"><input type="text" name="pseudo" required autocapitalize="off" spellcheck="false" placeholder="Pseudo de l'adversaire" aria-label="Adversaire">
+        <select name="mise" aria-label="Mise">${MISES_DUEL.map(([v, l]) => `<option value="${v}">${l}</option>`).join("")}</select>
+        <button class="bouton" type="submit">Défier</button></div></form>` : `<p class="note">Formez d'abord un gouvernement complet.</p>`}
+    <h3>Historique</h3>${finies.length ? `<ul class="duels passes">${finies.map(p => ligne(p, `${contre(p)} : ${issue(p)}`, `<button class="lien-carte" data-partie="${p.id}">Revoir</button>`)).join("")}</ul>` : `<p class="note">Vos parties terminées apparaîtront ici.</p>`}`;
+}
+// Composition : chef et huit postes, chacun choisi dans la collection ; plafond de stature et liens calculés en direct
+function htmlEdition(){
+  const e = edition, chef = e.chef && ficheG(e.chef), pleins = e.ministres.filter(Boolean);
+  const stature = pleins.reduce((t, id) => t + ficheG(id).stature, 0), plafond = Gouvernement.PLAFOND_STATURE;
+  const bonus = chef ? Gouvernement.liens(chef, pleins.map(ficheG)) : [];
+  const liensDe = id => { const i = pleins.indexOf(id); return i >= 0 && bonus[i] ? bonus[i] : null; };
+  const poste = (role, id, cle) => {
+    if (!id) return `<li><button class="poste vide" data-poste="${cle}"><span class="role">${role}</span><span class="qui"><b>Choisir une carte</b></span></button></li>`;
+    const f = ficheG(id), c = cat.parId[id], l = cle === "chef" ? null : liensDe(id);
+    const noms = l ? Object.entries(l.detail).filter(([, v]) => v).map(([k]) => ({departement: "même département", groupe: "groupe du chef", solidarite: "ont gouverné ensemble", sousLeChef: "a servi sous le chef"}[k])) : [];
+    return `<li><button class="poste" data-poste="${cle}"><span class="role">${role}</span>${portraitG(id)}<span class="qui"><b>${echapper(c ? c.nom : id)}</b>
+      <small>Stature ${f.stature}${noms.length ? ` · liens +${l.total} (${noms.join(", ")})` : ""}</small><small>${specialites(f) || "aucune spécialité"}</small></span></button></li>`;
+  };
+  return `<h2>${e.id ? "Recomposer" : "Former"} un gouvernement</h2>
+    <form class="formulaire" id="form-edition"><label>Nom du gouvernement<input type="text" name="nom" maxlength="40" value="${echapper(e.nom)}" placeholder="Mon gouvernement"></label></form>
+    <p class="note">Le chef ne joue pas de manche : sa stature s'ajoute une fois, au 49.3, et son groupe et ses gouvernements créent des liens. Les huit ministres ne dépassent pas ${plafond} points de stature à eux tous.</p>
+    <ul class="postes">${poste("Chef", e.chef, "chef")}${e.ministres.map((id, i) => poste("Ministre", id, i)).join("")}</ul>
+    <p>Stature des ministres : <b>${stature}</b> sur ${plafond}</p>
+    <div class="jauge-stature${stature > plafond ? " depasse" : ""}"><i style="width:${Math.min(100, 100 * stature / plafond)}%"></i></div>
+    <div class="jouer-gouv"><button class="bouton" data-enregistrer ${!chef || pleins.length < Gouvernement.MINISTRES || stature > plafond ? "disabled" : ""}>${e.id ? "Enregistrer" : `Former ce gouvernement (${gouv.prix} voix)`}</button>
+      <button class="bouton discret" data-completer>Compléter pour moi</button><button class="lien-carte" data-fermer-edition>Annuler</button></div>`;
+}
+// Cartes proposées pour un poste : la collection, sauf celles déjà au gouvernement et celles qui dépasseraient le plafond
+function choisirPoste(cle){
+  const e = edition, pris = new Set([e.chef, ...e.ministres].filter(Boolean));
+  const actuel = cle === "chef" ? e.chef : e.ministres[cle];
+  const stature = e.ministres.filter((id, i) => id && i !== cle).reduce((t, id) => t + ficheG(id).stature, 0);
+  const vides = e.ministres.filter((id, i) => !id && i !== cle).length;
+  const entrees = Object.keys(etat.possedees).filter(id => etat.possedees[id] > 0 && ficheG(id)).map(id => {
+    const f = ficheG(id);
+    if (pris.has(id) && id !== actuel) return [id, null, "Déjà au gouvernement"];
+    if (cle !== "chef" && stature + f.stature + vides > Gouvernement.PLAFOND_STATURE) return [id, null, `Stature ${f.stature} : au-delà du plafond`];
+    return [id, null];
+  });
+  choisirCarte(cle === "chef" ? "Chef du Gouvernement" : "Ministre", entrees, id => {
+    if (cle === "chef") e.chef = id; else e.ministres[cle] = id;
+    majGouvernement();
+  });
+}
+// Complète les postes vides : chef de plus haute stature si besoin, puis ministres choisis par les règles pour tous les thèmes
+function completerEdition(){
+  const e = edition, possedees = Object.keys(etat.possedees).filter(id => etat.possedees[id] > 0).map(ficheG).filter(Boolean);
+  if (!e.chef) e.chef = possedees.slice().sort((a, b) => b.stature - a.stature || b.annees - a.annees)[0]?.id || null;
+  if (!e.chef) return signaler("Votre collection est vide.");
+  const gardes = e.ministres.filter(Boolean), places = Gouvernement.MINISTRES - gardes.length;
+  if (!places) return;
+  const reste = Gouvernement.PLAFOND_STATURE - gardes.reduce((t, id) => t + ficheG(id).stature, 0);
+  const candidats = possedees.filter(f => f.id !== e.chef && !gardes.includes(f.id));
+  const choix = Gouvernement.composerVite(ficheG(e.chef), candidats, gouvJeu.themes.map((_, i) => i), places, reste);
+  if (!choix) return signaler("Pas assez de cartes pour compléter dans le plafond de stature.");
+  const nouveaux = choix.map(f => f.id);
+  e.ministres = e.ministres.map(id => id || nouveaux.shift() || null);
+  majGouvernement();
+}
+// Partie : thèmes, gouvernements, puis manches
+function lignesGouv(camp, {theme = null, bonus = null, pris = new Set(), choisi = null, jouable = false, themes = null} = {}){
+  const ministres = camp.ministres.map(ficheG);
+  return `<ul class="postes">${ministres.map((f, i) => {
+    const c = cat.parId[f.id], forceTxt = theme !== null ? Gouvernement.force(f, theme, bonus ? bonus[i] : 0) : f.stature;
+    return `<li><button class="poste${jouable ? "" : " lui"}" ${jouable ? `data-ministre="${i}"` : "tabindex=\"-1\""} ${pris.has(i) ? "disabled" : ""} aria-pressed="${choisi === i}">${portraitG(f.id)}
+      <span class="qui"><b>${echapper(c ? c.nom : f.id)}</b><small>Stature ${f.stature}${bonus && bonus[i] ? ` · liens +${bonus[i]}` : ""}</small><small>${specialites(f, themes) || "—"}</small></span>
+      <span class="force" title="${theme !== null ? "Force sur ce thème" : "Stature"}">${forceTxt}</span></button></li>`;
+  }).join("")}</ul>`;
+}
+function htmlPartie(){
+  const p = partie, contre = libelleMode(p);
+  const themes = `<div class="themes-annonces">${p.annonces.map(t => `<span class="${p.manches && p.manches.some(m => m.theme === t) ? "joue" : t === p.theme ? "courant" : ""}">${echapper(nomTheme(t))}</span>`).join("")}</div>`;
+  const retour = `<p><button class="bouton discret" data-retour-gouv>Revenir au Gouvernement</button></p>`;
+  const nomCamp = c => c && c.nom ? `« ${echapper(c.nom)} »` : c ? `Gouvernement de ${echapper(cat.parId[c.chef]?.nom || "?")}` : "";
+  // Avant les manches : choix du gouvernement, face aux thèmes et au gouvernement adverse s'il est connu
+  if (p.statut === "preparation" || p.statut === "propose") {
+    const aChoisir = (p.statut === "preparation" && p.lance) || (p.statut === "propose" && !p.lance);
+    const valeur = c => Gouvernement.valeur(ficheG(c.chef), c.ministres.map(ficheG), p.annonces);
+    return `<h2>Contre ${contre}</h2>${p.mode === "ami" ? `<p class="note">Mise : ${texteMise(p)}.</p>` : ""}
+      <h3>Les dix thèmes annoncés</h3>${themes}<p class="note">Sept seront tirés, un par manche, dans un ordre inconnu.</p>
+      ${p.lui ? `<h3>Gouvernement adverse : ${nomCamp(p.lui)}</h3><p class="note">Chef : ${echapper(cat.parId[p.lui.chef]?.nom || "?")} · valeur sur ces thèmes : ${valeur(p.lui)}</p>${lignesGouv(p.lui, {themes: p.annonces})}` : ""}
+      ${aChoisir ? `<h3>Votre gouvernement</h3><ul class="cabinets">${gouv.gouvernements.map(g => `<li class="cabinet${g.vacants.length ? " incomplet" : ""}"><div class="tete-cab"><b>${echapper(g.nom)}</b>
+          ${g.vacants.length ? `<span class="alerte-cab">incomplet</span>` : `<span class="note">valeur sur ces thèmes : ${valeur(g)}</span>`}</div>
+          <div class="minis">${[g.chef, ...g.ministres].map(id => miniature(id)).join("")}</div>
+          ${g.vacants.length ? "" : `<div class="gestes-ami"><button class="bouton" data-choisir-gouv="${g.id}">Choisir ce gouvernement</button></div>`}</li>`).join("")}</ul>
+          ${p.mode === "ami" && !p.lance ? `<p><button class="lien-carte" data-quitter="${p.id}:refuser">Refuser le défi</button></p>`
+            : p.mode !== "ami" ? `<p><button class="lien-carte" data-quitter="${p.id}:abandonner">Renoncer (la partie compte comme perdue)</button></p>` : ""}`
+        : `<p>En attente de la réponse de ${contre}.</p><p><button class="lien-carte" data-quitter="${p.id}:annuler">Annuler le défi</button></p>`}
+      ${retour}`;
+  }
+  if (["refuse", "annule", "expire"].includes(p.statut)) return `<h2>Contre ${contre}</h2><p>${{refuse: "Défi refusé", annule: "Défi annulé", expire: "Partie sans suite"}[p.statut]}${p.mode === "ami" ? " : la mise est rendue" : ""}.</p>${retour}`;
+  const pris = new Set((p.manches || []).map(m => m.moi && m.moi[0]).filter(x => x !== null && x !== undefined));
+  if (p.attente) pris.add(p.attente[0]);
+  const sesPris = new Set((p.manches || []).map(m => m.lui && m.lui[0]).filter(x => x !== null && x !== undefined));
+  const manches = (p.manches || []).map((m, i) => {
+    const moi = m.moi ? cat.parId[p.moi.ministres[m.moi[0]]] : null, lui = m.lui ? cat.parId[p.lui.ministres[m.lui[0]]] : null;
+    const texte = m.forfait ? (m.gagne ? "gagnée, l'adversaire n'a pas joué" : "perdue, faute d'avoir joué")
+      : `${echapper(moi?.nom || "?")}${m.moi[1] ? " avec le 49.3" : ""} (${m.forces[0]}) contre ${echapper(lui?.nom || "?")}${m.lui[1] ? " avec le 49.3" : ""} (${m.forces[1]}) : ${m.gagne === null ? "égalité parfaite" : m.gagne ? "gagnée" : "perdue"}${m.departage ? `, au départage (${m.departage === "stature" ? "stature" : "années de mandat"})` : ""}`;
+    return `<li class="${m.gagne === null ? "" : m.gagne ? "gagnee" : "perdue"}"><b>${i + 1}. ${echapper(nomTheme(m.theme))}</b> : ${texte}</li>`;
+  }).reverse().join("");
+  const score = `<div class="tableau-score"><span>${p.score[0]} <small>vous</small></span><span>–</span><span>${p.score[1]} <small>${p.mode === "ordi" ? "l'ordinateur" : echapper(p.adversaire || "")}</small></span></div>`;
+  if (p.fini) {
+    const titre = {gagne: "Victoire", perdu: "Défaite", egalite: "Match nul"}[p.issue] || "Partie terminée";
+    return `<h2>${titre} contre ${contre}</h2>${score}${finPartie ? `<p>${finPartie}</p>` : ""}<ul class="manches">${manches}</ul>${retour}`;
+  }
+  const chef = ficheG(p.moi.chef);
+  return `<h2>Contre ${contre}</h2>${score}${themes}
+    <div class="theme-manche"><span>Manche ${(p.manches || []).length + 1}</span><b>${echapper(nomTheme(p.theme))}</b></div>
+    ${p.attente ? `<p class="centre">Votre ministre, ${echapper(cat.parId[p.moi.ministres[p.attente[0]]]?.nom || "")}, attend le coup de ${echapper(p.adversaire || "votre adversaire")}.</p>` : ""}
+    <div class="deux-colonnes"><div><h3>Vos ministres</h3>${p.attente ? "" : `<p class="note">Choisissez le ministre à envoyer, puis confirmez. Le chiffre est sa force sur ce thème.</p>`}
+      ${lignesGouv(p.moi, {theme: p.theme, bonus: p.bonus[0], pris, choisi: ministreChoisi, jouable: !p.attente, themes: p.annonces})}
+      ${p.attente ? "" : `${p.a493[0] ? `<p class="note">Le 49.3 a déjà servi.</p>` : `<label class="case-493"><input type="checkbox" id="case-493" ${avec493 ? "checked" : ""}> 49.3 : ajouter la stature du chef (${echapper(cat.parId[chef.id]?.nom || "")}, +${chef.stature}), une fois par partie</label>`}
+        <button class="bouton" data-envoyer ${ministreChoisi === null ? "disabled" : ""}>Envoyer ce ministre</button>`}</div>
+      <div><h3>Gouvernement adverse${p.a493[1] ? " (49.3 joué)" : ""}</h3>${lignesGouv(p.lui, {theme: p.theme, bonus: p.bonus[1], pris: sesPris, themes: p.annonces})}</div></div>
+    ${manches ? `<h3>Manches jouées</h3><ul class="manches">${manches}</ul>` : ""}
+    ${p.mode === "ami" ? "" : `<p><button class="lien-carte" data-quitter="${p.id}:abandonner">Abandonner (défaite)</button></p>`}${retour}`;
+}
+document.getElementById("vue-gouvernement").addEventListener("click", e => {
+  const t = e.target, b = sel => t.closest(sel);
+  if (b("[data-aller-compte]")) { allerA("compte"); return; }
+  if (b("[data-retour-gouv]")) { partie = null; finPartie = null; chargerGouvernement(); return; }
+  if (b("[data-former]")) { edition = {id: null, nom: "", chef: null, ministres: Array(Gouvernement.MINISTRES).fill(null)}; majGouvernement(); window.scrollTo({top: 0}); return; }
+  if (b("[data-recomposer]")) {
+    const g = gouv.gouvernements.find(x => x.id === Number(b("[data-recomposer]").dataset.recomposer));
+    edition = {id: g.id, nom: g.nom, chef: g.vacants.includes(g.chef) ? null : g.chef, ministres: g.ministres.map(id => g.vacants.includes(id) ? null : id)};
+    majGouvernement(); window.scrollTo({top: 0}); return;
+  }
+  if (b("[data-fermer-edition]")) { edition = null; majGouvernement(); return; }
+  if (b("[data-poste]")) { const k = b("[data-poste]").dataset.poste; if (!t.closest("[data-apercu]")) choisirPoste(k === "chef" ? "chef" : Number(k)); return; }
+  if (b("[data-completer]")) { completerEdition(); return; }
+  if (b("[data-enregistrer]")) {
+    const nom = document.querySelector("#form-edition [name=nom]").value.trim();
+    occupe(b("[data-enregistrer]"), async () => {
+      const neuf = !edition.id;
+      await appel("gouvernements", {id: edition.id, nom: nom || "Mon gouvernement", chef: edition.chef, ministres: edition.ministres});
+      edition = null; if (neuf) { await appel("moi"); majTout(); }
+      signaler(neuf ? `Gouvernement formé (${gouv.prix} voix).` : "Gouvernement enregistré."); await chargerGouvernement();
+    });
+    return;
+  }
+  if (b("[data-supprimer-gouv]")) {
+    if (!confirm("Supprimer ce gouvernement ? Les voix de sa création ne sont pas rendues.")) return;
+    occupe(b("[data-supprimer-gouv]"), async () => { await appel(`gouvernements/${b("[data-supprimer-gouv]").dataset.supprimerGouv}/supprimer`, {}); await chargerGouvernement(); });
+    return;
+  }
+  if (b("[data-jouer]")) {
+    occupe(b("[data-jouer]"), async () => {
+      const r = await appel("parties", {mode: b("[data-jouer]").dataset.jouer});
+      if (r.reprise) signaler("Une partie est déjà commencée : la voici.");
+      else if (b("[data-jouer]").dataset.jouer === "hasard" && r.mode === "ordi") signaler("Aucun gouvernement de joueur n'est disponible : l'ordinateur vous affronte.");
+      await ouvrirPartie(r.id); majAttente();
+    });
+    return;
+  }
+  if (b("[data-partie]")) { occupe(b("[data-partie]"), () => ouvrirPartie(b("[data-partie]").dataset.partie)); return; }
+  if (b("[data-quitter]")) {
+    const [id, action] = b("[data-quitter]").dataset.quitter.split(":");
+    if (action === "abandonner" && !confirm("Abandonner cette partie ? Elle compte comme perdue et votre série retombe à zéro.")) return;
+    occupe(b("[data-quitter]"), async () => {
+      await appel(`parties/${id}/${action}`, {});
+      if (action !== "abandonner") { await appel("moi"); majTout(); signaler(action === "refuser" ? "Défi refusé : la mise est rendue." : "Défi annulé : votre mise vous est rendue."); partie = null; }
+      else partie = await appel("parties/" + id);
+      await chargerGouvernement(); majAttente();
+    });
+    return;
+  }
+  if (b("[data-choisir-gouv]")) {
+    occupe(b("[data-choisir-gouv]"), async () => {
+      partie = await appel(`parties/${partie.id}/gouvernement`, {gouvernement: Number(b("[data-choisir-gouv]").dataset.choisirGouv)});
+      if (partie.mode === "ami") { await appel("moi"); majTout(); }
+      majGouvernement(); majAttente(); window.scrollTo({top: 0});
+    });
+    return;
+  }
+  if (b("[data-ministre]") && !t.closest("[data-apercu]")) { ministreChoisi = Number(b("[data-ministre]").dataset.ministre); majGouvernement(); return; }
+  if (b("[data-envoyer]")) {
+    occupe(b("[data-envoyer]"), async () => {
+      const avant = gouv.serie;
+      partie = await appel(`parties/${partie.id}/coup`, {ministre: ministreChoisi, avec493});
+      ministreChoisi = null; avec493 = false;
+      if (partie.fini) {
+        const g = await appel("gouvernements"); gouv = g;
+        await appel("moi"); majTout();
+        if (partie.mode === "ami") finPartie = partie.issue === "gagne" && (partie.voix || partie.paquets) ? `Vous remportez ${texteMise({voix: partie.voix * 2, paquets: partie.paquets * 2})}.` : partie.issue === "egalite" ? "Chacun récupère sa mise." : "";
+        else finPartie = partie.issue === "gagne" ? `Série : ${g.serie} victoire${g.serie > 1 ? "s" : ""}${g.serie > avant || g.serie === Gouvernement.GAINS_SERIE.length ? `, gain : ${LIBELLE_SERIE(Gouvernement.GAINS_SERIE[g.serie - 1])}` : ""}${g.gainsDuJour >= g.gainsMax ? " (plafond du jour atteint, plus de gain aujourd'hui)" : ""}.`
+          : partie.issue === "perdu" ? "Votre série retombe à zéro." : "Votre série ne bouge pas.";
+      }
+      majGouvernement(); majAttente();
+    });
+    return;
+  }
+  const df = b("[data-defier-gouv]");
+  if (df) { const f = document.getElementById("form-gouv-ami"); f.pseudo.value = df.dataset.defierGouv; f.querySelectorAll("[data-defier-gouv]").forEach(x => x.setAttribute("aria-pressed", x === df)); f.mise.focus(); }
+});
+document.getElementById("vue-gouvernement").addEventListener("change", e => { if (e.target.id === "case-493") avec493 = e.target.checked; });
+document.getElementById("vue-gouvernement").addEventListener("submit", e => {
+  if (e.target.id === "form-edition") { e.preventDefault(); return; }
+  if (e.target.id !== "form-gouv-ami") return;
+  e.preventDefault();
+  const f = e.target, m = f.mise.value;
+  occupe(f.querySelector("button[type=submit]"), async () => {
+    const r = await appel("parties", {mode: "ami", vers: f.pseudo.value.trim(), voix: m[0] === "v" ? Number(m.slice(1)) : 0, paquets: m[0] === "p" ? Number(m.slice(1)) : 0});
+    await appel("moi"); majTout(); await ouvrirPartie(r.id);
+  });
+});
+// Le nom tapé dans le formulaire de composition est gardé si la vue est redessinée (choix d'une carte)
+document.getElementById("vue-gouvernement").addEventListener("input", e => { if (e.target.name === "nom" && edition) edition.nom = e.target.value; });
 
 /* ---------- Aperçu d'une carte ---------- */
 // Ouverte depuis « Toutes les cartes », la grande carte propose l'alerte de vente (pas depuis l'hémicycle)
@@ -2173,7 +2526,7 @@ document.getElementById("vue-parametres").addEventListener("click", e => {
   if (e.target.closest("[data-menu-vue]")) { allerA(e.target.closest("[data-menu-vue]").dataset.menuVue); return; }
   if (e.target.id === "deconnexion") occupe(e.target, async () => {
     await desactiverNotifications().catch(() => {});
-    await appel("deconnexion", {}); compte = null; duels = []; amis = {amis: [], recues: [], envoyees: []}; etat = depot.charger(); majTout(); majAttente(); afficherPaquet(true); majParametres(); signaler("Vous êtes déconnecté.");
+    await appel("deconnexion", {}); compte = null; duels = []; partie = null; edition = null; amis = {amis: [], recues: [], envoyees: []}; etat = depot.charger(); majTout(); majAttente(); afficherPaquet(true); majParametres(); signaler("Vous êtes déconnecté.");
   });
 });
 document.getElementById("vue-parametres").addEventListener("change", e => {
@@ -2215,7 +2568,7 @@ document.getElementById("vue-parametres").addEventListener("submit", e => {
       const preuve = await etirer(compte.pseudo, e.target.mdp.value);
       await desactiverNotifications().catch(() => {});
       await appel("supprimer-compte", {preuve});
-      compte = null; amis = {amis: [], recues: [], envoyees: []}; etat = depot.charger(); majTout(); afficherPaquet(true); majAttente(); majParametres(); signaler("Votre compte a été supprimé.");
+      compte = null; partie = null; edition = null; amis = {amis: [], recues: [], envoyees: []}; etat = depot.charger(); majTout(); afficherPaquet(true); majAttente(); majParametres(); signaler("Votre compte a été supprimé.");
     });
   }
 });
@@ -2796,7 +3149,7 @@ document.addEventListener("click", e => {
 // Changement de vue. En revenant aux paquets depuis un autre onglet, la scène reflète les paquets gagnés
 // entre-temps ; un paquet en cours de découverte n'est jamais interrompu par un toucher sur l'onglet déjà ouvert
 let vueCourante = "paquet";
-const VUES_PLUS = ["duels", "compte", "catalogue", "apropos", "parametres"];
+const VUES_PLUS = ["gouvernement", "duels", "compte", "catalogue", "apropos", "parametres"];
 function allerA(vue){
   const depuis = vueCourante;
   vueCourante = vue;
@@ -2809,6 +3162,7 @@ function allerA(vue){
   if (vue === "buvette" && depuis !== "buvette" && compte && buvetteConstruite) { chargerEchanges(); chargerMarche(); chargerAnnonces(); chargerAmis(); }
   if (vue === "amis" && depuis !== "amis") chargerAmis();
   if (vue === "duels" && depuis !== "duels") chargerDuels();
+  if (vue === "gouvernement" && depuis !== "gouvernement") chargerGouvernement();
   if (vue === "catalogue") majCatalogue();
   if (vue === "parametres") majParametres();
   if (vue === "compte" && depuis !== "compte") construireExtras();
@@ -2857,7 +3211,7 @@ fetch("jeu.json").then(r => { if (!r.ok) throw new Error(r.status); return r.jso
   // Session ouverte sur le serveur ? Sinon, mode navigateur. Sans serveur (site statique seul), le jeu reste local.
   return fetch("/api/moi", {credentials: "same-origin"}).then(r => r.ok ? r.json() : null).catch(() => null).then(m => {
     serveur = !!(m && typeof m.connecte === "boolean");
-    if (m && m.connecte) { etat = Regles.migrer(m.etat); compte = {pseudo: m.pseudo, cree: m.cree, vitrine: m.vitrine || []}; }
+    if (m && m.connecte) { etat = Regles.migrer(m.etat); compte = {pseudo: m.pseudo, cree: m.cree, vitrine: m.vitrine || [], gouvernement: !!m.gouvernement}; }
     afficherPaquet(); majTout(); majAttente(); chargerDuels(); chargerAmis(); chargerAlertes(); demarrerAccueil();
   });
 }).catch(e => { console.error(e); document.getElementById("restants").textContent = "Les cartes n'ont pas pu être chargées. Vérifiez que le fichier jeu.json est publié à côté de cette page, puis rechargez."; });
