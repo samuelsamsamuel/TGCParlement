@@ -55,7 +55,8 @@ nav button svg{width:1.25rem;height:1.25rem;flex:none}
 nav button[aria-selected="true"]{border-bottom-color:var(--dorure);color:var(--dorure-pale)}
 /* Grand écran : les quatre vues du menu Plus deviennent des onglets ; la barre reste en haut de l'écran au défilement */
 nav .onglet-large{display:none}
-@media (min-width:1180px){nav [data-vue="plus"]{display:none}nav .onglet-large{display:flex}nav button{padding:.75rem .8rem}}
+@media (min-width:1180px){nav [data-vue="plus"]{display:none}nav .onglet-large{display:flex}nav{gap:0}nav button{padding:.75rem .5rem;font-size:.88rem;white-space:nowrap;gap:.35rem}nav button svg{width:1.1rem;height:1.1rem}}
+@media (min-width:1400px){nav button{padding:.75rem .8rem;font-size:1rem;gap:.45rem}}
 @media (min-width:701px){
   body.nav-flottante nav{position:fixed;top:0;left:0;right:0;z-index:20;background:rgba(46,7,16,.97);backdrop-filter:blur(8px);border-bottom:1px solid rgba(201,162,74,.35)}
   :root[data-theme="clair"] body.nav-flottante nav{background:rgba(92,16,32,.97)}
@@ -436,6 +437,11 @@ footer{max-width:1120px;margin:0 auto;padding:0 1rem 3rem;font-size:.85rem;color
 .choix-q button.mauvaise{background:#7a1a2e;border-color:#ff9a9a}
 .choix-q button:disabled{cursor:default;opacity:1}
 .question .apres{margin-top:.7rem;display:flex;flex-wrap:wrap;gap:.5rem;align-items:center}
+/* « Voir la carte » et « Question suivante » côte à côte, même sur téléphone */
+.gestes-q{display:flex;gap:.5rem;width:100%}
+.gestes-q .bouton{flex:1;padding:.7rem .5rem;white-space:nowrap}
+.duels-vue{border-top:0;margin-top:0;padding-top:0}
+.renvoi-duels{margin-top:.8rem}
 .vitrine{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.6rem;margin:.6rem 0}
 @media (min-width:640px){.vitrine{grid-template-columns:repeat(6,minmax(0,1fr))}}
 #apercu #apercu-carte{width:100%;display:flex;flex-direction:column;align-items:center}
@@ -701,10 +707,11 @@ html.presentation{font-size:15px}
   <div class="encart-voix" id="encart-voix" role="dialog" aria-label="Les voix" hidden></div>
   <p class="chapeau">Collectionnez les parlementaires français, de la Constituante de 1789 à l'Assemblée d'aujourd'hui.</p>
   <nav role="tablist" aria-label="Sections">
-    <button role="tab" aria-selected="true" data-vue="paquet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M5 7h14M9 3l1 4M15 3l-1 4"/></svg>Séance <span class="pastille" id="pastille-seance" hidden></span></button>
+    <button role="tab" aria-selected="true" data-vue="paquet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M5 7h14M9 3l1 4M15 3l-1 4"/></svg>Séance</button>
     <button role="tab" aria-selected="false" data-vue="collection"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="4" width="8" height="11" rx="1.5"/><rect x="13" y="4" width="8" height="11" rx="1.5"/><path d="M3 19h18"/></svg>Hémicycle</button>
     <button role="tab" aria-selected="false" data-vue="objectifs"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M8 4h8v5a4 4 0 0 1-8 0z"/><path d="M8 6H5a3 3 0 0 0 3 4M16 6h3a3 3 0 0 1-3 4M12 13v4M8 20h8"/></svg>Ordre du jour <span class="pastille" id="pastille" hidden></span></button>
     <button role="tab" aria-selected="false" data-vue="buvette"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 8h13l-3-3M20 16H7l3 3"/></svg>Buvette <span class="pastille" id="pastille-buvette" hidden></span></button>
+    <button role="tab" aria-selected="false" data-vue="duels"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 4l10 10M4 4h3.5M4 4v3.5M20 4 10 14M20 4h-3.5M20 4v3.5M12.5 15.5l3 3M11.5 15.5l-3 3M17 17l-2 2M7 17l2 2M16.5 18.5l2 2M7.5 18.5l-2 2"/></svg>Duels <span class="pastille" id="pastille-duels" hidden></span></button>
     <button role="tab" aria-selected="false" data-vue="amis"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><circle cx="17" cy="9" r="2.8"/><path d="M16 14.2a5.5 5.5 0 0 1 6 5.8"/></svg>Amis <span class="pastille" id="pastille-amis" hidden></span></button>
     <button role="tab" aria-selected="false" data-vue="plus" aria-haspopup="menu" aria-controls="menu-plus"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg>Plus</button>
     <button role="tab" aria-selected="false" data-vue="compte" class="onglet-large"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span class="nom-compte">Mon siège</span></button>
@@ -769,10 +776,10 @@ html.presentation{font-size:15px}
   <section class="vue objectifs" id="vue-objectifs" hidden>
     <section class="journee" id="journee" aria-live="polite"></section>
     <div class="synthese" id="synthese-objectifs"></div>
-    <details class="rubrique" open><summary><span>Premiers pas</span><span class="etat-rubrique" id="etat-premiers"></span></summary>
+    <details class="rubrique"><summary><span>Premiers pas</span><span class="etat-rubrique" id="etat-premiers"></span></summary>
       <ul class="liste-objectifs petits" id="obj-premiers"></ul>
       <details class="recus" id="premiers-recus" hidden><summary></summary><ul class="liste-objectifs petits" id="obj-premiers-recus"></ul></details></details>
-    <details class="rubrique" open><summary><span>Remplir l'hémicycle</span><span class="etat-rubrique" id="etat-collection"></span></summary>
+    <details class="rubrique"><summary><span>Remplir l'hémicycle</span><span class="etat-rubrique" id="etat-collection"></span></summary>
       <ul class="liste-objectifs" id="obj-collection"></ul></details>
     <details class="rubrique"><summary><span>Collections historiques</span><span class="etat-rubrique" id="etat-historiques"></span></summary>
       <ul class="liste-objectifs" id="obj-historiques"></ul></details>
@@ -798,6 +805,7 @@ html.presentation{font-size:15px}
   <section class="vue panneau" id="vue-compte" hidden><div id="compte-principal"></div><div id="compte-extras"></div></section>
   <section class="vue panneau" id="vue-buvette" hidden></section>
   <section class="vue panneau" id="vue-amis" hidden></section>
+  <section class="vue panneau qag duels-vue" id="vue-duels" hidden aria-live="polite"></section>
 </main>
 <dialog id="apercu"><div class="detail"><div id="apercu-carte"></div><button class="bouton discret" id="fermer-apercu">Fermer</button></div></dialog>
 <dialog id="confirmer-lot"><div class="detail"><h2>Garder cette carte ?</h2><div id="lot-carte"></div><p class="note">Les autres cartes proposées ne le seront plus.</p>
@@ -1024,9 +1032,9 @@ function majCompteur(){
 function majTout(){ majCompteur(); majCollection(); majJournee(); majObjectifs(); majCompte(); majBuvette(); majAmis(); majQag(); }
 // Délai lisible : « 42 min », « 1 h 05 »
 function delai(ms){ const m = Math.max(1, Math.ceil(ms / 60000)); return m < 60 ? m + " min" : Math.floor(m / 60) + " h " + String(m % 60).padStart(2, "0"); }
-// Pastilles des onglets : échanges reçus (Buvette), demandes d'ami (Amis) et duels à jouer (Séance), relues toutes les deux minutes
+// Pastilles des onglets : échanges reçus (Buvette), demandes d'ami (Amis) et duels à jouer (Duels), relues toutes les deux minutes
 async function majAttente(){
-  const ps = document.getElementById("pastille-seance"), pb = document.getElementById("pastille-buvette"), pa = document.getElementById("pastille-amis");
+  const ps = document.getElementById("pastille-duels"), pb = document.getElementById("pastille-buvette"), pa = document.getElementById("pastille-amis");
   if (!compte) { ps.hidden = pb.hidden = pa.hidden = true; return; }
   const a = await appel("attente").catch(() => null);
   if (!a) return;
@@ -1429,7 +1437,7 @@ async function demarrerDuel(id, avec){
     bonnes: faites.filter(q => q.repondu === q.bonne).length, repondu: null, fin: null};
   if (faites.length === d.questions.length) quiz.repondu = faites[faites.length - 1].repondu;
   majQag();
-  document.getElementById("qag").scrollIntoView({behavior: reduit() ? "auto" : "smooth", block: "start"});
+  if (vueCourante !== "duels") allerA("duels"); else window.scrollTo({top: 0});
 }
 const MISES_DUEL = [["0", "Pour la gloire"], ["v10", "10 voix"], ["v25", "25 voix"], ["v50", "50 voix"], ["v100", "100 voix"], ["p1", "1 paquet"], ["p2", "2 paquets"], ["p3", "3 paquets"]];
 const texteMise = d => [d.voix ? pluriel(d.voix, "voix", "voix") : "", d.paquets ? pluriel(d.paquets, "paquet") : ""].filter(Boolean).join(" et ") || "pour la gloire";
@@ -1438,56 +1446,61 @@ async function chargerDuels(){
   const d = await appel("duels").catch(() => null);
   if (d) { duels = d.duels; majQag(); }
 }
-function majQag(){
-  const zone = document.getElementById("qag");
-  if (!cat) return;
-  if (quiz) {
-    const q = quiz.liste[quiz.i];
-    if (quiz.fin) {
-      zone.innerHTML = `<h2>Questions au Gouvernement</h2><div class="question"><p class="texte">${quiz.bonnes} bonne${quiz.bonnes>1?"s":""} réponse${quiz.bonnes>1?"s":""} sur ${quiz.liste.length}.</p><p>${quiz.fin}</p>
-        <p><button class="bouton" id="qag-fermer">Revenir à la séance</button></p></div>`;
-      return;
-    }
-    zone.innerHTML = `<h2>Questions au Gouvernement</h2><div class="question">
-      <span class="note">${quiz.mode === "duel" ? "Duel contre " + echapper(quiz.avec) + " · " : ""}Question ${quiz.i + 1} sur ${quiz.liste.length}</span>
+// Partie en cours (questions du jour en Séance, duel dans l'onglet Duels) : question, choix, correction, résultat
+function htmlQuestion(){
+  const q = quiz.liste[quiz.i];
+  if (quiz.fin) return `<div class="question"><p class="texte">${quiz.bonnes} bonne${quiz.bonnes>1?"s":""} réponse${quiz.bonnes>1?"s":""} sur ${quiz.liste.length}.</p><p>${quiz.fin}</p>
+      <p><button class="bouton" id="qag-fermer">${quiz.mode === "duel" ? "Revenir aux duels" : "Revenir à la séance"}</button></p></div>`;
+  return `<div class="question">
+      <span class="note">Question ${quiz.i + 1} sur ${quiz.liste.length}</span>
       <p class="texte">${echapper(q.texte)}</p>
       ${q.photo ? `<img class="photo-q" alt="Portrait à reconnaître" src="${echapper(q.photo.startsWith("commons:") ? urlPortrait(q.photo.slice(8)) : q.photo)}">` : ""}
       <div class="choix-q">${q.choix.map((c, k) => `<button data-choix="${k}" ${quiz.repondu !== null ? "disabled" : ""} class="${quiz.repondu === null ? "" : k === q.bonne ? "bonne" : k === quiz.repondu ? "mauvaise" : ""}">${echapper(c)}</button>`).join("")}</div>
       ${quiz.repondu !== null ? `<div class="apres"><span>${quiz.repondu === q.bonne ? "Bonne réponse." : "Mauvaise réponse."} ${echapper(q.explication)}</span>
-        <button class="bouton discret" data-apercu="${echapper(q.carte)}">Voir la carte</button>
-        <button class="bouton" id="qag-suite">${quiz.i + 1 < quiz.liste.length ? "Question suivante" : "Voir le résultat"}</button></div>` : ""}
+        <div class="gestes-q"><button class="bouton discret" data-apercu="${echapper(q.carte)}">Voir la carte</button>
+        <button class="bouton" id="qag-suite">${quiz.i + 1 < quiz.liste.length ? "Question suivante" : "Voir le résultat"}</button></div></div>` : ""}
     </div>`;
-    return;
-  }
+}
+function majQag(){
+  const zone = document.getElementById("qag"), zd = document.getElementById("vue-duels");
+  if (!cat) return;
   const jour = Regles.jourDuJeu(), fait = etat.quiz === jour;
   const releves = duels.filter(d => !d.lance && d.statut === "propose");
   const aJouer = duels.filter(d => ["propose", "accepte"].includes(d.statut) && d.mien === null && (d.lance || d.statut === "accepte"));
+  // Séance : seulement les questions du jour, et un renvoi vers l'onglet Duels quand un duel attend le joueur
+  zone.innerHTML = quiz && quiz.mode === "jour" ? `<h2>Questions au Gouvernement</h2>${htmlQuestion()}` : `<h2>Questions au Gouvernement</h2>
+    <p>${fait ? "Vous avez répondu aux questions du jour. Les suivantes arrivent demain." : `Cinq questions tirées des fiches officielles : 2 voix par bonne réponse, et 5 de plus pour un sans-faute.`}</p>
+    ${fait ? "" : `<button class="bouton" id="qag-jour">Poser les questions du jour</button>`}
+    ${releves.length + aJouer.length ? `<p class="note renvoi-duels">${pluriel(releves.length + aJouer.length, "duel vous attend", "duels vous attendent")}. <button class="lien-carte" data-aller-duels>Aller aux duels</button></p>` : ""}`;
+  if (quiz && quiz.mode === "duel") { zd.innerHTML = `<h2>Duel contre ${echapper(quiz.avec)}</h2>${htmlQuestion()}`; return; }
+  // Onglet Duels : défis reçus, duels à jouer, nouveau défi, puis en attente et historique
   const attente = duels.filter(d => ["propose", "accepte"].includes(d.statut) && d.mien !== null);
-  const finis = duels.filter(d => !["propose", "accepte"].includes(d.statut)).slice(0, 8);
+  const finis = duels.filter(d => !["propose", "accepte"].includes(d.statut));
   const issue = d => d.statut === "fini" ? `${d.mien ?? 0} à ${d.sien ?? 0}, ${{gagne: "gagné", perdu: "perdu", egalite: "égalité"}[d.issue] || "terminé"}`
     : {refuse: "défi refusé, mise rendue", annule: "défi annulé, mise rendue", expire: "défi sans réponse, mise rendue"}[d.statut] || "terminé";
   const ligne = (d, contenu, gestes = "") => `<li class="duel-ligne${d.statut === "fini" ? " " + (d.issue || "") : ""}"><span class="pastille-mise">${texteMise(d)}</span>
     <span class="quoi">${contenu}</span><span class="gestes-ami">${gestes}</span></li>`;
-  zone.innerHTML = `<h2>Questions au Gouvernement</h2>
-    <p>${fait ? "Vous avez répondu aux questions du jour. Les suivantes arrivent demain." : `Cinq questions tirées des fiches officielles : 2 voix par bonne réponse, et 5 de plus pour un sans-faute.`}</p>
-    ${fait ? "" : `<button class="bouton" id="qag-jour">Poser les questions du jour</button>`}
-    ${compte ? `<h3 id="titre-duels">Duels</h3>
-      ${releves.length ? `<ul class="duels a-relever">${releves.map(d => ligne(d, `<b>${echapper(d.avec)}</b> vous défie`,
+  zd.innerHTML = !compte ? `<h2>Duels</h2><p>Défiez vos amis aux questions au Gouvernement : mêmes cinq questions pour les deux, avec une mise si vous le voulez.</p>
+      ${serveur ? `<p>Il faut un compte pour défier d'autres joueurs.</p><button class="bouton" data-aller-compte>Créer un compte</button>` : ""}`
+    : `<h2 id="titre-duels">Duels</h2>
+      ${releves.length ? `<h3>Défis reçus</h3><ul class="duels a-relever">${releves.map(d => ligne(d, `<b>${echapper(d.avec)}</b> vous défie`,
         `<button class="bouton" data-relever="${d.id}">Relever le défi</button><button class="lien-carte" data-refuser="${d.id}">Refuser</button>`)).join("")}</ul>` : ""}
-      ${aJouer.length ? `<ul class="duels">${aJouer.map(d => ligne(d, `Contre <b>${echapper(d.avec)}</b>${d.repondues ? ` · ${d.repondues} sur 5` : ""}`,
+      ${aJouer.length ? `<h3>À jouer</h3><ul class="duels">${aJouer.map(d => ligne(d, `Contre <b>${echapper(d.avec)}</b>${d.repondues ? ` · ${d.repondues} sur 5` : ""}`,
         `<button class="bouton" data-duel="${d.id}">${d.repondues ? "Reprendre" : "Jouer"}</button>`)).join("")}</ul>` : ""}
+      <h3>Lancer un défi</h3>
       <form class="defier" id="form-duel"><p class="note">Mêmes cinq questions pour les deux ; le meilleur score emporte les deux mises, une égalité rend la sienne à chacun.</p>
         ${amis.amis.length ? rangeeAmis("data-defier") : ""}
         <div class="ligne-defi"><input type="text" name="pseudo" required autocapitalize="off" spellcheck="false" placeholder="Pseudo de l'adversaire" aria-label="Adversaire">
           <select name="mise" aria-label="Mise">${MISES_DUEL.map(([v, l]) => `<option value="${v}">${l}</option>`).join("")}</select>
           <button class="bouton" type="submit">Défier</button></div></form>
-      ${attente.length || finis.length ? `<ul class="duels passes">${attente.map(d => ligne(d, `Contre <b>${echapper(d.avec)}</b> : vous avez ${d.mien} sur 5, en attente${d.statut === "propose" ? " de sa réponse au défi" : " de son score"}`,
-        d.statut === "propose" ? `<button class="lien-carte" data-annuler-duel="${d.id}">Annuler</button>` : "")).join("")}
-        ${finis.map(d => ligne(d, `Contre <b>${echapper(d.avec)}</b> : ${issue(d)}`)).join("")}</ul>` : ""}`
-      : `<p class="note">Créez un compte pour défier d'autres joueurs.</p>`}`;
+      ${attente.length ? `<h3>En attente</h3><ul class="duels passes">${attente.map(d => ligne(d, `Contre <b>${echapper(d.avec)}</b> : vous avez ${d.mien} sur 5, en attente${d.statut === "propose" ? " de sa réponse au défi" : " de son score"}`,
+        d.statut === "propose" ? `<button class="lien-carte" data-annuler-duel="${d.id}">Annuler</button>` : "")).join("")}</ul>` : ""}
+      <h3>Historique</h3>${finis.length ? `<ul class="duels passes">${finis.map(d => ligne(d, `Contre <b>${echapper(d.avec)}</b> : ${issue(d)}`)).join("")}</ul>` : `<p class="note">Vos duels terminés apparaîtront ici.</p>`}`;
 }
-document.getElementById("qag").addEventListener("click", e => {
+function clicQuiz(e){
   const t = e.target;
+  if (t.closest("[data-aller-duels]")) { allerA("duels"); return; }
+  if (t.closest("[data-aller-compte]")) { allerA("compte"); return; }
   if (t.id === "qag-jour") demarrerQuiz("jour", Regles.graineDe(Regles.jourDuJeu() + "|" + (compte ? compte.pseudo.toLowerCase() : "navigateur")));
   const duel = id => duels.find(x => x.id === Number(id));
   if (t.dataset.duel) { const d = duel(t.dataset.duel); if (d) occupe(t, () => demarrerDuel(d.id, d.avec)); }
@@ -1531,8 +1544,10 @@ document.getElementById("qag").addEventListener("click", e => {
     });
   }
   if (t.id === "qag-fermer") { quiz = null; majTout(); }
-});
-document.getElementById("qag").addEventListener("submit", e => {
+}
+document.getElementById("qag").addEventListener("click", clicQuiz);
+document.getElementById("vue-duels").addEventListener("click", clicQuiz);
+document.getElementById("vue-duels").addEventListener("submit", e => {
   if (e.target.id !== "form-duel") return;
   e.preventDefault();
   const f = e.target, m = f.mise.value;
@@ -1545,8 +1560,11 @@ document.getElementById("qag").addEventListener("submit", e => {
 });
 
 /* ---------- Aperçu d'une carte ---------- */
-function apercu(id){
+// Ouverte depuis « Toutes les cartes », la grande carte propose l'alerte de vente (pas depuis l'hémicycle)
+let apercuCatalogue = false;
+function apercu(id, depuisCatalogue = false){
   const c = cat.parId[id]; if (!c) return;
+  apercuCatalogue = depuisCatalogue;
   document.getElementById("apercu-carte").innerHTML = htmlCarte(c, {classe: "grande"}) + `<div class="actions-apercu" id="actions-apercu"></div>`;
   majActionsApercu(id);
   if (!document.getElementById("apercu").open) document.getElementById("apercu").showModal();
@@ -1566,7 +1584,7 @@ function majActionsApercu(id){
         : `<button class="bouton discret" data-vitrine-ajouter="${echapper(id)}">Mettre en vitrine</button>`) : ""}`
     : (etat.deja || []).includes(id) ? `<p class="note">Vous l'avez eue, puis cédée : elle n'est plus dans votre hémicycle. Touchez la carte pour voir sa carrière au verso.</p>`
     : `<p class="note">Pas encore dans votre hémicycle. Touchez la carte pour voir sa carrière au verso.</p>`;
-  if (compte) zone.insertAdjacentHTML("beforeend", `<button class="bouton discret" data-alerte="${echapper(id)}" aria-pressed="${alertes.has(id)}">${alertes.has(id)
+  if (compte && apercuCatalogue) zone.insertAdjacentHTML("beforeend", `<button class="bouton discret" data-alerte="${echapper(id)}" aria-pressed="${alertes.has(id)}">${alertes.has(id)
     ? "Ne plus m'avertir des ventes" : "M'avertir quand elle est en vente"}</button>`);
   zone.insertAdjacentHTML("beforeend", `<p class="detenteurs" id="detenteurs"></p><p class="detenteurs" id="amis-carte"></p>`);
   afficherDetenteurs(id); afficherAmisCarte(id);
@@ -2614,11 +2632,12 @@ document.addEventListener("click", e => {
   if (b.dataset.allerCompte !== undefined) { allerA("compte"); return; }
   if (b.dataset.echangeAmi) { document.getElementById("apercu").close(); proposerEchangeA(b.dataset.echangeAmi); return; }
   if (b.dataset.duelAmi) {
-    // Le défi se prépare dans la Séance : adversaire prérempli, mise à choisir
+    // Le défi se prépare dans l'onglet Duels : adversaire prérempli, mise à choisir
     document.getElementById("apercu").close?.();
-    allerA("paquet"); quiz = null; majQag();
+    if (quiz?.mode === "duel") quiz = null;
+    majQag(); allerA("duels");
     const f = document.getElementById("form-duel");
-    if (f) { f.pseudo.value = b.dataset.duelAmi; document.getElementById("titre-duels").scrollIntoView({behavior: reduit() ? "auto" : "smooth", block: "start"}); f.mise.focus(); }
+    if (f) { f.pseudo.value = b.dataset.duelAmi; f.querySelectorAll("[data-defier]").forEach(x => x.setAttribute("aria-pressed", x.dataset.defier === b.dataset.duelAmi)); f.scrollIntoView({behavior: reduit() ? "auto" : "smooth", block: "center"}); f.mise.focus(); }
     return;
   }
   if (b.dataset.confirmer && !confirm(b.dataset.confirmer)) return;
@@ -2746,7 +2765,7 @@ document.addEventListener("click", e => {
     selection.has(id) ? selection.delete(id) : selection.add(id);
     el.classList.toggle("choisie", selection.has(id)); majSelection(); return;
   }
-  if (el.closest("#grille, #cat-grille")) { apercu(el.dataset.id); return; }
+  if (el.closest("#grille, #cat-grille")) { apercu(el.dataset.id, !!el.closest("#cat-grille")); return; }
   el.classList.remove("statique"); el.classList.toggle("envers");
 });
 // Changement de vue. En revenant aux paquets depuis un autre onglet, la scène reflète les paquets gagnés
@@ -2764,6 +2783,7 @@ function allerA(vue){
   if (vue === "paquet" && depuis !== "paquet" && cat && !document.getElementById("courante")) afficherPaquet();
   if (vue === "buvette" && depuis !== "buvette" && compte && buvetteConstruite) { chargerEchanges(); chargerMarche(); chargerAnnonces(); chargerAmis(); }
   if (vue === "amis" && depuis !== "amis") chargerAmis();
+  if (vue === "duels" && depuis !== "duels") chargerDuels();
   if (vue === "catalogue") majCatalogue();
   if (vue === "parametres") majParametres();
   if (vue === "compte" && depuis !== "compte") construireExtras();
