@@ -54,6 +54,16 @@ def an(d):
     return int(d[:4]) if d else None
 
 
+# Nom d'usage d'une commission, par domaine (première famille de son intitulé officiel, scripts/commissions.py) : les
+# commissions renommées ou redécoupées au fil des législatures sont réunies sous ce nom au verso des cartes
+NOM_COMMISSION = {
+    "lois": "Commission des lois", "finances": "Commission des finances",
+    "affaires-etrangeres": "Commission des affaires étrangères", "defense": "Commission de la défense",
+    "affaires-sociales": "Commission des affaires sociales", "culture-education": "Commission de la culture et de l'éducation",
+    "economie": "Commission des affaires économiques", "territoires": "Commission du développement durable",
+}
+
+
 def fonctions_carte(ident, gouv, pres):
     """[intitulé, année de début, année de fin (None si en cours ou inconnue), rang d'importance]."""
     liste = []
@@ -223,16 +233,36 @@ def main():
         with open(os.path.join("data", "portraits_sycomore.json"), encoding="utf-8") as f:
             sycomore = json.load(f)
     assemblees, assemblees_carte = table_assemblees(cartes)
-    # Commissions permanentes (scripts/commissions.py) : table des intitulés [intitulé, chambre A ou S, familles] et,
-    # par carte, [index dans la table, année de début, année de fin (None si en cours)]
+    # Commissions permanentes (scripts/commissions.py), regroupées par domaine et par chambre malgré les changements de
+    # nom (demande de l'utilisateur : une ligne par commission au verso) : table [nom d'usage, chambre A ou S, familles]
+    # et, par carte, [index dans la table, année de début, année de fin (None si en cours)], périodes qui se suivent
+    # fusionnées (moins de 31 jours d'écart, comme dans commissions.py). Les passages de moins de trois mois (remplacements
+    # temporaires, fréquents dans l'open data de l'Assemblée, parfois de quelques jours) ne sont pas affichés ; ils restent
+    # dans data/gouvernement/commissions.json
+    import datetime as _dt
     commissions, index_commission, commissions_carte = [], {}, {}
     for k, v in lire(os.path.join("data", "gouvernement", "commissions.json")).items():
+        groupes = {}
         for x in v:
-            cle = (x["commission"], x["chambre"])
+            if not x["familles"]:
+                continue
+            cle = (x["familles"][0], x["chambre"])
             if cle not in index_commission:
                 index_commission[cle] = len(commissions)
-                commissions.append([x["commission"], "S" if x["chambre"] == "Sénat" else "A", x["familles"]])
-            commissions_carte.setdefault(k, []).append([index_commission[cle], an(x["debut"]), an(x["fin"])])
+                commissions.append([NOM_COMMISSION[x["familles"][0]], "S" if x["chambre"] == "Sénat" else "A", []])
+            familles_groupe = commissions[index_commission[cle]][2]
+            familles_groupe += [f for f in x["familles"] if f not in familles_groupe]
+            groupes.setdefault(cle, []).append((x["debut"], x["fin"]))
+        for cle, periodes in groupes.items():
+            fusion = []
+            for debut, fin in sorted(periodes):
+                if fusion and (fusion[-1][1] is None or (_dt.date.fromisoformat(debut) - _dt.date.fromisoformat(fusion[-1][1])).days <= 31):
+                    if fusion[-1][1] is not None:
+                        fusion[-1][1] = None if fin is None else max(fusion[-1][1], fin)
+                else:
+                    fusion.append([debut, fin])
+            duree = lambda d, f: (_dt.date.fromisoformat(f) - _dt.date.fromisoformat(d)).days if f else 10 ** 6
+            commissions_carte.setdefault(k, []).extend([index_commission[cle], an(d), an(f)] for d, f in fusion if duree(d, f) >= 90)
     sortie = []
     for c in cartes:
         debut, fin = annees(c)

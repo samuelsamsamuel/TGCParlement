@@ -971,6 +971,16 @@ function principale(c){
 }
 // Trait d'union insécable : un nom composé passe à la ligne en entier, jamais coupé à son trait d'union
 function nomInsecable(n){ return echapper(n).replace(/-/g, "\u2011"); }
+// Une ligne par commission et par chambre, toutes ses périodes à la suite (« 1983–1989, 1995–2001 »)
+function lignesCommissions(c){
+  const groupes = new Map();
+  for (const x of c.commissions) {
+    const cle = x.intitule + "|" + x.chambre;
+    if (!groupes.has(cle)) groupes.set(cle, {titre: `${x.intitule} (${x.chambre === "S" ? "Sénat" : "Assemblée"})`, periodes: []});
+    groupes.get(cle).periodes.push(dates(x.debut, x.fin));
+  }
+  return [...groupes.values()].map(g => ["mandat", g.titre, g.periodes.join(", ")]);
+}
 function listeLignes(items){ return items.map(([k,t,d]) => `<li class="${k}"><b>${echapper(t)}</b><span>${d}</span></li>`).join(""); }
 
 function estFavori(id){ return (etat.favoris || []).includes(String(id)); }
@@ -1003,7 +1013,7 @@ function htmlCarte(c, {retournee=true, neuve=false, classe="", id="", etoile=tru
       <div class="corps">
         ${c.fonctions.length?`<h4>Fonctions</h4><ul class="lignes">${listeLignes(c.fonctions.map(f => ["fonction", f[0], dates(f[1], f[2], false)]))}</ul>`:""}
         ${c.mandats.length?`<h4>Mandats</h4><ul class="lignes">${listeLignes(c.mandats.map(m => ["mandat", ...mandatLigne(m)]))}</ul>`:""}
-        ${c.commissions.length?`<h4>Commissions</h4><ul class="lignes">${listeLignes(c.commissions.map(x => ["mandat", `${x.intitule} (${x.chambre === "S" ? "Sénat" : "Assemblée"})`, dates(x.debut, x.fin)]))}</ul>`:""}
+        ${c.commissions.length?`<h4>Commissions</h4><ul class="lignes">${listeLignes(lignesCommissions(c))}</ul>`:""}
         ${c.groupe?`<h4>Groupe politique</h4><ul class="lignes"><li><b>${echapper(c.groupe)}</b></li></ul>`:""}
         ${distinctions.length?`<h4>Distinctions</h4><ul class="lignes">${distinctions.map(d=>`<li><b>${d}</b></li>`).join("")}</ul>`:""}
       </div>

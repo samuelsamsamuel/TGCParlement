@@ -58,7 +58,8 @@ commissions permanentes, après `senat_bureau.py` dans le workflow : Sénat par 
 affaires sociales, culture et éducation, économie, territoires, tirées de l'intitulé officiel, `DECISION_FAMILLES` ;
 première exécution, octobre 2026 : 3 283 cartes, 14 587 périodes, 26 députés sans carte ; écrit
 `data/gouvernement/commissions.json`, exporté dans `jeu.json` (table `commissions` et 19e champ des cartes), verso
-« Commissions »), `numeros_departements.py` (numéros des départements pour la recherche de
+« Commissions » : une ligne par commission et par chambre, réunies par domaine malgré les changements de nom (`NOM_COMMISSION`,
+`export_jeu.py`), périodes à la suite, passages de moins de trois mois non affichés, demande de l'utilisateur), `numeros_departements.py` (numéros des départements pour la recherche de
 l'ordre du jour, Code officiel géographique de l'Insee par l'API Métadonnées sans clé, départements en vigueur au 1er janvier
 de chaque année depuis 1943, anciens noms compris ; écrit `site/departements.json`), `export_jeu.py` (écrit
 `site/jeu.json`), puis
@@ -344,7 +345,10 @@ serveur), filtre « Mes favoris » dans l'Hémicycle. Pas de zoom au double touc
    même gouvernement réel, a servi sous le chef ; +1 chacun, +3 au plus) ; plafond de stature 24 ; gouvernement adverse
    visible, choix cachés ; 49.3 une fois (stature du chef ajoutée) ; égalité : stature puis années de mandat ; premier à
    quatre manches. Mise contre un ami, série 1 à 5 contre un joueur au hasard ou l'ordinateur. Lien de parité non tranché.
-   Étapes : commissions (fait), fiches de jeu et liste des thèmes à soumettre, simulation de réglage, jeu.
+   Validé par l'utilisateur : 34 thèmes de politiques publiques (dont Relations avec le Parlement, étoiles par les
+   fonctions dans les chambres) et 16 territoires (13 régions actuelles, Paris, Outre-mer, Français de l'étranger) ; années
+   en commission comptées depuis juin 2002 seulement (symétrie) ; lacune acceptée des ministres d'avant 1944.
+   Étapes : commissions (fait), fiches de jeu, simulation de réglage, jeu.
 
 1. Application en service. À confirmer par l'utilisateur : l'éditeur reste anonyme dans `mentions.html`
    (article 1-1 de la loi du 21 juin 2004, texte officiel non consulté, Légifrance refusant les requêtes
