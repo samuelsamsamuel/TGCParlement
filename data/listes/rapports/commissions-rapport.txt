@@ -1,0 +1,54 @@
+Cartes avec au moins une commission : 3283 ; périodes après fusion : 14587
+Les commissions aux attributions mixtes reçoivent chaque famille nommée dans leur intitulé officiel : la commission des affaires étrangères du Sénat, qui suit aussi la défense (« affaires étrangères, défense et forces armées »), n'a dans l'export du Sénat que l'intitulé court « commission des affaires étrangères » et reçoit donc aussi la famille défense ; à l'Assemblée, la commission des affaires culturelles, familiales et sociales (2002-2009) relève de la culture et des affaires sociales, celle des affaires économiques, de l'environnement et du territoire (2002-2009) de l'économie et des territoires.
+
+Sénat : ODSEN_COMS.csv, 21230 lignes ; colonnes : Matricule | Qualité | Nom usuel | Prénom usuel | État Sénateur | Nom commission | Type commission | Id d'appartenance | Début d'appartenance | Fin d'appartenance | Id de fonction | Début de fonction | Fin de fonction | Fonction
+  appartenances retenues : 3400 ; matricules sans carte : 0
+Fichier lu : https://data.assemblee-nationale.fr/static/openData/repository/17/amo/tous_acteurs_mandats_organes_xi_legislature/AMO30_tous_acteurs_tous_mandats_tous_organes_historique.json.zip (13718658 octets, essai 1)
+Assemblée : mandats COMPER retenus 25980 ; qualités : Membre (24200), Secrétaire (830), Vice-Président (688), Rapporteur spécial (103), Président (85), — (54), Rapporteur général (20)
+  députés non rattachés à une carte : 26
+    Anne-Sophie Frigout (1991-04-11)
+    Antoine Valentin (1992-10-16)
+    Augustin Bonrepaux (1936-08-11)
+    Benoit Gilhet (1970-11-20)
+    Bernard Debré (1944-09-30)
+    Christine Marin (1951-04-09)
+    Daniel Garrigue (1948-04-04)
+    Emmanuel Riotte (1962-03-31)
+    Fabien Limonta (1946-12-26)
+    Georges Siffredi (1956-07-28)
+    Henri Houdouin (1937-01-19)
+    Hélène Tanguy (1949-06-26)
+    Isabelle Vasseur (1959-04-10)
+    Jacqueline Fraysse (1947-02-25)
+    Jean-Pierre Pont (1950-05-09)
+    Laurence Gardet (1969-06-01)
+    Ludovic Loquet (1965-02-04)
+    Marie-Josée Roig (1938-05-12)
+    Marie-Philippe Lubet (1957-09-06)
+    Melouka Hadj-Mimoune (1960-04-27)
+    Michel Dasseux (1936-07-23)
+    Michel Diefenbacher (1947-07-15)
+    Michel Rossi (1953-01-05)
+    Muriel Fiol (1954-03-26)
+    Yves Bur (1951-03-10)
+    Éric Gérard (1962-01-19)
+
+Intitulés (chambre, cartes, familles) :
+  Assemblée : Commission de la défense nationale et des forces armées (771) -> defense
+  Assemblée : Commission des affaires culturelles et de l'éducation (784) -> culture-education
+  Assemblée : Commission des affaires culturelles, familiales et sociales (257) -> affaires-sociales, culture-education
+  Assemblée : Commission des affaires sociales (836) -> affaires-sociales
+  Assemblée : Commission des affaires économiques (795) -> economie
+  Assemblée : Commission des affaires économiques, de l'environnement et du territoire (250) -> economie, territoires
+  Assemblée : Commission des affaires étrangères (758) -> affaires-etrangeres
+  Assemblée : Commission des finances, de l'économie générale et du contrôle budgétaire (854) -> finances, economie
+  Assemblée : Commission des lois constitutionnelles, de la législation et de l'administration générale de la République (883) -> lois
+  Assemblée : Commission du développement durable et de l'aménagement du territoire (806) -> territoires
+  Sénat : Commission de l'aménagement du territoire et du développement durable (185) -> territoires
+  Sénat : Commission de l'économie (233) -> economie
+  Sénat : Commission de la culture (349) -> culture-education
+  Sénat : Commission des affaires sociales (327) -> affaires-sociales
+  Sénat : Commission des affaires économiques (161) -> economie
+  Sénat : Commission des affaires étrangères (293) -> affaires-etrangeres, defense
+  Sénat : Commission des finances (218) -> finances
+  Sénat : Commission des lois (272) -> lois

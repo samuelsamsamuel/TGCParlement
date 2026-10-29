@@ -99,9 +99,12 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
 
   // Cartes de jeu.json (tableaux compacts, voir scripts/export_jeu.py) en objets
   function cartesDeJeu(d) {
-    return d.cartes.map(([id, nom, r, score, epoque, actuel, debut, fin, source, portrait, distinctions, chambres, sexe, fonctions, mandats, groupe, photo, assemblees]) => ({
+    // Commissions permanentes : [index dans d.commissions ([intitulé, chambre A ou S, familles]), début, fin]
+    const coms = d.commissions || [];
+    return d.cartes.map(([id, nom, r, score, epoque, actuel, debut, fin, source, portrait, distinctions, chambres, sexe, fonctions, mandats, groupe, photo, assemblees, commissions]) => ({
       id, nom, rarete: d.raretes[r], score, epoque, actuel: !!actuel, debut, fin, source, portrait, distinctions: distinctions || [],
-      chambres: chambres || "", sexe, fonctions: fonctions || [], mandats: mandats || [], groupe, photo, assemblees: assemblees || []}));
+      chambres: chambres || "", sexe, fonctions: fonctions || [], mandats: mandats || [], groupe, photo, assemblees: assemblees || [],
+      commissions: (commissions || []).filter(([k]) => coms[k]).map(([k, debut, fin]) => ({intitule: coms[k][0], chambre: coms[k][1], familles: coms[k][2], debut, fin}))}));
   }
 
   // Catalogue réduit pour le serveur (site/serveur.json) : seulement ce que les règles utilisent. Il est écrit

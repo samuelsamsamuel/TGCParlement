@@ -72,6 +72,10 @@ const T = process.argv[2] || require("os").tmpdir();
   // Toucher une carte l'ouvre en grand
   await page.click("#grille .carte .portrait"); await page.waitForSelector("#apercu[open] #actions-apercu");
   await page.click("#fermer-apercu");
+  // Verso : les commissions permanentes, avec la chambre et les années
+  await page.evaluate(() => apercu(cartes.find(c => c.commissions.length).id));
+  assert.match(await page.textContent("#apercu .verso"), /Commissions[\s\S]*Commission .*\((Sénat|Assemblée)\)/);
+  await page.click("#fermer-apercu");
   await page.click(`#grille [data-favori]`);
   await page.waitForSelector("#grille .vide");
   await page.click('[data-pastille="favoris"]'); assert.strictEqual(await page.inputValue("#filtre"), "");
