@@ -380,7 +380,7 @@ serveur), filtre « Mes favoris » dans l'Hémicycle. Pas de zoom au double touc
    un gouvernement réel (chef et membres qui ont servi sous lui, `site/fiches/gNN.json`), niveau = palier de la série
    (`imprevu`, part du vivier composée pour les thèmes ; simulation, joueur régulier : 71, 63, 61, 55, 44 et 36 % de
    victoires des paliers 0 à 5). Contre un joueur : gouvernement enregistré d'un autre joueur, joué par l'ordinateur, son
-   propriétaire averti du résultat (repli sur l'ordinateur si aucun). Une partie de série à la fois ; l'adversaire est vu
+   propriétaire averti d'une défaite ou d'un nul, pas de ses victoires (demande de l'utilisateur, octobre 2026) (repli sur l'ordinateur si aucun). Une partie de série à la fois ; l'adversaire est vu
    avant le choix du gouvernement, renoncer vaut défaite. Série (refaite à la demande de l'utilisateur, octobre 2026 :
    récompense reçue à la fin de la série, cartes à choisir) : `SERIE_GOUV` de `regles.js` (15 voix, 1 paquet, une carte
    parmi 3 rares ou mieux, une parmi 3 épiques ou mieux et un paquet, une parmi 3 légendaires ou mieux et deux paquets) ;

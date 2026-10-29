@@ -1414,9 +1414,11 @@ async function clorePartie(env, d, {fiches = null, forfait = 0, expire = false} 
       serie = await appliquer(env, d.a, e => Regles.issueSerieGouv(e, cat, issue, Regles.jourDuJeu(), aleatoire), cloture);
     }
   } catch (e) { if (e instanceof Refus && e.statut === 409) return null; throw e; }
-  if (d.mode === "hasard" && d.b) {
+  // Propriétaire du gouvernement affronté averti d'une défaite ou d'un nul, plus de ses victoires (demande de
+  // l'utilisateur, octobre 2026 : trop de notifications)
+  if (d.mode === "hasard" && d.b && gagnant !== 2) {
     const nom = lireJson(d.camp_b, {}).nom || "Votre gouvernement";
-    await notifier(env, d.b, `« ${nom} » ${gagnant === 2 ? "a battu" : gagnant === 1 ? "a été battu par" : "a fait match nul contre"} ${await pseudoDe(env, d.a)} au jeu du Gouvernement.`);
+    await notifier(env, d.b, `« ${nom} » ${gagnant === 1 ? "a été battu par" : "a fait match nul contre"} ${await pseudoDe(env, d.a)} au jeu du Gouvernement.`);
   }
   return {gagnant, serie};
 }
