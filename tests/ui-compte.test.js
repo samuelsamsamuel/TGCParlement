@@ -139,7 +139,9 @@ const sx = Date.now().toString(36).slice(-4);
   await A.waitForFunction(() => etat.points === 18 && !document.querySelector(".offre-recue"));
   // Voix d'un échange affichées avec les cartes ; alerte de vente posée depuis la grande carte
   assert.match(await A.evaluate(() => lotVoix({}, 5) + "|" + lotVoix({[cartes[0].id]: 1}, 3)), /^<span class="voix-lot">5 voix<\/span>\|.*\+ 3 voix/);
-  await Bp.evaluate(() => apercu(cartes[0].id)); await Bp.click("[data-alerte]");
+  // Alerte de vente : seulement depuis « Toutes les cartes », pas depuis l'hémicycle
+  await Bp.evaluate(() => apercu(cartes[0].id)); assert.ok(!(await Bp.isVisible("[data-alerte]"))); await Bp.click("#fermer-apercu");
+  await Bp.evaluate(() => apercu(cartes[0].id, true)); await Bp.click("[data-alerte]");
   await Bp.waitForSelector('[data-alerte][aria-pressed="true"]'); await Bp.click("#fermer-apercu");
   assert.strictEqual(await Bp.evaluate(() => alertes.size), 1);
   // Voix remises comme avant la contre-offre pour la suite du parcours (Anne 12, Bob 18)
@@ -151,7 +153,7 @@ const sx = Date.now().toString(36).slice(-4);
   await A.click('#historique .mini-ami'); await A.waitForSelector("#apercu[open] .carte");
   await A.click("#fermer-apercu");
   // Duel avec mise : Anne défie Bob pour 10 voix, Bob relève le défi depuis la pastille ; le serveur juge chaque réponse
-  await A.click('nav [data-vue="paquet"]');
+  await A.click('nav [data-vue="duels"]');
   // Pastille d'un ami : son pseudo passe dans le champ, la pastille est marquée
   await A.click(`#form-duel [data-defier="Bob${sx}"] .avatar-ami`);
   assert.strictEqual(await A.inputValue('#form-duel [name=pseudo]'), "Bob" + sx);
@@ -166,14 +168,18 @@ const sx = Date.now().toString(36).slice(-4);
     await P.waitForSelector("#qag-suite"); await P.click("#qag-suite"); } };
   await repondre(A, 0);
   await A.waitForSelector("#qag-fermer"); await A.click("#qag-fermer");
-  await Bp.reload(); await Bp.waitForSelector("#pastille-seance:not([hidden])");
-  await Bp.waitForLoadState("networkidle"); await Bp.locator("#titre-duels").scrollIntoViewIfNeeded(); await Bp.screenshot({path: T + "/duels-tel.png"});
+  await Bp.reload(); await Bp.waitForSelector("#pastille-duels:not([hidden])");
+  // Séance : un renvoi vers l'onglet Duels, qui porte défis, parties et historique
+  await Bp.waitForSelector("#qag [data-aller-duels]"); await Bp.click("#qag [data-aller-duels]");
+  await Bp.waitForSelector("#vue-duels [data-relever]"); await Bp.waitForLoadState("networkidle"); await Bp.screenshot({path: T + "/duels-tel.png"});
   await Bp.click("[data-relever]"); await Bp.waitForFunction(() => etat.points === 8);
   await Bp.screenshot({path: T + "/duel-tel.png", fullPage: true});
   await repondre(Bp, 1);
-  await Bp.waitForFunction(() => /Duel terminé/.test(document.getElementById("qag").textContent));
+  await Bp.waitForFunction(() => /Duel terminé/.test(document.getElementById("vue-duels").textContent));
   await Bp.click("#qag-fermer");
-  await Bp.waitForFunction(() => /Contre .* : \d à \d/.test(document.getElementById("qag").textContent));
+  await Bp.waitForFunction(() => /Historique[\s\S]*Contre .* : \d à \d/.test(document.getElementById("vue-duels").textContent));
+  await Bp.screenshot({path: T + "/duels-historique-tel.png", fullPage: true});
+  assert.ok(!/Contre/.test(await Bp.textContent("#qag")), "plus d'historique des duels en séance");
   await A.reload(); await A.waitForFunction(() => compte && [2, 12, 22].includes(etat.points));
   // Vitrine d'Anne, faite de ses favoris, visible par Bob depuis ses amis
   await A.click('nav [data-vue="collection"]'); await A.click('#grille [data-favori]');

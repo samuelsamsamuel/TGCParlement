@@ -99,8 +99,10 @@ de chaque année depuis 1943, anciens noms compris ; écrit `site/departements.j
   complet, vérifié par le test) ; à la dixième réponse, `cloreDuel` (clôture `duel-fini`) : le gagnant emporte les deux
   mises, une égalité rend la sienne à chacun. Tâche horaire `expirerDuels` : défi ignoré trois jours remboursé (`expire`),
   duel relevé non fini au bout de trois jours clos avec les réponses données. Vingt duels en cours au plus par joueur.
-  Accès : bloc Duels de la Séance (défis à relever, duels à jouer ou reprendre, formulaire avec les amis et la mise),
-  bouton Défier de l'onglet Amis qui y mène, formulaire prérempli.
+  Accès : onglet Duels (demande de l'utilisateur, octobre 2026 : plus d'historique des duels en Séance) avec défis reçus,
+  duels à jouer, « Lancer un défi » (amis et mise), en attente et historique ; la partie d'un duel s'y joue aussi (`majQag`
+  rend la Séance et l'onglet, `htmlQuestion`, `clicQuiz` commun) ; la Séance garde les questions du jour et un renvoi quand un
+  duel attend ; pastille `pastille-duels` ; bouton Défier de l'onglet Amis qui y mène, formulaire prérempli.
 - Doubles réduits (demande de l'utilisateur, octobre 2026 : 10 % entre le 700e et le 1 500e paquet) : une carte déjà
   possédée ou déjà sortie dans le paquet est retirée dans la même rareté avec la probabilité `RELANCE_DOUBLE` (0,9) ;
   l'élu en exercice garanti, s'il est déjà possédé, laisse la place à une carte de la même rareté parmi toutes
@@ -154,7 +156,7 @@ de chaque année depuis 1943, anciens noms compris ; écrit `site/departements.j
 ## Vocabulaire du jeu (références parlementaires)
 
 Onglets : Séance (paquets du jour), Hémicycle (collection), Ordre du jour (objectifs, synthèse et rubriques
-repliables ; un objectif par ligne : marque, titre, bouton « + gain » ou prochaine récompense, jauge pour ceux à compter ;
+repliables, toutes repliées à l'ouverture (demande de l'utilisateur) ; un objectif par ligne : marque, titre, bouton « + gain » ou prochaine récompense, jauge pour ceux à compter ;
 en-tête de rubrique sur une ligne, terminés/total et nombre à réclamer ; législatures et départements limités aux
 huit plus avancés, `LIMITE_RUBRIQUE`, avec « Afficher les autres » ; départements cherchés par nom ou numéro, « 1 » et « 01 »
 trouvant l'Ain, numéro affiché à côté du nom, `departements.json` chargé à la première ouverture), Buvette (sous-onglets Échanges : propositions en attente en fiches « Vous donnez / Vous recevez », et proposer ; Comptoir en
@@ -162,12 +164,12 @@ trouvant l'Ain, numéro affiché à côté du nom, `departements.json` chargé �
 comptoir avec Retirer et les offres reçues sur l'étal même (plus de liste « Mes cartes au comptoir », demande de
 l'utilisateur), puis « Vendre une carte » avec la tuile « Mettre une carte en vente » ;
 Historique : échanges terminés, ventes et achats au comptoir, par mois, filtre Tout / Échanges / Comptoir, cartes nommées
-avec miniature ; `GET /api/annonces` renvoie aussi les achats, index `annonces_acheteur`), Amis, Plus : six onglets, assez
-grands pour le téléphone ; le menu Plus ouvre quatre vues, Mon siège (chiffres et vitrine en six cases, libellé du
+avec miniature ; `GET /api/annonces` renvoie aussi les achats, index `annonces_acheteur`), Duels, Amis, Plus : sept onglets sur téléphone ; le menu Plus ouvre quatre vues, Mon siège (chiffres et vitrine en six cases, libellé du
 pseudo une fois connecté), « Toutes les cartes » (catalogue complet, cartes non obtenues grisées),
 Règlement (règles et sources) et Paramètres (infos du compte, déconnexion et suppression, thème sombre, clair ou comme
 l'appareil gardé dans le navigateur, notifications, contact, mentions légales). Pas de pied de page. Au-delà de 1 180 px
-de large, ces quatre vues sont des onglets (`onglet-large`) et « Plus » disparaît ; sur ordinateur, la barre d'onglets se
+de large, ces quatre vues sont des onglets (`onglet-large`) et « Plus » disparaît (onze onglets sur une ligne, resserrés jusqu'à
+1 400 px) ; sur ordinateur, la barre d'onglets se
 fixe en haut de l'écran une fois l'en-tête passé (`nav-flottante`, demande de l'utilisateur : changer d'onglet à tout
 moment, après un paquet). Après le dernier paquet, le récapitulatif propose « Revenir en séance » et « Voir mon hémicycle ».
 Hémicycle : les pastilles du haut filtrent (favoris, doubles, une rareté) et se désélectionnent au second toucher ;
@@ -247,7 +249,7 @@ serveur), filtre « Mes favoris » dans l'Hémicycle. Pas de zoom au double touc
   `GET /api/annonces` (`offres`, `mesOffres`), compte `offres` de `/api/attente` ajouté à la pastille de la buvette.
   Notifications : offre reçue (vendeur), offre acceptée ou refusée (acheteur).
 - Alertes de vente (demande de l'utilisateur, octobre 2026) : bouton « M'avertir quand elle est en vente » de la grande
-  carte (Hémicycle et « Toutes les cartes »), table `alertes` (50 par joueur), `GET` et `POST /api/alertes` ; à la mise en
+  carte ouverte depuis « Toutes les cartes » seulement (`apercu(id, true)`, pas depuis l'hémicycle), table `alertes` (50 par joueur), `GET` et `POST /api/alertes` ; à la mise en
   vente, notification à chaque joueur qui guette la carte (200 au plus, après la réponse). Le nom de la carte, envoyé par
   le navigateur, ne sert qu'au texte de la notification de ce joueur (le catalogue du serveur n'a pas les noms).
 - Lignes lues (limite gratuite de D1 : 5 millions par jour) : `appliquer` garde l'état écrit (`env.etatEcrit`), la

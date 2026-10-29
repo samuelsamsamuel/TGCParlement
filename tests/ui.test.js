@@ -224,7 +224,9 @@ const T = process.argv[2] || require("os").tmpdir();
   await tel.screenshot({path: T + "/recap-bas-tel.png"});
   await tel.evaluate(s => localStorage.setItem("hemicycle-collection", s), JSON.stringify(e5));
   await tel.reload(); await tel.waitForSelector("#paquet");
-  await tel.click('nav [data-vue="objectifs"]'); await tel.waitForSelector(".objectif");
+  // Rubriques repliées à l'ouverture (premiers pas et hémicycle compris)
+  await tel.click('nav [data-vue="objectifs"]'); await tel.waitForSelector("#journee .cases-objectifs");
+  assert.strictEqual(await tel.locator("details.rubrique[open]").count(), 0);
   await tel.screenshot({path: T + "/objectifs-tel.png"});
   await tel.click('nav [data-vue="plus"]'); await tel.click('[data-menu="catalogue"]'); await tel.waitForSelector("#cat-grille .carte");
   assert.ok(await tel.locator("#cat-grille .carte.manquante").count() > 0, "cartes manquantes grisées");
