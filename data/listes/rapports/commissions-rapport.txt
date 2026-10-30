@@ -3,8 +3,8 @@ Les commissions aux attributions mixtes reçoivent chaque famille nommée dans l
 
 Sénat : ODSEN_COMS.csv, 21230 lignes ; colonnes : Matricule | Qualité | Nom usuel | Prénom usuel | État Sénateur | Nom commission | Type commission | Id d'appartenance | Début d'appartenance | Fin d'appartenance | Id de fonction | Début de fonction | Fin de fonction | Fonction
   appartenances retenues : 3400 ; matricules sans carte : 0
-Fichier lu : https://data.assemblee-nationale.fr/static/openData/repository/17/amo/tous_acteurs_mandats_organes_xi_legislature/AMO30_tous_acteurs_tous_mandats_tous_organes_historique.json.zip (13718658 octets, essai 1)
-Assemblée : mandats COMPER retenus 25980 ; qualités : Membre (24200), Secrétaire (830), Vice-Président (688), Rapporteur spécial (103), Président (85), — (54), Rapporteur général (20)
+Fichier lu : https://data.assemblee-nationale.fr/static/openData/repository/17/amo/tous_acteurs_mandats_organes_xi_legislature/AMO30_tous_acteurs_tous_mandats_tous_organes_historique.json.zip (13720006 octets, essai 1)
+Assemblée : mandats COMPER retenus 26018 ; qualités : Membre (24235), Secrétaire (831), Vice-Président (690), Rapporteur spécial (103), Président (85), — (54), Rapporteur général (20)
   députés non rattachés à une carte : 26
     Anne-Sophie Frigout (1991-04-11)
     Antoine Valentin (1992-10-16)
