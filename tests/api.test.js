@@ -294,6 +294,9 @@ const preuve = c => require("crypto").createHash("sha256").update(c).digest("hex
         assert.strictEqual((await A("parties/" + amie + "/coup", {ministre: 1})).statut, 409, "attendre l'autre");
         const vc = (await C("parties/" + amie)).d;
         assert.strictEqual(vc.manches.length, 0, "coup adverse caché"); assert.strictEqual(vc.attente, null);
+        // Présence : chacun vient de consulter la partie, l'autre le voit « en direct »
+        assert.strictEqual(vc.enDirect, true, "Alice vient de jouer : en direct pour Carole");
+        assert.strictEqual((await A("parties/" + amie)).d.enDirect, true, "Carole regarde : en direct pour Alice");
       }
       v = (await C("parties/" + amie + "/coup", {ministre: 7 - i})).d;
     }

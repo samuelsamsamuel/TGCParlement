@@ -288,9 +288,19 @@ const sx = Date.now().toString(36).slice(-4);
     await A.reload(); await A.waitForFunction(() => compte); await vers(A, "gouvernement");
     await A.waitForSelector('#vue-gouvernement .duel-ligne [data-partie]');
     await A.click('#vue-gouvernement .duel-ligne:has-text("à vous de jouer") [data-partie]'); await A.waitForSelector(".theme-manche");
+    // En direct : Bob, qui attend sur la partie, voit Anne arriver, puis la manche se révéler sans recharger
+    assert.ok(await Bp.$("#vue-gouvernement .tour-gouv.attente"), "bandeau d'attente");
+    assert.ok(await A.$("#vue-gouvernement .tour-gouv.a-vous"), "bandeau « À vous de jouer »");
+    await Bp.waitForSelector("#vue-gouvernement .point-direct", {timeout: 15000});
     await A.click("[data-ministre]:not([disabled])"); await A.click(".barre-envoi [data-envoyer]");
     await A.waitForSelector("#revelation[open] .verdict"); await A.click("#fermer-revelation");
     await A.waitForFunction(() => partie && partie.manches.length === 1);
+    await Bp.waitForFunction(() => partie && partie.manches && partie.manches.length === 1, null, {timeout: 15000});
+    await Bp.waitForSelector("#revelation[open] .verdict"); await Bp.click("#fermer-revelation");
+    // Lien d'une notification (?ouvrir=partie:…) : la partie s'ouvre au chargement
+    const idPartie = await A.evaluate(() => partie.id);
+    await A.goto(U + "?ouvrir=partie:" + idPartie); await A.waitForFunction(id => compte && partie && partie.id === id && vueCourante === "gouvernement", idPartie);
+    await A.waitForSelector("#vue-gouvernement .theme-manche");
     assert.match(await A.textContent("#vue-gouvernement .recap-manches"), /Gagnée|Perdue|Égalité/);
   }
   // Vitrine d'Anne, faite de ses favoris, visible par Bob depuis ses amis

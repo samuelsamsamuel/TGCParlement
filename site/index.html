@@ -241,6 +241,23 @@ main{max-width:1120px;margin:0 auto;padding:1.5rem 1rem 4rem}
 .recap{max-width:900px}
 /* Après un paquet, les boutons restent au bas de l'écran (demande de l'utilisateur, octobre 2026 : il fallait descendre
    sous les cinq cartes pour ouvrir le paquet suivant) */
+/* Partie entre amis : à qui le tour, présence en direct, rappel hors de la partie */
+.tour-gouv{display:grid;gap:.25rem;margin:.7rem 0;padding:.75rem .9rem;border-radius:12px;border:1px solid rgba(201,162,74,.45);background:rgba(46,7,16,.6)}
+.tour-gouv b{font:400 1.25rem var(--serif)}
+.tour-gouv.a-vous{background:linear-gradient(135deg,#c9a24a,#e6c76f);border-color:#c9a24a;color:#2a1a08}
+.tour-gouv .direct{font-size:.85rem;opacity:.9}
+.point-direct{display:inline-block;width:.6rem;height:.6rem;border-radius:50%;background:#3fbf6a;margin-right:.4rem;vertical-align:.05em;animation:direct 1.6s ease-in-out infinite}
+@keyframes direct{50%{opacity:.35}}
+@media (prefers-reduced-motion:reduce){.point-direct{animation:none}}
+.badge-tour{display:inline-block;padding:.05rem .5rem;border-radius:999px;background:#c9a24a;color:#2a1a08;font-weight:600;font-size:.85em}
+.appel-gouv{position:fixed;left:50%;transform:translateX(-50%);bottom:1rem;z-index:25;width:min(560px,calc(100vw - 1.5rem));display:flex;align-items:center;gap:.6rem;padding:.6rem .7rem .6rem .9rem;border-radius:12px;background:rgba(46,7,16,.97);border:1px solid #c9a24a;box-shadow:0 10px 28px rgba(0,0,0,.45)}
+.appel-gouv[hidden]{display:none}
+.appel-gouv span{flex:1;display:grid;font-size:.9rem}
+.appel-gouv .bouton{padding:.5rem .9rem}
+.fermer-appel{background:none;border:0;color:inherit;font-size:1.3rem;cursor:pointer;padding:0 .2rem}
+@media (max-width:700px){.appel-gouv{bottom:calc(4.8rem + env(safe-area-inset-bottom))}}
+:root[data-theme="clair"] .tour-gouv.attente{background:rgba(255,255,255,.72);border-color:rgba(92,16,32,.25)}
+:root[data-theme="clair"] .appel-gouv{background:#fbf8f2;color:#21161a}
 .actions-recap{position:sticky;bottom:.6rem;z-index:6;margin-top:1rem;padding:.6rem;border-radius:12px;background:rgba(46,7,16,.94);border:1px solid rgba(201,162,74,.5);box-shadow:0 8px 24px rgba(0,0,0,.45)}
 @media (max-width:700px){.actions-recap{bottom:calc(4.6rem + env(safe-area-inset-bottom))}}
 .outils{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;margin-bottom:1.2rem}
@@ -1090,6 +1107,7 @@ html.presentation{font-size:15px}
 <dialog id="tuto-gouv"><div class="fenetre"><button class="lien-carte fermer-tuto" id="fermer-tuto">Fermer</button><div id="tuto-contenu"></div></div></dialog>
 <dialog id="revelation"><div class="fenetre" id="revelation-contenu"></div></dialog>
 <p class="toast" id="toast" role="status" aria-live="polite" hidden></p>
+<div class="appel-gouv" id="appel-gouv" role="status" aria-live="polite" hidden></div>
 
 <script src="regles.js"></script>
 <script src="gouvernement.js"></script>
@@ -1327,12 +1345,13 @@ async function majAttente(){
   // Jeu du Gouvernement (défi reçu, gouvernement à choisir, coup à jouer) sur son onglet ; Plus réunit les duels, et les
   // demandes d'ami quand Amis y est passé
   pg.hidden = !a.gouvernement; pg.textContent = a.gouvernement || 0;
+  majAppelGouv(a.gouvernement);
   const plus = a.duels + (document.documentElement.classList.contains("gouv-ouvert") ? a.amis : 0); pp.hidden = !plus; pp.textContent = plus;
   const buvette = a.echanges + (a.offres || 0);
   pb.hidden = !buvette; pb.textContent = buvette;
 }
 // Seulement quand la page est visible (chaque appel compte dans les limites gratuites du serveur), et aussitôt revenue
-setInterval(() => { if (!document.hidden) majAttente(); }, 120000);
+setInterval(() => { if (!document.hidden) majAttente(); }, 30000);  // 30 s : défis et coups des amis vus vite
 document.addEventListener("visibilitychange", () => { if (!document.hidden) majAttente(); });
 // La réserve se remplit d'elle-même : compteur tenu à jour, et paquet affiché dès qu'il arrive si la scène attend
 setInterval(() => {
@@ -1914,6 +1933,49 @@ function manchesVues(id, n){
   vues[id] = n;
   try { localStorage.setItem("hemicycle-manches-vues", JSON.stringify(Object.fromEntries(Object.entries(vues).slice(-40)))); } catch (_) {}
 }
+// Lien d'une notification (« partie:12 ») : la partie s'ouvre sur l'onglet Gouvernement
+async function ouvrirLien(lien){
+  const m = /^partie:(\d+)$/.exec(String(lien || ""));
+  if (!m || !compte) return;
+  document.getElementById("appel-gouv").hidden = true;
+  if (vueCourante !== "gouvernement") allerA("gouvernement");
+  await ouvrirPartie(Number(m[1])).catch(e => signaler(e.message));
+}
+if ("serviceWorker" in navigator) navigator.serviceWorker.addEventListener("message", e => { if (e.data && e.data.ouvrir) ouvrirLien(e.data.ouvrir); });
+// Rappel dans l'application, hors de la partie concernée : défi reçu ou coup à jouer contre un ami (`attente`, relu toutes
+// les 30 s), avec un bouton qui ouvre la partie (demande de l'utilisateur, octobre 2026 : il fallait quitter le jeu et revenir)
+let appelsVus = "";
+async function majAppelGouv(n){
+  const zone = document.getElementById("appel-gouv");
+  if (!n || !compte) { zone.hidden = true; return; }
+  const l = await appel("parties").catch(() => null); if (!l) return;
+  parties = l.parties;
+  const p = l.parties.find(x => x.mode === "ami" && (x.aRelever || x.aJouer) && !(partie && partie.id === x.id && vueCourante === "gouvernement"));
+  if (!p || decouverte) { zone.hidden = true; return; }
+  zone.innerHTML = `<span><b>${p.aRelever ? `${echapper(p.adversaire)} vous défie` : "À vous de jouer"}</b>${p.aRelever ? "au jeu du Gouvernement" : `contre ${echapper(p.adversaire)}`}</span>
+    <button class="bouton" data-appel-partie="${p.id}">${p.aRelever ? "Voir le défi" : "Jouer"}</button><button class="fermer-appel" data-fermer-appel aria-label="Masquer">×</button>`;
+  zone.hidden = appelsVus === `${p.id}:${p.aRelever ? "r" : p.aJouer}` ;
+}
+document.getElementById("appel-gouv").addEventListener("click", e => {
+  const b = e.target.closest("[data-appel-partie]"); if (b) { ouvrirLien("partie:" + b.dataset.appelPartie); return; }
+  if (e.target.closest("[data-fermer-appel]")) { const p = parties.find(x => x.mode === "ami" && (x.aRelever || x.aJouer)); appelsVus = p ? `${p.id}:${p.aRelever ? "r" : p.aJouer}` : ""; e.currentTarget.hidden = true; }
+});
+// Partie entre amis ouverte : relue seule (toutes les 2,5 s quand l'adversaire l'a aussi sous les yeux, en direct ; toutes
+// les 6 s sinon), page visible seulement ; le coup adverse se révèle aussitôt
+let suiviPartie = 0;
+setInterval(async () => {
+  const p = partie;
+  if (!p || p.mode !== "ami" || p.fini || ["fini", "refuse", "annule", "expire"].includes(p.statut) || document.hidden || vueCourante !== "gouvernement" || edition) return;
+  if (Date.now() - suiviPartie < (p.enDirect ? 2500 : 6000)) return;
+  suiviPartie = Date.now();
+  const n = await appel(`parties/${p.id}`).catch(() => null);
+  if (!n || partie !== p) return;
+  const cle = x => JSON.stringify([x.statut, (x.manches || []).length, x.attente, x.enDirect, x.fini, !!x.lui]);
+  if (cle(n) === cle(p)) return;
+  partie = n;
+  if (n.fini) { gouv = await appel("gouvernements"); await appel("moi"); majTout(); }
+  majGouvernement(); majAttente(); revelerNouvelles();
+}, 1000);
 async function ouvrirPartie(id){
   await chargerFiches();
   partie = await appel("parties/" + id); ministreChoisi = null; avec493 = false; edition = null;
@@ -2018,7 +2080,7 @@ function htmlSerie(jouer = true){
 function htmlAccueilGouv(){
   const enCours = parties.filter(p => ["preparation", "propose", "en-cours"].includes(p.statut));
   const finies = parties.filter(p => !["preparation", "propose", "en-cours"].includes(p.statut)).slice(0, 12);
-  const etatPartie = p => p.aRelever ? "vous défie" : p.aPreparer ? "gouvernement à choisir" : p.statut === "propose" ? "en attente de sa réponse" : p.aJouer ? "à vous de jouer" : "en attente de son coup";
+  const etatPartie = p => p.aRelever ? `<span class="badge-tour">vous défie</span>` : p.aPreparer ? `<span class="badge-tour">gouvernement à choisir</span>` : p.statut === "propose" ? "en attente de sa réponse" : p.aJouer ? `<span class="badge-tour">à vous de jouer</span>` : "en attente de son coup";
   const issue = p => ({gagne: "gagnée", perdu: "perdue", egalite: "nulle"}[p.issue] || {refuse: "défi refusé, mise rendue", annule: "défi annulé, mise rendue", expire: "sans suite, mise rendue"}[p.statut] || "terminée");
   const contre = p => p.mode === "ordi" ? "Contre l'ordinateur" : p.mode === "hasard" ? `Contre le gouvernement de <b>${echapper(p.adversaire || "un joueur")}</b>` : `Contre <b>${echapper(p.adversaire)}</b>`;
   const ligne = (p, contenu, gestes) => `<li class="duel-ligne${p.statut === "fini" ? " " + (p.issue || "") : ""}">${p.mode === "ami" ? `<span class="pastille-mise">${texteMise(p)}</span>` : ""}<span class="quoi">${contenu}</span><span class="gestes-ami">${gestes}</span></li>`;
@@ -2214,6 +2276,16 @@ function lignesAdverses(camp, themes, pris = new Set()){
       <span class="qui"><b>${echapper(nomG(f.id))}</b><span class="puces">${pucesCompetences(f, {themes})}${pris.has(i) ? `<span class="puce">a déjà siégé</span>` : ""}</span></span>
       <span class="stature" title="Stature">${f.stature}</span></div></li>`).join("")}</ul>`;
 }
+// À qui le tour, entre amis (demande de l'utilisateur : « à vous de jouer » devait être clair) ; « en direct » quand
+// l'adversaire a la partie ouverte en même temps (enDirect, présence notée par le serveur)
+function bandeauTour(p){
+  const adv = echapper(p.adversaire || "votre adversaire");
+  const direct = p.enDirect ? `<span class="direct"><i class="point-direct"></i>${adv} est là, en direct</span>` : "";
+  if (p.statut === "propose") return `<div class="tour-gouv attente"><b>En attente de ${adv}</b><span>${p.enDirect ? `${adv} regarde votre défi.` : `${adv} est averti du défi et pourra le relever quand il voudra.`}</span>${direct}</div>`;
+  if (p.attente) return `<div class="tour-gouv attente"><b>En attente de ${adv}</b><span>Vous avez envoyé ${echapper(nomG(p.moi.ministres[p.attente[0]]))}${p.attente[1] ? " avec le 49.3" : ""}. ${p.enDirect
+    ? "La manche se révèle dès son choix." : `${adv} n'a pas la partie ouverte : il est averti, et la manche se révélera dès qu'il aura joué.`}</span>${direct}</div>`;
+  return `<div class="tour-gouv a-vous"><b>À vous de jouer</b><span>Manche ${(p.manches || []).length + 1} : choisissez le ministre à envoyer sur « ${echapper(nomTheme(p.theme))} ».</span>${direct}</div>`;
+}
 function htmlPartie(){
   const p = partie, contre = libelleMode(p);
   const themes = `<div class="themes-annonces">${p.annonces.map(t => `<span class="${(p.manches || []).some(m => m.theme === t) ? "joue" : t === p.theme ? "courant" : ""}">${echapper(nomTheme(t))}</span>`).join("")}</div>`;
@@ -2231,7 +2303,7 @@ function htmlPartie(){
           ${g.vacants.length ? "" : `<div class="gestes-ami"><button class="bouton" data-choisir-gouv="${g.id}">Choisir ce gouvernement</button></div>`}</li>`).join("")}</ul>
           ${p.mode === "ami" && !p.lance ? `<p><button class="lien-carte" data-quitter="${p.id}:refuser">Refuser le défi</button></p>`
             : p.mode !== "ami" ? `<p><button class="lien-carte" data-quitter="${p.id}:abandonner">Renoncer (la partie compte comme perdue)</button></p>` : ""}</div>`
-        : `<p>En attente de la réponse de ${contre}.</p><p><button class="lien-carte" data-quitter="${p.id}:annuler">Annuler le défi</button></p>`}
+        : `${bandeauTour(p)}<p><button class="lien-carte" data-quitter="${p.id}:annuler">Annuler le défi</button></p>`}
       ${retour}`;
   }
   if (["refuse", "annule", "expire"].includes(p.statut)) return `<h2 class="titre-gouv">Contre ${contre}</h2><p>${{refuse: "Défi refusé", annule: "Défi annulé", expire: "Partie sans suite"}[p.statut]}${p.mode === "ami" ? " : la mise est rendue" : ""}.</p>${retour}`;
@@ -2249,7 +2321,7 @@ function htmlPartie(){
   const forceChoisi = choisi ? Gouvernement.force(choisi, p.theme, p.bonus[0][ministreChoisi]) + (avec493 ? chef.stature : 0) : 0;
   return `<h2 class="titre-gouv">Contre ${contre}</h2>${score}${themes}
     <div class="theme-manche"><span>Manche ${(p.manches || []).length + 1} · premier à ${Gouvernement.VICTOIRE}</span><b>${echapper(nomTheme(p.theme))}</b></div>
-    ${p.attente ? `<p class="centre">Vous avez envoyé ${echapper(nomG(p.moi.ministres[p.attente[0]]))}${p.attente[1] ? ", avec le 49.3" : ""}. La manche se révélera quand ${echapper(p.adversaire || "votre adversaire")} aura joué.</p>` : ""}
+    ${p.mode === "ami" ? bandeauTour(p) : ""}
     <div class="deux-colonnes"><div><h3>Vos ministres</h3>
       ${p.attente ? "" : `<p class="note">Touchez le ministre à envoyer. Le grand chiffre est sa force sur « ${echapper(nomTheme(p.theme))} ».</p>`}
 
@@ -3707,6 +3779,9 @@ fetch("jeu.json").then(r => { if (!r.ok) throw new Error(r.status); return r.jso
     // Onglet ouvert avant un rechargement pour nouvelle version : on y revient
     let vue = null; try { vue = sessionStorage.getItem("hemicycle-vue"); sessionStorage.removeItem("hemicycle-vue"); } catch (_) {}
     if (vue && vue !== "paquet" && document.getElementById("vue-" + vue) && (vue !== "gouvernement" || compte)) allerA(vue);
+    // Notification touchée alors que l'application était fermée : ?ouvrir=partie:12 (service de travail)
+    const lien = new URLSearchParams(location.search).get("ouvrir");
+    if (lien) { history.replaceState(null, "", location.pathname); ouvrirLien(lien); }
   });
 }).catch(e => { console.error(e); document.getElementById("restants").textContent = "Les cartes n'ont pas pu être chargées. Vérifiez que le fichier jeu.json est publié à côté de cette page, puis rechargez."; });
 // Application installable : le service de travail garde le site et les cartes pour les visites suivantes
