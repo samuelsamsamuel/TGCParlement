@@ -2708,9 +2708,12 @@ function construireExtras(){
         if (g.voix) morceaux.push(pluriel(g.voix, "voix", "voix"));
         if (g.paquets) morceaux.push(pluriel(g.paquets, "paquet offert", "paquets offerts"));
         if (g.cartes.length) morceaux.push(g.cartes.map(id => cat.parId[id]?.nom).filter(Boolean).join(", "));
+        if (g.choix?.length) morceaux.push(`une carte à choisir parmi ${g.choix.length}`);
         annonce.textContent = morceaux.length ? `Code accepté : ${morceaux.join(" ; ")}.` : "Code accepté.";
         f.reset(); majTout(); afficherPaquet();
         signaler(annonce.textContent);
+        // Choix offert : même carrousel que la série du Gouvernement (le lot attend aussi sur la page du Gouvernement)
+        if (g.choix?.length) choisirCarteSerie(g.choix);
       });
     });
     document.getElementById("ma-vitrine").addEventListener("click", e => {

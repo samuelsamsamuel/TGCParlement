@@ -508,6 +508,14 @@ const preuve = c => require("crypto").createHash("sha256").update(c).digest("hex
   r = await A("code", {code: " Essai-Depot "});
   assert.strictEqual(r.statut, 200, JSON.stringify(r.d)); assert.strictEqual(r.d.gain.voix, 4);
   assert.strictEqual((await A("code", {code: "essai-depot"})).statut, 409);
+  // Code avec choix de cartes (essai-choix) : lot de la série, une carte rare ou mieux à garder parmi trois
+  r = await C("code", {code: "Essai-Choix"});
+  assert.strictEqual(r.statut, 200, JSON.stringify(r.d)); assert.strictEqual(r.d.gain.choix.length, 3);
+  assert.ok(r.d.gain.choix.every(id => ["rare", "epique", "legendaire", "mythique"].includes(cat.parId[id].rarete)));
+  assert.strictEqual((await C("code", {code: "essai-choix"})).statut, 409, "une fois par compte");
+  const avantLot = (await C("moi")).d.etat.possedees[r.d.gain.choix[1]] || 0;
+  assert.strictEqual((await C("gouvernements/lot", {carte: r.d.gain.choix[1]})).statut, 200);
+  assert.strictEqual((await C("moi")).d.etat.possedees[r.d.gain.choix[1]], avantLot + 1);
   // Prix du comptoir et attente des échanges
   r = await A("prix?carte=" + encodeURIComponent(libreA));
   assert.strictEqual(r.statut, 200); assert.ok(r.d.ventes.some(v => v.prix === 7));

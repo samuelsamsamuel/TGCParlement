@@ -534,6 +534,18 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
     noter(etat, "encaisser-gouv", gain);
     return gain;
   }
+  // Choix de cartes offert par un code (demande de l'utilisateur, octobre 2026 : « 1 carte rare ou mieux » comme la
+  // série) : même lot que la série, une carte à garder parmi `choix` (choisirLotGouv) ; refusé si un lot attend déjà
+  function offrirChoixGouv(etat, cat, lot, aleatoire = Math.random) {
+    serieGouv(etat);
+    const g = quotidien(etat).gouv;
+    if (g.lot) return null;
+    const cartes = propositions(etat, cat, {choix: lot.choix || 3, raretes: lot.raretes}, aleatoire);
+    if (!cartes.length) return null;
+    g.lot = {cartes, palier: 0};
+    noter(etat, "choix-offert", {cartes});
+    return {choix: cartes};
+  }
   function choisirLotGouv(etat, cat, id) {
     const g = quotidien(etat).gouv;
     if (!g || !g.lot || !g.lot.cartes.map(String).includes(String(id)) || !cat.parId[id]) return null;
@@ -740,7 +752,7 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
     return voix;
   }
 
-  return {VERSION_ETAT, SERIE_GOUV, serieGouv, issueSerieGouv, encaisserSerieGouv, choisirLotGouv, basculerFavori, MAX_GARDES, garderCartes, RECHARGE_MS, QUIZ_QUESTIONS, graineDe, questions, compacterQuiz, catalogueQuiz, recompenseQuiz, validerQuiz, RESERVE_MAX, CARTES_PAR_PAQUET, reserveCourante, ORDRE, POIDS, VALEUR_RECYCLAGE, PRIX_PAQUET, PALIERS,
+  return {VERSION_ETAT, SERIE_GOUV, serieGouv, issueSerieGouv, encaisserSerieGouv, choisirLotGouv, offrirChoixGouv, basculerFavori, MAX_GARDES, garderCartes, RECHARGE_MS, QUIZ_QUESTIONS, graineDe, questions, compacterQuiz, catalogueQuiz, recompenseQuiz, validerQuiz, RESERVE_MAX, CARTES_PAR_PAQUET, reserveCourante, ORDRE, POIDS, VALEUR_RECYCLAGE, PRIX_PAQUET, PALIERS,
     etatVide, migrer, jourDuJeu, normer, cartesDeJeu, catalogue, compacter, catalogueCompact, paquetsDisponibles, ouvrirPaquet,
     disponibles, recyclables, doubles, recycler, dissoudre, MAX_SELECTION, dissoudreSelection, echangerPoints, avancement, clesAtteintes, reclamer, recompensesEnAttente,
     SERIE, serieDuJour, reclamerSerie, choisirLot, objectifsDuJour, preparerJour, etatDuJour, reclamerJour};
