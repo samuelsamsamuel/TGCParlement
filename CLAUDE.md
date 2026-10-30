@@ -311,7 +311,10 @@ serveur), filtre « Mes favoris » dans l'Hémicycle. Pas de zoom au double touc
 - Codes (demande de l'utilisateur, octobre 2026) : saisis dans Mon siège (`POST /api/code`, 10 essais par quart d'heure,
   casse indifférente), créés par l'éditeur dans la console D1, table `codes` (`voix`, `paquets` offerts, `cartes` en
   liste JSON d'identifiants, `limite` d'utilisations et `fin` facultatives, « 2026-12-31 » valant jusqu'au soir UTC) ;
-  `codes_utilises` (clé code + joueur) : une fois par compte. Exemple :
+  `codes_utilises` (clé code + joueur) : une fois par compte. Choix de cartes (demande de l'utilisateur, octobre 2026) : champ `choix` ({choix, raretes}) d'un code de
+  `worker/codes.js` et colonne `choix` de `codes` : une carte à garder parmi trois, comme les lots de la série du Gouvernement
+  (`offrirChoixGouv` des règles, lot `quotidien.gouv.lot`, `choisirLotGouv`), carrousel ouvert aussitôt ; refusé tant qu'un
+  lot attend ; code d'essai local « essai-choix ». Exemple :
   `INSERT INTO codes (code, voix, paquets, cartes, limite, fin) VALUES ('NOEL2026', 50, 2, '["4567"]', 100, '2026-12-31');`
   Méthode retenue par l'utilisateur : il donne les codes voulus et leurs récompenses, Claude les ajoute dans
   `worker/codes.js` (empreinte SHA-256 du code en minuscules, `node scripts/code.js "CODE"`, jamais le code en clair, ni

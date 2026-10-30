@@ -212,6 +212,8 @@ const COLONNES = {
     ["rep_vers", "TEXT NOT NULL DEFAULT '[]'"],
     ["gagnant", "INTEGER"],                         // identifiant du gagnant, 0 pour une égalité
   ],
+  // Choix de cartes offert (JSON {choix, raretes}, règles : offrirChoixGouv), une carte à garder parmi `choix`
+  codes: [["choix", "TEXT"]],
 };
 // Migrations à n'exécuter qu'une fois, notées dans la table « reglages »
 const MIGRATIONS = {
@@ -921,12 +923,14 @@ async function utiliserCode(env, requete, joueur, cat) {
   // Code du dépôt (worker/codes.js, par empreinte) : recopié ou mis à jour dans D1, qui compte les utilisations.
   // CODE_ESSAI (variable du Worker local des tests seulement) ajoute le code « essai-depot »
   const empreinte = await sha256(saisi.toLowerCase());
-  const depot = [...CODES, ...(env.CODE_ESSAI ? [{empreinte: await sha256("essai-depot"), voix: 4, paquets: 0, cartes: [], limite: null, fin: null}] : [])]
-    .find(x => x.empreinte === empreinte);
+  const essais = env.CODE_ESSAI ? [{empreinte: await sha256("essai-depot"), voix: 4, paquets: 0, cartes: [], limite: null, fin: null},
+    {empreinte: await sha256("essai-choix"), voix: 0, paquets: 0, cartes: [], choix: {choix: 3, raretes: ["rare", "epique", "legendaire", "mythique"]}, limite: null, fin: null}] : [];
+  const depot = [...CODES, ...essais].find(x => x.empreinte === empreinte);
   // Une limite abaissée sous les utilisations déjà faites viole la contrainte : le code reste alors épuisé
-  if (depot) await env.DB.prepare(`INSERT INTO codes (code, voix, paquets, cartes, limite, fin) VALUES (?, ?, ?, ?, ?, ?)
-    ON CONFLICT (code) DO UPDATE SET voix = excluded.voix, paquets = excluded.paquets, cartes = excluded.cartes, limite = excluded.limite, fin = excluded.fin`)
-    .bind(saisi.toLowerCase(), depot.voix || 0, depot.paquets || 0, JSON.stringify(depot.cartes || []), depot.limite ?? null, depot.fin ?? null).run()
+  if (depot) await env.DB.prepare(`INSERT INTO codes (code, voix, paquets, cartes, limite, fin, choix) VALUES (?, ?, ?, ?, ?, ?, ?)
+    ON CONFLICT (code) DO UPDATE SET voix = excluded.voix, paquets = excluded.paquets, cartes = excluded.cartes, limite = excluded.limite, fin = excluded.fin, choix = excluded.choix`)
+    .bind(saisi.toLowerCase(), depot.voix || 0, depot.paquets || 0, JSON.stringify(depot.cartes || []), depot.limite ?? null, depot.fin ?? null,
+      depot.choix ? JSON.stringify(depot.choix) : null).run()
     .catch(e => { if (!contrainte(e)) throw e; });
   const c = await env.DB.prepare("SELECT * FROM codes WHERE code = ?").bind(saisi).first();
   // fin : « 2026-12-31 » vaut jusqu'à la fin de ce jour (heure UTC), comparée à la même longueur
@@ -938,15 +942,27 @@ async function utiliserCode(env, requete, joueur, cat) {
   try { cartes = [].concat(JSON.parse(c.cartes || "[]")).map(String).filter(id => cat.parId[id]); } catch (_) { cartes = []; }
   const parCarte = {};
   for (const id of cartes) parCarte[id] = (parCarte[id] || 0) + 1;
-  await lot(env, [
+  const ecritures = [
     env.DB.prepare("INSERT INTO codes_utilises (code, joueur, date) VALUES (?, ?, ?)").bind(c.code, joueur, maintenant()),
     env.DB.prepare("UPDATE codes SET utilisations = utilisations + 1 WHERE code = ?").bind(c.code),
     env.DB.prepare("UPDATE joueurs SET points = points + ?, offerts = offerts + ? WHERE id = ?").bind(c.voix, c.paquets, joueur),
     ...Object.entries(parCarte).map(([id, q]) => ajoutCartes(env, joueur, id, q)),
     noterJournal(env, joueur, "code", {code: c.code, voix: c.voix, paquets: c.paquets, cartes}),
-  ], "Ce code vient d'être utilisé : réessayez.");
+  ];
+  // Choix de cartes : lot de la série (règles : offrirChoixGouv), écrit dans le même lot que l'utilisation du code ; refusé
+  // tant qu'un autre lot attend d'être choisi
+  const choix = lireJson(c.choix, null);
+  let offertes = null;
+  if (choix) {
+    const r = await appliquer(env, joueur, e => {
+      const x = Regles.offrirChoixGouv(e, cat, choix, aleatoire);
+      if (!x) throw new Refus(409, "Choisissez d'abord la carte qui vous attend au jeu du Gouvernement, puis saisissez de nouveau ce code.");
+      return x;
+    }, ecritures).catch(e => { if (e instanceof Refus) throw e; if (contrainte(e)) throw new Refus(409, "Ce code vient d'être utilisé : réessayez."); throw e; });
+    offertes = r.choix;
+  } else await lot(env, ecritures, "Ce code vient d'être utilisé : réessayez.");
   await oublier(env, "code:" + joueur);
-  return json({gain: {voix: c.voix, paquets: c.paquets, cartes}, ...(await chargerEtat(env, joueur))});
+  return json({gain: {voix: c.voix, paquets: c.paquets, cartes, ...(offertes ? {choix: offertes} : {})}, ...(await chargerEtat(env, joueur))});
 }
 // Changement de mot de passe : l'ancien est vérifié (10 essais par quart d'heure), le nouveau reçoit un sel neuf ; les
 // autres sessions du joueur sont fermées, celle de l'appareil qui fait le changement reste ouverte
