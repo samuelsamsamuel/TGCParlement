@@ -15,4 +15,7 @@ export const CODES = [
   {empreinte: "d46c26589a428afb9f64781f850edd1d024f60c60708e2a96280ec5fff511db4", voix: 0, paquets: 0, cartes: [],
    choix: {choix: 3, raretes: ["rare", "epique", "legendaire", "mythique"]}, limite: 1, fin: "2026-12-31",
    note: "carte rare ou mieux à choisir, cadeau ponctuel"},
+  // Un paquet offert, cadeau ponctuel à un joueur (octobre 2026), une seule utilisation
+  {empreinte: "0398616aa1e20c578960621c48abcf741c63d85bb6716b94f087721a7bc5bb07", voix: 0, paquets: 1, cartes: [], limite: 1, fin: null,
+   note: "un paquet offert, cadeau ponctuel"},
 ];
