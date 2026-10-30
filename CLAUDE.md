@@ -188,7 +188,9 @@ Règlement (règles et sources) et Paramètres (infos du compte, déconnexion et
 l'appareil gardé dans le navigateur, notifications, contact, mentions légales). Pas de pied de page. Au-delà de 1 260 px
 de large (1 180 avant l'onglet Duels), ces cinq vues sont des onglets (`onglet-large`) et « Plus » disparaît ; sur ordinateur, la barre d'onglets se
 fixe en haut de l'écran une fois l'en-tête passé (`nav-flottante`, demande de l'utilisateur : changer d'onglet à tout
-moment, après un paquet). Après le dernier paquet, le récapitulatif propose « Revenir en séance » et « Voir mon hémicycle ».
+moment, après un paquet). Après le dernier paquet, le récapitulatif propose « Revenir en séance » et « Voir mon hémicycle ». Boutons du récapitulatif (« Ouvrir un autre paquet ») fixés au bas de l'écran, au-dessus des onglets
+(`actions-recap`, demande de l'utilisateur, octobre 2026 : il fallait descendre sous les cinq cartes). Série de connexion et
+objectifs du jour en mode clair : fond clair, cases blanches, texte foncé (illisibles sur le bordeaux translucide).
 Hémicycle : les pastilles du haut filtrent (favoris, doubles, une rareté) et se désélectionnent au second toucher ;
 le bouton « Voir mes doubles » pose le même filtre (`doubles`) ; l'échange de voix contre un paquet n'y figure pas
 (Séance et encart des voix seulement, demande de l'utilisateur) ; toucher une carte l'ouvre en grand (`apercu`) avec ses exemplaires, la dissolution de ses doubles (`dissoudre`,
