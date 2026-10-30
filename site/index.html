@@ -1981,21 +1981,25 @@ document.getElementById("tuto-gouv").addEventListener("click", e => {
 function echelleSerie(n){
   return `<div class="serie-gouv">${RECOMPENSES_COURTES.map((r, i) => {
     const etatP = i < n - 1 ? "passe" : i === n - 1 ? "courant" : i === n ? "prochain" : "";
-    const marque = {passe: "dépassé", courant: "à encaisser", prochain: "prochaine victoire"}[etatP] || "";
+    const marque = {passe: "dépassé", courant: "atteint", prochain: "prochaine victoire"}[etatP] || "";
     return `<span class="${etatP}"><b>${i + 1}</b>${echapper(r)}${marque ? `<em>${marque}</em>` : ""}</span>`;
   }).join("")}</div>`;
 }
+// Série : après une victoire, le choix est explicite (demande de l'utilisateur, octobre 2026 : le seul bouton doré
+// « Encaisser » passait pour la récompense à recevoir, et chaque victoire était encaissée, la série retombant à zéro) :
+// continuer en bouton principal, encaisser en bouton discret, avec confirmation
 function htmlSerie(jouer = true){
-  const s = gouv.serie, actions = [];
-  if (s.lot) actions.push(`<button class="bouton" data-lot-gouv>Choisir ma carte</button>`);
-  else if (s.serie) actions.push(`<button class="bouton" data-encaisser>Encaisser : ${echapper(RECOMPENSES_COURTES[s.serie - 1])}</button>`);
+  const s = gouv.serie, complet = gouv.gouvernements.some(g => !g.vacants.length);
+  const jeu = (principal, verbe) => complet ? `<div class="jouer-gouv"><button class="bouton${principal ? "" : " discret"}" data-jouer="ordi">${verbe} contre l'ordinateur</button><button class="bouton discret" data-jouer="hasard">${verbe} contre un autre joueur</button></div>`
+    : `<p class="note">Formez d'abord un gouvernement complet pour jouer.</p>`;
+  let corps;
+  if (s.lot) corps = `<div class="encaisser"><button class="bouton" data-lot-gouv>Choisir ma carte</button></div>${jeu(false, jouer ? "Jouer" : "Rejouer")}`;
+  else if (s.serie) corps = `<p class="note">Gagnez encore pour atteindre « ${echapper(RECOMPENSES_COURTES[Math.min(4, s.serie)])} ». Une défaite fait tout perdre.</p>
+    ${jeu(true, "Continuer")}
+    <div class="encaisser"><button class="bouton discret" data-encaisser>Encaisser : ${echapper(RECOMPENSES_COURTES[s.serie - 1])}</button><span class="note">et la série repart de zéro</span></div>`;
+  else corps = `<p class="note">Chaque victoire contre l'ordinateur ou un autre joueur fait monter d'un palier.</p>${jeu(jouer, jouer ? "Jouer" : "Rejouer")}`;
   return `<div class="bloc-gouv"><h3>Votre série${s.serie ? ` : ${pluriel(s.serie, "victoire")}` : ""}</h3>
-    ${echelleSerie(s.serie)}
-    <p class="note">${s.serie ? `Encaissez maintenant, ou gagnez encore pour atteindre « ${echapper(RECOMPENSES_COURTES[Math.min(4, s.serie)])} ». Une défaite fait tout perdre.`
-      : "Chaque victoire contre l'ordinateur ou un autre joueur fait monter d'un palier."}</p>
-    ${actions.length ? `<div class="encaisser">${actions.join("")}</div>` : ""}
-    ${gouv.gouvernements.some(g => !g.vacants.length) ? `<div class="jouer-gouv"><button class="bouton${jouer ? "" : " discret"}" data-jouer="ordi">${jouer ? "Jouer" : "Rejouer"} contre l'ordinateur</button><button class="bouton discret" data-jouer="hasard">${jouer ? "Jouer" : "Rejouer"} contre un autre joueur</button></div>`
-      : `<p class="note">Formez d'abord un gouvernement complet pour jouer.</p>`}</div>`;
+    ${echelleSerie(s.serie)}${corps}</div>`;
 }
 function htmlAccueilGouv(){
   const enCours = parties.filter(p => ["preparation", "propose", "en-cours"].includes(p.statut));
@@ -2295,6 +2299,8 @@ document.getElementById("revelation").addEventListener("click", e => {
   if (e.target.id === "fermer-revelation" || e.target.id === "revelation") { document.getElementById("revelation").close(); window.scrollTo({top: 0, behavior: "smooth"}); }
 });
 async function encaisserSerie(bouton){
+  const s = gouv.serie;
+  if (!confirm(`Encaisser « ${RECOMPENSES_COURTES[s.serie - 1]} » maintenant ? Votre série de ${pluriel(s.serie, "victoire")} repart de zéro.`)) return;
   await occupe(bouton, async () => {
     const r = await appel("gouvernements/encaisser", {});
     majTout(); gouv = await appel("gouvernements");
