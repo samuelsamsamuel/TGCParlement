@@ -239,6 +239,10 @@ main{max-width:1120px;margin:0 auto;padding:1.5rem 1rem 4rem}
 @media (min-width:960px){.grille{grid-template-columns:repeat(5,minmax(0,1fr))}}
 .grille .carte{cursor:pointer}
 .recap{max-width:900px}
+/* Après un paquet, les boutons restent au bas de l'écran (demande de l'utilisateur, octobre 2026 : il fallait descendre
+   sous les cinq cartes pour ouvrir le paquet suivant) */
+.actions-recap{position:sticky;bottom:.6rem;z-index:6;margin-top:1rem;padding:.6rem;border-radius:12px;background:rgba(46,7,16,.94);border:1px solid rgba(201,162,74,.5);box-shadow:0 8px 24px rgba(0,0,0,.45)}
+@media (max-width:700px){.actions-recap{bottom:calc(4.6rem + env(safe-area-inset-bottom))}}
 .outils{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;margin-bottom:1.2rem}
 .outils input,.outils select{background:var(--velours-fonce);color:var(--marbre);border:1px solid rgba(201,162,74,.5);border-radius:3px;padding:.55rem .7rem;font:inherit}
 .outils input{flex:1;min-width:12rem}
@@ -828,6 +832,16 @@ details.rubrique details.recus > summary{display:block;font:400 .85rem var(--san
 details.rubrique details.recus > summary::before{content:"▸ ";font-size:.8rem;margin:0}
 details.rubrique details.recus[open] > summary::before{content:"▾ ";transform:none}
 :root[data-theme="clair"] .liste-objectifs{background:rgba(255,255,255,.55);border-color:rgba(92,16,32,.2)}
+/* Série de connexion et objectifs du jour en mode clair (illisibles sur le fond bordeaux translucide, signalé par
+   l'utilisateur) : fond clair, cases blanches, texte foncé, cases faites en doré pâle */
+:root[data-theme="clair"] .serie{background:rgba(255,255,255,.7);border-color:rgba(92,16,32,.22)}
+:root[data-theme="clair"] .cases-serie li{background:#fff;border-color:rgba(92,16,32,.18);color:#4a3f38}
+:root[data-theme="clair"] .cases-serie li b{color:#7a5a1e}
+:root[data-theme="clair"] .cases-serie li.faite{background:#efe3c4;border-color:rgba(122,90,30,.35)}
+:root[data-theme="clair"] .cases-serie li.faite b{color:#5c4312}
+:root[data-theme="clair"] .cases-serie li.courante{border-color:#7a5a1e;box-shadow:0 0 0 1px #7a5a1e inset;color:#21161a}
+:root[data-theme="clair"] .cases-objectifs li i{color:#6b5f55}
+:root[data-theme="clair"] .actions-recap{background:rgba(251,248,242,.96);border-color:rgba(122,90,30,.45);box-shadow:0 8px 22px rgba(60,20,20,.18)}
 :root[data-theme="clair"] .liste-objectifs .objectif{border-bottom-color:rgba(92,16,32,.12)}
 footer a{color:var(--pierre)}
 #apercu .carte{width:min(300px,78vw)}
@@ -1375,7 +1389,7 @@ function montrer(tirage, neuves, i, vues = new Set()){
   if (i >= tirage.length) {
     if (decouverte) { decouverte = false; majCompteur(); majJournee(); majObjectifs(); }
     scene.innerHTML = `<div class="grille recap">${tirage.map(c => htmlCarte(c,{neuve:neuves.has(c.id)})).join("")}</div>
-      <div class="actions petites">${Regles.paquetsDisponibles(etat).total>0?'<button class="bouton" id="suivant">Ouvrir un autre paquet</button>':'<button class="bouton" id="revenir">Revenir en séance</button><button class="bouton discret" id="voir">Voir mon hémicycle</button>'}</div>`;
+      <div class="actions petites actions-recap">${Regles.paquetsDisponibles(etat).total>0?'<button class="bouton" id="suivant">Ouvrir un autre paquet</button>':'<button class="bouton" id="revenir">Revenir en séance</button><button class="bouton discret" id="voir">Voir mon hémicycle</button>'}</div>`;
     document.getElementById("suivant")?.addEventListener("click", () => { afficherPaquet(true); recentrer(); });
     document.getElementById("revenir")?.addEventListener("click", () => { afficherPaquet(true); window.scrollTo({top: 0, behavior: reduit() ? "auto" : "smooth"}); });
     document.getElementById("voir")?.addEventListener("click", () => allerA("collection"));
