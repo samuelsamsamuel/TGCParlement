@@ -2260,6 +2260,11 @@ function htmlFinPartie(p, contre, score, manches, retour){
   const titre = {gagne: "Victoire", perdu: "Défaite", egalite: "Match nul"}[p.issue] || "Partie terminée";
   let suite = "";
   if (p.mode === "ami") suite = `<p>${p.issue === "gagne" && (p.voix || p.paquets) ? `Vous remportez ${texteMise({voix: p.voix * 2, paquets: p.paquets * 2})}.` : p.issue === "egalite" ? "Chacun récupère sa mise." : ""}</p>`;
+  // La série affichée est celle d'aujourd'hui : seulement sous la dernière partie de série terminée ; une partie plus
+  // ancienne, rouverte depuis l'historique, montrait sinon « Victoire » avec une série revenue à zéro (signalé par
+  // l'utilisateur, octobre 2026)
+  else if (parties.some(x => x.mode !== "ami" && x.statut === "fini" && x.id > p.id))
+    suite = `<p class="note">Votre série a changé depuis cette partie : elle est à jour sur la page du Gouvernement.</p>`;
   else suite = `${p.issue === "perdu" ? `<p class="alerte-cab">Défaite : votre série repart de zéro.</p>` : p.issue === "egalite" ? `<p class="note">Match nul : votre série ne bouge pas.</p>` : ""}${htmlSerie(false)}`;
   return `<h2 class="titre-gouv">${titre} contre ${contre}</h2>${score}${p.mode === "ami" ? `<div class="bloc-gouv">${suite}</div>` : suite}<h3>Les manches</h3>${manches}${retour}`;
 }
