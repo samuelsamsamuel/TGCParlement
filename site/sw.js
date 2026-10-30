@@ -42,13 +42,17 @@ self.addEventListener("push", e => {
     .then(d => {
       const liste = d.notifications.length ? d.notifications : [{texte: "Du nouveau vous attend dans l'hémicycle."}];
       return Promise.all(liste.slice(-3).map((n, i) => self.registration.showNotification("Hémicycle", {
-        body: n.texte, icon: "icone-192.png", badge: "icone-192.png", tag: "hemicycle-" + Date.now() + "-" + i})));
+        body: n.texte, icon: "icone-192.png", badge: "icone-192.png", tag: "hemicycle-" + Date.now() + "-" + i, data: {lien: n.lien || null}})));
     }));
 });
+// Une notification qui porte un lien (« partie:12 ») ouvre ce qu'elle annonce : la page déjà ouverte reçoit le lien et
+// l'affiche, sinon l'application s'ouvre avec ?ouvrir=… (lu au chargement)
 self.addEventListener("notificationclick", e => {
   e.notification.close();
+  const lien = e.notification.data && e.notification.data.lien;
   e.waitUntil(self.clients.matchAll({type: "window", includeUncontrolled: true}).then(fenetres => {
     const f = fenetres.find(x => new URL(x.url).origin === location.origin);
-    return f ? f.focus() : self.clients.openWindow("./");
+    if (f) { if (lien) f.postMessage({ouvrir: lien}); return f.focus(); }
+    return self.clients.openWindow(lien ? "./?ouvrir=" + encodeURIComponent(lien) : "./");
   }));
 });

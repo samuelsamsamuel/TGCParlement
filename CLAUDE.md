@@ -424,7 +424,14 @@ serveur), filtre « Mes favoris » dans l'Hémicycle. Pas de zoom au double touc
    (« +1 a gouverné avec … », `avec` de `liens`) ; adversaire montré par stature et compétences, sans forces ; 49.3 en joker doré sobre
    (léger reflet, demande de l'utilisateur) ; barre d'envoi collante ; chaque manche révélée en grand (fenêtre `revelation`, détail des forces ;
    manches déjà vues gardées dans `hemicycle-manches-vues`). Entre amis : mise
-   comme aux duels, coups à son rythme, thème d'une manche révélé quand la précédente est jouée des deux côtés ; tâche
+   comme aux duels, coups à son rythme ou en direct (demande de l'utilisateur, octobre 2026) : présence par partie (colonnes
+   `vu_a`, `vu_b`, notées à chaque consultation, au plus toutes les 5 s ; « en direct » si l'adversaire l'a consultée depuis moins
+   de 15 s, `enDirect`), page de la partie relue seule (2,5 s en direct, 6 s sinon, page visible), coup adverse révélé aussitôt ;
+   bandeau de tour (`bandeauTour` : « À vous de jouer » doré, « En attente de … » avec point vert en direct) ; notification
+   de coup seulement si l'adversaire n'a pas la partie ouverte, avec le score ; notifications à lien (colonne `lien` de
+   `notifications`, « partie:12 ») : la toucher ouvre la partie (service de travail : message à la page ouverte, sinon
+   `?ouvrir=`) ; rappel dans l'application hors de la partie (`appel-gouv`, défi reçu ou coup à jouer, `attente` relue toutes
+   les 30 s) ; thème d'une manche révélé quand la précédente est jouée des deux côtés ; tâche
    horaire `expirerParties` (défi oublié remboursé, partie en cours close au bout de trois jours, la manche jouée d'un
    seul côté lui revenant). Le serveur lit les fiches découpées (`site/fiches/pNNN.json`, 256 paquets par empreinte
    FNV-1a, `paquetDeFiche`) : le fichier complet coûterait 40 ms de calcul par requête. Routes `GET/POST /api/gouvernements`,

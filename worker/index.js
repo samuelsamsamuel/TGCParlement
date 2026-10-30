@@ -214,6 +214,10 @@ const COLONNES = {
   ],
   // Choix de cartes offert (JSON {choix, raretes}, règles : offrirChoixGouv), une carte à garder parmi `choix`
   codes: [["choix", "TEXT"]],
+  // Présence dans une partie entre amis (instant en ms de la dernière consultation de chaque camp) : « en direct »
+  parties: [["vu_a", "INTEGER NOT NULL DEFAULT 0"], ["vu_b", "INTEGER NOT NULL DEFAULT 0"]],
+  // Ce que la notification ouvre quand on la touche (« partie:12 »)
+  notifications: [["lien", "TEXT"]],
 };
 // Migrations à n'exécuter qu'une fois, notées dans la table « reglages »
 const MIGRATIONS = {
@@ -719,13 +723,13 @@ async function pousser(env, endpoint) {
 }
 const pseudoDe = async (env, id) => (await env.DB.prepare("SELECT pseudo FROM joueurs WHERE id = ?").bind(id).first())?.pseudo || "Un joueur";
 // Message pour un joueur (échanges, amis, duels, ventes) : gardé, puis poussé à ses appareils abonnés, après la réponse
-async function notifier(env, joueur, texte, genre = "buvette") {
+async function notifier(env, joueur, texte, genre = "buvette", lien = null) {
   const abonnes = (await env.DB.prepare(`SELECT endpoint FROM abonnements WHERE joueur = ? AND ${genre === "reserve" ? "reserve" : "buvette"} = 1`).bind(joueur).all()).results;
   if (!abonnes.length) return;
   await env.DB.batch([
     env.DB.prepare("DELETE FROM notifications WHERE joueur = ? AND id NOT IN (SELECT id FROM notifications WHERE joueur = ? ORDER BY id DESC LIMIT 19)").bind(joueur, joueur),
     env.DB.prepare("DELETE FROM notifications WHERE joueur = ? AND texte = ?").bind(joueur, texte),  // même message non lu : remplacé
-    env.DB.prepare("INSERT INTO notifications (joueur, texte, date) VALUES (?, ?, ?)").bind(joueur, texte, maintenant()),
+    env.DB.prepare("INSERT INTO notifications (joueur, texte, date, lien) VALUES (?, ?, ?, ?)").bind(joueur, texte, maintenant(), lien),
   ]);
   const envois = Promise.all(abonnes.map(a => pousser(env, a.endpoint).catch(e => console.error("poussée", e))));
   if (env.ctx) env.ctx.waitUntil(envois); else await envois;
@@ -745,7 +749,7 @@ async function abonner(env, requete, joueur, origine) {
 }
 async function lireNotifications(env, joueur) {
   const [r] = await env.DB.batch([
-    env.DB.prepare("SELECT texte, date FROM notifications WHERE joueur = ? ORDER BY id").bind(joueur),
+    env.DB.prepare("SELECT texte, date, lien FROM notifications WHERE joueur = ? ORDER BY id").bind(joueur),
     env.DB.prepare("DELETE FROM notifications WHERE joueur = ?").bind(joueur),
   ]);
   return json({notifications: r.results});
@@ -1350,14 +1354,14 @@ async function choisirGouvernement(env, requete, joueur, id, url) {
     const statut = d.mode === "ami" ? "propose" : "en-cours";
     const r = await env.DB.prepare("UPDATE parties SET camp_a = ?, statut = ?, maj = ? WHERE id = ? AND statut = 'preparation'").bind(JSON.stringify(camp), statut, date, id).run();
     if (!r.meta.changes) throw new Refus(409, "La partie a changé entre-temps.");
-    if (d.mode === "ami") await notifier(env, d.b, `${await pseudoDe(env, joueur)} vous défie au jeu du Gouvernement${texteMise(d)}.`);
+    if (d.mode === "ami") await notifier(env, d.b, `${await pseudoDe(env, joueur)} vous défie au jeu du Gouvernement${texteMise(d)}. Touchez pour voir le défi.`, "buvette", `partie:${id}`);
   } else if (d.b === joueur && d.mode === "ami" && d.statut === "propose") {
     await lot(env, [
       env.DB.prepare("INSERT INTO clotures (nature, id) VALUES ('partie-relevee', ?)").bind(id),
       env.DB.prepare("UPDATE parties SET camp_b = ?, statut = 'en-cours', maj = ? WHERE id = ?").bind(JSON.stringify(camp), date, id),
       env.DB.prepare("UPDATE joueurs SET points = points - ?, offerts = offerts - ? WHERE id = ?").bind(d.mise_voix, d.mise_paquets, joueur),
     ], "Vous n'avez pas assez de voix ou de paquets pour relever ce défi.");
-    await notifier(env, d.a, `${await pseudoDe(env, joueur)} a relevé votre défi au jeu du Gouvernement.`);
+    await notifier(env, d.a, `${await pseudoDe(env, joueur)} a relevé votre défi au jeu du Gouvernement : à vous de jouer la première manche.`, "buvette", `partie:${id}`);
   } else throw new Refus(409, "Le gouvernement de cette partie est déjà choisi.");
   return vuePartieServeur(env, joueur, id, url);
 }
@@ -1384,7 +1388,7 @@ async function quitterPartie(env, joueur, id, action) {
     env.DB.prepare("UPDATE parties SET statut = ?, maj = ? WHERE id = ?").bind(action === "refuser" ? "refuse" : "annule", date, id),
     env.DB.prepare("UPDATE joueurs SET points = points + ?, offerts = offerts + ? WHERE id = ?").bind(d.mise_voix, d.mise_paquets, d.a),
   ], "Ce défi vient d'être relevé ou clos.");
-  if (action === "refuser") await notifier(env, d.a, `${await pseudoDe(env, joueur)} a décliné votre défi au jeu du Gouvernement : votre mise vous est rendue.`);
+  if (action === "refuser") await notifier(env, d.a, `${await pseudoDe(env, joueur)} a décliné votre défi au jeu du Gouvernement : votre mise vous est rendue.`, "buvette", `partie:${id}`);
   return json({ok: true});
 }
 // Un coup : contre l'ordinateur ou un joueur au hasard, l'ordinateur répond aussitôt ; la partie finie est close
@@ -1405,8 +1409,11 @@ async function jouerPartie(env, requete, joueur, id, url) {
   if (!maj.meta.changes) throw new Refus(409, "La partie a changé entre-temps. Rechargez.");
   const etat = Gouvernement.resoudre(p, fiches);
   if (etat.fini) await clorePartie(env, {...d, coups_a: JSON.stringify(p.coups[0]), coups_b: JSON.stringify(p.coups[1])}, {fiches});
-  else if (!solo && p.coups[1 - k].length < p.coups[k].length)
-    await notifier(env, k ? d.a : d.b, `${await pseudoDe(env, joueur)} a joué : à vous, au jeu du Gouvernement.`);
+  else if (!solo && p.coups[1 - k].length < p.coups[k].length && !(await adversairePresent(env, d, 1 - k))) {
+    // Notification seulement si l'adversaire n'a pas la partie sous les yeux (en direct, sa page se met à jour seule)
+    const sc = k ? [etat.score[0], etat.score[1]] : [etat.score[1], etat.score[0]];
+    await notifier(env, k ? d.a : d.b, `Jeu du Gouvernement : ${await pseudoDe(env, joueur)} a joué la manche ${p.coups[k].length}. À vous de jouer ! (score : vous ${sc[0]}, ${await pseudoDe(env, joueur)} ${sc[1]})`, "buvette", `partie:${id}`);
+  }
   return vuePartieServeur(env, joueur, id, url);
 }
 // Clôture : une fois (clôture « partie-finie ») ; série et gains contre l'ordinateur ou un joueur au hasard, mises entre amis.
@@ -1436,13 +1443,24 @@ async function clorePartie(env, d, {fiches = null, forfait = 0, expire = false} 
 }
 // Ce que voit le joueur : la partie (règles : vuePartie), le mode, l'adversaire, la mise ; avant le choix du gouvernement,
 // les thèmes annoncés et le gouvernement adverse s'il est connu
+// Présence : un camp « regarde » la partie s'il l'a consultée il y a moins de PRESENCE_MS (la page ouverte la relit toutes
+// les quelques secondes) ; noté au plus toutes les 5 s pour ne pas écrire à chaque relecture
+const PRESENCE_MS = 15000;
+async function adversairePresent(env, d, camp) {
+  const r = await env.DB.prepare(`SELECT ${camp ? "vu_b" : "vu_a"} AS vu FROM parties WHERE id = ?`).bind(d.id).first();
+  return !!r && r.vu > Date.now() - PRESENCE_MS;
+}
 async function vuePartieServeur(env, joueur, id, url) {
-  const d = await partieAvec(env, joueur, id), p = partieDe(d), k = d.a === joueur ? 0 : 1;
+  const d0 = await partieAvec(env, joueur, id), k = d0.a === joueur ? 0 : 1, maintenantMs = Date.now();
+  if (d0.mode === "ami" && !["fini", "refuse", "annule", "expire"].includes(d0.statut))
+    await env.DB.prepare(`UPDATE parties SET ${k ? "vu_b" : "vu_a"} = ? WHERE id = ? AND ${k ? "vu_b" : "vu_a"} < ?`).bind(maintenantMs, id, maintenantMs - 5000).run();
+  const d = d0, p = partieDe(d);
   const autreId = k ? d.a : d.b, autre = autreId > 0 ? await pseudoDe(env, autreId) : null;
   const base = {id: d.id, mode: d.mode, statut: d.statut, adversaire: d.mode === "ordi" ? null : autre, lance: k === 0,
     voix: d.mise_voix, paquets: d.mise_paquets, niveau: d.niveau, annonces: p.annonces,
     issue: d.gagnant === null ? null : d.gagnant === 0 ? "egalite" : d.gagnant === joueur ? "gagne" : "perdu",
-    echeance: new Date(Date.parse(d.maj) + (d.statut === "preparation" && d.mode !== "ami" ? DUREE_PREPARATION : DUREE_PARTIE)).toISOString()};
+    echeance: new Date(Date.parse(d.maj) + (d.statut === "preparation" && d.mode !== "ami" ? DUREE_PREPARATION : DUREE_PARTIE)).toISOString(),
+    enDirect: d.mode === "ami" && (k ? d.vu_a : d.vu_b) > maintenantMs - PRESENCE_MS};
   if (!p.camps[0] || !p.camps[1]) return json({...base, moi: p.camps[k], lui: p.camps[1 - k]});
   const fiches = await fichesServeur(env, url, [...idsCamp(p.camps[0]), ...idsCamp(p.camps[1])]);
   // Partie close (délai, abandon) : la manche jouée d'un seul côté compte comme à la clôture
