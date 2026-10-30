@@ -1,6 +1,47 @@
-Portraits Commons : 1 cartes, sur 6739 cartes sans portrait rattachées à Wikidata par identifiant officiel (6796 cartes sans portrait en tout) ; éléments sondés cette fois : 96, restant à sonder ou en erreur : 6642
+Portraits Commons : 1 cartes, sur 6738 cartes sans portrait rattachées à Wikidata par identifiant officiel (6795 cartes sans portrait en tout) ; éléments sondés cette fois : 6737, restant à sonder ou en erreur : 0
 
 Retenus :
 13736	Louis, François, Antoine Arbogast	Q2572301	Antoine Arbogast.png
 
 Écartés :
+Q1096895	Claude-Louis-Michel de Sacy - L'Esclavage des Américains et des nègres. Piece qui a concouru pour le prix de l'Académie françoise, 1775.pdf	format
+Q15623018	Père-Lachaise - Division 9 - Sieyès 06.jpg	nom de fichier
+Q15967440	Armoiries de la famille Montboissier-Beaufort-Canillac.png	nom de fichier
+Q15968741	Signature de Charles-Jacques de Fadate de Saint-Georges.jpg	nom de fichier
+Q15968762	Cimetière de Montmartre - Division 5 - Antoine Gabriel Jars -1.jpg	nom de fichier
+Q15969467	Jean-Jacques Lagrenée - Portrait de la femme du général Boudet et de ses deux enfants.jpg	dépeint aussi 7 autre(s) élément(s)
+Q15973712	Massacre des paysans devant Saverne en 1525.jpg	dépeint aussi 6 autre(s) élément(s)
+Q15974285	Signature de Joseph Chaleil.jpg	nom de fichier
+Q16026340	Tombe.Jean-Francois.Pichat.jpg	nom de fichier
+Q16026851	Sépulture Feybesse Jaffard.jpg	nom de fichier
+Q16798546	Morcellism Symbol (Libsocialism colors).png	dépeint aussi 2 autre(s) élément(s)
+Q16798546	Morcellism Symbol (Socialism colors).png	dépeint aussi 2 autre(s) élément(s)
+Q16798546	Morcellism Symbol (Transparent colors).png	dépeint aussi 2 autre(s) élément(s)
+Q17352264	Signature de Joseph Magdelaine Martin - Archives nationales (France).png	nom de fichier
+Q2012416	Gangenstelstel-Noord, tekening A Ch de Membrede, ca1800.jpg	dépeint aussi 4 autre(s) élément(s)
+Q21427157	Signature de Philippe Dequeux De Saint-Hilaire.jpg	nom de fichier
+Q21621478	Visit of Mayors for Housing Plan, to the European Commission (P-069619-00-01).jpg	nom de fichier
+Q26740348	Signature de Yves-Nicolas Borie - Archives nationales (France).jpg	nom de fichier
+Q27949305	Signature de Nicolas Frémin de Beaumont - Archives nationales (France).png	nom de fichier
+Q2844705	Tombe Amédée Renée.jpg	nom de fichier
+Q2868975	Signature d'Athanase Conen de Saint-Luc.png	nom de fichier
+Q2886035	Signature de Barthélemy François Rolland de Chamboudoin.tif	format
+Q2958090	Heulhard de Montigny - Précis, ou tableau chronologique des événemens et de la législation de la révolution, 1803.png	dépeint aussi 3 autre(s) élément(s)
+Q2960599	Marie-Charlotte-Pauline Lézardière - Théorie des lois politiques de la monarchie française, page de titre, 1844.png	dépeint aussi 2 autre(s) élément(s)
+Q3059681	HC HUSSON-EA CIM-Fontainebleau 2024-03.jpg	nom de fichier
+Q3074060	Lugny (71) - Plaque commémorative de l'abbé Nicolas Genost de Laforest, curé de Chapaize.jpg	nom de fichier
+Q3083265	Tombe Anastase de la Pommeraye.jpg	nom de fichier
+Q3120001	Guillaume Lacroix.jpg	dépeint aussi 1 autre(s) élément(s)
+Q3124447	Signature du préfet Murat.jpg	nom de fichier
+Q3157943	Jacques Frédéric Kirstein-Coupe couverte avec présentoir-1815.jpg	dépeint aussi 5 autre(s) élément(s)
+Q3159153	Glacière de Mions 01.jpg	dépeint aussi 1 autre(s) élément(s)
+Q3164334	Tomb of Jean-Baptiste Papin in Panthéon.jpg	nom de fichier
+Q3164459	Signature de Jean Baptiste Thieullen.jpg	nom de fichier
+Q3169299	Plaque Quai Jean-Pierre Fougerat Couëron.jpg	nom de fichier
+Q3220006	FRAC069266 1K3 Affiche elections.jpg	nom de fichier
+Q3220006	FRAC069266 1K3 Guignol.jpg	nom de famille absent du nom de fichier
+Q3220006	Lazare Goujon signature.jpg	nom de fichier
+Q3220006	Portrait de Lazare Goujon 1.jpg	dépeint aussi 2 autre(s) élément(s)
+Q3220006	Villeurbanne - Jardin des Tout-petits-Adolphe-Lafont - inauguration-du-jardin-en-1929-le-maire-lazare-goujon-et-pauline-lafont.jpg	dépeint aussi 3 autre(s) élément(s)
+Q597221	B330636101 EST 527 MF.jpg	dépeint aussi 2 autre(s) élément(s)
+Q8318508	Plaque Rue Urvoy de Saint-Bedan.jpg	nom de fichier
