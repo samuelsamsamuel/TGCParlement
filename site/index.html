@@ -1351,7 +1351,19 @@ async function majAttente(){
   pb.hidden = !buvette; pb.textContent = buvette;
 }
 // Seulement quand la page est visible (chaque appel compte dans les limites gratuites du serveur), et aussitôt revenue
-setInterval(() => { if (!document.hidden) majAttente(); }, 30000);  // 30 s : défis et coups des amis vus vite
+setInterval(() => { if (!document.hidden) majAttente(); }, 120000);
+// Signal du serveur (augmenté à chaque événement qui concerne le joueur) relu toutes les 5 s, page visible : une seule ligne
+// lue ; s'il change, compteurs, rappel et partie ouverte sont relus aussitôt (demande de l'utilisateur, octobre 2026 : défis
+// et coups des amis vus beaucoup plus vite). Le service de travail prévient aussi la page à chaque poussée.
+let signalVu = null;
+async function verifierSignal(force){
+  if (!compte || document.hidden) return;
+  const r = await appel("signal").catch(() => null); if (!r) return;
+  if (signalVu !== null && (r.signal !== signalVu || force)) { suiviPartie = 0; majAttente(); }
+  signalVu = r.signal;
+}
+setInterval(() => verifierSignal(false), 5000);
+if ("serviceWorker" in navigator) navigator.serviceWorker.addEventListener("message", e => { if (e.data && e.data.signal) setTimeout(() => verifierSignal(true), 300); });
 document.addEventListener("visibilitychange", () => { if (!document.hidden) majAttente(); });
 // La réserve se remplit d'elle-même : compteur tenu à jour, et paquet affiché dès qu'il arrive si la scène attend
 setInterval(() => {

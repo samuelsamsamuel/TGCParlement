@@ -192,6 +192,9 @@ const COLONNES = {
     // Première version de la série du Gouvernement (octobre 2026), remplacée par quotidien.gouv (règles) : inutilisées
     ["serie_gouv", "INTEGER NOT NULL DEFAULT 0 CHECK (serie_gouv BETWEEN 0 AND 5)"],
     ["gains_gouv", "TEXT NOT NULL DEFAULT ''"],
+    // Augmenté à chaque événement qui concerne le joueur (notifier) : la page ouverte le relit toutes les 5 s (/api/signal,
+    // une ligne lue) et ne relit les compteurs d'attente que s'il a changé
+    ["signal", "INTEGER NOT NULL DEFAULT 0"],
     ["gouv_formes", "INTEGER NOT NULL DEFAULT 0"],  // gouvernements formés depuis l'ouverture du compte (le premier est offert)
   ],
   annonces: [
@@ -724,6 +727,7 @@ async function pousser(env, endpoint) {
 const pseudoDe = async (env, id) => (await env.DB.prepare("SELECT pseudo FROM joueurs WHERE id = ?").bind(id).first())?.pseudo || "Un joueur";
 // Message pour un joueur (échanges, amis, duels, ventes) : gardé, puis poussé à ses appareils abonnés, après la réponse
 async function notifier(env, joueur, texte, genre = "buvette", lien = null) {
+  await env.DB.prepare("UPDATE joueurs SET signal = signal + 1 WHERE id = ?").bind(joueur).run();
   const abonnes = (await env.DB.prepare(`SELECT endpoint FROM abonnements WHERE joueur = ? AND ${genre === "reserve" ? "reserve" : "buvette"} = 1`).bind(joueur).all()).results;
   if (!abonnes.length) return;
   await env.DB.batch([
@@ -1576,6 +1580,7 @@ async function api(requete, env, url) {
   }
   if (methode === "GET" && chemin === "/api/duels") return listeDuels(env, joueur);
   if (methode === "GET" && chemin === "/api/attente") return attente(env, joueur);
+  if (methode === "GET" && chemin === "/api/signal") return json({signal: (await env.DB.prepare("SELECT signal FROM joueurs WHERE id = ?").bind(joueur).first())?.signal ?? 0});
   if (methode === "GET" && chemin === "/api/notifications/cle") return json({cle: (await vapid(env, url.origin)).publique});
   if (methode === "POST" && chemin === "/api/notifications/abonner") return abonner(env, requete, joueur, url.origin);
   if (methode === "POST" && chemin === "/api/notifications/desabonner") {
