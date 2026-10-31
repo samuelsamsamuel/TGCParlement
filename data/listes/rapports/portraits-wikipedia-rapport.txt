@@ -1,7 +1,10 @@
-Portraits Wikipédia : 2 retenus, 550 écartés, sur 7429 cartes sans portrait ayant un article rattaché par identifiant officiel (7744 cartes sans portrait en tout)
+Portraits Wikipédia : 5 retenus, 560 écartés, sur 7571 cartes sans portrait ayant un article rattaché par identifiant officiel (7887 cartes sans portrait en tout)
 
 Retenus :
-19483	Patricia Lemoine	Patricia Lemoine, député de la cinquième circonscription de Seine-et-Marne.jpg
+S08012N	Jean-Jacques Lozach	Jean-Jacques Lozach le 29 juin 2022 à Rotterdam.png
+S14053L	Agnès Canayer	2020-0451-003-SK (cropped).jpg
+S19383Y	Jean-Marc Boyer	Jean-Marc Boyer.jpg
+S20026V	Anne Ventalon	Anne Ventalon le 29 juin 2022 à Rotterdam.png
 S20066E	Annick Jacquemet	Annick Jacquemet (2026-06-20).jpg
 
 Écartés :
@@ -547,6 +550,16 @@ S000476	Robert Pontillon	Tombe_Robert_Pontillon_cimetière_Voltaire_Suresnes.jpg
 S000633	Philippe Machefer	HC_MACHEFER_P_CIM-Houilles_006_2015-11.jpg	nom de fichier
 S000679	Francis Le Basser	Père-Lachaise_-_Division_87_-_Columbarium_2711-2810.jpg	nom de fichier
 S08062Y	Jean-François Mayet	Mayet_jean_francois08062y_carre.jpg	la fiche Commons ne dit pas représenter la personne
+S08069G	Alain Houpert	Alain_Houpert_(cropped).jpg	la fiche Commons ne dit pas représenter la personne
+S14221J	Pierre Médevielle	Pierre_Médevielle.jpg	la fiche Commons ne dit pas représenter la personne
+S19447X	Muriel Jourda	JOURDA_Muriel_Sénat_-_2025.jpg	la fiche Commons ne dit pas représenter la personne
+S19916G	Bastien Coriton	Bastien_Coriton_2024.jpg	la fiche Commons ne dit pas représenter la personne
+S20062A	Laurent Somon	Laurent_Somon_2020.jpg	la fiche Commons ne dit pas représenter la personne
+S20114U	Hussein Bourgi	Hussein_Bourgi_membre_de_la_commission_paritaire_du_Haut-Commissariat_à_l’Égalité.webp	la fiche Commons ne dit pas représenter la personne
+S21054E	Vincent Louault	Vincent_Louault.jpg	la fiche Commons ne dit pas représenter la personne
+S21660W	Alexis Robin (homme politique)	Sénateur_Alexis_ROBIN.jpg	la fiche Commons ne dit pas représenter la personne
+S21706T	Julie Frêche	Frêche_Julie_-_Sénat.jpg	la fiche Commons ne dit pas représenter la personne
+S21720R	Thierry Suaud	Thierry_Suaud.jpg	la fiche Commons ne dit pas représenter la personne
 S57716N	Auguste Amic	Plaque_commémorative_port_de_Sain-Cyr-sur-Mer_Auguste_Amic_(Var,_France).jpg	nom de fichier
 S57721K	Hélène Édeline	HC_EDELINE_H_CIM-Gentilly_2018-05.jpg	nom de fichier
 S57773X	Janine Alexandre-Debray	Jeanine_Alexandre_Debray.jpg	la fiche Commons ne dit pas représenter la personne

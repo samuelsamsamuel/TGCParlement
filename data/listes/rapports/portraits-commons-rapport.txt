@@ -1,4 +1,4 @@
-Portraits Commons : 1 cartes, sur 6738 cartes sans portrait rattachées à Wikidata par identifiant officiel (6795 cartes sans portrait en tout) ; éléments sondés cette fois : 6737, restant à sonder ou en erreur : 0
+Portraits Commons : 1 cartes, sur 6877 cartes sans portrait rattachées à Wikidata par identifiant officiel (6935 cartes sans portrait en tout) ; éléments sondés cette fois : 6876, restant à sonder ou en erreur : 0
 
 Retenus :
 13736	Louis, François, Antoine Arbogast	Q2572301	Antoine Arbogast.png

@@ -1,16 +1,3 @@
-Portraits du Sénat : 948 en tout ; sondés cette fois : 13, trouvés 0, sans photo 13, erreurs à refaire 0
+Portraits du Sénat : 948 en tout ; sondés cette fois : 157, trouvés 0, sans photo 0, erreurs à refaire 157
 
 Sans photo sur le site du Sénat :
-S000009	Alexandre Dumas
-S000156	Paul Porteu De La Morandiere
-S000168	André Servat
-S000213	Armand Kientzi
-S000668	Augustin de Villeneuve Bargemont
-S07002G	Maryse Roger-Coupin
-S11113E	Félix Desplan
-S19920C	Christophe Chaudun
-S20014R	Danièle Tubiana
-S20176K	Valérie Blandin
-S20178M	Alain Sévêque
-S21632S	Annouck Cotillot
-S58508L	Bernard Talon
