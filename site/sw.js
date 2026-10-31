@@ -37,6 +37,8 @@ self.addEventListener("fetch", e => {
 // Notifications : la poussée arrive sans contenu ; les messages en attente sont lus sur le serveur (session du
 // joueur) puis affichés. Toucher une notification ouvre l'application.
 self.addEventListener("push", e => {
+  // Page de l'application ouverte : prévenue aussitôt (défi, coup d'un ami, échange…), sans attendre sa relecture
+  self.clients.matchAll({type: "window"}).then(fs => fs.forEach(f => f.postMessage({signal: true})));
   e.waitUntil(fetch("/api/notifications", {credentials: "same-origin"}).then(r => r.ok ? r.json() : {notifications: []})
     .catch(() => ({notifications: []}))
     .then(d => {

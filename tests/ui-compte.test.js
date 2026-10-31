@@ -273,6 +273,10 @@ const sx = Date.now().toString(36).slice(-4);
     await A.fill('#form-gouv-ami [name=pseudo]', "Bob" + sx); await A.click('#form-gouv-ami button[type=submit]');
     await A.waitForSelector("[data-choisir-gouv]"); await A.click("[data-choisir-gouv]");
     await A.waitForFunction(() => partie && partie.statut === "propose");
+    // Bob, connecté ailleurs dans l'application, voit le défi arriver en quelques secondes (signal relu toutes les 5 s)
+    await Bp.waitForFunction(() => compte); const debutAppel = Date.now();
+    await Bp.waitForSelector("#appel-gouv:not([hidden]) [data-appel-partie]", {timeout: 15000});
+    assert.ok(Date.now() - debutAppel < 12000, "rappel du défi en moins de 12 s");
     await Bp.reload(); await Bp.waitForFunction(() => compte);
     await vers(Bp, "gouvernement"); await Bp.waitForSelector("#tuto-gouv[open]"); await Bp.click("#fermer-tuto");
     await Bp.waitForSelector("#vue-gouvernement [data-former]");

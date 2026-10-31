@@ -430,8 +430,10 @@ serveur), filtre « Mes favoris » dans l'Hémicycle. Pas de zoom au double touc
    bandeau de tour (`bandeauTour` : « À vous de jouer » doré, « En attente de … » avec point vert en direct) ; notification
    de coup seulement si l'adversaire n'a pas la partie ouverte, avec le score ; notifications à lien (colonne `lien` de
    `notifications`, « partie:12 ») : la toucher ouvre la partie (service de travail : message à la page ouverte, sinon
-   `?ouvrir=`) ; rappel dans l'application hors de la partie (`appel-gouv`, défi reçu ou coup à jouer, `attente` relue toutes
-   les 30 s) ; thème d'une manche révélé quand la précédente est jouée des deux côtés ; tâche
+   `?ouvrir=`) ; rappel dans l'application hors de la partie (`appel-gouv`, défi reçu ou coup à jouer) ; rapidité (demande de
+   l'utilisateur) : colonne `signal` de `joueurs`, augmentée par `notifier` à chaque événement, relue toutes les 5 s page visible
+   (`GET /api/signal`, une ligne) ; s'il change, compteurs, rappel et partie ouverte relus aussitôt ; à chaque poussée, le service
+   de travail prévient la page ouverte ; `attente` relue de toute façon toutes les 120 s ; thème d'une manche révélé quand la précédente est jouée des deux côtés ; tâche
    horaire `expirerParties` (défi oublié remboursé, partie en cours close au bout de trois jours, la manche jouée d'un
    seul côté lui revenant). Le serveur lit les fiches découpées (`site/fiches/pNNN.json`, 256 paquets par empreinte
    FNV-1a, `paquetDeFiche`) : le fichier complet coûterait 40 ms de calcul par requête. Routes `GET/POST /api/gouvernements`,

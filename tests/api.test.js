@@ -283,7 +283,9 @@ const preuve = c => require("crypto").createHash("sha256").update(c).digest("hex
     const amie = r.d.id;
     assert.strictEqual(await voixDe(A), voixA - 10, "mise retenue");
     assert.strictEqual((await C("parties/" + amie + "/gouvernement", {gouvernement: idGC})).statut, 409, "le lanceur choisit d'abord");
+    const signalAvant = (await C("signal")).d.signal;
     assert.strictEqual((await A("parties/" + amie + "/gouvernement", {gouvernement: idGA2})).d.statut, "propose");
+    assert.ok((await C("signal")).d.signal > signalAvant, "le défi fait monter le signal de l'ami");
     assert.ok((await C("parties")).d.parties.find(x => x.id === amie).aRelever);
     v = (await C("parties/" + amie + "/gouvernement", {gouvernement: idGC})).d;
     assert.strictEqual(v.statut, "en-cours"); assert.strictEqual(await voixDe(C), 90, "mise retenue à l'ami (son premier gouvernement était offert)");
