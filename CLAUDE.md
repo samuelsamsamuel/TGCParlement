@@ -177,8 +177,12 @@ première exécution : 19 816 fiches, entre 180 et 650 cartes étoilées par pol
 
 - Propositions de loi (demande de l'utilisateur, novembre 2026, sur le modèle des « SBC » de FIFA : garder ses cartes et
   donner de l'intérêt à la buvette) : déposer des cartes, les « cosignataires », qui remplissent des conditions (époque,
-  département, législature, chambre, en exercice, femmes, rareté, Quatre-vingts, Compagnons, présidents de l'Assemblée) et
-  une note minimale (`NOTE_LOI`, somme des valeurs de rareté) ; les cartes déposées quittent l'hémicycle. Lois rangées par
+  département, législature, chambre, en exercice, femmes, rareté, Quatre-vingts, Compagnons, présidents de l'Assemblée),
+  chaque carte pour une seule condition, autant de cartes que la somme des conditions ; plus de note minimale ni de place
+  libre (demande de l'utilisateur, novembre 2026 : la note n'était pas claire), la valeur exigée s'écrit en conditions de
+  rareté (« 1 rare ou mieux », « 1 épique ou mieux ») ; les cartes déposées quittent l'hémicycle. Distinctions expliquées
+  sous la condition (`aideCondition` : sous-titre de l'objectif, Quatre-vingts, Compagnons, perchoir, élus en exercice) ;
+  présentation allégée, récompenses en texte sans pictogramme (même demande). Lois rangées par
   thème (`THEMES_LOI`, même demande : plus de défis, plus clairs, de meilleures récompenses ; difficulté de 1 à 4) :
   chaque jour (`loisDuJour`, graine de la date), loi de finances (10 communes ou peu communes contre 1 paquet, trois fois),
   ordinaire (40 voix), régionale (un département, 2 paquets), organique (une législature, les deux chambres, le Gouvernement,

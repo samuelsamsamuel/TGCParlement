@@ -257,7 +257,12 @@ main{max-width:1120px;margin:0 auto;padding:1.5rem 1rem 4rem}
 #vue-lois .loi > *{margin:0}
 #vue-lois .loi h3{font:400 1.35rem var(--serif);margin:0;line-height:1.15;color:inherit;text-transform:none;letter-spacing:0}
 #vue-lois .loi .bouton{margin-top:.3rem}
-.sous-loi{margin:0;color:var(--dorure-pale);font-size:.9rem;line-height:1.3}
+.sous-loi{display:block;margin-top:.1rem;color:var(--dorure-pale);font-size:.88rem;font-weight:400;line-height:1.3;font-family:inherit}
+.aide-loi{display:block;opacity:.72;font-size:.78rem;line-height:1.3;margin-top:.1rem;font-style:italic}
+.pied-loi{display:flex;align-items:center;justify-content:space-between;gap:.5rem;flex-wrap:wrap}
+.pied-loi .bouton{padding:.4rem .9rem;font-size:.9rem}
+.compte-loi{font-weight:400;opacity:.7;font-size:.9em;margin-left:.3rem}
+.mode-emploi-loi p{margin:.5rem 0 .2rem;line-height:1.4}
 .tete-loi{display:flex;justify-content:space-between;align-items:center;gap:.6rem;font-size:.8rem}
 .frequence-loi{text-transform:uppercase;letter-spacing:.06em;opacity:.8}
 .etoiles-loi{color:var(--teinte-loi);letter-spacing:.1em}
@@ -2803,8 +2808,11 @@ document.getElementById("choix-carte").addEventListener("click", e => {
 let loiEnCours = null, themeLois = "tous";
 const etoilesLoi = n => `<span class="etoiles-loi" aria-label="Difficulté ${n} sur 4">${"★".repeat(n)}<i>${"★".repeat(4 - n)}</i></span>`;
 const frequenceLoi = l => l.frequence === "finances" ? (l.adoptee ? "Revenez demain" : `${l.restantes} fois encore aujourd'hui`) : l.frequence === "semaine" ? "Cette semaine" : "Aujourd'hui";
-const pastillesRecompense = r => [r.paquets ? `<span class="gain-loi">📦 ${pluriel(r.paquets, "paquet")}</span>` : "", r.voix ? `<span class="gain-loi">🗳 ${pluriel(r.voix, "voix", "voix")}</span>` : "",
-  r.choix ? `<span class="gain-loi gain-choix">🃏 ${echapper(r.choix.titre)}</span>` : ""].join("");
+// Récompenses en texte simple, sans pictogramme (demande de l'utilisateur, novembre 2026)
+const pastillesRecompense = r => [r.paquets ? `<span class="gain-loi">${pluriel(r.paquets, "paquet")}</span>` : "", r.voix ? `<span class="gain-loi">${pluriel(r.voix, "voix", "voix")}</span>` : "",
+  r.choix ? `<span class="gain-loi gain-choix">${echapper(r.choix.titre)}</span>` : ""].join("");
+// Explication d'une distinction (Quatre-vingts, Compagnons, perchoir, élus en exercice), sous la condition
+const aideLoi = c => c.aide ? `<small class="aide-loi">${echapper(c.aide)}</small>` : "";
 const aEviter = () => new Set([...(etat.favoris || []), ...(etat.gardes || []), ...((compte && compte.vitrine) || [])].map(String));
 const lotEnAttente = () => etat.quotidien && etat.quotidien.gouv && etat.quotidien.gouv.lot;
 function majLois(){
@@ -2813,27 +2821,25 @@ function majLois(){
   if (loiEnCours) { const l = lois.find(x => x.cle === loiEnCours.cle); if (l && !l.adoptee) { zone.innerHTML = htmlComposerLoi(l); return; } loiEnCours = null; }
   const lot = lotEnAttente();
   const filtres = [["tous", "Toutes"], ...Regles.THEMES_LOI];
+  // Carte allégée (demande de l'utilisateur, novembre 2026) : conditions, récompense, une ligne d'état, un bouton
   const carte = l => {
     const m = l.adoptee ? null : Regles.manquesLoi(etat, cat, l);
-    const etatLigne = l.adoptee ? `<p class="statut-loi fait">✓ Adoptée${l.frequence === "finances" ? " trois fois aujourd'hui" : ""}</p>`
-      : m.pret ? `<p class="statut-loi pret">✓ Vous avez les cartes nécessaires</p>`
-      : `<p class="statut-loi manque">Il vous manque : ${m.manques.length ? echapper(m.manques.map(x => x.manque + " × " + x.libelle.replace(/^\d+ /, "")).join(", ")) : "quelques cartes pour la note"}. <button class="lien-carte" data-buvette-loi>Chercher à la buvette</button></p>`;
+    const etatLigne = l.adoptee ? `<p class="statut-loi fait">Adoptée${l.frequence === "finances" ? " trois fois aujourd'hui" : ""}</p>`
+      : m.pret ? `<p class="statut-loi pret">Vous avez les cartes</p>`
+      : `<p class="statut-loi manque">Il vous manque ${echapper(m.manques.map(x => x.manque + " " + x.libelle.replace(/^\d+ /, "")).join(", "))}</p>`;
     return `<li class="loi d${l.difficulte}${l.adoptee ? " adoptee" : ""}">
       <div class="tete-loi"><span class="frequence-loi">${frequenceLoi(l)}</span>${etoilesLoi(l.difficulte)}</div>
-      <h3>${echapper(l.nom)}</h3><p class="sous-loi">${echapper(l.sousTitre)}</p>
-      <p class="depot-loi">Déposez <b>${pluriel(l.taille, "carte")}</b> :</p>
-      <ul class="conditions-loi">${l.conditions.map(c => `<li>${echapper(c.libelle)}</li>`).join("")}${l.taille > l.conditions.reduce((t, c) => t + c.n, 0) ? `<li>${l.taille - l.conditions.reduce((t, c) => t + c.n, 0)} au choix</li>` : ""}</ul>
-      <div class="gains-loi">${pastillesRecompense(l.recompense)}</div>
-      ${etatLigne}
-      ${l.adoptee ? "" : `<button class="bouton${m.pret ? "" : " discret"}" data-composer-loi="${echapper(l.cle)}">${m.pret ? "Faire adopter" : "Voir la loi"}</button>`}</li>`;
+      <h3>${echapper(l.nom)}<span class="sous-loi">${echapper(l.sousTitre)}</span></h3>
+      <ul class="conditions-loi">${l.conditions.map(c => `<li>${echapper(c.libelle)}${aideLoi(c)}</li>`).join("")}</ul>
+      <div class="pied-loi"><div class="gains-loi">${pastillesRecompense(l.recompense)}</div>
+      ${l.adoptee ? "" : `<button class="bouton${m.pret ? "" : " discret"}" data-composer-loi="${echapper(l.cle)}">${m.pret ? "Déposer" : "Ouvrir"}</button>`}</div>
+      ${etatLigne}</li>`;
   };
   const visibles = lois.filter(l => themeLois === "tous" || l.theme === themeLois);
   zone.innerHTML = `<div class="tete-gouv"><h2 class="titre-gouv">Propositions de loi</h2></div>
     <details class="mode-emploi-loi" ${(() => { try { return localStorage.getItem("hemicycle-lois-vu"); } catch (_) { return "1"; } })() ? "" : "open"}><summary>Comment ça marche ?</summary>
-      <ol><li><b>Choisissez une loi.</b> Chacune demande des cartes précises : une époque, un département, des sénateurs, des femmes…</li>
-        <li><b>Déposez les cartes demandées.</b> « Remplir pour moi » prend d'abord vos doubles. Les cartes déposées quittent votre hémicycle.</li>
-        <li><b>La loi est adoptée.</b> Vous recevez sa récompense : voix, paquets ou une carte à choisir. Plus la loi est difficile (★), plus la récompense est belle.</li></ol>
-      <p class="note">Une carte vous manque ? Cherchez-la au comptoir de la buvette, ou demandez-la à un ami.</p></details>
+      <p>Chaque loi demande des cartes précises. Déposez-les : elles quittent votre hémicycle et la loi vous rapporte sa récompense. Chaque carte compte pour une seule condition. « Remplir pour moi » prend d'abord vos doubles.</p>
+      <p class="note">Une carte vous manque ? Cherchez-la à la <button class="lien-carte" data-buvette-loi>buvette</button> ou demandez-la à un ami.</p></details>
     ${lot ? `<div class="tour-gouv a-vous"><b>Une carte vous attend</b><span>Choisissez-la avant de faire adopter une autre loi qui en offre une.</span><button class="bouton" data-lot-loi>Choisir ma carte</button></div>` : ""}
     <div class="filtres-loi" role="tablist">${filtres.map(([k, t]) => `<button role="tab" aria-selected="${themeLois === k}" data-theme-loi="${k}">${t}</button>`).join("")}</div>
     ${Regles.THEMES_LOI.filter(([k]) => visibles.some(l => l.theme === k)).map(([k, t]) => `<h3 class="theme-loi">${t}</h3><ul class="lois">${visibles.filter(l => l.theme === k).map(carte).join("")}</ul>`).join("")}`;
@@ -2848,18 +2854,17 @@ function htmlComposerLoi(l){
   const conditionsOk = v.conditions.filter(c => c.ont >= c.n).length;
   return `<div class="entete-loi d${l.difficulte}"><button class="lien-carte retour-loi" data-fermer-loi>← Toutes les lois</button>
       <div class="tete-loi"><span class="frequence-loi">${frequenceLoi(l)}</span>${etoilesLoi(l.difficulte)}</div>
-      <h2>${echapper(l.nom)}</h2><p class="sous-loi">${echapper(l.sousTitre)}</p><p>${echapper(l.expose)}</p>
+      <h2>${echapper(l.nom)}<span class="sous-loi">${echapper(l.sousTitre)}</span></h2>
       <div class="gains-loi">${pastillesRecompense(l.recompense)}</div></div>
-    <div class="avancement-loi" data-avancement><span><b>${ids.length}/${l.taille}</b> cartes</span><span><b>${conditionsOk}/${v.conditions.length}</b> conditions</span>${l.noteMin ? `<span><b>${v.note}/${l.noteMin}</b> note</span>` : ""}</div>
     ${ids.length < l.taille ? `<button class="bouton remplir-loi" data-remplir-loi>Remplir pour moi</button>` : ""}
-    <div class="bloc-gouv"><h3>Conditions</h3><ul class="conditions-suivi">
-      ${v.conditions.map((c, k) => `<li class="${c.ont >= c.n ? "remplie" : ""}"><span class="coche">${c.ont >= c.n ? "✓" : `${c.ont}/${c.n}`}</span><span class="txt">${echapper(c.libelle)}</span>${c.ont < c.n && ids.length < l.taille ? `<button class="bouton discret" data-ajout-loi="${k}">Choisir</button>` : ""}</li>`).join("")}
-      ${l.noteMin ? `<li class="${v.note >= l.noteMin ? "remplie" : ""}"><span class="coche">${v.note >= l.noteMin ? "✓" : `${v.note}/${l.noteMin}`}</span><span class="txt">Note de ${l.noteMin} ou plus<small>Chaque carte compte selon sa rareté : commune 1, peu commune 2, rare 4, épique 8, légendaire 15, mythique 25.</small></span></li>` : ""}
-    </ul></div>
-    <div class="bloc-gouv"><div class="tete-cases"><h3>Cartes déposées</h3>${ids.length === l.taille ? `<button class="bouton discret" data-remplir-loi>Remplir autrement</button>` : ""}</div>
+    <div class="bloc-gouv"><h3>Conditions <span class="compte-loi">${conditionsOk}/${v.conditions.length}</span></h3><ul class="conditions-suivi">
+      ${v.conditions.map((c, k) => `<li class="${c.ont >= c.n ? "remplie" : ""}"><span class="coche">${c.ont >= c.n ? "✓" : `${c.ont}/${c.n}`}</span><span class="txt">${echapper(c.libelle)}${aideLoi(c)}</span>${c.ont < c.n && ids.length < l.taille ? `<button class="bouton discret" data-ajout-loi="${k}">Choisir</button>` : ""}</li>`).join("")}
+    </ul><p class="note">Chaque carte compte pour une seule condition.</p></div>
+    <div class="bloc-gouv"><div class="tete-cases"><h3>Cartes déposées <span class="compte-loi">${ids.length}/${l.taille}</span></h3>${ids.length === l.taille ? `<button class="bouton discret" data-remplir-loi>Remplir autrement</button>` : ""}</div>
       <div class="cases-loi">${cases}</div>
-      ${ids.length ? `<p><button class="lien-carte" data-vider-loi>Tout retirer</button></p>` : ""}</div>
-    <div class="barre-envoi"><span class="quoi"><b>${v.ok ? "Prête à être adoptée" : "Pas encore prête"}</b>${v.ok ? `${pluriel(ids.length, "carte")} quitteront votre hémicycle` : "Remplissez toutes les conditions"}</span><button class="bouton" data-adopter-loi ${v.ok ? "" : "disabled"}>Faire adopter</button></div>`;
+      ${ids.length ? `<p><button class="lien-carte" data-vider-loi>Tout retirer</button></p>` : ""}
+      ${v.ok ? "" : `<p class="note">Une carte vous manque ? <button class="lien-carte" data-buvette-loi>Chercher à la buvette</button></p>`}</div>
+    <div class="barre-envoi"><span class="quoi"><b>${v.ok ? "Prête à être adoptée" : "Pas encore prête"}</b>${v.ok ? `${pluriel(ids.length, "carte")} quitteront votre hémicycle` : "Remplissez chaque condition"}</span><button class="bouton" data-adopter-loi ${v.ok ? "" : "disabled"}>Faire adopter</button></div>`;
 }
 // Ajouter une carte : pour une condition donnée, ou (case vide) pour la première condition non remplie, sinon n'importe laquelle
 function ajouterCosignataire(l, k){
@@ -2868,7 +2873,7 @@ function ajouterCosignataire(l, k){
   const pris = {}; for (const id of loiEnCours.ids) pris[id] = (pris[id] || 0) + 1;
   const entrees = Object.keys(etat.possedees).filter(id => cat.parId[id] && (!q || Regles.remplit(cat, cat.parId[id], q.quoi)))
     .map(id => [id, Regles.disponibles(etat, id) - (pris[id] || 0)]).filter(([, n]) => n > 0).map(([id, n]) => [id, n, null]);
-  choisirCarte(q ? `Choisir : ${q.libelle}` : "Choisir une carte au choix", entrees, id => { loiEnCours.ids.push(id); majLois(); });
+  choisirCarte(q ? `Choisir : ${q.libelle}` : "Choisir une carte", entrees, id => { loiEnCours.ids.push(id); majLois(); });
 }
 document.getElementById("vue-lois").addEventListener("click", e => {
   const b = sel => e.target.closest(sel), lois = Regles.etatLois(etat, cat), l = loiEnCours && lois.find(x => x.cle === loiEnCours.cle);
