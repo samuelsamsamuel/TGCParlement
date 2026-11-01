@@ -221,8 +221,9 @@ console.log("tous les tests passent");
   R.preparerJour(e, cat, jour);
   let d = R.etatDuJour(e, cat, jour);
   assert.strictEqual(d.objectifs.length, 3); assert.ok(d.objectifs.every(o => !o.fait));
-  for (let k = 0; k < 8; k++) { e.reserve = 10; e.ancre = Date.now(); R.ouvrirPaquet(e, cat, {aleatoire: alea}); }
-  e.quiz = jour; e.quotidien.compteurs.dissous = 5; e.quotidien.compteurs.objectifs = 1;
+  // dix paquets et les compteurs aux cibles les plus hautes de TACHES : les tâches du jour sont faites quel que soit le jour
+  for (let k = 0; k < 10; k++) { e.reserve = 10; e.ancre = Date.now(); R.ouvrirPaquet(e, cat, {aleatoire: alea}); }
+  e.quiz = jour; e.quotidien.compteurs.dissous = 10; e.quotidien.compteurs.objectifs = 3;
   d = R.etatDuJour(e, cat, jour);
   assert.ok(d.objectifs.slice(0, 2).every(o => o.fait), "deux tâches faites");
   for (const o of d.objectifs.filter(x => x.fait)) assert.ok(R.reclamerJour(e, cat, jour, o.cle));

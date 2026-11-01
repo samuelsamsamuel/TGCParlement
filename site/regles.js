@@ -669,12 +669,11 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
     if (q.rarete) return `${n} ${q.rarete.includes("commune") ? `commune${s} ou peu commune${s}` : q.rarete[0] === "legendaire" ? `légendaire${s} ou mieux` : q.rarete[0] === "epique" ? `épique${s} ou mieux` : `rare${s} ou mieux`}`;
     return String(n);
   };
-  // Explication d'une condition qui ne va pas de soi (distinctions, élus en exercice) : le sous-titre officiel de l'objectif
-  // (demande de l'utilisateur, novembre 2026 : les Quatre-vingts n'étaient expliqués nulle part)
+  // Explication d'une condition : le sous-titre officiel de l'objectif
+  // Seuls les Quatre-vingts sont expliqués (demande de l'utilisateur, novembre 2026)
   function aideCondition(cat, q) {
-    if (q.actuel) return "Parlementaires et membres du Gouvernement en fonction aujourd'hui.";
-    const o = q.objectif && cat.objectifParId[q.objectif];
-    return o && ["historique", "presidents"].includes(o.famille) ? o.sousTitre || null : null;
+    const o = q.objectif === "quatre-vingts" && cat.objectifParId[q.objectif];
+    return o ? o.sousTitre || null : null;
   }
   function remplit(cat, carte, q) {
     if (!carte) return false;
