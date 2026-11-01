@@ -136,8 +136,10 @@ première exécution : 19 816 fiches, entre 180 et 650 cartes étoilées par pol
   la fenêtre `confirmer-lot`, « Confirmer mon choix » ou « Revenir aux cartes proposées », demande de
   l'utilisateur) ; objectifs du jour (`objectifsDuJour`,
   mêmes pour tous, tirés de la date : deux tâches de `TACHES` à 10 voix, comptées par les opérations des règles,
-  `compter`, et une carte recherchée à 1 paquet : une carte de plus dans un thème (époque, Sénat, Gouvernement, femmes,
-  rare ou mieux) que le compte noté au premier passage du jour, `preparerJour`, appelé à l'ouverture et par
+  `compter` (durcies à la demande de l'utilisateur, novembre 2026 : 6 ou 10 paquets, 10 cartes dissoutes, 15 nouvelles
+  cartes, compteur `nouvelles`, questions, 3 récompenses), et des cartes recherchées à 1 paquet : plusieurs nouvelles cartes
+  d'un thème (époque, Sénat, Gouvernement, femmes, rare ou mieux ; `cible` par thème, environ ce que donnent huit paquets,
+  de 2 à 12) de plus que le compte noté au premier passage du jour, `preparerJour`, appelé à l'ouverture et par
   `ouvrirPaquet`) ; présentés dans le même cadre que la série, une case par objectif (`cases-objectifs`, demande de
   l'utilisateur). État `quotidien` (colonne `quotidien` de `joueurs`, écrite par `appliquer`), routes `POST /api/jour`,
   `/api/serie`, `/api/lot`, `/api/objectif-du-jour`. Le catalogue du serveur porte époque, chambres et sexe pour les thèmes.
@@ -152,7 +154,9 @@ première exécution : 19 816 fiches, entre 180 et 650 cartes étoilées par pol
   et `ORDRE` (`regles.js`) pour ne pas décaler les indices publiés ; poids de tirage 0,004 (`POIDS`), sous celui d'une
   mythique donnée (0,4 pour 95 cartes ; vérifié par le test), soit une carte sur 25 000 environ ; dissolution 250 voix ;
   cadre tricolore et or (`.r-unique`) ; en tête de « Toutes les cartes », avant le tri par score (demande de l'utilisateur).
-- Paliers (`PALIERS`) hauts et modestes pour les législatures (50, 150) et les départements (15, 40) : des
+- Paliers (`PALIERS`) hauts et modestes pour les législatures (50, 150, puis 250 à 800 par centaines, ajoutés à la demande
+  de l'utilisateur, novembre 2026) et les départements (15, 40) ; « Remplir l'hémicycle » de 1 500 à 17 500 cartes au-delà de
+  1 000 (même demande) : des
   paliers bas s'auto-entretenaient (simulation : la moitié des cartes dès le premier jour). Un test vérifie
   qu'un premier jour avec toutes les récompenses en cascade reste borné.
 - Récompenses : les tâches simples paient en voix (premiers pas, 10 voix chacun ; « Remplir l'hémicycle » à 10, 25,
@@ -170,6 +174,20 @@ première exécution : 19 816 fiches, entre 180 et 650 cartes étoilées par pol
   `tests/ui-compte.test.js` (deux joueurs) et `tests/accueil.test.js` (première ouverture). Tous lancés par
   `.github/workflows/tests.yml` à chaque pull request et à chaque commit sur main (Wrangler et Playwright aux
   versions fixées, installés sur la machine de GitHub seulement) ; captures en artefact « captures ».
+
+- Propositions de loi (demande de l'utilisateur, novembre 2026, sur le modèle des « SBC » de FIFA : garder ses cartes et
+  donner de l'intérêt à la buvette) : déposer des cartes, les « cosignataires », qui remplissent des conditions (époque,
+  département, législature, chambre, femmes, rareté, Quatre-vingts ou Compagnons) et une note minimale (`NOTE_LOI`, somme
+  des valeurs de rareté) ; les cartes déposées quittent l'hémicycle. Chaque jour (`loisDuJour`, graine de la date) : loi de
+  finances (10 communes ou peu communes contre 1 paquet, trois fois), loi ordinaire (facile, 30 voix), loi régionale (un
+  département, 2 paquets), loi organique (une législature, les deux chambres, le Gouvernement, 1 paquet et une carte parmi
+  3 épiques ou mieux) ; chaque semaine, la loi constitutionnelle (2 paquets et une carte parmi 3 légendaires ou mieux).
+  Règles : `verifierLoi` (chaque carte remplit au plus une condition), `remplirLoi` (« Remplir pour moi » : doubles d'abord,
+  favoris, cartes gardées et vitrine en dernier), `adopterLoi` (état `quotidien.lois`, `quotidien.loisSemaine` ; carte à
+  choisir par le lot de la série du Gouvernement, refusée tant qu'un lot attend). Simulation (novembre 2026) : loi régionale
+  faisable à 14 % après 30 paquets, 56 % après 100, 85 % après 300 ; les autres dès 100 paquets environ. Route
+  `POST /api/lois` ; vue `vue-lois` du menu Plus (onglet « Lois » sur grand écran). Réservées au compte Samsam pendant la
+  mise au point (`TESTEURS_LOIS`, champ `lois` de l'état ; `--var LOIS_OUVERTES:1` pour le serveur local des tests).
 
 ## Vocabulaire du jeu (références parlementaires)
 

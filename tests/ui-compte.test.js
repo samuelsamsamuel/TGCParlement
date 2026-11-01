@@ -307,6 +307,17 @@ const sx = Date.now().toString(36).slice(-4);
     await A.waitForSelector("#vue-gouvernement .theme-manche");
     assert.match(await A.textContent("#vue-gouvernement .recap-manches"), /Gagnée|Perdue|Égalité/);
   }
+  // Propositions de loi (serveur local avec LOIS_OUVERTES) : liste, composition, remplissage, adoption si possible
+  await vers(A, "lois"); await A.waitForSelector("#vue-lois .loi");
+  assert.strictEqual(await A.locator("#vue-lois .loi").count(), 5);
+  await A.screenshot({path: T + "/lois.png", fullPage: true});
+  await A.click('#vue-lois [data-composer-loi="finances"]'); await A.waitForSelector("#vue-lois [data-remplir-loi]");
+  await A.click("#vue-lois [data-remplir-loi]");
+  if (await A.evaluate(() => loiEnCours && loiEnCours.ids.length === 10)) {
+    await A.screenshot({path: T + "/loi-composee.png", fullPage: true});
+    const offerts = await A.evaluate(() => etat.offerts);
+    await A.click("#vue-lois [data-adopter-loi]"); await A.waitForFunction(o => etat.offerts === o + 1, offerts);
+  } else await A.click("#vue-lois [data-fermer-loi]");
   // Vitrine d'Anne, faite de ses favoris, visible par Bob depuis ses amis
   await A.click('nav [data-vue="collection"]'); await A.click('#grille [data-favori]');
   await A.waitForFunction(() => etat.favoris.length === 1);

@@ -230,6 +230,30 @@ console.log("tous les tests passent");
   assert.deepStrictEqual(R.objectifsDuJour(cat, jour).taches.map(t => t.cle), R.objectifsDuJour(R.catalogueCompact(require("../site/serveur.json")), jour).taches.map(t => t.cle));
 }
 console.log("série et objectifs du jour : tests passés");
+// Propositions de loi : conditions, remplissage, adoption (cartes retirées, récompense, une fois), loi de finances
+{
+  const jour = "2026-11-02", e = R.migrer({}); e.offerts = 300;
+  for (let i = 0; i < 300; i++) R.ouvrirPaquet(e, cat);
+  const lois = R.etatLois(e, cat, jour);
+  assert.deepStrictEqual(lois.map(l => l.difficulte), ["permanente", "facile", "moyenne", "difficile", "semaine"]);
+  assert.deepStrictEqual(R.loisDuJour(cat, jour).map(l => l.cle), R.loisDuJour(R.catalogueCompact(require("../site/serveur.json")), jour).map(l => l.cle), "mêmes lois au serveur");
+  const ord = lois[1], ids = R.remplirLoi(e, cat, ord);
+  assert.ok(ids && ids.length === ord.taille && R.verifierLoi(cat, ord, ids).ok, "loi ordinaire remplie");
+  assert.strictEqual(R.verifierLoi(cat, ord, ids.slice(1)).ok, false, "une carte de moins");
+  const avant = {...e.possedees}, voix = e.points;
+  const g = R.adopterLoi(e, cat, ord.cle, ids, jour);
+  assert.deepStrictEqual(g, {voix: 30, paquets: 0, choix: null}); assert.strictEqual(e.points, voix + 30);
+  for (const id of new Set(ids)) assert.strictEqual(e.possedees[id], avant[id] - ids.filter(x => x === id).length, "cartes déposées retirées");
+  assert.strictEqual(R.adopterLoi(e, cat, ord.cle, R.remplirLoi(e, cat, ord) || ids, jour), null, "une fois par jour");
+  assert.ok(R.etatLois(e, cat, jour)[1].adoptee);
+  // Loi de finances : trois fois par jour
+  for (let k = 0; k < 3; k++) { const f = R.etatLois(e, cat, jour)[0], fi = R.remplirLoi(e, cat, f); if (fi) assert.ok(R.adopterLoi(e, cat, "finances", fi, jour)); }
+  assert.strictEqual(R.etatLois(e, cat, jour)[0].adoptee, true, "finances : trois fois");
+  // Carte non possédée : refusée
+  const absente = cat.cartes.find(c => !e.possedees[c.id]).id;
+  assert.strictEqual(R.adopterLoi(e, cat, lois[2].cle, [absente, ...ids.slice(0, 5)], jour), null);
+}
+console.log("propositions de loi : tests passés");
 // Jeu du Gouvernement : fiches (scripts/fiches_gouvernement.py) et règles partagées (site/gouvernement.js)
 {
   const G = require("../site/gouvernement.js"), {fiches, themes} = G.fichesDeJeu(require("../site/gouvernement.json"));
