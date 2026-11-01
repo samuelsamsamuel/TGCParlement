@@ -177,17 +177,27 @@ première exécution : 19 816 fiches, entre 180 et 650 cartes étoilées par pol
 
 - Propositions de loi (demande de l'utilisateur, novembre 2026, sur le modèle des « SBC » de FIFA : garder ses cartes et
   donner de l'intérêt à la buvette) : déposer des cartes, les « cosignataires », qui remplissent des conditions (époque,
-  département, législature, chambre, femmes, rareté, Quatre-vingts ou Compagnons) et une note minimale (`NOTE_LOI`, somme
-  des valeurs de rareté) ; les cartes déposées quittent l'hémicycle. Chaque jour (`loisDuJour`, graine de la date) : loi de
-  finances (10 communes ou peu communes contre 1 paquet, trois fois), loi ordinaire (facile, 30 voix), loi régionale (un
-  département, 2 paquets), loi organique (une législature, les deux chambres, le Gouvernement, 1 paquet et une carte parmi
-  3 épiques ou mieux) ; chaque semaine, la loi constitutionnelle (2 paquets et une carte parmi 3 légendaires ou mieux).
-  Règles : `verifierLoi` (chaque carte remplit au plus une condition), `remplirLoi` (« Remplir pour moi » : doubles d'abord,
-  favoris, cartes gardées et vitrine en dernier), `adopterLoi` (état `quotidien.lois`, `quotidien.loisSemaine` ; carte à
-  choisir par le lot de la série du Gouvernement, refusée tant qu'un lot attend). Simulation (novembre 2026) : loi régionale
-  faisable à 14 % après 30 paquets, 56 % après 100, 85 % après 300 ; les autres dès 100 paquets environ. Route
-  `POST /api/lois` ; vue `vue-lois` du menu Plus (onglet « Lois » sur grand écran). Réservées au compte Samsam pendant la
-  mise au point (`TESTEURS_LOIS`, champ `lois` de l'état ; `--var LOIS_OUVERTES:1` pour le serveur local des tests).
+  département, législature, chambre, en exercice, femmes, rareté, Quatre-vingts, Compagnons, présidents de l'Assemblée) et
+  une note minimale (`NOTE_LOI`, somme des valeurs de rareté) ; les cartes déposées quittent l'hémicycle. Lois rangées par
+  thème (`THEMES_LOI`, même demande : plus de défis, plus clairs, de meilleures récompenses ; difficulté de 1 à 4) :
+  chaque jour (`loisDuJour`, graine de la date), loi de finances (10 communes ou peu communes contre 1 paquet, trois fois),
+  ordinaire (40 voix), régionale (un département, 2 paquets), organique (une législature, les deux chambres, le Gouvernement,
+  2 paquets et une carte parmi 3 épiques ou mieux) ; chaque semaine (graine de la semaine), une loi par époque (1 paquet et
+  une carte rare ou mieux à choisir), quatre d'institutions (Sénat, Gouvernement, élus en exercice : 2 paquets ; parité :
+  1 paquet et une rare ou mieux), trois de grandes figures (Quatre-vingts, Compagnons, perchoir : 2 paquets et une épique ou
+  mieux) et la loi constitutionnelle (3 paquets et une légendaire ou mieux). Libellés courts (« 2 élus de cette
+  législature », intitulé complet en sous-titre). Règles : `verifierLoi` (chaque carte remplit au plus une condition),
+  `remplirLoi` (doubles d'abord ; favoris, cartes gardées et vitrine en dernier), `manquesLoi` (ce qui manque, condition par
+  condition, affiché sur la carte de la loi avec un lien vers la buvette), `adopterLoi` (`quotidien.lois` pour le jour,
+  `quotidien.loisSemaine` pour la semaine ; carte à choisir par le lot de la série du Gouvernement, refusée tant qu'un lot
+  attend, bandeau « Une carte vous attend »). Interface : mode d'emploi en trois étapes (ouvert à la première visite,
+  `hemicycle-lois-vu`), filtres par thème, cartes de loi (difficulté en étoiles et liseré de couleur, récompenses en
+  pastilles, statut « Vous avez les cartes » ou « Il vous manque »), composition avec compteurs (cartes, conditions, note),
+  « Remplir pour moi » en tête, cases à remplir (doubles, derniers exemplaires et favoris signalés), barre d'adoption.
+  Simulation (novembre 2026) : la plupart des lois faisables dès 50 paquets ; régionale 30 % à 50 paquets, 80 % à 150 ;
+  grandes figures et constitutionnelle à partir de 150 environ. Route `POST /api/lois` ; vue `vue-lois` du menu Plus (onglet
+  « Lois » sur grand écran). Réservées au compte Samsam pendant la mise au point (`TESTEURS_LOIS`, champ `lois` de l'état ;
+  `--var LOIS_OUVERTES:1` pour le serveur local des tests).
 
 ## Vocabulaire du jeu (références parlementaires)
 

@@ -242,26 +242,68 @@ main{max-width:1120px;margin:0 auto;padding:1.5rem 1rem 4rem}
 /* Après un paquet, les boutons restent au bas de l'écran (demande de l'utilisateur, octobre 2026 : il fallait descendre
    sous les cinq cartes pour ouvrir le paquet suivant) */
 /* Propositions de loi */
-.lois{list-style:none;margin:0;padding:0;display:grid;gap:.7rem;grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr))}
-.loi{border:1px solid rgba(201,162,74,.4);border-radius:12px;padding:.8rem .9rem;background:rgba(46,7,16,.55);display:grid;gap:.35rem}
-.loi.adoptee{opacity:.6}
-.tete-loi{display:flex;justify-content:space-between;align-items:center;gap:.6rem}
-.tete-loi b{font:400 1.2rem var(--serif)}
-.badge-loi{font-size:.75rem;padding:.1rem .5rem;border-radius:999px;border:1px solid currentColor;white-space:nowrap}
-.d-facile .badge-loi{color:#6fbf8a}.d-moyenne .badge-loi{color:#d9b45a}.d-difficile .badge-loi{color:#e07a6a}.d-semaine .badge-loi{color:#c08ae0}.d-permanente .badge-loi{color:#9fb4d0}
-.conditions-loi{list-style:none;margin:.2rem 0;padding:0;display:grid;gap:.25rem;font-size:.9rem}
-.conditions-loi li::before{content:"• ";color:var(--dorure)}
-.conditions-loi.suivi li::before{content:none}
-.conditions-loi.suivi li{display:flex;gap:.5rem;align-items:center}
-.conditions-loi.suivi li span{min-width:3.2rem;text-align:center;padding:.05rem .3rem;border-radius:6px;background:rgba(201,162,74,.15);font-weight:600}
-.conditions-loi.suivi li.remplie span{background:#3f8f5a;color:#fff}
-.recompense-loi{margin:0}
-.cosignataires{display:grid;grid-template-columns:repeat(auto-fill,minmax(4.6rem,1fr));gap:.7rem .5rem;margin:.3rem 0 .6rem}
-.cosig{position:relative;display:grid;justify-items:center;align-content:start;gap:.15rem;font-size:.68rem;text-align:center;line-height:1.15}
-.cosig .vider{position:absolute;top:-.45rem;right:.1rem;width:1.5rem;height:1.5rem;padding:0;font-size:.9rem;line-height:1}
-.cosig i{font-style:normal;color:#e0a06a}
-:root[data-theme="clair"] .loi{background:rgba(255,255,255,.72);border-color:rgba(92,16,32,.25)}
-:root[data-theme="clair"] .d-facile .badge-loi{color:#2e7a4a}:root[data-theme="clair"] .d-moyenne .badge-loi{color:#8a6414}:root[data-theme="clair"] .d-difficile .badge-loi{color:#a8382a}:root[data-theme="clair"] .d-semaine .badge-loi{color:#6e3a9a}:root[data-theme="clair"] .d-permanente .badge-loi{color:#3a5a80}
+.mode-emploi-loi{border:1px solid rgba(201,162,74,.4);border-radius:12px;padding:.6rem .9rem;margin:0 0 1rem;background:rgba(46,7,16,.45)}
+.mode-emploi-loi summary{cursor:pointer;font-weight:600;color:var(--dorure)}
+.mode-emploi-loi ol{margin:.6rem 0 .3rem;padding-left:1.3rem;display:grid;gap:.4rem}
+.filtres-loi{display:flex;gap:.4rem;overflow-x:auto;padding-bottom:.3rem;margin:0 0 .4rem;scrollbar-width:none}
+.filtres-loi button{flex:none;border:1px solid rgba(201,162,74,.45);background:none;color:inherit;border-radius:999px;padding:.4rem .9rem;font:inherit;font-size:.9rem;cursor:pointer}
+.filtres-loi button[aria-selected="true"]{background:var(--dorure);color:#2a1a08;border-color:var(--dorure)}
+#vue-lois .theme-loi{font:400 1.35rem var(--serif);margin:1.1rem 0 .5rem;color:var(--dorure)}
+#vue-lois .entete-loi h2{color:inherit}
+.lois{list-style:none;margin:0;padding:0;display:grid;gap:.8rem;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr))}
+.loi{position:relative;border:1px solid rgba(201,162,74,.35);border-top:4px solid var(--teinte-loi);border-radius:12px;padding:.75rem .9rem;background:rgba(46,7,16,.55);display:flex;flex-direction:column;gap:.3rem;line-height:1.3}
+.d1{--teinte-loi:#6fbf8a}.d2{--teinte-loi:#d9b45a}.d3{--teinte-loi:#e07a6a}.d4{--teinte-loi:#c08ae0}
+.loi.adoptee{opacity:.55}
+#vue-lois .loi > *{margin:0}
+#vue-lois .loi h3{font:400 1.35rem var(--serif);margin:0;line-height:1.15;color:inherit;text-transform:none;letter-spacing:0}
+#vue-lois .loi .bouton{margin-top:.3rem}
+.sous-loi{margin:0;color:var(--dorure-pale);font-size:.9rem;line-height:1.3}
+.tete-loi{display:flex;justify-content:space-between;align-items:center;gap:.6rem;font-size:.8rem}
+.frequence-loi{text-transform:uppercase;letter-spacing:.06em;opacity:.8}
+.etoiles-loi{color:var(--teinte-loi);letter-spacing:.1em}
+.etoiles-loi i{font-style:normal;opacity:.25}
+.depot-loi{margin:.2rem 0 0;font-size:.92rem}
+.conditions-loi{list-style:none;margin:0;padding:0;display:grid;gap:.2rem;font-size:.92rem;line-height:1.3}
+.conditions-loi li{padding-left:1rem;position:relative}
+.conditions-loi li::before{content:"•";position:absolute;left:.2rem;color:var(--teinte-loi)}
+.gains-loi{display:flex;flex-wrap:wrap;gap:.35rem;margin:.2rem 0}
+.gain-loi{font-size:.85rem;padding:.2rem .55rem;border-radius:999px;background:rgba(201,162,74,.16);border:1px solid rgba(201,162,74,.4);line-height:1.3}
+.gain-loi.gain-choix{background:rgba(192,138,224,.16);border-color:rgba(192,138,224,.5)}
+.statut-loi{margin:.1rem 0 .2rem;font-size:.86rem;line-height:1.35}
+.statut-loi.pret{color:#7fd39a}.statut-loi.fait{color:#7fd39a}.statut-loi.manque{color:#e8b46a}
+.loi .bouton{margin-top:auto;align-self:flex-start}
+.entete-loi{border-radius:14px;padding:.9rem 1rem;margin:0 0 .8rem;border:1px solid rgba(201,162,74,.4);border-top:5px solid var(--teinte-loi);background:rgba(46,7,16,.6)}
+.entete-loi h2{font:400 1.7rem var(--serif);line-height:1.15}
+.entete-loi{display:flex;flex-direction:column;gap:.3rem}
+#vue-lois .entete-loi > *{margin:0}
+#vue-lois .entete-loi .retour-loi{align-self:flex-start;margin:0 0 .2rem}
+.retour-loi{display:inline-block;margin-bottom:.4rem}
+.avancement-loi{display:flex;flex-wrap:wrap;gap:.5rem;margin:0 0 .8rem}
+.avancement-loi span{flex:1 1 6rem;text-align:center;padding:.45rem .3rem;border-radius:10px;background:rgba(201,162,74,.12);font-size:.85rem}
+.avancement-loi b{display:block;font-size:1.15rem}
+.conditions-suivi{list-style:none;margin:0;padding:0;display:grid;gap:.5rem}
+.conditions-suivi li{display:grid;grid-template-columns:3.4rem minmax(0,1fr) auto;gap:.6rem;align-items:center}
+.conditions-suivi .coche{text-align:center;padding:.25rem 0;border-radius:8px;background:rgba(201,162,74,.15);font-weight:600}
+.conditions-suivi li.remplie .coche{background:#3f8f5a;color:#fff}
+.conditions-suivi .txt{line-height:1.3}
+.conditions-suivi small{display:block;opacity:.7;font-size:.78rem;margin-top:.15rem}
+.conditions-suivi .bouton{padding:.35rem .7rem;font-size:.85rem}
+.tete-cases{display:flex;justify-content:space-between;align-items:center;gap:.6rem;flex-wrap:wrap}
+.tete-cases h3{margin:0}
+.remplir-loi{width:100%;margin:0 0 .8rem}
+.cases-loi{display:grid;grid-template-columns:repeat(auto-fill,minmax(5.2rem,1fr));gap:.7rem .5rem;margin:.7rem 0 .3rem}
+.case-loi{position:relative;display:grid;justify-items:center;align-content:start;gap:.2rem;text-align:center;font-size:.72rem;line-height:1.2;min-height:7rem}
+.case-loi.libre{border:2px dashed rgba(201,162,74,.45);border-radius:10px;background:none;color:inherit;font:inherit;font-size:.8rem;cursor:pointer;align-content:center;padding:.4rem}
+.case-loi.libre span{font-size:1.6rem;color:var(--dorure)}
+.nom-case{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;width:100%}
+.alerte-case{color:#e8a06a;font-size:.68rem}.ok-case{color:#7fd39a;font-size:.68rem}
+.case-loi .vider{position:absolute;top:-.45rem;right:.1rem;width:1.5rem;height:1.5rem;padding:0;font-size:.9rem;line-height:1}
+:root[data-theme="clair"] :is(.loi,.entete-loi,.mode-emploi-loi){background:rgba(255,255,255,.75);border-color:rgba(92,16,32,.22)}
+:root[data-theme="clair"] :is(.loi,.entete-loi){border-top-color:var(--teinte-loi)}
+:root[data-theme="clair"] .d1{--teinte-loi:#2e8a52}:root[data-theme="clair"] .d2{--teinte-loi:#a87a14}:root[data-theme="clair"] .d3{--teinte-loi:#b8402e}:root[data-theme="clair"] .d4{--teinte-loi:#7a3aa8}
+:root[data-theme="clair"] .statut-loi.pret,:root[data-theme="clair"] .statut-loi.fait,:root[data-theme="clair"] .ok-case{color:#226b3c}
+:root[data-theme="clair"] .statut-loi.manque,:root[data-theme="clair"] .alerte-case{color:#9a5a12}
+:root[data-theme="clair"] .avancement-loi span{background:rgba(122,90,30,.1)}
 /* Partie entre amis : à qui le tour, présence en direct, rappel hors de la partie */
 .tour-gouv{display:grid;gap:.25rem;margin:.7rem 0;padding:.75rem .9rem;border-radius:12px;border:1px solid rgba(201,162,74,.45);background:rgba(46,7,16,.6)}
 .tour-gouv b{font:400 1.25rem var(--serif)}
@@ -2754,73 +2796,106 @@ document.getElementById("choix-carte").addEventListener("click", e => {
 
 /* ---------- Propositions de loi ---------- */
 // Défis d'échange (demande de l'utilisateur, novembre 2026, sur le modèle des « SBC » de FIFA ; règles : regles.js,
-// adopterLoi) : la liste des lois du jour, puis la composition d'une loi, condition par condition ; « Remplir pour moi »
-// prend d'abord les doubles et évite favoris, cartes gardées et vitrine ; les cartes déposées quittent l'hémicycle
-let loiEnCours = null;
-const DIFFICULTES_LOI = {permanente: "Chaque jour", facile: "Facile", moyenne: "Moyenne", difficile: "Difficile", semaine: "De la semaine"};
-const recompenseLoi = r => [r.paquets ? pluriel(r.paquets, "paquet") : "", r.voix ? pluriel(r.voix, "voix", "voix") : "", r.choix ? r.choix.titre : ""].filter(Boolean).join(" + ");
+// adopterLoi). Présentation refaite (même demande : plus accessible, plus claire, plus belle, sans texte tronqué) : mode
+// d'emploi en trois étapes, lois rangées par thème, chacune avec sa difficulté, ses récompenses et ce qui manque ; à
+// l'ouverture, des cases à remplir, les conditions cochées au fur et à mesure, « Remplir pour moi » (doubles d'abord,
+// favoris, cartes gardées et vitrine en dernier)
+let loiEnCours = null, themeLois = "tous";
+const etoilesLoi = n => `<span class="etoiles-loi" aria-label="Difficulté ${n} sur 4">${"★".repeat(n)}<i>${"★".repeat(4 - n)}</i></span>`;
+const frequenceLoi = l => l.frequence === "finances" ? (l.adoptee ? "Revenez demain" : `${l.restantes} fois encore aujourd'hui`) : l.frequence === "semaine" ? "Cette semaine" : "Aujourd'hui";
+const pastillesRecompense = r => [r.paquets ? `<span class="gain-loi">📦 ${pluriel(r.paquets, "paquet")}</span>` : "", r.voix ? `<span class="gain-loi">🗳 ${pluriel(r.voix, "voix", "voix")}</span>` : "",
+  r.choix ? `<span class="gain-loi gain-choix">🃏 ${echapper(r.choix.titre)}</span>` : ""].join("");
 const aEviter = () => new Set([...(etat.favoris || []), ...(etat.gardes || []), ...((compte && compte.vitrine) || [])].map(String));
+const lotEnAttente = () => etat.quotidien && etat.quotidien.gouv && etat.quotidien.gouv.lot;
 function majLois(){
   const zone = document.getElementById("vue-lois"); if (!zone || !cat || !compte) return;
   const lois = Regles.etatLois(etat, cat);
   if (loiEnCours) { const l = lois.find(x => x.cle === loiEnCours.cle); if (l && !l.adoptee) { zone.innerHTML = htmlComposerLoi(l); return; } loiEnCours = null; }
+  const lot = lotEnAttente();
+  const filtres = [["tous", "Toutes"], ...Regles.THEMES_LOI];
+  const carte = l => {
+    const m = l.adoptee ? null : Regles.manquesLoi(etat, cat, l);
+    const etatLigne = l.adoptee ? `<p class="statut-loi fait">✓ Adoptée${l.frequence === "finances" ? " trois fois aujourd'hui" : ""}</p>`
+      : m.pret ? `<p class="statut-loi pret">✓ Vous avez les cartes nécessaires</p>`
+      : `<p class="statut-loi manque">Il vous manque : ${m.manques.length ? echapper(m.manques.map(x => x.manque + " × " + x.libelle.replace(/^\d+ /, "")).join(", ")) : "quelques cartes pour la note"}. <button class="lien-carte" data-buvette-loi>Chercher à la buvette</button></p>`;
+    return `<li class="loi d${l.difficulte}${l.adoptee ? " adoptee" : ""}">
+      <div class="tete-loi"><span class="frequence-loi">${frequenceLoi(l)}</span>${etoilesLoi(l.difficulte)}</div>
+      <h3>${echapper(l.nom)}</h3><p class="sous-loi">${echapper(l.sousTitre)}</p>
+      <p class="depot-loi">Déposez <b>${pluriel(l.taille, "carte")}</b> :</p>
+      <ul class="conditions-loi">${l.conditions.map(c => `<li>${echapper(c.libelle)}</li>`).join("")}${l.taille > l.conditions.reduce((t, c) => t + c.n, 0) ? `<li>${l.taille - l.conditions.reduce((t, c) => t + c.n, 0)} au choix</li>` : ""}</ul>
+      <div class="gains-loi">${pastillesRecompense(l.recompense)}</div>
+      ${etatLigne}
+      ${l.adoptee ? "" : `<button class="bouton${m.pret ? "" : " discret"}" data-composer-loi="${echapper(l.cle)}">${m.pret ? "Faire adopter" : "Voir la loi"}</button>`}</li>`;
+  };
+  const visibles = lois.filter(l => themeLois === "tous" || l.theme === themeLois);
   zone.innerHTML = `<div class="tete-gouv"><h2 class="titre-gouv">Propositions de loi</h2></div>
-    <p class="note">Faites adopter une loi en déposant des cartes qui remplissent ses conditions. Les cartes déposées quittent votre hémicycle ; plus la loi est difficile, plus la récompense est belle. Les cartes qui manquent se trouvent à la buvette.</p>
-    <ul class="lois">${lois.map(l => {
-      const faisable = !l.adoptee && Regles.remplirLoi(etat, cat, l, aEviter());
-      return `<li class="loi d-${l.difficulte}${l.adoptee ? " adoptee" : ""}"><div class="tete-loi"><b>${echapper(l.nom)}</b><span class="badge-loi">${DIFFICULTES_LOI[l.difficulte]}</span></div>
-        <p class="note">${echapper(l.expose)}</p>
-        <ul class="conditions-loi">${l.conditions.map(c => `<li>${echapper(c.libelle)}</li>`).join("")}<li>${pluriel(l.taille, "carte")} en tout${l.noteMin ? `, note ${l.noteMin} ou plus` : ""}</li></ul>
-        <p class="recompense-loi">Récompense : <b>${echapper(recompenseLoi(l.recompense))}</b></p>
-        ${l.adoptee ? `<p class="note">${l.cle === "finances" ? "Adoptée trois fois aujourd'hui : revenez demain." : "Loi adoptée."}</p>`
-          : `<div class="gestes-ami"><button class="bouton" data-composer-loi="${echapper(l.cle)}">Composer</button>${l.restantes !== null ? `<span class="note">encore ${l.restantes} fois aujourd'hui</span>` : ""}${faisable ? "" : `<span class="note">Il vous manque des cartes : <button class="lien-carte" data-buvette-loi>cherchez-les à la buvette</button></span>`}</div>`}</li>`;
-    }).join("")}</ul>`;
+    <details class="mode-emploi-loi" ${(() => { try { return localStorage.getItem("hemicycle-lois-vu"); } catch (_) { return "1"; } })() ? "" : "open"}><summary>Comment ça marche ?</summary>
+      <ol><li><b>Choisissez une loi.</b> Chacune demande des cartes précises : une époque, un département, des sénateurs, des femmes…</li>
+        <li><b>Déposez les cartes demandées.</b> « Remplir pour moi » prend d'abord vos doubles. Les cartes déposées quittent votre hémicycle.</li>
+        <li><b>La loi est adoptée.</b> Vous recevez sa récompense : voix, paquets ou une carte à choisir. Plus la loi est difficile (★), plus la récompense est belle.</li></ol>
+      <p class="note">Une carte vous manque ? Cherchez-la au comptoir de la buvette, ou demandez-la à un ami.</p></details>
+    ${lot ? `<div class="tour-gouv a-vous"><b>Une carte vous attend</b><span>Choisissez-la avant de faire adopter une autre loi qui en offre une.</span><button class="bouton" data-lot-loi>Choisir ma carte</button></div>` : ""}
+    <div class="filtres-loi" role="tablist">${filtres.map(([k, t]) => `<button role="tab" aria-selected="${themeLois === k}" data-theme-loi="${k}">${t}</button>`).join("")}</div>
+    ${Regles.THEMES_LOI.filter(([k]) => visibles.some(l => l.theme === k)).map(([k, t]) => `<h3 class="theme-loi">${t}</h3><ul class="lois">${visibles.filter(l => l.theme === k).map(carte).join("")}</ul>`).join("")}`;
+  try { localStorage.setItem("hemicycle-lois-vu", "1"); } catch (_) {}
 }
 function htmlComposerLoi(l){
   const ids = loiEnCours.ids, v = Regles.verifierLoi(cat, l, ids), eviter = aEviter();
-  const derniers = ids.filter(id => (etat.possedees[id] || 0) - ids.filter(x => x === id).length <= 0);
-  return `<div class="tete-gouv"><h2 class="titre-gouv">${echapper(l.nom)}</h2><button class="bouton discret" data-fermer-loi>Retour aux lois</button></div>
-    <p class="note">${echapper(l.expose)} Récompense : <b>${echapper(recompenseLoi(l.recompense))}</b>.</p>
-    <div class="bloc-gouv"><h3>Conditions d'adoption</h3><ul class="conditions-loi suivi">
-      ${v.conditions.map((c, k) => `<li class="${c.ont >= c.n ? "remplie" : ""}"><span>${c.ont >= c.n ? "✓" : `${c.ont}/${c.n}`}</span>${echapper(c.libelle)}${c.ont < c.n && ids.length < l.taille ? `<button class="lien-carte" data-ajout-loi="${k}">Ajouter</button>` : ""}</li>`).join("")}
-      <li class="${ids.length === l.taille ? "remplie" : ""}"><span>${ids.length}/${l.taille}</span>cartes déposées${ids.length < l.taille ? `<button class="lien-carte" data-ajout-loi="libre">Ajouter une carte</button>` : ""}</li>
-      ${l.noteMin ? `<li class="${v.note >= l.noteMin ? "remplie" : ""}"><span>${v.note}/${l.noteMin}</span>note (commune 1, peu commune 2, rare 4, épique 8, légendaire 15, mythique 25)</li>` : ""}
+  const dernier = (id, i) => (etat.possedees[id] || 0) - ids.slice(0, i + 1).filter(x => x === id).length <= 0;
+  const cases = Array.from({length: l.taille}, (_, i) => ids[i] !== undefined
+    ? `<div class="case-loi pleine">${miniature(ids[i])}<span class="nom-case">${echapper(cat.parId[ids[i]]?.nom || "")}</span>${eviter.has(String(ids[i])) ? `<span class="alerte-case">favori ou gardée</span>` : dernier(ids[i], i) ? `<span class="alerte-case">dernier exemplaire</span>` : `<span class="ok-case">double</span>`}<button class="vider" data-retirer-loi="${i}" aria-label="Retirer">×</button></div>`
+    : `<button class="case-loi libre" data-ajout-loi="auto"><span>+</span>Ajouter</button>`).join("");
+  const conditionsOk = v.conditions.filter(c => c.ont >= c.n).length;
+  return `<div class="entete-loi d${l.difficulte}"><button class="lien-carte retour-loi" data-fermer-loi>← Toutes les lois</button>
+      <div class="tete-loi"><span class="frequence-loi">${frequenceLoi(l)}</span>${etoilesLoi(l.difficulte)}</div>
+      <h2>${echapper(l.nom)}</h2><p class="sous-loi">${echapper(l.sousTitre)}</p><p>${echapper(l.expose)}</p>
+      <div class="gains-loi">${pastillesRecompense(l.recompense)}</div></div>
+    <div class="avancement-loi" data-avancement><span><b>${ids.length}/${l.taille}</b> cartes</span><span><b>${conditionsOk}/${v.conditions.length}</b> conditions</span>${l.noteMin ? `<span><b>${v.note}/${l.noteMin}</b> note</span>` : ""}</div>
+    ${ids.length < l.taille ? `<button class="bouton remplir-loi" data-remplir-loi>Remplir pour moi</button>` : ""}
+    <div class="bloc-gouv"><h3>Conditions</h3><ul class="conditions-suivi">
+      ${v.conditions.map((c, k) => `<li class="${c.ont >= c.n ? "remplie" : ""}"><span class="coche">${c.ont >= c.n ? "✓" : `${c.ont}/${c.n}`}</span><span class="txt">${echapper(c.libelle)}</span>${c.ont < c.n && ids.length < l.taille ? `<button class="bouton discret" data-ajout-loi="${k}">Choisir</button>` : ""}</li>`).join("")}
+      ${l.noteMin ? `<li class="${v.note >= l.noteMin ? "remplie" : ""}"><span class="coche">${v.note >= l.noteMin ? "✓" : `${v.note}/${l.noteMin}`}</span><span class="txt">Note de ${l.noteMin} ou plus<small>Chaque carte compte selon sa rareté : commune 1, peu commune 2, rare 4, épique 8, légendaire 15, mythique 25.</small></span></li>` : ""}
     </ul></div>
-    <div class="bloc-gouv"><h3>Cartes déposées</h3>${ids.length ? `<div class="cosignataires">${ids.map((id, i) => `<span class="cosig">${miniature(id)}<button class="vider" data-retirer-loi="${i}" aria-label="Retirer">×</button>${eviter.has(String(id)) ? `<i>favori ou gardée</i>` : derniers.includes(id) ? `<i>dernier exemplaire</i>` : ""}</span>`).join("")}</div>` : `<p class="note">Aucune pour l'instant.</p>`}
-      <div class="gestes-ami"><button class="bouton discret" data-remplir-loi>Remplir pour moi</button>${ids.length ? `<button class="lien-carte" data-vider-loi>Tout retirer</button>` : ""}</div></div>
-    <div class="barre-envoi"><span class="quoi"><b>${v.ok ? "Prête à être adoptée" : "Conditions non remplies"}</b>${pluriel(ids.length, "carte")} quitteront votre hémicycle</span><button class="bouton" data-adopter-loi ${v.ok ? "" : "disabled"}>Faire adopter</button></div>`;
+    <div class="bloc-gouv"><div class="tete-cases"><h3>Cartes déposées</h3>${ids.length === l.taille ? `<button class="bouton discret" data-remplir-loi>Remplir autrement</button>` : ""}</div>
+      <div class="cases-loi">${cases}</div>
+      ${ids.length ? `<p><button class="lien-carte" data-vider-loi>Tout retirer</button></p>` : ""}</div>
+    <div class="barre-envoi"><span class="quoi"><b>${v.ok ? "Prête à être adoptée" : "Pas encore prête"}</b>${v.ok ? `${pluriel(ids.length, "carte")} quitteront votre hémicycle` : "Remplissez toutes les conditions"}</span><button class="bouton" data-adopter-loi ${v.ok ? "" : "disabled"}>Faire adopter</button></div>`;
 }
+// Ajouter une carte : pour une condition donnée, ou (case vide) pour la première condition non remplie, sinon n'importe laquelle
 function ajouterCosignataire(l, k){
-  const q = k === "libre" ? null : l.conditions[Number(k)];
+  const v = Regles.verifierLoi(cat, l, loiEnCours.ids);
+  const q = k === "auto" ? v.conditions.find(c => c.ont < c.n) || null : l.conditions[Number(k)];
   const pris = {}; for (const id of loiEnCours.ids) pris[id] = (pris[id] || 0) + 1;
   const entrees = Object.keys(etat.possedees).filter(id => cat.parId[id] && (!q || Regles.remplit(cat, cat.parId[id], q.quoi)))
-    .map(id => [id, Regles.disponibles(etat, id) - (pris[id] || 0)]).filter(([, n]) => n > 0)
-    .map(([id, n]) => [id, n, null]);
-  choisirCarte(q ? `Ajouter : ${q.libelle}` : "Ajouter une carte", entrees, id => { loiEnCours.ids.push(id); majLois(); });
+    .map(id => [id, Regles.disponibles(etat, id) - (pris[id] || 0)]).filter(([, n]) => n > 0).map(([id, n]) => [id, n, null]);
+  choisirCarte(q ? `Choisir : ${q.libelle}` : "Choisir une carte au choix", entrees, id => { loiEnCours.ids.push(id); majLois(); });
 }
 document.getElementById("vue-lois").addEventListener("click", e => {
   const b = sel => e.target.closest(sel), lois = Regles.etatLois(etat, cat), l = loiEnCours && lois.find(x => x.cle === loiEnCours.cle);
+  if (b("[data-theme-loi]")) { themeLois = b("[data-theme-loi]").dataset.themeLoi; majLois(); return; }
+  if (b("[data-lot-loi]")) { const lot = lotEnAttente(); if (lot) choisirCarteSerie(lot.cartes); return; }
   if (b("[data-composer-loi]")) { loiEnCours = {cle: b("[data-composer-loi]").dataset.composerLoi, ids: []}; majLois(); window.scrollTo({top: 0}); return; }
   if (b("[data-buvette-loi]")) { allerA("buvette"); return; }
-  if (b("[data-fermer-loi]")) { loiEnCours = null; majLois(); return; }
+  if (b("[data-fermer-loi]")) { loiEnCours = null; majLois(); window.scrollTo({top: 0}); return; }
   if (!l) return;
   if (b("[data-ajout-loi]")) { ajouterCosignataire(l, b("[data-ajout-loi]").dataset.ajoutLoi); return; }
   if (b("[data-retirer-loi]")) { loiEnCours.ids.splice(Number(b("[data-retirer-loi]").dataset.retirerLoi), 1); majLois(); return; }
   if (b("[data-vider-loi]")) { loiEnCours.ids = []; majLois(); return; }
   if (b("[data-remplir-loi]")) {
     const ids = Regles.remplirLoi(etat, cat, l, aEviter());
-    if (!ids) { signaler("Votre collection ne suffit pas pour cette loi : cherchez les cartes qui manquent à la buvette."); return; }
+    if (!ids) { signaler("Votre collection ne suffit pas encore pour cette loi : cherchez les cartes qui manquent à la buvette."); return; }
     loiEnCours.ids = ids; majLois(); return;
   }
   if (b("[data-adopter-loi]")) {
+    if (l.recompense.choix && lotEnAttente()) { signaler("Choisissez d'abord la carte qui vous attend."); choisirCarteSerie(lotEnAttente().cartes); return; }
     const ids = loiEnCours.ids, eviter = aEviter();
-    const sensibles = ids.filter(id => eviter.has(String(id)) || (etat.possedees[id] || 0) - ids.filter(x => x === id).length <= 0).length;
+    const sensibles = ids.filter((id, i) => eviter.has(String(id)) || (etat.possedees[id] || 0) - ids.slice(0, i + 1).filter(x => x === id).length <= 0).length;
     if (!confirm(`Faire adopter « ${l.nom} » ? ${pluriel(ids.length, "carte")} quitteront votre hémicycle${sensibles ? `, dont ${pluriel(sensibles, "dernier exemplaire ou favori", "derniers exemplaires ou favoris")}` : ""}.`)) return;
     occupe(b("[data-adopter-loi]"), async () => {
       const r = await appel("lois", {loi: l.cle, cartes: ids});
-      loiEnCours = null; majTout(); majLois();
+      loiEnCours = null; majTout(); majLois(); window.scrollTo({top: 0});
       const g = r.resultat;
-      signaler(`Loi adoptée : ${[gainTexte(g), g.choix ? "une carte à choisir" : ""].filter(Boolean).join(" et ")}.`);
+      signaler(`Loi adoptée ! Vous recevez ${[gainTexte(g), g.choix ? "une carte à choisir" : ""].filter(Boolean).join(" et ")}.`);
       if (g.choix) choisirCarteSerie(g.choix);
     });
   }

@@ -309,7 +309,9 @@ const sx = Date.now().toString(36).slice(-4);
   }
   // Propositions de loi (serveur local avec LOIS_OUVERTES) : liste, composition, remplissage, adoption si possible
   await vers(A, "lois"); await A.waitForSelector("#vue-lois .loi");
-  assert.strictEqual(await A.locator("#vue-lois .loi").count(), 5);
+  assert.ok(await A.locator("#vue-lois .loi").count() >= 15, "lois rangées par thème");
+  await A.click('#vue-lois [data-theme-loi="epoques"]'); assert.ok(await A.locator("#vue-lois .loi").count() >= 5);
+  await A.click('#vue-lois [data-theme-loi="tous"]');
   await A.screenshot({path: T + "/lois.png", fullPage: true});
   await A.click('#vue-lois [data-composer-loi="finances"]'); await A.waitForSelector("#vue-lois [data-remplir-loi]");
   await A.click("#vue-lois [data-remplir-loi]");

@@ -639,8 +639,10 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
   // législature, chambre, femmes, rareté, Compagnons ou Quatre-vingts) et une « note » minimale (somme des valeurs de
   // rareté, NOTE_LOI). Les cartes déposées quittent l'hémicycle ; la récompense croît avec la difficulté. L'idée : garder
   // ses cartes plutôt que les dissoudre, et chercher à la buvette celles qui manquent.
-  // Chaque jour, trois lois (ordinaire, régionale, organique) ; chaque semaine, une loi constitutionnelle ; toujours, la loi
-  // de finances (dix communes ou peu communes contre un paquet, trois fois par jour), qui prend les doubles.
+  // Lois rangées par thème (demande de l'utilisateur, novembre 2026 : plus de défis, mieux organisés, de meilleures
+  // récompenses) : chaque jour, la loi de finances (trois fois) et trois lois tirées de la date (ordinaire, régionale,
+  // organique) ; chaque semaine, une loi par époque, quatre lois d'institutions, trois de grandes figures et la loi
+  // constitutionnelle. Difficulté de 1 à 4 ; récompenses croissantes (voix, paquets, carte à choisir).
   const NOTE_LOI = {commune: 1, "peu-commune": 2, rare: 4, epique: 8, "hors-categorie": 15, legendaire: 15, mythique: 25, unique: 40};
   const RARES_OU_MIEUX = ["rare", "epique", "hors-categorie", "legendaire", "mythique", "unique"];
   const FINANCES_JOUR = 3;
@@ -650,11 +652,20 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
   }
   const libelleCondition = (cat, q, n) => {
     const s = n > 1 ? "s" : "";
-    if (q.epoque) return `${n} de l'époque « ${q.epoque} »`;
-    if (q.objectif) return `${n} de « ${(cat.objectifParId[q.objectif] || {}).titre || q.objectif} »`;
+    if (q.epoque) return `${n} ${n > 1 ? "élus" : "élu"} de l'époque « ${q.epoque} »`;
+    if (q.objectif) {
+      const o = cat.objectifParId[q.objectif] || {}, elus = n > 1 ? "élus" : "élu";
+      if (o.famille === "legislature") return `${n} ${elus} de cette législature`;
+      if (o.famille === "departement") return `${n} ${elus} de ${o.titre}`;
+      if (q.objectif === "compagnons") return n > 1 ? `${n} Compagnons de la Libération` : "1 Compagnon de la Libération";
+      if (q.objectif === "quatre-vingts") return n > 1 ? `${n} des Quatre-vingts` : "1 des Quatre-vingts";
+      if (q.objectif === "presidents-assemblee") return n > 1 ? `${n} présidents de l'Assemblée` : "1 président de l'Assemblée";
+      return `${n} de « ${o.titre || q.objectif} »`;
+    }
     if (q.sexe) return `${n} femme${s}`;
     if (q.chambre === "S") return n > 1 ? `${n} sénateurs ou sénatrices` : "1 sénateur ou sénatrice";
     if (q.chambre === "G") return `${n} membre${s} du Gouvernement`;
+    if (q.actuel) return n > 1 ? `${n} élus ou ministres en exercice` : "1 élu ou ministre en exercice";
     if (q.rarete) return `${n} ${q.rarete.includes("commune") ? `commune${s} ou peu commune${s}` : q.rarete[0] === "legendaire" ? `légendaire${s} ou mieux` : q.rarete[0] === "epique" ? `épique${s} ou mieux` : `rare${s} ou mieux`}`;
     return String(n);
   };
@@ -663,36 +674,69 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
     if (q.epoque) return carte.epoque === q.epoque;
     if (q.sexe) return carte.sexe === q.sexe;
     if (q.chambre) return (carte.chambres || "").includes(q.chambre);
+    if (q.actuel) return !!carte.actuel;
     if (q.rarete) return q.rarete.includes(carte.rarete);
     if (q.objectif) { const o = cat.objectifParId[q.objectif]; if (!o) return false; o.ensemble ||= new Set(o.ids.map(String)); return o.ensemble.has(String(carte.id)); }
     return false;
   }
-  function loi(cat, cle, nom, difficulte, expose, taille, conditions, noteMin, recompense) {
-    return {cle, nom, difficulte, expose, taille, noteMin, recompense,
-            conditions: conditions.map(c => ({...c, libelle: libelleCondition(cat, c.quoi, c.n)}))};
+  const RARE_CHOIX = {choix: 3, raretes: ["rare", "epique", "legendaire", "mythique"], titre: "1 carte rare ou mieux à choisir"};
+  const EPIQUE_CHOIX = {choix: 3, raretes: ["epique", "legendaire", "mythique"], titre: "1 carte épique ou mieux à choisir"};
+  const LEGENDAIRE_CHOIX = {choix: 3, raretes: ["legendaire", "mythique"], titre: "1 carte légendaire ou mieux à choisir"};
+  const THEMES_LOI = [["jour", "Lois du jour"], ["epoques", "Lois d'époque"], ["institutions", "Institutions"], ["figures", "Grandes figures"], ["constitution", "Loi constitutionnelle"]];
+  function loi(cat, o) {
+    return {...o, conditions: o.conditions.map(c => ({...c, libelle: libelleCondition(cat, c.quoi, c.n)}))};
   }
   function loisDuJour(cat, jour = jourDuJeu()) {
     if (cat.lois && cat.lois.jour === jour) return cat.lois.liste;
-    const h = hasard(graineDe("lois|" + jour)), hs = hasard(graineDe("loi-semaine|" + semaineDuJeu(jour)));
+    const sem = semaineDuJeu(jour), h = hasard(graineDe("lois|" + jour)), hs = hasard(graineDe("loi-semaine|" + sem));
     const pris = (l, a) => l[Math.floor(a() * l.length)];
-    const epoques = [...new Set(cat.cartes.map(c => c.epoque).filter(Boolean))].sort();
+    const epoques = [...new Set(cat.cartes.map(c => c.epoque).filter(Boolean))].sort((a, b) => ORDRE_EPOQUES.indexOf(a) - ORDRE_EPOQUES.indexOf(b));
     const deps = cat.objectifs.filter(o => o.famille === "departement" && o.total >= 60);
     const legs = cat.objectifs.filter(o => o.famille === "legislature" && o.total >= 300);
-    const e1 = pris(epoques, h), dep = pris(deps, h), leg = pris(legs, h);
-    const e2 = pris(epoques, hs), hist = pris(cat.objectifs.filter(o => o.famille === "historique"), hs);
+    const e1 = pris(epoques, h), dep = pris(deps, h), leg = pris(legs, h), e2 = pris(epoques, hs);
+    const hist = pris(cat.objectifs.filter(o => o.famille === "historique"), hs);
+    const objectif = id => cat.objectifParId[id];
+    // époques rares : moins de cartes à réunir
+    const parEpoque = {"Ve République": 5, "IIIe République": 5, "Révolution et Empire": 5, "Monarchies constitutionnelles": 4,
+                       "IIe République et Second Empire": 3, "Libération et IVe République": 3};
     const liste = [
-      loi(cat, "finances", "Loi de finances", "permanente", "Dix cartes communes ou peu communes, doubles bienvenus, contre un paquet. Trois fois par jour.",
-        10, [{n: 10, quoi: {rarete: ["commune", "peu-commune"]}}], 0, {paquets: 1}),
-      loi(cat, `ordinaire:${jour}`, "Loi ordinaire", "facile", `Une loi d'histoire parlementaire : des élus de l'époque « ${e1} ».`,
-        5, [{n: 3, quoi: {epoque: e1}}], 8, {voix: 30}),
-      loi(cat, `regionale:${jour}`, `Loi régionale : ${dep.titre}`, "moyenne", `Les élus de ${dep.titre} cosignent, avec au moins une femme.`,
-        6, [{n: 3, quoi: {objectif: dep.id}}, {n: 1, quoi: {sexe: "F"}}], 16, {paquets: 2}),
-      loi(cat, `organique:${jour}`, "Loi organique", "difficile", `Une loi qui touche aux institutions : des élus de « ${leg.titre} », des deux chambres et du Gouvernement.`,
-        8, [{n: 2, quoi: {objectif: leg.id}}, {n: 2, quoi: {chambre: "S"}}, {n: 1, quoi: {chambre: "G"}}, {n: 2, quoi: {rarete: RARES_OU_MIEUX}}], 32,
-        {paquets: 1, choix: {choix: 3, raretes: ["epique", "legendaire", "mythique"], titre: "une carte parmi 3 épiques ou mieux"}}),
-      loi(cat, `constitutionnelle:${semaineDuJeu(jour)}`, "Loi constitutionnelle", "semaine", `La grande loi de la semaine : ${hist.titre}, l'époque « ${e2} », des femmes et une grande figure.`,
-        11, [{n: 2, quoi: {objectif: hist.id}}, {n: 3, quoi: {epoque: e2}}, {n: 2, quoi: {sexe: "F"}}, {n: 1, quoi: {rarete: ["legendaire", "mythique", "unique", "hors-categorie"]}}], 70,
-        {paquets: 2, choix: {choix: 3, raretes: ["legendaire", "mythique"], titre: "une carte parmi 3 légendaires ou mieux"}}),
+      loi(cat, {cle: "finances", theme: "jour", frequence: "finances", difficulte: 1, nom: "Loi de finances", sousTitre: "Vos doubles contre un paquet",
+        expose: "Déposez dix cartes communes ou peu communes, des doubles de préférence. Trois fois par jour.",
+        taille: 10, conditions: [{n: 10, quoi: {rarete: ["commune", "peu-commune"]}}], noteMin: 0, recompense: {paquets: 1}}),
+      loi(cat, {cle: `ordinaire:${jour}`, theme: "jour", frequence: "jour", difficulte: 1, nom: "Loi ordinaire", sousTitre: e1,
+        expose: `Trois élus de l'époque « ${e1} », et deux cartes au choix.`,
+        taille: 5, conditions: [{n: 3, quoi: {epoque: e1}}], noteMin: 8, recompense: {voix: 40}}),
+      loi(cat, {cle: `regionale:${jour}`, theme: "jour", frequence: "jour", difficulte: 2, nom: "Loi régionale", sousTitre: dep.titre,
+        expose: `Trois élus de ${dep.titre} et une femme, plus deux cartes au choix.`,
+        taille: 6, conditions: [{n: 3, quoi: {objectif: dep.id}}, {n: 1, quoi: {sexe: "F"}}], noteMin: 14, recompense: {paquets: 2}}),
+      loi(cat, {cle: `organique:${jour}`, theme: "jour", frequence: "jour", difficulte: 3, nom: "Loi organique", sousTitre: leg.titre,
+        expose: "Une loi sur les institutions : deux élus de cette législature, des sénateurs, un membre du Gouvernement et des cartes rares.",
+        taille: 8, conditions: [{n: 2, quoi: {objectif: leg.id}}, {n: 2, quoi: {chambre: "S"}}, {n: 1, quoi: {chambre: "G"}}, {n: 2, quoi: {rarete: RARES_OU_MIEUX}}],
+        noteMin: 30, recompense: {paquets: 2, choix: EPIQUE_CHOIX}}),
+      ...epoques.map(e => loi(cat, {cle: `epoque:${e}:${sem}`, theme: "epoques", frequence: "semaine", difficulte: parEpoque[e] <= 3 ? 3 : 2,
+        nom: "Loi d'époque", sousTitre: e, expose: `${parEpoque[e] || 4} élus de l'époque « ${e} » et une carte au choix.`,
+        taille: (parEpoque[e] || 4) + 1, conditions: [{n: parEpoque[e] || 4, quoi: {epoque: e}}], noteMin: 3 * ((parEpoque[e] || 4) + 1),
+        recompense: {paquets: 1, choix: RARE_CHOIX}})),
+      loi(cat, {cle: `senat:${sem}`, theme: "institutions", frequence: "semaine", difficulte: 2, nom: "Loi du Sénat", sousTitre: "La Haute Assemblée",
+        expose: "Quatre sénateurs ou sénatrices, dont au moins une femme parmi les cartes, et une carte au choix.",
+        taille: 6, conditions: [{n: 4, quoi: {chambre: "S"}}, {n: 1, quoi: {sexe: "F"}}], noteMin: 12, recompense: {paquets: 2}}),
+      loi(cat, {cle: `gouvernement:${sem}`, theme: "institutions", frequence: "semaine", difficulte: 2, nom: "Loi du Gouvernement", sousTitre: "Matignon et les ministères",
+        expose: "Trois membres du Gouvernement et une carte rare ou mieux.",
+        taille: 5, conditions: [{n: 3, quoi: {chambre: "G"}}, {n: 1, quoi: {rarete: RARES_OU_MIEUX}}], noteMin: 14, recompense: {paquets: 2}}),
+      loi(cat, {cle: `exercice:${sem}`, theme: "institutions", frequence: "semaine", difficulte: 2, nom: "Loi de la législature", sousTitre: "Les élus d'aujourd'hui",
+        expose: "Quatre élus ou ministres en exercice et une carte au choix.",
+        taille: 5, conditions: [{n: 4, quoi: {actuel: true}}], noteMin: 10, recompense: {paquets: 2}}),
+      loi(cat, {cle: `parite:${sem}`, theme: "institutions", frequence: "semaine", difficulte: 2, nom: "Loi sur la parité", sousTitre: "Les femmes au Parlement",
+        expose: "Quatre femmes, parlementaires ou ministres, et une carte au choix.",
+        taille: 5, conditions: [{n: 4, quoi: {sexe: "F"}}], noteMin: 10, recompense: {paquets: 1, choix: RARE_CHOIX}}),
+      ...["quatre-vingts", "compagnons", "presidents-assemblee"].filter(objectif).map(id => loi(cat, {cle: `figures:${id}:${sem}`, theme: "figures", frequence: "semaine", difficulte: 3,
+        nom: {"quatre-vingts": "Hommage aux Quatre-vingts", compagnons: "Loi de la Libération", "presidents-assemblee": "Loi du perchoir"}[id], sousTitre: objectif(id).titre,
+        expose: `Deux cartes de « ${objectif(id).titre} » et trois cartes au choix.`,
+        taille: 5, conditions: [{n: 2, quoi: {objectif: id}}], noteMin: 20, recompense: {paquets: 2, choix: EPIQUE_CHOIX}})),
+      loi(cat, {cle: `constitutionnelle:${sem}`, theme: "constitution", frequence: "semaine", difficulte: 4, nom: "Loi constitutionnelle", sousTitre: "La grande loi de la semaine",
+        expose: `${hist.titre}, l'époque « ${e2} », des femmes et une grande figure légendaire.`,
+        taille: 11, conditions: [{n: 2, quoi: {objectif: hist.id}}, {n: 3, quoi: {epoque: e2}}, {n: 2, quoi: {sexe: "F"}}, {n: 1, quoi: {rarete: ["legendaire", "mythique", "unique", "hors-categorie"]}}],
+        noteMin: 70, recompense: {paquets: 3, choix: LEGENDAIRE_CHOIX}}),
     ];
     cat.lois = {jour, liste};
     return liste;
@@ -712,8 +756,16 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
   function etatLois(etat, cat, jour = jourDuJeu()) {
     const q = quotidien(etat), s = q.lois && q.lois.jour === jour ? q.lois : {jour, faites: [], finances: 0};
     const semaine = q.loisSemaine && q.loisSemaine.semaine === semaineDuJeu(jour) ? q.loisSemaine : {semaine: semaineDuJeu(jour), faites: []};
-    return loisDuJour(cat, jour).map(l => ({...l, adoptee: l.cle === "finances" ? s.finances >= FINANCES_JOUR : s.faites.includes(l.cle) || semaine.faites.includes(l.cle),
-      restantes: l.cle === "finances" ? FINANCES_JOUR - s.finances : null}));
+    return loisDuJour(cat, jour).map(l => ({...l, adoptee: l.frequence === "finances" ? s.finances >= FINANCES_JOUR
+      : (l.frequence === "semaine" ? semaine.faites : s.faites).includes(l.cle), restantes: l.frequence === "finances" ? FINANCES_JOUR - s.finances : null}));
+  }
+  // Ce qui manque pour une loi, condition par condition (exemplaires libres, chaque condition comptée seule) : pour dire
+  // au joueur, avant d'ouvrir la loi, s'il peut l'adopter ou quoi chercher à la buvette
+  function manquesLoi(etat, cat, l) {
+    const libres = Object.keys(etat.possedees).filter(id => cat.parId[id]).map(id => [cat.parId[id], disponibles(etat, id)]).filter(([, n]) => n > 0);
+    const manques = l.conditions.map(c => ({libelle: c.libelle, manque: Math.max(0, c.n - libres.filter(([x]) => remplit(cat, x, c.quoi)).reduce((t, [, n]) => t + n, 0))}))
+      .filter(m => m.manque > 0);
+    return {manques, pret: !manques.length && !!remplirLoi(etat, cat, l)};
   }
   // Remplissage proposé (« Remplir pour moi ») : pour chaque condition, des cartes libres qui la remplissent, les doubles
   // d'abord, puis les places libres pour atteindre la note ; les cartes à éviter (favoris, gardées, vitrine) en dernier.
@@ -759,9 +811,9 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
     if (l.recompense.choix && quotidien(etat).gouv && quotidien(etat).gouv.lot) return null;
     for (const [id, n] of Object.entries(besoin)) etat.possedees[id] -= n;
     const q = quotidien(etat);
-    if (l.cle === "finances" || !l.cle.startsWith("constitutionnelle")) {
+    if (l.frequence !== "semaine") {
       if (!q.lois || q.lois.jour !== jour) q.lois = {jour, faites: [], finances: 0};
-      if (l.cle === "finances") q.lois.finances++; else q.lois.faites.push(l.cle);
+      if (l.frequence === "finances") q.lois.finances++; else q.lois.faites.push(l.cle);
     } else {
       if (!q.loisSemaine || q.loisSemaine.semaine !== semaineDuJeu(jour)) q.loisSemaine = {semaine: semaineDuJeu(jour), faites: []};
       q.loisSemaine.faites.push(l.cle);
@@ -905,7 +957,7 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
     return voix;
   }
 
-  return {VERSION_ETAT, SERIE_GOUV, serieGouv, issueSerieGouv, encaisserSerieGouv, choisirLotGouv, offrirChoixGouv, NOTE_LOI, loisDuJour, verifierLoi, etatLois, adopterLoi, remplirLoi, semaineDuJeu, remplit, basculerFavori, MAX_GARDES, garderCartes, RECHARGE_MS, QUIZ_QUESTIONS, graineDe, questions, compacterQuiz, catalogueQuiz, recompenseQuiz, validerQuiz, RESERVE_MAX, CARTES_PAR_PAQUET, reserveCourante, ORDRE, POIDS, VALEUR_RECYCLAGE, PRIX_PAQUET, PALIERS,
+  return {VERSION_ETAT, SERIE_GOUV, serieGouv, issueSerieGouv, encaisserSerieGouv, choisirLotGouv, offrirChoixGouv, NOTE_LOI, THEMES_LOI, loisDuJour, verifierLoi, etatLois, adopterLoi, remplirLoi, manquesLoi, semaineDuJeu, remplit, basculerFavori, MAX_GARDES, garderCartes, RECHARGE_MS, QUIZ_QUESTIONS, graineDe, questions, compacterQuiz, catalogueQuiz, recompenseQuiz, validerQuiz, RESERVE_MAX, CARTES_PAR_PAQUET, reserveCourante, ORDRE, POIDS, VALEUR_RECYCLAGE, PRIX_PAQUET, PALIERS,
     etatVide, migrer, jourDuJeu, normer, cartesDeJeu, catalogue, compacter, catalogueCompact, paquetsDisponibles, ouvrirPaquet,
     disponibles, recyclables, doubles, recycler, dissoudre, MAX_SELECTION, dissoudreSelection, echangerPoints, avancement, clesAtteintes, reclamer, recompensesEnAttente,
     SERIE, serieDuJour, reclamerSerie, choisirLot, objectifsDuJour, preparerJour, etatDuJour, reclamerJour};
