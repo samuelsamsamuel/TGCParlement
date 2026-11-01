@@ -235,14 +235,19 @@ console.log("série et objectifs du jour : tests passés");
   const jour = "2026-11-02", e = R.migrer({}); e.offerts = 300;
   for (let i = 0; i < 300; i++) R.ouvrirPaquet(e, cat);
   const lois = R.etatLois(e, cat, jour);
-  assert.deepStrictEqual(lois.map(l => l.difficulte), ["permanente", "facile", "moyenne", "difficile", "semaine"]);
+  assert.ok(lois.length >= 15, "lois rangées par thème");
+  assert.deepStrictEqual([...new Set(lois.map(l => l.theme))], R.THEMES_LOI.map(([k]) => k), "tous les thèmes");
+  assert.ok(lois.every(l => l.difficulte >= 1 && l.difficulte <= 4 && l.conditions.every(c => c.libelle.length < 60)), "difficulté et libellés courts");
+  // une loi de la semaine adoptée reste adoptée le lendemain, une loi du jour non
+  const sem = lois.find(l => l.frequence === "semaine" && R.remplirLoi(e, cat, l));
+  if (sem) { assert.ok(R.adopterLoi(e, cat, sem.cle, R.remplirLoi(e, cat, sem), jour)); assert.ok(R.etatLois(e, cat, "2026-11-03").find(l => l.cle === sem.cle).adoptee, "adoptée pour la semaine"); }
   assert.deepStrictEqual(R.loisDuJour(cat, jour).map(l => l.cle), R.loisDuJour(R.catalogueCompact(require("../site/serveur.json")), jour).map(l => l.cle), "mêmes lois au serveur");
   const ord = lois[1], ids = R.remplirLoi(e, cat, ord);
   assert.ok(ids && ids.length === ord.taille && R.verifierLoi(cat, ord, ids).ok, "loi ordinaire remplie");
   assert.strictEqual(R.verifierLoi(cat, ord, ids.slice(1)).ok, false, "une carte de moins");
   const avant = {...e.possedees}, voix = e.points;
   const g = R.adopterLoi(e, cat, ord.cle, ids, jour);
-  assert.deepStrictEqual(g, {voix: 30, paquets: 0, choix: null}); assert.strictEqual(e.points, voix + 30);
+  assert.deepStrictEqual(g, {voix: 40, paquets: 0, choix: null}); assert.strictEqual(e.points, voix + 40);
   for (const id of new Set(ids)) assert.strictEqual(e.possedees[id], avant[id] - ids.filter(x => x === id).length, "cartes déposées retirées");
   assert.strictEqual(R.adopterLoi(e, cat, ord.cle, R.remplirLoi(e, cat, ord) || ids, jour), null, "une fois par jour");
   assert.ok(R.etatLois(e, cat, jour)[1].adoptee);
