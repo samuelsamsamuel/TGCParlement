@@ -180,8 +180,8 @@ première exécution : 19 816 fiches, entre 180 et 650 cartes étoilées par pol
   département, législature, chambre, en exercice, femmes, rareté, Quatre-vingts, Compagnons, présidents de l'Assemblée),
   chaque carte pour une seule condition, autant de cartes que la somme des conditions ; plus de note minimale ni de place
   libre (demande de l'utilisateur, novembre 2026 : la note n'était pas claire), la valeur exigée s'écrit en conditions de
-  rareté (« 1 rare ou mieux », « 1 épique ou mieux ») ; les cartes déposées quittent l'hémicycle. Distinctions expliquées
-  sous la condition (`aideCondition` : sous-titre de l'objectif, Quatre-vingts, Compagnons, perchoir, élus en exercice) ;
+  rareté (« 1 rare ou mieux », « 1 épique ou mieux ») ; les cartes déposées quittent l'hémicycle. Seuls les Quatre-vingts sont
+  expliqués sous la condition (`aideCondition`, sous-titre de l'objectif ; demande de l'utilisateur) ;
   présentation allégée, récompenses en texte sans pictogramme (même demande). Lois rangées par
   thème (`THEMES_LOI`, même demande : plus de défis, plus clairs, de meilleures récompenses ; difficulté de 1 à 4) :
   chaque jour (`loisDuJour`, graine de la date), loi de finances (10 communes ou peu communes contre 1 paquet, trois fois),
@@ -194,9 +194,12 @@ première exécution : 19 816 fiches, entre 180 et 650 cartes étoilées par pol
   `remplirLoi` (doubles d'abord ; favoris, cartes gardées et vitrine en dernier), `manquesLoi` (ce qui manque, condition par
   condition, affiché sur la carte de la loi avec un lien vers la buvette), `adopterLoi` (`quotidien.lois` pour le jour,
   `quotidien.loisSemaine` pour la semaine ; carte à choisir par le lot de la série du Gouvernement, refusée tant qu'un lot
-  attend, bandeau « Une carte vous attend »). Interface : mode d'emploi en trois étapes (ouvert à la première visite,
-  `hemicycle-lois-vu`), filtres par thème, cartes de loi (difficulté en étoiles et liseré de couleur, récompenses en
-  pastilles, statut « Vous avez les cartes » ou « Il vous manque »), composition avec compteurs (cartes, conditions, note),
+  attend, bandeau « Une carte vous attend »). Interface : mode d'emploi en un paragraphe (ouvert à la première visite,
+  `hemicycle-lois-vu`), filtres par thème, cartes de loi ouvertes d'un toucher sur tout le rectangle (difficulté en étoiles
+  et liseré de couleur, récompenses en pastilles, statut « Vous avez les cartes » ou « Il vous manque »), composition avec
+  compteurs (conditions, cartes), choix d'une carte limité aux cartes éligibles, avec tri (rareté, score croissant ou
+  décroissant, nom, doubles d'abord) et filtres (doubles, sans favoris ni gardées, rareté, époque) communs à toute
+  fenêtre `choisirCarte` (`choix-tri`, `choix-filtre`),
   « Remplir pour moi » en tête, cases à remplir (doubles, derniers exemplaires et favoris signalés), barre d'adoption.
   Simulation (novembre 2026) : la plupart des lois faisables dès 50 paquets ; régionale 30 % à 50 paquets, 80 % à 150 ;
   grandes figures et constitutionnelle à partir de 150 environ. Route `POST /api/lois` ; vue `vue-lois` du menu Plus (onglet
