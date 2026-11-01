@@ -178,7 +178,7 @@ const preuve = c => require("crypto").createHash("sha256").update(c).digest("hex
     r = await A("lot", {carte: choix[2]}); assert.strictEqual(r.statut, 200); assert.strictEqual(r.d.etat.possedees[choix[2]], 1);
     assert.strictEqual((await A("lot", {carte: choix[0]})).statut, 409, "une carte par lot");
     // Objectifs du jour : compteurs posés en base, deux tâches réclamées une fois
-    sh(`UPDATE joueurs SET quiz = '${jour}', quotidien = json_set(quotidien, '$.compteurs', json('{"jour":"${jour}","paquets":9,"dissous":9,"objectifs":9}')) WHERE pseudo = 'alice${suffixe}'`);
+    sh(`UPDATE joueurs SET quiz = '${jour}', quotidien = json_set(quotidien, '$.compteurs', json('{"jour":"${jour}","paquets":10,"dissous":10,"nouvelles":15,"objectifs":3}')) WHERE pseudo = 'alice${suffixe}'`);
     const taches = R.objectifsDuJour(cat, jour).taches.map(t => t.cle), v1 = (await A("moi")).d.etat.points;
     for (const cle of taches) assert.strictEqual((await A("objectif-du-jour", {cle})).statut, 200, cle);
     assert.strictEqual((await A("moi")).d.etat.points, v1 + 20);
