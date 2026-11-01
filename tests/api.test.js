@@ -1,5 +1,5 @@
 /* Test de l'API sur un serveur local, à lancer depuis la racine du dépôt :
-     npx wrangler dev --port 8787 --test-scheduled --var CODE_ESSAI:1 --var ANNONCE_TOUTE_HEURE:1 --persist-to /tmp/hemicycle-d1     (dans un premier terminal)
+     npx wrangler dev --port 8787 --test-scheduled --var CODE_ESSAI:1 --var ANNONCE_TOUTE_HEURE:1 --var LOIS_OUVERTES:1 --persist-to /tmp/hemicycle-d1     (dans un premier terminal)
      WR="npx wrangler" ETAT=/tmp/hemicycle-d1 node tests/api.test.js   (dans un second)
    Il crée trois joueurs et vérifie inscription avec reprise, paquets, recyclage, marché et échanges,
    y compris des demandes simultanées (une seule doit aboutir). */
@@ -521,6 +521,21 @@ const preuve = c => require("crypto").createHash("sha256").update(c).digest("hex
   const avantLot = (await C("moi")).d.etat.possedees[r.d.gain.choix[1]] || 0;
   assert.strictEqual((await C("gouvernements/lot", {carte: r.d.gain.choix[1]})).statut, 200);
   assert.strictEqual((await C("moi")).d.etat.possedees[r.d.gain.choix[1]], avantLot + 1);
+  // Propositions de loi (--var LOIS_OUVERTES:1) : loi de finances avec dix communes données à Carole, cartes retirées,
+  // paquet offert ; deuxième dépôt des mêmes cartes refusé (plus d'exemplaire)
+  {
+    const communes = cat.parRarete.commune.slice(40, 50).map(c => String(c.id));
+    base(`WITH v(carte) AS (VALUES ${communes.map(id => `('${id}')`).join(", ")}) INSERT INTO possessions (joueur, carte, n) SELECT j.id, v.carte, 1 FROM joueurs j, v WHERE j.pseudo = '${carole}' ON CONFLICT (joueur, carte) DO UPDATE SET n = n + 1`);
+    const avantLoi = (await C("moi")).d.etat;
+    assert.strictEqual((await C("moi")).d.lois, true, "accès aux lois");
+    r = await C("lois", {loi: "finances", cartes: communes});
+    assert.strictEqual(r.statut, 200, JSON.stringify(r.d)); assert.strictEqual(r.d.resultat.paquets, 1);
+    assert.strictEqual(r.d.etat.offerts, avantLoi.offerts + 1);
+    for (const id of communes) assert.strictEqual(r.d.etat.possedees[id] || 0, (avantLoi.possedees[id] || 0) - 1, "carte déposée retirée");
+    const encore = communes.filter(id => r.d.etat.possedees[id] > 0);
+    if (encore.length < communes.length) assert.strictEqual((await C("lois", {loi: "finances", cartes: communes})).statut, 409, "cartes déjà déposées");
+    assert.strictEqual((await C("lois", {loi: "inconnue", cartes: communes})).statut, 409);
+  }
   // Prix du comptoir et attente des échanges
   r = await A("prix?carte=" + encodeURIComponent(libreA));
   assert.strictEqual(r.statut, 200); assert.ok(r.d.ventes.some(v => v.prix === 7));

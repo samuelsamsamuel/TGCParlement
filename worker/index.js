@@ -335,7 +335,7 @@ async function chargerEtat(env, joueur) {
   etat.gardes = JSON.parse(ligne.gardes || "[]");
   try { etat.quotidien = JSON.parse(ligne.quotidien || "{}"); } catch (_) { etat.quotidien = {}; }
   return {pseudo: ligne.pseudo, cree: ligne.cree, etat, version: ligne.version, vitrine: JSON.parse(ligne.vitrine || "[]"),
-          gouvernement: true};
+          gouvernement: true, lois: accesLois(env, ligne.pseudo)};
 }
 // Ajout : la ligne est créée au besoin. Retrait : simple mise à jour, car SQLite vérifie les contraintes CHECK
 // d'une insertion avant de résoudre le conflit (une insertion négative échouerait toujours). Les lignes de
@@ -1197,6 +1197,10 @@ async function annoncerGouvernement(env) {
     await notifier(env, joueur, ANNONCE_GOUV, genre).catch(e => console.error("annonce", e));
   }
 }
+// Propositions de loi (défis d'échange, novembre 2026) : réservées au compte Samsam pendant la mise au point (demande de
+// l'utilisateur), à tous avec la variable LOIS_OUVERTES (serveur local des tests)
+const TESTEURS_LOIS = ["samsam"];
+const accesLois = (env, pseudo) => !!env.LOIS_OUVERTES || TESTEURS_LOIS.includes(String(pseudo || "").toLowerCase());
 const MAX_GOUVERNEMENTS = 5, PRIX_GOUVERNEMENT = 10, MAX_PARTIES_AMIS = 20;
 // Le premier gouvernement est offert (demande de l'utilisateur, octobre 2026) ; un compte qui a déjà formé un gouvernement,
 // même supprimé depuis, paie les suivants (gouv_formes ; avant cette colonne, un gouvernement encore enregistré compte aussi)
@@ -1616,6 +1620,15 @@ async function api(requete, env, url) {
     const gain = await appliquer(env, joueur, e => Regles.encaisserSerieGouv(e, cat, Regles.jourDuJeu(), aleatoire));
     if (!gain) throw new Refus(409, "Rien à encaisser.");
     return avecEtat(gain);
+  }
+  // Propositions de loi (règles : adopterLoi) : réservées pendant la mise au point (TESTEURS_LOIS)
+  if (methode === "POST" && chemin === "/api/lois") {
+    if (!accesLois(env, await pseudoDe(env, joueur))) throw new Refus(403, "Les propositions de loi ne sont pas encore ouvertes.");
+    const c = await lireCorps(requete), cat = await catalogueDuJeu();
+    const cartes = Array.isArray(c.cartes) ? c.cartes.slice(0, 20).map(String) : [];
+    const r = await appliquer(env, joueur, e => Regles.adopterLoi(e, cat, String(c.loi || ""), cartes, Regles.jourDuJeu(), aleatoire));
+    if (!r) throw new Refus(409, "Loi non adoptée : cartes manquantes ou déjà engagées, conditions non remplies, loi déjà adoptée, ou carte à choisir en attente au jeu du Gouvernement.");
+    return avecEtat(r);
   }
   if (methode === "POST" && chemin === "/api/gouvernements/lot") {
     const c = await lireCorps(requete), cat = await catalogueDuJeu();
