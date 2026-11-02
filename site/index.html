@@ -1467,7 +1467,9 @@ function majAccesGouv(){
   document.querySelectorAll('#menu-plus [data-menu="classement"], nav .onglet-large[data-vue="classement"]').forEach(x => x.hidden = !classements);
   if (!classements && vueCourante === "classement") allerA("paquet");
 }
-function majTout(){ majAccesGouv(); majCompteur(); majCollection(); if (!decouverte) { majJournee(); majObjectifs(); } majCompte(); majBuvette(); majAmis(); majQag(); }
+// La page des lois aussi, si elle est ouverte : sans quoi le bandeau « Une carte vous attend » restait affiché après le
+// choix de la carte offerte par une loi (signalé par l'utilisateur, novembre 2026)
+function majTout(){ majAccesGouv(); majCompteur(); majCollection(); if (!decouverte) { majJournee(); majObjectifs(); } majCompte(); majBuvette(); majAmis(); majQag(); if (document.getElementById("vue-lois")?.hidden === false) majLois(); }
 // Délai lisible : « 42 min », « 1 h 05 »
 function delai(ms){ const m = Math.max(1, Math.ceil(ms / 60000)); return m < 60 ? m + " min" : Math.floor(m / 60) + " h " + String(m % 60).padStart(2, "0"); }
 // Pastilles des onglets : échanges reçus (Buvette), demandes d'ami (Amis) et duels à jouer (Duels), relues toutes les deux minutes
@@ -3004,7 +3006,7 @@ document.getElementById("vue-lois").addEventListener("keydown", e => { if ((e.ke
 document.getElementById("vue-lois").addEventListener("click", e => {
   const b = sel => e.target.closest(sel), lois = Regles.etatLois(etat, cat), l = loiEnCours && lois.find(x => x.cle === loiEnCours.cle);
   if (b("[data-theme-loi]")) { themeLois = b("[data-theme-loi]").dataset.themeLoi; majLois(); return; }
-  if (b("[data-lot-loi]")) { const lot = lotEnAttente(); if (lot) choisirCarteSerie(lot.cartes); return; }
+  if (b("[data-lot-loi]")) { const lot = lotEnAttente(); if (lot) choisirCarteSerie(lot.cartes); else majLois(); return; }
   if (b("[data-composer-loi]")) { loiEnCours = {cle: b("[data-composer-loi]").dataset.composerLoi, ids: []}; majLois(); window.scrollTo({top: 0}); return; }
   if (b("[data-buvette-loi]")) { allerA("buvette"); return; }
   if (b("[data-fermer-loi]")) { loiEnCours = null; majLois(); window.scrollTo({top: 0}); return; }
