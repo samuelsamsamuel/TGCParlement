@@ -320,6 +320,10 @@ const sx = Date.now().toString(36).slice(-4);
     const offerts = await A.evaluate(() => etat.offerts);
     await A.click("#vue-lois [data-adopter-loi]"); await A.waitForFunction(o => etat.offerts === o + 1, offerts);
   } else await A.click("#vue-lois [data-fermer-loi]");
+  // Classements (accès des testeurs, ouvert par LOIS_OUVERTES) : liste, rang d'Anne mis en avant, autre classement au choix
+  await vers(A, "classement"); await A.waitForSelector("#liste-classement li.moi");
+  await A.selectOption("#type-classement", "collection"); await A.waitForFunction(() => /carte/.test(document.querySelector("#liste-classement li.moi .valeur")?.textContent || ""));
+  await A.screenshot({path: T + "/classement.png", fullPage: true});
   // Vitrine d'Anne, faite de ses favoris, visible par Bob depuis ses amis
   await A.click('nav [data-vue="collection"]'); await A.click('#grille [data-favori]');
   await A.waitForFunction(() => etat.favoris.length === 1);
@@ -364,7 +368,7 @@ const sx = Date.now().toString(36).slice(-4);
   await vers(A, "parametres");
   await A.waitForSelector("#zone-suppression summary");
   await vers(A, "compte");
-  assert.strictEqual(await A.locator("text=Classement").count(), 0);
+  assert.strictEqual(await A.locator("#vue-compte >> text=Classement").count(), 0);
   assert.strictEqual(await A.locator("text=Ce que votre compte permet").count(), 0);
   // Code saisi dans Mon siège : voix créditées, puis refus à la seconde saisie
   require("child_process").execSync(`cd ${require("path").join(__dirname, "..")} && ${process.env.WR} d1 execute hemicycle --local --persist-to ${process.env.ETAT} --command "INSERT INTO codes (code, voix) VALUES ('ESSAI${sx}', 7)"`, {stdio: "ignore"});

@@ -1,5 +1,5 @@
 /* Test de l'API sur un serveur local, à lancer depuis la racine du dépôt :
-     npx wrangler dev --port 8787 --test-scheduled --var CODE_ESSAI:1 --var ANNONCE_TOUTE_HEURE:1 --var LOIS_OUVERTES:1 --persist-to /tmp/hemicycle-d1     (dans un premier terminal)
+     npx wrangler dev --port 8787 --test-scheduled --var CODE_ESSAI:1 --var ANNONCE_TOUTE_HEURE:1 --var LOIS_OUVERTES:1 --var CLASSEMENT_SANS_CACHE:1 --persist-to /tmp/hemicycle-d1     (dans un premier terminal)
      WR="npx wrangler" ETAT=/tmp/hemicycle-d1 node tests/api.test.js   (dans un second)
    Il crée trois joueurs et vérifie inscription avec reprise, paquets, recyclage, marché et échanges,
    y compris des demandes simultanées (une seule doit aboutir). */
@@ -538,6 +538,14 @@ const preuve = c => require("crypto").createHash("sha256").update(c).digest("hex
     const encore = communes.filter(id => r.d.etat.possedees[id] > 0);
     if (encore.length < communes.length) assert.strictEqual((await C("lois", {loi: "finances", cartes: communes})).statut, 409, "cartes déjà déposées");
     assert.strictEqual((await C("lois", {loi: "inconnue", cartes: communes})).statut, 409);
+  }
+  // Classements (--var CLASSEMENT_SANS_CACHE:1) : chiffres de la collection tenus par appliquer, rang du joueur
+  {
+    const p = await C("classements?type=prestige");
+    assert.strictEqual(p.statut, 200, JSON.stringify(p.d)); assert.ok(p.d.moi && p.d.moi.valeur > 0 && p.d.moi.rang >= 1, "Carole classée");
+    assert.ok(p.d.tete.every((x, i, t) => !i || t[i - 1].valeur >= x.valeur), "ordre décroissant");
+    for (const type of ["rares", "collection", "gouvernement", "duels", "buvette", "objectifs"]) assert.strictEqual((await C("classements?type=" + type)).statut, 200, type);
+    assert.strictEqual((await C("classements?type=inconnu")).statut, 400);
   }
   // Prix du comptoir et attente des échanges
   r = await A("prix?carte=" + encodeURIComponent(libreA));

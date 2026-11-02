@@ -233,8 +233,10 @@ console.log("tous les tests passent");
 console.log("série et objectifs du jour : tests passés");
 // Propositions de loi : conditions, remplissage, adoption (cartes retirées, récompense, une fois), loi de finances
 {
-  const jour = "2026-11-02", e = R.migrer({}); e.offerts = 300;
-  for (let i = 0; i < 300; i++) R.ouvrirPaquet(e, cat);
+  // tirages à graine fixe : la loi ordinaire (6 cartes d'une époque, dont une rare) doit être remplissable à coup sûr
+  let gl = 11; const aleaLois = () => { gl = (gl * 1664525 + 1013904223) >>> 0; return gl / 4294967296; };
+  const jour = "2026-11-02", e = R.migrer({}); e.offerts = 400;
+  for (let i = 0; i < 400; i++) R.ouvrirPaquet(e, cat, {aleatoire: aleaLois});
   const lois = R.etatLois(e, cat, jour);
   assert.ok(lois.length >= 15, "lois rangées par thème");
   assert.deepStrictEqual([...new Set(lois.map(l => l.theme))], R.THEMES_LOI.map(([k]) => k), "tous les thèmes");
@@ -261,6 +263,10 @@ console.log("série et objectifs du jour : tests passés");
   e.deposees.push(String(une)); assert.strictEqual(R.avancement(e, legs).obtenues, av + 1, "déposée : acquise pour l'objectif");
   assert.ok(e.deposees.length > 1 && ids.every(id => e.possedees[id] || e.deposees.includes(id)), "cartes de la loi notées");
   assert.deepStrictEqual(R.migrer(JSON.parse(JSON.stringify(e))).deposees, e.deposees, "gardées par migrer");
+  // « Remplir autrement » : une autre combinaison valable, différente de la précédente quand la collection le permet
+  { const l = R.etatLois(e, cat, jour).find(x => !x.adoptee && x.frequence !== "finances" && R.remplirLoi(e, cat, x));
+    const a = R.remplirLoi(e, cat, l), b = R.remplirLoi(e, cat, l, new Set(), {aleatoire: alea, precedents: a});
+    assert.ok(R.verifierLoi(cat, l, b).ok && b.join() !== a.join(), "remplir autrement"); }
   // Condition croisée : tous les critères à la fois
   const sen = cat.cartes.find(c => (c.chambres || "").includes("S") && c.sexe === "F"), dep = cat.cartes.find(c => (c.chambres || "").includes("S") && c.sexe !== "F");
   assert.ok(R.remplit(cat, sen, {chambre: "S", sexe: "F"}) && !R.remplit(cat, dep, {chambre: "S", sexe: "F"}));
