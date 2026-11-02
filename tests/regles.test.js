@@ -249,7 +249,7 @@ console.log("série et objectifs du jour : tests passés");
   assert.deepStrictEqual(["2026-11-16", "2026-11-17"].map(d => R.quinzaineDuJeu(d)), ["2026-11-03", "2026-11-17"], "quinzaine");
   const constit = l => l.find(x => x.theme === "constitution");
   assert.strictEqual(constit(R.loisDuJour(cat, "2026-11-04")).cle, constit(R.loisDuJour(cat, "2026-11-12")).cle, "même loi constitutionnelle deux semaines");
-  assert.deepStrictEqual(constit(lois).recompense, {paquets: 5, voix: 100, choix: {choix: 3, raretes: ["legendaire", "mythique"], titre: "1 carte légendaire ou mieux à choisir"}});
+  assert.deepStrictEqual(constit(lois).recompense, {paquets: 5, voix: 50, choix: {choix: 3, raretes: ["legendaire", "mythique"], titre: "1 carte légendaire ou mieux à choisir"}});
   assert.deepStrictEqual(R.loisDuJour(cat, jour).map(l => l.cle), R.loisDuJour(R.catalogueCompact(require("../site/serveur.json")), jour).map(l => l.cle), "mêmes lois au serveur");
   const ord = lois[1], ids = R.remplirLoi(e, cat, ord);
   assert.ok(ids && ids.length === ord.taille && R.verifierLoi(cat, ord, ids).ok, "loi ordinaire remplie");
