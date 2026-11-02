@@ -1270,7 +1270,7 @@ async function annoncerGouvernement(env) {
 }
 // Propositions de loi (défis d'échange, novembre 2026) : réservées au compte Samsam pendant la mise au point (demande de
 // l'utilisateur), à tous avec la variable LOIS_OUVERTES (serveur local des tests)
-const TESTEURS_LOIS = ["samsam"];
+const TESTEURS_LOIS = ["samsam", "alh"];
 const accesLois = (env, pseudo) => !!env.LOIS_OUVERTES || TESTEURS_LOIS.includes(String(pseudo || "").toLowerCase());
 const MAX_GOUVERNEMENTS = 5, PRIX_GOUVERNEMENT = 10, MAX_PARTIES_AMIS = 20;
 // Le premier gouvernement est offert (demande de l'utilisateur, octobre 2026) ; un compte qui a déjà formé un gouvernement,
