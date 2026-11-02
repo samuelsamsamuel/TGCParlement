@@ -220,8 +220,11 @@ première exécution : 19 816 fiches, entre 180 et 650 cartes étoilées par pol
   fenêtre `choisirCarte` (`choix-tri`, `choix-filtre`),
   « Remplir pour moi » en tête, cases à remplir (doubles, derniers exemplaires et favoris signalés), barre d'adoption.
   Route `POST /api/lois` ; vue `vue-lois` du menu Plus (onglet
-  « Lois » sur grand écran). Réservées aux comptes Samsam et alh (ajouté à la demande de l'utilisateur, novembre 2026) pendant la mise au point (`TESTEURS_LOIS`, champ `lois` de l'état ;
-  `--var LOIS_OUVERTES:1` pour le serveur local des tests).
+  « Lois » sur grand écran). Ouvertes à tous les comptes (demande de l'utilisateur, novembre 2026, après une mise au point réservée aux comptes
+  Samsam et alh ; champ `lois` de l'état, toujours vrai). Annonce : notification unique à chaque joueur abonné, texte choisi par
+  l'utilisateur, lien `vue:lois` qui ouvre l'onglet (`ouvrirLien`) ; les annonces se suivent dans `ANNONCES` (worker,
+  `annoncerGouvernement`, une clé d'avancement par annonce dans `reglages`, `annonce-gouv` puis `annonce-lois`, un lot de 15 joueurs
+  par heure entre 10 h et 20 h à Paris).
 
 ## Vocabulaire du jeu (références parlementaires)
 

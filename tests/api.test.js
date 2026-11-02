@@ -1,5 +1,5 @@
 /* Test de l'API sur un serveur local, à lancer depuis la racine du dépôt :
-     npx wrangler dev --port 8787 --test-scheduled --var CODE_ESSAI:1 --var ANNONCE_TOUTE_HEURE:1 --var LOIS_OUVERTES:1 --var CLASSEMENT_SANS_CACHE:1 --persist-to /tmp/hemicycle-d1     (dans un premier terminal)
+     npx wrangler dev --port 8787 --test-scheduled --var CODE_ESSAI:1 --var ANNONCE_TOUTE_HEURE:1 --var CLASSEMENT_SANS_CACHE:1 --persist-to /tmp/hemicycle-d1     (dans un premier terminal)
      WR="npx wrangler" ETAT=/tmp/hemicycle-d1 node tests/api.test.js   (dans un second)
    Il crée trois joueurs et vérifie inscription avec reprise, paquets, recyclage, marché et échanges,
    y compris des demandes simultanées (une seule doit aboutir). */
@@ -486,11 +486,21 @@ const preuve = c => require("crypto").createHash("sha256").update(c).digest("hex
   assert.strictEqual((await C("notifications/abonner", {abonnement: {endpoint: "https://fcm.googleapis.com/fcm/send/reserve" + suffixe}})).statut, 200);
   // Annonce du jeu du Gouvernement (tâche horaire, --var ANNONCE_TOUTE_HEURE:1) : une fois par joueur abonné, par lots
   sql("DELETE FROM reglages WHERE cle = 'annonce-gouv'");
+  sql("INSERT INTO reglages (cle, valeur) VALUES ('annonce-lois', 'fini') ON CONFLICT (cle) DO UPDATE SET valeur = 'fini'");
   let annonces = "";
   for (let k = 0; k < 50 && !/Nouveau mode de jeu/.test(annonces); k++) { await horaire(); annonces += (await C("notifications")).d.notifications.map(n => n.texte).join(); }
   assert.strictEqual(annonces.match(/Nouveau mode de jeu : le Gouvernement/g)?.length, 1, annonces);
   for (let k = 0; k < 3; k++) await horaire();
   assert.deepStrictEqual((await C("notifications")).d.notifications, [], "annonce envoyée une seule fois");
+  // Annonce des propositions de loi : une fois, avec un lien qui ouvre l'onglet des lois
+  assert.strictEqual((await C("notifications/abonner", {abonnement: {endpoint: "https://fcm.googleapis.com/fcm/send/reserve" + suffixe}})).statut, 200);
+  sql("DELETE FROM reglages WHERE cle = 'annonce-lois'");
+  let lois = [];
+  for (let k = 0; k < 50 && !lois.some(n => /propositions de loi/.test(n.texte)); k++) { await horaire(); lois = lois.concat((await C("notifications")).d.notifications); }
+  const annonceLois = lois.filter(n => /propositions de loi/.test(n.texte));
+  assert.strictEqual(annonceLois.length, 1, JSON.stringify(lois)); assert.strictEqual(annonceLois[0].lien, "vue:lois");
+  for (let k = 0; k < 3; k++) await horaire();
+  assert.deepStrictEqual((await C("notifications")).d.notifications, [], "annonce des lois envoyée une seule fois");
   // un abonnement que le service de poussée ne connaît pas (ici fictif) est effacé à l'envoi : Carole se réabonne
   assert.strictEqual((await C("notifications/abonner", {abonnement: {endpoint: "https://fcm.googleapis.com/fcm/send/reserve" + suffixe}})).statut, 200);
   sql(`UPDATE joueurs SET stock = 7, ancre = ${Date.now() - 2 * 3600e3} WHERE pseudo = '${carole}'`);
@@ -528,7 +538,7 @@ const preuve = c => require("crypto").createHash("sha256").update(c).digest("hex
   const avantLot = (await C("moi")).d.etat.possedees[r.d.gain.choix[1]] || 0;
   assert.strictEqual((await C("gouvernements/lot", {carte: r.d.gain.choix[1]})).statut, 200);
   assert.strictEqual((await C("moi")).d.etat.possedees[r.d.gain.choix[1]], avantLot + 1);
-  // Propositions de loi (--var LOIS_OUVERTES:1) : loi de finances avec dix communes données à Carole, cartes retirées,
+  // Propositions de loi (ouvertes à tous) : loi de finances avec dix communes données à Carole, cartes retirées,
   // paquet offert ; deuxième dépôt des mêmes cartes refusé (plus d'exemplaire)
   {
     const communes = cat.parRarete.commune.slice(40, 50).map(c => String(c.id));

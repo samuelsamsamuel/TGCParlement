@@ -2087,6 +2087,9 @@ function manchesVues(id, n){
 }
 // Lien d'une notification (« partie:12 ») : la partie s'ouvre sur l'onglet Gouvernement
 async function ouvrirLien(lien){
+  // « vue:lois » : une vue du jeu (annonce d'un nouveau mode)
+  const v = /^vue:([a-z]+)$/.exec(String(lien || ""));
+  if (v) { if (document.getElementById("vue-" + v[1])) allerA(v[1]); return; }
   const m = /^partie:(\d+)$/.exec(String(lien || ""));
   if (!m || !compte) return;
   document.getElementById("appel-gouv").hidden = true;
