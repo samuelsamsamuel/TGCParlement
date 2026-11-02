@@ -793,7 +793,13 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
   function remplirLoi(etat, cat, l, eviter = new Set(), options = {}) {
     const alea = options.aleatoire || null, avant = options.precedents ? new Set([...options.precedents].map(String)) : null, bruit = {};
     const reste = {}, pris = [];
-    for (const id of Object.keys(etat.possedees)) { const n = disponibles(etat, id); if (n > 0 && cat.parId[id]) reste[id] = n; }
+    // cartes exclues (options.exclure : favoris et vitrine, demande de l'utilisateur, novembre 2026) : seuls leurs doubles
+    // sont proposés, le dernier exemplaire reste toujours dans l'hémicycle
+    const exclure = options.exclure ? new Set([...options.exclure].map(String)) : null;
+    for (const id of Object.keys(etat.possedees)) {
+      const n = Math.min(disponibles(etat, id), exclure && exclure.has(String(id)) ? (etat.possedees[id] || 0) - 1 : Infinity);
+      if (n > 0 && cat.parId[id]) reste[id] = n;
+    }
     // coût d'une carte : un double coûte peu, le dernier exemplaire beaucoup, une carte à éviter encore plus ; la valeur
     // de rareté départage (les moins précieuses d'abord)
     const cout = id => ((etat.possedees[id] || 0) - pris.filter(x => x === id).length > 1 ? 0 : 1000)
