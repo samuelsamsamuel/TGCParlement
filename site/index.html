@@ -3011,8 +3011,14 @@ document.getElementById("vue-lois").addEventListener("click", e => {
   if (b("[data-remplir-loi]")) {
     // une loi déjà remplie : « Remplir autrement » propose d'autres cartes (hasard, cartes précédentes écartées si possible)
     const autrement = loiEnCours.ids.length === l.taille;
-    const ids = Regles.remplirLoi(etat, cat, l, aEviter(), autrement ? {aleatoire: Math.random, precedents: loiEnCours.ids} : {});
-    if (!ids) { signaler("Votre collection ne suffit pas encore pour cette loi : cherchez les cartes qui manquent à la buvette."); return; }
+    // favoris et vitrine jamais pris (sauf leurs doubles) ; cartes gardées en dernier recours
+    const exclues = new Set([...(etat.favoris || []), ...((compte && compte.vitrine) || [])].map(String));
+    const ids = Regles.remplirLoi(etat, cat, l, new Set((etat.gardes || []).map(String)), {exclure: exclues, ...(autrement ? {aleatoire: Math.random, precedents: loiEnCours.ids} : {})});
+    if (!ids) {
+      signaler(Regles.remplirLoi(etat, cat, l) ? "Impossible sans vos favoris ou vos cartes en vitrine : « Remplir pour moi » n'y touche pas. Ajoutez-les vous-même si vous le souhaitez."
+        : "Votre collection ne suffit pas encore pour cette loi : cherchez les cartes qui manquent à la buvette.");
+      return;
+    }
     if (autrement && [...ids].sort().join() === [...loiEnCours.ids].sort().join()) signaler("Pas d'autre combinaison possible avec vos cartes sans toucher à vos favoris ou derniers exemplaires.");
     loiEnCours.ids = ids; majLois(); return;
   }

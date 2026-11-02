@@ -267,6 +267,11 @@ console.log("série et objectifs du jour : tests passés");
   { const l = R.etatLois(e, cat, jour).find(x => !x.adoptee && x.frequence !== "finances" && R.remplirLoi(e, cat, x));
     const a = R.remplirLoi(e, cat, l), b = R.remplirLoi(e, cat, l, new Set(), {aleatoire: alea, precedents: a});
     assert.ok(R.verifierLoi(cat, l, b).ok && b.join() !== a.join(), "remplir autrement"); }
+  // Cartes exclues (favoris, vitrine) : jamais leur dernier exemplaire
+  { const l = R.etatLois(e, cat, jour).find(x => !x.adoptee && x.frequence !== "finances" && R.remplirLoi(e, cat, x));
+    const a = R.remplirLoi(e, cat, l), seules = a.filter(id => e.possedees[id] === 1);
+    const b = R.remplirLoi(e, cat, l, new Set(), {exclure: seules});
+    assert.ok(!b || !b.some(id => seules.includes(id)), "favoris et vitrine exclus"); }
   // Condition croisée : tous les critères à la fois
   const sen = cat.cartes.find(c => (c.chambres || "").includes("S") && c.sexe === "F"), dep = cat.cartes.find(c => (c.chambres || "").includes("S") && c.sexe !== "F");
   assert.ok(R.remplit(cat, sen, {chambre: "S", sexe: "F"}) && !R.remplit(cat, dep, {chambre: "S", sexe: "F"}));

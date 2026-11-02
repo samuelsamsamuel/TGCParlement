@@ -204,7 +204,8 @@ première exécution : 19 816 fiches, entre 180 et 650 cartes étoilées par pol
   Libération 13 % puis 88 % ; constitutionnelle 19 % puis 88 % ; régionale 72 % à 150 ; les autres dès 150. Tout adopter en
   une semaine coûte 110 à 130 cartes, presque toutes des derniers exemplaires jusqu'à 300 paquets. Libellés courts (« 2 élus de cette
   législature », intitulé complet en sous-titre). Règles : `verifierLoi` (chaque carte remplit au plus une condition),
-  `remplirLoi` (doubles d'abord ; favoris, cartes gardées et vitrine en dernier ; « Remplir autrement » : hasard entre cartes
+  `remplirLoi` (doubles d'abord ; favoris et vitrine jamais pris, sauf leurs doubles, `exclure`, demande de l'utilisateur,
+  novembre 2026 ; cartes gardées en dernier ; « Remplir autrement » : hasard entre cartes
   de même coût et cartes de la proposition précédente écartées si possible, `aleatoire` et `precedents`), `manquesLoi` (ce qui manque, condition par
   condition, affiché sur la carte de la loi avec un lien vers la buvette), `adopterLoi` (`quotidien.lois` pour le jour,
   `quotidien.loisSemaine` pour la semaine ; carte à choisir par le lot de la série du Gouvernement, refusée tant qu'un lot
