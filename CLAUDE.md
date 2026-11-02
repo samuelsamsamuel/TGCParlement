@@ -211,7 +211,8 @@ première exécution : 19 816 fiches, entre 180 et 650 cartes étoilées par pol
   de même coût et cartes de la proposition précédente écartées si possible, `aleatoire` et `precedents`), `manquesLoi` (ce qui manque, condition par
   condition, affiché sur la carte de la loi avec un lien vers la buvette), `adopterLoi` (`quotidien.lois` pour le jour,
   `quotidien.loisSemaine` pour la semaine ; carte à choisir par le lot de la série du Gouvernement, refusée tant qu'un lot
-  attend, bandeau « Une carte vous attend »). Interface : mode d'emploi en un paragraphe (ouvert à la première visite,
+  attend, bandeau « Une carte vous attend », retiré dès le choix fait : `majTout` redessine la page des lois si elle est
+  ouverte, signalé par l'utilisateur, novembre 2026). Interface : mode d'emploi en un paragraphe (ouvert à la première visite,
   `hemicycle-lois-vu`), filtres par thème, cartes de loi ouvertes d'un toucher sur tout le rectangle (difficulté en étoiles
   et liseré de couleur, récompenses en pastilles, statut « Vous avez les cartes » ou « Il vous manque »), composition avec
   compteurs (conditions, cartes), choix d'une carte limité aux cartes éligibles, avec tri (rareté, score croissant ou

@@ -320,6 +320,12 @@ const sx = Date.now().toString(36).slice(-4);
     const offerts = await A.evaluate(() => etat.offerts);
     await A.click("#vue-lois [data-adopter-loi]"); await A.waitForFunction(o => etat.offerts === o + 1, offerts);
   } else await A.click("#vue-lois [data-fermer-loi]");
+  // Carte offerte par une loi : une fois choisie, le bandeau « Une carte vous attend » disparaît de la page des lois
+  await vers(A, "lois"); await A.waitForSelector("#vue-lois .loi");
+  await A.evaluate(() => { etat.quotidien.gouv = {...(etat.quotidien.gouv || {}), lot: {cartes: ["1"], palier: 0}}; majLois(); });
+  await A.waitForSelector("#vue-lois [data-lot-loi]");
+  await A.evaluate(() => { etat.quotidien.gouv.lot = null; majTout(); });
+  assert.strictEqual(await A.locator("#vue-lois [data-lot-loi]").count(), 0, "bandeau retiré après le choix");
   // Classements (accès des testeurs, ouvert par LOIS_OUVERTES) : liste, rang d'Anne mis en avant, autre classement au choix
   await vers(A, "classement"); await A.waitForSelector("#liste-classement li.moi");
   await A.selectOption("#type-classement", "collection"); await A.waitForFunction(() => /carte/.test(document.querySelector("#liste-classement li.moi .valeur")?.textContent || ""));
