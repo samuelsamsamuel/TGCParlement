@@ -711,7 +711,6 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
   const RARE_CHOIX = {choix: 3, raretes: ["rare", "epique", "legendaire", "mythique"], titre: "1 carte rare ou mieux à choisir"};
   const EPIQUE_CHOIX = {choix: 3, raretes: ["epique", "legendaire", "mythique"], titre: "1 carte épique ou mieux à choisir"};
   const LEGENDAIRE_CHOIX = {choix: 3, raretes: ["legendaire", "mythique"], titre: "1 carte légendaire ou mieux à choisir"};
-  const MYTHIQUE_CHOIX = {choix: 3, raretes: ["mythique"], titre: "1 carte mythique à choisir"};
   const THEMES_LOI = [["jour", "Lois du jour"], ["epoques", "Lois d'époque"], ["institutions", "Institutions"], ["figures", "Grandes figures"], ["constitution", "Loi constitutionnelle"]];
   function loi(cat, o) {
     return {...o, taille: o.conditions.reduce((t, c) => t + c.n, 0), conditions: o.conditions.map(c => ({...c, libelle: libelleCondition(cat, c.quoi, c.n, o.sousTitre === c.quoi.epoque), aide: aideCondition(cat, c.quoi)}))};
@@ -763,11 +762,12 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
         nom: {"quatre-vingts": "Hommage aux Quatre-vingts", compagnons: "Loi de la Libération", "presidents-assemblee": "Loi du perchoir"}[id], sousTitre: objectif(id).titre,
         conditions: [{n: 2, quoi: {objectif: id}}, {n: 1, quoi: {objectif: id, rarete: id === "presidents-assemblee" ? LEGENDAIRE : EPIQUE}}, {n: 1, quoi: {rarete: LEGENDAIRE}}],
         recompense: {paquets: 2, choix: EPIQUE_CHOIX}})),
-      // toutes les deux semaines, récompense relevée (même demande) : 5 paquets, 100 voix et une mythique à choisir
+      // toutes les deux semaines, récompense relevée (même demande) : 5 paquets, 100 voix et une légendaire ou mieux à choisir
+      // (une mythique, d'abord retenue, jugée de trop par l'utilisateur)
       loi(cat, {cle: `constitutionnelle:${quinz}`, theme: "constitution", frequence: "quinzaine", difficulte: 4, nom: "Loi constitutionnelle", sousTitre: "La grande loi de la quinzaine",
         conditions: [{n: 3, quoi: {objectif: hist.id}}, {n: 3, quoi: {epoque: e2}}, {n: 1, quoi: {epoque: e2, rarete: EPIQUE}}, {n: 2, quoi: {sexe: "F"}},
           {n: 1, quoi: {rarete: LEGENDAIRE}}, {n: 1, quoi: {rarete: MYTHIQUE}}],
-        recompense: {paquets: 5, voix: 100, choix: MYTHIQUE_CHOIX}}),
+        recompense: {paquets: 5, voix: 100, choix: LEGENDAIRE_CHOIX}}),
     ];
     cat.lois = {jour, liste};
     return liste;
