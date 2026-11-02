@@ -217,7 +217,7 @@ première exécution : 19 816 fiches, entre 180 et 650 cartes étoilées par pol
   fenêtre `choisirCarte` (`choix-tri`, `choix-filtre`),
   « Remplir pour moi » en tête, cases à remplir (doubles, derniers exemplaires et favoris signalés), barre d'adoption.
   Route `POST /api/lois` ; vue `vue-lois` du menu Plus (onglet
-  « Lois » sur grand écran). Réservées au compte Samsam pendant la mise au point (`TESTEURS_LOIS`, champ `lois` de l'état ;
+  « Lois » sur grand écran). Réservées aux comptes Samsam et alh (ajouté à la demande de l'utilisateur, novembre 2026) pendant la mise au point (`TESTEURS_LOIS`, champ `lois` de l'état ;
   `--var LOIS_OUVERTES:1` pour le serveur local des tests).
 
 ## Vocabulaire du jeu (références parlementaires)
