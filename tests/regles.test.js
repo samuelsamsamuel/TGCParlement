@@ -235,7 +235,7 @@ console.log("série et objectifs du jour : tests passés");
 {
   // tirages à graine fixe : la loi ordinaire (6 cartes d'une époque, dont une rare) doit être remplissable à coup sûr
   let gl = 11; const aleaLois = () => { gl = (gl * 1664525 + 1013904223) >>> 0; return gl / 4294967296; };
-  const jour = "2026-11-02", e = R.migrer({}); e.offerts = 400;
+  const jour = "2026-11-04", e = R.migrer({}); e.offerts = 400;
   for (let i = 0; i < 400; i++) R.ouvrirPaquet(e, cat, {aleatoire: aleaLois});
   const lois = R.etatLois(e, cat, jour);
   assert.ok(lois.length >= 15, "lois rangées par thème");
@@ -243,7 +243,13 @@ console.log("série et objectifs du jour : tests passés");
   assert.ok(lois.every(l => l.difficulte >= 1 && l.difficulte <= 4 && l.conditions.every(c => c.libelle.length < 75)), "difficulté et libellés courts");
   // une loi de la semaine adoptée reste adoptée le lendemain, une loi du jour non
   const sem = lois.find(l => l.frequence === "semaine" && R.remplirLoi(e, cat, l));
-  if (sem) { assert.ok(R.adopterLoi(e, cat, sem.cle, R.remplirLoi(e, cat, sem), jour)); assert.ok(R.etatLois(e, cat, "2026-11-03").find(l => l.cle === sem.cle).adoptee, "adoptée pour la semaine"); }
+  if (sem) { assert.ok(R.adopterLoi(e, cat, sem.cle, R.remplirLoi(e, cat, sem), jour)); assert.ok(R.etatLois(e, cat, "2026-11-05").find(l => l.cle === sem.cle).adoptee, "adoptée pour la semaine"); }
+  // Semaine du mardi au lundi, loi constitutionnelle toutes les deux semaines
+  assert.deepStrictEqual(["2026-11-09", "2026-11-10"].map(d => R.semaineDuJeu(d)), ["2026-11-03", "2026-11-10"], "semaine du mardi");
+  assert.deepStrictEqual(["2026-11-16", "2026-11-17"].map(d => R.quinzaineDuJeu(d)), ["2026-11-03", "2026-11-17"], "quinzaine");
+  const constit = l => l.find(x => x.theme === "constitution");
+  assert.strictEqual(constit(R.loisDuJour(cat, "2026-11-04")).cle, constit(R.loisDuJour(cat, "2026-11-12")).cle, "même loi constitutionnelle deux semaines");
+  assert.deepStrictEqual(constit(lois).recompense, {paquets: 5, voix: 100, choix: {choix: 3, raretes: ["mythique"], titre: "1 carte mythique à choisir"}});
   assert.deepStrictEqual(R.loisDuJour(cat, jour).map(l => l.cle), R.loisDuJour(R.catalogueCompact(require("../site/serveur.json")), jour).map(l => l.cle), "mêmes lois au serveur");
   const ord = lois[1], ids = R.remplirLoi(e, cat, ord);
   assert.ok(ids && ids.length === ord.taille && R.verifierLoi(cat, ord, ids).ok, "loi ordinaire remplie");

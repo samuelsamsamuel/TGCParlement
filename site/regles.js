@@ -651,9 +651,18 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
   // constitutionnelle. Difficulté de 1 à 4 ; récompenses croissantes (voix, paquets, carte à choisir).
   const RARES_OU_MIEUX = ["rare", "epique", "hors-categorie", "legendaire", "mythique", "unique"];
   const FINANCES_JOUR = 3;
-  function semaineDuJeu(jour = jourDuJeu()) {  // lundi de la semaine du jour de Paris
-    const d = new Date(jour + "T12:00:00Z"), k = (d.getUTCDay() + 6) % 7;
+  // Les lois de la semaine changent le mardi (demande de l'utilisateur, novembre 2026 ; le lundi auparavant) : mardi de la
+  // semaine du jour de Paris
+  function semaineDuJeu(jour = jourDuJeu()) {
+    const d = new Date(jour + "T12:00:00Z"), k = (d.getUTCDay() + 5) % 7;
     return new Date(d.getTime() - k * 86400000).toISOString().slice(0, 10);
+  }
+  // Quinzaine (loi constitutionnelle, toutes les deux semaines, même demande) : mardi qui l'ouvre, compté depuis le mardi
+  // 3 novembre 2026
+  const DEBUT_QUINZAINES = Date.UTC(2026, 10, 3, 12);
+  function quinzaineDuJeu(jour = jourDuJeu()) {
+    const t = new Date(semaineDuJeu(jour) + "T12:00:00Z").getTime(), k = Math.round((t - DEBUT_QUINZAINES) / (7 * 86400000));
+    return new Date(t - (((k % 2) + 2) % 2) * 7 * 86400000).toISOString().slice(0, 10);
   }
   // Libellé d'une condition, simple (« 4 femmes ») ou croisée (« 2 sénatrices », « 3 sénateurs ou sénatrices de l'époque
   // « IIIe République » », « 1 élu de Nièvre, rare ou mieux ») : sujet (chambre, femmes, en exercice), complément (époque,
@@ -702,20 +711,22 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
   const RARE_CHOIX = {choix: 3, raretes: ["rare", "epique", "legendaire", "mythique"], titre: "1 carte rare ou mieux à choisir"};
   const EPIQUE_CHOIX = {choix: 3, raretes: ["epique", "legendaire", "mythique"], titre: "1 carte épique ou mieux à choisir"};
   const LEGENDAIRE_CHOIX = {choix: 3, raretes: ["legendaire", "mythique"], titre: "1 carte légendaire ou mieux à choisir"};
+  const MYTHIQUE_CHOIX = {choix: 3, raretes: ["mythique"], titre: "1 carte mythique à choisir"};
   const THEMES_LOI = [["jour", "Lois du jour"], ["epoques", "Lois d'époque"], ["institutions", "Institutions"], ["figures", "Grandes figures"], ["constitution", "Loi constitutionnelle"]];
   function loi(cat, o) {
     return {...o, taille: o.conditions.reduce((t, c) => t + c.n, 0), conditions: o.conditions.map(c => ({...c, libelle: libelleCondition(cat, c.quoi, c.n, o.sousTitre === c.quoi.epoque), aide: aideCondition(cat, c.quoi)}))};
   }
   function loisDuJour(cat, jour = jourDuJeu()) {
     if (cat.lois && cat.lois.jour === jour) return cat.lois.liste;
-    const sem = semaineDuJeu(jour), h = hasard(graineDe("lois|" + jour)), hs = hasard(graineDe("loi-semaine|" + sem));
+    const sem = semaineDuJeu(jour), quinz = quinzaineDuJeu(jour), h = hasard(graineDe("lois|" + jour)), hs = hasard(graineDe("loi-semaine|" + sem));
+    const hq = hasard(graineDe("loi-quinzaine|" + quinz));
     const pris = (l, a) => l[Math.floor(a() * l.length)];
     const epoques = [...new Set(cat.cartes.map(c => c.epoque).filter(Boolean))].sort((a, b) => ORDRE_EPOQUES.indexOf(a) - ORDRE_EPOQUES.indexOf(b));
     // départements d'aujourd'hui seulement (pas les « Départements de l'Empire français aujourd'hui en Belgique »)
     const deps = cat.objectifs.filter(o => o.famille === "departement" && o.total >= 60 && !/^Départements /.test(o.titre));
     const legs = cat.objectifs.filter(o => o.famille === "legislature" && o.total >= 300);
-    const e1 = pris(epoques, h), dep = pris(deps, h), leg = pris(legs, h), e2 = pris(epoques, hs);
-    const hist = pris(cat.objectifs.filter(o => o.famille === "historique"), hs);
+    const e1 = pris(epoques, h), dep = pris(deps, h), leg = pris(legs, h), e2 = pris(epoques, hq);
+    const hist = pris(cat.objectifs.filter(o => o.famille === "historique"), hq);
     const objectif = id => cat.objectifParId[id];
     // époques rares : moins de cartes à réunir
     const parEpoque = {"Ve République": 7, "IIIe République": 7, "Révolution et Empire": 7, "Monarchies constitutionnelles": 6,
@@ -752,10 +763,11 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
         nom: {"quatre-vingts": "Hommage aux Quatre-vingts", compagnons: "Loi de la Libération", "presidents-assemblee": "Loi du perchoir"}[id], sousTitre: objectif(id).titre,
         conditions: [{n: 2, quoi: {objectif: id}}, {n: 1, quoi: {objectif: id, rarete: id === "presidents-assemblee" ? LEGENDAIRE : EPIQUE}}, {n: 1, quoi: {rarete: LEGENDAIRE}}],
         recompense: {paquets: 2, choix: EPIQUE_CHOIX}})),
-      loi(cat, {cle: `constitutionnelle:${sem}`, theme: "constitution", frequence: "semaine", difficulte: 4, nom: "Loi constitutionnelle", sousTitre: "La grande loi de la semaine",
+      // toutes les deux semaines, récompense relevée (même demande) : 5 paquets, 100 voix et une mythique à choisir
+      loi(cat, {cle: `constitutionnelle:${quinz}`, theme: "constitution", frequence: "quinzaine", difficulte: 4, nom: "Loi constitutionnelle", sousTitre: "La grande loi de la quinzaine",
         conditions: [{n: 3, quoi: {objectif: hist.id}}, {n: 3, quoi: {epoque: e2}}, {n: 1, quoi: {epoque: e2, rarete: EPIQUE}}, {n: 2, quoi: {sexe: "F"}},
           {n: 1, quoi: {rarete: LEGENDAIRE}}, {n: 1, quoi: {rarete: MYTHIQUE}}],
-        recompense: {paquets: 3, choix: LEGENDAIRE_CHOIX}}),
+        recompense: {paquets: 5, voix: 100, choix: MYTHIQUE_CHOIX}}),
     ];
     cat.lois = {jour, liste};
     return liste;
@@ -774,8 +786,11 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
   function etatLois(etat, cat, jour = jourDuJeu()) {
     const q = quotidien(etat), s = q.lois && q.lois.jour === jour ? q.lois : {jour, faites: [], finances: 0};
     const semaine = q.loisSemaine && q.loisSemaine.semaine === semaineDuJeu(jour) ? q.loisSemaine : {semaine: semaineDuJeu(jour), faites: []};
+    const quinzaine = q.loisQuinzaine && q.loisQuinzaine.debut === quinzaineDuJeu(jour) ? q.loisQuinzaine : {debut: quinzaineDuJeu(jour), faites: []};
+    const faites = l => l.frequence === "semaine" ? semaine.faites : l.frequence === "quinzaine" ? quinzaine.faites : s.faites;
     return loisDuJour(cat, jour).map(l => ({...l, adoptee: l.frequence === "finances" ? s.finances >= FINANCES_JOUR
-      : (l.frequence === "semaine" ? semaine.faites : s.faites).includes(l.cle), restantes: l.frequence === "finances" ? FINANCES_JOUR - s.finances : null}));
+      : faites(l).includes(l.cle), restantes: l.frequence === "finances" ? FINANCES_JOUR - s.finances : null,
+      fin: l.frequence === "semaine" ? semaineDuJeu(jour) : l.frequence === "quinzaine" ? quinzaineDuJeu(jour) : null}));
   }
   // Ce qui manque pour une loi, condition par condition (exemplaires libres, chaque condition comptée seule) : pour dire
   // au joueur, avant d'ouvrir la loi, s'il peut l'adopter ou quoi chercher à la buvette
@@ -833,7 +848,10 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
       if (!etat.deposees.includes(id)) etat.deposees.push(id);
     }
     const q = quotidien(etat);
-    if (l.frequence !== "semaine") {
+    if (l.frequence === "quinzaine") {
+      if (!q.loisQuinzaine || q.loisQuinzaine.debut !== quinzaineDuJeu(jour)) q.loisQuinzaine = {debut: quinzaineDuJeu(jour), faites: []};
+      q.loisQuinzaine.faites.push(l.cle);
+    } else if (l.frequence !== "semaine") {
       if (!q.lois || q.lois.jour !== jour) q.lois = {jour, faites: [], finances: 0};
       if (l.frequence === "finances") q.lois.finances++; else q.lois.faites.push(l.cle);
     } else {
@@ -842,7 +860,7 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
     }
     const r = l.recompense, gain = {voix: r.voix || 0, paquets: r.paquets || 0, choix: null};
     etat.points += gain.voix; etat.offerts += gain.paquets;
-    if (r.choix) gain.choix = offrirChoixGouv(etat, cat, r.choix, aleatoire).choix;
+    if (r.choix) gain.choix = offrirChoixGouv(etat, cat, r.choix, aleatoire)?.choix || null;
     noter(etat, "loi", {cle, cartes: ids, ...gain});
     return gain;
   }
@@ -981,7 +999,7 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
     return voix;
   }
 
-  return {VERSION_ETAT, SERIE_GOUV, serieGouv, issueSerieGouv, encaisserSerieGouv, choisirLotGouv, offrirChoixGouv, THEMES_LOI, loisDuJour, verifierLoi, etatLois, adopterLoi, remplirLoi, manquesLoi, semaineDuJeu, remplit, basculerFavori, MAX_GARDES, garderCartes, RECHARGE_MS, QUIZ_QUESTIONS, graineDe, questions, compacterQuiz, catalogueQuiz, recompenseQuiz, validerQuiz, RESERVE_MAX, CARTES_PAR_PAQUET, reserveCourante, ORDRE, POIDS, VALEUR_RECYCLAGE, PRIX_PAQUET, PALIERS,
+  return {VERSION_ETAT, SERIE_GOUV, serieGouv, issueSerieGouv, encaisserSerieGouv, choisirLotGouv, offrirChoixGouv, THEMES_LOI, loisDuJour, verifierLoi, etatLois, adopterLoi, remplirLoi, manquesLoi, semaineDuJeu, quinzaineDuJeu, remplit, basculerFavori, MAX_GARDES, garderCartes, RECHARGE_MS, QUIZ_QUESTIONS, graineDe, questions, compacterQuiz, catalogueQuiz, recompenseQuiz, validerQuiz, RESERVE_MAX, CARTES_PAR_PAQUET, reserveCourante, ORDRE, POIDS, VALEUR_RECYCLAGE, PRIX_PAQUET, PALIERS,
     etatVide, migrer, jourDuJeu, normer, cartesDeJeu, catalogue, compacter, catalogueCompact, paquetsDisponibles, ouvrirPaquet,
     disponibles, recyclables, doubles, recycler, dissoudre, MAX_SELECTION, dissoudreSelection, echangerPoints, avancement, clesAtteintes, reclamer, recompensesEnAttente,
     SERIE, serieDuJour, reclamerSerie, choisirLot, objectifsDuJour, preparerJour, etatDuJour, reclamerJour};

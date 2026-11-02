@@ -199,8 +199,10 @@ première exécution : 19 816 fiches, entre 180 et 650 cartes étoilées par pol
   choisir), quatre d'institutions (Sénat avec 2 sénatrices, Gouvernement avec une femme et une épique, élus en exercice dont
   2 rares : 2 paquets ; parité avec 2 rares et une femme de la IVe République : 1 paquet et une rare ou mieux), trois de
   grandes figures (2 de la distinction, une épique de la distinction, légendaire pour le perchoir, une légendaire : 2 paquets
-  et une épique ou mieux) et la loi constitutionnelle (11 cartes, dont une légendaire et une mythique : 3 paquets et une
-  légendaire ou mieux). Simulation (novembre 2026, sans dépôt préalable) : Quatre-vingts 0 % à 150 paquets, 38 % à 300 ;
+  et une épique ou mieux) et la loi constitutionnelle (11 cartes, dont une légendaire et une mythique ; toutes les deux semaines, `quinzaineDuJeu`,
+  quinzaines comptées depuis le mardi 3 novembre 2026, état `quotidien.loisQuinzaine` ; 5 paquets, 100 voix et une mythique à
+  choisir parmi 3 ; demande de l'utilisateur, novembre 2026, avant 3 paquets et une légendaire chaque semaine). Semaine du mardi au
+  lundi (`semaineDuJeu`, même demande ; le lundi auparavant) ; date de fin affichée sur les lois de la semaine et de la quinzaine. Simulation (novembre 2026, sans dépôt préalable) : Quatre-vingts 0 % à 150 paquets, 38 % à 300 ;
   Libération 13 % puis 88 % ; constitutionnelle 19 % puis 88 % ; régionale 72 % à 150 ; les autres dès 150. Tout adopter en
   une semaine coûte 110 à 130 cartes, presque toutes des derniers exemplaires jusqu'à 300 paquets. Libellés courts (« 2 élus de cette
   législature », intitulé complet en sous-titre). Règles : `verifierLoi` (chaque carte remplit au plus une condition),
