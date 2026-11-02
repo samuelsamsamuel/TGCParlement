@@ -306,7 +306,14 @@ const preuve = c => require("crypto").createHash("sha256").update(c).digest("hex
     assert.strictEqual(va.fini, true);
     const attendues = va.issue === "gagne" ? [voixA + 10, 90] : va.issue === "perdu" ? [voixA - 10, 110] : [voixA, 100];
     assert.deepStrictEqual([await voixDe(A), await voixDe(C)], attendues, "le gagnant emporte les deux mises");
-    // Contre un joueur tiré au hasard : un gouvernement enregistré par un autre ; abandon : défaite
+    // Contre un joueur tiré au hasard : un gouvernement enregistré par un autre, au moins aussi fort que celui de l'ordinateur
+    // au même palier ; trop faible (force 0), l'ordinateur joue à sa place
+    assert.ok((await A("gouvernements")).d.gouvernements.length, "Alice a un gouvernement enregistré");
+    base(`UPDATE gouvernements SET force = 0`);
+    r = await C("parties", {mode: "hasard"}); assert.strictEqual(r.statut, 201, JSON.stringify(r.d));
+    assert.strictEqual(r.d.mode, "ordi", "gouvernement trop faible : l'ordinateur joue");
+    assert.strictEqual((await C("parties/" + r.d.id + "/abandonner", {})).statut, 200);
+    base(`UPDATE gouvernements SET force = 1000`);
     r = await C("parties", {mode: "hasard"}); assert.strictEqual(r.statut, 201, JSON.stringify(r.d));
     v = (await C("parties/" + r.d.id)).d;
     assert.strictEqual(v.mode, "hasard"); assert.ok(v.adversaire && v.lui.nom, "gouvernement d'un joueur, nommé");
