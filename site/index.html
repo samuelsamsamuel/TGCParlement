@@ -771,18 +771,38 @@ body.nav-flottante .jauge-ligne{top:3.3rem}
 .tete-classement h2{font:400 1.6rem var(--serif);margin:0}
 .tete-classement select{flex:1 1 14rem;max-width:22rem;background:var(--velours-fonce);color:var(--marbre);border:1px solid rgba(201,162,74,.5);border-radius:3px;padding:.55rem .6rem;font:inherit}
 .classement{list-style:none;margin:.6rem 0 0;padding:0;display:grid;gap:.35rem;max-width:40rem}
-.classement > li:not(.note):not(.ecart){display:grid;grid-template-columns:2.4rem minmax(0,1fr) auto;align-items:center;gap:.6rem;padding:.55rem .75rem;border:1px solid rgba(201,162,74,.25);border-radius:10px;background:rgba(46,7,16,.45)}
+.classement > li:not(.note):not(.ecart):not(.bloc-podium){display:grid;grid-template-columns:2.4rem minmax(0,1fr) auto;align-items:center;gap:.6rem;padding:.55rem .75rem;border:1px solid rgba(201,162,74,.25);border-radius:10px;background:rgba(46,7,16,.45)}
 .classement .rang{font:600 1.05rem var(--serif);text-align:center;color:var(--dorure-pale)}
 .classement .qui-classement{display:flex;align-items:center;gap:.4rem;min-width:0}
-.classement .joueur-classement{text-align:left;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+.classement .joueur-classement{background:none;border:0;padding:0;font:inherit;color:inherit;cursor:pointer;text-decoration:none;text-align:left;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0;font-weight:600}
+.classement .joueur-classement:hover,.classement .joueur-classement:focus-visible{color:var(--dorure-pale)}
+.bloc-podium{list-style:none}
+.podium-classement{list-style:none;margin:.4rem 0 .6rem;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.5rem;align-items:end}
+.marche{--metal:#d9b44a;--metal-clair:#f6e3a1;--metal-fonce:#9c7a22;display:flex;flex-direction:column;align-items:center;gap:.3rem;min-width:0;text-align:center;
+  animation:monte-podium .5s ease-out both;animation-delay:calc(var(--ordre) * 90ms)}
+.marche.m2{--metal:#c7c9cc;--metal-clair:#f2f3f5;--metal-fonce:#868a90}
+.marche.m3{--metal:#c58a55;--metal-clair:#efc49b;--metal-fonce:#87532a}
+.marche .medaille{display:grid;place-items:center;width:2.6rem;height:2.6rem;border-radius:50%;font:700 1.15rem var(--serif);color:#2a1a08;
+  background:radial-gradient(circle at 35% 30%,var(--metal-clair),var(--metal) 55%,var(--metal-fonce));box-shadow:0 0 0 2px rgba(0,0,0,.25),0 3px 10px rgba(0,0,0,.35)}
+.marche.m1 .medaille{width:3.3rem;height:3.3rem;font-size:1.45rem;box-shadow:0 0 0 2px rgba(0,0,0,.25),0 0 18px rgba(217,180,74,.55)}
+.marche .qui-podium{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:.25rem;max-width:100%;min-width:0}
+.marche .joueur-classement{max-width:100%;font-size:.98rem;text-align:center}
+.marche.m1 .joueur-classement{font-size:1.1rem}
+.marche .valeur{font-size:.85rem;opacity:.85}
+.marche .socle{width:100%;border-radius:8px 8px 3px 3px;height:3.2rem;position:relative;overflow:hidden;
+  background:linear-gradient(180deg,var(--metal-clair),var(--metal) 45%,var(--metal-fonce));box-shadow:inset 0 1px 0 rgba(255,255,255,.5),0 4px 12px rgba(0,0,0,.3)}
+.marche.m1 .socle{height:5rem}.marche.m2 .socle{height:3.8rem}.marche.m3 .socle{height:2.8rem}
+.marche .socle::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.45) 45%,transparent 60%);transform:translateX(-120%);animation:reflet-podium 5s ease-in-out infinite;animation-delay:calc(1s + var(--ordre) * .4s)}
+.marche.moi .socle{outline:2px solid var(--dorure-pale);outline-offset:2px}
+@keyframes monte-podium{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes reflet-podium{0%,70%{transform:translateX(-120%)}100%{transform:translateX(120%)}}
+@media (prefers-reduced-motion:reduce){.marche,.marche .socle::after{animation:none}}
 .classement .vous{font-size:.72rem;text-transform:uppercase;letter-spacing:.05em;padding:.1rem .4rem;border-radius:999px;background:var(--dorure);color:#2a1a08;flex:none}
 .classement .valeur{font-variant-numeric:tabular-nums;white-space:nowrap}
-.classement li.moi{border-color:var(--dorure);background:rgba(201,162,74,.16)}
-.classement li.podium .rang{border-radius:50%;width:2rem;height:2rem;display:grid;place-items:center;color:#2a1a08;margin:0 auto}
-.classement li.r1 .rang{background:#d9b44a}.classement li.r2 .rang{background:#c7c9cc}.classement li.r3 .rang{background:#c58a55}
+.classement > li.moi{border-color:var(--dorure);background:rgba(201,162,74,.16)}
 .classement li.ecart{text-align:center;opacity:.6}
-:root[data-theme="clair"] .classement > li:not(.note):not(.ecart){background:rgba(255,255,255,.75);border-color:rgba(92,16,32,.22)}
-:root[data-theme="clair"] .classement li.moi{background:rgba(201,162,74,.22);border-color:#9a7424}
+:root[data-theme="clair"] .classement > li:not(.note):not(.ecart):not(.bloc-podium){background:rgba(255,255,255,.75);border-color:rgba(92,16,32,.22)}
+:root[data-theme="clair"] .classement > li.moi{background:rgba(201,162,74,.22);border-color:#9a7424}
 .outils-choix{display:flex;gap:.5rem;flex-wrap:wrap}
 .outils-choix select{flex:1 1 10rem;min-width:0;font-size:.9rem;padding:.45rem .5rem}
 /* Lot du jour : grandes cartes en carrousel (défilement horizontal aimanté, flèches sur ordinateur, points) */
@@ -2873,8 +2893,6 @@ const UNITES_CLASSEMENT = {prestige: ["point", "points"], rares: ["carte", "cart
   buvette: ["voix", "voix"], objectifs: ["palier", "paliers"], collection: ["carte", "cartes"]};
 async function majClassement(){
   const choix = document.getElementById("type-classement"), liste = document.getElementById("liste-classement");
-  try { const t = localStorage.getItem("hemicycle-classement"); if (t && EXPLICATIONS_CLASSEMENT[t] && !majClassement.lu) choix.value = t; } catch (_) {}
-  majClassement.lu = true;
   const type = choix.value, [un, plusieurs] = UNITES_CLASSEMENT[type];
   document.getElementById("explication-classement").textContent = EXPLICATIONS_CLASSEMENT[type] + " Mis à jour toutes les dix minutes.";
   liste.innerHTML = `<li class="note">Chargement…</li>`;
@@ -2882,19 +2900,24 @@ async function majClassement(){
     const r = await appel("classements?type=" + type);
     if (choix.value !== type) return;
     const estMoi = x => x.pseudo.toLowerCase() === String(compte?.pseudo || "").toLowerCase();
-    const ligne = x => `<li class="${estMoi(x) ? "moi" : ""}${x.rang <= 3 ? " podium r" + x.rang : ""}">
-      <span class="rang">${x.rang}</span><span class="qui-classement"><button class="lien-carte joueur-classement" data-profil="${echapper(x.pseudo)}">${echapper(x.pseudo)}</button>${estMoi(x) ? `<span class="vous">vous</span>` : ""}</span>
-      <span class="valeur">${x.valeur.toLocaleString("fr-FR")} ${x.valeur > 1 ? plusieurs : un}</span></li>`;
+    const valeur = x => `${x.valeur.toLocaleString("fr-FR")} ${x.valeur > 1 ? plusieurs : un}`;
+    const nom = x => `<button class="joueur-classement" data-profil="${echapper(x.pseudo)}">${echapper(x.pseudo)}</button>${estMoi(x) ? `<span class="vous">vous</span>` : ""}`;
+    const ligne = x => `<li class="${estMoi(x) ? "moi" : ""}">
+      <span class="rang">${x.rang}</span><span class="qui-classement">${nom(x)}</span><span class="valeur">${valeur(x)}</span></li>`;
+    // Trois premiers sur un podium (demande de l'utilisateur, novembre 2026) : deuxième, premier, troisième, de gauche à droite
+    const podium = r.tete.slice(0, 3), places = podium.length === 3 ? [podium[1], podium[0], podium[2]] : podium.length === 2 ? [podium[1], podium[0]] : podium;
+    const marche = (x, i) => `<li class="marche m${Math.min(x.rang, 3)}${estMoi(x) ? " moi" : ""}" style="--ordre:${i}">
+      <span class="medaille" aria-label="${x.rang === 1 ? "1re" : x.rang + "e"} place">${x.rang}</span>
+      <span class="qui-podium">${nom(x)}</span><span class="valeur">${valeur(x)}</span><span class="socle" aria-hidden="true"></span></li>`;
     const dedans = r.moi && r.tete.some(x => x.pseudo === r.moi.pseudo);
-    liste.innerHTML = r.tete.length ? r.tete.map(ligne).join("") + (r.moi && !dedans ? `<li class="ecart" aria-hidden="true">…</li>${ligne(r.moi)}` : "")
+    liste.innerHTML = r.tete.length ? `<li class="bloc-podium"><ol class="podium-classement">${places.map(marche).join("")}</ol></li>`
+      + r.tete.slice(3).map(ligne).join("") + (r.moi && !dedans ? `<li class="ecart" aria-hidden="true">…</li>${ligne(r.moi)}` : "")
       + `<li class="note total-classement">${pluriel(r.joueurs, "joueur classé", "joueurs classés")}${r.moi ? "" : ". Vous n'êtes pas encore dans ce classement."}</li>`
       : `<li class="note">Personne n'est encore classé ici.</li>`;
   } catch (e) { liste.innerHTML = `<li class="note">${echapper(e.message || "Classement indisponible.")}</li>`; }
 }
-document.getElementById("type-classement").addEventListener("change", e => {
-  try { localStorage.setItem("hemicycle-classement", e.target.value); } catch (_) {}
-  majClassement();
-});
+// Prestige de la collection par défaut à chaque chargement de la page (demande de l'utilisateur, novembre 2026)
+document.getElementById("type-classement").addEventListener("change", majClassement);
 
 /* ---------- Propositions de loi ---------- */
 // Défis d'échange (demande de l'utilisateur, novembre 2026, sur le modèle des « SBC » de FIFA ; règles : regles.js,

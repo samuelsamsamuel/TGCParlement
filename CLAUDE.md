@@ -280,9 +280,10 @@ première carte ce que la dernière débloque ; un paquet déchiré ou une carte
 l'utilisateur, octobre 2026 : le paquet disparaissait après un passage par l'ordre du jour).
 Classements (demande de l'utilisateur, novembre 2026, après un premier classement retiré : les meilleurs joueurs, pas
 seulement ceux qui ont le plus de cartes) : vue `vue-classement` du menu Plus (onglet large « Classements »), menu déroulant
-(`type-classement`, choix gardé dans `hemicycle-classement`) : prestige de la collection (valeurs de dissolution des cartes
+(`type-classement`, prestige par défaut à chaque chargement, demande de l'utilisateur) : prestige de la collection (valeurs de dissolution des cartes
 différentes), légendaires et plus, victoires au jeu du Gouvernement, duels gagnés, voix gagnées au comptoir, objectifs
-atteints, cartes différentes ; vingt premiers (podium or, argent, bronze), rang du joueur (« vous ») même hors des vingt,
+atteints, cartes différentes ; vingt premiers, les trois premiers sur un podium (deuxième, premier, troisième ;
+médailles et socles or, argent, bronze, reflet, `podium-classement`, demande de l'utilisateur), noms sans soulignement, rang du joueur (« vous ») même hors des vingt,
 pseudo qui ouvre le profil. Serveur : `GET /api/classements?type=` (`CLASSEMENTS`, liste complète gardée dix minutes dans le
 cache du Worker, `--var CLASSEMENT_SANS_CACHE:1` pour les tests) ; colonnes `prestige`, `rares`, `differentes` de `joueurs`
 tenues par `appliquer` (`chiffresCollection`, cartes possédées et déposées) : lire `possessions` à chaque classement
