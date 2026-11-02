@@ -106,7 +106,9 @@ première exécution : 19 816 fiches, entre 180 et 650 cartes étoilées par pol
   questions tirées des fiches (`questions`, graine déterministe), depuis 1958 seulement et une de chaque type par série
   (`TYPES_QUIZ`, demande de l'utilisateur, octobre 2026) : « Qui est-ce ? » sur un portrait (cartes de score 40 et plus,
   `SCORE_PHOTO`), « Qui est actuellement… ? » (poste sans date de fin à titulaire unique), département, « Qui a été… ? »,
-  fonction (score 35 et plus, libellés de 90 signes au plus) ; mauvaises réponses du même sexe ; 2 voix par bonne réponse et 5 pour un
+  fonction (score 35 et plus, libellés de 90 signes au plus) ; « Qui est actuellement… ? » seulement pour les élus et ministres
+  en exercice (des fonctions anciennes n'ont pas de date de fin dans la source : Maurice Couve de Murville était donné
+  pour l'actuel ministre des Affaires étrangères, signalé par l'utilisateur, novembre 2026) ; mauvaises réponses du même sexe ; 2 voix par bonne réponse et 5 pour un
   sans-faute, une fois par jour de Paris (`validerQuiz`) ; le navigateur connaît les réponses, d'où le plafond
   de 15 voix par jour. Duels (demande de l'utilisateur, octobre 2026 : « servir à quelque chose » et plus accessibles) : mise
   facultative de 10 à 100 voix ou de 1 à 3 paquets offerts (`MISES_DUEL`, `MISE_VOIX_MAX`, `MISE_PAQUETS_MAX`), retenue au
@@ -182,14 +184,25 @@ première exécution : 19 816 fiches, entre 180 et 650 cartes étoilées par pol
   libre (demande de l'utilisateur, novembre 2026 : la note n'était pas claire), la valeur exigée s'écrit en conditions de
   rareté (« 1 rare ou mieux », « 1 épique ou mieux ») ; les cartes déposées quittent l'hémicycle. Seuls les Quatre-vingts sont
   expliqués sous la condition (`aideCondition`, sous-titre de l'objectif ; demande de l'utilisateur) ;
-  présentation allégée, récompenses en texte sans pictogramme (même demande). Lois rangées par
-  thème (`THEMES_LOI`, même demande : plus de défis, plus clairs, de meilleures récompenses ; difficulté de 1 à 4) :
-  chaque jour (`loisDuJour`, graine de la date), loi de finances (10 communes ou peu communes contre 1 paquet, trois fois),
-  ordinaire (40 voix), régionale (un département, 2 paquets), organique (une législature, les deux chambres, le Gouvernement,
-  2 paquets et une carte parmi 3 épiques ou mieux) ; chaque semaine (graine de la semaine), une loi par époque (1 paquet et
-  une carte rare ou mieux à choisir), quatre d'institutions (Sénat, Gouvernement, élus en exercice : 2 paquets ; parité :
-  1 paquet et une rare ou mieux), trois de grandes figures (Quatre-vingts, Compagnons, perchoir : 2 paquets et une épique ou
-  mieux) et la loi constitutionnelle (3 paquets et une légendaire ou mieux). Libellés courts (« 2 élus de cette
+  présentation allégée, récompenses en texte sans pictogramme (même demande). Conditions croisées (demande de
+  l'utilisateur, novembre 2026 : presque tout se remplissait dès 150 paquets) : une condition peut réunir plusieurs critères,
+  tous exigés (`remplit`), « 2 sénatrices », « 1 élu de Côte-d'Or, rare ou mieux » (`libelleCondition` : sujet, complément,
+  rareté ; « de cette époque » quand le sous-titre la nomme) ; lois de la semaine plus grosses. Cartes déposées (même
+  demande) : elles comptent toujours pour les objectifs, comme acquises (état `deposees`, colonne `deposee` de
+  `possessions`, migration unique `deposees-anciennes` lue dans le journal) ; une carte vendue ou échangée ne compte plus,
+  sans quoi une même carte passée de main en main remplirait les objectifs de chacun. Lois rangées par
+  thème (`THEMES_LOI`, difficulté de 1 à 4) : chaque jour (`loisDuJour`, graine de la date), loi de finances (10 communes ou
+  peu communes contre 1 paquet, trois fois), ordinaire (6 cartes d'une époque dont une rare, 40 voix), régionale (5 d'un
+  département actuel dont une rare, une femme, 2 paquets), organique (4 d'une législature dont une rare, 2 sénateurs, un
+  membre du Gouvernement, une épique, 2 paquets et une carte parmi 3 épiques ou mieux) ; chaque semaine (graine de la
+  semaine), une loi par époque (5 à 7 cartes, plus 2 rares et une épique de l'époque ; 1 paquet et une rare ou mieux à
+  choisir), quatre d'institutions (Sénat avec 2 sénatrices, Gouvernement avec une femme et une épique, élus en exercice dont
+  2 rares : 2 paquets ; parité avec 2 rares et une femme de la IVe République : 1 paquet et une rare ou mieux), trois de
+  grandes figures (2 de la distinction, une épique de la distinction, légendaire pour le perchoir, une légendaire : 2 paquets
+  et une épique ou mieux) et la loi constitutionnelle (11 cartes, dont une légendaire et une mythique : 3 paquets et une
+  légendaire ou mieux). Simulation (novembre 2026, sans dépôt préalable) : Quatre-vingts 0 % à 150 paquets, 38 % à 300 ;
+  Libération 13 % puis 88 % ; constitutionnelle 19 % puis 88 % ; régionale 72 % à 150 ; les autres dès 150. Tout adopter en
+  une semaine coûte 110 à 130 cartes, presque toutes des derniers exemplaires jusqu'à 300 paquets. Libellés courts (« 2 élus de cette
   législature », intitulé complet en sous-titre). Règles : `verifierLoi` (chaque carte remplit au plus une condition),
   `remplirLoi` (doubles d'abord ; favoris, cartes gardées et vitrine en dernier), `manquesLoi` (ce qui manque, condition par
   condition, affiché sur la carte de la loi avec un lien vers la buvette), `adopterLoi` (`quotidien.lois` pour le jour,
@@ -201,8 +214,7 @@ première exécution : 19 816 fiches, entre 180 et 650 cartes étoilées par pol
   décroissant, nom, doubles d'abord) et filtres (doubles, sans favoris ni gardées, rareté, époque) communs à toute
   fenêtre `choisirCarte` (`choix-tri`, `choix-filtre`),
   « Remplir pour moi » en tête, cases à remplir (doubles, derniers exemplaires et favoris signalés), barre d'adoption.
-  Simulation (novembre 2026) : la plupart des lois faisables dès 50 paquets ; régionale 30 % à 50 paquets, 80 % à 150 ;
-  grandes figures et constitutionnelle à partir de 150 environ. Route `POST /api/lois` ; vue `vue-lois` du menu Plus (onglet
+  Route `POST /api/lois` ; vue `vue-lois` du menu Plus (onglet
   « Lois » sur grand écran). Réservées au compte Samsam pendant la mise au point (`TESTEURS_LOIS`, champ `lois` de l'état ;
   `--var LOIS_OUVERTES:1` pour le serveur local des tests).
 
@@ -221,7 +233,8 @@ avec miniature ; `GET /api/annonces` renvoie aussi les achats, index `annonces_a
 pseudo une fois connecté), « Toutes les cartes » (catalogue complet, cartes non obtenues grisées),
 Règlement (règles et sources) et Paramètres (infos du compte, déconnexion et suppression, thème sombre, clair ou comme
 l'appareil gardé dans le navigateur, notifications, contact, mentions légales). Pas de pied de page. Au-delà de 1 260 px
-de large (1 180 avant l'onglet Duels), ces cinq vues sont des onglets (`onglet-large`) et « Plus » disparaît ; sur ordinateur, la barre d'onglets se
+de large (1 180 avant l'onglet Duels), ces cinq vues sont des onglets (`onglet-large`) et « Plus » disparaît ; sur iPhone, la barre d'onglets du bas est recalée à la fermeture du clavier (Safari la laissait au milieu de
+l'écran, signalé par l'utilisateur, novembre 2026 : `visualViewport`, sortie d'un champ) ; sur ordinateur, la barre d'onglets se
 fixe en haut de l'écran une fois l'en-tête passé (`nav-flottante`, demande de l'utilisateur : changer d'onglet à tout
 moment, après un paquet). Après le dernier paquet, le récapitulatif propose « Revenir en séance » et « Voir mon hémicycle ». Boutons du récapitulatif (« Ouvrir un autre paquet ») fixés au bas de l'écran, au-dessus des onglets
 (`actions-recap`, demande de l'utilisateur, octobre 2026 : il fallait descendre sous les cinq cartes). Série de connexion et

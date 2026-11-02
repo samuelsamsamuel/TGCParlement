@@ -197,6 +197,10 @@ const COLONNES = {
     ["signal", "INTEGER NOT NULL DEFAULT 0"],
     ["gouv_formes", "INTEGER NOT NULL DEFAULT 0"],  // gouvernements formés depuis l'ouverture du compte (le premier est offert)
   ],
+  // Carte déposée pour une loi (novembre 2026) : elle compte toujours pour les objectifs (règles : deposees)
+  possessions: [
+    ["deposee", "INTEGER NOT NULL DEFAULT 0"],
+  ],
   annonces: [
     ["rarete", "TEXT NOT NULL DEFAULT ''"],       // rareté de la carte, pour les prix médians par rareté
   ],
@@ -229,6 +233,9 @@ const MIGRATIONS = {
   // Comptes qui ont formé un gouvernement avant la colonne gouv_formes (octobre 2026) : marqués comme l'ayant fait, pour que
   // supprimer leur dernier gouvernement ne rende pas le suivant gratuit (gouvernement encore enregistré, ou partie jouée
   // avec un gouvernement)
+  // Cartes déposées pour une loi avant la colonne deposee (mise au point, novembre 2026), lues dans le journal
+  "deposees-anciennes": `UPDATE possessions SET deposee = 1 WHERE deposee = 0 AND EXISTS (SELECT 1 FROM journal j, json_each(json_extract(j.detail, '$.cartes')) e
+    WHERE j.joueur = possessions.joueur AND j.operation = 'loi' AND CAST(e.value AS TEXT) = possessions.carte)`,
   "gouv-formes-anciens": `UPDATE joueurs SET gouv_formes = 1 WHERE gouv_formes = 0 AND (id IN (SELECT joueur FROM gouvernements)
     OR id IN (SELECT a FROM parties WHERE camp_a IS NOT NULL) OR id IN (SELECT b FROM parties WHERE mode = 'ami' AND camp_b IS NOT NULL))`,
 };
@@ -316,7 +323,7 @@ async function chargerEtat(env, joueur) {
   const [j, p, r, h] = await env.DB.batch([
     env.DB.prepare("SELECT pseudo, cree, points, offerts, stock, ancre, version, quiz, vitrine, favoris, gardes, quotidien FROM joueurs WHERE id = ?").bind(joueur),
     // Toutes les lignes : celles à zéro (cartes cédées) se lisent de toute façon avec les autres par la clé du joueur
-    env.DB.prepare("SELECT carte, n, importes, reserve FROM possessions WHERE joueur = ?").bind(joueur),
+    env.DB.prepare("SELECT carte, n, importes, reserve, deposee FROM possessions WHERE joueur = ?").bind(joueur),
     env.DB.prepare("SELECT cle, date FROM reclames WHERE joueur = ?").bind(joueur),
     env.DB.prepare("SELECT date, operation, detail FROM journal WHERE joueur = ? ORDER BY id DESC LIMIT 20").bind(joueur),
   ]);
@@ -325,6 +332,7 @@ async function chargerEtat(env, joueur) {
   const etat = Regles.etatVide();
   Object.assign(etat, {points: ligne.points, offerts: ligne.offerts, reserve: ligne.stock, ancre: ligne.ancre, quiz: ligne.quiz, verrous: {}});
   for (const x of p.results) {
+    if (x.deposee) etat.deposees.push(x.carte);
     if (!x.n) { etat.deja.push(x.carte); continue; }   // cartes cédées : restent « obtenues » dans Toutes les cartes
     etat.possedees[x.carte] = x.n;
     if (x.importes + x.reserve) etat.verrous[x.carte] = x.importes + x.reserve;
@@ -368,6 +376,9 @@ async function appliquer(env, joueur, operation, liees = []) {
     if (d > 0) requetes.push(ajoutCartes(env, joueur, id, d));
     else if (d < 0) requetes.push(retraitCartes(env, joueur, id, -d));  // carte présente dans l'état lu
   }
+  // cartes déposées pour une loi : la ligne existe (la carte était possédée), seule la marque change
+  for (const id of new Set(apres.deposees || [])) if (!(avant.deposees || []).includes(id))
+    requetes.push(env.DB.prepare("UPDATE possessions SET deposee = 1 WHERE joueur = ? AND carte = ?").bind(joueur, id));
   const dPoints = apres.points - avant.points, dOfferts = apres.offerts - avant.offerts;
   if (dPoints || dOfferts) requetes.push(env.DB.prepare("UPDATE joueurs SET points = points + ?, offerts = offerts + ? WHERE id = ?").bind(dPoints, dOfferts, joueur));
   if (apres.quiz !== avant.quiz) requetes.push(env.DB.prepare("UPDATE joueurs SET quiz = ? WHERE id = ?").bind(apres.quiz, joueur));

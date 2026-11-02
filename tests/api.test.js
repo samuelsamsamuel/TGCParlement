@@ -532,6 +532,9 @@ const preuve = c => require("crypto").createHash("sha256").update(c).digest("hex
     assert.strictEqual(r.statut, 200, JSON.stringify(r.d)); assert.strictEqual(r.d.resultat.paquets, 1);
     assert.strictEqual(r.d.etat.offerts, avantLoi.offerts + 1);
     for (const id of communes) assert.strictEqual(r.d.etat.possedees[id] || 0, (avantLoi.possedees[id] || 0) - 1, "carte déposée retirée");
+    // cartes déposées notées en base : elles comptent toujours pour les objectifs, relues avec l'état
+    const relu = (await C("moi")).d.etat;
+    assert.ok(communes.every(id => relu.deposees.includes(id) && r.d.etat.deposees.includes(id)), "cartes déposées notées");
     const encore = communes.filter(id => r.d.etat.possedees[id] > 0);
     if (encore.length < communes.length) assert.strictEqual((await C("lois", {loi: "finances", cartes: communes})).statut, 409, "cartes déjà déposées");
     assert.strictEqual((await C("lois", {loi: "inconnue", cartes: communes})).statut, 409);

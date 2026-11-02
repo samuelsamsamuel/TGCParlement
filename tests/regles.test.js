@@ -238,7 +238,7 @@ console.log("série et objectifs du jour : tests passés");
   const lois = R.etatLois(e, cat, jour);
   assert.ok(lois.length >= 15, "lois rangées par thème");
   assert.deepStrictEqual([...new Set(lois.map(l => l.theme))], R.THEMES_LOI.map(([k]) => k), "tous les thèmes");
-  assert.ok(lois.every(l => l.difficulte >= 1 && l.difficulte <= 4 && l.conditions.every(c => c.libelle.length < 60)), "difficulté et libellés courts");
+  assert.ok(lois.every(l => l.difficulte >= 1 && l.difficulte <= 4 && l.conditions.every(c => c.libelle.length < 75)), "difficulté et libellés courts");
   // une loi de la semaine adoptée reste adoptée le lendemain, une loi du jour non
   const sem = lois.find(l => l.frequence === "semaine" && R.remplirLoi(e, cat, l));
   if (sem) { assert.ok(R.adopterLoi(e, cat, sem.cle, R.remplirLoi(e, cat, sem), jour)); assert.ok(R.etatLois(e, cat, "2026-11-03").find(l => l.cle === sem.cle).adoptee, "adoptée pour la semaine"); }
@@ -255,6 +255,15 @@ console.log("série et objectifs du jour : tests passés");
   // Loi de finances : trois fois par jour
   for (let k = 0; k < 3; k++) { const f = R.etatLois(e, cat, jour)[0], fi = R.remplirLoi(e, cat, f); if (fi) assert.ok(R.adopterLoi(e, cat, "finances", fi, jour)); }
   assert.strictEqual(R.etatLois(e, cat, jour)[0].adoptee, true, "finances : trois fois");
+  // Cartes déposées : elles comptent toujours pour les objectifs (comme acquises) ; une carte cédée autrement, non
+  const legs = cat.objectifs.find(o => o.famille === "legislature"), une = legs.ids.find(id => !e.possedees[id]);
+  const av = R.avancement(e, legs).obtenues;
+  e.deposees.push(String(une)); assert.strictEqual(R.avancement(e, legs).obtenues, av + 1, "déposée : acquise pour l'objectif");
+  assert.ok(e.deposees.length > 1 && ids.every(id => e.possedees[id] || e.deposees.includes(id)), "cartes de la loi notées");
+  assert.deepStrictEqual(R.migrer(JSON.parse(JSON.stringify(e))).deposees, e.deposees, "gardées par migrer");
+  // Condition croisée : tous les critères à la fois
+  const sen = cat.cartes.find(c => (c.chambres || "").includes("S") && c.sexe === "F"), dep = cat.cartes.find(c => (c.chambres || "").includes("S") && c.sexe !== "F");
+  assert.ok(R.remplit(cat, sen, {chambre: "S", sexe: "F"}) && !R.remplit(cat, dep, {chambre: "S", sexe: "F"}));
   // Carte non possédée : refusée
   const absente = cat.cartes.find(c => !e.possedees[c.id]).id;
   assert.strictEqual(R.adopterLoi(e, cat, lois[2].cle, [absente, ...ids.slice(0, 5)], jour), null);

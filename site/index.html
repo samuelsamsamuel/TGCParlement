@@ -3962,6 +3962,21 @@ function allerA(vue){
     document.body.classList.toggle("nav-flottante", flotte);
   }).observe(repere);
 }
+// iPhone : après la fermeture du clavier (recherche dans l'hémicycle, par exemple), Safari laisse parfois la barre d'onglets,
+// fixée en bas, à la hauteur où se trouvait le haut du clavier, au milieu de l'écran (signalé par l'utilisateur, novembre
+// 2026). On force le recalcul de sa position quand la zone visible retrouve sa taille et à la sortie d'un champ.
+{
+  const barre = document.querySelector("nav");
+  const recaler = () => {
+    if (innerWidth > 700) return;
+    barre.style.transform = "translateY(0.01px)";
+    requestAnimationFrame(() => { barre.style.transform = ""; window.scrollTo(window.scrollX, window.scrollY); });
+  };
+  let hauteur = window.visualViewport ? visualViewport.height : innerHeight;
+  window.visualViewport?.addEventListener("resize", () => { const h = visualViewport.height; if (h > hauteur + 50) recaler(); hauteur = h; });
+  document.addEventListener("focusout", e => { if (e.target.matches?.("input,textarea,select")) setTimeout(recaler, 350); });
+  window.addEventListener("orientationchange", () => setTimeout(recaler, 400));
+}
 document.querySelectorAll("nav button").forEach(b => b.addEventListener("click", e => {
   if (b.dataset.vue !== "plus") { allerA(b.dataset.vue); return; }
   e.stopPropagation();
