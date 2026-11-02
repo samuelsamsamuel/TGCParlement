@@ -451,7 +451,11 @@ serveur), filtre « Mes favoris » dans l'Hémicycle. Pas de zoom au double touc
    `annule`, `expire` ; camps figés au choix, coups [ministre, 49.3] jugés par `site/gouvernement.js`). Contre l'ordinateur :
    un gouvernement réel (chef et membres qui ont servi sous lui, `site/fiches/gNN.json`), niveau = palier de la série
    (`imprevu`, part du vivier composée pour les thèmes ; simulation, joueur régulier : 71, 63, 61, 55, 44 et 36 % de
-   victoires des paliers 0 à 5). Contre un joueur : gouvernement enregistré d'un autre joueur, joué par l'ordinateur, son
+   victoires des paliers 0 à 5). Contre un joueur : gouvernement enregistré d'un autre joueur, joué par l'ordinateur, au moins aussi fort que le gouvernement
+   de l'ordinateur tiré pour la même partie (colonne `force` de `gouvernements` : note moyenne sur 60 tirages de thèmes fixes,
+   `forceGouvernement`, calculée à l'enregistrement, au passage pour les anciens ; mesure : ordinateur de 56 à 75, médiane 66,
+   à tous les paliers), tiré au hasard parmi eux, sinon l'ordinateur joue (demande de l'utilisateur, novembre 2026 : un joueur
+   gagnait 89 % de ses parties au hasard et a encaissé 131 séries en quelques jours, gains laissés ; pas de plafond quotidien), son
    propriétaire jamais averti du résultat (demande de l'utilisateur, octobre 2026) (repli sur l'ordinateur si aucun). Une partie de série à la fois ; l'adversaire est vu
    avant le choix du gouvernement, renoncer vaut défaite. Série (refaite à la demande de l'utilisateur, octobre 2026 :
    récompense reçue à la fin de la série, cartes à choisir) : `SERIE_GOUV` de `regles.js` (15 voix, 1 paquet, une carte

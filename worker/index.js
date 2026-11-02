@@ -206,6 +206,11 @@ const COLONNES = {
   possessions: [
     ["deposee", "INTEGER NOT NULL DEFAULT 0"],
   ],
+  // Force d'un gouvernement enregistré (novembre 2026) : note moyenne sur des tirages de thèmes fixes (forceGouvernement),
+  // pour opposer au hasard un gouvernement au moins aussi fort que celui de l'ordinateur au même palier
+  gouvernements: [
+    ["force", "REAL"],
+  ],
   annonces: [
     ["rarete", "TEXT NOT NULL DEFAULT ''"],       // rareté de la carte, pour les prix médians par rareté
   ],
@@ -1331,10 +1336,11 @@ async function enregistrerGouvernement(env, requete, joueur, url) {
   const c = await lireCorps(requete);
   const nom = String(c.nom || "").normalize("NFC").trim().slice(0, 40) || "Mon gouvernement";
   const camp = await verifierCamp(env, url, joueur, c.chef, c.ministres), date = maintenant();
+  const force = await forceGouvernement(env, url, camp.chef, camp.ministres);
   if (c.id !== undefined && c.id !== null) {
     const id = entier(c.id, 1, Number.MAX_SAFE_INTEGER);
-    const r = await env.DB.prepare("UPDATE gouvernements SET nom = ?, chef = ?, ministres = ?, maj = ? WHERE id = ? AND joueur = ?")
-      .bind(nom, camp.chef, JSON.stringify(camp.ministres), date, id, joueur).run();
+    const r = await env.DB.prepare("UPDATE gouvernements SET nom = ?, chef = ?, ministres = ?, force = ?, maj = ? WHERE id = ? AND joueur = ?")
+      .bind(nom, camp.chef, JSON.stringify(camp.ministres), force, date, id, joueur).run();
     if (!r.meta.changes) throw new Refus(404, "Gouvernement introuvable.");
     return json({id});
   }
@@ -1348,8 +1354,8 @@ async function enregistrerGouvernement(env, requete, joueur, url) {
   const [, , ins] = await lot(env, [
     env.DB.prepare("UPDATE joueurs SET points = points - ?, gouv_formes = gouv_formes + 1 WHERE id = ? AND gouv_formes = ?").bind(prix, joueur, formes),
     env.DB.prepare("INSERT INTO garde (ok) SELECT 1 WHERE changes() = 0"),
-    env.DB.prepare("INSERT INTO gouvernements (joueur, nom, chef, ministres, cree, maj) VALUES (?, ?, ?, ?, ?, ?) RETURNING id")
-      .bind(joueur, nom, camp.chef, JSON.stringify(camp.ministres), date, date),
+    env.DB.prepare("INSERT INTO gouvernements (joueur, nom, chef, ministres, force, cree, maj) VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING id")
+      .bind(joueur, nom, camp.chef, JSON.stringify(camp.ministres), force, date, date),
   ], `Il faut ${prix} voix pour former un gouvernement.`);
   return json({id: ins.results[0].id}, 201);
 }
@@ -1369,7 +1375,17 @@ async function partieAvec(env, joueur, id) {
   return d;
 }
 // Gouvernement de l'ordinateur : un gouvernement réel, au niveau de la série du joueur
-async function campOrdinateur(env, url, annonces, niveau) {
+// Force d'un gouvernement, indépendante des thèmes de la partie : note moyenne (gouvernement.js, noteMoyenne) sur 60 tirages
+// de thèmes fixes, liens compris
+let tiragesForce = null;
+async function forceGouvernement(env, url, chef, ministres, fiches = null) {
+  fiches ||= await fichesServeur(env, url, [chef, ...ministres]);
+  const c = fiches.get(String(chef)), m = ministres.map(id => fiches.get(String(id)));
+  if (!c || !m.every(Boolean)) return null;
+  tiragesForce ||= Gouvernement.tiragesThemes((await lireReels(env, url)).themes);
+  return Math.round(Gouvernement.noteMoyenne(c, m, tiragesForce) * 100) / 100;
+}
+async function campOrdinateur(env, url, annonces, niveau, avecForce = false) {
   const reels = await lireReels(env, url);
   const possibles = reels.chefs.map((c, i) => [i, c[1]]).filter(([, n]) => n >= Gouvernement.MINISTRES);
   for (let essai = 0; essai < 8 && possibles.length; essai++) {
@@ -1377,13 +1393,23 @@ async function campOrdinateur(env, url, annonces, niveau) {
     const g = await lireFichier(env, url, `/fiches/g${String(i).padStart(2, "0")}.json`);
     const chef = Gouvernement.ficheDe(g.chef[0], g.chef[1]), membres = g.membres.map(([id, f]) => Gouvernement.ficheDe(id, f));
     const camp = Gouvernement.gouvernementOrdinateur([[chef, membres]], annonces, aleatoire, niveau);
-    if (camp) return camp;
+    if (camp && !avecForce) return camp;
+    if (camp) return [camp, await forceGouvernement(env, url, camp.chef, camp.ministres, new Map([chef, ...membres].map(f => [String(f.id), f])))];
   }
   throw new Refus(503, "L'ordinateur n'a pas pu former de gouvernement. Réessayez.");
 }
-// Gouvernement enregistré d'un autre joueur, complet et toujours dans sa collection
-async function campFantome(env, joueur) {
-  const candidats = (await env.DB.prepare("SELECT * FROM gouvernements WHERE joueur != ? ORDER BY RANDOM() LIMIT 8").bind(joueur).all()).results;
+// Gouvernement enregistré d'un autre joueur, complet et toujours dans sa collection, au moins aussi fort que celui que
+// l'ordinateur alignerait au même palier (`seuil`) : tiré au hasard parmi eux, sinon aucun et l'ordinateur joue
+// (demande de l'utilisateur, novembre 2026 : un joueur gagnait 89 % de ses parties au hasard contre des gouvernements
+// faibles et enchaînait les séries). Force calculée à l'enregistrement ; celle des gouvernements plus anciens, au passage
+async function campFantome(env, url, joueur, seuil) {
+  const sansForce = (await env.DB.prepare("SELECT id, chef, ministres FROM gouvernements WHERE force IS NULL LIMIT 3").all()).results;
+  for (const g of sansForce) {
+    const f = await forceGouvernement(env, url, g.chef, lireJson(g.ministres, []));
+    await env.DB.prepare("UPDATE gouvernements SET force = ? WHERE id = ?").bind(f ?? -1, g.id).run();
+  }
+  const candidats = (await env.DB.prepare("SELECT * FROM gouvernements WHERE joueur != ? AND force >= ? ORDER BY RANDOM() LIMIT 8")
+    .bind(joueur, seuil ?? 0).all()).results;
   for (const g of candidats) if (!(await vacants(env, g.joueur, [g])).size) return g;
   return null;
 }
@@ -1410,9 +1436,10 @@ async function nouvellePartie(env, requete, joueur, url) {
   const ouverte = await env.DB.prepare("SELECT id FROM parties WHERE a = ? AND mode IN ('ordi', 'hasard') AND statut IN ('preparation', 'en-cours')").bind(joueur).first();
   if (ouverte) return json({id: ouverte.id, reprise: true});
   const niveau = Regles.serieGouv({quotidien: lireJson((await env.DB.prepare("SELECT quotidien FROM joueurs WHERE id = ?").bind(joueur).first()).quotidien, {})}).serie;
-  let fantome = mode === "hasard" ? await campFantome(env, joueur) : null, camp, b = null, modeReel = mode;
+  const [ordinateur, seuil] = await campOrdinateur(env, url, annonces, niveau, true);
+  let fantome = mode === "hasard" ? await campFantome(env, url, joueur, seuil) : null, camp, b = null, modeReel = mode;
   if (fantome) { camp = {chef: fantome.chef, ministres: lireJson(fantome.ministres, []), nom: fantome.nom}; b = fantome.joueur; }
-  else { camp = await campOrdinateur(env, url, annonces, niveau); modeReel = "ordi"; }
+  else { camp = ordinateur; modeReel = "ordi"; }
   const ins = await env.DB.prepare(`INSERT INTO parties (mode, a, b, graine, annonces, camp_b, niveau, fantome, statut, cree, maj)
     VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'preparation', ?, ?) RETURNING id`)
     .bind(modeReel, joueur, b, graine, JSON.stringify(annonces), JSON.stringify(camp), niveau, fantome ? fantome.id : null, date, date).first();
