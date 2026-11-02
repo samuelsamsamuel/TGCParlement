@@ -2927,7 +2927,11 @@ document.getElementById("type-classement").addEventListener("change", majClassem
 // favoris, cartes gardées et vitrine en dernier)
 let loiEnCours = null, themeLois = "tous";
 const etoilesLoi = n => `<span class="etoiles-loi" aria-label="Difficulté ${n} sur 4">${"★".repeat(n)}<i>${"★".repeat(4 - n)}</i></span>`;
-const frequenceLoi = l => l.frequence === "finances" ? (l.adoptee ? "Revenez demain" : `${l.restantes} fois encore aujourd'hui`) : l.frequence === "semaine" ? "Cette semaine" : "Aujourd'hui";
+// Lois de la semaine (du mardi au lundi) et de la quinzaine (loi constitutionnelle) : dernier jour affiché
+const finLoi = (debut, jours) => new Date(new Date(debut + "T12:00:00Z").getTime() + (jours - 1) * 86400000)
+  .toLocaleDateString("fr-FR", {weekday: "long", day: "numeric", month: "long", timeZone: "UTC"});
+const frequenceLoi = l => l.frequence === "finances" ? (l.adoptee ? "Revenez demain" : `${l.restantes} fois encore aujourd'hui`)
+  : l.frequence === "semaine" ? `Jusqu'au ${finLoi(l.fin, 7)}` : l.frequence === "quinzaine" ? `Toutes les deux semaines, jusqu'au ${finLoi(l.fin, 14)}` : "Aujourd'hui";
 // Récompenses en texte simple, sans pictogramme (demande de l'utilisateur, novembre 2026)
 const pastillesRecompense = r => [r.paquets ? `<span class="gain-loi">${pluriel(r.paquets, "paquet")}</span>` : "", r.voix ? `<span class="gain-loi">${pluriel(r.voix, "voix", "voix")}</span>` : "",
   r.choix ? `<span class="gain-loi gain-choix">${echapper(r.choix.titre)}</span>` : ""].join("");
