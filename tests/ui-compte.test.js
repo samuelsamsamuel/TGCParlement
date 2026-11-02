@@ -307,7 +307,7 @@ const sx = Date.now().toString(36).slice(-4);
     await A.waitForSelector("#vue-gouvernement .theme-manche");
     assert.match(await A.textContent("#vue-gouvernement .recap-manches"), /Gagnée|Perdue|Égalité/);
   }
-  // Propositions de loi (serveur local avec LOIS_OUVERTES) : liste, composition, remplissage, adoption si possible
+  // Propositions de loi (ouvertes à tous) : liste, composition, remplissage, adoption si possible
   await vers(A, "lois"); await A.waitForSelector("#vue-lois .loi");
   assert.ok(await A.locator("#vue-lois .loi").count() >= 15, "lois rangées par thème");
   await A.click('#vue-lois [data-theme-loi="epoques"]'); assert.ok(await A.locator("#vue-lois .loi").count() >= 5);
@@ -326,7 +326,7 @@ const sx = Date.now().toString(36).slice(-4);
   await A.waitForSelector("#vue-lois [data-lot-loi]");
   await A.evaluate(() => { etat.quotidien.gouv.lot = null; majTout(); });
   assert.strictEqual(await A.locator("#vue-lois [data-lot-loi]").count(), 0, "bandeau retiré après le choix");
-  // Classements (accès des testeurs, ouvert par LOIS_OUVERTES) : liste, rang d'Anne mis en avant, autre classement au choix
+  // Classements (ouverts à tous) : liste, rang d'Anne mis en avant, autre classement au choix
   await vers(A, "classement"); await A.waitForSelector("#liste-classement li.moi");
   await A.selectOption("#type-classement", "collection"); await A.waitForFunction(() => /carte/.test(document.querySelector("#liste-classement li.moi .valeur")?.textContent || ""));
   await A.screenshot({path: T + "/classement.png", fullPage: true});

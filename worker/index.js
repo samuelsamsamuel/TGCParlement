@@ -354,7 +354,7 @@ async function chargerEtat(env, joueur) {
   try { etat.quotidien = JSON.parse(ligne.quotidien || "{}"); } catch (_) { etat.quotidien = {}; }
   return {pseudo: ligne.pseudo, cree: ligne.cree, etat, version: ligne.version, vitrine: JSON.parse(ligne.vitrine || "[]"),
           classe: [ligne.prestige, ligne.rares, ligne.differentes],
-          gouvernement: true, lois: accesLois(env, ligne.pseudo), classements: true};
+          gouvernement: true, lois: true, classements: true};
 }
 // Ajout : la ligne est créée au besoin. Retrait : simple mise à jour, car SQLite vérifie les contraintes CHECK
 // d'une insertion avant de résoudre le conflit (une insertion négative échouerait toujours). Les lignes de
@@ -1252,26 +1252,34 @@ async function expirerDuels(env) {
 // par lots de ANNONCE_LOT joueurs (limite de sous-requêtes du plan gratuit) ; avancement noté dans reglages
 const ANNONCE_GOUV = "Nouveau mode de jeu : le Gouvernement ! Formez votre équipe de ministres (le premier gouvernement est offert) et enchaînez les victoires pour gagner des récompenses.";
 const ANNONCE_LOT = 15;
+// Annonces envoyées une fois à chaque joueur abonné, l'une après l'autre (avancement dans reglages, une clé par annonce),
+// un lot par heure toutes annonces confondues ; lien ouvert au toucher de la notification
+const ANNONCES = [
+  {cle: "annonce-gouv", texte: ANNONCE_GOUV, lien: null},
+  // Ouverture des propositions de loi à tous (demande de l'utilisateur, novembre 2026, texte choisi par lui)
+  {cle: "annonce-lois", texte: "Nouveau : les propositions de loi ! Réunissez les bons parlementaires, faites adopter vos lois et gagnez paquets et cartes à choisir.", lien: "vue:lois"},
+];
 async function annoncerGouvernement(env) {
-  const etape = await env.DB.prepare("SELECT valeur FROM reglages WHERE cle = 'annonce-gouv'").first();
-  if (etape?.valeur === "fini") return;
   const heure = Number(new Intl.DateTimeFormat("fr-FR", {timeZone: "Europe/Paris", hour: "numeric", hourCycle: "h23"}).format(new Date()));
   if (!env.ANNONCE_TOUTE_HEURE && (heure < 10 || heure >= 20)) return;
-  const dernier = Number(etape?.valeur || 0);
-  const r = (await env.DB.prepare("SELECT DISTINCT joueur FROM abonnements WHERE (buvette = 1 OR reserve = 1) AND joueur > ? ORDER BY joueur LIMIT ?")
-    .bind(dernier, ANNONCE_LOT).all()).results;
-  const suite = r.length < ANNONCE_LOT ? "fini" : String(r[r.length - 1].joueur);
-  // avancement noté d'abord : une exécution interrompue ne renvoie jamais deux fois l'annonce au même joueur
-  await env.DB.prepare("INSERT INTO reglages (cle, valeur) VALUES ('annonce-gouv', ?) ON CONFLICT (cle) DO UPDATE SET valeur = excluded.valeur").bind(suite).run();
-  for (const {joueur} of r) {
-    const genre = (await env.DB.prepare("SELECT 1 FROM abonnements WHERE joueur = ? AND buvette = 1").bind(joueur).first()) ? "buvette" : "reserve";
-    await notifier(env, joueur, ANNONCE_GOUV, genre).catch(e => console.error("annonce", e));
+  for (const a of ANNONCES) {
+    const etape = await env.DB.prepare("SELECT valeur FROM reglages WHERE cle = ?").bind(a.cle).first();
+    if (etape?.valeur === "fini") continue;
+    const dernier = Number(etape?.valeur || 0);
+    const r = (await env.DB.prepare("SELECT DISTINCT joueur FROM abonnements WHERE (buvette = 1 OR reserve = 1) AND joueur > ? ORDER BY joueur LIMIT ?")
+      .bind(dernier, ANNONCE_LOT).all()).results;
+    const suite = r.length < ANNONCE_LOT ? "fini" : String(r[r.length - 1].joueur);
+    // avancement noté d'abord : une exécution interrompue ne renvoie jamais deux fois l'annonce au même joueur
+    await env.DB.prepare("INSERT INTO reglages (cle, valeur) VALUES (?, ?) ON CONFLICT (cle) DO UPDATE SET valeur = excluded.valeur").bind(a.cle, suite).run();
+    for (const {joueur} of r) {
+      const genre = (await env.DB.prepare("SELECT 1 FROM abonnements WHERE joueur = ? AND buvette = 1").bind(joueur).first()) ? "buvette" : "reserve";
+      await notifier(env, joueur, a.texte, genre, a.lien).catch(e => console.error("annonce", e));
+    }
+    return;
   }
 }
-// Propositions de loi (défis d'échange, novembre 2026) : réservées au compte Samsam pendant la mise au point (demande de
-// l'utilisateur), à tous avec la variable LOIS_OUVERTES (serveur local des tests)
-const TESTEURS_LOIS = ["samsam", "alh"];
-const accesLois = (env, pseudo) => !!env.LOIS_OUVERTES || TESTEURS_LOIS.includes(String(pseudo || "").toLowerCase());
+// Propositions de loi (défis d'échange, novembre 2026) : ouvertes à tous les comptes (demande de l'utilisateur, après une
+// mise au point réservée aux comptes samsam et alh)
 const MAX_GOUVERNEMENTS = 5, PRIX_GOUVERNEMENT = 10, MAX_PARTIES_AMIS = 20;
 // Le premier gouvernement est offert (demande de l'utilisateur, octobre 2026) ; un compte qui a déjà formé un gouvernement,
 // même supprimé depuis, paie les suivants (gouv_formes ; avant cette colonne, un gouvernement encore enregistré compte aussi)
@@ -1716,9 +1724,8 @@ async function api(requete, env, url) {
   }
   // Classements : ouverts à tous les comptes (demande de l'utilisateur, novembre 2026, après une mise au point réservée)
   if (methode === "GET" && chemin === "/api/classements") return classement(env, url, joueur);
-  // Propositions de loi (règles : adopterLoi) : réservées pendant la mise au point (TESTEURS_LOIS)
+  // Propositions de loi (règles : adopterLoi)
   if (methode === "POST" && chemin === "/api/lois") {
-    if (!accesLois(env, await pseudoDe(env, joueur))) throw new Refus(403, "Les propositions de loi ne sont pas encore ouvertes.");
     const c = await lireCorps(requete), cat = await catalogueDuJeu();
     const cartes = Array.isArray(c.cartes) ? c.cartes.slice(0, 20).map(String) : [];
     const r = await appliquer(env, joueur, e => Regles.adopterLoi(e, cat, String(c.loi || ""), cartes, Regles.jourDuJeu(), aleatoire));
