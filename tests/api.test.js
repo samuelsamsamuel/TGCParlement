@@ -546,6 +546,13 @@ const preuve = c => require("crypto").createHash("sha256").update(c).digest("hex
     assert.ok(p.d.tete.every((x, i, t) => !i || t[i - 1].valeur >= x.valeur), "ordre décroissant");
     for (const type of ["rares", "collection", "gouvernement", "duels", "buvette", "objectifs"]) assert.strictEqual((await C("classements?type=" + type)).statut, 200, type);
     assert.strictEqual((await C("classements?type=inconnu")).statut, 400);
+    // Gouvernement : une victoire de Carole en défense (son gouvernement joué par l'ordinateur contre un joueur au hasard) ne
+    // compte pas ; une victoire entre amis, si
+    const victoires = async () => (await C("classements?type=gouvernement")).d.moi?.valeur || 0, v0 = await victoires();
+    const ligne = (mode, a, b) => sql(`INSERT INTO parties (mode, a, b, graine, annonces, statut, gagnant, cree, maj) SELECT '${mode}', ${a}, ${b}, 1, '[]', 'fini', c.id, '2026', '2026'
+      FROM joueurs c, joueurs x WHERE c.pseudo = '${carole}' AND x.pseudo = 'alice${suffixe}'`);
+    ligne("hasard", "x.id", "c.id"); assert.strictEqual(await victoires(), v0, "victoire en défense non comptée");
+    ligne("ami", "x.id", "c.id"); assert.strictEqual(await victoires(), v0 + 1, "victoire entre amis comptée");
   }
   // Prix du comptoir et attente des échanges
   r = await A("prix?carte=" + encodeURIComponent(libreA));

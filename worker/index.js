@@ -427,7 +427,10 @@ const CLASSEMENTS = {
   prestige: "SELECT pseudo, prestige AS v FROM joueurs WHERE prestige > 0",
   rares: "SELECT pseudo, rares AS v FROM joueurs WHERE rares > 0",
   collection: "SELECT pseudo, differentes AS v FROM joueurs WHERE differentes > 0",
-  gouvernement: "SELECT j.pseudo, COUNT(*) AS v FROM parties p JOIN joueurs j ON j.id = p.gagnant WHERE p.statut = 'fini' AND p.gagnant > 0 GROUP BY p.gagnant",
+  // victoires obtenues en jouant soi-même (demande de l'utilisateur, novembre 2026) : contre l'ordinateur ou un joueur au
+  // hasard, seulement celles du joueur qui a lancé la partie (le propriétaire du gouvernement adverse n'a pas joué) ; entre amis, les deux
+  gouvernement: `SELECT j.pseudo, COUNT(*) AS v FROM parties p JOIN joueurs j ON j.id = p.gagnant WHERE p.statut = 'fini' AND p.gagnant > 0
+    AND (p.mode = 'ami' OR p.gagnant = p.a) GROUP BY p.gagnant`,
   duels: "SELECT j.pseudo, COUNT(*) AS v FROM duels d JOIN joueurs j ON j.id = d.gagnant WHERE d.statut = 'fini' AND d.gagnant > 0 GROUP BY d.gagnant",
   buvette: "SELECT j.pseudo, SUM(a.prix) AS v FROM annonces a JOIN joueurs j ON j.id = a.vendeur WHERE a.statut = 'vendue' GROUP BY a.vendeur",
   objectifs: "SELECT j.pseudo, COUNT(*) AS v FROM reclames r JOIN joueurs j ON j.id = r.joueur GROUP BY r.joueur",

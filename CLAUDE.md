@@ -281,7 +281,9 @@ l'utilisateur, octobre 2026 : le paquet disparaissait après un passage par l'or
 Classements (demande de l'utilisateur, novembre 2026, après un premier classement retiré : les meilleurs joueurs, pas
 seulement ceux qui ont le plus de cartes) : vue `vue-classement` du menu Plus (onglet large « Classements »), menu déroulant
 (`type-classement`, prestige par défaut à chaque chargement, demande de l'utilisateur) : prestige de la collection (valeurs de dissolution des cartes
-différentes), légendaires et plus, victoires au jeu du Gouvernement, duels gagnés, voix gagnées au comptoir, objectifs
+différentes), légendaires et plus, victoires au jeu du Gouvernement (obtenues en jouant soi-même : contre l'ordinateur ou un joueur au hasard,
+seulement celles du lanceur de la partie, le propriétaire du gouvernement adverse n'ayant pas joué ; entre amis, les deux ;
+demande de l'utilisateur), duels gagnés, voix gagnées au comptoir, objectifs
 atteints, cartes différentes ; vingt premiers, les trois premiers sur un podium (deuxième, premier, troisième ;
 médailles et socles or, argent, bronze, reflet, `podium-classement`, demande de l'utilisateur), noms sans soulignement, rang du joueur (« vous ») même hors des vingt,
 pseudo qui ouvre le profil. Serveur : `GET /api/classements?type=` (`CLASSEMENTS`, liste complète gardée dix minutes dans le
