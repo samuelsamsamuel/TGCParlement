@@ -261,6 +261,10 @@ console.log("série et objectifs du jour : tests passés");
   e.deposees.push(String(une)); assert.strictEqual(R.avancement(e, legs).obtenues, av + 1, "déposée : acquise pour l'objectif");
   assert.ok(e.deposees.length > 1 && ids.every(id => e.possedees[id] || e.deposees.includes(id)), "cartes de la loi notées");
   assert.deepStrictEqual(R.migrer(JSON.parse(JSON.stringify(e))).deposees, e.deposees, "gardées par migrer");
+  // « Remplir autrement » : une autre combinaison valable, différente de la précédente quand la collection le permet
+  { const l = R.etatLois(e, cat, jour).find(x => !x.adoptee && x.frequence !== "finances" && R.remplirLoi(e, cat, x));
+    const a = R.remplirLoi(e, cat, l), b = R.remplirLoi(e, cat, l, new Set(), {aleatoire: alea, precedents: a});
+    assert.ok(R.verifierLoi(cat, l, b).ok && b.join() !== a.join(), "remplir autrement"); }
   // Condition croisée : tous les critères à la fois
   const sen = cat.cartes.find(c => (c.chambres || "").includes("S") && c.sexe === "F"), dep = cat.cartes.find(c => (c.chambres || "").includes("S") && c.sexe !== "F");
   assert.ok(R.remplit(cat, sen, {chambre: "S", sexe: "F"}) && !R.remplit(cat, dep, {chambre: "S", sexe: "F"}));

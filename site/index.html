@@ -767,6 +767,22 @@ body.nav-flottante .jauge-ligne{top:3.3rem}
 #choix-carte .tete{display:flex;justify-content:space-between;align-items:center;gap:1rem}
 #choix-carte h2{font:400 1.3rem var(--serif);margin:0}
 #choix-carte .defile{overflow-y:auto;min-height:0}
+.tete-classement{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.6rem}
+.tete-classement h2{font:400 1.6rem var(--serif);margin:0}
+.tete-classement select{flex:1 1 14rem;max-width:22rem;background:var(--velours-fonce);color:var(--marbre);border:1px solid rgba(201,162,74,.5);border-radius:3px;padding:.55rem .6rem;font:inherit}
+.classement{list-style:none;margin:.6rem 0 0;padding:0;display:grid;gap:.35rem;max-width:40rem}
+.classement > li:not(.note):not(.ecart){display:grid;grid-template-columns:2.4rem minmax(0,1fr) auto;align-items:center;gap:.6rem;padding:.55rem .75rem;border:1px solid rgba(201,162,74,.25);border-radius:10px;background:rgba(46,7,16,.45)}
+.classement .rang{font:600 1.05rem var(--serif);text-align:center;color:var(--dorure-pale)}
+.classement .qui-classement{display:flex;align-items:center;gap:.4rem;min-width:0}
+.classement .joueur-classement{text-align:left;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+.classement .vous{font-size:.72rem;text-transform:uppercase;letter-spacing:.05em;padding:.1rem .4rem;border-radius:999px;background:var(--dorure);color:#2a1a08;flex:none}
+.classement .valeur{font-variant-numeric:tabular-nums;white-space:nowrap}
+.classement li.moi{border-color:var(--dorure);background:rgba(201,162,74,.16)}
+.classement li.podium .rang{border-radius:50%;width:2rem;height:2rem;display:grid;place-items:center;color:#2a1a08;margin:0 auto}
+.classement li.r1 .rang{background:#d9b44a}.classement li.r2 .rang{background:#c7c9cc}.classement li.r3 .rang{background:#c58a55}
+.classement li.ecart{text-align:center;opacity:.6}
+:root[data-theme="clair"] .classement > li:not(.note):not(.ecart){background:rgba(255,255,255,.75);border-color:rgba(92,16,32,.22)}
+:root[data-theme="clair"] .classement li.moi{background:rgba(201,162,74,.22);border-color:#9a7424}
 .outils-choix{display:flex;gap:.5rem;flex-wrap:wrap}
 .outils-choix select{flex:1 1 10rem;min-width:0;font-size:.9rem;padding:.45rem .5rem}
 /* Lot du jour : grandes cartes en carrousel (défilement horizontal aimanté, flèches sur ordinateur, points) */
@@ -1042,6 +1058,7 @@ html.presentation{font-size:15px}
     <button role="tab" aria-selected="false" data-vue="amis" class="onglet-large" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><circle cx="17" cy="9" r="2.8"/><path d="M16 14.2a5.5 5.5 0 0 1 6 5.8"/></svg>Amis <span class="pastille" id="pastille-amis-large" hidden></span></button>
     <button role="tab" aria-selected="false" data-vue="duels" class="onglet-large"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 4l10 10M4 4h3.5M4 4v3.5M20 4 10 14M20 4h-3.5M20 4v3.5M12.5 15.5l3 3M11.5 15.5l-3 3M17 17l-2 2M7 17l2 2M16.5 18.5l2 2M7.5 18.5l-2 2"/></svg>Duels <span class="pastille" id="pastille-duels" hidden></span></button>
     <button role="tab" aria-selected="false" data-vue="lois" class="onglet-large" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h9l3 3v15H6z"/><path d="M9 9h6M9 13h6M9 17h3"/></svg>Lois</button>
+    <button role="tab" aria-selected="false" data-vue="classement" class="onglet-large" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h16M6 20v-6h4v6M10 20V9h4v11M14 20v-8h4v8"/></svg>Classements</button>
     <button role="tab" aria-selected="false" data-vue="catalogue" class="onglet-large"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="9" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>Toutes les cartes</button>
     <button role="tab" aria-selected="false" data-vue="apropos" class="onglet-large"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 4h11l3 3v13H5z"/><path d="M8 10h8M8 14h8M8 18h5"/></svg>Règlement</button>
     <button role="tab" aria-selected="false" data-vue="parametres" class="onglet-large"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1 7 17M17 7l2.1-2.1"/></svg>Paramètres</button>
@@ -1051,6 +1068,7 @@ html.presentation{font-size:15px}
     <button role="menuitem" data-menu="amis" hidden>Amis <span class="pastille" id="pastille-amis-menu" hidden></span></button>
     <button role="menuitem" data-menu="duels">Duels <span class="pastille" id="pastille-duels-menu" hidden></span></button>
     <button role="menuitem" data-menu="lois" hidden>Propositions de loi</button>
+    <button role="menuitem" data-menu="classement" hidden>Classements</button>
     <button role="menuitem" data-menu="catalogue">Toutes les cartes</button>
     <button role="menuitem" data-menu="apropos">Règlement</button>
     <button role="menuitem" data-menu="parametres">Paramètres</button>
@@ -1145,6 +1163,20 @@ html.presentation{font-size:15px}
   <section class="vue panneau" id="vue-amis" hidden></section>
   <section class="vue panneau qag duels-vue" id="vue-duels" hidden aria-live="polite"></section>
   <section class="vue panneau vue-gouv" id="vue-lois" hidden aria-live="polite"></section>
+  <section class="vue panneau" id="vue-classement" hidden>
+    <div class="tete-classement"><h2>Classements</h2>
+      <select id="type-classement" aria-label="Classement affiché">
+        <option value="prestige">Prestige de la collection</option>
+        <option value="rares">Cartes légendaires et plus</option>
+        <option value="gouvernement">Victoires au jeu du Gouvernement</option>
+        <option value="duels">Duels gagnés</option>
+        <option value="buvette">Voix gagnées au comptoir</option>
+        <option value="objectifs">Objectifs atteints</option>
+        <option value="collection">Cartes différentes</option>
+      </select></div>
+    <p class="note" id="explication-classement"></p>
+    <ol class="classement" id="liste-classement"></ol>
+  </section>
   <section class="vue panneau vue-gouv" id="vue-gouvernement" hidden aria-live="polite"></section>
 </main>
 <dialog id="apercu"><div class="detail"><div id="apercu-carte"></div><button class="bouton discret" id="fermer-apercu">Fermer</button></div></dialog>
@@ -1228,7 +1260,7 @@ async function appel(chemin, corps){
   const d = await r.json().catch(() => null);
   if (!d) throw new Error("Le serveur n'est pas disponible pour l'instant.");
   if (!r.ok) throw new Error(d.erreur || "Erreur " + r.status);
-  if (d.etat) { etat = Regles.migrer(d.etat); compte = {pseudo: d.pseudo, cree: d.cree || compte?.cree, vitrine: d.vitrine || compte?.vitrine || [], gouvernement: d.gouvernement ?? compte?.gouvernement, lois: d.lois ?? compte?.lois}; }
+  if (d.etat) { etat = Regles.migrer(d.etat); compte = {pseudo: d.pseudo, cree: d.cree || compte?.cree, vitrine: d.vitrine || compte?.vitrine || [], gouvernement: d.gouvernement ?? compte?.gouvernement, lois: d.lois ?? compte?.lois, classements: d.classements ?? compte?.classements}; }
   return d;
 }
 const actions = {
@@ -1410,6 +1442,10 @@ function majAccesGouv(){
   const lois = !!(compte && compte.lois);
   document.querySelectorAll('#menu-plus [data-menu="lois"], nav .onglet-large[data-vue="lois"]').forEach(x => x.hidden = !lois);
   if (!lois && vueCourante === "lois") allerA("paquet");
+  // Classements : mêmes comptes que les lois pendant la mise au point
+  const classements = !!(compte && compte.classements);
+  document.querySelectorAll('#menu-plus [data-menu="classement"], nav .onglet-large[data-vue="classement"]').forEach(x => x.hidden = !classements);
+  if (!classements && vueCourante === "classement") allerA("paquet");
 }
 function majTout(){ majAccesGouv(); majCompteur(); majCollection(); if (!decouverte) { majJournee(); majObjectifs(); } majCompte(); majBuvette(); majAmis(); majQag(); }
 // Délai lisible : « 42 min », « 1 h 05 »
@@ -2821,6 +2857,45 @@ document.getElementById("choix-carte").addEventListener("click", e => {
   quandChoisi?.(b.dataset.choisir);
 });
 
+/* ---------- Classements ---------- */
+// Plusieurs classements au choix (demande de l'utilisateur, novembre 2026 : les meilleurs joueurs, pas seulement ceux qui
+// ont le plus de cartes) ; calculés par le serveur au plus toutes les dix minutes ; vingt premiers et rang du joueur
+const EXPLICATIONS_CLASSEMENT = {
+  prestige: "Chaque carte différente vaut sa valeur de dissolution : commune 1, peu commune 2, rare 5, épique 15, légendaire 40, mythique 100, unique 250. Les cartes déposées pour une loi comptent.",
+  rares: "Cartes différentes légendaires, hors catégorie, mythiques ou uniques. Les cartes déposées pour une loi comptent.",
+  gouvernement: "Parties gagnées au jeu du Gouvernement, contre l'ordinateur, un joueur au hasard ou un ami.",
+  duels: "Duels de questions au Gouvernement gagnés.",
+  buvette: "Total des voix reçues pour les cartes vendues au comptoir.",
+  objectifs: "Paliers de l'ordre du jour réclamés.",
+  collection: "Cartes différentes dans l'hémicycle, plus celles déposées pour une loi.",
+};
+const UNITES_CLASSEMENT = {prestige: ["point", "points"], rares: ["carte", "cartes"], gouvernement: ["victoire", "victoires"], duels: ["victoire", "victoires"],
+  buvette: ["voix", "voix"], objectifs: ["palier", "paliers"], collection: ["carte", "cartes"]};
+async function majClassement(){
+  const choix = document.getElementById("type-classement"), liste = document.getElementById("liste-classement");
+  try { const t = localStorage.getItem("hemicycle-classement"); if (t && EXPLICATIONS_CLASSEMENT[t] && !majClassement.lu) choix.value = t; } catch (_) {}
+  majClassement.lu = true;
+  const type = choix.value, [un, plusieurs] = UNITES_CLASSEMENT[type];
+  document.getElementById("explication-classement").textContent = EXPLICATIONS_CLASSEMENT[type] + " Mis à jour toutes les dix minutes.";
+  liste.innerHTML = `<li class="note">Chargement…</li>`;
+  try {
+    const r = await appel("classements?type=" + type);
+    if (choix.value !== type) return;
+    const estMoi = x => x.pseudo.toLowerCase() === String(compte?.pseudo || "").toLowerCase();
+    const ligne = x => `<li class="${estMoi(x) ? "moi" : ""}${x.rang <= 3 ? " podium r" + x.rang : ""}">
+      <span class="rang">${x.rang}</span><span class="qui-classement"><button class="lien-carte joueur-classement" data-profil="${echapper(x.pseudo)}">${echapper(x.pseudo)}</button>${estMoi(x) ? `<span class="vous">vous</span>` : ""}</span>
+      <span class="valeur">${x.valeur.toLocaleString("fr-FR")} ${x.valeur > 1 ? plusieurs : un}</span></li>`;
+    const dedans = r.moi && r.tete.some(x => x.pseudo === r.moi.pseudo);
+    liste.innerHTML = r.tete.length ? r.tete.map(ligne).join("") + (r.moi && !dedans ? `<li class="ecart" aria-hidden="true">…</li>${ligne(r.moi)}` : "")
+      + `<li class="note total-classement">${pluriel(r.joueurs, "joueur classé", "joueurs classés")}${r.moi ? "" : ". Vous n'êtes pas encore dans ce classement."}</li>`
+      : `<li class="note">Personne n'est encore classé ici.</li>`;
+  } catch (e) { liste.innerHTML = `<li class="note">${echapper(e.message || "Classement indisponible.")}</li>`; }
+}
+document.getElementById("type-classement").addEventListener("change", e => {
+  try { localStorage.setItem("hemicycle-classement", e.target.value); } catch (_) {}
+  majClassement();
+});
+
 /* ---------- Propositions de loi ---------- */
 // Défis d'échange (demande de l'utilisateur, novembre 2026, sur le modèle des « SBC » de FIFA ; règles : regles.js,
 // adopterLoi). Présentation refaite (même demande : plus accessible, plus claire, plus belle, sans texte tronqué) : mode
@@ -2911,8 +2986,11 @@ document.getElementById("vue-lois").addEventListener("click", e => {
   if (b("[data-retirer-loi]")) { loiEnCours.ids.splice(Number(b("[data-retirer-loi]").dataset.retirerLoi), 1); majLois(); return; }
   if (b("[data-vider-loi]")) { loiEnCours.ids = []; majLois(); return; }
   if (b("[data-remplir-loi]")) {
-    const ids = Regles.remplirLoi(etat, cat, l, aEviter());
+    // une loi déjà remplie : « Remplir autrement » propose d'autres cartes (hasard, cartes précédentes écartées si possible)
+    const autrement = loiEnCours.ids.length === l.taille;
+    const ids = Regles.remplirLoi(etat, cat, l, aEviter(), autrement ? {aleatoire: Math.random, precedents: loiEnCours.ids} : {});
     if (!ids) { signaler("Votre collection ne suffit pas encore pour cette loi : cherchez les cartes qui manquent à la buvette."); return; }
+    if (autrement && [...ids].sort().join() === [...loiEnCours.ids].sort().join()) signaler("Pas d'autre combinaison possible avec vos cartes sans toucher à vos favoris ou derniers exemplaires.");
     loiEnCours.ids = ids; majLois(); return;
   }
   if (b("[data-adopter-loi]")) {
@@ -3929,7 +4007,7 @@ document.addEventListener("click", e => {
 // entre-temps ; un paquet en cours de découverte n'est jamais interrompu par un toucher sur l'onglet déjà ouvert
 let vueCourante = "paquet";
 // Vues du menu Plus, le profil toujours en tête ; Amis y passe quand l'onglet Gouvernement prend sa place
-const vuesPlus = () => document.documentElement.classList.contains("gouv-ouvert") ? ["compte", "amis", "duels", "lois", "catalogue", "apropos", "parametres"] : ["compte", "duels", "lois", "catalogue", "apropos", "parametres"];
+const vuesPlus = () => document.documentElement.classList.contains("gouv-ouvert") ? ["compte", "amis", "duels", "lois", "classement", "catalogue", "apropos", "parametres"] : ["compte", "duels", "lois", "classement", "catalogue", "apropos", "parametres"];
 function allerA(vue){
   if (rechargerSiNouvelle(vue)) return;
   const depuis = vueCourante;
@@ -3944,6 +4022,7 @@ function allerA(vue){
   if (vue === "amis" && depuis !== "amis") chargerAmis();
   if (vue === "duels" && depuis !== "duels") chargerDuels();
   if (vue === "lois") { if (depuis !== "lois") loiEnCours = null; majLois(); }
+  if (vue === "classement") majClassement();
   if (vue === "gouvernement" && depuis !== "gouvernement") chargerGouvernement();
   if (vue === "catalogue") majCatalogue();
   if (vue === "parametres") majParametres();
@@ -4008,7 +4087,7 @@ fetch("jeu.json").then(r => { if (!r.ok) throw new Error(r.status); return r.jso
   // Session ouverte sur le serveur ? Sinon, mode navigateur. Sans serveur (site statique seul), le jeu reste local.
   return fetch("/api/moi", {credentials: "same-origin"}).then(r => { noterVersion(r); return r.ok ? r.json() : null; }).catch(() => null).then(m => {
     serveur = !!(m && typeof m.connecte === "boolean"); compteConnu = true;
-    if (m && m.connecte) { etat = Regles.migrer(m.etat); compte = {pseudo: m.pseudo, cree: m.cree, vitrine: m.vitrine || [], gouvernement: !!m.gouvernement, lois: !!m.lois}; }
+    if (m && m.connecte) { etat = Regles.migrer(m.etat); compte = {pseudo: m.pseudo, cree: m.cree, vitrine: m.vitrine || [], gouvernement: !!m.gouvernement, lois: !!m.lois, classements: !!m.classements}; }
     afficherPaquet(); majTout(); majAttente(); chargerDuels(); chargerAmis(); chargerAlertes(); demarrerAccueil();
     // Onglet ouvert avant un rechargement pour nouvelle version : on y revient
     let vue = null; try { vue = sessionStorage.getItem("hemicycle-vue"); sessionStorage.removeItem("hemicycle-vue"); } catch (_) {}

@@ -196,6 +196,11 @@ const COLONNES = {
     // une ligne lue) et ne relit les compteurs d'attente que s'il a changé
     ["signal", "INTEGER NOT NULL DEFAULT 0"],
     ["gouv_formes", "INTEGER NOT NULL DEFAULT 0"],  // gouvernements formés depuis l'ouverture du compte (le premier est offert)
+    // Classements (novembre 2026) : chiffres de la collection tenus à jour par appliquer (cartes possédées et déposées
+    // pour une loi) ; lire tout possessions à chaque classement coûterait trop de lignes lues
+    ["prestige", "INTEGER NOT NULL DEFAULT 0"],     // somme des valeurs de dissolution des cartes différentes
+    ["rares", "INTEGER NOT NULL DEFAULT 0"],        // cartes différentes légendaires ou mieux
+    ["differentes", "INTEGER NOT NULL DEFAULT 0"],  // cartes différentes
   ],
   // Carte déposée pour une loi (novembre 2026) : elle compte toujours pour les objectifs (règles : deposees)
   possessions: [
@@ -321,7 +326,7 @@ async function joueurConnecte(env, requete) {
 /* ---------- État d'un joueur ---------- */
 async function chargerEtat(env, joueur) {
   const [j, p, r, h] = await env.DB.batch([
-    env.DB.prepare("SELECT pseudo, cree, points, offerts, stock, ancre, version, quiz, vitrine, favoris, gardes, quotidien FROM joueurs WHERE id = ?").bind(joueur),
+    env.DB.prepare("SELECT pseudo, cree, points, offerts, stock, ancre, version, quiz, vitrine, favoris, gardes, quotidien, prestige, rares, differentes FROM joueurs WHERE id = ?").bind(joueur),
     // Toutes les lignes : celles à zéro (cartes cédées) se lisent de toute façon avec les autres par la clé du joueur
     env.DB.prepare("SELECT carte, n, importes, reserve, deposee FROM possessions WHERE joueur = ?").bind(joueur),
     env.DB.prepare("SELECT cle, date FROM reclames WHERE joueur = ?").bind(joueur),
@@ -343,7 +348,8 @@ async function chargerEtat(env, joueur) {
   etat.gardes = JSON.parse(ligne.gardes || "[]");
   try { etat.quotidien = JSON.parse(ligne.quotidien || "{}"); } catch (_) { etat.quotidien = {}; }
   return {pseudo: ligne.pseudo, cree: ligne.cree, etat, version: ligne.version, vitrine: JSON.parse(ligne.vitrine || "[]"),
-          gouvernement: true, lois: accesLois(env, ligne.pseudo)};
+          classe: [ligne.prestige, ligne.rares, ligne.differentes],
+          gouvernement: true, lois: accesLois(env, ligne.pseudo), classements: accesLois(env, ligne.pseudo)};
 }
 // Ajout : la ligne est créée au besoin. Retrait : simple mise à jour, car SQLite vérifie les contraintes CHECK
 // d'une insertion avant de résoudre le conflit (une insertion négative échouerait toujours). Les lignes de
@@ -389,6 +395,12 @@ async function appliquer(env, joueur, operation, liees = []) {
   for (const cle of Object.keys(apres.objectifs)) if (!avant.objectifs[cle])
     requetes.push(env.DB.prepare("INSERT INTO reclames (joueur, cle, date) VALUES (?, ?, ?)").bind(joueur, cle, apres.objectifs[cle]));
   for (const [, op, detail] of apres.journal.slice(avant.journal.length)) requetes.push(noterJournal(env, joueur, op, detail));
+  // chiffres des classements, si le catalogue est chargé (toutes les opérations sur les cartes le chargent)
+  if (catalogue && requetes.length > 2) {
+    const c = chiffresCollection(apres, await catalogue.catch(() => ({parId: {}})));
+    if (c.some((v, i) => v !== (lu.classe || [])[i]))
+      requetes.push(env.DB.prepare("UPDATE joueurs SET prestige = ?, rares = ?, differentes = ? WHERE id = ?").bind(...c, joueur));
+  }
   requetes.push(...liees);
   if (requetes.length > 2) await lot(env, requetes);
   // Même forme que chargerEtat : exemplaires à zéro retirés, vingt dernières lignes du journal
@@ -396,6 +408,46 @@ async function appliquer(env, joueur, operation, liees = []) {
   apres.journal = apres.journal.slice(-20);
   env.etatEcrit = {...lu, etat: requetes.length > 2 ? apres : avant, version: requetes.length > 2 ? version + 1 : version};
   return resultat;
+}
+
+// Chiffres de la collection pour les classements : [prestige, légendaires ou mieux, cartes différentes]
+const LEGENDAIRES_OU_MIEUX = new Set(["legendaire", "hors-categorie", "mythique", "unique"]);
+function chiffresCollection(etat, cat) {
+  const ids = new Set([...Object.keys(etat.possedees).filter(id => etat.possedees[id] > 0), ...(etat.deposees || [])]);
+  let prestige = 0, rares = 0, differentes = 0;
+  for (const id of ids) {
+    const c = cat.parId[id]; if (!c) continue;
+    differentes++; prestige += Regles.VALEUR_RECYCLAGE[c.rarete] || 0; if (LEGENDAIRES_OU_MIEUX.has(c.rarete)) rares++;
+  }
+  return [prestige, rares, differentes];
+}
+// Classements (demande de l'utilisateur, novembre 2026 : les meilleurs joueurs, pas seulement ceux qui ont le plus de
+// cartes) : liste complète calculée au plus toutes les dix minutes par type (cache du Worker), rang du joueur lu dedans
+const CLASSEMENTS = {
+  prestige: "SELECT pseudo, prestige AS v FROM joueurs WHERE prestige > 0",
+  rares: "SELECT pseudo, rares AS v FROM joueurs WHERE rares > 0",
+  collection: "SELECT pseudo, differentes AS v FROM joueurs WHERE differentes > 0",
+  gouvernement: "SELECT j.pseudo, COUNT(*) AS v FROM parties p JOIN joueurs j ON j.id = p.gagnant WHERE p.statut = 'fini' AND p.gagnant > 0 GROUP BY p.gagnant",
+  duels: "SELECT j.pseudo, COUNT(*) AS v FROM duels d JOIN joueurs j ON j.id = d.gagnant WHERE d.statut = 'fini' AND d.gagnant > 0 GROUP BY d.gagnant",
+  buvette: "SELECT j.pseudo, SUM(a.prix) AS v FROM annonces a JOIN joueurs j ON j.id = a.vendeur WHERE a.statut = 'vendue' GROUP BY a.vendeur",
+  objectifs: "SELECT j.pseudo, COUNT(*) AS v FROM reclames r JOIN joueurs j ON j.id = r.joueur GROUP BY r.joueur",
+};
+async function classement(env, url, joueur) {
+  const type = String(url.searchParams.get("type") || "prestige");
+  if (!CLASSEMENTS[type]) throw new Refus(400, "Classement inconnu.");
+  const cle = new Request(`https://classements.hemicycle/${type}`);
+  let liste = null;
+  const cache = typeof caches !== "undefined" ? caches.default : null;
+  const garde = cache && !env.CLASSEMENT_SANS_CACHE ? await cache.match(cle) : null;
+  if (garde) liste = await garde.json();
+  else {
+    liste = (await env.DB.prepare(CLASSEMENTS[type] + " ORDER BY v DESC, pseudo LIMIT 1000").all()).results.map(x => [x.pseudo, x.v]);
+    if (cache) await cache.put(cle, new Response(JSON.stringify(liste), {headers: {"content-type": "application/json", "cache-control": "max-age=600"}}));
+  }
+  const pseudo = await pseudoDe(env, joueur), mien = liste.find(([p]) => p.toLowerCase() === String(pseudo).toLowerCase());
+  const rang = v => 1 + liste.filter(([, w]) => w > v).length;
+  return json({type, joueurs: liste.length, tete: liste.slice(0, 20).map(([p, v]) => ({pseudo: p, valeur: v, rang: rang(v)})),
+    moi: mien ? {pseudo: mien[0], valeur: mien[1], rang: rang(mien[1])} : null});
 }
 
 /* ---------- Comptes ---------- */
@@ -1631,6 +1683,11 @@ async function api(requete, env, url) {
     const gain = await appliquer(env, joueur, e => Regles.encaisserSerieGouv(e, cat, Regles.jourDuJeu(), aleatoire));
     if (!gain) throw new Refus(409, "Rien à encaisser.");
     return avecEtat(gain);
+  }
+  // Classements : réservés aux testeurs pendant la mise au point, comme les lois
+  if (methode === "GET" && chemin === "/api/classements") {
+    if (!accesLois(env, await pseudoDe(env, joueur))) throw new Refus(403, "Les classements ne sont pas encore ouverts.");
+    return classement(env, url, joueur);
   }
   // Propositions de loi (règles : adopterLoi) : réservées pendant la mise au point (TESTEURS_LOIS)
   if (methode === "POST" && chemin === "/api/lois") {

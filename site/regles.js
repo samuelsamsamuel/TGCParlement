@@ -788,13 +788,17 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
   // Remplissage proposé (« Remplir pour moi ») : pour chaque condition, des cartes libres qui la remplissent, les doubles
   // d'abord ; les cartes à éviter (favoris, gardées, vitrine) en dernier.
   // Renvoie les identifiants (un par place) ou null si la collection ne suffit pas
-  function remplirLoi(etat, cat, l, eviter = new Set()) {
+  // « Remplir autrement » (options.aleatoire, options.precedents) : un peu de hasard entre cartes de même coût et les cartes
+  // de la proposition précédente écartées quand c'est possible, sans jamais prendre un dernier exemplaire à la place d'un double
+  function remplirLoi(etat, cat, l, eviter = new Set(), options = {}) {
+    const alea = options.aleatoire || null, avant = options.precedents ? new Set([...options.precedents].map(String)) : null, bruit = {};
     const reste = {}, pris = [];
     for (const id of Object.keys(etat.possedees)) { const n = disponibles(etat, id); if (n > 0 && cat.parId[id]) reste[id] = n; }
     // coût d'une carte : un double coûte peu, le dernier exemplaire beaucoup, une carte à éviter encore plus ; la valeur
     // de rareté départage (les moins précieuses d'abord)
     const cout = id => ((etat.possedees[id] || 0) - pris.filter(x => x === id).length > 1 ? 0 : 1000)
-      + (eviter.has(id) ? 5000 : 0) + (VALEUR_RECYCLAGE[cat.parId[id].rarete] || 0);
+      + (eviter.has(id) ? 5000 : 0) + (VALEUR_RECYCLAGE[cat.parId[id].rarete] || 0)
+      + (avant && avant.has(String(id)) ? 300 : 0) + (alea ? (bruit[id] ??= alea() * 30) : 0);
     const prendre = id => { pris.push(id); if (!--reste[id]) delete reste[id]; };
     const candidats = q => Object.keys(reste).filter(id => remplit(cat, cat.parId[id], q.quoi));
     for (const q of l.conditions.slice().sort((a, b) => candidats(a).length - candidats(b).length)) {

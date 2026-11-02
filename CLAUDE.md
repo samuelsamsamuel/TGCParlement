@@ -204,7 +204,8 @@ première exécution : 19 816 fiches, entre 180 et 650 cartes étoilées par pol
   Libération 13 % puis 88 % ; constitutionnelle 19 % puis 88 % ; régionale 72 % à 150 ; les autres dès 150. Tout adopter en
   une semaine coûte 110 à 130 cartes, presque toutes des derniers exemplaires jusqu'à 300 paquets. Libellés courts (« 2 élus de cette
   législature », intitulé complet en sous-titre). Règles : `verifierLoi` (chaque carte remplit au plus une condition),
-  `remplirLoi` (doubles d'abord ; favoris, cartes gardées et vitrine en dernier), `manquesLoi` (ce qui manque, condition par
+  `remplirLoi` (doubles d'abord ; favoris, cartes gardées et vitrine en dernier ; « Remplir autrement » : hasard entre cartes
+  de même coût et cartes de la proposition précédente écartées si possible, `aleatoire` et `precedents`), `manquesLoi` (ce qui manque, condition par
   condition, affiché sur la carte de la loi avec un lien vers la buvette), `adopterLoi` (`quotidien.lois` pour le jour,
   `quotidien.loisSemaine` pour la semaine ; carte à choisir par le lot de la série du Gouvernement, refusée tant qu'un lot
   attend, bandeau « Une carte vous attend »). Interface : mode d'emploi en un paragraphe (ouvert à la première visite,
@@ -277,7 +278,17 @@ déchirement au récapitulatif), l'ordre du jour, sa pastille et le rappel de la
 première carte ce que la dernière débloque ; un paquet déchiré ou une carte affichée n'est jamais remplacé par
 `afficherPaquet()` appelé ailleurs (réclamation, dissolution), seulement par ses boutons (`afficherPaquet(true)`) (demande de
 l'utilisateur, octobre 2026 : le paquet disparaissait après un passage par l'ordre du jour).
-Classement des joueurs retiré à la demande de l'utilisateur. Dissoudre des doubles (recyclage) rapporte des voix, la
+Classements (demande de l'utilisateur, novembre 2026, après un premier classement retiré : les meilleurs joueurs, pas
+seulement ceux qui ont le plus de cartes) : vue `vue-classement` du menu Plus (onglet large « Classements »), menu déroulant
+(`type-classement`, choix gardé dans `hemicycle-classement`) : prestige de la collection (valeurs de dissolution des cartes
+différentes), légendaires et plus, victoires au jeu du Gouvernement, duels gagnés, voix gagnées au comptoir, objectifs
+atteints, cartes différentes ; vingt premiers (podium or, argent, bronze), rang du joueur (« vous ») même hors des vingt,
+pseudo qui ouvre le profil. Serveur : `GET /api/classements?type=` (`CLASSEMENTS`, liste complète gardée dix minutes dans le
+cache du Worker, `--var CLASSEMENT_SANS_CACHE:1` pour les tests) ; colonnes `prestige`, `rares`, `differentes` de `joueurs`
+tenues par `appliquer` (`chiffresCollection`, cartes possédées et déposées) : lire `possessions` à chaque classement
+coûterait trop de lignes ; un compte inactif depuis la mise en service reste à zéro jusqu'à sa prochaine opération, un
+échange ou une vente n'est compté qu'à l'opération suivante. Réservés aux testeurs des lois (`accesLois`, champ
+`classements` de l'état). Dissoudre des doubles (recyclage) rapporte des voix, la
 monnaie du jeu (« acheter des voix est parfaitement réglementaire ») ; à la buvette, les joueurs échangent
 des cartes et se les vendent au comptoir. Pas plus de termes : compte, connexion et échanges gardent des mots
 simples (« prendre séance » et consorts ont été écartés). Les noms de code (fonctions, API, base, champ
