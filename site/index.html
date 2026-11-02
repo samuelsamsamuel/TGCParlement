@@ -1187,12 +1187,12 @@ html.presentation{font-size:15px}
     <div class="tete-classement"><h2>Classements</h2>
       <select id="type-classement" aria-label="Classement affiché">
         <option value="prestige">Prestige de la collection</option>
+        <option value="collection">Cartes différentes</option>
         <option value="rares">Cartes légendaires et plus</option>
         <option value="gouvernement">Victoires au jeu du Gouvernement</option>
+        <option value="objectifs">Objectifs atteints</option>
         <option value="duels">Duels gagnés</option>
         <option value="buvette">Voix gagnées au comptoir</option>
-        <option value="objectifs">Objectifs atteints</option>
-        <option value="collection">Cartes différentes</option>
       </select></div>
     <p class="note" id="explication-classement"></p>
     <ol class="classement" id="liste-classement"></ol>
@@ -1462,7 +1462,7 @@ function majAccesGouv(){
   const lois = !!(compte && compte.lois);
   document.querySelectorAll('#menu-plus [data-menu="lois"], nav .onglet-large[data-vue="lois"]').forEach(x => x.hidden = !lois);
   if (!lois && vueCourante === "lois") allerA("paquet");
-  // Classements : mêmes comptes que les lois pendant la mise au point
+  // Classements : ouverts à tous les comptes (demande de l'utilisateur, novembre 2026)
   const classements = !!(compte && compte.classements);
   document.querySelectorAll('#menu-plus [data-menu="classement"], nav .onglet-large[data-vue="classement"]').forEach(x => x.hidden = !classements);
   if (!classements && vueCourante === "classement") allerA("paquet");

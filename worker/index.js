@@ -349,7 +349,7 @@ async function chargerEtat(env, joueur) {
   try { etat.quotidien = JSON.parse(ligne.quotidien || "{}"); } catch (_) { etat.quotidien = {}; }
   return {pseudo: ligne.pseudo, cree: ligne.cree, etat, version: ligne.version, vitrine: JSON.parse(ligne.vitrine || "[]"),
           classe: [ligne.prestige, ligne.rares, ligne.differentes],
-          gouvernement: true, lois: accesLois(env, ligne.pseudo), classements: accesLois(env, ligne.pseudo)};
+          gouvernement: true, lois: accesLois(env, ligne.pseudo), classements: true};
 }
 // Ajout : la ligne est créée au besoin. Retrait : simple mise à jour, car SQLite vérifie les contraintes CHECK
 // d'une insertion avant de résoudre le conflit (une insertion négative échouerait toujours). Les lignes de
@@ -1684,11 +1684,8 @@ async function api(requete, env, url) {
     if (!gain) throw new Refus(409, "Rien à encaisser.");
     return avecEtat(gain);
   }
-  // Classements : réservés aux testeurs pendant la mise au point, comme les lois
-  if (methode === "GET" && chemin === "/api/classements") {
-    if (!accesLois(env, await pseudoDe(env, joueur))) throw new Refus(403, "Les classements ne sont pas encore ouverts.");
-    return classement(env, url, joueur);
-  }
+  // Classements : ouverts à tous les comptes (demande de l'utilisateur, novembre 2026, après une mise au point réservée)
+  if (methode === "GET" && chemin === "/api/classements") return classement(env, url, joueur);
   // Propositions de loi (règles : adopterLoi) : réservées pendant la mise au point (TESTEURS_LOIS)
   if (methode === "POST" && chemin === "/api/lois") {
     if (!accesLois(env, await pseudoDe(env, joueur))) throw new Refus(403, "Les propositions de loi ne sont pas encore ouvertes.");

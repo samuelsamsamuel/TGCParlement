@@ -288,8 +288,9 @@ pseudo qui ouvre le profil. Serveur : `GET /api/classements?type=` (`CLASSEMENTS
 cache du Worker, `--var CLASSEMENT_SANS_CACHE:1` pour les tests) ; colonnes `prestige`, `rares`, `differentes` de `joueurs`
 tenues par `appliquer` (`chiffresCollection`, cartes possédées et déposées) : lire `possessions` à chaque classement
 coûterait trop de lignes ; un compte inactif depuis la mise en service reste à zéro jusqu'à sa prochaine opération, un
-échange ou une vente n'est compté qu'à l'opération suivante. Réservés aux testeurs des lois (`accesLois`, champ
-`classements` de l'état). Dissoudre des doubles (recyclage) rapporte des voix, la
+échange ou une vente n'est compté qu'à l'opération suivante. Ouverts à tous les comptes (demande de l'utilisateur, novembre 2026,
+après une mise au point réservée ; champ `classements` de l'état, toujours vrai). Ordre du menu voulu par l'utilisateur :
+prestige, cartes différentes, légendaires, Gouvernement, objectifs, duels, comptoir. Dissoudre des doubles (recyclage) rapporte des voix, la
 monnaie du jeu (« acheter des voix est parfaitement réglementaire ») ; à la buvette, les joueurs échangent
 des cartes et se les vendent au comptoir. Pas plus de termes : compte, connexion et échanges gardent des mots
 simples (« prendre séance » et consorts ont été écartés). Les noms de code (fonctions, API, base, champ
