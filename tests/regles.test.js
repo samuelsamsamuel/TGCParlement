@@ -233,8 +233,10 @@ console.log("tous les tests passent");
 console.log("série et objectifs du jour : tests passés");
 // Propositions de loi : conditions, remplissage, adoption (cartes retirées, récompense, une fois), loi de finances
 {
-  const jour = "2026-11-02", e = R.migrer({}); e.offerts = 300;
-  for (let i = 0; i < 300; i++) R.ouvrirPaquet(e, cat);
+  // tirages à graine fixe : la loi ordinaire (6 cartes d'une époque, dont une rare) doit être remplissable à coup sûr
+  let gl = 11; const aleaLois = () => { gl = (gl * 1664525 + 1013904223) >>> 0; return gl / 4294967296; };
+  const jour = "2026-11-02", e = R.migrer({}); e.offerts = 400;
+  for (let i = 0; i < 400; i++) R.ouvrirPaquet(e, cat, {aleatoire: aleaLois});
   const lois = R.etatLois(e, cat, jour);
   assert.ok(lois.length >= 15, "lois rangées par thème");
   assert.deepStrictEqual([...new Set(lois.map(l => l.theme))], R.THEMES_LOI.map(([k]) => k), "tous les thèmes");
