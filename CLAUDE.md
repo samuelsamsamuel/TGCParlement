@@ -90,6 +90,11 @@ première exécution : 19 816 fiches, entre 180 et 650 cartes étoilées par pol
   officielle structurée ne couvre 1958-2002. Une fonction du Sénat ne donne donc des points que si elle a été
   exercée le 19 juin 2002 ou après ; les fonctions antérieures restent dans le détail des cartes, sans points.
   Les listes concernées sont reconstruites à chaque exécution (membres de l'Assemblée + sénateurs retenus).
+- Export du Sénat parfois vide (444 octets, plusieurs nuits fin octobre 2026) : `senat_bureau.py` s'arrête alors sans écrire ;
+  `gouvernements_an.py`, qui réécrit avant lui les listes du Bureau, de présidence et le détail des fonctions, conserve donc
+  les membres et lignes du Sénat de l'exécution précédente (remplacés par les scripts du Sénat quand ils réussissent). Sans
+  cela, les listes du Bureau passaient d'une nuit à l'autre de 104 à 224 membres et une centaine de cartes changeaient de
+  rareté (constaté par l'utilisateur, novembre 2026).
 - Libellés des listes du Bureau communs aux deux chambres (« de l'Assemblée ou du Sénat »), définis dans
   `LISTES_ASSEMBLEE` (`gouvernements_an.py`) et repris par les scripts du Sénat.
 

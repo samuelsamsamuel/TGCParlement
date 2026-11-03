@@ -394,11 +394,34 @@ def rattacher_assemblee(assemblee, rapport, circos=()):
     with open(os.path.join("data", "gouvernement", "circonscriptions.json"), "w", encoding="utf-8") as f:
         json.dump(par_carte, f, ensure_ascii=False, indent=0)
     rapport.append(f"Circonscriptions rattachées : {len(par_carte)} députés")
+    # Lignes et membres du Sénat de l'exécution précédente, ajoutés ensuite par senat_fonctions.py et senat_bureau.py :
+    # conservés ici, et remplacés par ces scripts quand ils réussissent. Sans quoi, une nuit où l'export du Sénat revient
+    # vide (444 octets, plusieurs fois fin octobre 2026), les sénateurs perdaient leurs fonctions et leurs points jusqu'à
+    # la nuit suivante, et une centaine de cartes changeaient de rareté d'un jour à l'autre
+    F_DETAIL = os.path.join("data", "gouvernement", "fonctions_assemblee.json")
+    du_senat = lambda x: x["fonction"].endswith(" du Sénat") or x["fonction"].endswith(" au Sénat")
+    lignes_senat = {}
+    if os.path.exists(F_DETAIL):
+        with open(F_DETAIL, encoding="utf-8") as f:
+            for ident, fs in json.load(f).items():
+                garde = [x for x in fs if du_senat(x)]
+                if garde:
+                    lignes_senat[ident] = garde
+    gardes_senat = 0
     for code, (points, libelle) in LISTES_ASSEMBLEE.items():
-        with open(os.path.join("data", "listes", code + ".json"), "w", encoding="utf-8") as f:
-            json.dump({"code": code, "points": points, "plancher": None, "libelle": libelle,
-                       "source": "Assemblée nationale, open data (mandats au sein des organes), depuis 2002 (XIIe législature)",
-                       "ids": sorted(membres[code], key=str)}, f, ensure_ascii=False, indent=1)
+        chemin = os.path.join("data", "listes", code + ".json")
+        avant = {"ids": [], "source": ""}
+        if os.path.exists(chemin):
+            with open(chemin, encoding="utf-8") as f:
+                avant = json.load(f)
+        senat = {i for i in avant.get("ids", []) if any(x.get("liste") == code for x in lignes_senat.get(str(i), []))}
+        gardes_senat += len(senat - membres[code])
+        source = " ; ".join(["Assemblée nationale, open data (mandats au sein des organes), depuis 2002 (XIIe législature)"]
+                            + [x for x in (avant.get("source") or "").split(" ; ") if x.startswith("Sénat")])
+        with open(chemin, "w", encoding="utf-8") as f:
+            json.dump({"code": code, "points": points, "plancher": None, "libelle": libelle, "source": source,
+                       "ids": sorted(membres[code] | senat, key=str)}, f, ensure_ascii=False, indent=1)
+    rapport.append(f"Membres du Sénat de l'exécution précédente conservés dans les listes (remplacés par les scripts du Sénat) : {gardes_senat}")
     fusion = {}
     for ident, fs in detail.items():
         uniques = {}
@@ -406,7 +429,9 @@ def rattacher_assemblee(assemblee, rapport, circos=()):
             u = uniques.setdefault(x["fonction"], dict(x))
             u["fin"] = None if not (u["fin"] and x["fin"]) else max(u["fin"], x["fin"])
         fusion[ident] = list(uniques.values())
-    with open(os.path.join("data", "gouvernement", "fonctions_assemblee.json"), "w", encoding="utf-8") as f:
+    for ident, fs in lignes_senat.items():
+        fusion[ident] = fusion.get(ident, []) + fs
+    with open(F_DETAIL, "w", encoding="utf-8") as f:
         json.dump(fusion, f, ensure_ascii=False, indent=0)
     rapport.insert(1, "Fonctions au sein de l'Assemblée : " + ", ".join(f"{k} {len(v)}" for k, v in membres.items())
                    + f" ; non rattachées : {len(orphelins)}")
