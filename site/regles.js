@@ -512,8 +512,9 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
   // octobre 2026, après trois par jour). État : quotidien.gouv = {serie, jour, encaisses, lot}.
   const SERIE_GOUV = [
     {voix: 15},
-    {paquets: 1},
+    // paliers 2 et 3 échangés (demande de l'utilisateur, novembre 2026) : la carte rare au deuxième, le paquet au troisième
     {choix: 3, raretes: ["rare", "epique", "legendaire", "mythique"], titre: "une carte parmi 3 rares ou mieux"},
+    {paquets: 1},
     {paquets: 1, choix: 3, raretes: ["epique", "legendaire", "mythique"], titre: "une carte parmi 3 épiques ou mieux, et un paquet"},
     {paquets: 2, choix: 3, raretes: ["legendaire", "mythique"], titre: "une carte parmi 3 légendaires ou mieux, et deux paquets"},
   ];

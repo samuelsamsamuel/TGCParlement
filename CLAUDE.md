@@ -474,8 +474,8 @@ serveur), filtre « Mes favoris » dans l'Hémicycle. Pas de zoom au double touc
    gagnait 89 % de ses parties au hasard et a encaissé 131 séries en quelques jours, gains laissés ; pas de plafond quotidien), son
    propriétaire jamais averti du résultat (demande de l'utilisateur, octobre 2026) (repli sur l'ordinateur si aucun). Une partie de série à la fois ; l'adversaire est vu
    avant le choix du gouvernement, renoncer vaut défaite. Série (refaite à la demande de l'utilisateur, octobre 2026 :
-   récompense reçue à la fin de la série, cartes à choisir) : `SERIE_GOUV` de `regles.js` (15 voix, 1 paquet, une carte
-   parmi 3 rares ou mieux, une parmi 3 épiques ou mieux et un paquet, une parmi 3 légendaires ou mieux et deux paquets) ;
+   récompense reçue à la fin de la série, cartes à choisir) : `SERIE_GOUV` de `regles.js` (15 voix, une carte parmi 3 rares ou
+   mieux, 1 paquet (paliers 2 et 3 échangés à la demande de l'utilisateur, novembre 2026), une parmi 3 épiques ou mieux et un paquet, une parmi 3 légendaires ou mieux et deux paquets) ;
    après une victoire, encaisser (`encaisserSerieGouv`, `POST /api/gouvernements/encaisser`, la série repart de zéro) ou
    continuer (choix explicite, demande de l'utilisateur, octobre 2026 : « Continuer » en bouton principal, « Encaisser » discret
    avec confirmation ; le seul bouton doré « Encaisser » faisait encaisser chaque victoire), la défaite fait tout perdre ; complète au palier 5, encaissée d'elle-même ; pas de limite d'encaissements par jour

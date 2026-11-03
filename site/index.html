@@ -2063,7 +2063,7 @@ function pucesLiens(l){
   if (l.detail.sousLeChef) p.push("a servi sous ce Premier ministre");
   return p.map(x => `<span class="puce lien"><b>+1</b> ${x}</span>`).join("") + (p.length > Gouvernement.LIENS_MAX ? `<span class="puce">bonus plafonné à +${Gouvernement.LIENS_MAX}</span>` : "");
 }
-const RECOMPENSES_COURTES = ["15 voix", "1 paquet", "1 carte rare ou mieux", "1 carte épique ou mieux + 1 paquet", "1 carte légendaire ou mieux + 2 paquets"];
+const RECOMPENSES_COURTES = ["15 voix", "1 carte rare ou mieux", "1 paquet", "1 carte épique ou mieux + 1 paquet", "1 carte légendaire ou mieux + 2 paquets"];
 const texteRecompense = l => l ? (l.titre ? l.titre.charAt(0).toUpperCase() + l.titre.slice(1) : gainTexte(l)) : "";
 async function chargerGouvernement(){
   majGouvernement();
