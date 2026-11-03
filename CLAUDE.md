@@ -211,7 +211,8 @@ première exécution : 19 816 fiches, entre 180 et 650 cartes étoilées par pol
   législature », intitulé complet en sous-titre). Règles : `verifierLoi` (chaque carte remplit au plus une condition),
   `remplirLoi` (doubles d'abord ; favoris et vitrine jamais pris, sauf leurs doubles, `exclure`, demande de l'utilisateur,
   novembre 2026 ; cartes gardées en dernier ; « Remplir autrement » : hasard entre cartes
-  de même coût et cartes de la proposition précédente écartées si possible, `aleatoire` et `precedents`), `manquesLoi` (ce qui manque, condition par
+  de même coût et cartes de la proposition précédente écartées si possible, `aleatoire` et `precedents` ; six essais, puis
+  repli sur le remplissage sans hasard, qui seul peut réussir quand une carte prise au hasard en prive une autre condition), `manquesLoi` (ce qui manque, condition par
   condition, affiché sur la carte de la loi avec un lien vers la buvette), `adopterLoi` (`quotidien.lois` pour le jour,
   `quotidien.loisSemaine` pour la semaine ; carte à choisir par le lot de la série du Gouvernement, refusée tant qu'un lot
   attend, bandeau « Une carte vous attend », retiré dès le choix fait : `majTout` redessine la page des lois si elle est

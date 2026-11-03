@@ -805,7 +805,16 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
   // Renvoie les identifiants (un par place) ou null si la collection ne suffit pas
   // « Remplir autrement » (options.aleatoire, options.precedents) : un peu de hasard entre cartes de même coût et les cartes
   // de la proposition précédente écartées quand c'est possible, sans jamais prendre un dernier exemplaire à la place d'un double
+  // Avec une part de hasard, un remplissage peut échouer là où le remplissage ordinaire réussit (une carte prise pour une
+  // condition en prive une autre) : quelques essais, puis repli sur le remplissage sans hasard
   function remplirLoi(etat, cat, l, eviter = new Set(), options = {}) {
+    if (options.aleatoire) {
+      for (let k = 0; k < 6; k++) { const r = remplirUneFois(etat, cat, l, eviter, options); if (r) return r; }
+      return remplirUneFois(etat, cat, l, eviter, {exclure: options.exclure});
+    }
+    return remplirUneFois(etat, cat, l, eviter, options);
+  }
+  function remplirUneFois(etat, cat, l, eviter, options) {
     const alea = options.aleatoire || null, avant = options.precedents ? new Set([...options.precedents].map(String)) : null, bruit = {};
     const reste = {}, pris = [];
     // cartes exclues (options.exclure : favoris et vitrine, demande de l'utilisateur, novembre 2026) : seuls leurs doubles
