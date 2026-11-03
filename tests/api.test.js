@@ -327,6 +327,14 @@ const preuve = c => require("crypto").createHash("sha256").update(c).digest("hex
     base(`UPDATE parties SET maj = '2020-01-01T00:00:00.000Z' WHERE id = ${r.d.id}`);
     assert.strictEqual((await fetch("http://localhost:8787/cdn-cgi/handler/scheduled")).status, 200);
     assert.strictEqual(await voixDe(A), avantExp, "défi oublié remboursé");
+    // Mise en paquets : prise dans la réserve (paquets gagnés avec le temps), puis dans les paquets offerts
+    base(`UPDATE joueurs SET stock = 2, ancre = ${Date.now()}, offerts = 0 WHERE pseudo = 'alice${suffixe}'`);
+    r = await A("parties", {mode: "ami", vers: "carole" + suffixe, paquets: 3});
+    assert.strictEqual(r.statut, 409, "deux paquets en réserve, aucun offert : mise de trois refusée");
+    r = await A("parties", {mode: "ami", vers: "carole" + suffixe, paquets: 2}); assert.strictEqual(r.statut, 201, JSON.stringify(r.d));
+    assert.deepStrictEqual(lire(`SELECT stock, offerts FROM joueurs WHERE pseudo = 'alice${suffixe}'`)[0], {stock: 0, offerts: 0}, "mise prise dans la réserve");
+    assert.strictEqual((await A("parties/" + r.d.id + "/annuler", {})).statut, 200);
+    assert.strictEqual(lire(`SELECT offerts FROM joueurs WHERE pseudo = 'alice${suffixe}'`)[0].offerts, 2, "mise rendue en paquets offerts");
     // Partie en cours au délai : close, la manche jouée d'un seul côté lui revient
     r = await A("parties", {mode: "ami", vers: "carole" + suffixe});
     await A("parties/" + r.d.id + "/gouvernement", {gouvernement: idGA2}); await C("parties/" + r.d.id + "/gouvernement", {gouvernement: idGC});

@@ -373,11 +373,13 @@ const noterJournal = (env, joueur, operation, detail) => env.DB.prepare(
 // passée entre-temps (deux paquets ouverts à la même seconde, par exemple), la garde échoue et rien n'est écrit.
 // L'état écrit est gardé pour la réponse (env.etatEcrit) : la renvoyer ne demande pas de relire la collection,
 // ce qui divise par deux les lignes lues en base à chaque opération (D1 facture les lignes lues).
-// `liees` : écritures à faire dans le même lot (transaction), quel que soit le résultat de l'opération
+// `liees` : écritures à faire dans le même lot (transaction), quel que soit le résultat de l'opération ; ou fonction
+// du résultat qui renvoie ces écritures (aucune si l'opération a échoué, par exemple)
 async function appliquer(env, joueur, operation, liees = []) {
   const lu = await chargerEtat(env, joueur), {etat: avant, version} = lu;
   const apres = structuredClone(avant);
   const resultat = operation(apres);
+  if (typeof liees === "function") liees = liees(resultat) || [];
   const requetes = [
     env.DB.prepare("UPDATE joueurs SET version = version + 1 WHERE id = ? AND version = ?").bind(joueur, version),
     env.DB.prepare("INSERT INTO garde (ok) SELECT 1 WHERE changes() = 0"),
@@ -407,7 +409,8 @@ async function appliquer(env, joueur, operation, liees = []) {
       requetes.push(env.DB.prepare("UPDATE joueurs SET prestige = ?, rares = ?, differentes = ? WHERE id = ?").bind(...c, joueur));
   }
   requetes.push(...liees);
-  if (requetes.length > 2) await lot(env, requetes);
+  // résultats des écritures liées (identifiant d'une partie créée, par exemple)
+  if (requetes.length > 2) env.resultatsLiees = (await lot(env, requetes)).slice(requetes.length - liees.length);
   // Même forme que chargerEtat : exemplaires à zéro retirés, vingt dernières lignes du journal
   for (const id of Object.keys(apres.possedees)) if (!apres.possedees[id]) { delete apres.possedees[id]; if (avant.possedees[id]) apres.deja.push(id); }
   apres.journal = apres.journal.slice(-20);
@@ -1434,12 +1437,12 @@ async function nouvellePartie(env, requete, joueur, url) {
     if (voix === null || paquets === null) throw new Refus(400, `Mise de 0 à ${MISE_VOIX_MAX} voix et de 0 à ${MISE_PAQUETS_MAX} paquets.`);
     const n = await env.DB.prepare("SELECT COUNT(*) AS n FROM parties WHERE a = ? AND mode = 'ami' AND statut IN ('preparation', 'propose', 'en-cours')").bind(joueur).first();
     if (n.n >= MAX_PARTIES_AMIS) throw new Refus(429, `Vous avez déjà ${MAX_PARTIES_AMIS} parties en cours.`);
-    const [ins] = await lot(env, [
-      env.DB.prepare(`INSERT INTO parties (mode, a, b, graine, annonces, statut, mise_voix, mise_paquets, cree, maj)
-        VALUES ('ami', ?, ?, ?, ?, 'preparation', ?, ?, ?, ?) RETURNING id`).bind(joueur, adversaire.id, graine, JSON.stringify(annonces), voix, paquets, date, date),
-      env.DB.prepare("UPDATE joueurs SET points = points - ?, offerts = offerts - ? WHERE id = ?").bind(voix, paquets, joueur),
-    ], "Vous n'avez pas assez de voix ou de paquets pour cette mise.");
-    return json({id: ins.results[0].id}, 201);
+    // mise retenue par les règles : paquets de la réserve d'abord, puis paquets offerts
+    const insertion = env.DB.prepare(`INSERT INTO parties (mode, a, b, graine, annonces, statut, mise_voix, mise_paquets, cree, maj)
+        VALUES ('ami', ?, ?, ?, ?, 'preparation', ?, ?, ?, ?) RETURNING id`).bind(joueur, adversaire.id, graine, JSON.stringify(annonces), voix, paquets, date, date);
+    const ok = await appliquer(env, joueur, e => Regles.retenirMise(e, voix, paquets), r => r ? [insertion] : []);
+    if (!ok) throw new Refus(409, "Vous n'avez pas assez de voix ou de paquets pour cette mise.");
+    return json({id: env.resultatsLiees[0].results[0].id}, 201);
   }
   const ouverte = await env.DB.prepare("SELECT id FROM parties WHERE a = ? AND mode IN ('ordi', 'hasard') AND statut IN ('preparation', 'en-cours')").bind(joueur).first();
   if (ouverte) return json({id: ouverte.id, reprise: true});
@@ -1465,11 +1468,11 @@ async function choisirGouvernement(env, requete, joueur, id, url) {
     if (!r.meta.changes) throw new Refus(409, "La partie a changé entre-temps.");
     if (d.mode === "ami") await notifier(env, d.b, `${await pseudoDe(env, joueur)} vous défie au jeu du Gouvernement${texteMise(d)}. Touchez pour voir le défi.`, "buvette", `partie:${id}`);
   } else if (d.b === joueur && d.mode === "ami" && d.statut === "propose") {
-    await lot(env, [
+    const ok = await appliquer(env, joueur, e => Regles.retenirMise(e, d.mise_voix, d.mise_paquets), r => r && [
       env.DB.prepare("INSERT INTO clotures (nature, id) VALUES ('partie-relevee', ?)").bind(id),
       env.DB.prepare("UPDATE parties SET camp_b = ?, statut = 'en-cours', maj = ? WHERE id = ?").bind(JSON.stringify(camp), date, id),
-      env.DB.prepare("UPDATE joueurs SET points = points - ?, offerts = offerts - ? WHERE id = ?").bind(d.mise_voix, d.mise_paquets, joueur),
-    ], "Vous n'avez pas assez de voix ou de paquets pour relever ce défi.");
+    ]);
+    if (!ok) throw new Refus(409, "Vous n'avez pas assez de voix ou de paquets pour relever ce défi.");
     await notifier(env, d.a, `${await pseudoDe(env, joueur)} a relevé votre défi au jeu du Gouvernement : à vous de jouer la première manche.`, "buvette", `partie:${id}`);
   } else throw new Refus(409, "Le gouvernement de cette partie est déjà choisi.");
   return vuePartieServeur(env, joueur, id, url);
