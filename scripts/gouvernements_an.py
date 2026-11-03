@@ -6,12 +6,13 @@ postérieures, on lit le fichier officiel « Députés, sénateurs et ministres 
 (AMO20, data.assemblee-nationale.fr), qui porte les mandats de type GOUVERNEMENT avec leur intitulé
 et leurs dates. Seules les fonctions commençant après le 13 mars 2025 sont reprises.
 Le même fichier sert aussi aux fonctions au sein de l'Assemblée (présidences de groupe et de commission,
-rapporteur général, vice-présidence, questure et secrétariat du Bureau), rattachées aux cartes par le nom
+rapporteur général, vice-présidence, questure et secrétariat du Bureau, présidence de l'Office parlementaire
+d'évaluation des choix scientifiques et technologiques, commun aux deux chambres), rattachées aux cartes par le nom
 et la date de naissance. L'historique officiel est privilégié (AMO30, dit « depuis la XIe législature », mais
 qui ne porte les fonctions au sein de l'Assemblée qu'à partir de la XIIe, en juin 2002) ; à défaut, le fichier
 de la législature (AMO20) ne couvre que les députés en fonction et leurs mandats antérieurs.
 Sorties : data/gouvernement/an_lignes.json, data/gouvernement/fonctions_assemblee.json,
-data/listes/{presidence-groupe,presidence-commission,rapporteur-general,bureau-vp-questeur,bureau-secretaire}.json
+data/listes/{presidence-groupe,presidence-commission,rapporteur-general,bureau-vp-questeur,bureau-secretaire,presidence-opecst}.json
 et data/listes/rapports/gouvernements-an-rapport.txt
 """
 import http.client
@@ -216,6 +217,10 @@ LISTES_ASSEMBLEE = {
     "presidence-groupe": (8, "A présidé un groupe politique"),
     "bureau-vp-questeur": (8, "A été vice-président ou questeur de l'Assemblée ou du Sénat"),
     "bureau-secretaire": (3, "A été secrétaire de l'Assemblée ou du Sénat"),
+    # Office parlementaire d'évaluation des choix scientifiques et technologiques, commun aux deux chambres : l'open
+    # data de l'Assemblée porte ses présidents des deux chambres depuis 2004 (demande de l'utilisateur, novembre 2026 ;
+    # 6 points, sous les présidences de commission et de groupe, au-dessus du secrétariat du Bureau)
+    "presidence-opecst": (6, "A présidé l'Office parlementaire d'évaluation des choix scientifiques et technologiques"),
 }
 
 
@@ -235,6 +240,8 @@ def fonction_assemblee(type_organe, qualite, libelle_organe):
         return "rapporteur-general", f"Rapporteur général ({libelle_organe})"
     if type_organe == "GP" and q.startswith("president"):
         return "presidence-groupe", f"Président du groupe {libelle_organe}"
+    if type_organe == "OFFPAR" and "choix scientifiques" in o and q.startswith("president"):
+        return "presidence-opecst", "Président de l'Office parlementaire d'évaluation des choix scientifiques et technologiques"
     if type_organe == "COMPER" and q.startswith("president"):
         return "presidence-commission", f"Président de la {libelle_organe[:1].lower() + libelle_organe[1:]}"
     # Bureau de l'Assemblée : organe BUREAU, hors Bureau d'âge (président et secrétaires d'âge de la
