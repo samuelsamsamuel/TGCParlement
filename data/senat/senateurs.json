@@ -22033,7 +22033,7 @@
 "naissance": "1953-03-14",
 "deces": null,
 "circonscription": "Ille-et-Vilaine",
-"etat": "ACTIF",
+"etat": "ANCIEN",
 "mandats": [
 {
 "debut": "2014-10-01",
@@ -22047,12 +22047,10 @@
 },
 {
 "debut": "2026-10-01",
-"fin": null,
-"motif_fin": "En Cours"
+"fin": "2026-11-01",
+"motif_fin": "De droit (membre du Gouvernement)"
 }
-],
-"photo": "https://www.senat.fr/senimg/gatel_francoise14231l_carre.jpg",
-"groupe_actuel": "Groupe Union Centriste et Indépendants"
+]
 },
 {
 "matricule": "14233N",
@@ -29440,7 +29438,7 @@
 "nom": "Pierre Jean Rochette",
 "nom_famille": "Rochette",
 "prenom": "Pierre Jean",
-"groupe": "Les Indépendants",
+"groupe": "NI",
 "sexe": "M",
 "naissance": "1982-02-01",
 "deces": null,
@@ -29454,7 +29452,7 @@
 }
 ],
 "photo": "https://www.senat.fr/senimg/rochette_pierre_jean21070e_carre.jpg",
-"groupe_actuel": "Groupe Les Indépendants - République et Territoires"
+"groupe_actuel": "Réunion administrative des Sénateurs ne figurant sur la liste d'aucun groupe"
 },
 {
 "matricule": "21071F",
@@ -30253,19 +30251,26 @@
 "nom": "Anne-Sophie Patru",
 "nom_famille": "Patru",
 "prenom": "Anne-Sophie",
-"groupe": "UC",
+"groupe": "UCI",
 "sexe": "F",
 "naissance": "1975-02-15",
 "deces": null,
 "circonscription": "Ille-et-Vilaine",
-"etat": "ANCIEN",
+"etat": "ACTIF",
 "mandats": [
 {
 "debut": "2024-10-22",
 "fin": "2026-09-30",
 "motif_fin": "Non réélu"
+},
+{
+"debut": "2026-11-02",
+"fin": null,
+"motif_fin": "En Cours"
 }
-]
+],
+"photo": "https://www.senat.fr/senimg/patru_anne_sophie21421h_carre.jpg",
+"groupe_actuel": "Groupe Union Centriste et Indépendants"
 },
 {
 "matricule": "21422J",
