@@ -31,7 +31,10 @@ exécution à la fois, qui enregistre `data/` et `site/` (même après une annul
 1. `senateurs.py` (open data du Sénat, sénateurs actifs) ; 2. `cartes.py` (première passe, écrit aussi
 `data/senat/correspondances.json`) ; 3. `gouvernements_ive.py` (1944-1959, RTF officiel) ;
 4. `gouvernements_an.py` (open data AN : fonctions récentes, fonctions au sein de l'Assemblée,
-circonscriptions ; intitulés gouvernementaux transcrits d'info.gouv.fr dans `COMPOSITIONS`, à compléter à
+circonscriptions ; présidence de l'OPECST, organe `OFFPAR` commun aux deux chambres, dont l'open data de l'Assemblée porte les
+présidents des deux chambres depuis 2004, liste `presidence-opecst` à 6 points, demande de l'utilisateur, novembre 2026 : huit
+cartes, Revol, Birraux, Sido, Le Déaut, Villani, Longuet, Henriet, Piednoir ; présidents d'avant 2004 absents, faute de source
+officielle structurée ; intitulés gouvernementaux transcrits d'info.gouv.fr dans `COMPOSITIONS`, à compléter à
 chaque remaniement) ; 5. `senat_fonctions.py` (commissions et groupes) puis `senat_bureau.py` (Bureau du
 Sénat, lu dans l'export complet `export_sens.zip`, tables `bur` et `senbur`) ; 6. `gouvernements.py`
 (Ve République et rattachements ; le jeu de données de data.gouv.fr, arrêté au gouvernement Bayrou, laisse ses
