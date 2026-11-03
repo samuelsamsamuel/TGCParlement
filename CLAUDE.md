@@ -531,7 +531,12 @@ serveur), filtre « Mes favoris » dans l'Hémicycle. Pas de zoom au double touc
    monarchies constitutionnelles) ; Wikidata, Sycomore, Sénat, Assemblée, Wikipédia et Commons (P180) épuisés.
    Piste non retenue : catégorie Commons de la personne (Wikidata P373), 396 cartes sans portrait, surtout des
    signatures numérisées des Archives nationales.
-3. Lacunes connues, faute de source officielle structurée : sénateurs de la IIIe République et du Conseil
+3. Cumul de mandats dans une même fonction (souhaité par l'utilisateur, novembre 2026, à faire plus tard, barème inchangé
+   pour l'instant) : aujourd'hui chaque liste ne compte qu'une fois par carte. Ajouter des points pour un second mandat de
+   chef de l'État (piste : une part des 70 points, la moitié par exemple, ces cartes étant déjà en tête ; mandats à compter
+   d'après la source officielle de la liste `chef-etat`) et pour une seconde présidence de l'OPECST (piste : 3 points ; Villani
+   et Henriet l'ont présidé deux fois, d'après l'open data de l'Assemblée). Mesurer l'effet sur les raretés avant de choisir.
+4. Lacunes connues, faute de source officielle structurée : sénateurs de la IIIe République et du Conseil
    de la République (1946-1948), gouvernements antérieurs à 1944, villes des circonscriptions avant 2012,
    fonctions au sein de l'Assemblée avant juin 2002 (seuls les comptes rendus de séance en PDF les portent ;
    leur lecture lèverait la règle de symétrie).
