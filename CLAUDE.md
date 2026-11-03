@@ -507,7 +507,8 @@ serveur), filtre « Mes favoris » dans l'Hémicycle. Pas de zoom au double touc
    (« +1 a gouverné avec … », `avec` de `liens`) ; adversaire montré par stature et compétences, sans forces ; 49.3 en joker doré sobre
    (léger reflet, demande de l'utilisateur) ; barre d'envoi collante ; chaque manche révélée en grand (fenêtre `revelation`, détail des forces ;
    manches déjà vues gardées dans `hemicycle-manches-vues`). Entre amis : mise
-   comme aux duels, coups à son rythme ou en direct (demande de l'utilisateur, octobre 2026) : présence par partie (colonnes
+   comme aux duels, paquets pris d'abord dans la réserve puis dans les paquets offerts (`retenirMise` des règles, par
+   `appliquer`, demande de l'utilisateur, novembre 2026 ; gains et remboursements en paquets offerts), coups à son rythme ou en direct (demande de l'utilisateur, octobre 2026) : présence par partie (colonnes
    `vu_a`, `vu_b`, notées à chaque consultation, au plus toutes les 5 s ; « en direct » si l'adversaire l'a consultée depuis moins
    de 15 s, `enDirect`), page de la partie relue seule (2,5 s en direct, 6 s sinon, page visible), coup adverse révélé aussitôt ;
    bandeau de tour (`bandeauTour` : « À vous de jouer » doré, « En attente de … » avec point vert en direct) ; notification

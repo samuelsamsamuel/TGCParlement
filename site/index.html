@@ -2255,7 +2255,7 @@ function htmlAccueilGouv(){
     }).join("")}</ul>
     ${gouv.gouvernements.length < gouv.max ? `<button class="bouton" data-former>Former un gouvernement (${gouv.prix ? gouv.prix + " voix" : "offert"})</button>` : ""}</div>
     <details class="repli-gouv" data-repli="ami" ${replisOuverts.has("ami") ? "open" : ""}><summary>Défier un ami</summary>
-    ${gouv.gouvernements.some(g => !g.vacants.length) ? `<form class="defier" id="form-gouv-ami"><p class="note">Vous voyez les dix thèmes avant de choisir votre gouvernement ; votre ami voit le vôtre avant de choisir le sien. Chacun joue ses manches quand il veut. Le gagnant emporte les deux mises.</p>
+    ${gouv.gouvernements.some(g => !g.vacants.length) ? `<form class="defier" id="form-gouv-ami"><p class="note">Vous voyez les dix thèmes avant de choisir votre gouvernement ; votre ami voit le vôtre avant de choisir le sien. Chacun joue ses manches quand il veut. Le gagnant emporte les deux mises. Une mise en paquets se prend d'abord dans votre réserve, puis dans vos paquets offerts ; les paquets gagnés ou rendus arrivent en paquets offerts.</p>
       ${amis.amis.length ? rangeeAmis("data-defier-gouv") : ""}
       <div class="ligne-defi"><input type="text" name="pseudo" required autocapitalize="off" spellcheck="false" placeholder="Pseudo de l'adversaire" aria-label="Adversaire">
         <select name="mise" aria-label="Mise">${MISES_DUEL.map(([v, l]) => `<option value="${v}">${l}</option>`).join("")}</select>

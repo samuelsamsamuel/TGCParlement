@@ -404,4 +404,16 @@ console.log("jeu du Gouvernement : tests passés");
   for (let k = 0; k < 5; k++) { R.issueSerieGouv(es, cg, "gagne", jour, alea); assert.ok(R.encaisserSerieGouv(es, cg, jour, alea), "pas de limite par jour"); }
   assert.strictEqual(R.encaisserSerieGouv(es, cg, jour, alea), null, "rien à encaisser sans victoire");
 }
+{
+  // Mise d'une partie entre amis : réserve d'abord, puis paquets offerts
+  const e = R.etatVide(), t = Date.now();
+  Object.assign(e, {points: 30, reserve: 2, ancre: t, offerts: 1});
+  assert.strictEqual(R.retenirMise(e, 40, 0, t), null, "pas assez de voix");
+  assert.strictEqual(R.retenirMise(e, 0, 4, t), null, "pas assez de paquets");
+  assert.deepStrictEqual(R.retenirMise(e, 10, 3, t), {voix: 10, paquets: 3, reserve: 2});
+  assert.deepStrictEqual([e.points, e.reserve, e.offerts], [20, 0, 0]);
+  const p = R.etatVide(); Object.assign(p, {reserve: 0, ancre: 0, offerts: 0});
+  assert.deepStrictEqual(R.retenirMise(p, 0, 1, t), {voix: 0, paquets: 1, reserve: 1}, "réserve pleine");
+  assert.deepStrictEqual([p.reserve, p.ancre], [R.RESERVE_MAX - 1, t], "la recharge repart de maintenant");
+}
 console.log("partie du Gouvernement : tests passés");
