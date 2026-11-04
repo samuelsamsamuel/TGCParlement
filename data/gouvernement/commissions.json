@@ -19721,6 +19721,15 @@
 "chambre": "Sénat",
 "debut": "2024-10-22",
 "fin": "2026-09-30"
+},
+{
+"commission": "Commission des lois",
+"familles": [
+"lois"
+],
+"chambre": "Sénat",
+"debut": "2026-11-03",
+"fin": null
 }
 ],
 "S08047A": [

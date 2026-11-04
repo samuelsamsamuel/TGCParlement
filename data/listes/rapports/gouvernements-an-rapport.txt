@@ -4,6 +4,7 @@ Fichier lu : https://data.assemblee-nationale.fr/static/openData/repository/17/a
 https://data.assemblee-nationale.fr/static/openData/repository/18/amo/deputes_senateurs_ministres_legislature/AMO20_dep_sen_min_tous_mandats_et_organes.json.zip : HTTP Error 404: Not Found
 Fichier lu : https://data.assemblee-nationale.fr/static/openData/repository/17/amo/deputes_senateurs_ministres_legislature/AMO20_dep_sen_min_tous_mandats_et_organes.json.zip (2668595 octets, essai 1)
 Circonscriptions rattachées : 2094 députés
+Membres du Sénat de l'exécution précédente conservés dans les listes (remplacés par les scripts du Sénat) : 289
 Mandats gouvernementaux présents dans les fichiers : 837 ; le plus récent commence le 2026-02-27
 Fonctions gouvernementales postérieures au 2025-03-13 : 60 (intitulés : compositions officielles d'info.gouv.fr)
   Sébastien Lecornu : Premier ministre (2025-09-10 -> 2025-10-10)
