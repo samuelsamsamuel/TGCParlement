@@ -830,6 +830,7 @@ body.nav-flottante .jauge-ligne{top:3.3rem}
 .choix-cartes > button{border:0;background:none;padding:0;color:inherit;text-align:center;font-size:.75rem}
 .choix-cartes > button .carte{pointer-events:none}
 .choix-cartes > button span{display:block;margin-top:.2rem;color:var(--dorure-pale)}
+.choix-cartes > button span.marque-choix{margin-top:0;color:var(--pierre);font-size:.7rem}
 .choix-cartes > button.verrouillee{cursor:default}
 .choix-cartes > button.verrouillee .carte{filter:grayscale(.9);opacity:.5}
 .choix-cartes > button.verrouillee span{color:var(--pierre)}
@@ -2673,7 +2674,7 @@ function majActionsApercu(id){
       ${compte && libres ? `<button class="bouton discret" data-vendre="${echapper(id)}">Vendre au comptoir</button>` : ""}
       ${compte ? (vitrineCompte().includes(id) ? `<button class="bouton discret" data-vitrine-retirer="${echapper(id)}">Retirer de ma vitrine</button>`
         : `<button class="bouton discret" data-vitrine-ajouter="${echapper(id)}">Mettre en vitrine</button>`) : ""}`
-    : (etat.deja || []).includes(id) ? `<p class="note">Vous l'avez eue, puis cédée : elle n'est plus dans votre hémicycle. Touchez la carte pour voir sa carrière au verso.</p>`
+    : (etat.deja || []).map(String).includes(String(id)) ? `<p class="note">Vous l'avez eue, puis cédée : elle n'est plus dans votre hémicycle. Touchez la carte pour voir sa carrière au verso.</p>`
     : `<p class="note">Pas encore dans votre hémicycle. Touchez la carte pour voir sa carrière au verso.</p>`;
   if (compte && apercuCatalogue) zone.insertAdjacentHTML("beforeend", `<button class="bouton discret" data-alerte="${echapper(id)}" aria-pressed="${alertes.has(id)}">${alertes.has(id)
     ? "Ne plus m'avertir des ventes" : "M'avertir quand elle est en vente"}</button>`);
@@ -2839,8 +2840,11 @@ function majCompte(){
 let quandChoisi = null, reserveChoix = [];
 // Entrées : [id, exemplaires libres ou null, raison si la carte ne peut pas être choisie]
 let choixMax = 45;
-function choisirCarte(titre, entrees, quand){
-  reserveChoix = entrees; quandChoisi = quand; choixMax = 45;
+// options : filtres propres à l'appelant ({valeur, libelle, test}), filtre choisi d'office (defaut), mention sous chaque
+// carte (marque). Échanges : cartes absentes de l'hémicycle de l'autre joueur (demande de l'utilisateur, novembre 2026)
+let optionsChoix = {};
+function choisirCarte(titre, entrees, quand, options = {}){
+  reserveChoix = entrees; quandChoisi = quand; choixMax = 45; optionsChoix = options;
   document.getElementById("choix-titre").textContent = titre;
   document.getElementById("choix-recherche").value = "";
   // Tri et filtres (demande de l'utilisateur, novembre 2026) ; seules les cartes proposées par l'appelant y figurent
@@ -2848,7 +2852,9 @@ function choisirCarte(titre, entrees, quand){
   const cartes = entrees.map(([id]) => cat.parId[id]).filter(Boolean);
   const raretes = ORDRE.filter(r => cartes.some(c => c.rarete === r)).reverse(), epoques = [...new Set(cartes.map(c => c.epoque).filter(Boolean))];
   document.getElementById("choix-filtre").innerHTML = `<option value="">Toutes les cartes</option><option value="doubles">Mes doubles</option><option value="libres">Sans favoris ni cartes gardées</option>`
+    + (options.filtres || []).map(x => `<option value="o:${x.valeur}">${echapper(x.libelle)}</option>`).join("")
     + raretes.map(r => `<option value="r:${r}">${LIBELLES[r]}</option>`).join("") + (epoques.length > 1 ? epoques.map(e => `<option value="e:${echapper(e)}">${echapper(e)}</option>`).join("") : "");
+  document.getElementById("choix-filtre").value = options.defaut ? "o:" + options.defaut : "";
   dessinerChoix();
   document.getElementById("choix-carte").showModal();
 }
@@ -2857,7 +2863,8 @@ function dessinerChoix(){
   const tri = document.getElementById("choix-tri").value, f = document.getElementById("choix-filtre").value;
   const gardes = new Set((etat.gardes || []).map(String)), ex = c => etat.possedees[c.id] || 0;
   const garde = c => !f || (f === "doubles" ? ex(c) > 1 : f === "libres" ? !estFavori(c.id) && !gardes.has(String(c.id))
-    : f.startsWith("r:") ? c.rarete === f.slice(2) : f.startsWith("e:") ? c.epoque === f.slice(2) : true);
+    : f.startsWith("r:") ? c.rarete === f.slice(2) : f.startsWith("e:") ? c.epoque === f.slice(2)
+    : f.startsWith("o:") ? (optionsChoix.filtres || []).find(x => x.valeur === f.slice(2))?.test(c) ?? true : true);
   const rar = c => ORDRE.indexOf(c.rarete);
   const ordre = {rarete: (a, b) => rar(b) - rar(a) || b.score - a.score, "rarete-asc": (a, b) => rar(a) - rar(b) || a.score - b.score,
     score: (a, b) => b.score - a.score, "score-asc": (a, b) => a.score - b.score, nom: (a, b) => a.nom.localeCompare(b.nom, "fr"),
@@ -2866,7 +2873,7 @@ function dessinerChoix(){
     .sort(([a,,ra],[b,,rb]) => !!ra-!!rb || (tri === "rarete" ? estFavori(b.id)-estFavori(a.id) : 0) || ordre(a, b));
   document.getElementById("choix-grille").innerHTML = liste.length ? liste.slice(0, choixMax).map(([c, n, raison]) => raison
     ? `<button disabled class="verrouillee">${htmlCarte(c, {etoile: false})}<span>${echapper(raison)}</span></button>`
-    : `<button data-choisir="${echapper(c.id)}">${htmlCarte(c, {etoile: false})}<span>${estFavori(c.id) ? "★ " : ""}${n !== null && n !== undefined ? pluriel(n, "libre") : ""}</span></button>`).join("")
+    : `<button data-choisir="${echapper(c.id)}">${htmlCarte(c, {etoile: false})}<span>${estFavori(c.id) ? "★ " : ""}${n !== null && n !== undefined ? pluriel(n, "libre") : ""}</span>${optionsChoix.marque ? `<span class="marque-choix">${echapper(optionsChoix.marque(c))}</span>` : ""}</button>`).join("")
     + (liste.length > choixMax ? `<p class="centre" style="grid-column:1/-1"><button class="bouton discret" id="choix-plus">Afficher plus (${liste.length - choixMax} autres)</button></p>` : "")
     : `<p class="note" style="grid-column:1/-1">${reserveChoix.length ? "Aucune carte ne correspond." : "Aucune carte disponible."}</p>`;
 }
@@ -3485,7 +3492,7 @@ document.addEventListener("click", e => {
 
 /* ---------- Buvette : échanges entre joueurs et comptoir (marché) ---------- */
 // Lot de cartes d'un échange : réserve (id -> exemplaires libres), choix des quantités par la fenêtre de choix
-function lot(conteneur, reserve, titre, quandChange = () => {}){
+function lot(conteneur, reserve, titre, quandChange = () => {}, options = () => ({})){
   const choix = {};
   const dessiner = () => {
     conteneur.innerHTML = `<div class="lot">${Object.entries(choix).map(([id, q]) => `<span class="puce">${q > 1 ? q + " × " : ""}${nomCarte(id)}<button data-retrait="${echapper(id)}" aria-label="Retirer">×</button></span>`).join("")}
@@ -3496,13 +3503,13 @@ function lot(conteneur, reserve, titre, quandChange = () => {}){
     if (r) { if (!--choix[r.dataset.retrait]) delete choix[r.dataset.retrait]; dessiner(); quandChange(choix); return; }
     if (!e.target.closest("[data-ajout]")) return;
     const entrees = Object.entries(reserve()).map(([id, n]) => [id, n - (choix[id] || 0)]).filter(([, n]) => n > 0);
-    choisirCarte(titre, entrees, id => { choix[id] = (choix[id] || 0) + 1; dessiner(); quandChange(choix); });
+    choisirCarte(titre, entrees, id => { choix[id] = (choix[id] || 0) + 1; dessiner(); quandChange(choix); }, options());
   });
   dessiner();
   return {choix, vider(){ for (const k in choix) delete choix[k]; dessiner(); }, redessiner: dessiner};
 }
 const mesLibres = () => Object.fromEntries(Object.keys(etat.possedees).map(id => [id, Regles.disponibles(etat, id)]).filter(([, n]) => n > 0));
-let buvetteConstruite = false, partenaire = null, sesLibres = {}, selDonne, selRecoit, carteVente = null, sousBuvette = "echanges";
+let buvetteConstruite = false, partenaire = null, sesLibres = {}, sesCartes = new Set(), selDonne, selRecoit, carteVente = null, sousBuvette = "echanges";
 const STATUTS = {proposee: "en attente", acceptee: "accepté", refusee: "refusé", annulee: "retiré", ouverte: "au comptoir", vendue: "vendue", retiree: "retirée"};
 function majBuvette(){
   const vue = document.getElementById("vue-buvette");
@@ -3564,7 +3571,7 @@ function dessinerPartenaires(){
 }
 async function choisirPartenaire(pseudo){
   const d = await appel("joueurs/" + encodeURIComponent(pseudo.trim()));
-  partenaire = d.pseudo; sesLibres = d.libres; selRecoit.vider();
+  partenaire = d.pseudo; sesLibres = d.libres; sesCartes = new Set((d.possede || []).map(String)); selRecoit.vider();
   document.getElementById("form-partenaire").pseudo.value = d.pseudo;
   document.getElementById("partenaire-choisi").textContent = `${pluriel(Object.keys(d.libres).length, "carte libre")} chez ${d.pseudo}.`;
   document.getElementById("etapes-echange").hidden = false;
@@ -3614,8 +3621,13 @@ function construireBuvette(vue){
         .map(([v, l]) => `<button data-hist="${v}" aria-pressed="${v === "tout"}">${l}</button>`).join("")}</div>
       <div id="historique"></div>
     </div>`;
-  selDonne = lot(document.getElementById("sel-donne"), mesLibres, "Choisir vos cartes", majProposer);
-  selRecoit = lot(document.getElementById("sel-recoit"), () => sesLibres, "Choisir ses cartes", majProposer);
+  // Cartes que l'autre joueur n'a pas d'abord, et l'inverse pour ce qu'on reçoit ; chaque carte dit qui l'a déjà
+  selDonne = lot(document.getElementById("sel-donne"), mesLibres, "Choisir vos cartes", majProposer, () => partenaire ? {
+    filtres: [{valeur: "absente-autre", libelle: `Absentes de l'hémicycle de ${partenaire}`, test: c => !sesCartes.has(String(c.id))}],
+    defaut: "absente-autre", marque: c => sesCartes.has(String(c.id)) ? `${partenaire} l'a déjà` : `${partenaire} ne l'a pas`} : {});
+  selRecoit = lot(document.getElementById("sel-recoit"), () => sesLibres, "Choisir ses cartes", majProposer, () => ({
+    filtres: [{valeur: "absente-moi", libelle: "Absentes de mon hémicycle", test: c => !etat.possedees[c.id]}],
+    defaut: "absente-moi", marque: c => etat.possedees[c.id] ? "Déjà dans votre hémicycle" : "Absente de votre hémicycle"}));
   dessinerVente();
   document.getElementById("zone-vente").addEventListener("click", e => {
     if (e.target.closest("[data-choisir-vente]")) choisirCarte("Carte à vendre", entreesVente(), id => { carteVente = id; dessinerVente(); });
@@ -3929,7 +3941,8 @@ function majCatalogue(){
   if (!cat) return;
   const q = Regles.normer(document.getElementById("cat-recherche").value);
   // Obtenue : dans la collection, ou cédée depuis (échange, vente) ; une carte qu'on a eue ne redevient pas grise
-  const deja = new Set(etat.deja || []), obtenue = c => !!etat.possedees[c.id] || deja.has(c.id);
+  // Identifiants du catalogue en nombre (Sycomore) ou en texte, ceux du serveur toujours en texte : comparés en texte
+  const deja = new Set((etat.deja || []).map(String)), obtenue = c => !!etat.possedees[c.id] || deja.has(String(c.id));
   const pos = document.getElementById("cat-possession").value, ep = document.getElementById("cat-epoque").value, ra = document.getElementById("cat-rarete").value;
   const liste = cartes.filter(c => (!ep || c.epoque === ep) && (!ra || c.rarete === ra) && (!q || c.cherche.includes(q))
     && (!pos || (pos === "obtenues") === obtenue(c))).sort((a, b) => (b.rarete === "unique") - (a.rarete === "unique") || b.score - a.score);
