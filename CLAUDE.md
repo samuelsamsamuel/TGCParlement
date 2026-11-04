@@ -367,6 +367,10 @@ serveur), filtre « Mes favoris » dans l'Hémicycle. Pas de zoom au double touc
   (aucune possession, aucun journal) est repris par une nouvelle inscription avec le même mot de passe.
 - Concurrence des opérations des règles : version du joueur incrémentée dans le même lot ; une insertion dans la
   table `garde` (contrainte `ok = 0`) n'a lieu que si la version a changé (`changes() = 0`) et annule tout.
+- Échanges (demande de l'utilisateur, novembre 2026) : `GET /api/joueurs/:pseudo` renvoie aussi `possede` (cartes de son
+  hémicycle, même lecture que ses exemplaires libres) ; le choix des cartes à donner s'ouvre sur « Absentes de l'hémicycle de
+  … » et dit sous chaque carte si l'autre l'a déjà ; celui des cartes à recevoir, sur « Absentes de mon hémicycle » (options
+  `filtres`, `defaut` et `marque` de `choisirCarte`, passées par `lot`).
 - Choix d'un ami (échange, duel) : une seule rangée de pastilles (initiale, pseudo) qui défile de côté (`rangeeAmis`, demande de
   l'utilisateur : le nuage de puces était lourd), au-dessus du champ de pseudo.
 - Amis (table `amis`, une ligne par sens) : `GET /api/amis`, `POST /api/amis/(demander|accepter|retirer)` ; une demande
@@ -407,7 +411,8 @@ serveur), filtre « Mes favoris » dans l'Hémicycle. Pas de zoom au double touc
   nombre de comptes qui en ont au moins un exemplaire, sans dire lesquels (`GET /api/detenteurs?carte=`, sans connexion,
   index `possessions_carte`, cache de dix minutes) ; une carte cédée sort de la collection, les objectifs déjà
   réclamés restent acquis, et elle n'est pas grisée dans « Toutes les cartes » (demande de l'utilisateur) : `deja` de
-  l'état, cartes dont la ligne de possession est à zéro (jamais supprimée), lue avec les autres par `chargerEtat`.
+  l'état, cartes dont la ligne de possession est à zéro (jamais supprimée), lue avec les autres par `chargerEtat`. Comparaison en texte dans le navigateur (`majCatalogue`) : les identifiants Sycomore du catalogue
+  sont des nombres, ceux du serveur du texte, et les cartes cédées restaient grisées (signalé par l'utilisateur, novembre 2026).
 - Migrations uniques : `MIGRATIONS` (worker), notées dans `reglages`.
 - Colonnes ajoutées après la mise en service : déclarées dans `COLONNES` (worker), ajoutées à la volée.
 - Vitrine (six cases, chacune remplie ou vidée à part, enregistrée aussitôt ; ordre changé par glisser-déposer à la souris
