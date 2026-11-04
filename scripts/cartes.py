@@ -21,6 +21,7 @@ from collections import Counter, defaultdict
 from datetime import date
 
 F_FICHES = os.path.join("data", "sycomore", "fiches.jsonl")
+F_SENATEURS_IIIE = os.path.join("data", "senat", "senateurs_iiie.json")
 F_SENATEURS = os.path.join("data", "senat", "senateurs.json")
 F_HORS_PARLEMENT = os.path.join("data", "gouvernement", "hors_parlement.json")
 F_CARTES = os.path.join("data", "cartes.json")
@@ -264,6 +265,24 @@ def nom_famille_sycomore(nom):
     return mots[1] if len(mots) == 2 else segment
 
 
+def completer_iiie(carte, s, listes):
+    """Sénateur de la IIIe République (fiche de senat.fr) déjà présent sur une carte sénatoriale de l'open data (un
+    sénateur de la Ve République élu avant-guerre) : ses mandats d'avant 1941 s'ajoutent à cette carte. Une fiche
+    Sycomore porte déjà les mandats au Sénat des anciens députés : rien n'y est ajouté."""
+    if "inamovible" not in s or not str(carte["id"]).startswith("S"):
+        return
+    deja = {m["debut"] for m in carte["mandats"]}
+    fonction = "Sénateur" + (" inamovible" if s["inamovible"] else "") + (f" ({s['circonscription']})" if s["circonscription"] else "")
+    for m in s["mandats"]:
+        if m["debut"] and m["debut"] not in deja:
+            carte["mandats"].append({"chambre": "Sénat", "fonction": fonction, "debut": m["debut"], "fin": m["fin"], "en_cours": False})
+    carte["mandats"].sort(key=lambda m: m["debut"] or "")
+    carte["annees_mandat"] = round(duree_jours(carte["mandats"]) / 365.25, 1)
+    carte["score"] = score_carte(carte["annees_mandat"], carte["distinctions"])
+    carte["texte"] = texte_carte(carte)
+    anomalies["sénateur de la IIIe République ajouté à une carte sénatoriale"].append(f"{s['matricule']} -> {carte['id']} {carte['nom']}")
+
+
 def cartes_senateurs(cartes, listes):
     """Cartes des sénateurs absents de Sycomore (jamais députés), d'après l'open data du Sénat.
     Un sénateur est réputé déjà présent si une fiche Sycomore porte un nom commun et la même
@@ -273,6 +292,11 @@ def cartes_senateurs(cartes, listes):
         return []
     with open(F_SENATEURS, encoding="utf-8") as f:
         senateurs = json.load(f)
+    # Sénateurs de la IIIe République, lus sur leurs fiches de senat.fr (senateurs_iiie.py) : même forme, après ceux
+    # de l'open data, pour être aussi rapprochés des cartes sénatoriales déjà créées (demande de l'utilisateur, novembre 2026)
+    if os.path.exists(F_SENATEURS_IIIE):
+        with open(F_SENATEURS_IIIE, encoding="utf-8") as f:
+            senateurs = senateurs + json.load(f)["senateurs"]
     # Doublons établis par décision motivée (complétés, le cas échéant, par data/listes/decisions-senateurs.json)
     doublons = {"000086": {"sycomore": 4246, "motif": "Bernard Lafay : même personne que la fiche Sycomore 4246 "
                                                    "(né en 1903 selon Sycomore, en 1905 selon l'open data du Sénat)."}}
@@ -293,10 +317,12 @@ def cartes_senateurs(cartes, listes):
             continue  # même personne qu'une fiche Sycomore, établie par décision motivée
         # Rapprochement sur le nom de famille entier (tous ses mots), jamais sur les prénoms
         cles = noms_cles(s.get("nom_famille") or s["nom"])
-        meme_nom = lambda c: bool(cles) and cles <= noms_cles(nom_famille_sycomore(c["nom"]))
+        civil = noms_cles(s.get("nom_famille_civil"))  # nom civil d'un sénateur connu sous un autre nom (« dit »)
+        meme_nom = lambda c: any(k and k <= noms_cles(nom_famille_sycomore(c["nom"])) for k in (cles, civil))
         exacts = [c for c in par_date[s["naissance"]] if meme_nom(c)] if s["naissance"] else []
         if exacts:
             correspondances[s["matricule"]] = exacts[0]["id"]
+            completer_iiie(exacts[0], s, listes)
             continue
         # Même année seulement : il faut aussi le même premier prénom, et une date qui ne diffère
         # que par le jour ou que par le mois (erreur de saisie plausible dans l'une des sources)
@@ -311,9 +337,11 @@ def cartes_senateurs(cartes, listes):
             anomalies["sénateur rapproché d'une fiche Sycomore par l'année seule"].append(
                 f"{s['matricule']} {s['nom']} ({s['naissance']}) -> {proches[0]['id']} {proches[0]['nom']} ({proches[0]['naissance']})")
             correspondances[s["matricule"]] = proches[0]["id"]
+            completer_iiie(proches[0], s, listes)
             continue
         mandats = []
         fonction = (("Sénatrice" if s["sexe"] == "F" else "Sénateur")
+                    + (" inamovible" if s.get("inamovible") else "")
                     + (f" ({s['circonscription']})" if s["circonscription"] else ""))
         if not any(m["debut"] for m in s["mandats"]):
             # Mandat absent ou non daté dans l'open data : carte créée, durée non comptée
@@ -339,9 +367,12 @@ def cartes_senateurs(cartes, listes):
                  "lieu_naissance": None, "deces": s["deces"], "annees_mandat": annees,
                  "mandats": mandats, "distinctions": distinctions,
                  "score": score_carte(annees, distinctions),
-                 "source": f"https://data.senat.fr/les-senateurs/ (matricule {s['matricule']})"}
+                 "source": s.get("source") or f"https://data.senat.fr/les-senateurs/ (matricule {s['matricule']})"}
         carte["texte"] = texte_carte(carte)
         nouvelles.append(carte)
+        if carte["naissance"]:  # une carte sénatoriale peut être rapprochée d'un sénateur de la liste suivante
+            par_date[carte["naissance"]].append(carte)
+            par_annee[carte["naissance"][:4]].append(carte)
     with open(os.path.join("data", "senat", "correspondances.json"), "w", encoding="utf-8") as f:
         json.dump(correspondances, f, ensure_ascii=False, indent=0)
     return nouvelles

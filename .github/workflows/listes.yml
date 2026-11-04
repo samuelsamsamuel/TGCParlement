@@ -26,6 +26,12 @@ jobs:
       - name: Base des sénateurs (open data du Sénat)
         run: python3 scripts/senateurs.py
 
+      # Liste close : les fiches déjà lues ne sont plus demandées ; une panne de senat.fr laisse le fichier précédent
+      - name: Sénateurs de la IIIe République (fiches de senat.fr)
+        continue-on-error: true
+        timeout-minutes: 45
+        run: python3 scripts/senateurs_iiie.py
+
       - name: Cartes, première passe
         run: python3 scripts/cartes.py > /dev/null
 

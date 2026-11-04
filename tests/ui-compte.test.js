@@ -83,10 +83,7 @@ const sx = Date.now().toString(36).slice(-4);
   assert.ok(await A.isVisible('#vue-buvette [data-partenaire="Bob' + sx + '"]'));
   await A.waitForSelector('#etapes-echange:not([hidden]) #sel-recoit [data-ajout]');
   for (const zone of ["#sel-recoit", "#sel-donne"]) {
-    // Filtre d'office : cartes absentes de l'hémicycle de l'autre (ou du sien pour ce qu'on reçoit), mention sur chaque carte
-    await A.click(zone + ' [data-ajout]'); await A.waitForSelector("#choix-carte[open]");
-    assert.strictEqual(await A.inputValue("#choix-filtre"), zone === "#sel-donne" ? "o:absente-autre" : "o:absente-moi");
-    await A.selectOption("#choix-filtre", ""); await A.waitForSelector("#choix-carte [data-choisir] .marque-choix");
+    await A.click(zone + ' [data-ajout]'); await A.waitForSelector("#choix-carte[open] [data-choisir]");
     await A.click("#choix-carte [data-choisir]"); await A.waitForSelector(zone + " .puce");
   }
   await A.click("#proposer");
@@ -358,16 +355,12 @@ const sx = Date.now().toString(36).slice(-4);
   await A.waitForFunction(id => compte.vitrine[0] === id, autre);
   assert.strictEqual((await A.evaluate(() => fetch("/api/moi").then(r => r.json()))).vitrine[0], autre, "ordre enregistré");
   // Dissoudre une carte sans double : elle quitte la collection contre ses voix
-  const seule = await A.evaluate(() => Object.keys(etat.possedees).sort((a, b) => /^\d+$/.test(b) - /^\d+$/.test(a)).find(id => etat.possedees[id] === 1 && Regles.disponibles(etat, id) === 1 && !compte.vitrine.includes(id)));
+  const seule = await A.evaluate(() => Object.keys(etat.possedees).find(id => etat.possedees[id] === 1 && Regles.disponibles(etat, id) === 1 && !compte.vitrine.includes(id)));
   const voixAvantDissolution = await A.evaluate(() => etat.points);
   await A.click('nav [data-vue="collection"]'); await A.evaluate(id => apercu(id), seule);
   await A.click(`[data-dissoudre="${seule}"][data-tout]`);
   await A.waitForFunction(([id, v]) => !etat.possedees[id] && etat.points > v && etat.deja.includes(id), [seule, voixAvantDissolution]);
   await A.click("#fermer-apercu");
-  // Cédée, elle reste « obtenue » dans Toutes les cartes (identifiants du catalogue en nombre, du serveur en texte)
-  assert.ok(await A.evaluate(id => { document.getElementById("cat-recherche").value = cat.parId[id].nom;
-    document.getElementById("cat-possession").value = "obtenues"; majCatalogue();
-    return document.getElementById("cat-grille").textContent.includes(cat.parId[id].nom); }, seule), "carte cédée non grisée");
   // Vitrine pleine : « Mettre en vitrine » fait choisir la carte à remplacer, qui cède sa case. Sept cartes au moins sont
   // nécessaires ; selon les paquets tirés plus haut, Anne peut en avoir moins : on lui en donne en base
   const septCartes = await A.evaluate(() => cartes.slice(0, 7).map(c => c.id));

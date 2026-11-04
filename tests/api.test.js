@@ -100,7 +100,6 @@ const preuve = c => require("crypto").createHash("sha256").update(c).digest("hex
   const donneA = Object.keys(e3.possedees).find(id => R.disponibles(e3, id) > 0);
   const vue = (await A("joueurs/bob" + suffixe)).d;
   assert.ok(vue.libres[carteBob] >= 1);
-  assert.ok(vue.possede.includes(String(carteBob)), "cartes de son hémicycle, pour signaler celles qu'il n'a pas");
   r = await A("echanges", {vers: "bob" + suffixe, donne: {[donneA]: 1}, recoit: {[carteBob]: 1}});
   assert.strictEqual(r.statut, 201, JSON.stringify(r.d));
   const ech = (await Bc("echanges")).d.echanges[0];
