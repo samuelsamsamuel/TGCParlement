@@ -40,7 +40,7 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
   const RECHARGE_MS = 30 * 60 * 1000, RESERVE_MAX = 10, CARTES_PAR_PAQUET = 5;
   const ORDRE = ["commune", "peu-commune", "rare", "epique", "hors-categorie", "legendaire", "mythique", "unique"];
   // Probabilité de chaque rareté pour une carte tirée : les plus hautes restent rares, quel que soit leur nombre
-  const POIDS = {"mythique": 0.4, "legendaire": 1.6, "epique": 6, "rare": 15, "peu-commune": 30, "commune": 46, "hors-categorie": 1, "unique": 0.004};
+  const POIDS = {"mythique": 0.4, "legendaire": 1.6, "epique": 6, "rare": 15, "peu-commune": 30, "commune": 46, "hors-categorie": 1, "unique": 0.002};
   // Recyclage : points rendus par exemplaire en trop, à peu près inverses de la fréquence de tirage.
   // Un paquet de doubles recyclé rapporte en moyenne 21 points, pour un paquet à 25 : recycler ne rend jamais
   // plus de paquets qu'il n'en consomme, sans quoi les doubles d'une collection avancée tourneraient sans fin.
