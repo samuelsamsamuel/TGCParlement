@@ -1754,7 +1754,10 @@ async function api(requete, env, url) {
   if (methode === "POST" && (m = chemin.match(/^\/api\/duels\/(\d+)\/(relever|refuser|annuler)$/))) return repondreDefi(env, joueur, Number(m[1]), m[2]);
   if (methode === "GET" && (m = chemin.match(/^\/api\/joueurs\/([^/]+)$/))) {
     const j = await idJoueur(env, decodeURIComponent(m[1]));
-    return json({pseudo: j.pseudo, libres: await libres(env, j.id)});
+    // exemplaires libres (échangeables) et cartes de son hémicycle, pour signaler celles qu'il n'a pas : une seule lecture
+    const r = await env.DB.prepare("SELECT carte, n - importes - reserve AS libres FROM possessions WHERE joueur = ? AND n > 0").bind(j.id).all();
+    return json({pseudo: j.pseudo, libres: Object.fromEntries(r.results.filter(x => x.libres > 0).map(x => [x.carte, x.libres])),
+      possede: r.results.map(x => x.carte)});
   }
   if (methode === "GET" && chemin === "/api/echanges") return listeEchanges(env, joueur);
   if (methode === "POST" && chemin === "/api/echanges") return proposerEchange(env, requete, joueur, await catalogueDuJeu());
