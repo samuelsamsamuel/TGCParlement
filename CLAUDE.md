@@ -161,8 +161,9 @@ première exécution : 19 816 fiches, entre 180 et 650 cartes étoilées par pol
   rare sont cochées pour le recyclage : les doubles plus rares serviront aux échanges entre joueurs.
 - Rareté « unique » (demande de l'utilisateur, octobre 2026) : au-dessus de toutes, pour la seule carte de Charles de
   Gaulle (`CARTES_UNIQUES`, `cartes.py` ; jusque-là hors catégorie). Ajoutée en dernier dans `RARETES` (`export_jeu.py`)
-  et `ORDRE` (`regles.js`) pour ne pas décaler les indices publiés ; poids de tirage 0,004 (`POIDS`), sous celui d'une
-  mythique donnée (0,4 pour 95 cartes ; vérifié par le test), soit une carte sur 25 000 environ ; dissolution 250 voix ;
+  et `ORDRE` (`regles.js`) pour ne pas décaler les indices publiés ; poids de tirage 0,002 (`POIDS`, 0,004 jusqu'en novembre 2026 : quatre
+  sorties sur 21 087 paquets, réduit à la demande de l'utilisateur), sous celui d'une mythique donnée (0,4 pour 95 cartes ;
+  vérifié par le test), soit une carte sur 50 000 environ, un paquet sur 12 500 ; dissolution 250 voix ;
   cadre tricolore et or (`.r-unique`) ; en tête de « Toutes les cartes », avant le tri par score (demande de l'utilisateur).
 - Paliers (`PALIERS`) hauts et modestes pour les législatures (50, 150, puis 250 à 800 par centaines, ajoutés à la demande
   de l'utilisateur, novembre 2026) et les départements (15, 40) ; « Remplir l'hémicycle » de 1 500 à 17 500 cartes au-delà de
