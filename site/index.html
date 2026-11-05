@@ -1138,7 +1138,7 @@ html.presentation{font-size:15px}
     <h3>Amis et vitrine</h3>
     <p>Avec un compte, on ajoute des amis par leur pseudo : une fois la demande acceptée, on voit leur vitrine, six cartes choisies dans leur collection, on leur propose un échange ou on les défie en un toucher.</p>
     <h3>Compte, échanges et comptoir</h3>
-    <p>Sans compte, la collection reste dans ce navigateur. Avec un compte (pseudo et mot de passe), la collection est gardée par le serveur et se retrouve sur tous vos appareils, et c'est alors le serveur qui tire les cartes. À la création du compte, la collection de ce navigateur est reprise une fois, et ses cartes deviennent des cartes du compte comme les autres. Les objectifs déjà réclamés dans le navigateur ne se réclament pas une seconde fois, Les voix du navigateur sont reprises aussi, jusqu'à 1 000 ; les paquets offerts ne le sont pas.</p>
+    <p>Sans compte, la collection reste dans ce navigateur. Avec un compte (pseudo et mot de passe), la collection est gardée par le serveur et se retrouve sur tous vos appareils, et c'est alors le serveur qui tire les cartes. À la création du compte, la collection de ce navigateur est reprise une fois, et ses cartes deviennent des cartes du compte comme les autres. 50 exemplaires au plus sont repris, les plus communs d'abord, puis la collection du navigateur est vidée. Les objectifs déjà réclamés dans le navigateur ne se réclament pas une seconde fois. Les voix et les paquets offerts du navigateur ne sont pas repris.</p>
     <p>À la buvette, on propose à un autre joueur un échange de cartes, qu'il accepte ou refuse ; des voix peuvent s'ajouter d'un côté de l'échange, données ou demandées, et ne changent de main qu'à l'acceptation. On y tient aussi le comptoir, où les joueurs se vendent et s'achètent des cartes contre des voix. Le premier qui paie le prix demandé emporte la carte ; on peut aussi offrir moins, et le vendeur accepte ou refuse l'offre. Une carte posée au comptoir est réservée : elle ne peut être ni dissoute ni échangée tant qu'elle y reste. Sur la grande carte, « M'avertir quand elle est en vente » envoie une notification dès qu'un joueur la pose au comptoir.</p>
     <h3>Raretés</h3>
     <p>La rareté d'une carte dépend de son score, comparé à celui des autres parlementaires de la même époque. Par carte tirée : mythique 0,4 %, légendaire 1,6 %, épique 6 %, rare 15 %, peu commune 30 %, commune 46 %. Les élus en exercice gagnent un niveau de rareté. Quand une carte tirée est déjà dans votre hémicycle, ou déjà sortie dans le même paquet, elle est le plus souvent tirée une seconde fois dans la même rareté : les doubles restent possibles, mais rares tant que la collection est jeune (environ un sur dix entre le 700e et le 1 500e paquet). Au-dessus de toutes, la rareté unique ne compte qu'une carte, Charles de Gaulle, plus rare au tirage que n'importe quelle carte mythique : en moyenne une fois sur 50 000 cartes, soit environ un paquet sur 12 500.</p>
@@ -2801,7 +2801,7 @@ function majCompte(){
     vue.innerHTML = `<h2>Mon siège</h2><p>Les comptes ne sont pas encore ouverts sur ce site. Votre collection reste enregistrée dans ce navigateur.</p>`;
     return;
   }
-  const locales = Object.keys(depot.charger().possedees).length, voixLocales = Math.min(1000, depot.charger().points || 0);
+  const locales = Object.keys(depot.charger().possedees).length, voixLocales = 0;  // voix du navigateur plus reprises (novembre 2026)
   const local = depot.charger();
   vue.innerHTML = `<h2>Mon siège</h2>
     <p>Sans compte, votre collection reste dans ce navigateur. Avec un pseudo et un mot de passe, sans adresse e-mail, elle vous suit sur tous vos appareils, et vous ouvrez la buvette, les amis et les duels.</p>
@@ -2810,7 +2810,7 @@ function majCompte(){
       <label>Pseudo<input type="text" name="pseudo" autocomplete="username" required minlength="3" maxlength="20" autocapitalize="off" spellcheck="false"></label>
       <label>Mot de passe<input type="password" name="mdp" autocomplete="${ongletCompte==="inscription"?"new-password":"current-password"}" required minlength="10"></label>
       ${ongletCompte==="inscription" ? `<label>Confirmation du mot de passe<input type="password" name="mdp2" autocomplete="new-password" required></label>
-      ${locales || voixLocales ? `<label class="case"><input type="checkbox" name="reprise" checked> <span>Reprendre ${[locales ? "les " + pluriel(locales, "carte") : "", voixLocales ? pluriel(voixLocales, "voix", "voix") : ""].filter(Boolean).join(" et ")} de ce navigateur dans le compte.</span></label>` : ""}
+      ${locales || voixLocales ? `<label class="case"><input type="checkbox" name="reprise" checked> <span>Reprendre ${locales > 50 ? "50 cartes, les plus communes, parmi les " + pluriel(locales, "carte") : "les " + pluriel(locales, "carte")} de ce navigateur dans le compte.</span></label>` : ""}
       ${local.points || local.offerts ? `<p class="note">Vos ${local.points ? pluriel(local.points, "voix", "voix") : ""}${local.points && local.offerts ? " et " : ""}${local.offerts ? pluriel(local.offerts, "paquet offert", "paquets offerts") : ""} ne seront pas repris : utilisez-les avant de créer le compte.</p>` : ""}
       <p class="note">Le mot de passe doit faire au moins 10 caractères. Il ne peut pas encore être récupéré en cas d'oubli : notez-le.</p>` : ""}
       <button class="bouton" type="submit">${ongletCompte==="inscription" ? "Créer le compte" : "Se connecter"}</button>
@@ -2828,8 +2828,10 @@ function majCompte(){
     const bouton = f.querySelector("button[type=submit]");
     bouton.disabled = true; bouton.textContent = "Vérification…";
     etirer(pseudo, mdp).then(preuve => appel(ongletCompte, {pseudo, preuve,
-      ...(ongletCompte === "inscription" && f.reprise?.checked ? {collection: depot.charger().possedees, voix: depot.charger().points} : {})}))
-      .then(() => { majTout(); afficherPaquet(true); majAttente(); chargerDuels(); chargerAmis(); chargerAlertes(); signaler(ongletCompte === "inscription" ? "Compte créé. Bienvenue dans l'hémicycle !" : "Vous êtes connecté."); apresCompteAccueil(); })
+      ...(ongletCompte === "inscription" && f.reprise?.checked ? {collection: depot.charger().possedees} : {})}))
+      .then(() => {
+        // Collection du navigateur reprise : vidée, pour qu'un autre compte ne la reprenne pas (novembre 2026)
+        if (ongletCompte === "inscription" && f.reprise?.checked) depot.sauver(Regles.etatVide()); majTout(); afficherPaquet(true); majAttente(); chargerDuels(); chargerAmis(); chargerAlertes(); signaler(ongletCompte === "inscription" ? "Compte créé. Bienvenue dans l'hémicycle !" : "Vous êtes connecté."); apresCompteAccueil(); })
       .catch(x => { erreur.textContent = x.message; bouton.disabled = false; bouton.textContent = ongletCompte==="inscription" ? "Créer le compte" : "Se connecter"; });
   });
 }

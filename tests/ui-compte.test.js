@@ -42,6 +42,7 @@ const sx = Date.now().toString(36).slice(-4);
   await A.waitForSelector("#compte-principal .chiffres", {timeout: 20000});
   assert.strictEqual(await A.textContent("#nav-compte"), "Anne" + sx);
   assert.strictEqual(await A.evaluate(() => Object.keys(etat.possedees).length), locales);
+  assert.strictEqual(await A.evaluate(() => Object.keys(depot.charger().possedees).length), 0, "collection du navigateur vidée après la reprise");
   await A.screenshot({path: T + "/compte.png"});
   // Paquet tiré par le serveur
   await A.click('nav [data-vue="paquet"]'); await A.waitForSelector("#paquet");
@@ -409,10 +410,10 @@ const sx = Date.now().toString(36).slice(-4);
   await A.waitForFunction(() => /incorrect/.test(document.getElementById("erreur-mdp").textContent), null, {timeout: 20000});
   await A.fill('#form-mdp [name=ancien]', "motdepasse-long"); await A.click('#form-mdp button[type=submit]');
   await A.waitForFunction(() => !document.getElementById("zone-mdp").open, null, {timeout: 20000});
-  // Déconnexion : retour à la collection locale du navigateur
+  // Déconnexion : retour à la collection locale du navigateur, vide depuis qu'elle a été reprise par le compte
   await A.waitForSelector("#deconnexion"); await A.click("#deconnexion");
   await A.waitForFunction(() => !compte); await vers(A, "compte"); await A.waitForSelector("#form-compte");
-  assert.strictEqual(await A.evaluate(() => Object.keys(etat.possedees).length), locales);
+  assert.strictEqual(await A.evaluate(() => Object.keys(etat.possedees).length), 0);
   // Reconnexion avec la casse différente du pseudo
   await A.click('[data-onglet="connexion"]');
   await A.fill('#form-compte [name=pseudo]', "anne" + sx);
