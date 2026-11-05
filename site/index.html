@@ -1543,6 +1543,61 @@ function afficherPaquet(force = false){
     </button><p class="progres">Touchez le paquet pour le déchirer.</p>`;
   document.getElementById("paquet").addEventListener("click", ouvrir);
 }
+/* ---------- Sons (demande de l'utilisateur, novembre 2026) ---------- */
+// Fabriqués par le navigateur (Web Audio) : aucun fichier, aucun droit. Déchirement du paquet, retournement d'une carte,
+// puis une note selon la rareté : carillon pour rare et épique, petite fanfare pour légendaire et hors catégorie, fanfare
+// plus ample pour mythique et unique. Réglage « Sons » des Paramètres, gardé dans le navigateur (hemicycle-sons).
+const Sons = (() => {
+  let ctx = null, bruit = null;
+  const actifs = () => { try { return localStorage.getItem("hemicycle-sons") !== "non"; } catch (_) { return true; } };
+  function contexte(){
+    if (!actifs()) return null;
+    try {
+      ctx ||= new (window.AudioContext || window.webkitAudioContext)();
+      if (ctx.state === "suspended") ctx.resume();
+      if (!bruit) {   // une seconde de bruit blanc, réutilisée
+        bruit = ctx.createBuffer(1, ctx.sampleRate, ctx.sampleRate);
+        const d = bruit.getChannelData(0); for (let k = 0; k < d.length; k++) d[k] = Math.random() * 2 - 1;
+      }
+      return ctx;
+    } catch (_) { return null; }
+  }
+  // Bruit filtré (papier, carte) : fréquence du filtre de f1 à f2, volume v, durée d
+  function souffle(c, t, d, f1, f2, v, q = 1.2){
+    const s = c.createBufferSource(), f = c.createBiquadFilter(), g = c.createGain();
+    s.buffer = bruit; f.type = "bandpass"; f.Q.value = q;
+    f.frequency.setValueAtTime(f1, t); f.frequency.exponentialRampToValueAtTime(f2, t + d);
+    g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(v, t + 0.015); g.gain.exponentialRampToValueAtTime(0.0001, t + d);
+    s.connect(f).connect(g).connect(c.destination); s.start(t, Math.random() * 0.5); s.stop(t + d + 0.05);
+  }
+  // Note douce (sinus et un peu de triangle à l'octave), attaque brève, extinction lente
+  function note(c, t, freq, d, v){
+    for (const [type, mult, part] of [["sine", 1, 1], ["triangle", 2, 0.25]]) {
+      const o = c.createOscillator(), g = c.createGain();
+      o.type = type; o.frequency.value = freq * mult;
+      g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(v * part, t + 0.02); g.gain.exponentialRampToValueAtTime(0.0001, t + d);
+      o.connect(g).connect(c.destination); o.start(t); o.stop(t + d + 0.05);
+    }
+  }
+  const NOTES = {do4: 261.63, mi4: 329.63, sol4: 392, do5: 523.25, mi5: 659.25, sol5: 783.99, si5: 987.77, do6: 1046.5, mi6: 1318.5, sol6: 1568};
+  const MELODIES = {
+    rare: [["mi5", 0, .5], ["si5", .1, .7]],
+    epique: [["do5", 0, .5], ["mi5", .09, .5], ["sol5", .18, .9]],
+    legendaire: [["sol4", 0, .4], ["do5", .1, .4], ["mi5", .2, .4], ["sol5", .3, 1.2], ["do6", .3, 1.2]],
+    mythique: [["do5", 0, .3], ["mi5", .08, .3], ["sol5", .16, .3], ["do6", .24, .4], ["mi6", .34, 1.4], ["sol5", .34, 1.4], ["do5", .34, 1.4]],
+    unique: [["do4", 0, .5], ["sol4", .12, .5], ["do5", .24, .5], ["mi5", .36, .5], ["sol5", .48, .5], ["do6", .62, 1.8], ["mi6", .62, 1.8], ["sol6", .62, 1.8], ["do5", .62, 1.8]],
+  };
+  MELODIES["hors-categorie"] = MELODIES.legendaire;
+  return {
+    actifs,
+    dechirer(){ const c = contexte(); if (!c) return; const t = c.currentTime;
+      souffle(c, t, .35, 3200, 1200, .5, .8); souffle(c, t + .12, .45, 2400, 700, .4, .9); souffle(c, t + .3, .25, 1800, 600, .25); },
+    retourner(){ const c = contexte(); if (!c) return; const t = c.currentTime; souffle(c, t, .12, 2500, 900, .35, 2); },
+    rarete(r){ const m = MELODIES[r], c = m && contexte(); if (!c) return; const t = c.currentTime + .25;
+      for (const [n, dt, d] of m) note(c, t + dt, NOTES[n], d, r === "rare" ? .12 : .15); },
+  };
+})();
+
 async function ouvrir(){
   const p = document.getElementById("paquet");
   const r = await occupe(p, () => actions.ouvrir());
@@ -1551,7 +1606,7 @@ async function ouvrir(){
   document.getElementById("qag").hidden = true;
   precharger(r.tirage);
   majTout();
-  p.classList.add("ouvert"); p.disabled = true;
+  p.classList.add("ouvert"); p.disabled = true; Sons.dechirer();
   setTimeout(() => montrer(r.tirage, r.neuves, 0), reduit() ? 0 : 900);
 }
 function reduit(){ return matchMedia("(prefers-reduced-motion: reduce)").matches; }
@@ -1576,8 +1631,8 @@ function montrer(tirage, neuves, i, vues = new Set()){
       <button class="bouton" id="suite">${i+1<tirage.length?`Suivante (${i+2}/${tirage.length})`:"Voir le paquet"}</button></div>
       <p class="progres petit">Touchez la carte pour la retourner.</p>`;
   const el = document.getElementById("courante");
-  if (!dejaVue) requestAnimationFrame(() => requestAnimationFrame(() => el.classList.add("retournee")));
-  el.addEventListener("click", e => { if (!e.target.closest("a, [data-favori]")) { el.classList.remove("statique"); el.classList.toggle("envers"); } });
+  if (!dejaVue) requestAnimationFrame(() => requestAnimationFrame(() => { el.classList.add("retournee"); Sons.retourner(); Sons.rarete(c.rarete); }));
+  el.addEventListener("click", e => { if (!e.target.closest("a, [data-favori]")) { el.classList.remove("statique"); el.classList.toggle("envers"); Sons.retourner(); } });
   document.getElementById("precedente")?.addEventListener("click", () => montrer(tirage, neuves, i - 1, vues));
   document.getElementById("suite").addEventListener("click", () => montrer(tirage, neuves, i + 1, vues));
   document.getElementById("suite").focus({preventScroll: true});
@@ -3418,6 +3473,8 @@ async function majParametres(){
       ${serveur ? `<p><button class="bouton discret" data-aller-compte>Créer un compte ou se connecter</button></p>` : ""}`}
     <h3>Apparence</h3>
     <div class="bascule choix-theme" role="group" aria-label="Thème">${[["auto", "Comme l'appareil"], ["sombre", "Sombre"], ["clair", "Clair"]].map(([v, l]) => `<button data-theme-choix="${v}" aria-pressed="${theme === v}">${l}</button>`).join("")}</div>
+    <h3>Sons</h3>
+    <label class="case-reglage"><input type="checkbox" id="sons-actifs" ${Sons.actifs() ? "checked" : ""}> Sons à l'ouverture des paquets et des cartes</label>
     <h3>Notifications</h3>
     ${notifs}
     <h3>Nous écrire</h3>
@@ -3430,6 +3487,7 @@ async function majParametres(){
 document.getElementById("vue-parametres").addEventListener("click", e => {
   const t = e.target.closest("[data-theme-choix]");
   if (t) { try { localStorage.setItem("hemicycle-theme", t.dataset.themeChoix); } catch (_) {} appliquerTheme(); majParametres(); return; }
+  if (e.target.id === "sons-actifs") { try { localStorage.setItem("hemicycle-sons", e.target.checked ? "oui" : "non"); } catch (_) {} if (e.target.checked) Sons.rarete("rare"); return; }
   if (e.target.closest("[data-menu-vue]")) { allerA(e.target.closest("[data-menu-vue]").dataset.menuVue); return; }
   if (e.target.id === "deconnexion") occupe(e.target, async () => {
     await desactiverNotifications().catch(() => {});
