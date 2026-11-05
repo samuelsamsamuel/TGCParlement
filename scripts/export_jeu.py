@@ -289,8 +289,13 @@ def main():
     # des mentions légales, qui ne charge pas jeu.json
     import datetime
     jour = datetime.datetime.now(datetime.timezone.utc).date().isoformat()
+    # Cadrages choisis à l'œil pour les portraits de Commons mal cadrés par la règle commune (data/cadrages.json :
+    # fichier -> position CSS « x% y% », demande de l'utilisateur, novembre 2026) ; seuls ceux des cartes sont exportés
+    cadrages = lire(os.path.join("data", "cadrages.json")) if os.path.exists(os.path.join("data", "cadrages.json")) else {}
+    utilises = {x[9] for x in sortie if x[9]}
+    cadrages = {k: v for k, v in cadrages.items() if k in utilises and isinstance(v, str)}
     with open(os.path.join("site", "jeu.json"), "w", encoding="utf-8") as f:
-        json.dump({"maj": jour, "raretes": RARETES, "assemblees": assemblees, "commissions": commissions, "cartes": sortie}, f, ensure_ascii=False, separators=(",", ":"))
+        json.dump({"maj": jour, "raretes": RARETES, "assemblees": assemblees, "commissions": commissions, "cadrages": cadrages, "cartes": sortie}, f, ensure_ascii=False, separators=(",", ":"))
     with open(os.path.join("site", "maj.json"), "w", encoding="utf-8") as f:
         json.dump({"maj": jour}, f)
     print(f"Cartes avec portrait : {sum(1 for x in sortie if x[9] or x[16])} (dont Sycomore : {sum(1 for x in sortie if x[16] and 'sycomore' in x[16])})")

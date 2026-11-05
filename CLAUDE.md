@@ -293,7 +293,12 @@ l'utilisateur). Les tests du navigateur
 posent `hemicycle-accueil = fait` pour passer l'accueil. Pendant la visite, rien ne défile (`recentrer` suspendu) :
 la classe `presentation` de `html` resserre l'interface le temps de la visite seulement (séance et découverte
 sans défilement sur 390 × 844) ; hors visite, les tailles habituelles, jugées plus lisibles par l'utilisateur.
-Portraits : vignettes Wikimedia en largeur standard (330 px ; 320 px est refusé, 400), connexions ouvertes d'avance,
+Cadrage des portraits (demande de l'utilisateur, novembre 2026 : recadrer les photos) : règle commune centrée, calée à 20 % du
+haut ; images très hautes (photos en pied, tableaux) remontées à 8 % ou 3 % selon leurs proportions, lues au chargement (`cadrer`) ;
+position choisie à l'œil pour certains fichiers de Commons, `data/cadrages.json` (fichier -> « x% y% »), exportée dans la table
+`cadrages` de `jeu.json` (`CADRAGES`) ; `dimensions_portraits.py` (workflow, reprise de 10 minutes) mesure les fichiers de Commons et
+liste dans son rapport ceux en largeur ou très hauts, à revoir ; depuis le conteneur de Claude, l'API de Commons répond trop souvent
+429. Portraits : vignettes Wikimedia en largeur standard (330 px ; 320 px est refusé, 400), connexions ouvertes d'avance,
 portraits Wikimedia et Sénat demandés en CORS et gardés par le service de travail (cache `hemicycle-portraits`,
 800 au plus) ; ceux de l'Assemblée, sans CORS, restent au cache du navigateur (une réponse opaque gonflerait le
 quota et risquerait l'effacement des données du site, collection locale comprise). Un toucher sur les voix ouvre un encart qui explique leur usage. Choix d'une carte
