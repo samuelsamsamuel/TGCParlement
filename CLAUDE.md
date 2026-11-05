@@ -328,6 +328,10 @@ paquet, toucher la carte la retourne (plus de bouton Verso) ; « Précédente »
 la met en favori (`favoris` de l'état, 300 au plus, `basculerFavori` ; colonne `favoris` et `POST /api/favori` côté
 serveur), filtre « Mes favoris » dans l'Hémicycle. Pas de zoom au double toucher
 (`touch-action: manipulation`).
+Sons (demande de l'utilisateur, novembre 2026) : fabriqués par le navigateur (Web Audio, objet `Sons` d'`index.html`, aucun
+fichier) : déchirement du paquet (centaines de craquements brefs en deux élans, un premier bruit lisse ne sonnait pas comme une
+déchirure), retournement d'une carte, note selon la rareté (rien pour commune et peu commune, carillon rare et épique, fanfare
+légendaire et hors catégorie, plus ample mythique et unique) ; réglage « Sons » des Paramètres (`hemicycle-sons`, actifs par défaut).
 
 ## Serveur : comptes, échanges, marché
 
