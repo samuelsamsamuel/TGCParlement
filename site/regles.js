@@ -63,6 +63,7 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
       e.reserve = Math.min(RESERVE_MAX, entier(brut.reserve)); e.ancre = Math.max(0, Math.floor(Number(brut.ancre)));
     }
     e.points = entier(brut.points);
+    if (Number.isInteger(brut.recharge) && brut.recharge > RECHARGE_MS) e.recharge = brut.recharge;
     e.quiz = typeof brut.quiz === "string" ? brut.quiz : "";
     if (Array.isArray(brut.deja)) e.deja = [...new Set(brut.deja.map(String))].filter(id => !e.possedees[id]);
     if (Array.isArray(brut.deposees)) e.deposees = [...new Set(brut.deposees.map(String))];
@@ -159,10 +160,12 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
   /* ---------- Paquets ---------- */
   // Réserve à l'instant donné : la réserve de l'ancre plus un paquet par intervalle écoulé (RECHARGE_MS), plafonnée ;
   // prochain : instant du prochain paquet (null si la réserve est pleine)
+  // Intervalle de recharge : RECHARGE_MS, ou plus long pour un compte sanctionné (`recharge` de l'état, fourni par le serveur)
+  function intervalle(etat) { return Number.isInteger(etat.recharge) && etat.recharge > RECHARGE_MS ? etat.recharge : RECHARGE_MS; }
   function reserveCourante(etat, maintenant = Date.now()) {
-    const heures = Math.floor(Math.max(0, maintenant - (etat.ancre || 0)) / RECHARGE_MS);
+    const pas = intervalle(etat), heures = Math.floor(Math.max(0, maintenant - (etat.ancre || 0)) / pas);
     const n = Math.min(RESERVE_MAX, (etat.reserve || 0) + heures);
-    return {n, heures, pleine: n >= RESERVE_MAX, prochain: n >= RESERVE_MAX ? null : (etat.ancre || 0) + (heures + 1) * RECHARGE_MS};
+    return {n, heures, pleine: n >= RESERVE_MAX, prochain: n >= RESERVE_MAX ? null : (etat.ancre || 0) + (heures + 1) * pas};
   }
   function paquetsDisponibles(etat, maintenant = Date.now()) {
     const r = reserveCourante(etat, maintenant);
@@ -211,7 +214,7 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
     let origine;
     if (r.n > 0) {
       // Réserve pleine : la recharge repart de maintenant ; sinon l'heure entamée reste acquise
-      etat.ancre = r.pleine ? maintenant : (etat.ancre || 0) + r.heures * RECHARGE_MS;
+      etat.ancre = r.pleine ? maintenant : (etat.ancre || 0) + r.heures * intervalle(etat);
       etat.reserve = r.n - 1; origine = "reserve";
     } else { etat.offerts -= 1; origine = "offert"; }
     // Une carte parmi les élus et ministres en exercice (sauf s'il est déjà possédé), les autres au hasard
@@ -236,7 +239,7 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
     if ((etat.points || 0) < voix || r.n + (etat.offerts || 0) < paquets) return null;
     etat.points -= voix;
     const reserve = Math.min(paquets, r.n);
-    if (reserve) { etat.ancre = r.pleine ? maintenant : (etat.ancre || 0) + r.heures * RECHARGE_MS; etat.reserve = r.n - reserve; }
+    if (reserve) { etat.ancre = r.pleine ? maintenant : (etat.ancre || 0) + r.heures * intervalle(etat); etat.reserve = r.n - reserve; }
     etat.offerts -= paquets - reserve;
     if (voix || paquets) noter(etat, "mise", {voix, paquets, reserve});
     return {voix, paquets, reserve};

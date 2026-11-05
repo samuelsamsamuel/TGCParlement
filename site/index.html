@@ -1218,6 +1218,7 @@ html.presentation{font-size:15px}
 </div></dialog>
 <dialog id="installation" class="fenetre-accueil"><div class="fenetre" id="installation-contenu"></div></dialog>
 <dialog id="preferences" class="fenetre-accueil"><div class="fenetre" id="preferences-contenu"></div></dialog>
+<dialog id="sanction" class="fenetre-accueil" aria-labelledby="sanction-titre"><div class="fenetre" id="sanction-contenu"></div></dialog>
 <div class="guide" id="guide" hidden><div class="guide-trou" id="guide-trou"></div>
   <div class="guide-bulle" id="guide-bulle" role="dialog" aria-live="polite"><p id="guide-texte"></p>
     <div class="guide-boutons"><button class="lien-carte" id="guide-passer">Passer la visite</button><span class="note" id="guide-etape"></span><button class="bouton" id="guide-suivant">Suivant</button></div></div></div>
@@ -1281,7 +1282,7 @@ async function appel(chemin, corps){
   const d = await r.json().catch(() => null);
   if (!d) throw new Error("Le serveur n'est pas disponible pour l'instant.");
   if (!r.ok) throw new Error(d.erreur || "Erreur " + r.status);
-  if (d.etat) { etat = Regles.migrer(d.etat); compte = {pseudo: d.pseudo, cree: d.cree || compte?.cree, vitrine: d.vitrine || compte?.vitrine || [], gouvernement: d.gouvernement ?? compte?.gouvernement, lois: d.lois ?? compte?.lois, classements: d.classements ?? compte?.classements}; }
+  if (d.etat) { etat = Regles.migrer(d.etat); compte = {pseudo: d.pseudo, cree: d.cree || compte?.cree, vitrine: d.vitrine || compte?.vitrine || [], gouvernement: d.gouvernement ?? compte?.gouvernement, lois: d.lois ?? compte?.lois, classements: d.classements ?? compte?.classements, sanction: d.sanction !== undefined ? d.sanction : compte?.sanction}; }
   return d;
 }
 const actions = {
@@ -3937,6 +3938,22 @@ document.addEventListener("click", e => {
   });
 });
 
+/* ---------- Sanction : écran à chaque ouverture tant qu'elle dure (comptes secondaires, novembre 2026) ---------- */
+// Texte écrit par l'éditeur dans la console D1 (colonne `sanction`), affiché tel quel ; mesures rappelées sous le texte
+function montrerSanction(){
+  const s = compte?.sanction;
+  if (!s) return;
+  const fin = new Date(s.fin).toLocaleDateString("fr-FR", {day: "numeric", month: "long", timeZone: "Europe/Paris"}).replace(/^1 /, "1er ");
+  const mesures = [s.buvette ? "la buvette vous est fermée (échanges, ventes, achats et offres)" : "",
+    s.recharge ? `votre réserve se recharge d'un paquet toutes les ${s.recharge >= 60 && s.recharge % 60 === 0 ? (s.recharge === 60 ? "heures" : `${s.recharge / 60} heures`) : `${s.recharge} minutes`}` : ""].filter(Boolean);
+  document.getElementById("sanction-contenu").innerHTML = `<h2 id="sanction-titre">Votre compte est sanctionné</h2>
+    ${s.message ? s.message.split(/\n+/).map(p => `<p>${echapper(p)}</p>`).join("") : ""}
+    ${mesures.length ? `<p>Jusqu'au ${fin}, ${mesures.join(", et ")}.</p>` : `<p>Jusqu'au ${fin}.</p>`}
+    <p class="actions-ligne"><button class="bouton" id="sanction-ok">J'ai compris</button></p>`;
+  document.getElementById("sanction-ok").addEventListener("click", () => document.getElementById("sanction").close());
+  document.getElementById("sanction").showModal();
+}
+
 /* ---------- Plus : toutes les cartes du jeu, règlement ---------- */
 let catalogueMax = 40;
 function majCatalogue(){
@@ -4140,8 +4157,9 @@ fetch("jeu.json").then(r => { if (!r.ok) throw new Error(r.status); return r.jso
   // Session ouverte sur le serveur ? Sinon, mode navigateur. Sans serveur (site statique seul), le jeu reste local.
   return fetch("/api/moi", {credentials: "same-origin"}).then(r => { noterVersion(r); return r.ok ? r.json() : null; }).catch(() => null).then(m => {
     serveur = !!(m && typeof m.connecte === "boolean"); compteConnu = true;
-    if (m && m.connecte) { etat = Regles.migrer(m.etat); compte = {pseudo: m.pseudo, cree: m.cree, vitrine: m.vitrine || [], gouvernement: !!m.gouvernement, lois: !!m.lois, classements: !!m.classements}; }
+    if (m && m.connecte) { etat = Regles.migrer(m.etat); compte = {pseudo: m.pseudo, cree: m.cree, vitrine: m.vitrine || [], gouvernement: !!m.gouvernement, lois: !!m.lois, classements: !!m.classements, sanction: m.sanction || null}; }
     afficherPaquet(); majTout(); majAttente(); chargerDuels(); chargerAmis(); chargerAlertes(); demarrerAccueil();
+    montrerSanction();
     // Onglet ouvert avant un rechargement pour nouvelle version : on y revient
     let vue = null; try { vue = sessionStorage.getItem("hemicycle-vue"); sessionStorage.removeItem("hemicycle-vue"); } catch (_) {}
     if (vue && vue !== "paquet" && document.getElementById("vue-" + vue) && (vue !== "gouvernement" || compte)) allerA(vue);

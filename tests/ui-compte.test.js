@@ -44,6 +44,14 @@ const sx = Date.now().toString(36).slice(-4);
   assert.strictEqual(await A.evaluate(() => Object.keys(etat.possedees).length), locales);
   assert.strictEqual(await A.evaluate(() => Object.keys(depot.charger().possedees).length), 0, "collection du navigateur vidée après la reprise");
   await A.screenshot({path: T + "/compte.png"});
+  // Sanction posée par l'éditeur : écran à l'ouverture, avec le texte et les mesures, puis levée
+  const sanction = o => require("child_process").execSync(`cd ${require("path").join(__dirname, "..")} && ${process.env.WR} d1 execute hemicycle --local --persist-to ${process.env.ETAT} --command "UPDATE joueurs SET sanction = '${JSON.stringify(o).replace(/"/g, '\\"')}' WHERE pseudo = 'Anne${sx}'"`, {stdio: "ignore"});
+  sanction({fin: "2099-01-01T00:00:00Z", buvette: true, recharge: 60, message: "Plusieurs comptes vous ont donné leurs cartes."});
+  await A.reload(); await A.waitForSelector("#sanction[open]");
+  assert.ok(/toutes les heures/.test(await A.textContent("#sanction-contenu")) && /Plusieurs comptes/.test(await A.textContent("#sanction-contenu")));
+  await A.screenshot({path: T + "/sanction.png"});
+  await A.click("#sanction-ok"); sanction({}); await A.reload(); await A.waitForSelector("#paquet");
+  assert.ok(!(await A.isVisible("#sanction[open]")));
   // Paquet tiré par le serveur
   await A.click('nav [data-vue="paquet"]'); await A.waitForSelector("#paquet");
   await A.click("#paquet"); await A.waitForSelector("#suite");
