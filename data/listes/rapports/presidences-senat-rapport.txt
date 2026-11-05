@@ -1,4 +1,4 @@
-Présidents rattachés : 26 (21 au moins un an, 5 moins d'un an) ; sans fiche : 3
+Présidents rattachés : 27 (22 au moins un an, 5 moins d'un an) ; sans fiche : 2
 
 Rattachements (nom et années de naissance et de décès concordants) :
       1083    1129 j  Léon Bourgeois  ->  Léon, Victor, Auguste Bourgeois
@@ -24,11 +24,11 @@ Rattachements (nom et années de naissance et de décès concordants) :
       8640    4037 j  Philippe-Élie Le Royer  ->  Philippe, Elie Le Royer
       9272     491 j  Louis Martel  ->  Louis, Joseph Martel
    S000211    8765 j  Alain Poher  ->  Alain Poher
+   S1727R3     934 j  Justin de Selves  ->  Justin de Selves
    S68036E    2189 j  René Monory  ->  René Monory
-   S86034E    5511 j  Gérard Larcher  ->  Gérard Larcher
+   S86034E    5512 j  Gérard Larcher  ->  Gérard Larcher
    S98006P    1095 j  Jean-Pierre Bel  ->  Jean-Pierre Bel
 
-Aucune fiche Sycomore concordante (nom et années) : 3. Sans homonyme listé, le président n'a vraisemblablement jamais été député et attend la base des sénateurs ; avec homonymes, vérifier les années portées sur la fiche
+Aucune fiche Sycomore concordante (nom et années) : 2. Sans homonyme listé, le président n'a vraisemblablement jamais été député et attend la base des sénateurs ; avec homonymes, vérifier les années portées sur la fiche
   28 janvier 1852 | Jérôme-Napoléon Bonaparte (1784-1860, Sénat) ; fiche 12305 Lucien Bonaparte (1775-1840) ; fiche 8320 Napoléon, Jérôme Bonaparte (1822-1891) ; fiche 10466 Louis, Lucien Bonaparte (1813-1891)
   30 décembre 1852 | Raymond-Théodore Troplong (1795-1869, Sénat)
-  19 juin 1924 | Justin de Selves (1848-1934, Sénat) ; fiche 16420 Henri, Antoine, Auguste Selves (1790-1854) ; fiche 16371 Jean-Baptiste Selves (1756-1823) ; fiche 16419 Jean Selves (1756-1818)

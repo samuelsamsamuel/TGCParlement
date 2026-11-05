@@ -1,4 +1,4 @@
-Fiches lues : {200: 18062, 404: 3} ; cartes produites : 19635, dont 1573 sénateurs absents de Sycomore ; plus 181 cartes hors catégorie (Gouvernement sans mandat parlementaire)
+Fiches lues : {200: 18062, 404: 3} ; cartes produites : 20421, dont 2359 sénateurs absents de Sycomore ; plus 181 cartes hors catégorie (Gouvernement sans mandat parlementaire)
 
 Distinctions calculées :
   deux-chambres : 1651
@@ -9,7 +9,7 @@ Distinctions calculées :
   bureau-secretaire : 224
   presidence-an-courte : 205
   bureau-vp-questeur : 147
-  academie-francaise : 122
+  academie-francaise : 128
   doyen-benjamin : 110
   presidence-commission : 100
   presidence-groupe : 90
@@ -18,28 +18,28 @@ Distinctions calculées :
   chef-gouvernement : 50
   presidence-an-longue : 35
   femmes-1945 : 33
-  pantheon : 28
+  pantheon : 29
   rapporteur-general : 24
-  presidence-senat-longue : 21
+  presidence-senat-longue : 22
   chef-etat : 8
   presidence-opecst : 8
   prix-nobel : 5
   presidence-senat-courte : 5
   chef-etat-interim : 1
 
-Scores (grille équilibrée) : maximum 146.3 ; 10e 102.6 ; 100e 64.6 ; 1000e 31.0 ; médiane 7.4
+Scores (grille équilibrée) : maximum 146.3 ; 10e 102.6 ; 100e 64.6 ; 1000e 31.0 ; médiane 7.8
 Cartes à égalité au score maximal : 1 ; scores distincts parmi les 100 premières : 83
 
 Cartes en exercice : 907
-Cartes par époque : Libération et IVe République 1274, Ve République 5776, IIIe République 4622, Monarchies constitutionnelles 2484, IIe République et Second Empire 1549, Révolution et Empire 3930, None 181
+Cartes par époque : Libération et IVe République 1272, Ve République 5776, IIIe République 5410, Monarchies constitutionnelles 2484, IIe République et Second Empire 1549, Révolution et Empire 3930, None 181
 
 Répartition des raretés :
-  mythique : 95
-  legendaire : 437
-  epique : 1089
-  rare : 2540
-  peu-commune : 6213
-  commune : 9261
+  mythique : 99
+  legendaire : 453
+  epique : 1132
+  rare : 2635
+  peu-commune : 6448
+  commune : 9654
   hors-categorie : 180
 
 Mandats de député par régime et législature :
@@ -147,11 +147,30 @@ Anomalies :
     12405
     12415
     12425
-  sénateur rapproché d'une fiche Sycomore par l'année seule : 4
+  sénateur rapproché d'une fiche Sycomore par l'année seule : 83
     000079 Charles Naveau (1903-07-14) -> 5518 Charles Naveau (1903-07-01)
     000251 Jean-Louis Tinaud (1910-09-23) -> 7078 Jean-Louis Tinaud (1910-07-23)
     57129Y Robert Laurens (1910-09-26) -> 7499 Robert, Marie Laurens (1910-09-27)
     59235J Hubert Martin (1912-02-23) -> 5040 Hubert Martin (1912-02-25)
+    0098R3 Jean Amat (1877-06-14) -> 107 Jean-Baptiste Amat (1877-07-14)
+    0387R3 Jean Andre (1805-10-15) -> 130 Jean, François, Gustave André (1805-10-17)
+    0180R3 Clément Anglade (1800-12-10) -> 146 Clément Anglade (1800-12-20)
+    1427R3 Edme d'Audiffret-Pasquier (1823-10-21) -> 252 Edme, Armand, Gaston d'Audiffret-Pasquier (1823-10-20)
+    0715R3 Louis Bizarelli (1836-01-25) -> 831 Louis Bizarelli (1836-07-25)
+    0447R3 André-Breton (1897-04-01) -> 1200 André, Jules, Louis Breton (1897-04-03)
+    1443R3 Joseph de Carayon-Latour (1824-04-10) -> 1433 Philippe, Marie, Joseph de Carayon-Latour (1824-08-10)
+    1446R3 Hippolyte Carnot (1801-08-06) -> 17258 Lazare, Hippolyte Carnot (1801-04-06)
+    1295R3 François Carquet (1810-10-22) -> 8554 François Carquet (1810-11-22)
+    1582R3 Paul Casimir-Perier (1812-12-10) -> 7916 Paul, Charles, Fortuné Perier dit Casimir-Perier (1812-12-18)
+    0370R3 Francis Charmes (1848-11-21) -> 1672 Francis, Marie, Julien, Joseph, François Charmes (1848-04-21)
+    0839R3 Maurice Colin (1859-01-11) -> 1897 Maurice, Pierre Colin (1859-01-19)
+    1635R3 Honoré Cornudet des Chaumettes (1861-03-21) -> 1979 Honoré, François-Joseph Cornudet des Chaumettes (1861-03-20)
+    1185R3 Jean Couturier (1813-07-15) -> 8150 Jean-Baptiste, Henry Couturier (1813-07-16)
+    0695R3 Paul Cuttoli (1864-06-28) -> 2091 Paul, Raymond, Maxime Cuttoli (1864-05-28)
+    1033R3 Napoléon Daru (1807-06-11) -> 2143 Napoléon Daru (1807-06-12)
+  sénateur de la IIIe République ajouté à une carte sénatoriale : 2
+    000685 -> S000685 Vincent Delpuech
+    000672 -> S000672 Georges Portmann
 
 Dix premières cartes :
    146.3  mythique    Edgar Faure : Député (Jura, Doubs) de 1946 à 1980, 7 mandats (Quatrième République - Assemblée nationale ; Cinquième République - Assemblée nationale). Sénateur de 1959 à 1988. A siégé dans les deux chambres. Membre de l'Académie française. A dirigé le Gouvernement. A été ministre. A présidé l'Assemblée au moins un an. A été secrétaire d'État.

@@ -127,6 +127,14 @@
 "annuel": false
 }
 ],
+"S1727R3": [
+{
+"fonction": "Président du Sénat",
+"debut": "1924-06-19",
+"fin": "1927-01-09",
+"annuel": false
+}
+],
 "2569": [
 {
 "fonction": "Président du Sénat",
@@ -201,7 +209,7 @@
 {
 "fonction": "Président du Sénat",
 "debut": "2014-10-01",
-"fin": "2026-11-04",
+"fin": "2026-11-05",
 "annuel": false
 }
 ],

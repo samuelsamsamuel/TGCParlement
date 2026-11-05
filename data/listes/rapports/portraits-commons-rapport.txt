@@ -1,9 +1,13 @@
-Portraits Commons : 1 cartes, sur 6738 cartes sans portrait rattachées à Wikidata par identifiant officiel (6795 cartes sans portrait en tout) ; éléments sondés cette fois : 6737, restant à sonder ou en erreur : 0
+Portraits Commons : 1 cartes, sur 7187 cartes sans portrait rattachées à Wikidata par identifiant officiel (7244 cartes sans portrait en tout) ; éléments sondés cette fois : 7182, restant à sonder ou en erreur : 0
 
 Retenus :
 13736	Louis, François, Antoine Arbogast	Q2572301	Antoine Arbogast.png
 
 Écartés :
+Q2841414	British Labor Envoys Here in the New York Times on May 5, 1917.png	dépeint aussi 2 autre(s) élément(s)
+Q3057099	Signature d'Ernest Neuville - Archives nationales (France).png	nom de fichier
+Q3435735	Signature de Robert Leneveu.jpg	nom de fichier
+Q517508	Signature de François Albert-Buisson.jpg	nom de fichier
 Q1096895	Claude-Louis-Michel de Sacy - L'Esclavage des Américains et des nègres. Piece qui a concouru pour le prix de l'Académie françoise, 1775.pdf	format
 Q15623018	Père-Lachaise - Division 9 - Sieyès 06.jpg	nom de fichier
 Q15967440	Armoiries de la famille Montboissier-Beaufort-Canillac.png	nom de fichier

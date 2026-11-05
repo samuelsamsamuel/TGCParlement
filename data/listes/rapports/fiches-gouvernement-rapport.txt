@@ -1,4 +1,4 @@
-Fiches : 19816 cartes ; stature : 1 (11416), 2 (5401), 3 (2267), 4 (550), 5 (182)
+Fiches : 20602 cartes ; stature : 1 (11824), 2 (5662), 3 (2381), 4 (552), 5 (183)
 Paris : le département de Paris et celui de la Seine (supprimé en 1968, chef-lieu Paris) ; Paris compte aussi pour l'Île-de-France, dont il fait partie. Outre-mer : les départements et régions d'outre-mer de l'Insee, les collectivités d'outre-mer, et les anciennes colonies et territoires d'outre-mer représentés au Parlement (`OUTRE_MER`), suivis par les ministères des colonies puis de la France d'outre-mer ; les départements d'Algérie (numéros 91 à 94 avant 1962, réattribués à l'Île-de-France en 1968) et les citoyens français du Maroc et de Tunisie n'appartiennent à aucun territoire du jeu, sauf ces derniers pour les Français de l'étranger, qu'ils représentaient. Les départements antérieurs à 1943 absents du Code officiel géographique (`ANCIENS`) sont rattachés à la région de leur chef-lieu ; ceux de l'Empire aujourd'hui hors de France, à aucune.
 
 Insee : 101 départements rattachés à une région
@@ -21,7 +21,7 @@ Cartes par thème et par nombre d'étoiles (1, 2, 3) :
   Justice : 188 / 24 / 72
   Fonction publique et réforme de l'État : 185 / 37 / 40
   Immigration et intégration : 188 / 24 / 13
-  Relations avec le Parlement : 186 / 228 / 282
+  Relations avec le Parlement : 186 / 228 / 283
   Budget : 157 / 38 / 27
   Économie : 404 / 60 / 71
   Commerce extérieur : 513 / 47 / 23
@@ -51,21 +51,21 @@ Cartes par thème et par nombre d'étoiles (1, 2, 3) :
   Logement et ville : 419 / 52 / 64
   Écologie et énergie : 166 / 35 / 43
   Aménagement et collectivités : 345 / 53 / 70
-  Auvergne-Rhône-Alpes : 1038 / 1158 / 0
-  Bourgogne-Franche-Comté : 564 / 606 / 0
-  Bretagne : 488 / 513 / 0
-  Centre-Val de Loire : 397 / 445 / 0
-  Corse : 58 / 71 / 0
-  Grand Est : 794 / 907 / 0
-  Hauts-de-France : 773 / 886 / 0
-  Île-de-France : 1001 / 1067 / 0
-  Normandie : 521 / 614 / 0
-  Nouvelle-Aquitaine : 914 / 1109 / 0
-  Occitanie : 898 / 1029 / 0
-  Pays de la Loire : 422 / 575 / 0
-  Provence-Alpes-Côte d'Azur : 502 / 508 / 0
-  Paris : 540 / 504 / 0
-  Outre-mer : 245 / 285 / 52
+  Auvergne-Rhône-Alpes : 1127 / 1159 / 0
+  Bourgogne-Franche-Comté : 630 / 609 / 0
+  Bretagne : 536 / 514 / 0
+  Centre-Val de Loire : 428 / 446 / 0
+  Corse : 73 / 71 / 0
+  Grand Est : 858 / 908 / 0
+  Hauts-de-France : 832 / 887 / 0
+  Île-de-France : 1046 / 1068 / 0
+  Normandie : 553 / 615 / 0
+  Nouvelle-Aquitaine : 1021 / 1109 / 0
+  Occitanie : 998 / 1029 / 0
+  Pays de la Loire : 465 / 580 / 0
+  Provence-Alpes-Côte d'Azur : 534 / 510 / 0
+  Paris : 564 / 504 / 0
+  Outre-mer : 257 / 285 / 52
   Français de l'étranger : 43 / 55 / 8
 
 Fonctions gouvernementales retenues par thème (exemples) :
@@ -119,3 +119,5 @@ Fonctions gouvernementales retenues par thème (exemples) :
   Paris (0 intitulés) : 
   Outre-mer (54 intitulés) : Ministre auprès du Ministre de l'Intérieur, de l'Outre-mer, des Collectivités territoriales et de l'Immigration, chargée de l'Outre-mer | Ministre auprès du Ministre de l'Intérieur, de l'outre-mer et des collectivités territoriales, chargée de l'outre-mer | Ministre auprès du Premier Ministre, chargé des outre-mer | Ministre chargé de la Nouvelle-Calédonie | Ministre chargé des relations avec les Etats associés | Ministre chargé des relations avec les Etats associés à compter du 2 septembre 1954 : Ministre d'Etat chargé des relations avec les Etats associés | Ministre d'Etat, chargé des relations avec les Etats associés | Ministre d'Etat, chargé des relations avec les Etats associés et des affaires d'Extrême-Orient | Ministre d'Etat, ministre des outre-mer | Ministre d'État, chargé des départements et territoires d'outre-mer | Ministre d'État, chargé du Sahara, et des territoires et départements d'outre-mer | Ministre de l'Intérieur, de l'Outre-mer, des Collectivités territoriales et de l'Immigration
   Français de l'étranger (14 intitulés) : Ministre délégué auprès de la ministre de l'Europe et des affaires étrangères, chargé du commerce extérieur, de l'attractivité et des Français de l'étranger | Ministre délégué auprès du ministre de l'Europe et des affaires étrangères,  chargée du commerce extérieur et des Français de l'étranger | Ministre délégué auprès du ministre de l'Europe et des affaires étrangères, chargé du commerce extérieur et des Français de l'étranger | Ministre délégué auprès du ministre de l'Europe et des affaires étrangères, chargé du commerce extérieur, de l'attractivité, de la francophonie et des Français de l'étranger | Ministre délégué auprès du ministre de l'Europe et des affaires étrangères, chargé du tourisme, des Français de l'étranger et de la francophonie, et auprès du ministre de l'économie, des finances et de la relance, chargé des petites et moyennes entreprises | Ministre déléguée auprès du Ministre des Affaires étrangères, chargée des Français de l'étranger | Ministre déléguée auprès du Ministre des Affaires étrangères, chargée des Français de l'étranger et de la Francophonie | Ministre déléguée auprès du ministre de l’Europe et des Affaires étrangères, chargée de la Francophonie, des Partenariats internationaux et des Français de l’étranger | Secrétaire d'État auprès du Ministre d'État, ministre des Affaires étrangères et européennes, chargé des Français de l'étranger | Secrétaire d'État auprès du ministre de l'Europe et des affaires étrangères, chargé du tourisme, des Français de l'étranger et de la francophonie | Secrétaire d'État auprès du ministre des Affaires étrangères et du Développement international chargé du Commerce extérieur, du Développement du tourisme et des Français de l'étranger | Secrétaire d'État auprès du ministre des Affaires étrangères et du Développement international chargée du Commerce extérieur, de la Promotion du tourisme et des Français de l'étranger
+
+Circonscriptions sans territoire : Algérie (Alger) (3) ; Ets Français de l'Inde (3) ; Algérie (Oran) (3) ; Algérie (Constantine) (1)
