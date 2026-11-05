@@ -426,6 +426,12 @@ serveur), filtre « Mes favoris » dans l'Hémicycle. Pas de zoom au double touc
   réclamés restent acquis, et elle n'est pas grisée dans « Toutes les cartes » (demande de l'utilisateur) : `deja` de
   l'état, cartes dont la ligne de possession est à zéro (jamais supprimée), lue avec les autres par `chargerEtat`. Comparaison en texte dans le navigateur (`majCatalogue`) : les identifiants Sycomore du catalogue
   sont des nombres, ceux du serveur du texte, et les cartes cédées restaient grisées (signalé par l'utilisateur, novembre 2026).
+- Sanctions (demande de l'utilisateur, novembre 2026, après les comptes secondaires de Misterpopovic) : colonne `sanction` de
+  `joueurs`, JSON écrit par l'éditeur dans la console D1, `{"fin": date ISO, "buvette": true, "recharge": minutes, "message":
+  texte}` ; sans effet passé `fin` (`sanctionActive`). `buvette` : échanges proposés ou acceptés, ventes, achats et offres refusés
+  au joueur et avec lui (`verifierBuvette`, 403) ; `recharge` : réserve rechargée d'un paquet toutes les `recharge` minutes (champ
+  `recharge` de l'état, `intervalle` des règles, jamais plus rapide que `RECHARGE_MS`) ; `message` : écran à chaque ouverture tant
+  que dure la sanction (`montrerSanction`, fenêtre `sanction`), mesures et date de fin rappelées sous le texte.
 - Migrations uniques : `MIGRATIONS` (worker), notées dans `reglages`.
 - Colonnes ajoutées après la mise en service : déclarées dans `COLONNES` (worker), ajoutées à la volée.
 - Vitrine (six cases, chacune remplie ou vidée à part, enregistrée aussitôt ; ordre changé par glisser-déposer à la souris

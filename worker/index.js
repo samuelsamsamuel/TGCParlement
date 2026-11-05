@@ -184,6 +184,9 @@ const COLONNES = {
   joueurs: [
     ["stock", `INTEGER NOT NULL DEFAULT ${Regles.RESERVE_MAX} CHECK (stock >= 0)`],  // réserve de paquets à l'ancre (plafond : règles)
     ["ancre", "INTEGER NOT NULL DEFAULT 0"],      // instant (ms) depuis lequel la réserve se recharge ; 0 : pleine
+    // Sanction posée par l'éditeur dans la console D1 (JSON) : {"fin": date ISO, "buvette": true (échanges, ventes, achats
+    // et offres refusés), "recharge": minutes par paquet de la réserve, "message": texte de l'écran montré à l'ouverture}
+    ["sanction", "TEXT NOT NULL DEFAULT ''"],
     ["version", "INTEGER NOT NULL DEFAULT 0"],    // incrémentée à chaque opération des règles (garde de concurrence)
     ["vitrine", "TEXT NOT NULL DEFAULT '[]'"],    // cartes choisies pour la vitrine publique
     ["quiz", "TEXT NOT NULL DEFAULT ''"],         // jour des dernières questions au Gouvernement récompensées
@@ -329,10 +332,28 @@ async function joueurConnecte(env, requete) {
   return s ? s.joueur : null;
 }
 
+/* ---------- Sanctions (comptes secondaires, novembre 2026) ---------- */
+// Colonne `sanction` de joueurs, écrite à la main par l'éditeur ; sans effet passé sa date de fin
+function sanctionActive(brut) {
+  let s; try { s = JSON.parse(brut || "null"); } catch (_) { return null; }
+  if (!s || typeof s !== "object" || !s.fin || !(new Date(s.fin) > new Date())) return null;
+  const recharge = entier(s.recharge, 31, 24 * 60);
+  return {fin: String(s.fin), buvette: s.buvette === true, recharge, message: typeof s.message === "string" ? s.message.slice(0, 2000) : ""};
+}
+const dateFr = iso => new Date(iso).toLocaleDateString("fr-FR", {day: "numeric", month: "long", timeZone: "Europe/Paris"}).replace(/^1 /, "1er ");
+// Buvette fermée à un joueur sanctionné : échanges proposés ou acceptés, ventes, achats et offres, de son côté comme de l'autre
+async function verifierBuvette(env, ...joueurs) {
+  for (const id of joueurs.filter(x => x !== null && x !== undefined)) {
+    const l = await env.DB.prepare("SELECT id, sanction FROM joueurs WHERE id = ?").bind(id).first();
+    const s = l && sanctionActive(l.sanction);
+    if (s?.buvette) throw new Refus(403, joueurs[0] === id ? `La buvette vous est fermée jusqu'au ${dateFr(s.fin)}.` : "Ce joueur ne peut pas échanger pour le moment.");
+  }
+}
+
 /* ---------- État d'un joueur ---------- */
 async function chargerEtat(env, joueur) {
   const [j, p, r, h] = await env.DB.batch([
-    env.DB.prepare("SELECT pseudo, cree, points, offerts, stock, ancre, version, quiz, vitrine, favoris, gardes, quotidien, prestige, rares, differentes FROM joueurs WHERE id = ?").bind(joueur),
+    env.DB.prepare("SELECT pseudo, cree, points, offerts, stock, ancre, version, quiz, vitrine, favoris, gardes, quotidien, prestige, rares, differentes, sanction FROM joueurs WHERE id = ?").bind(joueur),
     // Toutes les lignes : celles à zéro (cartes cédées) se lisent de toute façon avec les autres par la clé du joueur
     env.DB.prepare("SELECT carte, n, importes, reserve, deposee FROM possessions WHERE joueur = ?").bind(joueur),
     env.DB.prepare("SELECT cle, date FROM reclames WHERE joueur = ?").bind(joueur),
@@ -353,8 +374,11 @@ async function chargerEtat(env, joueur) {
   etat.favoris = JSON.parse(ligne.favoris || "[]");
   etat.gardes = JSON.parse(ligne.gardes || "[]");
   try { etat.quotidien = JSON.parse(ligne.quotidien || "{}"); } catch (_) { etat.quotidien = {}; }
+  const sanction = sanctionActive(ligne.sanction);
+  if (sanction?.recharge) etat.recharge = sanction.recharge * 60000;
   return {pseudo: ligne.pseudo, cree: ligne.cree, etat, version: ligne.version, vitrine: JSON.parse(ligne.vitrine || "[]"),
           classe: [ligne.prestige, ligne.rares, ligne.differentes],
+          sanction: sanction && {fin: sanction.fin, buvette: sanction.buvette, recharge: sanction.recharge, message: sanction.message},
           gouvernement: true, lois: true, classements: true};
 }
 // Ajout : la ligne est créée au besoin. Retrait : simple mise à jour, car SQLite vérifie les contraintes CHECK
@@ -581,6 +605,7 @@ async function proposerEchange(env, requete, joueur, cat) {
   const c = await lireCorps(requete);
   const dest = await idJoueur(env, c.vers);
   if (dest.id === joueur) throw new Refus(400, "Vous ne pouvez pas échanger avec vous-même.");
+  await verifierBuvette(env, joueur, dest.id);
   const donne = lireLot(cat, c.donne), recoit = lireLot(cat, c.recoit);
   const voixDonne = entier(c.voix_donne ?? 0, 0, PRIX_MAX), voixRecoit = entier(c.voix_recoit ?? 0, 0, PRIX_MAX);
   if (voixDonne === null || voixRecoit === null) throw new Refus(400, `Les voix d'un échange vont de 0 à ${PRIX_MAX.toLocaleString("fr-FR")}.`);
@@ -613,6 +638,7 @@ async function cloreEchange(env, joueur, id, action) {
   if (!e || e.statut !== "proposee") throw new Refus(409, "Cet échange n'est plus en attente.");
   const permis = action === "annuler" ? e.de === joueur : e.vers === joueur;
   if (!permis) throw new Refus(403, "Cet échange ne vous est pas adressé.");
+  if (action === "accepter") await verifierBuvette(env, joueur, e.de);
   const statut = {accepter: "acceptee", refuser: "refusee", annuler: "annulee"}[action];
   const requetes = [
     env.DB.prepare("INSERT INTO clotures (nature, id) VALUES ('echange', ?)").bind(id),
@@ -663,6 +689,7 @@ async function vendre(env, requete, joueur, cat) {
   const carte = String(c.carte || ""), prix = entier(c.prix, 1, PRIX_MAX);
   if (!cat.parId[carte]) throw new Refus(400, "Carte inconnue.");
   if (!prix) throw new Refus(400, `Le prix va de 1 à ${PRIX_MAX.toLocaleString("fr-FR")} voix.`);
+  await verifierBuvette(env, joueur);
   const p = await env.DB.prepare("SELECT n - importes - reserve AS libres FROM possessions WHERE joueur = ? AND carte = ?").bind(joueur, carte).first();
   if (!p || p.libres < 1) throw new Refus(409, "Vous n'avez pas d'exemplaire libre de cette carte.");
   const ouvertes = await env.DB.prepare("SELECT COUNT(*) AS n FROM annonces WHERE vendeur = ? AND statut = 'ouverte'").bind(joueur).first();
@@ -687,6 +714,7 @@ const offresCaduques = (env, annonce, date, sauf = 0) => [
 async function cloreAnnonce(env, joueur, id, action) {
   const a = await env.DB.prepare("SELECT * FROM annonces WHERE id = ?").bind(id).first();
   if (!a || a.statut !== "ouverte") throw new Refus(409, "Cette carte n'est plus au comptoir.");
+  if (action === "acheter") await verifierBuvette(env, joueur, a.vendeur);
   const date = maintenant();
   const requetes = [env.DB.prepare("INSERT INTO clotures (nature, id) VALUES ('annonce', ?)").bind(id), ...offresCaduques(env, id, date)];
   if (action === "retirer") {
@@ -714,6 +742,7 @@ async function faireOffre(env, requete, joueur, id) {
   const a = await env.DB.prepare("SELECT * FROM annonces WHERE id = ?").bind(id).first();
   if (!a || a.statut !== "ouverte") throw new Refus(409, "Cette carte n'est plus au comptoir.");
   if (a.vendeur === joueur) throw new Refus(400, "Vous ne pouvez pas faire d'offre sur votre propre carte.");
+  await verifierBuvette(env, joueur, a.vendeur);
   if (a.prix < 2) throw new Refus(400, "Cette carte est déjà au plus bas prix.");
   const prix = entier(c.prix, 1, a.prix - 1);
   if (!prix) throw new Refus(400, `Une offre va de 1 à ${(a.prix - 1).toLocaleString("fr-FR")} voix ; au prix demandé, achetez la carte.`);
@@ -739,6 +768,7 @@ async function cloreOffre(env, joueur, id, action) {
     WHERE o.id = ?`).bind(id).first();
   if (!o || o.statut !== "proposee") throw new Refus(409, "Cette offre n'est plus en attente.");
   if ((action === "annuler" ? o.acheteur : o.vendeur) !== joueur) throw new Refus(403, "Cette offre ne vous est pas adressée.");
+  if (action === "accepter") await verifierBuvette(env, joueur, o.acheteur);
   const date = maintenant(), requetes = [env.DB.prepare("INSERT INTO clotures (nature, id) VALUES ('offre', ?)").bind(id)];
   if (action !== "accepter") {
     requetes.push(env.DB.prepare("UPDATE offres SET statut = ?, maj = ? WHERE id = ?").bind(action === "refuser" ? "refusee" : "annulee", date, id));

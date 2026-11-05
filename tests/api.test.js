@@ -338,6 +338,19 @@ const preuve = c => require("crypto").createHash("sha256").update(c).digest("hex
     assert.deepStrictEqual(lire(`SELECT stock, offerts FROM joueurs WHERE pseudo = 'alice${suffixe}'`)[0], {stock: 0, offerts: 0}, "mise prise dans la réserve");
     assert.strictEqual((await A("parties/" + r.d.id + "/annuler", {})).statut, 200);
     assert.strictEqual(lire(`SELECT offerts FROM joueurs WHERE pseudo = 'alice${suffixe}'`)[0].offerts, 2, "mise rendue en paquets offerts");
+    // Sanction posée par l'éditeur : écran à l'ouverture, buvette fermée, réserve rechargée toutes les heures
+    const sanctionner = o => base(`UPDATE joueurs SET sanction = '${JSON.stringify(o).replace(/"/g, '\\"')}' WHERE pseudo = 'carole${suffixe}'`);
+    sanctionner({fin: "2099-01-01T00:00:00Z", buvette: true, recharge: 60, message: "Comptes secondaires."});
+    let m = (await C("moi")).d;
+    assert.deepStrictEqual([m.sanction.buvette, m.sanction.recharge, m.sanction.message, m.etat.recharge], [true, 60, "Comptes secondaires.", 3600000]);
+    assert.strictEqual(R.reserveCourante({reserve: 0, ancre: Date.now() - 45 * 60000, recharge: m.etat.recharge}).n, 0, "pas de paquet en 45 minutes");
+    assert.strictEqual(R.reserveCourante({reserve: 0, ancre: Date.now() - 45 * 60000}).n, 1);
+    assert.strictEqual((await C("echanges", {vers: "alice" + suffixe, donne: {}, recoit: {}})).statut, 403, "buvette fermée");
+    assert.strictEqual((await A("echanges", {vers: "carole" + suffixe, donne: {}, recoit: {}})).statut, 403, "échange refusé avec un joueur sanctionné");
+    assert.strictEqual((await C("annonces", {carte: cat.cartes[0].id, prix: 5})).statut, 403, "vente refusée");
+    sanctionner({fin: "2020-01-01T00:00:00Z", buvette: true});
+    m = (await C("moi")).d;
+    assert.strictEqual(m.sanction, null, "sanction échue sans effet"); assert.strictEqual(m.etat.recharge, undefined);
     // Partie en cours au délai : close, la manche jouée d'un seul côté lui revient
     r = await A("parties", {mode: "ami", vers: "carole" + suffixe});
     await A("parties/" + r.d.id + "/gouvernement", {gouvernement: idGA2}); await C("parties/" + r.d.id + "/gouvernement", {gouvernement: idGC});
