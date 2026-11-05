@@ -35,6 +35,8 @@ SORTIE = os.path.join("data", "senat", "senateurs_iiie.json")
 RAPPORT = os.path.join("data", "listes", "rapports", "senateurs_iiie.txt")
 UA = "TGCParlement/1.0 (projet personnel, contact : " + os.environ.get("CONTACT", "non renseigné") + ")"
 MINUTES = float(os.environ.get("MINUTES_SENATEURS_IIIE", "40"))
+MOTIFS = {"Décédé", "Décédée", "Non réélu", "Non réélue", "Ne se représente pas", "Démissionnaire", "Fin de mandat",
+          "Invalidé", "Invalidée", "Déchu", "Déchue"}
 MOIS = {m: i + 1 for i, m in enumerate(["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août",
                                          "septembre", "octobre", "novembre", "décembre"])}
 
@@ -88,6 +90,12 @@ def nom_lisible(brut):
     while a > 0 and particule(mots[a - 1]):
         a -= 1
     famille, prenoms = mots[a:b + 1], mots[:a] + mots[b + 1:]
+    # « de CISSEY Ernest COURTOT » : nom en capitales après le prénom, placé en tête (Ernest Courtot de Cissey)
+    milieu = [w for w in famille if not capitale(w) and not particule(w)]
+    if milieu:
+        k = famille.index(milieu[0])
+        fin = [w for w in famille[k:] if capitale(w) or particule(w)]
+        famille, prenoms = fin + famille[:k], prenoms + milieu
 
     def casse(w):
         if w.startswith("d'") and capitale(w):
@@ -118,21 +126,47 @@ def mettre_en_forme(f):
     civil = nom_lisible(dit.group(1)) if dit else None
     ne = next((l for l in f["etat_civil"] if re.match(r"Née? le", l)), None)
     mort = next((l for l in f["etat_civil"] if re.match(r"Décédée? le", l)), None)
-    mandats, debut = [], None
+    # Lignes d'élection (mesure sur les 1 747 fiches) : « Elu le … » (2 935), « Réélu le … » (50), « Devenu Sénateur le … »
+    # (3, élu à un siège laissé vacant), « Elu du … au … » (43) et « Réélu du … au … » (8), période close sur la ligne même,
+    # puis « Fin de mandat le … ». Entre parenthèses : le motif de fin, ou le département (« Seine ») ou « inamovible »
+    # pour cette période seulement (sénateur passé d'un département à un autre, ou élu inamovible en cours de carrière).
+    mandats, ouvert = [], None
+
+    def details(e):
+        motif, circo, inamovible = None, None, False
+        for x in re.findall(r"\(\s*([^)]*?)\s*\)", e):
+            if x in MOTIFS:
+                motif = x
+            elif x.lower() == "inamovible":
+                inamovible = True
+            elif x:
+                circo = x
+        return motif, circo, inamovible
     for e in f["elections"]:
-        if re.match(r"Elue? le", e):
-            if debut is None:
-                debut = date_fr(e)
+        motif, circo, inamov = details(e)
+        periode = re.match(r"(?:Elue?|Réélue?|Devenue? Sénat\w*) du (.+?) au (.+?)(?:\(|$)", e)
+        debut = re.match(r"(?:Elue?|Réélue?|Devenue? Sénat\w*) le (.+)", e)
+        if periode:
+            mandats.append({"debut": date_fr(periode.group(1)), "fin": date_fr(periode.group(2)),
+                            "motif_fin": None if motif == "Fin de mandat" else motif, "circonscription": circo, "inamovible": inamov})
+            ouvert = None
+        elif debut:
+            if ouvert is None:
+                ouvert = {"debut": date_fr(debut.group(1)), "fin": None, "motif_fin": None, "circonscription": circo, "inamovible": inamov}
         elif e.startswith("Fin de mandat"):
-            motif = re.search(r"\(\s*(.*?)\s*\)", e)
-            mandats.append({"debut": debut, "fin": date_fr(e), "motif_fin": motif.group(1) if motif else None})
-            debut = None
-    if debut is not None:
-        mandats.append({"debut": debut, "fin": None, "motif_fin": None})
+            if ouvert is not None:
+                ouvert.update(fin=date_fr(e), motif_fin=motif)
+                mandats.append(ouvert)
+            ouvert = None
+    if ouvert is not None:
+        mandats.append(ouvert)
+    dep = f["departement"]
+    for m in mandats:
+        if not m["circonscription"] and not m["inamovible"]:
+            m["circonscription"], m["inamovible"] = (None, True) if dep == "Inamovible" else (dep, False)
     # matricule de la fiche : « 1389r3 » ; « 0083r4 » pour un sénateur resté au Conseil de la République, ou matricule
     # de l'open data (« 000685 ») pour un sénateur de la Ve République : sa carte sénatoriale existe déjà (rapprochement)
     matricule = re.search(r"(\d+(?:r\d)?)\.html$", f["url"]).group(1).upper()
-    dep = f["departement"]
     return {"matricule": matricule, "nom": f"{prenom} {famille}".strip(), "nom_famille": famille, "prenom": prenom,
             "nom_civil": f"{civil[1]} {civil[0]}".strip() if civil else None,
             "nom_famille_civil": civil[0] if civil else None, "groupe": None, "sexe": "F" if ne and ne.startswith("Née") else "M",
@@ -206,8 +240,9 @@ def main():
         c["mandat sans date de fin"] += any(not m["fin"] for m in s["mandats"])
         c["plusieurs mandats séparés"] += len(s["mandats"]) > 1
         c["femmes"] += s["sexe"] == "F"
-        autres = [e for e in f["elections"] if not re.match(r"(Elue? le|Fin de mandat)", e)]
-        c["lignes d'élection d'un autre format"] += bool(autres)
+        autres = [e for e in f["elections"] if not re.match(r"(Elue?|Réélue?|Devenue? Sénat\w*) (le|du)|Fin de mandat", e)]
+        c["lignes d'élection d'un format inconnu"] += bool(autres)
+        c["périodes dans un autre département ou inamovibles"] += any(m["circonscription"] != s["circonscription"] for m in s["mandats"])
         if autres:
             c[f"  ex. {autres[0][:60]}"] += 1
     r += [f"  {k} : {v}" for k, v in c.items()]

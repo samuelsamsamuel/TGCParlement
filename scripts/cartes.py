@@ -265,6 +265,25 @@ def nom_famille_sycomore(nom):
     return mots[1] if len(mots) == 2 else segment
 
 
+def noms_proches(s, c):
+    """Nom de famille d'un sénateur de la IIIe République et d'une fiche Sycomore : un mot en commun, ou presque la même
+    écriture une fois les espaces, tirets, apostrophes et accents ôtés (ressemblance de 0,85 au moins)."""
+    import difflib
+    import unicodedata
+    serre = lambda t: re.sub(r"[^a-z]", "", unicodedata.normalize("NFKD", t or "").encode("ascii", "ignore").decode().lower())
+    sien, autre = s.get("nom_famille") or s["nom"], nom_famille_sycomore(c["nom"])
+    if noms_cles(sien) & noms_cles(autre):
+        return True
+    return difflib.SequenceMatcher(None, serre(sien), serre(autre)).ratio() >= 0.85
+
+
+def fonction_mandat(s, m):
+    """Intitulé d'un mandat de la IIIe République : département de cette période (un sénateur a pu changer de
+    département), ou « inamovible »."""
+    titre = "Sénatrice" if s["sexe"] == "F" else "Sénateur"
+    return titre + (" inamovible" if m.get("inamovible") else f" ({m['circonscription']})" if m.get("circonscription") else "")
+
+
 def completer_iiie(carte, s, listes):
     """Sénateur de la IIIe République (fiche de senat.fr) déjà présent sur une carte sénatoriale de l'open data (un
     sénateur de la Ve République élu avant-guerre) : ses mandats d'avant 1941 s'ajoutent à cette carte. Une fiche
@@ -272,10 +291,9 @@ def completer_iiie(carte, s, listes):
     if "inamovible" not in s or not str(carte["id"]).startswith("S"):
         return
     deja = {m["debut"] for m in carte["mandats"]}
-    fonction = "Sénateur" + (" inamovible" if s["inamovible"] else "") + (f" ({s['circonscription']})" if s["circonscription"] else "")
     for m in s["mandats"]:
         if m["debut"] and m["debut"] not in deja:
-            carte["mandats"].append({"chambre": "Sénat", "fonction": fonction, "debut": m["debut"], "fin": m["fin"], "en_cours": False})
+            carte["mandats"].append({"chambre": "Sénat", "fonction": fonction_mandat(s, m), "debut": m["debut"], "fin": m["fin"], "en_cours": False})
     carte["mandats"].sort(key=lambda m: m["debut"] or "")
     carte["annees_mandat"] = round(duree_jours(carte["mandats"]) / 365.25, 1)
     carte["score"] = score_carte(carte["annees_mandat"], carte["distinctions"])
@@ -320,6 +338,11 @@ def cartes_senateurs(cartes, listes):
         civil = noms_cles(s.get("nom_famille_civil"))  # nom civil d'un sénateur connu sous un autre nom (« dit »)
         meme_nom = lambda c: any(k and k <= noms_cles(nom_famille_sycomore(c["nom"])) for k in (cles, civil))
         exacts = [c for c in par_date[s["naissance"]] if meme_nom(c)] if s["naissance"] else []
+        if not exacts and "inamovible" in s and s["naissance"]:
+            # IIIe République (fiches de senat.fr) : orthographes du nom qui diffèrent d'une source à l'autre (« La Fayette »
+            # et « Lafayette », « Pontbriand » et « Pontbriant », « Bonnefoy-Sibour » et « Bonnefoy-Sibourg ») ; même date
+            # de naissance exigée, et un mot du nom en commun ou des noms écrits presque pareil
+            exacts = [c for c in par_date[s["naissance"]] if noms_proches(s, c)]
         if exacts:
             correspondances[s["matricule"]] = exacts[0]["id"]
             completer_iiie(exacts[0], s, listes)
@@ -333,6 +356,10 @@ def cartes_senateurs(cartes, listes):
             return a[5:7] == b[5:7] or a[8:10] == b[8:10]
         proches = [c for c in par_annee[(s["naissance"] or "")[:4]]
                    if meme_nom(c) and prenom and prenom <= noms_cles(c["nom"]) and date_voisine(c)]
+        if not proches and "inamovible" in s and s["naissance"]:
+            # IIIe République : même nom, même premier prénom et même année suffisent (dates de naissance discordantes
+            # entre Sycomore et le Sénat, de quelques jours à quelques mois : Antoine Drivet, Louis Pothuau)
+            proches = [c for c in par_annee[s["naissance"][:4]] if meme_nom(c) and prenom and prenom <= noms_cles(c["nom"])]
         if s["naissance"] and proches:
             anomalies["sénateur rapproché d'une fiche Sycomore par l'année seule"].append(
                 f"{s['matricule']} {s['nom']} ({s['naissance']}) -> {proches[0]['id']} {proches[0]['nom']} ({proches[0]['naissance']})")
@@ -354,7 +381,7 @@ def cartes_senateurs(cartes, listes):
                 continue
             fin = m["fin"]
             en_cours = s["etat"] == "ACTIF" and (not fin or fin > AUJOURDHUI.isoformat())
-            mandats.append({"chambre": "Sénat", "fonction": fonction,
+            mandats.append({"chambre": "Sénat", "fonction": fonction_mandat(s, m) if "inamovible" in m else fonction,
                             "debut": m["debut"], "fin": None if en_cours else fin, "en_cours": en_cours})
         ident = "S" + s["matricule"]
         correspondances[s["matricule"]] = ident
