@@ -28,7 +28,17 @@ exécution à la fois, qui enregistre `data/` et `site/` (même après une annul
 
 ## Chaîne de construction (ordre du workflow)
 
-1. `senateurs.py` (open data du Sénat, sénateurs actifs) ; 2. `cartes.py` (première passe, écrit aussi
+1. `senateurs.py` (open data du Sénat, sénateurs actifs), puis `senateurs_iiie.py` (sénateurs de la IIIe République, demande
+de l'utilisateur, novembre 2026, après Amaury de La Grange absent du jeu : liste alphabétique et fiche de chacun sur senat.fr,
+`senateur-3eme-republique/…`, liste close, 1 747 fiches lues une fois par reprise, une par seconde, gardées dans
+`data/senat/senateurs_iiie.json` ; champs lus : état civil, département ou « Inamovible », lignes « Elu le », « Réélu le »,
+« Devenu Sénateur le », « Elu du … au … », « Fin de mandat le … (motif) », département ou « inamovible » d'une période entre
+parenthèses ; biographie non lue ; ni groupe ni portrait propre ; matricules « r3 », « r4 » ou de l'open data ; cartes
+« S » + matricule, que `portraits.py` et `distinctions.py` rattachent déjà par P1808 ; rapprochement par `cartes.py` : nom et
+date de naissance, puis orthographes voisines à la même date (`noms_proches`), puis même nom, prénom et année ; un sénateur
+de la Ve République déjà présent reçoit ses mandats d'avant-guerre (`completer_iiie`) ; mesure, novembre 2026 : 786 cartes
+nouvelles, 225 cartes de la IIIe République changent de rareté, dont Doumergue, Fallières, Moch et Le Royer mythiques) ;
+2. `cartes.py` (première passe, écrit aussi
 `data/senat/correspondances.json`) ; 3. `gouvernements_ive.py` (1944-1959, RTF officiel) ;
 4. `gouvernements_an.py` (open data AN : fonctions récentes, fonctions au sein de l'Assemblée,
 circonscriptions ; présidence de l'OPECST, organe `OFFPAR` commun aux deux chambres, dont l'open data de l'Assemblée porte les
@@ -543,7 +553,7 @@ serveur), filtre « Mes favoris » dans l'Hémicycle. Pas de zoom au double touc
    chef de l'État (piste : une part des 70 points, la moitié par exemple, ces cartes étant déjà en tête ; mandats à compter
    d'après la source officielle de la liste `chef-etat`) et pour une seconde présidence de l'OPECST (piste : 3 points ; Villani
    et Henriet l'ont présidé deux fois, d'après l'open data de l'Assemblée). Mesurer l'effet sur les raretés avant de choisir.
-4. Lacunes connues, faute de source officielle structurée : sénateurs de la IIIe République et du Conseil
-   de la République (1946-1948), gouvernements antérieurs à 1944, villes des circonscriptions avant 2012,
+4. Lacunes connues, faute de source officielle structurée : conseillers de la République (1946-1948 ; le Sénat publie
+   aussi leurs fiches, `senateurs-4eme-republique/senatl.html`, 718 noms, même méthode possible), gouvernements antérieurs à 1944, villes des circonscriptions avant 2012,
    fonctions au sein de l'Assemblée avant juin 2002 (seuls les comptes rendus de séance en PDF les portent ;
    leur lecture lèverait la règle de symétrie).
