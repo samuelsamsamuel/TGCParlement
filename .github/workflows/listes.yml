@@ -104,6 +104,12 @@ jobs:
         timeout-minutes: 14
         run: python3 scripts/portraits_commons.py
 
+      # Dimensions des portraits de Commons (reprise), pour repérer ceux que le cadrage commun coupe mal
+      - name: Dimensions des portraits de Commons (reprise, 10 minutes au plus)
+        continue-on-error: true
+        timeout-minutes: 14
+        run: python3 scripts/dimensions_portraits.py
+
       - name: Plus grande ville des circonscriptions
         continue-on-error: true
         run: python3 scripts/villes_circonscriptions.py

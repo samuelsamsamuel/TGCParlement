@@ -1390,6 +1390,15 @@ function lignesCommissions(c){
 }
 function listeLignes(items){ return items.map(([k,t,d]) => `<li class="${k}"><b>${echapper(t)}</b><span>${d}</span></li>`).join(""); }
 
+// Cadrage des portraits (demande de l'utilisateur, novembre 2026) : position choisie à l'œil pour un fichier de Commons
+// (table `cadrages` de jeu.json), sinon règle commune (centré, calé à 20 % du haut), remontée pour les images très hautes,
+// photos en pied et tableaux, dont la tête est près du bord supérieur et que les 20 % coupaient
+let CADRAGES = {};
+function cadrer(img){
+  const r = img.naturalHeight / img.naturalWidth;
+  if (r >= 1.9) img.style.objectPosition = "50% 3%";
+  else if (r >= 1.45) img.style.objectPosition = "50% 8%";
+}
 function estFavori(id){ return (etat.favoris || []).includes(String(id)); }
 function htmlEtoile(id){ const f = estFavori(id); return `<button class="etoile" data-favori="${echapper(id)}" aria-pressed="${f}" aria-label="${f ? "Retirer des favoris" : "Ajouter aux favoris"}">${f ? "★" : "☆"}</button>`; }
 const estGardee = id => (etat.gardes || []).includes(String(id));
@@ -1397,7 +1406,9 @@ function htmlCarte(c, {retournee=true, neuve=false, classe="", id="", etoile=tru
   const n = etat.possedees[c.id] || 0;
   const src = srcPortrait(c);
   const repli = c.portrait && c.photo ? `this.onerror=()=>this.remove();this.src='${urlPortrait(c.portrait)}'` : "this.remove()";
-  const portrait = src ? `<img src="${echapper(src)}" alt="" loading="lazy" decoding="async"${croise(src) ? ' crossorigin="anonymous"' : ""} onerror="${repli}">` : `<span class="initiales">${echapper(initiales(c.nom))}</span>`;
+  // le cadrage choisi ne vaut que pour le fichier de Commons (vignette directe ou adresse de repli), pas pour une photo officielle
+  const cadre = c.portrait && CADRAGES[c.portrait] && (!c.photo || /upload\.wikimedia\.org/.test(c.photo)) && src;
+  const portrait = src ? `<img src="${echapper(src)}" alt="" loading="lazy" decoding="async"${croise(src) ? ' crossorigin="anonymous"' : ""}${cadre ? ` style="object-position:${echapper(CADRAGES[c.portrait])}"` : ` onload="cadrer(this)"`} onerror="${repli}">` : `<span class="initiales">${echapper(initiales(c.nom))}</span>`;
   const [pt, pd] = principale(c);
   const autresFonctions = c.fonctions.slice(1).map(f => ["fonction", f[0], dates(f[1], f[2], false)]);
   const mandats = c.mandats.map(m => ["mandat", ...mandatLigne(m)]).filter(x => !(c.fonctions.length === 0 && x[1] === pt));
@@ -4218,7 +4229,7 @@ document.getElementById("progression").addEventListener("click", e => {
 });
 
 fetch("jeu.json").then(r => { if (!r.ok) throw new Error(r.status); return r.json(); }).then(d => {
-  cartes = Regles.cartesDeJeu(d);
+  cartes = Regles.cartesDeJeu(d); CADRAGES = d.cadrages || {};
   cartes.forEach(c => c.cherche = (c.nom+" "+c.epoque+" "+(c.groupe||"")+" "+c.fonctions.map(f=>f[0]).join(" ")+" "+c.mandats.map(m=>m[1]).join(" "))
     .toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,""));
   cat = Regles.catalogue(cartes, d.assemblees || []);
