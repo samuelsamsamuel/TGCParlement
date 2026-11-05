@@ -1590,8 +1590,24 @@ const Sons = (() => {
   MELODIES["hors-categorie"] = MELODIES.legendaire;
   return {
     actifs,
-    dechirer(){ const c = contexte(); if (!c) return; const t = c.currentTime;
-      souffle(c, t, .35, 3200, 1200, .5, .8); souffle(c, t + .12, .45, 2400, 700, .4, .9); souffle(c, t + .3, .25, 1800, 600, .25); },
+    // Déchirure : des centaines de craquements très brefs (fibres du papier qui cèdent), serrés et irréguliers, qui
+    // enflent puis s'éteignent, sur un frottement aigu ; deux élans, comme un paquet ouvert en deux gestes
+    dechirer(){ const c = contexte(); if (!c) return; const t0 = c.currentTime;
+      for (const [debut, duree, force] of [[0, .32, .9], [.36, .42, 1]]) {
+        const fond = c.createBufferSource(), hp = c.createBiquadFilter(), g = c.createGain();
+        fond.buffer = bruit; hp.type = "highpass"; hp.frequency.value = 2500;
+        g.gain.setValueAtTime(0.0001, t0 + debut); g.gain.exponentialRampToValueAtTime(.06 * force, t0 + debut + .05);
+        g.gain.exponentialRampToValueAtTime(0.0001, t0 + debut + duree);
+        fond.connect(hp).connect(g).connect(c.destination); fond.start(t0 + debut, Math.random() * .5); fond.stop(t0 + debut + duree + .05);
+        for (let t = 0; t < duree; t += .002 + Math.random() * .006) {
+          const enveloppe = Math.sin(Math.PI * Math.min(1, t / duree)) ** .6;
+          const s = c.createBufferSource(), f = c.createBiquadFilter(), gg = c.createGain(), d = .002 + Math.random() * .007, at = t0 + debut + t;
+          s.buffer = bruit; f.type = "bandpass"; f.frequency.value = 1500 + Math.random() * 5500; f.Q.value = .9;
+          gg.gain.setValueAtTime(.0001, at); gg.gain.linearRampToValueAtTime((.25 + Math.random() * .75) * .45 * force * enveloppe, at + .0008);
+          gg.gain.exponentialRampToValueAtTime(.0001, at + d);
+          s.connect(f).connect(gg).connect(c.destination); s.start(at, Math.random() * .9); s.stop(at + d + .01);
+        }
+      } },
     retourner(){ const c = contexte(); if (!c) return; const t = c.currentTime; souffle(c, t, .12, 2500, 900, .35, 2); },
     rarete(r){ const m = MELODIES[r], c = m && contexte(); if (!c) return; const t = c.currentTime + .25;
       for (const [n, dt, d] of m) note(c, t + dt, NOTES[n], d, r === "rare" ? .12 : .15); },
