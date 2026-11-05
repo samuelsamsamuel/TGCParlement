@@ -535,11 +535,17 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
     {paquets: 1, choix: 3, raretes: ["epique", "legendaire", "mythique"], titre: "une carte parmi 3 épiques ou mieux, et un paquet"},
     {paquets: 2, choix: 3, raretes: ["legendaire", "mythique"], titre: "une carte parmi 3 légendaires ou mieux, et deux paquets"},
   ];
+  // Premier palier (demande de l'utilisateur, novembre 2026 : un joueur encaissait chaque première victoire, puis ouvrait des
+  // paquets avec les voix) : 15 voix trois fois par jour de Paris, ensuite une carte à choisir parmi 3 communes ou peu communes
+  const PALIER1_VOIX_PAR_JOUR = 3;
+  const PALIER1_CARTE = {choix: 3, raretes: ["commune", "peu-commune"], titre: "une carte parmi 3 communes ou peu communes"};
+  function lotPalier(palier, palier1Voix) { return palier === 1 && !palier1Voix ? PALIER1_CARTE : SERIE_GOUV[palier - 1]; }
   function serieGouv(etat, jour = jourDuJeu()) {
     const q = quotidien(etat);
     const g = q.gouv && typeof q.gouv === "object" ? q.gouv : (q.gouv = {serie: 0, jour: "", encaisses: 0, lot: null});
-    return {serie: g.serie || 0, lot: g.lot || null, encaissesDuJour: g.jour === jour ? g.encaisses || 0 : 0,
-            recompense: g.serie ? SERIE_GOUV[g.serie - 1] : null, suivante: SERIE_GOUV[g.serie || 0] || null};
+    const palier1Voix = Math.max(0, PALIER1_VOIX_PAR_JOUR - (g.p1jour === jour ? g.p1 || 0 : 0));
+    return {serie: g.serie || 0, lot: g.lot || null, encaissesDuJour: g.jour === jour ? g.encaisses || 0 : 0, palier1Voix,
+            recompense: g.serie ? lotPalier(g.serie, palier1Voix) : null, suivante: g.serie < SERIE_GOUV.length ? lotPalier((g.serie || 0) + 1, palier1Voix) : null};
   }
   // Issue d'une partie de série : victoire (un palier de plus), défaite (tout est perdu), nul (rien ne change)
   function issueSerieGouv(etat, cat, issue, jour = jourDuJeu(), aleatoire = Math.random) {
@@ -555,9 +561,10 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
   function encaisserSerieGouv(etat, cat, jour = jourDuJeu(), aleatoire = Math.random) {
     const s = serieGouv(etat, jour), g = quotidien(etat).gouv;
     if (!s.serie || s.lot) return null;
-    const lot = SERIE_GOUV[s.serie - 1], gain = {palier: s.serie, voix: lot.voix || 0, paquets: lot.paquets || 0, choix: null};
+    const lot = lotPalier(s.serie, s.palier1Voix), gain = {palier: s.serie, voix: lot.voix || 0, paquets: lot.paquets || 0, choix: null};
     etat.points += gain.voix; etat.offerts += gain.paquets;
     if (lot.choix) gain.choix = (g.lot = {cartes: propositions(etat, cat, lot, aleatoire), palier: s.serie}).cartes;
+    if (s.serie === 1 && lot.voix) { g.p1 = (g.p1jour === jour ? g.p1 || 0 : 0) + 1; g.p1jour = jour; }
     g.encaisses = s.encaissesDuJour + 1; g.jour = jour; g.serie = 0;
     noter(etat, "encaisser-gouv", gain);
     return gain;
@@ -1026,7 +1033,7 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
     return voix;
   }
 
-  return {VERSION_ETAT, retenirMise, SERIE_GOUV, serieGouv, issueSerieGouv, encaisserSerieGouv, choisirLotGouv, offrirChoixGouv, THEMES_LOI, loisDuJour, verifierLoi, etatLois, adopterLoi, remplirLoi, manquesLoi, semaineDuJeu, quinzaineDuJeu, remplit, basculerFavori, MAX_GARDES, garderCartes, RECHARGE_MS, QUIZ_QUESTIONS, graineDe, questions, compacterQuiz, catalogueQuiz, recompenseQuiz, validerQuiz, RESERVE_MAX, CARTES_PAR_PAQUET, reserveCourante, ORDRE, POIDS, VALEUR_RECYCLAGE, PRIX_PAQUET, PALIERS,
+  return {VERSION_ETAT, PALIER1_VOIX_PAR_JOUR, retenirMise, SERIE_GOUV, serieGouv, issueSerieGouv, encaisserSerieGouv, choisirLotGouv, offrirChoixGouv, THEMES_LOI, loisDuJour, verifierLoi, etatLois, adopterLoi, remplirLoi, manquesLoi, semaineDuJeu, quinzaineDuJeu, remplit, basculerFavori, MAX_GARDES, garderCartes, RECHARGE_MS, QUIZ_QUESTIONS, graineDe, questions, compacterQuiz, catalogueQuiz, recompenseQuiz, validerQuiz, RESERVE_MAX, CARTES_PAR_PAQUET, reserveCourante, ORDRE, POIDS, VALEUR_RECYCLAGE, PRIX_PAQUET, PALIERS,
     etatVide, migrer, jourDuJeu, normer, cartesDeJeu, catalogue, compacter, catalogueCompact, paquetsDisponibles, ouvrirPaquet,
     disponibles, recyclables, doubles, recycler, dissoudre, MAX_SELECTION, dissoudreSelection, echangerPoints, avancement, clesAtteintes, reclamer, recompensesEnAttente,
     SERIE, serieDuJour, reclamerSerie, choisirLot, objectifsDuJour, preparerJour, etatDuJour, reclamerJour};
