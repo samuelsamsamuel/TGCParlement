@@ -1,14 +1,56 @@
-Sénateurs de la IIIe République (senat.fr) : 1747 noms dans la liste, 9 fiches lues (9 à cette exécution), 9 retenues, 0 erreurs.
-Fiches restant à lire : 1738
+Sénateurs de la IIIe République (senat.fr) : 1747 noms dans la liste, 1747 fiches lues (238 à cette exécution), 1747 retenues, 0 erreurs.
+Fiches restant à lire : 0
   sans date de naissance complète : 0
-  sans date de décès : 1
-  inamovibles : 1
+  sans date de décès : 70
+  inamovibles : 116
   sans département ni inamovible : 0
   sans mandat : 0
-  mandat sans date de début : 0
+  mandat sans date de début : 41
   mandat sans date de fin : 0
   plusieurs mandats séparés : 0
   femmes : 0
-  lignes d'élection d'un autre format : 0
-Motifs de fin de mandat : Non réélu 5 ; Décédé 4
-Exemples de noms : Valentin Abeille ; dit) Edmond Adam (Edmond Adam ; Gabriel Adam ; Jean Adnet ; Louis Aguillon ; Emile Aimond ; Pierre Ajam ; Gustave Alasseur ; François Albert
+  lignes d'élection d'un autre format : 43
+    ex. Elu du 17 décembre 1882 au 1er février 1883 : 1
+    ex. Elu du 14 février 1926 au 9 janvier 1927 ( Fin de mandat ) : 1
+    ex. Elu du 30 janvier 1876 au 8 janvier 1882 ( Fin de mandat ) : 1
+    ex. Elu du 30 janvier 1876 au 5 janvier 1879 : 1
+    ex. Elu du 25 janvier 1885 au 6 janvier 1894 ( Fin de mandat ) : 1
+    ex. Elu du 30 décembre 1894 au 21 janvier 1895 : 1
+    ex. Elu du 11 janvier 1920 au 6 janvier 1924 : 1
+    ex. Elu du 11 janvier 1920 au 9 janvier 1927 ( Fin de mandat ) : 1
+    ex. Elu du 25 janvier 1885 au 6 janvier 1894 ( Non réélu ) : 1
+    ex. Elu du 4 janvier 1891 au 28 janvier 1900 ( Fin de mandat ) : 1
+    ex. Elu du 3 mai 1931 au 13 janvier 1936 : 2
+    ex. Elu du 11 janvier 1920 au 6 janvier 1924 ( Fin de mandat ) : 1
+    ex. Elu du 15 mai 1904 au 2 janvier 1909 ( Fin de mandat ) : 1
+    ex. Elu du 30 janvier 1876 au 5 janvier 1879 ( Fin de mandat ) : 1
+    ex. Elu du 20 août 1876 au 5 janvier 1879 ( Non réélu ) : 1
+    ex. Elu du 30 janvier 1876 au 25 janvier 1885 : 1
+    ex. Elu du 16 février 1902 au 4 janvier 1903 : 1
+    ex. Elu du 25 janvier 1884 au 5 janvier 1888 ( Fin de mandat ) : 1
+    ex. Elu du 17 février 1907 au 7 janvier 1912 : 1
+    ex. Elu du 5 juillet 1931 au 9 janvier 1939 : 1
+    ex. Elu du 7 juillet 1907 au 3 janvier 1909 : 1
+    ex. Elu du 25 août 1929 au 13 janvier 1936 : 1
+    ex. Elu du 10 mars 1895 au 2 janvier 1897 ( Fin de mandat ) : 1
+    ex. Elu du 23 mars 1930 au 9 janvier 1933 : 1
+    ex. Elu du 5 janvier 1879 au 4 janvier 1888 ( Non réélu ) : 1
+    ex. Elu du 30 janvier 1876 au 7 janvier 1882 : 1
+    ex. Elu du 30 avril 1882 au 10 janvier 1891 ( Ets Français de l' : 1
+    ex. Elu du 6 janvier 1924 au 13 janvier 1930 : 1
+    ex. Elu du 14 janvier 1936 au 24 janvier 1936 ( Seine ) : 1
+    ex. Elu du 11 janvier 1920 au 8 janvier 1927 ( Vosges ) : 1
+    ex. Elu du 18 janvier 1920 au 5 janvier 1924 : 1
+    ex. Elu du 5 avril 1925 au 9 janvier 1927 ( Seine ) : 1
+    ex. Elu du 9 janvier 1921 au 13 janvier 1930 ( Fin de mandat ) : 1
+    ex. Elu du 21 juin 1925 au 8 janvier 1927 ( Fin de mandat ) : 1
+    ex. Elu du 30 janvier 1876 au 24 juin 1884 ( Bouches-du-Rhône )  : 1
+    ex. Elu du 25 janvier 1885 au 7 janvier 1894 ( Fin de mandat ) : 1
+    ex. Elu du 17 août 1902 au 6 janvier 1906 ( Fin de mandat ) : 1
+    ex. Elu du 7 janvier 1906 au 13 décembre 1913 : 1
+    ex. Elu du 30 janvier 1876 au 7 janvier 1882 ( Fin de mandat ) : 1
+    ex. Elu du 4 janvier 1891 au 27 janvier 1900 ( Seine ) ( Non réé : 1
+    ex. Elu du 11 novembre 1894 au 2 janvier 1897 ( Non réélu ) : 1
+    ex. Elu du 30 janvier 1876 au 29 novembre 1881 ( Tarn ) ( Démiss : 1
+Motifs de fin de mandat : Décédé 850 ; Non réélu 341 ; None 265 ; Ne se représente pas 233 ; Démissionnaire 46 ; Invalidé 9 ; Déchu 3
+Exemples de noms : Valentin Abeille ; Jacques Benoist ; Jean-Baptiste Bouteille ; Jacques de Chammard ; Victor Dalbiez ; Louis Dubrulle ; Emile Forsanz ; Etienne Goujon ; Achille Joubert-Bonnaire ; Pierre Lecler ; André Mallarme ; Henri de Monti De Reze ; Ernest Picard ; Emile Riotteau ; Jean Stuhl ; Alphonse Warusfel
