@@ -295,8 +295,11 @@ la classe `presentation` de `html` resserre l'interface le temps de la visite se
 sans défilement sur 390 × 844) ; hors visite, les tailles habituelles, jugées plus lisibles par l'utilisateur.
 Cadrage des portraits (demande de l'utilisateur, novembre 2026 : recadrer les photos) : règle commune centrée, calée à 20 % du
 haut ; images très hautes (photos en pied, tableaux) remontées à 8 % ou 3 % selon leurs proportions, lues au chargement (`cadrer`) ;
-position choisie à l'œil pour certains fichiers de Commons, `data/cadrages.json` (fichier -> « x% y% »), exportée dans la table
-`cadrages` de `jeu.json` (`CADRAGES`) ; `dimensions_portraits.py` (workflow, reprise de 10 minutes) mesure les fichiers de Commons et
+cadrage choisi à l'œil par Claude pour les photos de Commons en largeur, `data/cadrages.json` : fichier -> [cx, cy, zoom] (centre du
+visage en fractions de l'image ; l'image est placée en absolu, agrandie, visage centré un peu au-dessus du milieu, vignette de
+500 px au-delà d'un zoom de 1,4), null (règle commune confirmée) ou « retirer » (image qui ne représente pas la personne : plaque de
+rue, vue aérienne, scène de meeting ; la carte revient aux initiales) ; exporté dans la table `cadrages` de `jeu.json` (`CADRAGES`) ;
+première revue, novembre 2026 : 365 photos, 190 cadrages, 169 confirmées, 6 retirées ; `dimensions_portraits.py` (workflow, reprise de 10 minutes) mesure les fichiers de Commons et
 liste dans son rapport ceux en largeur ou très hauts, à revoir ; `revue_portraits.py` (workflow, après lui) dépose dans `data/revue_portraits/` la vignette de
 250 px de chaque photo en largeur sans cadrage décidé, avec un index, et efface celles dont le cadrage est décidé (position
 choisie, ou « 50% 20% » pour confirmer la règle commune), pour une revue à l'œil par Claude ; depuis le conteneur de Claude, l'API de Commons répond trop souvent

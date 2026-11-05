@@ -290,10 +290,17 @@ def main():
     import datetime
     jour = datetime.datetime.now(datetime.timezone.utc).date().isoformat()
     # Cadrages choisis à l'œil pour les portraits de Commons mal cadrés par la règle commune (data/cadrages.json :
-    # fichier -> position CSS « x% y% », demande de l'utilisateur, novembre 2026) ; seuls ceux des cartes sont exportés
+    # fichier -> [cx, cy, zoom] (centre du visage en fractions, zoom ; null : règle commune confirmée), demande de l'utilisateur, novembre 2026) ; seuls ceux des cartes sont exportés
     cadrages = lire(os.path.join("data", "cadrages.json")) if os.path.exists(os.path.join("data", "cadrages.json")) else {}
+    # « retirer » : image qui ne représente pas la personne (plaque de rue, vue aérienne, scène de meeting), relevée lors
+    # de la revue à l'œil ; la carte revient aux initiales, sauf photo officielle de l'Assemblée ou du Sénat
+    for x in sortie:
+        if x[9] and cadrages.get(x[9]) == "retirer":
+            if x[16] and "wikimedia.org" in x[16]:
+                x[16] = None
+            x[9] = None
     utilises = {x[9] for x in sortie if x[9]}
-    cadrages = {k: v for k, v in cadrages.items() if k in utilises and isinstance(v, str)}
+    cadrages = {k: v for k, v in cadrages.items() if k in utilises and isinstance(v, list) and len(v) == 3}
     with open(os.path.join("site", "jeu.json"), "w", encoding="utf-8") as f:
         json.dump({"maj": jour, "raretes": RARETES, "assemblees": assemblees, "commissions": commissions, "cadrages": cadrages, "cartes": sortie}, f, ensure_ascii=False, separators=(",", ":"))
     with open(os.path.join("site", "maj.json"), "w", encoding="utf-8") as f:
