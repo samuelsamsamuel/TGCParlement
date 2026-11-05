@@ -2066,6 +2066,8 @@ function pucesLiens(l){
   return p.map(x => `<span class="puce lien"><b>+1</b> ${x}</span>`).join("") + (p.length > Gouvernement.LIENS_MAX ? `<span class="puce">bonus plafonné à +${Gouvernement.LIENS_MAX}</span>` : "");
 }
 const RECOMPENSES_COURTES = ["15 voix", "1 carte rare ou mieux", "1 paquet", "1 carte épique ou mieux + 1 paquet", "1 carte légendaire ou mieux + 2 paquets"];
+// Premier palier : 15 voix trois fois par jour, ensuite une carte commune ou peu commune à choisir (palier1Voix du serveur)
+const recompensesCourtes = () => gouv?.serie?.palier1Voix === 0 ? ["1 carte commune ou peu commune", ...RECOMPENSES_COURTES.slice(1)] : RECOMPENSES_COURTES;
 const texteRecompense = l => l ? (l.titre ? l.titre.charAt(0).toUpperCase() + l.titre.slice(1) : gainTexte(l)) : "";
 async function chargerGouvernement(){
   majGouvernement();
@@ -2188,7 +2190,7 @@ function ecransTuto(){
      dessin: `<ol class="tuto-frise">${[["Justice", "g"], ["Bretagne", "p"], ["Défense", "g"], ["Santé", "g"], ["Culture", "p"], ["Budget", "g"]].map(([t, r], i) => `<li class="${r}"><b>${i + 1}</b>${t}<em>${r === "g" ? "gagnée" : "perdue"}</em></li>`).join("")}</ol><p class="note centre">4 manches gagnées sur 6 : partie gagnée.</p>`},
     {titre: "Le 49.3", texte: "Une fois par partie, vous pouvez jouer le 49.3 en envoyant un ministre : <b>la stature de votre Premier ministre s'ajoute à sa force</b> pour cette manche. Gardez-le pour une manche serrée.",
      dessin: `<div class="tuto-force"><ul class="forces-ex"><li><span>Votre ministre</span><span class="calc"></span><b>6</b></li><li><span>+ 49.3 (Premier ministre de stature 5)</span><span class="calc"></span><b>11</b></li></ul></div>`},
-    {titre: "La série", texte: "Contre l'ordinateur ou un autre joueur, chaque victoire fait monter votre série d'une marche. Encaissez la récompense quand vous voulez, ou continuez pour viser plus haut : une défaite fait tout perdre.",
+    {titre: "La série", texte: "Contre l'ordinateur ou un autre joueur, chaque victoire fait monter votre série d'une marche. Encaissez la récompense quand vous voulez, ou continuez pour viser plus haut : une défaite fait tout perdre. Le premier palier rapporte 15 voix trois fois par jour, puis une carte commune ou peu commune à choisir.",
      dessin: `<div class="serie-gouv">${RECOMPENSES_COURTES.map((r, i) => `<span class="${i < 2 ? "passe" : i === 2 ? "courant" : ""}"><b>${i + 1}</b>${echapper(r)}</span>`).join("")}</div>`},
   ];
 }
@@ -2212,7 +2214,7 @@ document.getElementById("tuto-gouv").addEventListener("click", e => {
 });
 // Échelle de la série : paliers déjà dépassés grisés, palier atteint (à encaisser) en or, suivant marqué « prochaine »
 function echelleSerie(n){
-  return `<div class="serie-gouv">${RECOMPENSES_COURTES.map((r, i) => {
+  return `<div class="serie-gouv">${recompensesCourtes().map((r, i) => {
     const etatP = i < n - 1 ? "passe" : i === n - 1 ? "courant" : i === n ? "prochain" : "";
     const marque = {passe: "dépassé", courant: "atteint", prochain: "prochaine victoire"}[etatP] || "";
     return `<span class="${etatP}"><b>${i + 1}</b>${echapper(r)}${marque ? `<em>${marque}</em>` : ""}</span>`;
@@ -2227,9 +2229,9 @@ function htmlSerie(jouer = true){
     : `<p class="note">Formez d'abord un gouvernement complet pour jouer.</p>`;
   let corps;
   if (s.lot) corps = `<div class="encaisser"><button class="bouton" data-lot-gouv>Choisir ma carte</button></div>${jeu(false, jouer ? "Jouer" : "Rejouer")}`;
-  else if (s.serie) corps = `<p class="note">Gagnez encore pour atteindre « ${echapper(RECOMPENSES_COURTES[Math.min(4, s.serie)])} ». Une défaite fait tout perdre.</p>
+  else if (s.serie) corps = `<p class="note">Gagnez encore pour atteindre « ${echapper(recompensesCourtes()[Math.min(4, s.serie)])} ». Une défaite fait tout perdre.</p>
     ${jeu(true, "Continuer")}
-    <div class="encaisser"><button class="bouton discret" data-encaisser>Encaisser : ${echapper(RECOMPENSES_COURTES[s.serie - 1])}</button><span class="note">et la série repart de zéro</span></div>`;
+    <div class="encaisser"><button class="bouton discret" data-encaisser>Encaisser : ${echapper(recompensesCourtes()[s.serie - 1])}</button><span class="note">${s.serie === 1 && s.palier1Voix ? `et la série repart de zéro ; ${s.palier1Voix === 1 ? "dernier encaissement en voix aujourd'hui" : `encore ${s.palier1Voix} fois en voix aujourd'hui`}` : "et la série repart de zéro"}</span></div>`;
   else corps = `<p class="note">Chaque victoire contre l'ordinateur ou un autre joueur fait monter d'un palier.</p>${jeu(jouer, jouer ? "Jouer" : "Rejouer")}`;
   return `<div class="bloc-gouv"><h3>Votre série${s.serie ? ` : ${pluriel(s.serie, "victoire")}` : ""}</h3>
     ${echelleSerie(s.serie)}${corps}</div>`;
@@ -2543,7 +2545,7 @@ document.getElementById("revelation").addEventListener("click", e => {
 });
 async function encaisserSerie(bouton){
   const s = gouv.serie;
-  if (!confirm(`Encaisser « ${RECOMPENSES_COURTES[s.serie - 1]} » maintenant ? Votre série de ${pluriel(s.serie, "victoire")} repart de zéro.`)) return;
+  if (!confirm(`Encaisser « ${recompensesCourtes()[s.serie - 1]} » maintenant ? Votre série de ${pluriel(s.serie, "victoire")} repart de zéro.`)) return;
   await occupe(bouton, async () => {
     const r = await appel("gouvernements/encaisser", {});
     majTout(); gouv = await appel("gouvernements");

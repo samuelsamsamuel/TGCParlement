@@ -503,7 +503,10 @@ serveur), filtre « Mes favoris » dans l'Hémicycle. Pas de zoom au double touc
    mieux, 1 paquet (paliers 2 et 3 échangés à la demande de l'utilisateur, novembre 2026), une parmi 3 épiques ou mieux et un paquet, une parmi 3 légendaires ou mieux et deux paquets) ;
    après une victoire, encaisser (`encaisserSerieGouv`, `POST /api/gouvernements/encaisser`, la série repart de zéro) ou
    continuer (choix explicite, demande de l'utilisateur, octobre 2026 : « Continuer » en bouton principal, « Encaisser » discret
-   avec confirmation ; le seul bouton doré « Encaisser » faisait encaisser chaque victoire), la défaite fait tout perdre ; complète au palier 5, encaissée d'elle-même ; pas de limite d'encaissements par jour
+   avec confirmation ; le seul bouton doré « Encaisser » faisait encaisser chaque victoire), la défaite fait tout perdre ; premier palier
+   à 15 voix trois fois par jour de Paris, ensuite une carte à choisir parmi 3 communes ou peu communes (`PALIER1_VOIX_PAR_JOUR`,
+   `PALIER1_CARTE`, `lotPalier`, compteur `p1` de `quotidien.gouv`, `palier1Voix` de `serieGouv` ; demande de l'utilisateur, novembre
+   2026 : un joueur encaissait chaque première victoire et ouvrait des paquets avec les voix) ; complète au palier 5, encaissée d'elle-même ; pas de limite d'encaissements par jour
    (trois à l'origine, limite retirée à la demande de l'utilisateur) ;
    carte choisie dans le carrousel du lot (`choisirLotGouv`, `POST /api/gouvernements/lot`) ; état `quotidien.gouv`,
    écrit par `appliquer` dans le même lot que la clôture de la partie (`liees`). Interface refaite (demande de l'utilisateur) :
