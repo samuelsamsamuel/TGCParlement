@@ -23,7 +23,8 @@ import {CODES} from "./codes.js";
 const DUREE_SESSION = 90 * 24 * 3600;           // secondes
 const COOKIE = "hemicycle_session";
 const MAX_PAR_CARTE = 999;                       // exemplaires repris au plus par carte
-const MAX_VOIX_REPRISES = 1000;                  // voix du navigateur reprises au plus à l'inscription
+const MAX_VOIX_REPRISES = 0;                     // voix du navigateur reprises à l'inscription : plus aucune depuis novembre 2026
+const MAX_CARTES_REPRISES = 50;                  // exemplaires du navigateur repris au plus, les plus communs d'abord
 const MAX_ECHANGE = 40;                          // cartes au plus dans un échange (deux côtés)
 const MAX_ECHANGES_EN_COURS = 20, MAX_ANNONCES = 50, MAX_OFFRES_EN_COURS = 20, MAX_ALERTES = 50;
 const PRIX_MAX = 100000;
@@ -508,11 +509,21 @@ async function inscription(env, requete, cat) {
   // sont reprises aussi (demande de l'utilisateur, octobre 2026), jusqu'à MAX_VOIX_REPRISES : comme les cartes, le
   // serveur ne peut pas les vérifier, et le plafond borne ce qu'un navigateur retouché ferait entrer dans le comptoir.
   // Les paquets offerts ne sont pas repris. En cas d'échec, le compte reste vide et une nouvelle inscription le reprend.
+  // Plafond (novembre 2026) : une même collection de navigateur, jamais vidée, a été reprise par sept comptes secondaires
+  // (159 à 422 cartes et jusqu'à 220 voix chacun), qui ont ensuite tout donné à un seul compte. Depuis, MAX_CARTES_REPRISES
+  // exemplaires au plus, les plus communs d'abord, sans les voix ; le navigateur vide sa collection une fois reprise.
   const repris = {};
   const brut = c.collection && typeof c.collection === "object" ? c.collection : {};
+  const candidats = [];
   for (const [id, n] of Object.entries(brut)) {
     const k = entier(n, 1, MAX_PAR_CARTE);
-    if (k && cat.parId[id]) repris[id] = k;
+    if (k && cat.parId[id]) candidats.push([id, k]);
+  }
+  const rang = id => Regles.ORDRE.indexOf(cat.parId[id].rarete);
+  let place = MAX_CARTES_REPRISES;
+  for (const [id, k] of candidats.sort((a, b) => rang(a[0]) - rang(b[0]) || String(a[0]).localeCompare(String(b[0])))) {
+    if (place <= 0) break;
+    repris[id] = Math.min(k, place); place -= repris[id];
   }
   const ids = Object.keys(repris), date = maintenant();
   const voix = Math.min(MAX_VOIX_REPRISES, entier(c.voix, 0, 1e9) || 0);

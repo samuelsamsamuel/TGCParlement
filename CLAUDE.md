@@ -349,7 +349,10 @@ serveur), filtre « Mes favoris » dans l'Hémicycle. Pas de zoom au double touc
   collection locale (risque accepté : un joueur peut s'écrire des cartes dans son navigateur avant l'inscription).
   Colonne `importes` gardée à 0 (migration unique `importes-liberes`, table `reglages`) ; paliers déjà atteints
   marqués réclamés ; voix reprises aussi (demande de l'utilisateur, octobre 2026), 1 000 au plus (`MAX_VOIX_REPRISES`) ;
-  paquets offerts non repris. Une carte en vente est « réservée », verrouillée.
+  paquets offerts non repris. Une carte en vente est « réservée », verrouillée. Depuis novembre 2026 (faille exploitée : la
+  collection du navigateur, jamais vidée, a été reprise par sept comptes secondaires d'un même joueur, 159 à 422 cartes et
+  jusqu'à 220 voix chacun, puis donnée au compte principal) : 50 exemplaires au plus, les plus communs d'abord
+  (`MAX_CARTES_REPRISES`), plus de voix (`MAX_VOIX_REPRISES` à 0), collection du navigateur vidée après la reprise.
 - Monnaie du marché : les voix (champ `points`), gagnées en dissolvant des doubles. Pas d'argent réel.
 - Voix dans les échanges (demande de l'utilisateur, octobre 2026) : colonnes `voix_donne` et `voix_recoit` d'`echanges`,
   d'un seul côté, une carte au moins dans l'échange ; vérifiées à la proposition pour celui qui donne (pas pour l'autre,

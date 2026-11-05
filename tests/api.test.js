@@ -37,13 +37,15 @@ const preuve = c => require("crypto").createHash("sha256").update(c).digest("hex
   // Grande collection reprise (au-delà de 100 paramètres D1 par requête) en une seule transaction
   const grande = {}; cat.cartes.slice(100, 400).forEach(c => grande[c.id] = 1);
   r = await client()("inscription", {pseudo: "grand" + suffixe, preuve: preuve("g"), collection: grande}, {"cf-connecting-ip": "10.0.0." + (++ip)});
-  assert.strictEqual(r.statut, 201, JSON.stringify(r.d)); assert.strictEqual(Object.keys(r.d.etat.possedees).length, 300);
-  // Voix du navigateur reprises, plafonnées à 1 000 ; un compte ainsi repris n'est plus « vide » et ne se reprend pas deux fois
-  r = await client()("inscription", {pseudo: "voix" + suffixe, preuve: preuve("vx"), collection: {}, voix: 40}, {"cf-connecting-ip": "10.0.0." + (++ip)});
-  assert.strictEqual(r.statut, 201, JSON.stringify(r.d)); assert.strictEqual(r.d.etat.points, 40);
+  // Reprise plafonnée à 50 exemplaires, les plus communs d'abord (une même collection reprise par sept comptes secondaires)
+  assert.strictEqual(r.statut, 201, JSON.stringify(r.d));
+  assert.strictEqual(Object.values(r.d.etat.possedees).reduce((a, n) => a + n, 0), 50);
+  const pire = Math.max(...Object.keys(r.d.etat.possedees).map(id => R.ORDRE.indexOf(cat.parId[id].rarete)));
+  assert.ok(Object.keys(grande).filter(id => !r.d.etat.possedees[id]).every(id => R.ORDRE.indexOf(cat.parId[id].rarete) >= pire), "les plus communes d'abord");
+  // Voix du navigateur plus reprises ; un compte repris n'est plus « vide » et ne se reprend pas deux fois
+  r = await client()("inscription", {pseudo: "voix" + suffixe, preuve: preuve("vx"), collection: {[com]: 1}, voix: 40}, {"cf-connecting-ip": "10.0.0." + (++ip)});
+  assert.strictEqual(r.statut, 201, JSON.stringify(r.d)); assert.strictEqual(r.d.etat.points, 0);
   assert.strictEqual((await client()("inscription", {pseudo: "voix" + suffixe, preuve: preuve("vx"), voix: 40}, {"cf-connecting-ip": "10.0.0." + (++ip)})).statut, 409);
-  r = await client()("inscription", {pseudo: "riche" + suffixe, preuve: preuve("ri"), collection: {[com]: 1}, voix: 99999}, {"cf-connecting-ip": "10.0.0." + (++ip)});
-  assert.strictEqual(r.d.etat.points, 1000);
   // Compte resté vide (inscription interrompue) : la même inscription le reprend ; un autre mot de passe est refusé
   require("child_process").execSync(`cd ${require("path").join(__dirname, "..")} && ${process.env.WR} d1 execute hemicycle --local --persist-to ${process.env.ETAT} --command "INSERT INTO joueurs (pseudo, sel, empreinte, cree) VALUES ('vide${suffixe}', 'ab', '${require("crypto").createHash("sha256").update("ab" + preuve("v")).digest("hex")}', '2026-10-24')"`, {stdio: "ignore"});
   assert.strictEqual((await client()("inscription", {pseudo: "vide" + suffixe, preuve: preuve("autre")}, {"cf-connecting-ip": "10.0.2.1"})).statut, 409);
