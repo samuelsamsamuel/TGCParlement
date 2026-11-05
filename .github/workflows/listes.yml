@@ -110,6 +110,12 @@ jobs:
         timeout-minutes: 14
         run: python3 scripts/dimensions_portraits.py
 
+      # Vignettes des photos en largeur à revoir à l'œil (data/revue_portraits/), effacées une fois le cadrage décidé
+      - name: Vignettes des portraits à recadrer (reprise, 10 minutes au plus)
+        continue-on-error: true
+        timeout-minutes: 14
+        run: python3 scripts/revue_portraits.py
+
       - name: Plus grande ville des circonscriptions
         continue-on-error: true
         run: python3 scripts/villes_circonscriptions.py

@@ -297,7 +297,9 @@ Cadrage des portraits (demande de l'utilisateur, novembre 2026 : recadrer les ph
 haut ; images très hautes (photos en pied, tableaux) remontées à 8 % ou 3 % selon leurs proportions, lues au chargement (`cadrer`) ;
 position choisie à l'œil pour certains fichiers de Commons, `data/cadrages.json` (fichier -> « x% y% »), exportée dans la table
 `cadrages` de `jeu.json` (`CADRAGES`) ; `dimensions_portraits.py` (workflow, reprise de 10 minutes) mesure les fichiers de Commons et
-liste dans son rapport ceux en largeur ou très hauts, à revoir ; depuis le conteneur de Claude, l'API de Commons répond trop souvent
+liste dans son rapport ceux en largeur ou très hauts, à revoir ; `revue_portraits.py` (workflow, après lui) dépose dans `data/revue_portraits/` la vignette de
+250 px de chaque photo en largeur sans cadrage décidé, avec un index, et efface celles dont le cadrage est décidé (position
+choisie, ou « 50% 20% » pour confirmer la règle commune), pour une revue à l'œil par Claude ; depuis le conteneur de Claude, l'API de Commons répond trop souvent
 429. Portraits : vignettes Wikimedia en largeur standard (330 px ; 320 px est refusé, 400), connexions ouvertes d'avance,
 portraits Wikimedia et Sénat demandés en CORS et gardés par le service de travail (cache `hemicycle-portraits`,
 800 au plus) ; ceux de l'Assemblée, sans CORS, restent au cache du navigateur (une réponse opaque gonflerait le
