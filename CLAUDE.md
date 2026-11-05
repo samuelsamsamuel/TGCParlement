@@ -299,7 +299,7 @@ cadrage choisi à l'œil par Claude pour les photos de Commons en largeur, `data
 visage en fractions de l'image ; l'image est placée en absolu, agrandie, visage centré un peu au-dessus du milieu, vignette de
 500 px au-delà d'un zoom de 1,4), null (règle commune confirmée) ou « retirer » (image qui ne représente pas la personne : plaque de
 rue, vue aérienne, scène de meeting ; la carte revient aux initiales) ; exporté dans la table `cadrages` de `jeu.json` (`CADRAGES`) ;
-première revue, novembre 2026 : 365 photos, 190 cadrages, 169 confirmées, 6 retirées ; `dimensions_portraits.py` (workflow, reprise de 10 minutes) mesure les fichiers de Commons et
+revue complète, novembre 2026 : 536 photos en largeur, 275 cadrages, 249 confirmées, 12 retirées ; `dimensions_portraits.py` (workflow, reprise de 10 minutes) mesure les fichiers de Commons et
 liste dans son rapport ceux en largeur ou très hauts, à revoir ; `revue_portraits.py` (workflow, après lui) dépose dans `data/revue_portraits/` la vignette de
 250 px de chaque photo en largeur sans cadrage décidé, avec un index, et efface celles dont le cadrage est décidé (position
 choisie, ou « 50% 20% » pour confirmer la règle commune), pour une revue à l'œil par Claude ; depuis le conteneur de Claude, l'API de Commons répond trop souvent
