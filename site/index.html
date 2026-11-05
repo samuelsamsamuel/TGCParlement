@@ -1393,11 +1393,24 @@ function listeLignes(items){ return items.map(([k,t,d]) => `<li class="${k}"><b>
 // Cadrage des portraits (demande de l'utilisateur, novembre 2026) : position choisie à l'œil pour un fichier de Commons
 // (table `cadrages` de jeu.json), sinon règle commune (centré, calé à 20 % du haut), remontée pour les images très hautes,
 // photos en pied et tableaux, dont la tête est près du bord supérieur et que les 20 % coupaient
+// Cadrage choisi : [cx, cy, zoom], centre du visage en fractions de l'image et zoom (1 : l'image couvre juste le cadre).
+// L'image est alors placée en absolu dans le cadre, agrandie, le visage au centre autant que les bords le permettent ;
+// au-delà d'un zoom de 1,4, la vignette de 500 px remplace celle de 330 px pour rester nette.
 let CADRAGES = {};
 function cadrer(img){
-  const r = img.naturalHeight / img.naturalWidth;
-  if (r >= 1.9) img.style.objectPosition = "50% 3%";
-  else if (r >= 1.45) img.style.objectPosition = "50% 8%";
+  const choix = img.dataset.cadre && JSON.parse(img.dataset.cadre);
+  const a = img.naturalWidth / img.naturalHeight;
+  if (!choix) {
+    if (1 / a >= 1.9) img.style.objectPosition = "50% 3%";
+    else if (1 / a >= 1.45) img.style.objectPosition = "50% 8%";
+    return;
+  }
+  const [cx, cy, z] = choix, boite = img.parentElement, B = (boite.clientWidth / boite.clientHeight) || 1.71;
+  // dimensions de l'image en largeurs et hauteurs du cadre : « cover », puis zoom
+  const lw = (a > B ? a / B : 1) * z, lh = (a > B ? 1 : B / a) * z;
+  const borne = (v, min) => Math.min(0, Math.max(min, v));
+  Object.assign(img.style, {position: "absolute", maxWidth: "none", objectFit: "fill", width: lw * 100 + "%", height: lh * 100 + "%",
+    left: borne(0.5 - cx * lw, 1 - lw) * 100 + "%", top: borne(0.42 - cy * lh, 1 - lh) * 100 + "%"});
 }
 function estFavori(id){ return (etat.favoris || []).includes(String(id)); }
 function htmlEtoile(id){ const f = estFavori(id); return `<button class="etoile" data-favori="${echapper(id)}" aria-pressed="${f}" aria-label="${f ? "Retirer des favoris" : "Ajouter aux favoris"}">${f ? "★" : "☆"}</button>`; }
@@ -1407,8 +1420,9 @@ function htmlCarte(c, {retournee=true, neuve=false, classe="", id="", etoile=tru
   const src = srcPortrait(c);
   const repli = c.portrait && c.photo ? `this.onerror=()=>this.remove();this.src='${urlPortrait(c.portrait)}'` : "this.remove()";
   // le cadrage choisi ne vaut que pour le fichier de Commons (vignette directe ou adresse de repli), pas pour une photo officielle
-  const cadre = c.portrait && CADRAGES[c.portrait] && (!c.photo || /upload\.wikimedia\.org/.test(c.photo)) && src;
-  const portrait = src ? `<img src="${echapper(src)}" alt="" loading="lazy" decoding="async"${croise(src) ? ' crossorigin="anonymous"' : ""}${cadre ? ` style="object-position:${echapper(CADRAGES[c.portrait])}"` : ` onload="cadrer(this)"`} onerror="${repli}">` : `<span class="initiales">${echapper(initiales(c.nom))}</span>`;
+  const cadre = c.portrait && Array.isArray(CADRAGES[c.portrait]) && (!c.photo || /upload\.wikimedia\.org/.test(c.photo)) ? CADRAGES[c.portrait] : null;
+  const srcCadre = cadre && cadre[2] > 1.4 && src ? src.replace("/330px-", "/500px-") : src;
+  const portrait = src ? `<img src="${echapper(srcCadre)}" alt="" loading="lazy" decoding="async"${croise(src) ? ' crossorigin="anonymous"' : ""}${cadre ? ` data-cadre="${echapper(JSON.stringify(cadre))}"` : ""} onload="cadrer(this)" onerror="${repli}">` : `<span class="initiales">${echapper(initiales(c.nom))}</span>`;
   const [pt, pd] = principale(c);
   const autresFonctions = c.fonctions.slice(1).map(f => ["fonction", f[0], dates(f[1], f[2], false)]);
   const mandats = c.mandats.map(m => ["mandat", ...mandatLigne(m)]).filter(x => !(c.fonctions.length === 0 && x[1] === pt));
