@@ -1,5 +1,5 @@
-Portraits Commons des cartes : 8484 ; mesurés : 8484 ; restant à mesurer : 0 ; lots en échec : 0.
-En largeur (plus larges que hauts de 15 %) : 530
+Portraits Commons des cartes : 8478 ; mesurés : 8478 ; restant à mesurer : 0 ; lots en échec : 0.
+En largeur (plus larges que hauts de 15 %) : 524
   (11-10-32, obsèques de M. Edmond L'Hommedé en l'église Saint-Augustin à Paris) sénateur (Yves) Tanguy du Finistère - btv1b532617319.jpg
   (Albi) Monument à Augustin Malroux.jpg
   (Barthélémy) Robaglia, président du conseil général - btv1b53084623h.jpg
@@ -380,7 +380,6 @@ En largeur (plus larges que hauts de 15 %) : 530
   Monique Rabin.jpg
   Monique-Orphé-1-2512.JPG
   Montebourg Toulouse 2012.JPG
-  Monument-Mamadou-Konate.jpg
   Mounir Mahjoubi.jpg
   Mr de Bagneux, député de la Seine-Inférieure.jpg
   Mr. Pascal Allizard, OSCE PA Vice-President and Special Representative on Mediterranean Affairs, OSCE PA Autumn Meeting, Marrakech, 5 Oct. 2019 - 48848120693.jpg
@@ -438,7 +437,6 @@ En largeur (plus larges que hauts de 15 %) : 530
   Pierre louis.jpg
   Pierre-Yves Le Borgn'.JPG
   PlaceGeorgesCoudray.JPG
-  Plaque avenue Robert-André Vivien.jpg
   Portrait Anne Souyris.jpg
   Portrait de Christelle Dubos.jpg
   Portrait de Lucien Lanier - AD94.jpg
@@ -485,13 +483,11 @@ En largeur (plus larges que hauts de 15 %) : 530
   Statue de Noël-François-Joseph Madier De Montjau.jpg
   Stephane Sautarel.jpg
   Stephane-piednoir-senateur.jpg
-  Straßenschild Celle René-Leduc-Weg.jpg
   Stéphanie Kerbarh.jpg
   Stéphanie Kochert.jpg
   Stéphanie Rist.jpg
   Sébastien Meurant (52073702832).jpg
   Sénateur Paul Masson.jpg
-  Talensac - Mausolée Porteu de la Morandais 01.JPG
   The Times history of the war (1914) (14762247244).jpg
   Theo Vial.png
   Thierry Cozic en 2021.jpg
@@ -500,7 +496,6 @@ En largeur (plus larges que hauts de 15 %) : 530
   Thomas.Ménagé.jpg
   Théo Bernhardt, 2024.jpg
   Théodore Paqué (1866 - 1943).jpg
-  Tombe de Bernard Chochoy (1908–1981) 3.jpg
   Tombe de Jean-Baptiste Bouhey-Alex au cimetière de Villers-la-Faye (Côte-d'Or) 02.jpg
   Tricoteaux.jpg
   UE HAD 2022 125.jpg
@@ -526,7 +521,6 @@ En largeur (plus larges que hauts de 15 %) : 530
   Édouard Bussat, député de la Seine - 1914.jpg
   Élisabeth de Maistre, député de la neuvième circonscription des Hauts-de-Seine.jpg
   Élise Fajgeles.jpg
-  Éloge funèbre de Beatrice Bellamy, député de la deuxième circonscription de Vendée.jpg
   Émile Compayré.jpg
   Émission de radio Europe Midi - 5 septembre 2014 29.JPG
   蘇院長接見法國國民議會友臺小組成員艾巴雷羅議員一行.jpg
