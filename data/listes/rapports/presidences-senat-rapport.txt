@@ -26,7 +26,7 @@ Rattachements (nom et années de naissance et de décès concordants) :
    S000211    8765 j  Alain Poher  ->  Alain Poher
    S1727R3     934 j  Justin de Selves  ->  Justin de Selves
    S68036E    2189 j  René Monory  ->  René Monory
-   S86034E    5513 j  Gérard Larcher  ->  Gérard Larcher
+   S86034E    5514 j  Gérard Larcher  ->  Gérard Larcher
    S98006P    1095 j  Jean-Pierre Bel  ->  Jean-Pierre Bel
 
 Aucune fiche Sycomore concordante (nom et années) : 2. Sans homonyme listé, le président n'a vraisemblablement jamais été député et attend la base des sénateurs ; avec homonymes, vérifier les années portées sur la fiche

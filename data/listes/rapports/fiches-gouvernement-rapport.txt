@@ -23,12 +23,12 @@ Cartes par thème et par nombre d'étoiles (1, 2, 3) :
   Immigration et intégration : 188 / 24 / 13
   Relations avec le Parlement : 186 / 228 / 283
   Budget : 157 / 38 / 27
-  Économie : 404 / 60 / 71
-  Commerce extérieur : 513 / 47 / 23
-  Industrie : 329 / 37 / 52
-  Commerce, artisanat et consommation : 326 / 52 / 41
-  Tourisme : 328 / 39 / 32
-  Postes et numérique : 328 / 30 / 37
+  Économie : 405 / 60 / 71
+  Commerce extérieur : 514 / 47 / 23
+  Industrie : 330 / 37 / 52
+  Commerce, artisanat et consommation : 327 / 52 / 41
+  Tourisme : 329 / 39 / 32
+  Postes et numérique : 329 / 30 / 37
   Diplomatie : 194 / 35 / 36
   Europe : 198 / 20 / 30
   Coopération et francophonie : 192 / 30 / 36
@@ -45,10 +45,10 @@ Cartes par thème et par nombre d'étoiles (1, 2, 3) :
   Solidarités et famille : 191 / 43 / 76
   Handicap et dépendance : 194 / 29 / 19
   Droits des femmes et égalité : 196 / 22 / 17
-  Agriculture : 327 / 34 / 54
+  Agriculture : 328 / 34 / 54
   Transports : 169 / 36 / 49
   Mer : 169 / 29 / 15
-  Logement et ville : 419 / 52 / 64
+  Logement et ville : 420 / 52 / 64
   Écologie et énergie : 166 / 35 / 43
   Aménagement et collectivités : 345 / 53 / 70
   Auvergne-Rhône-Alpes : 1127 / 1159 / 0

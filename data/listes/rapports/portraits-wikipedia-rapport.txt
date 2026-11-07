@@ -17,6 +17,7 @@ S20066E	Annick Jacquemet	Annick Jacquemet (2026-06-20).jpg
 10304	Jean-François-Toussaint de Lorgeril	Blason_famille_bzh_de_Lorgeril.svg	format
 10316	Paul-Marie-Céleste d'Andigné de La Blanchaye	Blason_famille_fr_Andigné.svg	format
 10319	Augustin-Henry Caillard d'Aillières	Blason_famille_Caillard.svg	format
+10324	Jean Joseph Amat	Blason_famille_fr_AMAT.svg	format
 10344	Éloi Charles Fieffé	Arnaud_-_Recueil_de_tombeaux_des_quatre_cimetières_de_Paris_-_Fieffé_(colored).jpg	nom de fichier
 10345	Charles-Blaise-Félix Filleau	Signature_de_Charles-Blaise-Félix_Filleau.jpg	nom de fichier
 10361	Thomas Jollivet	Jollivet_Adolphe_-_Les_Colonies_françaises_devant_la_Chambre_des_Pairs_1845.png	la fiche Commons ne dit pas représenter la personne
@@ -211,7 +212,6 @@ S20066E	Annick Jacquemet	Annick Jacquemet (2026-06-20).jpg
 13569	Jean-Charles Davost	Signature_de_Jean_Charles_Davost.jpg	nom de fichier
 13576	Augustin Debourge	Signature_de_Augustin_Debourge.jpg	nom de fichier
 13580	Louis Delabat	Signature_de_Louis_Delabat.jpg	nom de fichier
-13583	Jean-Pierre de Damas d'Anlezy	P_vip.svg	format
 13584	François de Damas-Crux	Ornements_extérieurs_Abbés_simple.svg	format
 13591	Gabriel Delort de Puymalie	Signature_de_Gabriel_Delort_de_Puymalie.jpg	nom de fichier
 13598	Louis-Gabriel-Auguste d'Andigné de Mayneuf	Blason_famille_fr_Andigné.svg	format
