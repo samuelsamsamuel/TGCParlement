@@ -1,4 +1,4 @@
-Archive https://data.senat.fr/data/senateurs/export_sens.zip : 444 octets ; export_sens.sql (505 octets, 2026-11-7)
+Archive https://data.senat.fr/data/senateurs/export_sens.zip : 444 octets ; export_sens.sql (505 octets, 2026-11-8)
 
 # 0 tables
 
