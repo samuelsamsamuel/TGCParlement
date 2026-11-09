@@ -1,4 +1,4 @@
-Portraits Wikipédia : 1 retenus, 573 écartés, sur 7874 cartes sans portrait ayant un article rattaché par identifiant officiel (8191 cartes sans portrait en tout)
+Portraits Wikipédia : 1 retenus, 574 écartés, sur 7874 cartes sans portrait ayant un article rattaché par identifiant officiel (8191 cartes sans portrait en tout)
 
 Retenus :
 S20066E	Annick Jacquemet	Annick Jacquemet (2026-06-20).jpg
@@ -552,6 +552,7 @@ S0188R3	Henri Bernère	Bernere_henri0188r3.jpg	la fiche Commons ne dit pas repr�
 S0544R3	Claude Chauveau	Dr_Chauveau,_ministre_(de_l'agriculture,_à_son_bureau_de_travail)_-_btv1b532530116.jpg	la fiche Commons ne dit pas représenter la personne
 S0574R3	Edgar de Kergariou	Blason_fam_bzh_Kergariou.svg	format
 S0576R3	Charles Haugoumar des Portes	Blason_fam_bzh_Haugoumar_de_Lermo.svg	format
+S0723R3	Émile Lisbonne	(Emile)_Lisbonne_(ministre_de_la_Santé_publique)_-_(photographie_de_presse)_-_(Agence_Rol)_-_btv1b532850217.jpg	la fiche Commons ne dit pas représenter la personne
 S0751R3	Ernest Neuville	Signature_d'Ernest_Neuville_-_Archives_nationales_(France).png	nom de fichier
 S0757R3	Albert Parissot	HC_PARISSOT_A_CIM-Paris-PereLachaise(68)_2015-10.jpg	nom de fichier
 S0765R3	Ferdinand Jumeau	Sépulture_Ferdinand_Jumeau_cimetière_de_Nogent-le-Phaye_Eure-et-Loir_France.jpg	nom de fichier
