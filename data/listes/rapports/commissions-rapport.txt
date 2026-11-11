@@ -1,10 +1,10 @@
-Cartes avec au moins une commission : 3283 ; périodes après fusion : 14747
+Cartes avec au moins une commission : 3283 ; périodes après fusion : 14749
 Les commissions aux attributions mixtes reçoivent chaque famille nommée dans leur intitulé officiel : la commission des affaires étrangères du Sénat, qui suit aussi la défense (« affaires étrangères, défense et forces armées »), n'a dans l'export du Sénat que l'intitulé court « commission des affaires étrangères » et reçoit donc aussi la famille défense ; à l'Assemblée, la commission des affaires culturelles, familiales et sociales (2002-2009) relève de la culture et des affaires sociales, celle des affaires économiques, de l'environnement et du territoire (2002-2009) de l'économie et des territoires.
 
 Sénat : ODSEN_COMS.csv, 21248 lignes ; colonnes : Matricule | Qualité | Nom usuel | Prénom usuel | État Sénateur | Nom commission | Type commission | Id d'appartenance | Début d'appartenance | Fin d'appartenance | Id de fonction | Début de fonction | Fin de fonction | Fonction
   appartenances retenues : 3401 ; matricules sans carte : 0
-Fichier lu : https://data.assemblee-nationale.fr/static/openData/repository/17/amo/tous_acteurs_mandats_organes_xi_legislature/AMO30_tous_acteurs_tous_mandats_tous_organes_historique.json.zip (13732478 octets, essai 1)
-Assemblée : mandats COMPER retenus 26334 ; qualités : Membre (24540), Secrétaire (838), Vice-Président (694), Rapporteur spécial (103), Président (85), — (54), Rapporteur général (20)
+Fichier lu : https://data.assemblee-nationale.fr/static/openData/repository/17/amo/tous_acteurs_mandats_organes_xi_legislature/AMO30_tous_acteurs_tous_mandats_tous_organes_historique.json.zip (13733367 octets, essai 1)
+Assemblée : mandats COMPER retenus 26374 ; qualités : Membre (24576), Secrétaire (841), Vice-Président (695), Rapporteur spécial (103), Président (85), — (54), Rapporteur général (20)
   députés non rattachés à une carte : 27
     Anne-Sophie Frigout (1991-04-11)
     Antoine Valentin (1992-10-16)

@@ -1,4 +1,4 @@
-Portraits Wikipédia : 1 retenus, 574 écartés, sur 7874 cartes sans portrait ayant un article rattaché par identifiant officiel (8191 cartes sans portrait en tout)
+Portraits Wikipédia : 1 retenus, 573 écartés, sur 7874 cartes sans portrait ayant un article rattaché par identifiant officiel (8191 cartes sans portrait en tout)
 
 Retenus :
 S20066E	Annick Jacquemet	Annick Jacquemet (2026-06-20).jpg
@@ -365,7 +365,6 @@ S20066E	Annick Jacquemet	Annick Jacquemet (2026-06-20).jpg
 16553	Louis Bouvier-Dumolart	Caveau_de_Louis_Bouvier-Dumolart_à_Valmunster.jpg	nom de fichier
 16570	Pierre Mathias Joseph Wartelle	Armoirie_Wartelle_Herlincourt.png	nom de fichier
 16572	Louis-Joseph Cavrois	P_vip.svg	format
-16580	Christian Anton Gabaléon de Salmour	P_vip.svg	format
 16608	Claude Ferdinand Bobillier	Tombe_de_la_famille_Bobillier_Duchet-Suchaux_-_Ancien_cimetière_de_Vesoul_-_5_avril_2024.jpg	nom de fichier
 16651	Gabriel Gratet du Bouchage	Blason-azur-griffon-or.svg	format
 16656	Joseph-Alphonse de Saignard de Choumouroux	Blason_d'azur_au_sautoir_d'or.svg	format
