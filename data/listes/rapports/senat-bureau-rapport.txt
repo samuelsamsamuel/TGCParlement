@@ -1,4 +1,4 @@
-Archive https://data.senat.fr/data/senateurs/export_sens.zip : 8603181 octets ; export_sens.sql (60409315 octets, 2026-11-11)
+Archive https://data.senat.fr/data/senateurs/export_sens.zip : 8603175 octets ; export_sens.sql (60409317 octets, 2026-11-12)
 
 # 95 tables
   activite                     43382 lignes  Table des activités des Sénateurs faisant l'objet d'un relevé de présences

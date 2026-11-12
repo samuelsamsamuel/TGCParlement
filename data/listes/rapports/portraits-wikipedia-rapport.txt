@@ -407,7 +407,7 @@ S20066E	Annick Jacquemet	Annick Jacquemet (2026-06-20).jpg
 17038	Claude-Marie de Rivérieulx de Chambost	Blason_famille_fr_de_Rivérieulx.svg	format
 17048	Antoine-Gabriel Jars	Cimetière_de_Montmartre_-_Division_5_-_Antoine_Gabriel_Jars_-1.jpg	nom de fichier
 17059	Antoine Bernard Carrelet de Loisy	Blason_famille_fr_Carrelet_de_Loisy.svg	format
-17065	Henri-Louis de Chastellux	Blason_fam_fr_de_Beauvoir-Chastellux_(de_Duras-Chastellux).svg	format
+17065	Henri-Louis de Chastellux	Blason_fam_fr_de_Chastellux_de_Duras-Chastellux.svg	format
 17072	Guillaume Jean-Baptiste d'Andigné de Resteau	Blason_famille_fr_Andigné.svg	format
 17085	Jacques Claude Roman Vassal	Père-Lachaise_-_Division_38_-_Vassal_03.jpg	nom de fichier
 17097	Gaspard Auguste Got	Père-Lachaise_-_Division_25_-_Got_01.jpg	nom de fichier
