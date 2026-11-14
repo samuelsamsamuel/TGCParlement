@@ -1,14 +1,14 @@
-Archive https://data.senat.fr/data/senateurs/export_sens.zip : 8607580 octets ; export_sens.sql (60435826 octets, 2026-11-13)
+Archive https://data.senat.fr/data/senateurs/export_sens.zip : 8603583 octets ; export_sens.sql (60454593 octets, 2026-11-14)
 
 # 95 tables
-  activite                     43411 lignes  Table des activités des Sénateurs faisant l'objet d'un relevé de présences
-  activite_delegation           3215 lignes  Délégations au cours d'une activité faisant l'objet d'un relevé de présences.
+  activite                     43431 lignes  Table des activités des Sénateurs faisant l'objet d'un relevé de présences
+  activite_delegation           3163 lignes  Délégations au cours d'une activité faisant l'objet d'un relevé de présences.
   activite_loi                  5375 lignes  Liens optionnels vers les textes examinés lors d'une activité.
-  activite_participant        685952 lignes  Participants à une activité.
+  activite_participant        686175 lignes  Participants à une activité.
   activite_senateur            11192 lignes  Activité personnelles saisies par un Sénateur
   activites_liees                326 lignes  Table de regroupement d'activités. Permet notamment de modéliser les réunions communes entre commissions.
   actpro                          41 lignes  Activités socio-professionnelles
-  adresse                        202 lignes  Adresses de Point de contact similiare à ADR (adresses)
+  adresse                        203 lignes  Adresses de Point de contact similiare à ADR (adresses)
   asster                          17 lignes  Assemblée territoriale
   bur                              5 lignes  Fonctions au bureau du Sénat
   categorie_activite              27 lignes  
@@ -37,7 +37,7 @@ Archive https://data.senat.fr/data/senateurs/export_sens.zip : 8607580 octets ; 
   fonmemcom                    21248 lignes  Fonctions des membres de Commission
   fonmemdelega                  3894 lignes  Fonctions des membres de délégation
   fonmemgrppol                  3749 lignes  Fonctions des membres de groupe politique
-  fonmemgrpsen                 39982 lignes  Fonction d'un membre d'un groupe sénatorial
+  fonmemgrpsen                 39998 lignes  Fonction d'un membre d'un groupe sénatorial
   fonmemorg                       17 lignes  Fonctions membres d'organisme
   fonorg                          15 lignes  Fonctions dans les organismes
   grppol                          29 lignes  Groupes Politiques
@@ -51,9 +51,9 @@ Archive https://data.senat.fr/data/senateurs/export_sens.zip : 8607580 octets ; 
   mel                             80 lignes  Mels d'adresse de sénateurs
   memcom                       17883 lignes  Membres de commission
   memdelega                     2881 lignes  Membres de délégation
-  memextpar                     4539 lignes  Membre organisme extra-parlementaire
+  memextpar                     4557 lignes  Membre organisme extra-parlementaire
   memgrppol                     3587 lignes  Membres de groupe politique
-  memgrpsen                    32713 lignes  Membre groupe sénatorial
+  memgrpsen                    32729 lignes  Membre groupe sénatorial
   memorg                          17 lignes  Membres d'organisme
   minind                         396 lignes  Ministre
   mismin                          40 lignes  Missions et Ministères
@@ -69,7 +69,7 @@ Archive https://data.senat.fr/data/senateurs/export_sens.zip : 8607580 octets ; 
   pcs42                           50 lignes  Table INSEE Catégorie Socio-Professionnelle PCS42
   pcs8                             9 lignes  Table INSEE Catégorie Socio-Professionnelle PCS8
   pcscatpro                       40 lignes  Catégories Socio-professionelles
-  poicon                         965 lignes  Un point de contact est une adresse de sénateur comosée d'une adresse (postale) de numéros de tel et de mails
+  poicon                         966 lignes  Un point de contact est une adresse de sénateur comosée d'une adresse (postale) de numéros de tel et de mails
   qua                              3 lignes  Qualités (M., Mme, Mlle)
   reg                             49 lignes  Régions
   sen                           2015 lignes  Sénateurs
