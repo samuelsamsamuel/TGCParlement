@@ -121,6 +121,14 @@ const sx = Date.now().toString(36).slice(-4);
   await Bp.reload(); await Bp.click('nav [data-vue="buvette"]'); await Bp.click('.onglets [data-sous="comptoir"]');
   await Bp.waitForSelector('[data-action$=":acheter"]:not([disabled])');
   await Bp.screenshot({path: T + "/comptoir-tel.png", fullPage: true});
+  // Filtre « Pas dans votre hémicycle » : seules restent les cartes dont Bob n'a aucun exemplaire
+  assert.ok(await Bp.evaluate(() => {
+    document.getElementById("filtre-marche").value = "absentes"; dessinerMarche();
+    const ids = [...document.querySelectorAll('#liste-marche li:has([data-action$=":acheter"]) [data-apercu]')].map(b => b.dataset.apercu);
+    const possedees = ids.some(id => etat.possedees[id]);
+    document.getElementById("filtre-marche").value = ""; dessinerMarche();
+    return !possedees;
+  }), "filtre du comptoir : cartes déjà possédées écartées");
   await Bp.click('[data-action$=":acheter"]');
   await Bp.waitForFunction(() => etat.points === 18);
   // Historique (sous-onglet) : l'échange accepté et la vente, filtrables ; l'achat chez Bob
