@@ -255,7 +255,7 @@ huit plus avancés, `LIMITE_RUBRIQUE`, avec « Afficher les autres » ; départe
 trouvant l'Ain, numéro affiché à côté du nom, `departements.json` chargé à la première ouverture), Buvette (sous-onglets Échanges : propositions en attente en fiches « Vous donnez / Vous recevez », et proposer ; Comptoir en
 étals, grille de tuiles portrait, rareté, prix, vendeur, Acheter ou « Pas assez de voix » ; ses propres cartes en tête du
 comptoir avec Retirer et les offres reçues sur l'étal même (plus de liste « Mes cartes au comptoir », demande de
-l'utilisateur), puis « Vendre une carte » avec la tuile « Mettre une carte en vente » ;
+l'utilisateur), puis « Vendre une carte » avec la tuile « Mettre une carte en vente » ; filtre « Pas dans votre hémicycle » du comptoir (`filtre-marche`, demande de l'utilisateur, novembre 2026 : cartes dont on n'a aucun exemplaire, ses propres annonces toujours en tête) ;
 Historique : échanges terminés, ventes et achats au comptoir, par mois, filtre Tout / Échanges / Comptoir, cartes nommées
 avec miniature ; `GET /api/annonces` renvoie aussi les achats, index `annonces_acheteur`), Amis, Plus : six onglets sur téléphone ; Duels est dans le menu Plus (demande de l'utilisateur : onglets gardés à leur taille) ; le menu Plus ouvre cinq vues, Duels, Mon siège (chiffres et vitrine en six cases, libellé du
 pseudo une fois connecté), « Toutes les cartes » (catalogue complet, cartes non obtenues grisées),

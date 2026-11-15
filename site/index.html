@@ -93,6 +93,7 @@ main{max-width:1120px;margin:0 auto;padding:1.5rem 1rem 4rem}
 .scene.vide .bouton{padding:.55rem 1.1rem;font-size:.9rem}
 #vue-catalogue .outils select{flex:1 1 28%;min-width:0;font-size:.82rem;padding:.45rem .4rem}
 #vue-catalogue .outils input{flex:1 1 100%}
+#vue-buvette .outils select{flex:1 1 9rem;min-width:0}
 .menu-plus{position:absolute;right:1rem;top:100%;z-index:30;display:grid;min-width:13rem;background:var(--velours-fonce);border:1px solid var(--dorure);border-radius:8px;box-shadow:0 14px 34px rgba(0,0,0,.6);overflow:hidden}
 .menu-plus[hidden]{display:none}
 .menu-plus button{background:none;border:0;border-bottom:1px solid rgba(201,162,74,.2);color:var(--marbre);text-align:left;padding:.8rem 1rem;font-weight:500}
@@ -3715,7 +3716,8 @@ function construireBuvette(vue){
     <div data-panneau="comptoir" hidden>
       <div class="tete-comptoir"><span class="bourse-voix">Vous avez <b id="voix-buvette"></b></span><span class="note">Le premier qui achète l'emporte. Une offre plus basse attend la réponse du vendeur.</span></div>
       <div class="outils"><input id="recherche-marche" type="search" placeholder="Rechercher une carte au comptoir" aria-label="Rechercher une carte au comptoir">
-        <select id="tri-marche" aria-label="Trier le comptoir"><option value="recent">Les plus récentes</option><option value="prix">Les moins chères</option></select></div>
+        <select id="tri-marche" aria-label="Trier le comptoir"><option value="recent">Les plus récentes</option><option value="prix">Les moins chères</option></select>
+        <select id="filtre-marche" aria-label="Filtrer le comptoir"><option value="">Toutes les cartes</option><option value="absentes">Pas dans votre hémicycle</option></select></div>
       <ul class="etals" id="liste-marche"></ul>
       <h3>Vendre une carte</h3>
       <div id="zone-vente"></div>
@@ -3767,6 +3769,7 @@ function construireBuvette(vue){
   for (const [id, autre] of [["voix-donne", "voix-recoit"], ["voix-recoit", "voix-donne"]])
     document.getElementById(id).addEventListener("input", e => { if (e.target.value) document.getElementById(autre).value = ""; majProposer(); });
   document.getElementById("recherche-marche").addEventListener("input", dessinerMarche);
+  document.getElementById("filtre-marche").addEventListener("input", dessinerMarche);
   document.getElementById("tri-marche").addEventListener("input", chargerMarche);
   // Contre-offre : « Faire une offre » ouvre un petit formulaire sous l'étal
   document.getElementById("liste-marche").addEventListener("click", e => {
@@ -3880,8 +3883,10 @@ const offresDe = a => offresRecues.filter(o => o.annonce === a.id).map(o => `<di
   <button class="bouton" data-action="offres:${o.id}:accepter">Accepter</button><button class="bouton discret" data-action="offres:${o.id}:refuser">Refuser</button></div>`).join("");
 function dessinerMarche(){
   const q = Regles.normer(document.getElementById("recherche-marche").value);
-  // Ses propres cartes en tête du comptoir, avec Retirer et les offres reçues ; puis celles des autres
-  const liste = [...mesOuvertes, ...annoncesMarche.filter(a => a.vendeur !== compte.pseudo)]
+  // Ses propres cartes en tête du comptoir, avec Retirer et les offres reçues ; puis celles des autres, que le filtre
+  // « Pas dans votre hémicycle » réduit à celles dont on n'a aucun exemplaire (demande de l'utilisateur, novembre 2026)
+  const absentes = document.getElementById("filtre-marche").value === "absentes";
+  const liste = [...mesOuvertes, ...annoncesMarche.filter(a => a.vendeur !== compte.pseudo && (!absentes || !etat.possedees[a.carte]))]
     .filter(a => cat.parId[a.carte] && (!q || cat.parId[a.carte].cherche.includes(q)));
   document.getElementById("liste-marche").innerHTML = liste.length ? liste.map(a => {
     const miennes = a.vendeur === compte.pseudo, offre = mesOffres.find(o => o.annonce === a.id);
@@ -3893,7 +3898,7 @@ function dessinerMarche(){
     return etal(a, miennes ? `<button class="bouton discret" data-action="annonces:${a.id}:retirer">Retirer</button>${offresDe(a)}`
       : `<button class="bouton" data-action="annonces:${a.id}:acheter" ${etat.points < a.prix ? "disabled" : ""}>${etat.points < a.prix ? "Pas assez de voix" : "Acheter"}</button>${contre}`,
       (miennes ? "mise en vente par vous" : "par " + echapper(a.vendeur)) + (alertes.has(a.carte) && !miennes ? " · guettée" : ""));
-  }).join("") : `<li class="vide-etals note">${annoncesMarche.length || mesOuvertes.length ? "Aucune carte du comptoir ne correspond." : "Le comptoir est vide pour l'instant : soyez le premier à y poser une carte."}</li>`;
+  }).join("") : `<li class="vide-etals note">${annoncesMarche.length || mesOuvertes.length ? absentes ? "Aucune carte du comptoir ne manque à votre hémicycle." : "Aucune carte du comptoir ne correspond." : "Le comptoir est vide pour l'instant : soyez le premier à y poser une carte."}</li>`;
 }
 async function chargerAnnonces(){
   const d = await appel("annonces").catch(e => { signaler(e.message); return null; });
