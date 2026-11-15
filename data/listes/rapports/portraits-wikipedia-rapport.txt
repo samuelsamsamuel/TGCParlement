@@ -1,6 +1,10 @@
-Portraits Wikipédia : 1 retenus, 573 écartés, sur 7874 cartes sans portrait ayant un article rattaché par identifiant officiel (8191 cartes sans portrait en tout)
+Portraits Wikipédia : 5 retenus, 586 écartés, sur 8019 cartes sans portrait ayant un article rattaché par identifiant officiel (8338 cartes sans portrait en tout)
 
 Retenus :
+S08012N	Jean-Jacques Lozach	Jean-Jacques Lozach le 29 juin 2022 à Rotterdam.png
+S14053L	Agnès Canayer	2020-0451-003-SK (cropped).jpg
+S19383Y	Jean-Marc Boyer	Jean-Marc Boyer.jpg
+S20026V	Anne Ventalon	Anne Ventalon le 29 juin 2022 à Rotterdam.png
 S20066E	Annick Jacquemet	Annick Jacquemet (2026-06-20).jpg
 
 Écartés :
@@ -556,6 +560,7 @@ S0751R3	Ernest Neuville	Signature_d'Ernest_Neuville_-_Archives_nationales_(Franc
 S0757R3	Albert Parissot	HC_PARISSOT_A_CIM-Paris-PereLachaise(68)_2015-10.jpg	nom de fichier
 S0765R3	Ferdinand Jumeau	Sépulture_Ferdinand_Jumeau_cimetière_de_Nogent-le-Phaye_Eure-et-Loir_France.jpg	nom de fichier
 S08062Y	Jean-François Mayet	Mayet_jean_francois08062y_carre.jpg	la fiche Commons ne dit pas représenter la personne
+S08069G	Alain Houpert	Alain_Houpert_(cropped).jpg	la fiche Commons ne dit pas représenter la personne
 S0867R3	Émile Cassez	Tombe_d'Émile_Cassez_(1871–1948)_3.jpg	nom de fichier
 S0908R3	Robert Leneveu	Signature_de_Robert_Leneveu.jpg	nom de fichier
 S0969R3	Étienne Albert Duboys Fresney	Blason_Etienne_Duboy_Fresney.svg	format
@@ -567,8 +572,20 @@ S1149R3	Antoine Ponteille	Cimetière_d'Amancey,_Châtillon_-_Tombe_Antoine_Ponte
 S1177R3	Gaston Outhenin-Chalandre	Cimetière_de_Montmartre_-_Sépulture_de_la_famille_du_docteur_Blache_-1.jpg	nom de fichier
 S1213R3	Charles Guillemaut	Sépulture_du_général_et_sénateur_Charles-Alexandre_Guillemaut_–_Cimetière_Montmartre.jpg	nom de fichier
 S1377R3	Édouard Fiévet	Masny_-_Cimetière_de_l'église_Saint-Martin_(13,_tombe_de_la_famille_Fiévet).JPG	nom de fichier
+S14221J	Pierre Médevielle	Pierre_Médevielle.jpg	la fiche Commons ne dit pas représenter la personne
 S1557R3	Athanase Bassinet	Plaque_Place_Athanase_Bassinet_-_Paris_XV_(FR75)_-_2024-03-06_-_2.jpg	nom de fichier
 S1636R3	Louis Aguillon	Signature_Louis_Aguillon_(1851-1928).png	nom de fichier
+S19447X	Muriel Jourda	JOURDA_Muriel_Sénat_-_2025.jpg	la fiche Commons ne dit pas représenter la personne
+S19916G	Bastien Coriton	Bastien_Coriton_2024.jpg	la fiche Commons ne dit pas représenter la personne
+S20062A	Laurent Somon	Laurent_Somon_2020.jpg	la fiche Commons ne dit pas représenter la personne
+S20114U	Hussein Bourgi	Hussein_Bourgi_membre_de_la_commission_paritaire_du_Haut-Commissariat_à_l’Égalité.webp	la fiche Commons ne dit pas représenter la personne
+S21054E	Vincent Louault	Vincent_Louault.jpg	la fiche Commons ne dit pas représenter la personne
+S21088Q	Ian Brossat	Ian_Brossat.jpg	la fiche Commons ne dit pas représenter la personne
+S21652W	Régis Blanchet	Régis_Blanchet,_sénateur_de_l'Indre_(2026).jpg	la fiche Commons ne dit pas représenter la personne
+S21698M	Carine Leroy	Carine_Leroy_à_La_Valette-du-Var.jpg	la fiche Commons ne dit pas représenter la personne
+S21700M	Arnaud Marthey	Arnaud_Marthey.jpg	la fiche Commons ne dit pas représenter la personne
+S21706T	Julie Frêche	Frêche_Julie_-_Sénat.jpg	la fiche Commons ne dit pas représenter la personne
+S21720R	Thierry Suaud	Thierry_Suaud.jpg	la fiche Commons ne dit pas représenter la personne
 S57716N	Auguste Amic	Plaque_commémorative_port_de_Sain-Cyr-sur-Mer_Auguste_Amic_(Var,_France).jpg	nom de fichier
 S57721K	Hélène Édeline	HC_EDELINE_H_CIM-Gentilly_2018-05.jpg	nom de fichier
 S57773X	Janine Alexandre-Debray	Jeanine_Alexandre_Debray.jpg	la fiche Commons ne dit pas représenter la personne
