@@ -732,13 +732,6 @@
 "departement": "Pas-de-Calais",
 "code_dep": "62",
 "num": "11",
-"debut": "2024-06-30",
-"fin": null
-},
-{
-"departement": "Pas-de-Calais",
-"code_dep": "62",
-"num": "11",
 "debut": "2022-06-19",
 "fin": "2024-06-09"
 },
@@ -748,6 +741,13 @@
 "num": "11",
 "debut": "2017-06-18",
 "fin": "2022-06-21"
+},
+{
+"departement": "Pas-de-Calais",
+"code_dep": "62",
+"num": "11",
+"debut": "2024-06-30",
+"fin": null
 },
 {
 "departement": "Pas-de-Calais",
