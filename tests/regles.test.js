@@ -456,3 +456,17 @@ console.log("partie du Gouvernement : tests passés");
   assert.ok(reste.every(id => o2.choix.includes(id)), "les deux légendaires restantes sont proposées");
   console.log("lots à choisir, raretés épuisées : tests passés");
 }
+
+// Lot vide laissé par l'ancienne règle (palier 5 d'un joueur qui avait toutes les légendaires et mythiques) : réparé au
+// premier passage du jour, avec trois cartes ; un lot déjà garni n'est pas touché
+{
+  const e = R.etatVide();
+  for (const r of ["legendaire", "mythique"]) for (const c of cat.parRarete[r]) e.possedees[c.id] = 1;
+  e.quotidien = {gouv: {serie: 0, lot: {cartes: [], palier: 5}}};
+  assert.ok(R.preparerJour(e, cat, "2026-11-17"));
+  assert.strictEqual(e.quotidien.gouv.lot.cartes.length, 3);
+  const garni = e.quotidien.gouv.lot.cartes.slice();
+  assert.ok(!R.reparerLots(e, cat)); assert.deepStrictEqual(e.quotidien.gouv.lot.cartes, garni);
+  assert.ok(R.choisirLotGouv(e, cat, garni[0]));
+  console.log("lot vide réparé : tests passés");
+}

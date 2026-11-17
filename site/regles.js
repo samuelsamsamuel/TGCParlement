@@ -516,7 +516,7 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
     if (!s.disponible || q.lot) return null;
     const lot = s.lot, gain = {voix: lot.voix || 0, paquets: lot.paquets || 0, choix: null};
     etat.points += gain.voix; etat.offerts += gain.paquets;
-    if (lot.choix) gain.choix = (q.lot = {cartes: propositions(etat, cat, lot, aleatoire), rang: s.rang}).cartes;
+    if (lot.choix) { const cartes = propositions(etat, cat, lot, aleatoire); if (cartes.length) gain.choix = (q.lot = {cartes, rang: s.rang}).cartes; }
     q.serie = {jour, rang: s.rang};
     noter(etat, "serie", {rang: s.rang, voix: gain.voix, paquets: gain.paquets, choix: gain.choix});
     return gain;
@@ -572,7 +572,7 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
     if (!s.serie || s.lot) return null;
     const lot = lotPalier(s.serie, s.palier1Voix), gain = {palier: s.serie, voix: lot.voix || 0, paquets: lot.paquets || 0, choix: null};
     etat.points += gain.voix; etat.offerts += gain.paquets;
-    if (lot.choix) gain.choix = (g.lot = {cartes: propositions(etat, cat, lot, aleatoire), palier: s.serie}).cartes;
+    if (lot.choix) { const cartes = propositions(etat, cat, lot, aleatoire); if (cartes.length) gain.choix = (g.lot = {cartes, palier: s.serie}).cartes; }
     if (s.serie === 1 && lot.voix) { g.p1 = (g.p1jour === jour ? g.p1 || 0 : 0) + 1; g.p1jour = jour; }
     g.encaisses = s.encaissesDuJour + 1; g.jour = jour; g.serie = 0;
     noter(etat, "encaisser-gouv", gain);
@@ -640,9 +640,26 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
   }
   const compteTheme = (etat, cat, theme) => Object.keys(etat.possedees).filter(id => etat.possedees[id] > 0 && cat.parId[id] && theme.test(cat.parId[id])).length;
   // Premier passage du jour : compte du thème recherché (idempotent)
+  // Lots à choisir restés vides (avant le complément par toutes les raretés, un joueur qui avait toutes les légendaires et
+  // mythiques recevait au palier 5 un lot sans carte, qui bloquait l'écran et les lots suivants ; signalé par l'utilisateur,
+  // novembre 2026) : propositions refaites avec les raretés du palier, ou toutes les raretés pour un lot de loi ou de code
+  function reparerLots(etat, cat, aleatoire = Math.random) {
+    const q = quotidien(etat);
+    let fait = false;
+    for (const [o, spec] of [[q.gouv, l => SERIE_GOUV[(l.palier || 0) - 1]], [q, l => SERIE[(l.rang || 0) - 1]]]) {
+      const l = o && o.lot;
+      if (!l || (Array.isArray(l.cartes) && l.cartes.length)) continue;
+      const s = spec(l) || {};
+      const cartes = propositions(etat, cat, {choix: s.choix || 3, raretes: s.raretes}, aleatoire);
+      if (cartes.length) l.cartes = cartes; else o.lot = null;
+      fait = true;
+    }
+    return fait;
+  }
   function preparerJour(etat, cat, jour = jourDuJeu()) {
     const q = quotidien(etat);
-    if (q.recherche && q.recherche.jour === jour) return false;
+    const repare = reparerLots(etat, cat);
+    if (q.recherche && q.recherche.jour === jour) return repare;
     q.recherche = {jour, base: compteTheme(etat, cat, objectifsDuJour(cat, jour).theme)};
     return true;
   }
@@ -1042,7 +1059,7 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
     return voix;
   }
 
-  return {VERSION_ETAT, PALIER1_VOIX_PAR_JOUR, retenirMise, SERIE_GOUV, serieGouv, issueSerieGouv, encaisserSerieGouv, choisirLotGouv, offrirChoixGouv, THEMES_LOI, loisDuJour, verifierLoi, etatLois, adopterLoi, remplirLoi, manquesLoi, semaineDuJeu, quinzaineDuJeu, remplit, basculerFavori, MAX_GARDES, garderCartes, RECHARGE_MS, QUIZ_QUESTIONS, graineDe, questions, compacterQuiz, catalogueQuiz, recompenseQuiz, validerQuiz, RESERVE_MAX, CARTES_PAR_PAQUET, reserveCourante, ORDRE, POIDS, VALEUR_RECYCLAGE, PRIX_PAQUET, PALIERS,
+  return {reparerLots, VERSION_ETAT, PALIER1_VOIX_PAR_JOUR, retenirMise, SERIE_GOUV, serieGouv, issueSerieGouv, encaisserSerieGouv, choisirLotGouv, offrirChoixGouv, THEMES_LOI, loisDuJour, verifierLoi, etatLois, adopterLoi, remplirLoi, manquesLoi, semaineDuJeu, quinzaineDuJeu, remplit, basculerFavori, MAX_GARDES, garderCartes, RECHARGE_MS, QUIZ_QUESTIONS, graineDe, questions, compacterQuiz, catalogueQuiz, recompenseQuiz, validerQuiz, RESERVE_MAX, CARTES_PAR_PAQUET, reserveCourante, ORDRE, POIDS, VALEUR_RECYCLAGE, PRIX_PAQUET, PALIERS,
     etatVide, migrer, jourDuJeu, normer, cartesDeJeu, catalogue, compacter, catalogueCompact, paquetsDisponibles, ouvrirPaquet,
     disponibles, recyclables, doubles, recycler, dissoudre, MAX_SELECTION, dissoudreSelection, echangerPoints, avancement, clesAtteintes, reclamer, recompensesEnAttente,
     SERIE, serieDuJour, reclamerSerie, choisirLot, objectifsDuJour, preparerJour, etatDuJour, reclamerJour};

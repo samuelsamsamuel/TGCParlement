@@ -1851,6 +1851,8 @@ function majJournee(){
 }
 // Cartes du lot en grand, une par une : glisser (téléphone) ou flèches (ordinateur) ; toucher une carte la retourne
 function carrouselLot(ids, garder){
+  // Lot vide (ancienne règle, avant le complément par toutes les raretés) : le premier passage du jour le refait
+  if (!ids || !ids.length) { signaler("Vos cartes à choisir se préparent : réessayez dans un instant."); jourPrepare = null; preparerJournee(); return; }
   const d = document.getElementById("choix-lot"), c = document.getElementById("carrousel-lot"), points = document.getElementById("points-lot");
   c.innerHTML = ids.map(id => `<div class="diapo">${htmlCarte(cat.parId[id], {classe: "grande", etoile: false})}
     <button class="bouton" data-garder="${echapper(id)}">Garder cette carte</button></div>`).join("");
