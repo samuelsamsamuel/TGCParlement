@@ -439,3 +439,20 @@ console.log("jeu du Gouvernement : tests passés");
   assert.deepStrictEqual([p.reserve, p.ancre], [R.RESERVE_MAX - 1, t], "la recharge repart de maintenant");
 }
 console.log("partie du Gouvernement : tests passés");
+
+// Lot à choisir quand les raretés demandées sont épuisées (demande de l'utilisateur, novembre 2026) : un joueur qui a toutes
+// les légendaires et mythiques reçoit quand même trois cartes au palier 5 du jeu du Gouvernement, prises dans toutes les raretés
+{
+  const e = R.etatVide();
+  for (const r of ["legendaire", "mythique"]) for (const c of cat.parRarete[r]) e.possedees[c.id] = 1;
+  const o = R.offrirChoixGouv(e, cat, R.SERIE_GOUV[4], alea);
+  assert.ok(o && o.choix.length === 3 && new Set(o.choix).size === 3, "trois cartes proposées");
+  assert.ok(o.choix.every(id => !e.possedees[id] && cat.parId[id].rarete !== "unique"));
+  // Quelques légendaires encore libres : toujours proposées en priorité
+  const f = R.etatVide();
+  for (const r of ["legendaire", "mythique"]) for (const c of cat.parRarete[r]) f.possedees[c.id] = 1;
+  const reste = cat.parRarete.legendaire.slice(0, 2).map(c => c.id); reste.forEach(id => delete f.possedees[id]);
+  const o2 = R.offrirChoixGouv(f, cat, R.SERIE_GOUV[4], alea);
+  assert.ok(reste.every(id => o2.choix.includes(id)), "les deux légendaires restantes sont proposées");
+  console.log("lots à choisir, raretés épuisées : tests passés");
+}

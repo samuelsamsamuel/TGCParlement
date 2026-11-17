@@ -520,7 +520,7 @@ légendaire et hors catégorie, plus ample mythique et unique) ; réglage « Son
    avec confirmation ; le seul bouton doré « Encaisser » faisait encaisser chaque victoire), la défaite fait tout perdre ; premier palier
    à 15 voix trois fois par jour de Paris, ensuite une carte à choisir parmi 3 communes ou peu communes (`PALIER1_VOIX_PAR_JOUR`,
    `PALIER1_CARTE`, `lotPalier`, compteur `p1` de `quotidien.gouv`, `palier1Voix` de `serieGouv` ; demande de l'utilisateur, novembre
-   2026 : un joueur encaissait chaque première victoire et ouvrait des paquets avec les voix) ; complète au palier 5, encaissée d'elle-même ; pas de limite d'encaissements par jour
+   2026 : un joueur encaissait chaque première victoire et ouvrait des paquets avec les voix) ; complète au palier 5, encaissée d'elle-même ; cartes d'un lot à choisir tirées parmi les seules cartes jamais possédées, et, si les raretés demandées sont épuisées (toutes les légendaires et mythiques déjà possédées), complétées parmi toutes les raretés sauf l'unique (`propositions`, demande de l'utilisateur, novembre 2026 : plus rien n'était proposé au palier 5) ; pas de limite d'encaissements par jour
    (trois à l'origine, limite retirée à la demande de l'utilisateur) ;
    carte choisie dans le carrousel du lot (`choisirLotGouv`, `POST /api/gouvernements/lot`) ; état `quotidien.gouv`,
    écrit par `appliquer` dans le même lot que la clôture de la partie (`liees`). Interface refaite (demande de l'utilisateur) :
