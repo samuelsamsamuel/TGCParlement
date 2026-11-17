@@ -38,13 +38,21 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
   // 2026, au lieu d'un par heure et huit ; un joueur qui passe matin, midi et soir en ouvre une trentaine par jour ;
   // un joueur absent ne perd que ce qui dépasse la réserve)
   const RECHARGE_MS = 30 * 60 * 1000, RESERVE_MAX = 10, CARTES_PAR_PAQUET = 5;
-  const ORDRE = ["commune", "peu-commune", "rare", "epique", "hors-categorie", "legendaire", "mythique", "unique"];
+  // Cartes évènements (demande de l'utilisateur, novembre 2026) : trois raretés propres, ajoutées en dernier pour ne pas
+  // décaler les indices publiés ; identifiants « E-… » (estEvenement), hors des objectifs, lois, quiz et lots des parlementaires
+  const RARETES_EVENEMENT = ["evenement", "evenement-marquant", "evenement-historique"];
+  const ORDRE = ["commune", "peu-commune", "rare", "epique", "hors-categorie", "legendaire", "mythique", "unique", ...RARETES_EVENEMENT];
+  const estEvenement = c => !!c && String(c.id).startsWith("E-");
   // Probabilité de chaque rareté pour une carte tirée : les plus hautes restent rares, quel que soit leur nombre
-  const POIDS = {"mythique": 0.4, "legendaire": 1.6, "epique": 6, "rare": 15, "peu-commune": 30, "commune": 46, "hors-categorie": 1, "unique": 0.002};
+  const POIDS = {"mythique": 0.4, "legendaire": 1.6, "epique": 6, "rare": 15, "peu-commune": 30, "commune": 46, "hors-categorie": 1, "unique": 0.002,
+    // Évènements : un paquet sur 70 environ en contient un (4 cartes tirées au hasard par paquet : 0,36 % par carte) ;
+    // poids d'une carte 4, 2 et 1 selon le retentissement (3, 4 et 5 sur 5) : simple 40 %, marquant 48 %, historique 12 %
+    "evenement": 0.14, "evenement-marquant": 0.17, "evenement-historique": 0.045};
   // Recyclage : points rendus par exemplaire en trop, à peu près inverses de la fréquence de tirage.
   // Un paquet de doubles recyclé rapporte en moyenne 21 points, pour un paquet à 25 : recycler ne rend jamais
   // plus de paquets qu'il n'en consomme, sans quoi les doubles d'une collection avancée tourneraient sans fin.
-  const VALEUR_RECYCLAGE = {"commune": 1, "peu-commune": 2, "rare": 5, "epique": 15, "hors-categorie": 40, "legendaire": 40, "mythique": 100, "unique": 250};
+  const VALEUR_RECYCLAGE = {"commune": 1, "peu-commune": 2, "rare": 5, "epique": 15, "hors-categorie": 40, "legendaire": 40, "mythique": 100, "unique": 250,
+    "evenement": 120, "evenement-marquant": 150, "evenement-historique": 200};
   const PRIX_PAQUET = 25;
   const JOURNAL_MAX = 200;
 
@@ -96,7 +104,8 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
       (parRarete[c.rarete] ||= []).push(c);
       if (c.actuel) (actuelsParRarete[c.rarete] ||= []).push(c);
     }
-    const cat = {cartes, parRarete, actuelsParRarete: Object.keys(actuelsParRarete).length ? actuelsParRarete : parRarete, parId, assemblees};
+    const cat = {cartes, parRarete, actuelsParRarete: Object.keys(actuelsParRarete).length ? actuelsParRarete : parRarete, parId, assemblees,
+      parlementaires: cartes.filter(c => !estEvenement(c)), evenements: cartes.filter(estEvenement)};
     cat.objectifs = objectifsDonnes ? objectifsDonnes.map(([id, famille, titre, sous, ids]) => objectif(id, famille, titre, ids, sous)) : definirObjectifs(cat);
     cat.objectifParId = Object.fromEntries(cat.objectifs.map(o => [o.id, o]));
     return cat;
@@ -342,6 +351,8 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
     // législatures : paliers jusqu'aux grandes assemblées (même demande ; 50 et 150 puis la totalité, souvent 600 à 900)
     legislature: [[50, 1], [150, 2], [250, 2], [350, 2], [450, 3], [550, 3], [650, 3], [800, 3]],
     departement: [[15, 1], [40, 1]],
+    // Évènements : un paquet sur 70 environ en donne un, d'où des paliers bas
+    evenements: [[1, 1], [5, 1], [10, 2], [25, 2], [50, 3], [100, 3], [200, 4], [350, 4]],
   };
   const COMPLETE = 5;  // paquets offerts pour une collection complète
   const ORDRE_EPOQUES = ["Révolution et Empire", "Monarchies constitutionnelles", "IIe République et Second Empire",
@@ -356,9 +367,9 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
     return {id, famille, titre, sousTitre, ids, total: ids.length, paliers: paliers(famille, ids.length)};
   }
   function definirObjectifs(cat) {
-    const avec = code => cat.cartes.filter(c => c.distinctions.includes(code)).map(c => c.id);
+    const avec = code => cat.parlementaires.filter(c => c.distinctions.includes(code)).map(c => c.id);
     const premier = (id, titre, test, sous = "") => {
-      const ids = cat.cartes.filter(test).map(c => c.id);
+      const ids = cat.parlementaires.filter(test).map(c => c.id);
       if (ids.length) liste.push(objectif("premier:" + id, "premier", titre, ids, sous));
     };
     const liste = [];
@@ -370,24 +381,25 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
     premier("chef", "Premier chef de l'État ou du Gouvernement", c => c.distinctions.some(d => d === "chef-etat" || d === "chef-gouvernement" || d === "chef-etat-interim"));
     for (const [r, titre] of [["rare", "Première carte rare"], ["epique", "Première carte épique"], ["legendaire", "Première carte légendaire"], ["mythique", "Première carte mythique"]])
       premier("rarete:" + r, titre, c => c.rarete === r);
-    for (const e of [...new Set(cat.cartes.map(c => c.epoque).filter(Boolean))].sort((a, b) => ORDRE_EPOQUES.indexOf(a) - ORDRE_EPOQUES.indexOf(b)))
+    for (const e of [...new Set(cat.parlementaires.map(c => c.epoque).filter(Boolean))].sort((a, b) => ORDRE_EPOQUES.indexOf(a) - ORDRE_EPOQUES.indexOf(b)))
       premier("epoque:" + normer(e).replace(/ /g, "-"), "Premier parlementaire : " + e, c => c.epoque === e);
-    liste.push(objectif("hemicycle", "collection", "Remplir l'hémicycle", cat.cartes.map(c => c.id), "Cartes différentes de votre collection"));
+    if (cat.evenements.length) liste.push(objectif("evenements", "evenements", "Les grands évènements", cat.evenements.map(c => c.id), "Cartes évènements de la vie politique et parlementaire"));
+    liste.push(objectif("hemicycle", "collection", "Remplir l'hémicycle", cat.parlementaires.map(c => c.id), "Cartes différentes de votre collection"));
     liste.push(
       objectif("quatre-vingts", "historique", "Les Quatre-vingts", avec("quatre-vingts"), "Parlementaires qui refusèrent les pleins pouvoirs à Pétain le 10 juillet 1940"),
       objectif("compagnons", "historique", "Compagnons de la Libération", avec("compagnon-liberation"), "Parlementaires faits Compagnons de la Libération"),
       objectif("presidents-assemblee", "presidents", "Présidents de l'Assemblée",
-        cat.cartes.filter(c => c.distinctions.includes("presidence-an-longue") || c.distinctions.includes("presidence-an-courte")).map(c => c.id),
+        cat.parlementaires.filter(c => c.distinctions.includes("presidence-an-longue") || c.distinctions.includes("presidence-an-courte")).map(c => c.id),
         "Présidents de l'Assemblée et des chambres qui l'ont précédée"));
     // Une législature : cartes ayant siégé dans cette assemblée (index dans la table assemblees de jeu.json)
     const parAssemblee = cat.assemblees.map(() => []);
-    for (const c of cat.cartes) for (const i of c.assemblees || []) if (parAssemblee[i]) parAssemblee[i].push(c.id);
+    for (const c of cat.parlementaires) for (const i of c.assemblees || []) if (parAssemblee[i]) parAssemblee[i].push(c.id);
     cat.assemblees.forEach(([cle, titre, annee], i) => {
       if (parAssemblee[i].length) liste.push(objectif("legislature:" + cle, "legislature", titre, parAssemblee[i], annee ? "Élue en " + annee : ""));
     });
     // Un département : cartes élues dans ce département (Assemblée ou Sénat), à partir de cinq cartes
     const deps = {};
-    for (const c of cat.cartes) for (const m of c.mandats) {
+    for (const c of cat.parlementaires) for (const m of c.mandats) {
       if (!m[1]) continue;
       const d = deps[normer(m[1])] ||= {titre: m[1], ids: new Set()};
       d.ids.add(c.id);
@@ -501,11 +513,11 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
     const choix = [];
     const prendre = pool => { for (let k = 0; choix.length < lot.choix && k < 50; k++) { const c = tirer(pool); if (!c) return; pris.add(c.id); choix.push(c.id); } };
     if (lot.garantie) { const c = tirer({[lot.garantie]: cat.parRarete[lot.garantie]}); if (c) { pris.add(c.id); choix.push(c.id); } }
-    prendre(lot.raretes ? filtre(lot.raretes) : filtre(ORDRE.filter(r => r !== "unique" && r !== "hors-categorie")));
+    prendre(lot.raretes ? filtre(lot.raretes) : filtre(ORDRE.filter(r => r !== "unique" && r !== "hors-categorie" && !RARETES_EVENEMENT.includes(r))));
     // Raretés demandées épuisées (toutes les légendaires et mythiques déjà possédées, par exemple) : le choix se complète
-    // parmi les cartes de toutes les raretés, sauf l'unique (demande de l'utilisateur, novembre 2026 : un joueur qui avait
-    // toutes les légendaires et mythiques ne recevait plus rien au palier 5 du jeu du Gouvernement)
-    if (choix.length < lot.choix) prendre(filtre(ORDRE.filter(r => r !== "unique")));
+    // parmi les cartes de toutes les raretés, sauf l'unique et les évènements (demande de l'utilisateur, novembre 2026 : un joueur
+    // qui avait toutes les légendaires et mythiques ne recevait plus rien au palier 5 du jeu du Gouvernement)
+    if (choix.length < lot.choix) prendre(filtre(ORDRE.filter(r => r !== "unique" && !RARETES_EVENEMENT.includes(r))));
     for (let i = choix.length - 1; i > 0; i--) { const j = Math.floor(aleatoire() * (i + 1)); [choix[i], choix[j]] = [choix[j], choix[i]]; }
     return choix;
   }
@@ -616,7 +628,7 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
   const VOIX_TACHE = 10, PAQUETS_RECHERCHE = 1;
   function themes(cat) {
     if (cat.themes) return cat.themes;
-    const epoques = [...new Set(cat.cartes.map(c => c.epoque).filter(Boolean))].sort();
+    const epoques = [...new Set((cat.parlementaires || cat.cartes).map(c => c.epoque).filter(Boolean))].sort();
     // Nombre de nouvelles cartes à réunir dans la journée (demande de l'utilisateur, novembre 2026 : une seule était trouvée
     // dès les premiers paquets) : environ ce que donnent huit paquets (simulation, novembre 2026 : Ve République 15 à 16,
     // IIIe 8, Révolution 7, Monarchies constitutionnelles 4 à 5, IIe République 3, Libération 2, Sénat 7 à 8, Gouvernement 2,
@@ -638,7 +650,7 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
     const th = themes(cat);
     return {taches, theme: th[Math.floor(h() * th.length)]};
   }
-  const compteTheme = (etat, cat, theme) => Object.keys(etat.possedees).filter(id => etat.possedees[id] > 0 && cat.parId[id] && theme.test(cat.parId[id])).length;
+  const compteTheme = (etat, cat, theme) => Object.keys(etat.possedees).filter(id => etat.possedees[id] > 0 && cat.parId[id] && !estEvenement(cat.parId[id]) && theme.test(cat.parId[id])).length;
   // Premier passage du jour : compte du thème recherché (idempotent)
   // Lots à choisir restés vides (avant le complément par toutes les raretés, un joueur qui avait toutes les légendaires et
   // mythiques recevait au palier 5 un lot sans carte, qui bloquait l'écran et les lots suivants ; signalé par l'utilisateur,
@@ -750,7 +762,7 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
   }
   // Une condition croisée (plusieurs critères) demande que la carte les remplisse tous
   function remplit(cat, carte, q) {
-    if (!carte) return false;
+    if (!carte || estEvenement(carte)) return false;
     if (q.epoque && carte.epoque !== q.epoque) return false;
     if (q.sexe && carte.sexe !== q.sexe) return false;
     if (q.chambre && !(carte.chambres || "").includes(q.chambre)) return false;
@@ -954,7 +966,7 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
     if (cat.quiz) return cat.quiz;
     // Parlementaires et ministres de la Ve République : carrière commencée en 1958 ou après, assez connus (score) ou en
     // exercice ; départements de leurs mandats depuis 1958
-    const vivier = cat.cartes.filter(c => (c.debut || 0) >= ANNEE_QUIZ && (c.score >= SCORE_QUIZ || c.actuel) && c.mandats
+    const vivier = (cat.parlementaires || cat.cartes.filter(c => !estEvenement(c))).filter(c => (c.debut || 0) >= ANNEE_QUIZ && (c.score >= SCORE_QUIZ || c.actuel) && c.mandats
       && (c.mandats.some(m => m[1]) || fonctionsQuiz(c).length || photoQuiz(c)))
       .sort((a, b) => String(a.id).localeCompare(String(b.id)));
     const departements = [...new Set(vivier.flatMap(c => c.mandats.map(m => m[1]).filter(Boolean)))].sort();
@@ -1059,7 +1071,7 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
     return voix;
   }
 
-  return {reparerLots, VERSION_ETAT, PALIER1_VOIX_PAR_JOUR, retenirMise, SERIE_GOUV, serieGouv, issueSerieGouv, encaisserSerieGouv, choisirLotGouv, offrirChoixGouv, THEMES_LOI, loisDuJour, verifierLoi, etatLois, adopterLoi, remplirLoi, manquesLoi, semaineDuJeu, quinzaineDuJeu, remplit, basculerFavori, MAX_GARDES, garderCartes, RECHARGE_MS, QUIZ_QUESTIONS, graineDe, questions, compacterQuiz, catalogueQuiz, recompenseQuiz, validerQuiz, RESERVE_MAX, CARTES_PAR_PAQUET, reserveCourante, ORDRE, POIDS, VALEUR_RECYCLAGE, PRIX_PAQUET, PALIERS,
+  return {reparerLots, RARETES_EVENEMENT, estEvenement, VERSION_ETAT, PALIER1_VOIX_PAR_JOUR, retenirMise, SERIE_GOUV, serieGouv, issueSerieGouv, encaisserSerieGouv, choisirLotGouv, offrirChoixGouv, THEMES_LOI, loisDuJour, verifierLoi, etatLois, adopterLoi, remplirLoi, manquesLoi, semaineDuJeu, quinzaineDuJeu, remplit, basculerFavori, MAX_GARDES, garderCartes, RECHARGE_MS, QUIZ_QUESTIONS, graineDe, questions, compacterQuiz, catalogueQuiz, recompenseQuiz, validerQuiz, RESERVE_MAX, CARTES_PAR_PAQUET, reserveCourante, ORDRE, POIDS, VALEUR_RECYCLAGE, PRIX_PAQUET, PALIERS,
     etatVide, migrer, jourDuJeu, normer, cartesDeJeu, catalogue, compacter, catalogueCompact, paquetsDisponibles, ouvrirPaquet,
     disponibles, recyclables, doubles, recycler, dissoudre, MAX_SELECTION, dissoudreSelection, echangerPoints, avancement, clesAtteintes, reclamer, recompensesEnAttente,
     SERIE, serieDuJour, reclamerSerie, choisirLot, objectifsDuJour, preparerJour, etatDuJour, reclamerJour};

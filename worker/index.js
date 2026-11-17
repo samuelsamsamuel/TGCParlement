@@ -444,7 +444,7 @@ async function appliquer(env, joueur, operation, liees = []) {
 }
 
 // Chiffres de la collection pour les classements : [prestige, légendaires ou mieux, cartes différentes]
-const LEGENDAIRES_OU_MIEUX = new Set(["legendaire", "hors-categorie", "mythique", "unique"]);
+const LEGENDAIRES_OU_MIEUX = new Set(["legendaire", "hors-categorie", "mythique", "unique", ...Regles.RARETES_EVENEMENT]);
 function chiffresCollection(etat, cat) {
   const ids = new Set([...Object.keys(etat.possedees).filter(id => etat.possedees[id] > 0), ...(etat.deposees || [])]);
   let prestige = 0, rares = 0, differentes = 0;
