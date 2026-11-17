@@ -231,6 +231,26 @@ main{max-width:1120px;margin:0 auto;padding:1.5rem 1rem 4rem}
 .r-unique .recto::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:linear-gradient(115deg,transparent 30%,rgba(255,246,214,.6) 45%,transparent 60%);background-size:250% 100%;background-repeat:no-repeat;animation:reflet 6s ease-in-out infinite}
 .r-legendaire.retournee .recto{box-shadow:0 0 0 1px #f1dc9a,0 0 40px rgba(201,162,74,.6),0 10px 26px rgba(0,0,0,.4)}
 .r-legendaire .recto::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:linear-gradient(115deg,transparent 35%,rgba(255,255,255,.35) 45%,transparent 55%);background-size:250% 100%;background-repeat:no-repeat;animation:reflet 11s ease-in-out infinite}
+/* Cartes évènements (demande de l'utilisateur, novembre 2026) : papier journal et encre, trois niveaux de retentissement */
+.r-evenement{--cadre:linear-gradient(145deg,#4a4038,#221c18);--sur-cadre:#f3ead8;--rarete-texte:#4a4038}
+.r-evenement-marquant{--cadre:linear-gradient(145deg,#2f3b55,#121a2c 60%,#55627f);--sur-cadre:#f3ead8;--rarete-texte:#2f3b55}
+.r-evenement-historique{--cadre:linear-gradient(145deg,#6e1424,#2b060d 55%,#c9a24a);--sur-cadre:#f6e7b0;--rarete-texte:#6e1424}
+.r-evenement-marquant.retournee .recto{box-shadow:0 0 0 1px #c8cfdf,0 0 36px rgba(85,98,127,.6),0 10px 26px rgba(0,0,0,.4)}
+.r-evenement-historique.retournee .recto,.r-evenement-historique.retournee .verso{box-shadow:0 0 0 2px #c9a24a,0 0 45px rgba(201,162,74,.6),0 0 90px rgba(110,20,36,.5)}
+.r-evenement-historique .recto::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:linear-gradient(115deg,transparent 30%,rgba(255,246,214,.55) 45%,transparent 60%);background-size:250% 100%;background-repeat:no-repeat;animation:reflet 7s ease-in-out infinite}
+.evt .recto .interieur,.evt .verso .interieur{background:#f4ecdc}
+.evt .portrait{flex:0 0 38%;display:flex;background:linear-gradient(#e7dcc6,#cdbd9f)}
+.evt .portrait .vignettes{display:flex;width:100%;height:100%}
+.evt .portrait .vignettes img{flex:1;min-width:0;object-fit:cover;object-position:50% 20%;filter:sepia(.35) grayscale(.2)}
+.evt .portrait .annee{position:absolute;inset:0;display:grid;place-items:center;font:700 2.9em var(--serif);color:rgba(34,28,24,.55);letter-spacing:.04em}
+.evt .portrait .vignettes ~ .annee{inset:auto .3em .2em auto;font-size:1.05em;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.8)}
+.evt .date-evt{font:600 .62em var(--serif);padding:.3em .55em;color:var(--rarete-texte);border-bottom:1px solid #d8ccb8;display:flex;justify-content:space-between;gap:.5em}
+.evt .resume{font:.6em/1.35 var(--serif);margin:0;color:#2a221d}
+.evt .niveau{letter-spacing:.08em;color:#c9a24a}
+.evt blockquote{margin:.3em 0 .5em;padding:.3em .5em;border-left:.2em solid var(--rarete-texte);font:italic .6em/1.35 var(--serif);color:#2a221d}
+.evt blockquote cite{display:block;font-style:normal;font-size:.9em;color:#6b5f55;margin-top:.2em}
+.evt .acteurs li.possede b::after{content:" ✓";color:#3e6447}
+.evt .verso .corps a{color:var(--rarete-texte);text-decoration:underline}
 /* Bande de lumière à 45 % d'un dégradé large de 2,5 cartes : hors de la carte à 120 % comme à -20 % */
 @keyframes reflet{0%{background-position:120% 0}14%,100%{background-position:-20% 0}}
 
@@ -1056,7 +1076,7 @@ html.presentation{font-size:15px}
   .presentation h1{margin-bottom:.4rem}
   .presentation main{padding:.7rem .8rem calc(6rem + env(safe-area-inset-bottom))}
 }
-@media (prefers-reduced-motion:reduce){.face,.paquet *{transition:none!important;animation:none!important}.r-legendaire .recto::after,.r-mythique .recto::after,.r-unique .recto::after{animation:none}}
+@media (prefers-reduced-motion:reduce){.face,.paquet *{transition:none!important;animation:none!important}.r-legendaire .recto::after,.r-mythique .recto::after,.r-unique .recto::after,.r-evenement-historique .recto::after{animation:none}}
 </style>
 </head>
 <body>
@@ -1143,6 +1163,7 @@ html.presentation{font-size:15px}
     <p>À la buvette, on propose à un autre joueur un échange de cartes, qu'il accepte ou refuse ; des voix peuvent s'ajouter d'un côté de l'échange, données ou demandées, et ne changent de main qu'à l'acceptation. On y tient aussi le comptoir, où les joueurs se vendent et s'achètent des cartes contre des voix. Le premier qui paie le prix demandé emporte la carte ; on peut aussi offrir moins, et le vendeur accepte ou refuse l'offre. Une carte posée au comptoir est réservée : elle ne peut être ni dissoute ni échangée tant qu'elle y reste. Sur la grande carte, « M'avertir quand elle est en vente » envoie une notification dès qu'un joueur la pose au comptoir.</p>
     <h3>Raretés</h3>
     <p>La rareté d'une carte dépend de son score, comparé à celui des autres parlementaires de la même époque. Par carte tirée : mythique 0,4 %, légendaire 1,6 %, épique 6 %, rare 15 %, peu commune 30 %, commune 46 %. Les élus en exercice gagnent un niveau de rareté. Quand une carte tirée est déjà dans votre hémicycle, ou déjà sortie dans le même paquet, elle est le plus souvent tirée une seconde fois dans la même rareté : les doubles restent possibles, mais rares tant que la collection est jeune (environ un sur dix entre le 700e et le 1 500e paquet). Au-dessus de toutes, la rareté unique ne compte qu'une carte, Charles de Gaulle, plus rare au tirage que n'importe quelle carte mythique : en moyenne une fois sur 50 000 cartes, soit environ un paquet sur 12 500.</p>
+    <p>Les cartes évènements retracent 500 moments marquants de la vie politique et parlementaire, de l'ouverture des États généraux aux censures récentes, chacun vérifié sur ses sources, citées au verso. Un paquet sur 70 environ en contient une. Elles ont trois niveaux selon leur retentissement : évènement (★), évènement marquant (★★) et évènement historique (★★★), tirés environ 4, 5 et 1 fois sur 10. Les parlementaires qui y figurent sont nommés au verso, marqués quand ils sont dans votre hémicycle. Les illustrations sont des œuvres libres de Wikimedia Commons, avec leur auteur et leur licence.</p>
     <h3>Score</h3>
     <p>Le score additionne la durée des mandats (1 point par an jusqu'à 20 ans, puis 0,5 point jusqu'à 40 ans) et les fonctions exercées : chef de l'État, chef du Gouvernement, ministre, secrétaire d'État, présidence d'une assemblée, d'une commission ou d'un groupe, Bureau. Les fonctions exercées au sein des chambres (Bureau, présidence de commission ou de groupe, rapporteur général) ne sont connues par l'open data de l'Assemblée qu'à partir de juin 2002 ; pour que députés et sénateurs soient notés de la même façon, celles du Sénat ne comptent aussi qu'à partir de cette date, les plus anciennes restant affichées sur la carte. Dans chaque famille de fonctions, la plus haute compte en entier et les autres pour un quart. S'y ajoutent les distinctions historiques : Constituante de 1789, Convention, Quatre-vingts, premières élues de 1945, Compagnons de la Libération, Académie française, prix Nobel, Panthéon.</p>
     <h3>Sources</h3>
@@ -1246,7 +1267,49 @@ html.presentation{font-size:15px}
 <script src="gouvernement.js"></script>
 <script>
 const {ORDRE, VALEUR_RECYCLAGE, PRIX_PAQUET} = Regles;
-const LIBELLES = {"mythique":"Mythique","legendaire":"Légendaire","epique":"Épique","rare":"Rare","peu-commune":"Peu commune","commune":"Commune","hors-categorie":"Hors catégorie","unique":"Unique"};
+const LIBELLES = {"mythique":"Mythique","legendaire":"Légendaire","epique":"Épique","rare":"Rare","peu-commune":"Peu commune","commune":"Commune","hors-categorie":"Hors catégorie","unique":"Unique",
+  "evenement":"Évènement","evenement-marquant":"Évènement marquant","evenement-historique":"Évènement historique"};
+// Cartes évènements : table `evenements` de jeu.json (identifiant -> [date, fin, thème, résumé, citation, sources, acteurs, crédit])
+let EVENEMENTS = {};
+const NIVEAU_EVT = {"evenement": "★", "evenement-marquant": "★★", "evenement-historique": "★★★"};
+const MOIS = ["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre"];
+function dateEvt(t){
+  const [a, m, j] = String(t || "").split("-");
+  if (!m) return a || "";
+  const mois = MOIS[Number(m) - 1] || "";
+  return j ? `${Number(j) === 1 ? "1er" : Number(j)} ${mois} ${a}` : `${mois} ${a}`;
+}
+function htmlEvenement(c, {retournee=true, neuve=false, classe="", id="", etoile=true}={}){
+  const n = etat.possedees[c.id] || 0, e = EVENEMENTS[c.id] || [];
+  const [date, fin, , resume, citation, sources = [], acteurs = [], credit] = e;
+  const src = srcPortrait(c);
+  const liees = acteurs.map(a => a[2] && cat.parId[a[2]]).filter(Boolean);
+  const vignettes = liees.map(x => srcPortrait(x)).filter(Boolean).slice(0, 3);
+  const image = src ? `<img src="${echapper(src)}" alt="" loading="lazy" decoding="async"${croise(src) ? ' crossorigin="anonymous"' : ""} style="width:100%;height:100%;object-fit:cover" onerror="this.remove()">`
+    : vignettes.length ? `<div class="vignettes">${vignettes.map(v => `<img src="${echapper(v)}" alt="" loading="lazy" decoding="async"${croise(v) ? ' crossorigin="anonymous"' : ""} onerror="this.remove()">`).join("")}</div>` : "";
+  const quand = fin && fin !== date ? `${dateEvt(date)} – ${dateEvt(fin)}` : dateEvt(date);
+  const pied = `<div class="pied"><span class="niveau">${NIVEAU_EVT[c.rarete] || ""}</span>${neuve?'<span class="neuve">Nouvelle</span>':(n>1?`<span class="double${estGardee(c.id) ? " gardee" : ""}">×${n}${estGardee(c.id) ? " · gardée" : ""}</span>`:"")}</div>`;
+  const hote = u => { try { return new URL(u).hostname.replace(/^www\d?\./, ""); } catch (_) { return "source"; } };
+  return `<div class="carte evt r-${c.rarete} ${retournee?"retournee statique":""} ${classe}" data-id="${c.id}" ${id?`id="${id}"`:""} style="--ep:${EPOQUES[c.epoque]||EPOQUES[""]}">
+    <div class="face dos"><span>Hémicycle</span></div>
+    <div class="face recto"><div class="interieur">
+      <div class="entete"><h3 class="nom${c.nom.length>34?" tres-long":c.nom.length>22?" long":""}">${echapper(c.nom)}</h3><span class="rarete">${LIBELLES[c.rarete]}</span></div>
+      <div class="portrait">${image}<span class="annee">${echapper(String(date || "").slice(0, 4))}</span>${etoile && n ? htmlEtoile(c.id) : ""}</div>
+      <div class="date-evt"><span>${echapper(quand)}</span>${fin && fin !== date ? "" : `<span>${echapper(c.epoque)}</span>`}</div>
+      <div class="corps"><p class="resume">${echapper(resume || "")}</p></div>
+      ${pied}
+    </div></div>
+    <div class="face verso"><div class="interieur">
+      <p class="titre-verso">${echapper(c.nom)}</p>
+      <div class="corps">
+        ${citation ? `<blockquote>« ${echapper(citation[0])} »${citation[1] ? `<cite>${echapper(citation[1])}</cite>` : ""}</blockquote>` : ""}
+        ${acteurs.length ? `<h4>Acteurs</h4><ul class="lignes acteurs">${acteurs.map(a => `<li class="${a[2] && etat.possedees[a[2]] ? "possede" : ""}"><b>${echapper(a[0])}</b>${a[1] ? `<span>${echapper(a[1])}</span>` : ""}</li>`).join("")}</ul>` : ""}
+        <h4>Sources</h4><ul class="lignes">${sources.map(([u]) => `<li><a href="${echapper(u)}" target="_blank" rel="noopener">${echapper(hote(u))}</a></li>`).join("")}</ul>
+      </div>
+      <div class="lien">${c.portrait ? `Image : <a href="https://commons.wikimedia.org/wiki/File:${encodeURIComponent(c.portrait)}" target="_blank" rel="noopener">${echapper([credit && credit[0], credit && credit[1]].filter(Boolean).join(", ") || "Wikimedia Commons")}</a>` : ""}</div>
+      ${pied}
+    </div></div></div>`;
+}
 const CHAMBRES = {"A":"Assemblée","S":"Sénat","G":"Gouvernement"};
 const EPOQUES = {"Révolution et Empire":"#6b4a2b","Monarchies constitutionnelles":"#3d5a73","IIe République et Second Empire":"#5b4b7a",
   "IIIe République":"#2f6b5a","Libération et IVe République":"#7a5a1e","Ve République":"#2c3e7a","":"#5c1020"};
@@ -1416,7 +1479,9 @@ function cadrer(img){
 function estFavori(id){ return (etat.favoris || []).includes(String(id)); }
 function htmlEtoile(id){ const f = estFavori(id); return `<button class="etoile" data-favori="${echapper(id)}" aria-pressed="${f}" aria-label="${f ? "Retirer des favoris" : "Ajouter aux favoris"}">${f ? "★" : "☆"}</button>`; }
 const estGardee = id => (etat.gardes || []).includes(String(id));
-function htmlCarte(c, {retournee=true, neuve=false, classe="", id="", etoile=true}={}){
+function htmlCarte(c, options={}){
+  if (Regles.estEvenement(c)) return htmlEvenement(c, options);
+  const {retournee=true, neuve=false, classe="", id="", etoile=true} = options;
   const n = etat.possedees[c.id] || 0;
   const src = srcPortrait(c);
   const repli = c.portrait && c.photo ? `this.onerror=()=>this.remove();this.src='${urlPortrait(c.portrait)}'` : "this.remove()";
@@ -1614,6 +1679,7 @@ const Sons = (() => {
     unique: [["do4", 0, .5], ["sol4", .12, .5], ["do5", .24, .5], ["mi5", .36, .5], ["sol5", .48, .5], ["do6", .62, 1.8], ["mi6", .62, 1.8], ["sol6", .62, 1.8], ["do5", .62, 1.8]],
   };
   MELODIES["hors-categorie"] = MELODIES.legendaire;
+  MELODIES["evenement"] = MELODIES.epique; MELODIES["evenement-marquant"] = MELODIES.legendaire; MELODIES["evenement-historique"] = MELODIES.mythique;
   return {
     actifs,
     // Déchirure : des centaines de craquements très brefs (fibres du papier qui cèdent), serrés et irréguliers, qui
@@ -1951,7 +2017,7 @@ function majObjectifs(){
   // Premiers pas : ceux à réclamer d'abord, puis ceux à trouver, puis ceux déjà reçus
   const rang = o => { const a = av.get(o); return a.aReclamer.length ? 0 : a.prochain ? 1 : 2; };
   const trier = l => l.map(o => [o, rang(o)]).sort((x, y) => x[1] - y[1]).map(([o]) => o);
-  const premiers = parFamille("premier"), collection = parFamille("collection"), historiques = parFamille("historique", "presidents");
+  const premiers = parFamille("premier"), collection = parFamille("collection", "evenements"), historiques = parFamille("historique", "presidents");
   const recus = premiers.filter(o => !av.get(o).prochain && !av.get(o).aReclamer.length);
   document.getElementById("obj-premiers").innerHTML = trier(premiers.filter(o => !recus.includes(o))).map(htmlObjectif).join("") || `<li class="note">Tous les premiers pas sont faits.</li>`;
   document.getElementById("premiers-recus").hidden = !recus.length;
@@ -2998,8 +3064,8 @@ document.getElementById("choix-carte").addEventListener("click", e => {
 // Plusieurs classements au choix (demande de l'utilisateur, novembre 2026 : les meilleurs joueurs, pas seulement ceux qui
 // ont le plus de cartes) ; calculés par le serveur au plus toutes les dix minutes ; vingt premiers et rang du joueur
 const EXPLICATIONS_CLASSEMENT = {
-  prestige: "Chaque carte différente vaut sa valeur de dissolution : commune 1, peu commune 2, rare 5, épique 15, légendaire 40, mythique 100, unique 250. Les cartes déposées pour une loi comptent.",
-  rares: "Cartes différentes légendaires, hors catégorie, mythiques ou uniques. Les cartes déposées pour une loi comptent.",
+  prestige: "Chaque carte différente vaut sa valeur de dissolution : commune 1, peu commune 2, rare 5, épique 15, légendaire 40, mythique 100, unique 250, évènements 120, 150 ou 200. Les cartes déposées pour une loi comptent.",
+  rares: "Cartes différentes légendaires, hors catégorie, mythiques, uniques ou évènements. Les cartes déposées pour une loi comptent.",
   gouvernement: "Parties gagnées en jouant soi-même au jeu du Gouvernement, contre l'ordinateur, un joueur au hasard ou un ami. Un gouvernement enregistré qui l'emporte en votre absence ne compte pas.",
   duels: "Duels de questions au Gouvernement gagnés.",
   buvette: "Total des voix reçues pour les cartes vendues au comptoir.",
@@ -4251,7 +4317,7 @@ document.getElementById("progression").addEventListener("click", e => {
 });
 
 fetch("jeu.json").then(r => { if (!r.ok) throw new Error(r.status); return r.json(); }).then(d => {
-  cartes = Regles.cartesDeJeu(d); CADRAGES = d.cadrages || {};
+  cartes = Regles.cartesDeJeu(d); CADRAGES = d.cadrages || {}; EVENEMENTS = d.evenements || {};
   cartes.forEach(c => c.cherche = (c.nom+" "+c.epoque+" "+(c.groupe||"")+" "+c.fonctions.map(f=>f[0]).join(" ")+" "+c.mandats.map(m=>m[1]).join(" "))
     .toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,""));
   cat = Regles.catalogue(cartes, d.assemblees || []);

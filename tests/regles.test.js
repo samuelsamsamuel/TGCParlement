@@ -7,7 +7,7 @@ const cat = R.catalogue(cartes, d.assemblees);
 
 // Rareté unique : Charles de Gaulle seul, au-dessus de toutes, plus rare au tirage que n'importe quelle mythique
 assert.deepStrictEqual(cat.parRarete.unique.map(c => c.nom), ["Charles de Gaulle"]);
-assert.strictEqual(R.ORDRE[R.ORDRE.length - 1], "unique");
+assert.strictEqual(R.ORDRE[R.ORDRE.length - 1 - R.RARETES_EVENEMENT.length], "unique");
 assert.ok(R.POIDS.unique < R.POIDS.mythique / cat.parRarete.mythique.length, "tirage d'une mythique donnée plus fréquent");
 let graine = 42; const alea = () => (graine = (graine * 16807) % 2147483647) / 2147483647;
 
@@ -94,7 +94,16 @@ const pp = R.etatVide(); pp.possedees[pg.ids[0]] = 1;
 assert.deepStrictEqual(R.reclamer(pp, cat, "premier:gouvernement"), {paquets: 0, voix: 10}, "tâche simple : des voix");
 assert.deepStrictEqual(R.reclamer(pp, cat, "premier:gouvernement"), {paquets: 0, voix: 0});
 const hem = cat.objectifParId["hemicycle"];
-assert.strictEqual(hem.total, cat.cartes.length); assert.deepStrictEqual(hem.paliers.slice(0, 3), [[10, 10, "voix"], [25, 15, "voix"], [50, 20, "voix"]]);
+assert.strictEqual(hem.total, cat.parlementaires.length);
+// Cartes évènements : hors des objectifs des parlementaires et des lois, objectif à part, plus rares qu'une mythique donnée
+assert.strictEqual(cat.evenements.length, 500);
+assert.ok(cat.evenements.every(c => R.RARETES_EVENEMENT.includes(c.rarete) && String(c.id).startsWith("E-")));
+assert.deepStrictEqual(cat.objectifs.filter(o => o.ids.some(id => String(id).startsWith("E-"))).map(o => o.id), ["evenements"]);
+assert.ok(!R.remplit(cat, cat.evenements[0], {epoque: cat.evenements[0].epoque}), "un évènement ne remplit pas une loi");
+for (const r of R.RARETES_EVENEMENT) assert.ok(R.POIDS[r] / cat.parRarete[r].length < R.POIDS.mythique / cat.parRarete.mythique.length, r);
+{ let g = 11, n = 0; const a = () => (g = (g * 16807) % 2147483647) / 2147483647;
+  for (let i = 0; i < 20000; i++) { const e = R.etatVide(); e.reserve = 1; if (R.ouvrirPaquet(e, cat, {aleatoire: a, maintenant: 0}).tirage.some(R.estEvenement)) n++; }
+  assert.ok(n > 20000 / 90 && n < 20000 / 55, "un paquet sur 70 environ contient un évènement : " + n); } assert.deepStrictEqual(hem.paliers.slice(0, 3), [[10, 10, "voix"], [25, 15, "voix"], [50, 20, "voix"]]);
 cat.cartes.slice(0, 10).forEach(c => pp.possedees[c.id] = 1);
 assert.deepStrictEqual(R.reclamer(pp, cat, "hemicycle"), {paquets: 0, voix: 10});
 // Catalogue du serveur : membres en plages, décodés à la demande, identiques au catalogue complet
