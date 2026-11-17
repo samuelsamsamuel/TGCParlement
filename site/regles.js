@@ -491,12 +491,21 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
   // de tirage (la carte unique et les hors catégorie en sont exclues, sauf tirage ordinaire pour les cartes libres)
   function propositions(etat, cat, lot, aleatoire) {
     const pris = new Set(), libre = c => !etat.possedees[c.id] && !pris.has(c.id);
-    const tirer = pool => { for (let k = 0; k < 30; k++) { const c = tirerCarte(pool, aleatoire); if (libre(c)) return c; } return null; };
+    // Tirage parmi les seules cartes libres (jamais possédées, pas déjà proposées), selon les poids des raretés qui en ont
+    // encore : quand il n'en reste que quelques-unes dans une rareté, elles sont trouvées à coup sûr
+    const tirer = pool => {
+      const libres = Object.fromEntries(Object.entries(pool).map(([r, l]) => [r, l.filter(libre)]).filter(([, l]) => l.length));
+      return Object.keys(libres).length ? tirerCarte(libres, aleatoire) : null;
+    };
     const filtre = r => Object.fromEntries(Object.entries(cat.parRarete).filter(([x]) => r.includes(x)));
     const choix = [];
+    const prendre = pool => { for (let k = 0; choix.length < lot.choix && k < 50; k++) { const c = tirer(pool); if (!c) return; pris.add(c.id); choix.push(c.id); } };
     if (lot.garantie) { const c = tirer({[lot.garantie]: cat.parRarete[lot.garantie]}); if (c) { pris.add(c.id); choix.push(c.id); } }
-    const pool = lot.raretes ? filtre(lot.raretes) : filtre(ORDRE.filter(r => r !== "unique" && r !== "hors-categorie"));
-    for (let k = 0; choix.length < lot.choix && k < 50; k++) { const c = tirer(pool); if (c) { pris.add(c.id); choix.push(c.id); } }
+    prendre(lot.raretes ? filtre(lot.raretes) : filtre(ORDRE.filter(r => r !== "unique" && r !== "hors-categorie")));
+    // Raretés demandées épuisées (toutes les légendaires et mythiques déjà possédées, par exemple) : le choix se complète
+    // parmi les cartes de toutes les raretés, sauf l'unique (demande de l'utilisateur, novembre 2026 : un joueur qui avait
+    // toutes les légendaires et mythiques ne recevait plus rien au palier 5 du jeu du Gouvernement)
+    if (choix.length < lot.choix) prendre(filtre(ORDRE.filter(r => r !== "unique")));
     for (let i = choix.length - 1; i > 0; i--) { const j = Math.floor(aleatoire() * (i + 1)); [choix[i], choix[j]] = [choix[j], choix[i]]; }
     return choix;
   }
