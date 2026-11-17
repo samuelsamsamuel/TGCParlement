@@ -1,4 +1,4 @@
-Portraits Commons : 1 cartes, sur 7186 cartes sans portrait rattachées à Wikidata par identifiant officiel (7243 cartes sans portrait en tout) ; éléments sondés cette fois : 7152, restant à sonder ou en erreur : 29
+Portraits Commons : 1 cartes, sur 7186 cartes sans portrait rattachées à Wikidata par identifiant officiel (7243 cartes sans portrait en tout) ; éléments sondés cette fois : 6896, restant à sonder ou en erreur : 285
 
 Retenus :
 13736	Louis, François, Antoine Arbogast	Q2572301	Antoine Arbogast.png
@@ -48,4 +48,3 @@ Q3220006	Villeurbanne - Jardin des Tout-petits-Adolphe-Lafont - inauguration-du-
 Q3435735	Signature de Robert Leneveu.jpg	nom de fichier
 Q517508	Signature de François Albert-Buisson.jpg	nom de fichier
 Q597221	B330636101 EST 527 MF.jpg	dépeint aussi 2 autre(s) élément(s)
-Q8318508	Plaque Rue Urvoy de Saint-Bedan.jpg	nom de fichier

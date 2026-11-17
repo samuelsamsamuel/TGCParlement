@@ -1,4 +1,4 @@
-Portraits Wikipédia : 1 retenus, 573 écartés, sur 7874 cartes sans portrait ayant un article rattaché par identifiant officiel (8191 cartes sans portrait en tout)
+Portraits Wikipédia : 1 retenus, 571 écartés, sur 7873 cartes sans portrait ayant un article rattaché par identifiant officiel (8190 cartes sans portrait en tout)
 
 Retenus :
 S20066E	Annick Jacquemet	Annick Jacquemet (2026-06-20).jpg
@@ -163,7 +163,6 @@ S20066E	Annick Jacquemet	Annick Jacquemet (2026-06-20).jpg
 12690	Joseph Guingan de Saint-Mathieu	Signature_de_Mathieu_Joseph_Guingan_de_Saint-Mathieu.jpg	nom de fichier
 12692	Bertrand Castaignède	Signature_de_Bertrand_Castaignède.jpg	nom de fichier
 12698	Jean-Baptiste-Étienne de Warel	Signature_de_Jean-Baptiste_Étienne_de_Warel.jpg	nom de fichier
-1278	Jules Brunard	Lyon_7e_-_Rue_Jules-Brunard_(plaque).jpg	nom de fichier
 12808	Moyse Bayle	Moyse_Bayle_signature.png	nom de fichier
 12841	Jean-Ignace Jacqueminot	Tombeau_de_Jean-Ignace_Jacqueminot_(1754–1813)_2.jpg	nom de fichier
 12860	Jean-Antoine Louis	Jean-Antoine_Louis_signature.png	nom de fichier
@@ -494,7 +493,6 @@ S20066E	Annick Jacquemet	Annick Jacquemet (2026-06-20).jpg
 3484	Henri Gorce-Franklin	HC_GORCE-FRANKLIN_H_CIM-Neuilly-Nouveau_2015-10.jpg	nom de fichier
 3945	Marius Isoard	Armoiries_de_Marseille.svg	format
 4164	Henri des Acres de L'Aigle	Blason_famille_fr_des_Acres_de_L'Aigle.svg	format
-5000	Joannès Marietton	Portrait_Marietton.jpg	la fiche Commons ne dit pas représenter la personne
 5435	Pierre Mortier	HC_DUTRIEU_H_CIM-Paris-Batignolles(02)_2015-11.jpg	nom de fichier
 5558	Albert Nivert	HC_NIVERT_A_CIM-Paris-Batignolles_2016-04.jpg	nom de fichier
 5902	François Pichat	Tombe.Jean-Francois.Pichat.jpg	nom de fichier
