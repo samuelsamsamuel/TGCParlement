@@ -12,6 +12,42 @@ Données construites par les scripts Python de `scripts/` (bibliothèque standar
 le workflow `.github/workflows/listes.yml` (« Listes fermées et cartes »), chaque nuit à 2 h 41 UTC ou à la main, une
 exécution à la fois, qui enregistre `data/` et `site/` (même après une annulation : l'enregistrement est `always()`).
 
+## Méthode de travail (conventions établies avec l'utilisateur)
+
+- Réponses en français, en prose, sans tiret cadratin ; tableaux quand ils conviennent ; chaque fait vérifié sur une source
+  officielle ou fiable et cité par un lien. Proposer plutôt qu'imposer une liste.
+- Une demande = une branche de travail `claude/…` (celle que la session indique), un commit, une pull request vers main, puis,
+  tests verts (`regles` et `api-et-interface` de `tests.yml`), fusion en « squash » avec `expectedHeadSha` (l'utilisateur a
+  approuvé ce circuit pour chaque fonctionnalité). Ensuite : `git fetch origin main && git checkout -qB <branche> origin/main &&
+  git push -qf`, puis vérifier la mise en ligne (chercher une chaîne nouvelle dans `https://jeu.hemicycle.workers.dev/regles.js`
+  ou `index.html` ; quelques minutes de déploiement). Ne pousser que sur la branche indiquée par la session (pousser ailleurs
+  crée une branche que Claude ne peut pas supprimer, 403).
+- Pied des commits : `Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>` puis la ligne `Claude-Session:` de la session ;
+  corps de PR terminé par « 🤖 Generated with [Claude Code](https://claude.com/claude-code) », une ligne vide et le lien de la
+  session. Aucun identifiant de modèle dans les commits ou PR. Ne jamais committer `scripts/__pycache__/`.
+- Avant de pousser : `node tests/regles.test.js` ; pour le serveur, `tests/api.test.js` contre `npx wrangler dev --port 8787
+  --test-scheduled --var CODE_ESSAI:1 --var ANNONCE_TOUTE_HEURE:1 --var CLASSEMENT_SANS_CACHE:1 --persist-to /tmp/d1-gouv`
+  (`WR="npx wrangler" ETAT=/tmp/d1-gouv NODE_PATH=$(npm root -g)`) ; parcours du navigateur avec le site servi par
+  `(cd site && python3 -m http.server 8765)`. Arrêter un processus par son nom, jamais par un motif qui vise le shell :
+  `ps -eo pid,comm | awk '$2=="workerd" {print $1}' | xargs -r kill`.
+- Après une modification de `regles.js` ou des données : `python3 scripts/export_jeu.py && node scripts/catalogue_serveur.js`
+  (le workflow de la nuit le refait de toute façon).
+- Base de production : Claude n'y a pas accès. Il donne à l'utilisateur les requêtes SQL à coller dans la console D1
+  (« hemicycle ») : pas de `CREATE TEMP TABLE` (refusé, SQLITE_AUTH), sous-requêtes à la place ; table `joueurs` (`id`, `pseudo`
+  sans casse, `cree`, `points` = voix, `offerts` = paquets offerts, `differentes`, `sanction`), `journal`, `possessions`.
+  Exemples : liste des comptes `SELECT j.id, j.pseudo, j.cree, j.points, j.differentes, (SELECT MAX(date) FROM journal WHERE
+  joueur = j.id) FROM joueurs j ORDER BY j.cree DESC;` ; paquets offerts `UPDATE joueurs SET offerts = offerts + 2 WHERE pseudo = '…';`.
+- Codes promotionnels : jamais en clair (dépôt, commits, PR, messages) ; empreinte par `node scripts/code.js "CODE"` dans
+  `worker/codes.js`. E-mail de l'utilisateur jamais publié. Identité vérifiée avant toute réinitialisation de mot de passe.
+- Enquêtes de triche : requêtes de lecture d'abord (journal, échanges, horaires, comptes liés), conclusion motivée, sanction
+  par la colonne `sanction` seulement si la triche est établie (Misterpopovic sanctionné, Liber blanchi, novembre 2026).
+- Recherches longues (sources, images) : agents en parallèle sur un modèle moins coûteux, consigne écrite commune, lots de
+  30 à 50, puis relecture de toutes les fiches page par page par d'autres agents (une fiche sur cinq ajoutait un fait non
+  attesté) ; Commons répond 429 au conteneur : passer par l'API lue avec WebFetch ou par le workflow.
+- Droit d'auteur : pas de photo de presse sous droits, même sourcée (la reproduction intégrale d'une photographie n'est pas
+  une courte citation, article L122-5 du code de la propriété intellectuelle) ; images libres de Commons (domaine public, CC0,
+  CC BY, CC BY-SA, Licence Ouverte ; ni NC ni ND) ou illustrations fournies par l'utilisateur.
+
 ## Règles du projet
 
 - Sources officielles uniquement (Assemblée nationale : Sycomore et open data ; Sénat : data.senat.fr ;
@@ -583,3 +619,21 @@ légendaire et hors catégorie, plus ample mythique et unique) ; réglage « Son
    aussi leurs fiches, `senateurs-4eme-republique/senatl.html`, 718 noms, même méthode possible), gouvernements antérieurs à 1944, villes des circonscriptions avant 2012,
    fonctions au sein de l'Assemblée avant juin 2002 (seuls les comptes rendus de séance en PDF les portent ;
    leur lecture lèverait la règle de symétrie).
+5. Cartes évènements (demande de l'utilisateur, novembre 2026), en cours sur la branche `claude/cool-pasteur-nouke7` (commit
+   « Cartes évènements : 500 évènements, trois raretés, affichage (en cours) ») : 500 évènements politiques et parlementaires
+   de 1789 à novembre 2026, chacun relu sur ses sources (`data/evenements/evenements.json`, sur main ; acteurs rattachés aux
+   cartes par identifiant) ; cartes « E-<id> » ajoutées par `export_jeu.py` (`cartes_evenements`, table `evenements` de
+   `jeu.json`) ; trois raretés en fin d'`ORDRE` (`RARETES_EVENEMENT` : évènement ★, marquant ★★, historique ★★★ selon le
+   retentissement 3, 4, 5 ; 101, 267 et 132 cartes), poids 0,14, 0,17 et 0,045 (un paquet sur 70 environ, vérifié par le
+   test), dissolution 120, 150 et 200 voix ; hors des objectifs des parlementaires, lois, quiz, thèmes du jour et lots
+   (`estEvenement`, `cat.parlementaires`), objectif propre « Les grands évènements » ; recto et verso propres
+   (`htmlEvenement` d'`index.html` : date, résumé, citation, acteurs cochés s'ils sont possédés, sources). Reste à faire :
+   illustrations (décision de l'utilisateur : dessins façon carte « full art », visages en illustration, produits par une
+   autre IA d'après `data/evenements/consignes_illustrations.csv`, une consigne par évènement, fichier `<id>.png` ; Claude
+   les compresse, les range dans le site et les revoit à l'œil ; les maquettes vectorielles de Claude ont été refusées),
+   vérification du comptoir, de la vitrine et des miniatures pour ces cartes, Règlement, test du navigateur, PR. Images
+   libres de Commons trouvées pour 120 évènements (`candidats_images.json`, licences relues par `illustrations_evenements.py`
+   dans le workflow, vignettes dans `data/revue_evenements/`), utilisables au verso ou en repli.
+6. Questions laissées en suspens par l'utilisateur (novembre 2026) : ajouter les hors catégorie (180 membres du Gouvernement
+   sans mandat, 40 voix) aux cartes à choisir des paliers 4 et 5 du jeu du Gouvernement ; compléter un lot dont les raretés
+   sont épuisées par des épiques puis des rares plutôt que par le tirage ordinaire (surtout des communes aujourd'hui).
