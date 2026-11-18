@@ -1,9 +1,10 @@
-Portraits Commons : 1 cartes, sur 7186 cartes sans portrait rattachées à Wikidata par identifiant officiel (7243 cartes sans portrait en tout) ; éléments sondés cette fois : 6896, restant à sonder ou en erreur : 285
+Portraits Commons : 1 cartes, sur 7186 cartes sans portrait rattachées à Wikidata par identifiant officiel (7243 cartes sans portrait en tout) ; éléments sondés cette fois : 7181, restant à sonder ou en erreur : 0
 
 Retenus :
 13736	Louis, François, Antoine Arbogast	Q2572301	Antoine Arbogast.png
 
 Écartés :
+Q8318508	Plaque Rue Urvoy de Saint-Bedan.jpg	nom de fichier
 Q1096895	Claude-Louis-Michel de Sacy - L'Esclavage des Américains et des nègres. Piece qui a concouru pour le prix de l'Académie françoise, 1775.pdf	format
 Q15623018	Père-Lachaise - Division 9 - Sieyès 06.jpg	nom de fichier
 Q15967440	Armoiries de la famille Montboissier-Beaufort-Canillac.png	nom de fichier
