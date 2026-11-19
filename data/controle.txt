@@ -28,7 +28,7 @@ Distinctions calculées :
   chef-etat-interim : 1
 
 Scores (grille équilibrée) : maximum 146.3 ; 10e 102.6 ; 100e 64.6 ; 1000e 31.0 ; médiane 7.8
-Cartes à égalité au score maximal : 1 ; scores distincts parmi les 100 premières : 83
+Cartes à égalité au score maximal : 1 ; scores distincts parmi les 100 premières : 84
 
 Cartes en exercice : 907
 Cartes par époque : Libération et IVe République 1272, Ve République 5776, IIIe République 5410, Monarchies constitutionnelles 2484, IIe République et Second Empire 1549, Révolution et Empire 3930, None 181

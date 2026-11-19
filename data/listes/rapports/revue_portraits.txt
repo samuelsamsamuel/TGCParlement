@@ -1,1 +1,1 @@
-Photos en largeur sans cadrage décidé : 1 ; vignettes présentes : 1 (dont 1 téléchargées à cette exécution) ; échecs : 0 ; vignettes effacées : 0 ; index précédent : 0.
+Photos en largeur sans cadrage décidé : 1 ; vignettes présentes : 1 (dont 0 téléchargées à cette exécution) ; échecs : 0 ; vignettes effacées : 0 ; index précédent : 1.
