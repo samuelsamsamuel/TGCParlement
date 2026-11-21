@@ -4,7 +4,6 @@ Retenus :
 13736	Louis, François, Antoine Arbogast	Q2572301	Antoine Arbogast.png
 
 Écartés :
-Q8318508	Plaque Rue Urvoy de Saint-Bedan.jpg	nom de fichier
 Q1096895	Claude-Louis-Michel de Sacy - L'Esclavage des Américains et des nègres. Piece qui a concouru pour le prix de l'Académie françoise, 1775.pdf	format
 Q15623018	Père-Lachaise - Division 9 - Sieyès 06.jpg	nom de fichier
 Q15967440	Armoiries de la famille Montboissier-Beaufort-Canillac.png	nom de fichier
@@ -49,3 +48,4 @@ Q3220006	Villeurbanne - Jardin des Tout-petits-Adolphe-Lafont - inauguration-du-
 Q3435735	Signature de Robert Leneveu.jpg	nom de fichier
 Q517508	Signature de François Albert-Buisson.jpg	nom de fichier
 Q597221	B330636101 EST 527 MF.jpg	dépeint aussi 2 autre(s) élément(s)
+Q8318508	Plaque Rue Urvoy de Saint-Bedan.jpg	nom de fichier
