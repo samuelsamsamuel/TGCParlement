@@ -1,4 +1,4 @@
-Portraits Commons des cartes : 8480 ; mesurés : 8480 ; restant à mesurer : 0 ; lots en échec : 0.
+Portraits Commons des cartes : 8481 ; mesurés : 8481 ; restant à mesurer : 0 ; lots en échec : 0.
 En largeur (plus larges que hauts de 15 %) : 525
   (11-10-32, obsèques de M. Edmond L'Hommedé en l'église Saint-Augustin à Paris) sénateur (Yves) Tanguy du Finistère - btv1b532617319.jpg
   (Albi) Monument à Augustin Malroux.jpg
@@ -525,7 +525,7 @@ En largeur (plus larges que hauts de 15 %) : 525
   Émile Compayré.jpg
   Émission de radio Europe Midi - 5 septembre 2014 29.JPG
   蘇院長接見法國國民議會友臺小組成員艾巴雷羅議員一行.jpg
-Très hauts (hauteur plus de 1,6 fois la largeur) : 558
+Très hauts (hauteur plus de 1,6 fois la largeur) : 559
   1919 Marcel Ferraris.jpg
   20021214 BIMCC MoniquePelletier.jpg
   20240708-P1020353 David Guiraud Wikipedia.jpg
@@ -1038,6 +1038,7 @@ Très hauts (hauteur plus de 1,6 fois la largeur) : 558
   Prosper Allemand.jpg
   Père-Lachaise - Division 24 - Walferdin 06.jpg
   Rapprochement Franco-Allemand - le colonel Picot (cropped).jpg
+  Ravinel, Félix baron de.jpg
   Raymond Guyot 1946-01-19.jpg
   Renaud Jean 1938.jpg
   René Château (1906-1970).jpg

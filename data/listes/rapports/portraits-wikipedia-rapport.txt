@@ -1,4 +1,4 @@
-Portraits Wikipédia : 1 retenus, 571 écartés, sur 7873 cartes sans portrait ayant un article rattaché par identifiant officiel (8190 cartes sans portrait en tout)
+Portraits Wikipédia : 1 retenus, 572 écartés, sur 7873 cartes sans portrait ayant un article rattaché par identifiant officiel (8190 cartes sans portrait en tout)
 
 Retenus :
 S20066E	Annick Jacquemet	Annick Jacquemet (2026-06-20).jpg
@@ -388,6 +388,7 @@ S20066E	Annick Jacquemet	Annick Jacquemet (2026-06-20).jpg
 16837	Anne Joachim Joseph de Rochemore	Blason_famille_fr_de_Rochemore.svg	format
 16841	Louis de Vaulchier du Deschaux	Blason-azur-chevron-or-3-étoiles.svg	format
 16847	Pierre d'Assier de Valenches	Blason-or-3-bandes-gueules.svg	format
+16853	Florizel Louis de Drouin	Blason_famille_fr_de_Drouin.svg	format
 16857	Pierre Chapt de Rastignac	Blason_fam_fr_Chapt_de_Rastignac.svg	format
 16862	César Bardonin de Sansac	Blason-azur-3-molettes-or.svg	format
 16876	François Mathieu Angot des Rotours	Blason_fam_fr_Angot_de_Rotours.svg	format
