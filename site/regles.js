@@ -547,7 +547,16 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
   // Premier palier (demande de l'utilisateur, novembre 2026 : un joueur encaissait chaque première victoire, puis ouvrait des
   // paquets avec les voix) : 15 voix trois fois par jour de Paris, ensuite une carte à choisir parmi 3 communes ou peu communes
   const PALIER1_VOIX_PAR_JOUR = 3;
-  const PALIER1_CARTE = {choix: 3, raretes: ["commune", "peu-commune"], titre: "une carte parmi 3 communes ou peu communes"};
+  // Après les trois encaissements en voix du jour : une carte commune tirée au hasard, sans choix (demande de l'utilisateur,
+  // novembre 2026 : la carte à choisir, toujours nouvelle et sans limite, permettait de finir le jeu par le seul palier 1) ;
+  // doubles un peu plus rares qu'en paquet : une carte déjà possédée est retirée jusqu'à deux fois (une fois en paquet)
+  const PALIER1_CARTE = {carte: "commune", titre: "une carte commune au hasard"};
+  function tirerPalier1(etat, cat, aleatoire) {
+    const pool = cat.parRarete.commune || [], possedee = id => !!etat.possedees[id];
+    let c = pool[Math.floor(aleatoire() * pool.length)];
+    for (let k = 0; k < 2 && c && possedee(c.id) && aleatoire() < RELANCE_DOUBLE; k++) c = pool[Math.floor(aleatoire() * pool.length)];
+    return c || null;
+  }
   function lotPalier(palier, palier1Voix) { return palier === 1 && !palier1Voix ? PALIER1_CARTE : SERIE_GOUV[palier - 1]; }
   function serieGouv(etat, jour = jourDuJeu()) {
     const q = quotidien(etat);
@@ -572,6 +581,7 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
     if (!s.serie || s.lot) return null;
     const lot = lotPalier(s.serie, s.palier1Voix), gain = {palier: s.serie, voix: lot.voix || 0, paquets: lot.paquets || 0, choix: null};
     etat.points += gain.voix; etat.offerts += gain.paquets;
+    if (lot.carte) { const c = tirerPalier1(etat, cat, aleatoire); if (c) { etat.possedees[c.id] = (etat.possedees[c.id] || 0) + 1; gain.cartes = [c.id]; } }
     if (lot.choix) { const cartes = propositions(etat, cat, lot, aleatoire); if (cartes.length) gain.choix = (g.lot = {cartes, palier: s.serie}).cartes; }
     if (s.serie === 1 && lot.voix) { g.p1 = (g.p1jour === jour ? g.p1 || 0 : 0) + 1; g.p1jour = jour; }
     g.encaisses = s.encaissesDuJour + 1; g.jour = jour; g.serie = 0;

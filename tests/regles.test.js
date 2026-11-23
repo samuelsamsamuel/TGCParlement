@@ -409,18 +409,26 @@ console.log("jeu du Gouvernement : tests passés");
     assert.ok(g, "pas de limite par jour"); if (g.choix) R.choisirLotGouv(es, cg, g.choix[0]);
   }
   assert.strictEqual(R.encaisserSerieGouv(es, cg, jour, alea), null, "rien à encaisser sans victoire");
-  // Premier palier : 15 voix trois fois par jour, ensuite une carte commune ou peu commune à choisir ; le lendemain, de nouveau des voix
+  // Premier palier : 15 voix trois fois par jour, ensuite une carte commune tirée au hasard ; le lendemain, de nouveau des voix
   const e1 = R.etatVide(), j1 = "2026-11-05";
   for (let k = 0; k < R.PALIER1_VOIX_PAR_JOUR; k++) {
     R.issueSerieGouv(e1, cg, "gagne", j1, alea);
     assert.deepStrictEqual([R.encaisserSerieGouv(e1, cg, j1, alea).voix, R.serieGouv(e1, j1).palier1Voix], [15, R.PALIER1_VOIX_PAR_JOUR - k - 1]);
   }
   R.issueSerieGouv(e1, cg, "gagne", j1, alea);
-  assert.strictEqual(R.serieGouv(e1, j1).recompense.raretes.join(), "commune,peu-commune");
+  assert.strictEqual(R.serieGouv(e1, j1).recompense.carte, "commune");
   const carte1 = R.encaisserSerieGouv(e1, cg, j1, alea);
-  assert.strictEqual(carte1.voix, 0); assert.strictEqual(carte1.choix.length, 3, "une carte à choisir");
-  assert.ok(carte1.choix.every(id => ["commune", "peu-commune"].includes(cg.parId[id].rarete)));
-  R.choisirLotGouv(e1, cg, carte1.choix[0]);
+  assert.strictEqual(carte1.voix, 0); assert.strictEqual(carte1.choix, null, "plus de carte à choisir");
+  assert.strictEqual(carte1.cartes.length, 1); assert.strictEqual(cg.parId[carte1.cartes[0]].rarete, "commune");
+  assert.strictEqual(e1.possedees[carte1.cartes[0]], 1, "carte ajoutée aussitôt");
+  assert.strictEqual(R.serieGouv(e1, j1).lot, null, "aucun lot en attente");
+  { // Doubles un peu plus rares qu'en paquet : collection avec la moitié des communes
+    const moitie = R.etatVide(); cg.parRarete.commune.forEach((c, i) => { if (i % 2) moitie.possedees[c.id] = 1; });
+    let dbl = 0; const N = 4000;
+    for (let k = 0; k < N; k++) { const e = structuredClone(moitie); e.quotidien = {gouv: {serie: 1, p1: 3, p1jour: j1}};
+      const g = R.encaisserSerieGouv(e, cg, j1, alea); if (moitie.possedees[g.cartes[0]]) dbl++; }
+    assert.ok(dbl / N > 0.12 && dbl / N < 0.24, "doubles au palier 1 : " + dbl / N + " (paquet : 0,275)");
+  }
   R.issueSerieGouv(e1, cg, "gagne", "2026-11-06", alea);
   assert.strictEqual(R.encaisserSerieGouv(e1, cg, "2026-11-06", alea).voix, 15, "le lendemain, de nouveau des voix");
   R.issueSerieGouv(e1, cg, "gagne", "2026-11-06", alea); R.issueSerieGouv(e1, cg, "gagne", "2026-11-06", alea);
