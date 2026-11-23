@@ -2165,8 +2165,8 @@ function pucesLiens(l){
   return p.map(x => `<span class="puce lien"><b>+1</b> ${x}</span>`).join("") + (p.length > Gouvernement.LIENS_MAX ? `<span class="puce">bonus plafonné à +${Gouvernement.LIENS_MAX}</span>` : "");
 }
 const RECOMPENSES_COURTES = ["15 voix", "1 carte rare ou mieux", "1 paquet", "1 carte épique ou mieux + 1 paquet", "1 carte légendaire ou mieux + 2 paquets"];
-// Premier palier : 15 voix trois fois par jour, ensuite une carte commune ou peu commune à choisir (palier1Voix du serveur)
-const recompensesCourtes = () => gouv?.serie?.palier1Voix === 0 ? ["1 carte commune ou peu commune", ...RECOMPENSES_COURTES.slice(1)] : RECOMPENSES_COURTES;
+// Premier palier : 15 voix trois fois par jour, ensuite une carte commune tirée au hasard (palier1Voix du serveur)
+const recompensesCourtes = () => gouv?.serie?.palier1Voix === 0 ? ["1 carte commune au hasard", ...RECOMPENSES_COURTES.slice(1)] : RECOMPENSES_COURTES;
 const texteRecompense = l => l ? (l.titre ? l.titre.charAt(0).toUpperCase() + l.titre.slice(1) : gainTexte(l)) : "";
 async function chargerGouvernement(){
   majGouvernement();
@@ -2289,7 +2289,7 @@ function ecransTuto(){
      dessin: `<ol class="tuto-frise">${[["Justice", "g"], ["Bretagne", "p"], ["Défense", "g"], ["Santé", "g"], ["Culture", "p"], ["Budget", "g"]].map(([t, r], i) => `<li class="${r}"><b>${i + 1}</b>${t}<em>${r === "g" ? "gagnée" : "perdue"}</em></li>`).join("")}</ol><p class="note centre">4 manches gagnées sur 6 : partie gagnée.</p>`},
     {titre: "Le 49.3", texte: "Une fois par partie, vous pouvez jouer le 49.3 en envoyant un ministre : <b>la stature de votre Premier ministre s'ajoute à sa force</b> pour cette manche. Gardez-le pour une manche serrée.",
      dessin: `<div class="tuto-force"><ul class="forces-ex"><li><span>Votre ministre</span><span class="calc"></span><b>6</b></li><li><span>+ 49.3 (Premier ministre de stature 5)</span><span class="calc"></span><b>11</b></li></ul></div>`},
-    {titre: "La série", texte: "Contre l'ordinateur ou un autre joueur, chaque victoire fait monter votre série d'une marche. Encaissez la récompense quand vous voulez, ou continuez pour viser plus haut : une défaite fait tout perdre. Le premier palier rapporte 15 voix trois fois par jour, puis une carte commune ou peu commune à choisir.",
+    {titre: "La série", texte: "Contre l'ordinateur ou un autre joueur, chaque victoire fait monter votre série d'une marche. Encaissez la récompense quand vous voulez, ou continuez pour viser plus haut : une défaite fait tout perdre. Le premier palier rapporte 15 voix trois fois par jour, puis une carte commune tirée au hasard.",
      dessin: `<div class="serie-gouv">${RECOMPENSES_COURTES.map((r, i) => `<span class="${i < 2 ? "passe" : i === 2 ? "courant" : ""}"><b>${i + 1}</b>${echapper(r)}</span>`).join("")}</div>`},
   ];
 }
@@ -2650,7 +2650,8 @@ async function encaisserSerie(bouton){
     majTout(); gouv = await appel("gouvernements");
     const g = r.resultat;
     if (g.choix) choisirCarteSerie(g.choix);
-    signaler(`Série encaissée${g.voix || g.paquets ? ` : ${gainTexte(g)}` : ""}${g.choix ? ", et une carte à choisir" : ""}.`);
+    const tiree = g.cartes && g.cartes.length ? cat.parId[g.cartes[0]] : null;
+    signaler(`Série encaissée${g.voix || g.paquets ? ` : ${gainTexte(g)}` : ""}${g.choix ? ", et une carte à choisir" : ""}${tiree ? ` : ${tiree.nom} rejoint votre hémicycle` : ""}.`);
     majGouvernement();
   });
 }
