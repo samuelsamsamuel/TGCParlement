@@ -160,6 +160,44 @@
   ]
  },
  {
+  "id": "prise-bastille-1789",
+  "titre": "La prise de la Bastille",
+  "date": "1789-07-14",
+  "date_fin": null,
+  "epoque": "Révolution et Empire",
+  "theme": "coup d'éclat",
+  "retentissement": 5,
+  "resume": "Le 14 juillet 1789, la rumeur court que le roi veut disperser par la force les députés réunis à Versailles. La foule prend des fusils aux Invalides, puis la Bastille, où l'on comptait à peine sept prisonniers. Le roi rappelle Necker le 16 juillet.",
+  "citation": null,
+  "acteurs": [
+   {
+    "nom": "Louis XVI",
+    "role": "roi, dont la rumeur dit qu'il veut disperser les députés de Versailles",
+    "carte": null
+   },
+   {
+    "nom": "Jacques Necker",
+    "role": "ministre rappelé par le roi le 16 juillet",
+    "carte": null
+   },
+   {
+    "nom": "De Launay",
+    "role": "gouverneur de la Bastille, massacré",
+    "carte": null
+   }
+  ],
+  "sources": [
+   {
+    "url": "https://www.herodote.net/14_juillet_1789-evenement-17890714.php",
+    "type": "media"
+   },
+   {
+    "url": "https://www.universalis.fr/encyclopedie/quatorze-juillet-1789/",
+    "type": "media"
+   }
+  ]
+ },
+ {
   "id": "roi-assemblee-bastille-1789",
   "titre": "Le roi cède après la Bastille",
   "date": "1789-07-15",
@@ -535,34 +573,6 @@
   ]
  },
  {
-  "id": "non-reeligibilite-1791",
-  "titre": "Les constituants se rendent inéligibles",
-  "date": "1791-05-16",
-  "date_fin": null,
-  "epoque": "Révolution et Empire",
-  "theme": "coup d'éclat",
-  "retentissement": 3,
-  "resume": "Sur la motion de Robespierre, l'Assemblée décide à la presque unanimité que ses membres ne pourront être réélus à la prochaine législature. La Législative, réunie le 1er octobre 1791, ne comptera ainsi que des novices.",
-  "citation": null,
-  "acteurs": [
-   {
-    "nom": "Maximilien de Robespierre",
-    "role": "député, auteur de la motion",
-    "carte": "11798"
-   }
-  ],
-  "sources": [
-   {
-    "url": "https://iiif.persee.fr/b0e2cf11-597c-427d-8ac7-68bcc0acf13b/279b573c-84a8-486e-af89-0736fa7d8f01/res/pdf",
-    "type": "officiel"
-   },
-   {
-    "url": "https://www.herodote.net/1er_octobre_1791-evenement-17911001.php",
-    "type": "media"
-   }
-  ]
- },
- {
   "id": "robespierre-peine-mort-1791",
   "titre": "Robespierre contre la peine de mort",
   "date": "1791-05-30",
@@ -863,30 +873,6 @@
   ]
  },
  {
-  "id": "baiser-lamourette-1792",
-  "titre": "Le baiser Lamourette",
-  "date": "1792-07-07",
-  "date_fin": null,
-  "epoque": "Révolution et Empire",
-  "theme": "coup d'éclat",
-  "retentissement": 3,
-  "resume": "À la Législative, l'évêque de Lyon Adrien Lamourette, député de Rhône-et-Loire, présente une motion de réconciliation restée célèbre. Mais le bruit court d'une ruse concertée avec la cour, et le public parle de « baiser d'amourette » ou de « baiser de Judas ».",
-  "citation": null,
-  "acteurs": [
-   {
-    "nom": "Adrien Lamourette",
-    "role": "député de Rhône-et-Loire, évêque de Lyon",
-    "carte": "14751"
-   }
-  ],
-  "sources": [
-   {
-    "url": "https://www2.assemblee-nationale.fr/sycomore/fiche/14751",
-    "type": "officiel"
-   }
-  ]
- },
- {
   "id": "patrie-en-danger-1792",
   "titre": "La patrie en danger",
   "date": "1792-07-11",
@@ -1034,43 +1020,6 @@
   ]
  },
  {
-  "id": "louvet-robespierre-1792",
-  "titre": "Louvet accuse Robespierre",
-  "date": "1792-10-29",
-  "date_fin": null,
-  "epoque": "Révolution et Empire",
-  "theme": "duo ou duel",
-  "retentissement": 3,
-  "resume": "À la Convention, le Girondin Louvet interrompt Robespierre d'un « C'est moi, moi qui t'accuse ! » et réclame sa mise en accusation, chaque phrase commençant par « Robespierre, je t'accuse ». Robespierre obtient huit jours pour répondre ; l'Assemblée passe ensuite à l'ordre du jour.",
-  "citation": {
-   "texte": "C'est moi, moi qui t'accuse !",
-   "auteur": "Jean-Baptiste Louvet",
-   "source": "https://www2.assemblee-nationale.fr/sycomore/fiche/12861"
-  },
-  "acteurs": [
-   {
-    "nom": "Jean-Baptiste Louvet",
-    "role": "député girondin du Loiret",
-    "carte": "12861"
-   },
-   {
-    "nom": "Maximilien Robespierre",
-    "role": "député de la Seine",
-    "carte": "11798"
-   }
-  ],
-  "sources": [
-   {
-    "url": "https://www2.assemblee-nationale.fr/sycomore/fiche/12861",
-    "type": "officiel"
-   },
-   {
-    "url": "https://www2.assemblee-nationale.fr/sycomore/fiche?num_dept=11798",
-    "type": "officiel"
-   }
-  ]
- },
- {
   "id": "proces-louis-xvi-1792",
   "titre": "Le procès de Louis XVI",
   "date": "1792-12-11",
@@ -1163,43 +1112,6 @@
    },
    {
     "url": "https://www.justice.gouv.fr/actualites/actualite/proces-louis-xvi",
-    "type": "officiel"
-   }
-  ]
- },
- {
-  "id": "lepeletier-1793",
-  "titre": "Le Peletier assassiné",
-  "date": "1793-01-20",
-  "date_fin": null,
-  "epoque": "Révolution et Empire",
-  "theme": "affaire",
-  "retentissement": 3,
-  "resume": "Au lendemain de son vote pour la mort du roi, le conventionnel Le Peletier de Saint-Fargeau, ancien noble, est tué au café Février, au Palais-Royal, par Pâris, ancien garde du corps du roi. Des funérailles grandioses lui sont faites le 24 janvier.",
-  "citation": null,
-  "acteurs": [
-   {
-    "nom": "Louis-Michel Le Peletier de Saint-Fargeau",
-    "role": "député à la Convention",
-    "carte": "12352"
-   },
-   {
-    "nom": "Philippe-Nicolas-Marie de Pâris",
-    "role": "ancien garde du corps du roi",
-    "carte": null
-   }
-  ],
-  "sources": [
-   {
-    "url": "https://parcoursrevolution.paris.fr/en/points-of-interest/99-a-stage-for-political-crimes",
-    "type": "media"
-   },
-   {
-    "url": "https://www.victorianweb.org/francais/histoire/revolution/1793.html",
-    "type": "media"
-   },
-   {
-    "url": "https://iiif.persee.fr/b0e2cf11-597c-427d-8ac7-68bcc0acf13b/9767eaa1-4f40-4688-ba28-a1a4f0f77468/res/pdf",
     "type": "officiel"
    }
   ]
@@ -1315,38 +1227,6 @@
    },
    {
     "url": "https://www.larousse.fr/encyclopedie/divers/Comit%C3%A9_de_salut_public/114221",
-    "type": "media"
-   }
-  ]
- },
- {
-  "id": "marat-accusation-1793",
-  "titre": "Marat acquitté et porté en triomphe",
-  "date": "1793-04-24",
-  "date_fin": null,
-  "epoque": "Révolution et Empire",
-  "theme": "affaire",
-  "retentissement": 3,
-  "resume": "Mis en accusation à l'initiative des Girondins en avril 1793, Jean-Paul Marat comparaît devant le Tribunal révolutionnaire. Acquitté, il regagne en triomphe la salle de la Convention le 24 avril.",
-  "citation": null,
-  "acteurs": [
-   {
-    "nom": "Jean-Paul Marat",
-    "role": "député à la Convention",
-    "carte": "12321"
-   }
-  ],
-  "sources": [
-   {
-    "url": "https://www.justice.gouv.fr/actualites/actualite/proces-charlotte-corday",
-    "type": "officiel"
-   },
-   {
-    "url": "https://www.herodote.net/Bio/bio.php?nom=Marat",
-    "type": "media"
-   },
-   {
-    "url": "https://www.worldhistory.org/trans/fr/2-2092/assassinat-de-marat/",
     "type": "media"
    }
   ]
@@ -1812,136 +1692,6 @@
   ]
  },
  {
-  "id": "gregoire-vandalisme-1794",
-  "titre": "Grégoire et le « vandalisme »",
-  "date": "1794-08-31",
-  "date_fin": null,
-  "epoque": "Révolution et Empire",
-  "theme": "première",
-  "retentissement": 3,
-  "resume": "Au nom du comité d'Instruction publique, l'abbé Grégoire dénonce à la Convention les destructions des monuments des arts. Le décret place bibliothèques et monuments sous la surveillance des citoyens et punit de deux ans de détention ceux qui les dégradent.",
-  "citation": null,
-  "acteurs": [
-   {
-    "nom": "Henri Grégoire",
-    "role": "député, rapporteur du comité d'Instruction publique",
-    "carte": "12259"
-   }
-  ],
-  "sources": [
-   {
-    "url": "https://iiif.persee.fr/b0e2cf11-597c-427d-8ac7-68bcc0acf13b/997244a3-d317-4a0a-8c14-9954f0010653/res/pdf",
-    "type": "officiel"
-   },
-   {
-    "url": "https://www.universalis.fr/encyclopedie/vandalisme/",
-    "type": "media"
-   }
-  ]
- },
- {
-  "id": "fermeture-jacobins-1794",
-  "titre": "Fermeture du club des Jacobins",
-  "date": "1794-11-12",
-  "date_fin": null,
-  "epoque": "Révolution et Empire",
-  "theme": "coup d'éclat",
-  "retentissement": 3,
-  "resume": "Au nom des comités de salut public, de sûreté générale, militaire et de législation, Laignelot fait approuver par la Convention l'arrêté de la veille : les séances de la société des Jacobins de Paris sont suspendues et la salle fermée sur-le-champ, ses clés remises au Comité de sûreté générale.",
-  "citation": {
-   "texte": "Les séances de la société des Jacobins de Paris sont suspendues.",
-   "auteur": "Arrêté des comités réunis (article 1er), approuvé par la Convention",
-   "source": "https://iiif.persee.fr/b0e2cf11-597c-427d-8ac7-68bcc0acf13b/82ec210a-d5b7-4405-b270-ad32bb701644/res/pdf"
-  },
-  "acteurs": [
-   {
-    "nom": "Joseph-François Laignelot",
-    "role": "député, rapporteur des comités réunis",
-    "carte": "13108"
-   }
-  ],
-  "sources": [
-   {
-    "url": "https://iiif.persee.fr/b0e2cf11-597c-427d-8ac7-68bcc0acf13b/82ec210a-d5b7-4405-b270-ad32bb701644/res/pdf",
-    "type": "officiel"
-   },
-   {
-    "url": "https://www.larousse.fr/encyclopedie/divers/club_des_Jacobins/125450",
-    "type": "media"
-   }
-  ]
- },
- {
-  "id": "carrier-1794",
-  "titre": "Carrier décrété d'accusation",
-  "date": "1794-11-23",
-  "date_fin": null,
-  "epoque": "Révolution et Empire",
-  "theme": "affaire",
-  "retentissement": 3,
-  "resume": "Carrier, qui se dit malade, est sommé de venir à la séance. Au terme d'un appel nominal prolongé jusque dans la nuit, la Convention déclare qu'il y a lieu à accusation contre l'homme des noyades de Nantes et l'envoie à la Conciergerie. Il est guillotiné le 16 décembre 1794.",
-  "citation": null,
-  "acteurs": [
-   {
-    "nom": "Jean-Baptiste Carrier",
-    "role": "député, ancien représentant en mission à Nantes",
-    "carte": "12279"
-   }
-  ],
-  "sources": [
-   {
-    "url": "https://iiif.persee.fr/b0e2cf11-597c-427d-8ac7-68bcc0acf13b/a6883790-cf5d-4e56-9a4e-25a846698ab3/res/pdf",
-    "type": "officiel"
-   },
-   {
-    "url": "https://iiif.persee.fr/b0e2cf11-597c-427d-8ac7-68bcc0acf13b/235d46c4-1ff1-4f2c-b682-f6f6a587a921/res/pdf",
-    "type": "officiel"
-   },
-   {
-    "url": "https://victorianweb.org/francais/histoire/revolution/carrier.html",
-    "type": "media"
-   }
-  ]
- },
- {
-  "id": "germinal-1795",
-  "titre": "L'insurrection du 12 germinal",
-  "date": "1795-04-01",
-  "date_fin": null,
-  "epoque": "Révolution et Empire",
-  "theme": "coup d'éclat",
-  "retentissement": 3,
-  "resume": "Les sans-culottes forcent la garde de la Convention et envahissent la salle pour réclamer du pain et la Constitution de 1793. L'Assemblée, secourue par les sections, condamne à la déportation les accusés dont la cause servait de prétexte, dont Barère, Billaud-Varenne et Collot d'Herbois.",
-  "citation": null,
-  "acteurs": [
-   {
-    "nom": "Bertrand Barère",
-    "role": "député mis en accusation",
-    "carte": "11952"
-   },
-   {
-    "nom": "Jacques-Nicolas Billaud-Varenne",
-    "role": "député mis en accusation",
-    "carte": "12237"
-   },
-   {
-    "nom": "Jean-Marie Collot d'Herbois",
-    "role": "député mis en accusation",
-    "carte": "12248"
-   }
-  ],
-  "sources": [
-   {
-    "url": "https://revolution.chnm.org/d/972",
-    "type": "media"
-   },
-   {
-    "url": "https://www.historion.iovan.net/history-french-revolution-1789-1814/chapter-x-9th-thermidor-1st-prairial-year-iii-20th-may-1795-epoc",
-    "type": "media"
-   }
-  ]
- },
- {
   "id": "systeme-metrique-1795",
   "titre": "Le système métrique",
   "date": "1795-04-07",
@@ -2355,6 +2105,44 @@
    {
     "url": "https://www.assemblee-nationale.fr/dyn/histoire-et-patrimoine/consulat-et-premier-empire/du-consulat-a-l-empire",
     "type": "officiel"
+   }
+  ]
+ },
+ {
+  "id": "sacre-napoleon-1804",
+  "titre": "Le sacre de Napoléon",
+  "date": "1804-12-02",
+  "date_fin": null,
+  "epoque": "Révolution et Empire",
+  "theme": "coup d'éclat",
+  "retentissement": 5,
+  "resume": "Le 2 décembre 1804, à Notre-Dame de Paris, Napoléon est sacré en présence du pape Pie VII, qui oint l'empereur et Joséphine. Napoléon fait de son épouse l'impératrice. La cérémonie dure environ trois heures dans le froid de décembre.",
+  "citation": null,
+  "acteurs": [
+   {
+    "nom": "Napoléon Ier",
+    "role": "empereur des Français sacré",
+    "carte": null
+   },
+   {
+    "nom": "Joséphine de Beauharnais",
+    "role": "épouse, faite impératrice pendant la cérémonie",
+    "carte": null
+   },
+   {
+    "nom": "Pie VII",
+    "role": "pape présent, qui oint l'empereur et l'impératrice",
+    "carte": null
+   }
+  ],
+  "sources": [
+   {
+    "url": "https://www.herodote.net/2_decembre_1804-evenement-18041202.php",
+    "type": "media"
+   },
+   {
+    "url": "https://www.napoleon.org/histoire-des-2-empires/dossiers-thematiques/le-sacre-de-napoleon-ier-le-2-decembre-1804-a-notre-dame/",
+    "type": "media"
    }
   ]
  },
@@ -4220,6 +4008,38 @@
    {
     "url": "https://www.assemblee-nationale.fr/dyn/histoire-et-patrimoine/troisieme-republique/l-assemblee-nationale-ratifie-le-traite-preliminaire-de-paix",
     "type": "officiel"
+   }
+  ]
+ },
+ {
+  "id": "commune-paris-1871",
+  "titre": "La Commune de Paris",
+  "date": "1871-03-18",
+  "date_fin": "1871-05-28",
+  "epoque": "IIIe République",
+  "theme": "coup d'éclat",
+  "retentissement": 5,
+  "resume": "Le 18 mars 1871, une émeute éclate à Montmartre ; Thiers renonce à la réprimer et s'enfuit à Versailles, où siège l'Assemblée nationale, élue le 8 février, à majorité monarchiste. La Commune, proclamée le 28 mars, est écrasée du 21 au 28 mai : 20 000 à 25 000 victimes selon les sources.",
+  "citation": null,
+  "acteurs": [
+   {
+    "nom": "Adolphe Thiers",
+    "role": "replié à Versailles",
+    "carte": "7032"
+   }
+  ],
+  "sources": [
+   {
+    "url": "https://www.herodote.net/18_mars_1871-evenement-18710318.php",
+    "type": "media"
+   },
+   {
+    "url": "https://www.herodote.net/histoire/evenement.php?jour=18710528",
+    "type": "media"
+   },
+   {
+    "url": "https://www.universalis.fr/encyclopedie/commune-de-paris-en-bref/",
+    "type": "media"
    }
   ]
  },
@@ -9541,6 +9361,42 @@
   ]
  },
  {
+  "id": "mai-68",
+  "titre": "Mai 68 : barricades et grève",
+  "date": "1968-05-10",
+  "date_fin": "1968-05-13",
+  "epoque": "Ve République",
+  "theme": "coup d'éclat",
+  "retentissement": 5,
+  "resume": "Dans la nuit du 10 au 11 mai 1968, une soixantaine de barricades s'élèvent à Paris ; les forces de l'ordre les dégagent à coups de grenades (367 graves hospitalisés, 468 interpellés). Le 13 mai, syndicats et étudiants défilent en grève, une grève bientôt généralisée.",
+  "citation": {
+   "texte": "10 ans ça suffit !",
+   "auteur": "Cri des manifestants, mai 1968",
+   "source": "https://www.universalis.fr/encyclopedie/mai-68/2-la-commune-etudiante/"
+  },
+  "acteurs": [
+   {
+    "nom": "Daniel Cohn-Bendit",
+    "role": "étudiant, lance l'appel à la dispersion à 5 h 30",
+    "carte": null
+   }
+  ],
+  "sources": [
+   {
+    "url": "https://www.larousse.fr/archives/journaux_annee/1968/5/dossier_mai_1968",
+    "type": "media"
+   },
+   {
+    "url": "https://www.larousse.fr/archives/journaux_annee/1968/20/dossier_mai_1968",
+    "type": "media"
+   },
+   {
+    "url": "https://www.universalis.fr/encyclopedie/mai-68/2-la-commune-etudiante/",
+    "type": "media"
+   }
+  ]
+ },
+ {
   "id": "dissolution-1968",
   "titre": "La dissolution de mai 68",
   "date": "1968-05-30",
@@ -12058,6 +11914,48 @@
   ]
  },
  {
+  "id": "chirac-elu-1995",
+  "titre": "Chirac élu président",
+  "date": "1995-05-07",
+  "date_fin": null,
+  "epoque": "Ve République",
+  "theme": "élection",
+  "retentissement": 5,
+  "resume": "Le 7 mai 1995, Jacques Chirac est élu président avec 52,64 % des suffrages face à Lionel Jospin (47,36 %), arrivé en tête au premier tour. L'abstention est de 20,33 %. Il nomme Alain Juppé Premier ministre le 17 mai.",
+  "citation": {
+   "texte": "Mes chers compatriotes, je serai le président de tous les Français.",
+   "auteur": "Jacques Chirac",
+   "source": "https://www.elysee.fr/jacques-chirac/1995/05/07/declaration-de-m-jacques-chirac-president-de-la-republique-au-soir-de-son-election-a-la-presidence-de-la-republique-paris-le-7-mai-1995"
+  },
+  "acteurs": [
+   {
+    "nom": "Jacques Chirac",
+    "role": "élu président de la République",
+    "carte": "1798"
+   },
+   {
+    "nom": "Lionel Jospin",
+    "role": "candidat socialiste battu au second tour",
+    "carte": "4052"
+   },
+   {
+    "nom": "Alain Juppé",
+    "role": "nommé Premier ministre le 17 mai",
+    "carte": "4104"
+   }
+  ],
+  "sources": [
+   {
+    "url": "https://www.universalis.fr/evenement/2-24-mai-1995-election-de-jacques-chirac-a-la-presidence-de-la-republique-et-nomination-d-alain-juppe-au-poste-de-premier-ministre/",
+    "type": "media"
+   },
+   {
+    "url": "https://www.elysee.fr/jacques-chirac/1995/05/07/declaration-de-m-jacques-chirac-president-de-la-republique-au-soir-de-son-election-a-la-presidence-de-la-republique-paris-le-7-mai-1995",
+    "type": "officiel"
+   }
+  ]
+ },
+ {
   "id": "vel-dhiv-chirac-1995",
   "titre": "Chirac et le Vel d'Hiv",
   "date": "1995-07-16",
@@ -13156,6 +13054,40 @@
   ]
  },
  {
+  "id": "sarkozy-elu-2007",
+  "titre": "Sarkozy élu président",
+  "date": "2007-05-06",
+  "date_fin": null,
+  "epoque": "Ve République",
+  "theme": "élection",
+  "retentissement": 5,
+  "resume": "Le 6 mai 2007, Nicolas Sarkozy remporte le second tour face à Ségolène Royal : 18 983 138 voix contre 16 790 440, sur 35 773 578 suffrages exprimés. Le Conseil constitutionnel le proclame président de la République le 10 mai.",
+  "citation": null,
+  "acteurs": [
+   {
+    "nom": "Nicolas Sarkozy",
+    "role": "élu président de la République",
+    "carte": "6289"
+   },
+   {
+    "nom": "Ségolène Royal",
+    "role": "candidate battue au second tour",
+    "carte": "6174"
+   },
+   {
+    "nom": "Jacques Chirac",
+    "role": "président sortant",
+    "carte": "1798"
+   }
+  ],
+  "sources": [
+   {
+    "url": "https://www.elysee.fr/la-presidence/decision-du-10-mai-2007-portant-proclamation-des-resultats-de-l-election-du-president-de-la-republique",
+    "type": "officiel"
+   }
+  ]
+ },
+ {
   "id": "casse-toi-2008",
   "titre": "« Casse-toi, pauvre con »",
   "date": "2008-02-23",
@@ -13658,6 +13590,40 @@
    },
    {
     "url": "https://www.ozap.com/actu/-moi-president-de-la-republique-francois-hollande-remercie-laurence-ferrari/441091",
+    "type": "media"
+   }
+  ]
+ },
+ {
+  "id": "hollande-elu-2012",
+  "titre": "Hollande élu président",
+  "date": "2012-05-06",
+  "date_fin": null,
+  "epoque": "Ve République",
+  "theme": "élection",
+  "retentissement": 5,
+  "resume": "Le 6 mai 2012, François Hollande l'emporte au second tour avec 51,62 % des suffrages contre 48,38 % à Nicolas Sarkozy. La passation des pouvoirs a lieu le 15 mai, jour où il nomme Jean-Marc Ayrault Premier ministre.",
+  "citation": null,
+  "acteurs": [
+   {
+    "nom": "François Hollande",
+    "role": "élu président de la République",
+    "carte": "3853"
+   },
+   {
+    "nom": "Nicolas Sarkozy",
+    "role": "battu au second tour",
+    "carte": "6289"
+   },
+   {
+    "nom": "Jean-Marc Ayrault",
+    "role": "nommé Premier ministre le 15 mai",
+    "carte": "306"
+   }
+  ],
+  "sources": [
+   {
+    "url": "https://www.universalis.fr/evenement/1er-17-mai-2012-election-de-francois-hollande-a-la-presidence-de-la-republique-et-nomination-de-jean-marc-ayrault-au-poste-de-premier-ministre/",
     "type": "media"
    }
   ]
@@ -14243,6 +14209,39 @@
    },
    {
     "url": "https://fr.aleteia.org/2014/10/08/madame-le-president-cest-cher-larticle/",
+    "type": "media"
+   }
+  ]
+ },
+ {
+  "id": "marche-republicaine-2015",
+  "titre": "La marche républicaine",
+  "date": "2015-01-11",
+  "date_fin": null,
+  "epoque": "Ve République",
+  "theme": "record",
+  "retentissement": 5,
+  "resume": "Le 11 janvier 2015, après les attentats des 7 au 9 janvier (17 victimes), au moins 3,7 millions de personnes défilent en France selon le ministère de l'Intérieur, la plus grande mobilisation jamais recensée. À Paris, les dirigeants d'une cinquantaine de pays se joignent à François Hollande.",
+  "citation": null,
+  "acteurs": [
+   {
+    "nom": "François Hollande",
+    "role": "a défilé à Paris",
+    "carte": "3853"
+   },
+   {
+    "nom": "Manuel Valls",
+    "role": "présent au rassemblement de Paris",
+    "carte": "10782"
+   }
+  ],
+  "sources": [
+   {
+    "url": "https://www.dhnet.be/actu/monde/2015/01/11/37-millions-de-marcheurs-aucun-incident-une-ville-unie-pour-la-liberte-photos-et-videos-CYUYUISFX5BV7CIZVHR5ZQXNAU/",
+    "type": "media"
+   },
+   {
+    "url": "https://www.livreshebdo.fr/article/4-millions-de-je-suis-charlie",
     "type": "media"
    }
   ]
@@ -14929,6 +14928,42 @@
    },
    {
     "url": "https://lcp.fr/actualites/la-republique-c-est-moi-jean-luc-melenchon-assume-un-moment-d-audace-deraisonnable",
+    "type": "media"
+   }
+  ]
+ },
+ {
+  "id": "gilets-jaunes-2018",
+  "titre": "Les gilets jaunes",
+  "date": "2018-11-17",
+  "date_fin": "2018-12-10",
+  "epoque": "Ve République",
+  "theme": "coup d'éclat",
+  "retentissement": 5,
+  "resume": "Né sur les réseaux sociaux contre la hausse des taxes sur les carburants, le mouvement descend dans la rue le 17 novembre 2018 : 283 000 personnes selon l'Intérieur. Le 10 décembre, Emmanuel Macron juge la colère « juste à bien des égards » et annonce des mesures sociales.",
+  "citation": {
+   "texte": "juste à bien des égards",
+   "auteur": "Emmanuel Macron, à propos de la colère des gilets jaunes, le 10 décembre 2018",
+   "source": "https://www.dhnet.be/actu/monde/2018/12/10/emmanuel-macron-comprend-la-colere-des-gilets-jaunes-et-prend-plusieurs-decisions-dont-laugmentation-du-smic-YS5JOGH4RBDUFLSLWNLJLBNX5U/"
+  },
+  "acteurs": [
+   {
+    "nom": "Emmanuel Macron",
+    "role": "auteur de l'allocution du 10 décembre",
+    "carte": "G-macron-emmanuel"
+   }
+  ],
+  "sources": [
+   {
+    "url": "https://www.lavenir.net/actu/societe/2018/11/17/mobilisation-des-gilets-jaunes-283000-participants-un-mort-des-interpellations-et-des-heurts-LXNMNM5SJBGXJMHT2ZOIOJ7PEM/",
+    "type": "media"
+   },
+   {
+    "url": "https://www.universalis.fr/evenement/14-30-novembre-2018-mouvement-des-gilets-jaunes/",
+    "type": "media"
+   },
+   {
+    "url": "https://www.dhnet.be/actu/monde/2018/12/10/emmanuel-macron-comprend-la-colere-des-gilets-jaunes-et-prend-plusieurs-decisions-dont-laugmentation-du-smic-YS5JOGH4RBDUFLSLWNLJLBNX5U/",
     "type": "media"
    }
   ]
