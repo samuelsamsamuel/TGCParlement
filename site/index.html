@@ -231,26 +231,43 @@ main{max-width:1120px;margin:0 auto;padding:1.5rem 1rem 4rem}
 .r-unique .recto::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:linear-gradient(115deg,transparent 30%,rgba(255,246,214,.6) 45%,transparent 60%);background-size:250% 100%;background-repeat:no-repeat;animation:reflet 6s ease-in-out infinite}
 .r-legendaire.retournee .recto{box-shadow:0 0 0 1px #f1dc9a,0 0 40px rgba(201,162,74,.6),0 10px 26px rgba(0,0,0,.4)}
 .r-legendaire .recto::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:linear-gradient(115deg,transparent 35%,rgba(255,255,255,.35) 45%,transparent 55%);background-size:250% 100%;background-repeat:no-repeat;animation:reflet 11s ease-in-out infinite}
-/* Cartes évènements (demande de l'utilisateur, novembre 2026) : papier journal et encre, trois niveaux de retentissement */
-.r-evenement{--cadre:linear-gradient(145deg,#4a4038,#221c18);--sur-cadre:#f3ead8;--rarete-texte:#4a4038}
-.r-evenement-marquant{--cadre:linear-gradient(145deg,#2f3b55,#121a2c 60%,#55627f);--sur-cadre:#f3ead8;--rarete-texte:#2f3b55}
-.r-evenement-historique{--cadre:linear-gradient(145deg,#6e1424,#2b060d 55%,#c9a24a);--sur-cadre:#f6e7b0;--rarete-texte:#6e1424}
-.r-evenement-marquant.retournee .recto{box-shadow:0 0 0 1px #c8cfdf,0 0 36px rgba(85,98,127,.6),0 10px 26px rgba(0,0,0,.4)}
-.r-evenement-historique.retournee .recto,.r-evenement-historique.retournee .verso{box-shadow:0 0 0 2px #c9a24a,0 0 45px rgba(201,162,74,.6),0 0 90px rgba(110,20,36,.5)}
-.r-evenement-historique .recto::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:linear-gradient(115deg,transparent 30%,rgba(255,246,214,.55) 45%,transparent 60%);background-size:250% 100%;background-repeat:no-repeat;animation:reflet 7s ease-in-out infinite}
-.evt .recto .interieur,.evt .verso .interieur{background:#f4ecdc}
-.evt .portrait{flex:0 0 38%;display:flex;background:linear-gradient(#e7dcc6,#cdbd9f)}
-.evt .portrait .vignettes{display:flex;width:100%;height:100%}
-.evt .portrait .vignettes img{flex:1;min-width:0;object-fit:cover;object-position:50% 20%;filter:sepia(.35) grayscale(.2)}
-.evt .portrait .annee{position:absolute;inset:0;display:grid;place-items:center;font:700 2.9em var(--serif);color:rgba(34,28,24,.55);letter-spacing:.04em}
-.evt .portrait .vignettes ~ .annee{inset:auto .3em .2em auto;font-size:1.05em;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.8)}
-.evt .date-evt{font:600 .62em var(--serif);padding:.3em .55em;color:var(--rarete-texte);border-bottom:1px solid #d8ccb8;display:flex;justify-content:space-between;gap:.5em}
-.evt .resume{font:.6em/1.35 var(--serif);margin:0;color:#2a221d}
-.evt .niveau{letter-spacing:.08em;color:#c9a24a}
-.evt blockquote{margin:.3em 0 .5em;padding:.3em .5em;border-left:.2em solid var(--rarete-texte);font:italic .6em/1.35 var(--serif);color:#2a221d}
-.evt blockquote cite{display:block;font-style:normal;font-size:.9em;color:#6b5f55;margin-top:.2em}
-.evt .acteurs li.possede b::after{content:" ✓";color:#3e6447}
-.evt .verso .corps a{color:var(--rarete-texte);text-decoration:underline}
+/* Cartes évènements (demande de l'utilisateur, novembre 2026) : illustration en pleine carte, « fresque dorée » (double
+   liseré d'or, reflet holographique), verso sombre avec citation et explication ; mêmes cadres pour les trois niveaux,
+   distingués par leurs étoiles ; tailles en em (1em = 6,6 % de la largeur de la carte) */
+.r-evenement,.r-evenement-marquant,.r-evenement-historique{--cadre:#140a06;--sur-cadre:#fbe7ad;--rarete-texte:#e6c56a}
+.evt .recto,.evt .verso{padding:0;background:#140a06;overflow:hidden;color:#f6ecd6}
+.evt .recto::before,.evt .verso::before{content:"";position:absolute;inset:0;border-radius:inherit;z-index:4;pointer-events:none;
+  box-shadow:inset 0 0 0 .14em #f5dc8e,inset 0 0 0 .38em #6b4b12,inset 0 0 0 .5em #f5dc8e}
+.evt .recto::after,.evt .verso::after{content:"";position:absolute;inset:.55em;border:1px solid rgba(255,236,180,.7);border-radius:.35em;z-index:4;pointer-events:none;animation:none;background:none}
+.evt.retournee .recto{box-shadow:0 0 2.6em rgba(230,197,106,.55),0 10px 26px rgba(0,0,0,.45)}
+.evt .art{position:absolute;inset:0;background:#2a1a10 center/cover no-repeat}
+.evt .art img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.evt .art .annee{position:absolute;inset:0;display:grid;place-items:center;font:700 3.2em var(--serif);color:rgba(230,197,106,.45)}
+.evt .reflet{position:absolute;inset:0;z-index:2;pointer-events:none;mix-blend-mode:overlay;background:linear-gradient(115deg,transparent 30%,rgba(255,240,190,.85) 45%,rgba(140,220,255,.5) 50%,rgba(255,180,230,.5) 55%,transparent 70%);background-size:260% 100%;background-position:130% 0;animation:balaye 5s ease-in-out infinite}
+.r-evenement .reflet{animation-duration:9s}.r-evenement-marquant .reflet{animation-duration:7s}
+@keyframes balaye{0%{background-position:130% 0}45%,100%{background-position:-30% 0}}
+.evt .bandeau{position:absolute;left:0;right:0;bottom:0;z-index:3;padding:2.6em .95em .85em;background:linear-gradient(transparent,rgba(20,8,4,.92) 45%)}
+.evt .bandeau h3{margin:0;font:700 1.27em/1.08 var(--serif);color:#fbe7ad;text-shadow:0 2px 8px #000}
+.evt .bandeau .meta{display:flex;justify-content:space-between;align-items:center;margin-top:.35em;font:.66em var(--serif);letter-spacing:.14em;text-transform:uppercase;color:#e8cf8a}
+.evt .bandeau .neuve{color:#fff;background:#b8293a;border-radius:1em;padding:0 .5em;letter-spacing:.04em}
+.evt .recto .etoile{z-index:5}
+.evt .exemplaires{position:absolute;top:.9em;right:.9em;z-index:5;font:600 .7em sans-serif;color:#2b1a08;background:#e6c56a;border-radius:1em;padding:.1em .55em}
+.evt .verso .fond{position:absolute;inset:-1.5em;background:center/cover no-repeat;filter:blur(1em) brightness(.24) saturate(.7)}
+.evt .verso .contenu{position:absolute;inset:.6em;z-index:3;display:flex;flex-direction:column}
+.evt .verso .tete{text-align:center;padding:.6em .8em .45em;background:linear-gradient(180deg,color-mix(in srgb,var(--ep) 75%,transparent),transparent);border-radius:.3em .3em 0 0}
+.evt .verso .tete::after{content:"";display:block;height:.5em;margin:.45em auto 0;width:60%;background:radial-gradient(circle,#e6c56a .15em,transparent .18em) center/.55em .55em no-repeat,linear-gradient(90deg,transparent,#e6c56a 30%,#e6c56a 70%,transparent) center/100% 1px no-repeat}
+.evt .verso .t{font:700 .95em/1.1 var(--serif);color:#fbe7ad}
+.evt .verso .m{font:.55em var(--serif);letter-spacing:.12em;text-transform:uppercase;color:#e8cf8a;margin-top:.3em}
+.evt .verso .corps{flex:1;min-height:0;overflow-y:auto;padding:.3em .75em .2em;scrollbar-width:thin}
+.evt .verso blockquote{margin:0 0 .55em;padding:.5em .65em .45em;border-radius:.35em;background:linear-gradient(180deg,rgba(245,220,142,.13),rgba(245,220,142,.05));box-shadow:inset 0 0 0 1px rgba(245,220,142,.28);font:italic .66em/1.36 var(--serif);color:#fff}
+.evt .verso cite{display:block;text-align:right;font-style:normal;font-size:.88em;color:#e6c56a;margin-top:.25em;letter-spacing:.04em}
+.evt .verso .resume{margin:0;font:.62em/1.42 var(--serif);color:#efe4cf;text-align:justify;hyphens:auto}
+.evt .verso .resume::first-letter{float:left;font-size:2.65em;line-height:.9;margin:.06em .15em 0 0;color:#e6c56a;font-weight:700}
+.evt .verso .acteurs{display:flex;flex-wrap:wrap;justify-content:center;gap:.25em;padding:.3em .6em .4em}
+.evt .verso .puce{font:600 .54em var(--serif);padding:.2em .6em;border-radius:1em;border:1px solid rgba(230,197,106,.6);color:#e8d9b5;background:rgba(0,0,0,.3)}
+.evt .verso .puce.possede{background:#e6c56a;color:#2b1a08;border-color:#e6c56a}
+.evt .verso .pied{display:flex;justify-content:center;gap:.4em;padding:.4em .6em .55em;font:italic .5em var(--serif);color:#cdbb9a;border-top:1px solid rgba(230,197,106,.25);white-space:nowrap;overflow:hidden}
+.evt .verso .pied a{color:#cdbb9a}
 /* Bande de lumière à 45 % d'un dégradé large de 2,5 cartes : hors de la carte à 120 % comme à -20 % */
 @keyframes reflet{0%{background-position:120% 0}14%,100%{background-position:-20% 0}}
 
@@ -1279,35 +1296,37 @@ function dateEvt(t){
   const mois = MOIS[Number(m) - 1] || "";
   return j ? `${Number(j) === 1 ? "1er" : Number(j)} ${mois} ${a}` : `${mois} ${a}`;
 }
+// Période d'un évènement : « 17-18 septembre 1981 », « 28 juin - 2 juillet 1940 », sinon deux dates complètes
+function periodeEvt(d, f){
+  if (!f || f === d) return dateEvt(d);
+  const [a1, m1, j1] = String(d).split("-"), [a2, m2, j2] = String(f).split("-");
+  if (j1 && j2 && a1 === a2 && m1 === m2) return `${Number(j1) === 1 ? "1er" : Number(j1)}-${Number(j2)} ${MOIS[Number(m1) - 1]} ${a1}`;
+  if (j1 && j2 && a1 === a2) return `${dateEvt(d).replace(" " + a1, "")} - ${dateEvt(f)}`;
+  return `${dateEvt(d)} - ${dateEvt(f)}`;
+}
 function htmlEvenement(c, {retournee=true, neuve=false, classe="", id="", etoile=true}={}){
   const n = etat.possedees[c.id] || 0, e = EVENEMENTS[c.id] || [];
-  const [date, fin, , resume, citation, sources = [], acteurs = [], credit] = e;
-  const src = srcPortrait(c);
-  const liees = acteurs.map(a => a[2] && cat.parId[a[2]]).filter(Boolean);
-  const vignettes = liees.map(x => srcPortrait(x)).filter(Boolean).slice(0, 3);
-  const image = src ? `<img src="${echapper(src)}" alt="" loading="lazy" decoding="async"${croise(src) ? ' crossorigin="anonymous"' : ""} style="width:100%;height:100%;object-fit:cover" onerror="this.remove()">`
-    : vignettes.length ? `<div class="vignettes">${vignettes.map(v => `<img src="${echapper(v)}" alt="" loading="lazy" decoding="async"${croise(v) ? ' crossorigin="anonymous"' : ""} onerror="this.remove()">`).join("")}</div>` : "";
-  const quand = fin && fin !== date ? `${dateEvt(date)} – ${dateEvt(fin)}` : dateEvt(date);
-  const pied = `<div class="pied"><span class="niveau">${NIVEAU_EVT[c.rarete] || ""}</span>${neuve?'<span class="neuve">Nouvelle</span>':(n>1?`<span class="double${estGardee(c.id) ? " gardee" : ""}">×${n}${estGardee(c.id) ? " · gardée" : ""}</span>`:"")}</div>`;
-  const hote = u => { try { return new URL(u).hostname.replace(/^www\d?\./, ""); } catch (_) { return "source"; } };
+  const [date, fin, , resume, citation, sources = [], acteurs = []] = e;
+  const image = `evenements/${String(c.id).slice(2)}.webp`;
+  const quand = periodeEvt(date, fin);
+  const hote = u => { try { return new URL(u).hostname.replace(/^(www\d?|archives)\./, ""); } catch (_) { return "source"; } };
+  const hotes = [...new Set(sources.map(([u]) => hote(u)))].slice(0, 2);
   return `<div class="carte evt r-${c.rarete} ${retournee?"retournee statique":""} ${classe}" data-id="${c.id}" ${id?`id="${id}"`:""} style="--ep:${EPOQUES[c.epoque]||EPOQUES[""]}">
     <div class="face dos"><span>Hémicycle</span></div>
-    <div class="face recto"><div class="interieur">
-      <div class="entete"><h3 class="nom${c.nom.length>34?" tres-long":c.nom.length>22?" long":""}">${echapper(c.nom)}</h3><span class="rarete">${LIBELLES[c.rarete]}</span></div>
-      <div class="portrait">${image}<span class="annee">${echapper(String(date || "").slice(0, 4))}</span>${etoile && n ? htmlEtoile(c.id) : ""}</div>
-      <div class="date-evt"><span>${echapper(quand)}</span>${fin && fin !== date ? "" : `<span>${echapper(c.epoque)}</span>`}</div>
-      <div class="corps"><p class="resume">${echapper(resume || "")}</p></div>
-      ${pied}
-    </div></div>
-    <div class="face verso"><div class="interieur">
-      <p class="titre-verso">${echapper(c.nom)}</p>
+    <div class="face recto">
+      <div class="art"><span class="annee">${echapper(String(date || "").slice(0, 4))}</span><img src="${image}" alt="" loading="lazy" decoding="async" onerror="this.remove()"></div>
+      <div class="reflet"></div>
+      ${etoile && n ? htmlEtoile(c.id) : ""}${n > 1 ? `<span class="exemplaires">×${n}${estGardee(c.id) ? " · gardée" : ""}</span>` : ""}
+      <div class="bandeau"><h3>${echapper(c.nom)}</h3><div class="meta"><span>${echapper(quand)}</span>${neuve ? '<span class="neuve">Nouvelle</span>' : ""}<span>${NIVEAU_EVT[c.rarete] || ""}</span></div></div>
+    </div>
+    <div class="face verso"><div class="fond" style="background-image:url('${image}')"></div><div class="contenu">
+      <div class="tete"><div class="t">${echapper(c.nom)}</div><div class="m">${echapper(quand)} · ${echapper(c.epoque)}</div></div>
       <div class="corps">
         ${citation ? `<blockquote>« ${echapper(citation[0])} »${citation[1] ? `<cite>${echapper(citation[1])}</cite>` : ""}</blockquote>` : ""}
-        ${acteurs.length ? `<h4>Acteurs</h4><ul class="lignes acteurs">${acteurs.map(a => `<li class="${a[2] && etat.possedees[a[2]] ? "possede" : ""}"><b>${echapper(a[0])}</b>${a[1] ? `<span>${echapper(a[1])}</span>` : ""}</li>`).join("")}</ul>` : ""}
-        <h4>Sources</h4><ul class="lignes">${sources.map(([u]) => `<li><a href="${echapper(u)}" target="_blank" rel="noopener">${echapper(hote(u))}</a></li>`).join("")}</ul>
+        <p class="resume">${echapper(resume || "")}</p>
       </div>
-      <div class="lien">${c.portrait ? `Image : <a href="https://commons.wikimedia.org/wiki/File:${encodeURIComponent(c.portrait)}" target="_blank" rel="noopener">${echapper([credit && credit[0], credit && credit[1]].filter(Boolean).join(", ") || "Wikimedia Commons")}</a>` : ""}</div>
-      ${pied}
+      ${acteurs.length ? `<div class="acteurs">${acteurs.map(a => { const p = a[2] && etat.possedees[a[2]]; return `<span class="puce${p ? " possede" : ""}">${p ? "✓ " : ""}${echapper(a[0])}</span>`; }).join("")}</div>` : ""}
+      <div class="pied">${hotes.map((h, k) => `<a href="${echapper(sources.find(([u]) => hote(u) === h)[0])}" target="_blank" rel="noopener">${echapper(h)}</a>`).join(" · ")} · Illustration</div>
     </div></div></div>`;
 }
 const CHAMBRES = {"A":"Assemblée","S":"Sénat","G":"Gouvernement"};
