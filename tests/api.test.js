@@ -18,6 +18,7 @@ function client(){
   };
   return a;
 }
+const baseD1 = c => require("child_process").execSync(`cd ${require("path").join(__dirname, "..")} && ${process.env.WR} d1 execute hemicycle --local --persist-to ${process.env.ETAT} --json --command "${c}"`).toString();
 const preuve = c => require("crypto").createHash("sha256").update(c).digest("hex");
 (async () => {
   const suffixe = Date.now().toString(36).slice(-5);
@@ -70,8 +71,15 @@ const preuve = c => require("crypto").createHash("sha256").update(c).digest("hex
   r = await A("moi");
   assert.strictEqual(R.paquetsDisponibles(r.d.etat).reserve, 0);
   assert.ok(R.paquetsDisponibles(r.d.etat).prochain > Date.now());
-  const total = Object.values(r.d.etat.possedees).reduce((a, b) => a + b, 0);
+  // sans les évènements, sixième carte d'un paquet sur 70
+  const total = Object.entries(r.d.etat.possedees).filter(([id]) => !id.startsWith("E-")).reduce((a, [, n]) => a + n, 0);
   assert.strictEqual(total, 2 + R.CARTES_PAR_PAQUET * R.RESERVE_MAX);
+  // Paquet évènement offert (colonne paquets_evt) : ouvert même réserve vide, un évènement en sixième carte
+  baseD1(`UPDATE joueurs SET paquets_evt = 1 WHERE pseudo = 'alice${suffixe}'`);
+  r = await A("paquet", {}); assert.strictEqual(r.statut, 200, JSON.stringify(r.d));
+  assert.strictEqual(r.d.resultat.origine, "evenement"); assert.strictEqual(r.d.resultat.tirage.length, 6);
+  assert.ok(String(r.d.resultat.tirage[5]).startsWith("E-")); assert.strictEqual(r.d.etat.paquetsEvenement, 0);
+  assert.strictEqual(JSON.parse(baseD1(`SELECT paquets_evt FROM joueurs WHERE pseudo = 'alice${suffixe}'`))[0].results[0].paquets_evt, 0);
   // Bob : compte sans reprise
   r = await Bc("inscription", {pseudo: "bob" + suffixe, preuve: preuve("b")}, {"cf-connecting-ip": "10.0.0." + (++ip)});
   assert.strictEqual(r.statut, 201);

@@ -20,7 +20,11 @@ sys.path.insert(0, os.path.dirname(__file__))
 from cartes import nom_famille_sycomore  # noqa: E402
 
 # « unique » en dernier : les indices des raretés déjà publiées ne changent pas
-RARETES = ["mythique", "legendaire", "epique", "rare", "peu-commune", "commune", "hors-categorie", "unique"]
+# Évènements (demande de l'utilisateur, novembre 2026) : ajoutés en dernier, pour ne pas décaler les indices publiés
+RARETES = ["mythique", "legendaire", "epique", "rare", "peu-commune", "commune", "hors-categorie", "unique",
+           "evenement", "evenement-marquant", "evenement-historique"]
+# Rareté d'une carte évènement selon le retentissement noté (3, 4 ou 5 sur 5)
+RARETE_EVENEMENT = {3: "evenement", 4: "evenement-marquant", 5: "evenement-historique"}
 
 
 NOMS_USAGE = {}
@@ -183,6 +187,40 @@ def source(c):
     return c.get("source")
 
 
+def _lire_json(chemin):
+    with open(chemin, encoding="utf-8") as f:
+        return json.load(f)
+
+
+def cartes_evenements(sortie):
+    """Cartes évènements (data/evenements/evenements.json, liste close vérifiée source par source ; illustrations libres de
+    Commons dans data/evenements/illustrations.json, licence relue par le workflow). Ajoute à `sortie` une carte par
+    évènement, au format des autres (identifiant « E-… », titre à la place du nom, rareté selon le retentissement), et
+    renvoie la table `evenements` de jeu.json : identifiant -> [date, date de fin, thème, résumé, citation [texte, auteur,
+    source] ou null, sources [[adresse, type]], acteurs [[nom, rôle, carte]], crédit de l'image [auteur, licence] ou null]."""
+    chemin = os.path.join("data", "evenements", "evenements.json")
+    if not os.path.exists(chemin):
+        return {}
+    illustrations = _lire_json(os.path.join("data", "evenements", "illustrations.json")) if os.path.exists(os.path.join("data", "evenements", "illustrations.json")) else {}
+    ids = {str(x[0]) for x in sortie}
+    table = {}
+    for e in _lire_json(chemin):
+        cle = "E-" + e["id"]
+        an = int(e["date"][:4])
+        fin = int(e["date_fin"][:4]) if e.get("date_fin") else an
+        ill = illustrations.get(e["id"]) if isinstance(illustrations.get(e["id"]), dict) else None
+        fichier = ill["fichier"] if ill else None
+        sortie.append([cle, e["titre"], RARETES.index(RARETE_EVENEMENT[e["retentissement"]]), e["retentissement"], e["epoque"], 0, an, fin,
+                       e["sources"][0]["url"], fichier, [], "", None, [], [], None, vignette(fichier) if fichier else None, [], []])
+        cit = e.get("citation")
+        table[cle] = [e["date"], e.get("date_fin"), e.get("theme"), e["resume"],
+                      [cit.get("texte"), cit.get("auteur"), cit.get("source")] if cit else None,
+                      [[s["url"], s.get("type")] for s in e["sources"]],
+                      [[a["nom"], a.get("role"), a["carte"] if a.get("carte") in ids else None] for a in e["acteurs"]],
+                      [ill.get("auteur"), ill.get("licence")] if ill else None]
+    return table
+
+
 def main():
     with open(os.path.join("data", "cartes.json"), encoding="utf-8") as f:
         cartes = json.load(f)
@@ -299,10 +337,11 @@ def main():
             if x[16] and "wikimedia.org" in x[16]:
                 x[16] = None
             x[9] = None
+    evenements = cartes_evenements(sortie)
     utilises = {x[9] for x in sortie if x[9]}
     cadrages = {k: v for k, v in cadrages.items() if k in utilises and isinstance(v, list) and len(v) == 3}
     with open(os.path.join("site", "jeu.json"), "w", encoding="utf-8") as f:
-        json.dump({"maj": jour, "raretes": RARETES, "assemblees": assemblees, "commissions": commissions, "cadrages": cadrages, "cartes": sortie}, f, ensure_ascii=False, separators=(",", ":"))
+        json.dump({"maj": jour, "raretes": RARETES, "assemblees": assemblees, "commissions": commissions, "cadrages": cadrages, "evenements": evenements, "cartes": sortie}, f, ensure_ascii=False, separators=(",", ":"))
     with open(os.path.join("site", "maj.json"), "w", encoding="utf-8") as f:
         json.dump({"maj": jour}, f)
     print(f"Cartes avec portrait : {sum(1 for x in sortie if x[9] or x[16])} (dont Sycomore : {sum(1 for x in sortie if x[16] and 'sycomore' in x[16])})")

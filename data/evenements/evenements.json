@@ -48,7 +48,7 @@
   "epoque": "Révolution et Empire",
   "theme": "première",
   "retentissement": 5,
-  "resume": "Après deux jours de débat entre Sieyès, Mirabeau et Bergasse, la motion de Sieyès l'emporte par 491 voix contre 90 : le tiers état, rejoint par des curés, se constitue en Assemblée nationale, nom proposé par Legrand. Elle autorise aussitôt, à titre provisoire, la perception des impôts.",
+  "resume": "Après deux jours de débat entre Sieyès, Mirabeau et Bergasse, la motion de Sieyès l'emporte par 491 voix contre 90 : le tiers état, rejoint par des curés, se constitue en Assemblée nationale, nom proposé par Legrand. Elle autorise aussitôt, à titre provisoire, la perception des impôts.",
   "citation": null,
   "acteurs": [
    {
@@ -156,6 +156,44 @@
    {
     "url": "https://www2.assemblee-nationale.fr/15/evenements/2019/la-revolution-s-affiche/des-etats-generaux-a-l-assemblee-nationale-juin-1789-octobre-1791",
     "type": "officiel"
+   }
+  ]
+ },
+ {
+  "id": "prise-bastille-1789",
+  "titre": "La prise de la Bastille",
+  "date": "1789-07-14",
+  "date_fin": null,
+  "epoque": "Révolution et Empire",
+  "theme": "coup d'éclat",
+  "retentissement": 5,
+  "resume": "Le 14 juillet 1789, la rumeur court que le roi veut disperser par la force les députés réunis à Versailles. La foule prend des fusils aux Invalides, puis la Bastille, où l'on comptait à peine sept prisonniers. Le roi rappelle Necker le 16 juillet.",
+  "citation": null,
+  "acteurs": [
+   {
+    "nom": "Louis XVI",
+    "role": "roi, dont la rumeur dit qu'il veut disperser les députés de Versailles",
+    "carte": null
+   },
+   {
+    "nom": "Jacques Necker",
+    "role": "ministre rappelé par le roi le 16 juillet",
+    "carte": null
+   },
+   {
+    "nom": "De Launay",
+    "role": "gouverneur de la Bastille, massacré",
+    "carte": null
+   }
+  ],
+  "sources": [
+   {
+    "url": "https://www.herodote.net/14_juillet_1789-evenement-17890714.php",
+    "type": "media"
+   },
+   {
+    "url": "https://www.universalis.fr/encyclopedie/quatorze-juillet-1789/",
+    "type": "media"
    }
   ]
  },
@@ -331,7 +369,7 @@
   "epoque": "Révolution et Empire",
   "theme": "première",
   "retentissement": 4,
-  "resume": "Proposée par Talleyrand, évêque d'Autun, le 10 octobre, la mesure est votée le 2 novembre 1789 par 568 voix à l'appel nominal : tous les biens ecclésiastiques sont mis à la disposition de la Nation, qui prend à sa charge le culte, ses ministres et le soulagement des pauvres.",
+  "resume": "Proposée par Talleyrand, évêque d'Autun, le 10 octobre, la mesure est votée le 2 novembre 1789 par 568 voix à l'appel nominal : tous les biens ecclésiastiques sont mis à la disposition de la Nation, qui prend à sa charge le culte, ses ministres et le soulagement des pauvres.",
   "citation": null,
   "acteurs": [
    {
@@ -363,7 +401,7 @@
   "epoque": "Révolution et Empire",
   "theme": "première",
   "retentissement": 4,
-  "resume": "Pour payer les dettes de l'État, l'Assemblée crée une caisse de l'extraordinaire et met en vente des domaines de la Couronne. Elle émet des assignats de 1 000 livres portant intérêt à 5 %, gagés sur les biens nationalisés. Bergasse proteste contre ces « assignats-monnaie ».",
+  "resume": "Pour payer les dettes de l'État, l'Assemblée crée une caisse de l'extraordinaire et met en vente des domaines de la Couronne. Elle émet des assignats de 1 000 livres portant intérêt à 5 %, gagés sur les biens nationalisés. Bergasse proteste contre ces « assignats-monnaie ».",
   "citation": null,
   "acteurs": [
    {
@@ -432,7 +470,7 @@
   "epoque": "Révolution et Empire",
   "theme": "première",
   "retentissement": 4,
-  "resume": "Sur une motion de Lambel, appuyée par Lameth et La Fayette, l'Assemblée abolit pour toujours la noblesse héréditaire. Disparaissent les titres de prince, duc, comte, marquis ou baron, les livrées et les armoiries : chacun ne portera plus que son vrai nom de famille.",
+  "resume": "Sur une motion de Lambel, appuyée par Lameth et La Fayette, l'Assemblée abolit pour toujours la noblesse héréditaire. Disparaissent les titres de prince, duc, comte, marquis ou baron, les livrées et les armoiries : chacun ne portera plus que son vrai nom de famille.",
   "citation": null,
   "acteurs": [
    {
@@ -506,7 +544,7 @@
   "epoque": "Révolution et Empire",
   "theme": "première",
   "retentissement": 4,
-  "resume": "Mirabeau meurt le 2 avril 1791. Deux jours plus tard, l'Assemblée décide que l'église Sainte-Geneviève recevra les cendres des grands hommes et l'en juge digne le premier, sous l'inscription « Aux grands hommes, la Patrie reconnaissante ». Il en sera expulsé en 1794.",
+  "resume": "Mirabeau meurt le 2 avril 1791. Deux jours plus tard, l'Assemblée décide que l'église Sainte-Geneviève recevra les cendres des grands hommes et l'en juge digne le premier, sous l'inscription « Aux grands hommes, la Patrie reconnaissante ». Il en sera expulsé en 1794.",
   "citation": null,
   "acteurs": [
    {
@@ -535,34 +573,6 @@
   ]
  },
  {
-  "id": "non-reeligibilite-1791",
-  "titre": "Les constituants se rendent inéligibles",
-  "date": "1791-05-16",
-  "date_fin": null,
-  "epoque": "Révolution et Empire",
-  "theme": "coup d'éclat",
-  "retentissement": 3,
-  "resume": "Sur la motion de Robespierre, l'Assemblée décide à la presque unanimité que ses membres ne pourront être réélus à la prochaine législature. La Législative, réunie le 1er octobre 1791, ne comptera ainsi que des novices.",
-  "citation": null,
-  "acteurs": [
-   {
-    "nom": "Maximilien de Robespierre",
-    "role": "député, auteur de la motion",
-    "carte": "11798"
-   }
-  ],
-  "sources": [
-   {
-    "url": "https://iiif.persee.fr/b0e2cf11-597c-427d-8ac7-68bcc0acf13b/279b573c-84a8-486e-af89-0736fa7d8f01/res/pdf",
-    "type": "officiel"
-   },
-   {
-    "url": "https://www.herodote.net/1er_octobre_1791-evenement-17911001.php",
-    "type": "media"
-   }
-  ]
- },
- {
   "id": "robespierre-peine-mort-1791",
   "titre": "Robespierre contre la peine de mort",
   "date": "1791-05-30",
@@ -570,7 +580,7 @@
   "epoque": "Révolution et Empire",
   "theme": "coup d'éclat",
   "retentissement": 4,
-  "resume": "Au débat sur le Code pénal, Le Peletier de Saint-Fargeau défend l'abolition de la peine de mort ; Robespierre la juge injuste et inefficace et conclut à son abrogation. La majorité refuse : la peine de mort est maintenue, réduite à la décapitation, sans supplices.",
+  "resume": "Au débat sur le Code pénal, Le Peletier de Saint-Fargeau défend l'abolition de la peine de mort ; Robespierre la juge injuste et inefficace et conclut à son abrogation. La majorité refuse : la peine de mort est maintenue, réduite à la décapitation, sans supplices.",
   "citation": {
    "texte": "Je conclus à ce que la peine de mort soit abrogée.",
    "auteur": "Maximilien de Robespierre",
@@ -611,7 +621,7 @@
   "epoque": "Révolution et Empire",
   "theme": "première",
   "retentissement": 4,
-  "resume": "Au nom du comité de constitution, Le Chapelier fait interdire le rétablissement de toute corporation : les citoyens d'un même état ne peuvent plus nommer de syndics ni délibérer sur leurs « prétendus intérêts communs ». La loi pèsera tout le XIXe siècle sur la naissance des syndicats.",
+  "resume": "Au nom du comité de constitution, Le Chapelier fait interdire le rétablissement de toute corporation : les citoyens d'un même état ne peuvent plus nommer de syndics ni délibérer sur leurs « prétendus intérêts communs ». La loi pèsera tout le XIXe siècle sur la naissance des syndicats.",
   "citation": null,
   "acteurs": [
    {
@@ -639,7 +649,7 @@
   "epoque": "Révolution et Empire",
   "theme": "coup d'éclat",
   "retentissement": 5,
-  "resume": "Au matin du 21 juin 1791, l'Assemblée apprend le départ du roi et fait expédier des courriers dans tous les départements. Elle parle d'« enlèvement » plutôt que de fuite. Arrêté à Varennes, Louis XVI rentre à Paris sous escorte de trois députés et se trouve provisoirement suspendu.",
+  "resume": "Au matin du 21 juin 1791, l'Assemblée apprend le départ du roi et fait expédier des courriers dans tous les départements. Elle parle d'« enlèvement » plutôt que de fuite. Arrêté à Varennes, Louis XVI rentre à Paris sous escorte de trois députés et se trouve provisoirement suspendu.",
   "citation": null,
   "acteurs": [
    {
@@ -672,7 +682,7 @@
   "epoque": "Révolution et Empire",
   "theme": "affaire",
   "retentissement": 4,
-  "resume": "Après Varennes, les députés refusent de prononcer la déchéance du roi et ordonnent la loi martiale. Bailly fait hisser le drapeau rouge, la garde nationale de La Fayette tire sur les pétitionnaires : plusieurs dizaines de morts.",
+  "resume": "Après Varennes, les députés refusent de prononcer la déchéance du roi et ordonnent la loi martiale. Bailly fait hisser le drapeau rouge, la garde nationale de La Fayette tire sur les pétitionnaires : plusieurs dizaines de morts.",
   "citation": null,
   "acteurs": [
    {
@@ -696,7 +706,7 @@
   "epoque": "Révolution et Empire",
   "theme": "première",
   "retentissement": 5,
-  "resume": "L'Assemblée constituante adopte la première Constitution écrite de la France, acceptée par Louis XVI qui lui jure fidélité. Elle fonde une monarchie constitutionnelle : souveraineté de la nation, Assemblée unique de 745 membres élus pour deux ans, suffrage censitaire, veto suspensif du roi.",
+  "resume": "L'Assemblée constituante adopte la première Constitution écrite de la France, acceptée par Louis XVI qui lui jure fidélité. Elle fonde une monarchie constitutionnelle : souveraineté de la nation, Assemblée unique de 745 membres élus pour deux ans, suffrage censitaire, veto suspensif du roi.",
   "citation": {
    "texte": "La souveraineté est une, inaliénable et imprescriptible. Elle appartient à la nation",
    "auteur": "Constitution du 3 septembre 1791",
@@ -736,7 +746,7 @@
   "epoque": "Révolution et Empire",
   "theme": "première",
   "retentissement": 4,
-  "resume": "Sur la motion d'Adrien Duport, et malgré l'opposition de Rewbell, l'Assemblée constituante révoque tous les ajournements, réserves et exceptions visant les juifs : ceux qui prêtent le serment civique jouissent désormais des droits de citoyen actif.",
+  "resume": "Sur la motion d'Adrien Duport, et malgré l'opposition de Rewbell, l'Assemblée constituante révoque tous les ajournements, réserves et exceptions visant les juifs : ceux qui prêtent le serment civique jouissent désormais des droits de citoyen actif.",
   "citation": null,
   "acteurs": [
    {
@@ -801,7 +811,7 @@
   "epoque": "Révolution et Empire",
   "theme": "coup d'éclat",
   "retentissement": 5,
-  "resume": "Sur proposition du roi, poussée par les Girondins, l'Assemblée législative vote presque à l'unanimité la guerre au « roi de Bohême et de Hongrie », c'est-à-dire aux Habsbourg. La lecture du plan Condorcet est interrompue. Les premières semaines tournent aux défaites françaises.",
+  "resume": "Sur proposition du roi, poussée par les Girondins, l'Assemblée législative vote presque à l'unanimité la guerre au « roi de Bohême et de Hongrie », c'est-à-dire aux Habsbourg. La lecture du plan Condorcet est interrompue. Les premières semaines tournent aux défaites françaises.",
   "citation": null,
   "acteurs": [
    {
@@ -842,7 +852,7 @@
   "epoque": "Révolution et Empire",
   "theme": "coup d'éclat",
   "retentissement": 4,
-  "resume": "Les Parisiens demandent à l'Assemblée législative la fin du veto royal, puis envahissent les Tuileries. Louis XVI met le bonnet rouge et boit « à la santé du peuple », mais ne cède rien sur le fond.",
+  "resume": "Les Parisiens demandent à l'Assemblée législative la fin du veto royal, puis envahissent les Tuileries. Louis XVI met le bonnet rouge et boit « à la santé du peuple », mais ne cède rien sur le fond.",
   "citation": null,
   "acteurs": [
    {
@@ -858,30 +868,6 @@
    },
    {
     "url": "https://www.assemblee-nationale.fr/dyn/histoire-et-patrimoine/revolution-francaise/declaration-de-guerre-manifestation-populaire-des-girondins",
-    "type": "officiel"
-   }
-  ]
- },
- {
-  "id": "baiser-lamourette-1792",
-  "titre": "Le baiser Lamourette",
-  "date": "1792-07-07",
-  "date_fin": null,
-  "epoque": "Révolution et Empire",
-  "theme": "coup d'éclat",
-  "retentissement": 3,
-  "resume": "À la Législative, l'évêque de Lyon Adrien Lamourette, député de Rhône-et-Loire, présente une motion de réconciliation restée célèbre. Mais le bruit court d'une ruse concertée avec la cour, et le public parle de « baiser d'amourette » ou de « baiser de Judas ».",
-  "citation": null,
-  "acteurs": [
-   {
-    "nom": "Adrien Lamourette",
-    "role": "député de Rhône-et-Loire, évêque de Lyon",
-    "carte": "14751"
-   }
-  ],
-  "sources": [
-   {
-    "url": "https://www2.assemblee-nationale.fr/sycomore/fiche/14751",
     "type": "officiel"
    }
   ]
@@ -920,7 +906,7 @@
   "epoque": "Révolution et Empire",
   "theme": "coup d'éclat",
   "retentissement": 5,
-  "resume": "Les Tuileries sont assiégées par la Commune insurrectionnelle, les sections et les fédérés. Réfugiée auprès de l'Assemblée, la famille royale assiste à sa chute : la Législative suspend le roi sans le déchoir, convoque une Convention et crée un Conseil exécutif provisoire, Danton à la Justice.",
+  "resume": "Les Tuileries sont assiégées par la Commune insurrectionnelle, les sections et les fédérés. Réfugiée auprès de l'Assemblée, la famille royale assiste à sa chute : la Législative suspend le roi sans le déchoir, convoque une Convention et crée un Conseil exécutif provisoire, Danton à la Justice.",
   "citation": null,
   "acteurs": [
    {
@@ -947,7 +933,7 @@
  },
  {
   "id": "danton-audace-1792",
-  "titre": "Danton : « De l'audace »",
+  "titre": "Danton : « De l'audace »",
   "date": "1792-09-02",
   "date_fin": null,
   "epoque": "Révolution et Empire",
@@ -1015,7 +1001,7 @@
   "epoque": "Révolution et Empire",
   "theme": "première",
   "retentissement": 5,
-  "resume": "Pour sa première séance, la Convention nationale, élue au suffrage universel masculin avec près de 90 % d'abstention, décrète à l'unanimité que « la royauté est abolie en France ». Dès le lendemain, les actes publics sont datés de l'an premier de la République.",
+  "resume": "Pour sa première séance, la Convention nationale, élue au suffrage universel masculin avec près de 90 % d'abstention, décrète à l'unanimité que « la royauté est abolie en France ». Dès le lendemain, les actes publics sont datés de l'an premier de la République.",
   "citation": null,
   "acteurs": [],
   "sources": [
@@ -1030,43 +1016,6 @@
    {
     "url": "https://www.larousse.fr/encyclopedie/divers/wd/114563",
     "type": "media"
-   }
-  ]
- },
- {
-  "id": "louvet-robespierre-1792",
-  "titre": "Louvet accuse Robespierre",
-  "date": "1792-10-29",
-  "date_fin": null,
-  "epoque": "Révolution et Empire",
-  "theme": "duo ou duel",
-  "retentissement": 3,
-  "resume": "À la Convention, le Girondin Louvet interrompt Robespierre d'un « C'est moi, moi qui t'accuse ! » et réclame sa mise en accusation, chaque phrase commençant par « Robespierre, je t'accuse ». Robespierre obtient huit jours pour répondre ; l'Assemblée passe ensuite à l'ordre du jour.",
-  "citation": {
-   "texte": "C'est moi, moi qui t'accuse !",
-   "auteur": "Jean-Baptiste Louvet",
-   "source": "https://www2.assemblee-nationale.fr/sycomore/fiche/12861"
-  },
-  "acteurs": [
-   {
-    "nom": "Jean-Baptiste Louvet",
-    "role": "député girondin du Loiret",
-    "carte": "12861"
-   },
-   {
-    "nom": "Maximilien Robespierre",
-    "role": "député de la Seine",
-    "carte": "11798"
-   }
-  ],
-  "sources": [
-   {
-    "url": "https://www2.assemblee-nationale.fr/sycomore/fiche/12861",
-    "type": "officiel"
-   },
-   {
-    "url": "https://www2.assemblee-nationale.fr/sycomore/fiche?num_dept=11798",
-    "type": "officiel"
    }
   ]
  },
@@ -1134,7 +1083,7 @@
   "epoque": "Révolution et Empire",
   "theme": "record",
   "retentissement": 5,
-  "resume": "Chaque conventionnel vient voter à voix haute à la tribune. La culpabilité est reconnue par 642 voix, l'appel au peuple rejeté par 423. Sur la peine, 361 députés sur 721 votent « la mort sans condition », 387 avec l'amendement Mailhe. Le sursis est rejeté par 380 voix.",
+  "resume": "Chaque conventionnel vient voter à voix haute à la tribune. La culpabilité est reconnue par 642 voix, l'appel au peuple rejeté par 423. Sur la peine, 361 députés sur 721 votent « la mort sans condition », 387 avec l'amendement Mailhe. Le sursis est rejeté par 380 voix.",
   "citation": null,
   "acteurs": [
    {
@@ -1168,43 +1117,6 @@
   ]
  },
  {
-  "id": "lepeletier-1793",
-  "titre": "Le Peletier assassiné",
-  "date": "1793-01-20",
-  "date_fin": null,
-  "epoque": "Révolution et Empire",
-  "theme": "affaire",
-  "retentissement": 3,
-  "resume": "Au lendemain de son vote pour la mort du roi, le conventionnel Le Peletier de Saint-Fargeau, ancien noble, est tué au café Février, au Palais-Royal, par Pâris, ancien garde du corps du roi. Des funérailles grandioses lui sont faites le 24 janvier.",
-  "citation": null,
-  "acteurs": [
-   {
-    "nom": "Louis-Michel Le Peletier de Saint-Fargeau",
-    "role": "député à la Convention",
-    "carte": "12352"
-   },
-   {
-    "nom": "Philippe-Nicolas-Marie de Pâris",
-    "role": "ancien garde du corps du roi",
-    "carte": null
-   }
-  ],
-  "sources": [
-   {
-    "url": "https://parcoursrevolution.paris.fr/en/points-of-interest/99-a-stage-for-political-crimes",
-    "type": "media"
-   },
-   {
-    "url": "https://www.victorianweb.org/francais/histoire/revolution/1793.html",
-    "type": "media"
-   },
-   {
-    "url": "https://iiif.persee.fr/b0e2cf11-597c-427d-8ac7-68bcc0acf13b/9767eaa1-4f40-4688-ba28-a1a4f0f77468/res/pdf",
-    "type": "officiel"
-   }
-  ]
- },
- {
   "id": "tribunal-revolutionnaire-1793",
   "titre": "Naissance du Tribunal révolutionnaire",
   "date": "1793-03-10",
@@ -1212,7 +1124,7 @@
   "epoque": "Révolution et Empire",
   "theme": "première",
   "retentissement": 5,
-  "resume": "Sous l'impulsion de Danton, la Convention rétablit un tribunal criminel extraordinaire chargé de juger sans appel les conspirateurs : cinq juges, douze jurés et un accusateur public. Fouquier-Tinville en deviendra l'homme clé.",
+  "resume": "Sous l'impulsion de Danton, la Convention rétablit un tribunal criminel extraordinaire chargé de juger sans appel les conspirateurs : cinq juges, douze jurés et un accusateur public. Fouquier-Tinville en deviendra l'homme clé.",
   "citation": {
    "texte": "Soyons terribles pour dispenser le peuple de l'être",
    "auteur": "Georges Danton",
@@ -1294,7 +1206,7 @@
   "epoque": "Révolution et Empire",
   "theme": "première",
   "retentissement": 5,
-  "resume": "Au printemps 1793, la guerre reprend aux frontières et la Vendée s'insurge. Le 6 avril, la Convention institue un Comité de salut public désigné en son sein pour contrôler les ministres. Devenu le « grand Comité », il gouverne la France jusqu'en juillet 1794.",
+  "resume": "Au printemps 1793, la guerre reprend aux frontières et la Vendée s'insurge. Le 6 avril, la Convention institue un Comité de salut public désigné en son sein pour contrôler les ministres. Devenu le « grand Comité », il gouverne la France jusqu'en juillet 1794.",
   "citation": null,
   "acteurs": [
    {
@@ -1315,38 +1227,6 @@
    },
    {
     "url": "https://www.larousse.fr/encyclopedie/divers/Comit%C3%A9_de_salut_public/114221",
-    "type": "media"
-   }
-  ]
- },
- {
-  "id": "marat-accusation-1793",
-  "titre": "Marat acquitté et porté en triomphe",
-  "date": "1793-04-24",
-  "date_fin": null,
-  "epoque": "Révolution et Empire",
-  "theme": "affaire",
-  "retentissement": 3,
-  "resume": "Mis en accusation à l'initiative des Girondins en avril 1793, Jean-Paul Marat comparaît devant le Tribunal révolutionnaire. Acquitté, il regagne en triomphe la salle de la Convention le 24 avril.",
-  "citation": null,
-  "acteurs": [
-   {
-    "nom": "Jean-Paul Marat",
-    "role": "député à la Convention",
-    "carte": "12321"
-   }
-  ],
-  "sources": [
-   {
-    "url": "https://www.justice.gouv.fr/actualites/actualite/proces-charlotte-corday",
-    "type": "officiel"
-   },
-   {
-    "url": "https://www.herodote.net/Bio/bio.php?nom=Marat",
-    "type": "media"
-   },
-   {
-    "url": "https://www.worldhistory.org/trans/fr/2-2092/assassinat-de-marat/",
     "type": "media"
    }
   ]
@@ -1387,7 +1267,7 @@
   "epoque": "Révolution et Empire",
   "theme": "première",
   "retentissement": 4,
-  "resume": "Trois semaines après la chute des Girondins, la Constitution montagnarde est adoptée le 24 juin 1793 : suffrage dès 21 ans, droit à l'insurrection, droits au travail et à l'instruction. Approuvée par 1 800 000 « oui », elle est suspendue dès le 10 octobre et jamais appliquée.",
+  "resume": "Trois semaines après la chute des Girondins, la Constitution montagnarde est adoptée le 24 juin 1793 : suffrage dès 21 ans, droit à l'insurrection, droits au travail et à l'instruction. Approuvée par 1 800 000 « oui », elle est suspendue dès le 10 octobre et jamais appliquée.",
   "citation": {
    "texte": "Le peuple souverain est l'universalité des citoyens français.",
    "auteur": "Constitution du 24 juin 1793",
@@ -1470,7 +1350,7 @@
   "epoque": "Révolution et Empire",
   "theme": "coup d'éclat",
   "retentissement": 5,
-  "resume": "Le 4 septembre 1793, la foule réclame du pain à la Commune, où Hébert et Chaumette pressent la création d'une armée révolutionnaire. Le 5, Barère, du Comité de salut public, demande à la Convention toutes mesures pour sauver la Révolution : la Terreur est mise « à l'ordre du jour ».",
+  "resume": "Le 4 septembre 1793, la foule réclame du pain à la Commune, où Hébert et Chaumette pressent la création d'une armée révolutionnaire. Le 5, Barère, du Comité de salut public, demande à la Convention toutes mesures pour sauver la Révolution : la Terreur est mise « à l'ordre du jour ».",
   "citation": null,
   "acteurs": [
    {
@@ -1512,7 +1392,7 @@
   "epoque": "Révolution et Empire",
   "theme": "affaire",
   "retentissement": 4,
-  "resume": "Le 17 septembre 1793, la Convention adopte la « loi des suspects », qui autorise l'arrestation de tous les ennemis de la Révolution, avoués ou susceptibles de l'être. En décembre, Barère fait rapport sur son exécution ; un décret charge des commissaires de rechercher les patriotes détenus à tort.",
+  "resume": "Le 17 septembre 1793, la Convention adopte la « loi des suspects », qui autorise l'arrestation de tous les ennemis de la Révolution, avoués ou susceptibles de l'être. En décembre, Barère fait rapport sur son exécution ; un décret charge des commissaires de rechercher les patriotes détenus à tort.",
   "citation": null,
   "acteurs": [
    {
@@ -1540,7 +1420,7 @@
   "epoque": "Révolution et Empire",
   "theme": "première",
   "retentissement": 4,
-  "resume": "Le 5 octobre 1793, la Convention abolit le calendrier grégorien. L'année commence le 22 septembre, jour de fondation de la République ; douze mois de trois décades, plus de semaines. Le député Fabre d'Églantine baptise les mois : vendémiaire, nivôse, germinal, messidor…",
+  "resume": "Le 5 octobre 1793, la Convention abolit le calendrier grégorien. L'année commence le 22 septembre, jour de fondation de la République ; douze mois de trois décades, plus de semaines. Le député Fabre d'Églantine baptise les mois : vendémiaire, nivôse, germinal, messidor…",
   "citation": null,
   "acteurs": [
    {
@@ -1607,7 +1487,7 @@
   "epoque": "Révolution et Empire",
   "theme": "première",
   "retentissement": 5,
-  "resume": "Le 16 pluviôse an II, la Convention abolit l'esclavage dans toutes les colonies : tous les hommes qui y sont domiciliés, « sans distinction de couleur », deviennent citoyens français. Accolades à la tribune autour du député de Saint-Domingue Dufay ; Levasseur, Delacroix et Danton interviennent.",
+  "resume": "Le 16 pluviôse an II, la Convention abolit l'esclavage dans toutes les colonies : tous les hommes qui y sont domiciliés, « sans distinction de couleur », deviennent citoyens français. Accolades à la tribune autour du député de Saint-Domingue Dufay ; Levasseur, Delacroix et Danton interviennent.",
   "citation": {
    "texte": "Représentants du peuple français, jusqu'ici nous n'avons décrété la liberté qu'en égoïstes et pour nous seuls.",
    "auteur": "Danton",
@@ -1644,13 +1524,13 @@
  },
  {
   "id": "saint-just-bonheur-1794",
-  "titre": "« Le bonheur est une idée neuve »",
+  "titre": "« Le bonheur est une idée neuve »",
   "date": "1794-03-03",
   "date_fin": null,
   "epoque": "Révolution et Empire",
   "theme": "coup d'éclat",
   "retentissement": 4,
-  "resume": "Le 13 ventôse an II, Saint-Just présente au nom des comités de salut public et de sûreté générale un décret : chaque commune dressera l'état de ses patriotes indigents, qui seront indemnisés sur les biens des ennemis de la Révolution. L'Assemblée nationale retient de lui une formule.",
+  "resume": "Le 13 ventôse an II, Saint-Just présente au nom des comités de salut public et de sûreté générale un décret : chaque commune dressera l'état de ses patriotes indigents, qui seront indemnisés sur les biens des ennemis de la Révolution. L'Assemblée nationale retient de lui une formule.",
   "citation": {
    "texte": "Le bonheur est une idée neuve en Europe.",
    "auteur": "Louis Antoine de Saint-Just",
@@ -1753,7 +1633,7 @@
   "epoque": "Révolution et Empire",
   "theme": "affaire",
   "retentissement": 4,
-  "resume": "Par le décret du 22 prairial an II, la Convention ne prévoit plus qu'une seule peine pour les ennemis du peuple : la mort. S'ouvre la « Grande Terreur » : en quarante-sept jours, 1 376 condamnés sont exécutés, dont Lavoisier, Malesherbes et André Chénier.",
+  "resume": "Par le décret du 22 prairial an II, la Convention ne prévoit plus qu'une seule peine pour les ennemis du peuple : la mort. S'ouvre la « Grande Terreur » : en quarante-sept jours, 1 376 condamnés sont exécutés, dont Lavoisier, Malesherbes et André Chénier.",
   "citation": null,
   "acteurs": [],
   "sources": [
@@ -1807,136 +1687,6 @@
    },
    {
     "url": "https://www.larousse.fr/encyclopedie/divers/journ%c3%a9es_des_9_et_10_thermidor_an_II/146561",
-    "type": "media"
-   }
-  ]
- },
- {
-  "id": "gregoire-vandalisme-1794",
-  "titre": "Grégoire et le « vandalisme »",
-  "date": "1794-08-31",
-  "date_fin": null,
-  "epoque": "Révolution et Empire",
-  "theme": "première",
-  "retentissement": 3,
-  "resume": "Au nom du comité d'Instruction publique, l'abbé Grégoire dénonce à la Convention les destructions des monuments des arts. Le décret place bibliothèques et monuments sous la surveillance des citoyens et punit de deux ans de détention ceux qui les dégradent.",
-  "citation": null,
-  "acteurs": [
-   {
-    "nom": "Henri Grégoire",
-    "role": "député, rapporteur du comité d'Instruction publique",
-    "carte": "12259"
-   }
-  ],
-  "sources": [
-   {
-    "url": "https://iiif.persee.fr/b0e2cf11-597c-427d-8ac7-68bcc0acf13b/997244a3-d317-4a0a-8c14-9954f0010653/res/pdf",
-    "type": "officiel"
-   },
-   {
-    "url": "https://www.universalis.fr/encyclopedie/vandalisme/",
-    "type": "media"
-   }
-  ]
- },
- {
-  "id": "fermeture-jacobins-1794",
-  "titre": "Fermeture du club des Jacobins",
-  "date": "1794-11-12",
-  "date_fin": null,
-  "epoque": "Révolution et Empire",
-  "theme": "coup d'éclat",
-  "retentissement": 3,
-  "resume": "Au nom des comités de salut public, de sûreté générale, militaire et de législation, Laignelot fait approuver par la Convention l'arrêté de la veille : les séances de la société des Jacobins de Paris sont suspendues et la salle fermée sur-le-champ, ses clés remises au Comité de sûreté générale.",
-  "citation": {
-   "texte": "Les séances de la société des Jacobins de Paris sont suspendues.",
-   "auteur": "Arrêté des comités réunis (article 1er), approuvé par la Convention",
-   "source": "https://iiif.persee.fr/b0e2cf11-597c-427d-8ac7-68bcc0acf13b/82ec210a-d5b7-4405-b270-ad32bb701644/res/pdf"
-  },
-  "acteurs": [
-   {
-    "nom": "Joseph-François Laignelot",
-    "role": "député, rapporteur des comités réunis",
-    "carte": "13108"
-   }
-  ],
-  "sources": [
-   {
-    "url": "https://iiif.persee.fr/b0e2cf11-597c-427d-8ac7-68bcc0acf13b/82ec210a-d5b7-4405-b270-ad32bb701644/res/pdf",
-    "type": "officiel"
-   },
-   {
-    "url": "https://www.larousse.fr/encyclopedie/divers/club_des_Jacobins/125450",
-    "type": "media"
-   }
-  ]
- },
- {
-  "id": "carrier-1794",
-  "titre": "Carrier décrété d'accusation",
-  "date": "1794-11-23",
-  "date_fin": null,
-  "epoque": "Révolution et Empire",
-  "theme": "affaire",
-  "retentissement": 3,
-  "resume": "Carrier, qui se dit malade, est sommé de venir à la séance. Au terme d'un appel nominal prolongé jusque dans la nuit, la Convention déclare qu'il y a lieu à accusation contre l'homme des noyades de Nantes et l'envoie à la Conciergerie. Il est guillotiné le 16 décembre 1794.",
-  "citation": null,
-  "acteurs": [
-   {
-    "nom": "Jean-Baptiste Carrier",
-    "role": "député, ancien représentant en mission à Nantes",
-    "carte": "12279"
-   }
-  ],
-  "sources": [
-   {
-    "url": "https://iiif.persee.fr/b0e2cf11-597c-427d-8ac7-68bcc0acf13b/a6883790-cf5d-4e56-9a4e-25a846698ab3/res/pdf",
-    "type": "officiel"
-   },
-   {
-    "url": "https://iiif.persee.fr/b0e2cf11-597c-427d-8ac7-68bcc0acf13b/235d46c4-1ff1-4f2c-b682-f6f6a587a921/res/pdf",
-    "type": "officiel"
-   },
-   {
-    "url": "https://victorianweb.org/francais/histoire/revolution/carrier.html",
-    "type": "media"
-   }
-  ]
- },
- {
-  "id": "germinal-1795",
-  "titre": "L'insurrection du 12 germinal",
-  "date": "1795-04-01",
-  "date_fin": null,
-  "epoque": "Révolution et Empire",
-  "theme": "coup d'éclat",
-  "retentissement": 3,
-  "resume": "Les sans-culottes forcent la garde de la Convention et envahissent la salle pour réclamer du pain et la Constitution de 1793. L'Assemblée, secourue par les sections, condamne à la déportation les accusés dont la cause servait de prétexte, dont Barère, Billaud-Varenne et Collot d'Herbois.",
-  "citation": null,
-  "acteurs": [
-   {
-    "nom": "Bertrand Barère",
-    "role": "député mis en accusation",
-    "carte": "11952"
-   },
-   {
-    "nom": "Jacques-Nicolas Billaud-Varenne",
-    "role": "député mis en accusation",
-    "carte": "12237"
-   },
-   {
-    "nom": "Jean-Marie Collot d'Herbois",
-    "role": "député mis en accusation",
-    "carte": "12248"
-   }
-  ],
-  "sources": [
-   {
-    "url": "https://revolution.chnm.org/d/972",
-    "type": "media"
-   },
-   {
-    "url": "https://www.historion.iovan.net/history-french-revolution-1789-1814/chapter-x-9th-thermidor-1st-prairial-year-iii-20th-may-1795-epoc",
     "type": "media"
    }
   ]
@@ -2004,7 +1754,7 @@
   "epoque": "Révolution et Empire",
   "theme": "première",
   "retentissement": 4,
-  "resume": "La Convention décrète une Constitution de 377 articles : suffrage restreint réservé aux contribuables, deux conseils, Cinq-Cents et Anciens, et un Directoire de cinq membres. Ratifiée par les assemblées primaires avec une forte abstention, elle fonde le Directoire.",
+  "resume": "La Convention décrète une Constitution de 377 articles : suffrage restreint réservé aux contribuables, deux conseils, Cinq-Cents et Anciens, et un Directoire de cinq membres. Ratifiée par les assemblées primaires avec une forte abstention, elle fonde le Directoire.",
   "citation": null,
   "acteurs": [],
   "sources": [
@@ -2158,7 +1908,7 @@
   "epoque": "Révolution et Empire",
   "theme": "coup d'éclat",
   "retentissement": 5,
-  "resume": "Réuni aux Tuileries sous la protection des troupes, le Conseil des Anciens invoque un complot jacobin et transfère les deux conseils à Saint-Cloud. Bonaparte, rentré d'Égypte et allié à Sieyès, reçoit le commandement de la force publique : le coup d'État contre le Directoire est lancé.",
+  "resume": "Réuni aux Tuileries sous la protection des troupes, le Conseil des Anciens invoque un complot jacobin et transfère les deux conseils à Saint-Cloud. Bonaparte, rentré d'Égypte et allié à Sieyès, reçoit le commandement de la force publique : le coup d'État contre le Directoire est lancé.",
   "citation": null,
   "acteurs": [
    {
@@ -2191,7 +1941,7 @@
   "epoque": "Révolution et Empire",
   "theme": "duo ou duel",
   "retentissement": 4,
-  "resume": "À l'Orangerie de Saint-Cloud, les Cinq-Cents accueillent mal Bonaparte et veulent le mettre hors la loi. Leur président, son frère Lucien, dénonce aux troupes des « représentants du poignard » et fait évacuer la salle. Dans la nuit, une minorité vote trois consuls provisoires.",
+  "resume": "À l'Orangerie de Saint-Cloud, les Cinq-Cents accueillent mal Bonaparte et veulent le mettre hors la loi. Leur président, son frère Lucien, dénonce aux troupes des « représentants du poignard » et fait évacuer la salle. Dans la nuit, une minorité vote trois consuls provisoires.",
   "citation": null,
   "acteurs": [
    {
@@ -2230,7 +1980,7 @@
   "epoque": "Révolution et Empire",
   "theme": "première",
   "retentissement": 4,
-  "resume": "La Constitution du 22 frimaire an VIII instaure le Consulat : trois consuls nommés pour dix ans, Bonaparte en tête, avec Cambacérès et Lebrun. Le Premier consul promulgue les lois et nomme ministres et conseillers d'État. Elle est offerte à l'acceptation du peuple.",
+  "resume": "La Constitution du 22 frimaire an VIII instaure le Consulat : trois consuls nommés pour dix ans, Bonaparte en tête, avec Cambacérès et Lebrun. Le Premier consul promulgue les lois et nomme ministres et conseillers d'État. Elle est offerte à l'acceptation du peuple.",
   "citation": {
    "texte": "Citoyens, la révolution est fixée aux principes qui l'ont commencée. Elle est finie",
    "auteur": "Proclamation des consuls Bonaparte, Cambacérès et Lebrun",
@@ -2342,7 +2092,7 @@
   "epoque": "Révolution et Empire",
   "theme": "première",
   "retentissement": 5,
-  "resume": "Le sénatus-consulte organique du 28 floréal an XII confie le gouvernement de la République à un Empereur : Bonaparte devient Napoléon Ier. Le plébiscite sur l'hérédité donne plus de 3 millions de oui contre environ 2 500 non, résultat proclamé le 6 novembre.",
+  "resume": "Le sénatus-consulte organique du 28 floréal an XII confie le gouvernement de la République à un Empereur : Bonaparte devient Napoléon Ier. Le plébiscite sur l'hérédité donne plus de 3 millions de oui contre environ 2 500 non, résultat proclamé le 6 novembre.",
   "citation": null,
   "acteurs": [
    {
@@ -2359,6 +2109,44 @@
   ]
  },
  {
+  "id": "sacre-napoleon-1804",
+  "titre": "Le sacre de Napoléon",
+  "date": "1804-12-02",
+  "date_fin": null,
+  "epoque": "Révolution et Empire",
+  "theme": "coup d'éclat",
+  "retentissement": 5,
+  "resume": "Le 2 décembre 1804, à Notre-Dame de Paris, Napoléon est sacré en présence du pape Pie VII, qui oint l'empereur et Joséphine. Napoléon fait de son épouse l'impératrice. La cérémonie dure environ trois heures dans le froid de décembre.",
+  "citation": null,
+  "acteurs": [
+   {
+    "nom": "Napoléon Ier",
+    "role": "empereur des Français sacré",
+    "carte": null
+   },
+   {
+    "nom": "Joséphine de Beauharnais",
+    "role": "épouse, faite impératrice pendant la cérémonie",
+    "carte": null
+   },
+   {
+    "nom": "Pie VII",
+    "role": "pape présent, qui oint l'empereur et l'impératrice",
+    "carte": null
+   }
+  ],
+  "sources": [
+   {
+    "url": "https://www.herodote.net/2_decembre_1804-evenement-18041202.php",
+    "type": "media"
+   },
+   {
+    "url": "https://www.napoleon.org/histoire-des-2-empires/dossiers-thematiques/le-sacre-de-napoleon-ier-le-2-decembre-1804-a-notre-dame/",
+    "type": "media"
+   }
+  ]
+ },
+ {
   "id": "rapport-laine-1813",
   "titre": "Le rapport Laîné contre Napoléon",
   "date": "1813-12-29",
@@ -2366,7 +2154,7 @@
   "epoque": "Révolution et Empire",
   "theme": "coup d'éclat",
   "retentissement": 3,
-  "resume": "Au Corps législatif, le rapport Laîné réclame « une paix honorable et solide ». Son impression est votée par 223 voix contre 31. Napoléon fait saisir et pilonner le texte, puis ajourne l'assemblée.",
+  "resume": "Au Corps législatif, le rapport Laîné réclame « une paix honorable et solide ». Son impression est votée par 223 voix contre 31. Napoléon fait saisir et pilonner le texte, puis ajourne l'assemblée.",
   "citation": {
    "texte": "J'avais besoin de consolations, et vous avez voulu me déshonorer.",
    "auteur": "Napoléon aux députés, 1er janvier 1814",
@@ -2491,7 +2279,7 @@
   "epoque": "Monarchies constitutionnelles",
   "theme": "coup d'éclat",
   "retentissement": 4,
-  "resume": "Au lendemain de Waterloo, La Fayette soutient que la Chambre des représentants est en séance permanente et que la dissoudre serait trahir. Il menace de proposer la déchéance : Napoléon abdique le 22 juin en faveur de son fils.",
+  "resume": "Au lendemain de Waterloo, La Fayette soutient que la Chambre des représentants est en séance permanente et que la dissoudre serait trahir. Il menace de proposer la déchéance : Napoléon abdique le 22 juin en faveur de son fils.",
   "citation": null,
   "acteurs": [
    {
@@ -2529,7 +2317,7 @@
   "epoque": "Monarchies constitutionnelles",
   "theme": "élection",
   "retentissement": 4,
-  "resume": "Après les Cent-Jours, les élections des 14 et 22 août donnent 350 ultraroyalistes sur 402 sièges. Louis XVIII la baptise « Chambre introuvable » : elle est plus royaliste que le roi.",
+  "resume": "Après les Cent-Jours, les élections des 14 et 22 août donnent 350 ultraroyalistes sur 402 sièges. Louis XVIII la baptise « Chambre introuvable » : elle est plus royaliste que le roi.",
   "citation": null,
   "acteurs": [
    {
@@ -2679,7 +2467,7 @@
   "epoque": "Monarchies constitutionnelles",
   "theme": "coup d'éclat",
   "retentissement": 4,
-  "resume": "Le 27 février, Manuel qualifie d'« atroce » le gouvernement de Ferdinand VII. La Chambre vote le 3 mars son expulsion pour la session ; revenu le 4, il est emmené par les gendarmes sous la conduite du colonel de Foucault.",
+  "resume": "Le 27 février, Manuel qualifie d'« atroce » le gouvernement de Ferdinand VII. La Chambre vote le 3 mars son expulsion pour la session ; revenu le 4, il est emmené par les gendarmes sous la conduite du colonel de Foucault.",
   "citation": {
    "texte": "Monsieur le président, hier j'ai annoncé que je ne céderais qu'à la violence. Aujourd'hui je viens tenir parole.",
    "auteur": "Jacques-Antoine Manuel, 4 mars 1823",
@@ -2717,7 +2505,7 @@
   "epoque": "Monarchies constitutionnelles",
   "theme": "élection",
   "retentissement": 3,
-  "resume": "Après la dissolution annoncée le 24 décembre 1823, les élections des 26 février et 6 mars 1824 donnent à Villèle et aux royalistes plus de 400 sièges. Louis XVIII parle de « Chambre retrouvée » ; la gauche ne compte que 19 députés.",
+  "resume": "Après la dissolution annoncée le 24 décembre 1823, les élections des 26 février et 6 mars 1824 donnent à Villèle et aux royalistes plus de 400 sièges. Louis XVIII parle de « Chambre retrouvée » ; la gauche ne compte que 19 députés.",
   "citation": null,
   "acteurs": [
    {
@@ -2867,7 +2655,7 @@
   "epoque": "Monarchies constitutionnelles",
   "theme": "coup d'éclat",
   "retentissement": 4,
-  "resume": "Le 8 août 1829, Charles X forme son « ministère de combat » et appelle le prince de Polignac aux Affaires étrangères ; le 17 novembre, il lui confie la présidence du Conseil. La majorité libérale de la Chambre s'oppose à ce ministère.",
+  "resume": "Le 8 août 1829, Charles X forme son « ministère de combat » et appelle le prince de Polignac aux Affaires étrangères ; le 17 novembre, il lui confie la présidence du Conseil. La majorité libérale de la Chambre s'oppose à ce ministère.",
   "citation": null,
   "acteurs": [
    {
@@ -2926,7 +2714,7 @@
   "epoque": "Monarchies constitutionnelles",
   "theme": "dissolution",
   "retentissement": 4,
-  "resume": "Charles X dissout la Chambre des députés qui l'a désavoué. Le scrutin renforce pourtant l'opposition libérale : 274 sièges contre 145 au gouvernement.",
+  "resume": "Charles X dissout la Chambre des députés qui l'a désavoué. Le scrutin renforce pourtant l'opposition libérale : 274 sièges contre 145 au gouvernement.",
   "citation": null,
   "acteurs": [
    {
@@ -2954,7 +2742,7 @@
   "epoque": "Monarchies constitutionnelles",
   "theme": "coup d'éclat",
   "retentissement": 5,
-  "resume": "Charles X signe quatre ordonnances : presse suspendue, Chambre nouvelle dissoute, cens modifié, nouvelles élections. Thiers y voit la rupture du régime légal.",
+  "resume": "Charles X signe quatre ordonnances : presse suspendue, Chambre nouvelle dissoute, cens modifié, nouvelles élections. Thiers y voit la rupture du régime légal.",
   "citation": {
    "texte": "Le régime légal est donc interrompu ; celui de la force est commencé",
    "auteur": "Adolphe Thiers",
@@ -2991,7 +2779,7 @@
   "epoque": "Monarchies constitutionnelles",
   "theme": "coup d'éclat",
   "retentissement": 5,
-  "resume": "Paris se soulève contre les ordonnances : barricades, ralliement de soldats, palais Bourbon occupé, plus d'un millier de morts. Charles X abdique le 2 août.",
+  "resume": "Paris se soulève contre les ordonnances : barricades, ralliement de soldats, palais Bourbon occupé, plus d'un millier de morts. Charles X abdique le 2 août.",
   "citation": null,
   "acteurs": [
    {
@@ -3158,7 +2946,7 @@
  },
  {
   "id": "tocqueville-vent-revolution-1848",
-  "titre": "Tocqueville : le vent de révolution",
+  "titre": "Tocqueville : le vent de révolution",
   "date": "1848-01-27",
   "date_fin": null,
   "epoque": "Monarchies constitutionnelles",
@@ -3196,7 +2984,7 @@
   "epoque": "Monarchies constitutionnelles",
   "theme": "démission",
   "retentissement": 5,
-  "resume": "Le 23 février 1848, la Chambre rejette la mise en accusation de Guizot, mais le roi le renvoie dans l'après-midi et appelle Molé. Le soir, la troupe tire boulevard des Capucines, près de ses bureaux : une vingtaine à plusieurs dizaines de morts selon les sources.",
+  "resume": "Le 23 février 1848, la Chambre rejette la mise en accusation de Guizot, mais le roi le renvoie dans l'après-midi et appelle Molé. Le soir, la troupe tire boulevard des Capucines, près de ses bureaux : une vingtaine à plusieurs dizaines de morts selon les sources.",
   "citation": null,
   "acteurs": [
    {
@@ -3314,7 +3102,7 @@
   "epoque": "IIe République et Second Empire",
   "theme": "première",
   "retentissement": 5,
-  "resume": "Le 27 avril 1848, le décret préparé par la commission de Victor Schœlcher abolit définitivement l'esclavage, qualifié d'« attentat contre la dignité humaine ». Il avait été annoncé le 4 mars par « nulle terre française ne peut plus porter d'esclaves ».",
+  "resume": "Le 27 avril 1848, le décret préparé par la commission de Victor Schœlcher abolit définitivement l'esclavage, qualifié d'« attentat contre la dignité humaine ». Il avait été annoncé le 4 mars par « nulle terre française ne peut plus porter d'esclaves ».",
   "citation": {
    "texte": "nulle terre française ne peut plus porter d'esclaves",
    "auteur": "Gouvernement provisoire (décret du 4 mars 1848)",
@@ -3360,7 +3148,7 @@
  },
  {
   "id": "invasion-assemblee-1848",
-  "titre": "Le 15 mai : l'Assemblée envahie",
+  "titre": "Le 15 mai : l'Assemblée envahie",
   "date": "1848-05-15",
   "date_fin": null,
   "epoque": "IIe République et Second Empire",
@@ -3520,13 +3308,13 @@
  },
  {
   "id": "hugo-misere-1849",
-  "titre": "Victor Hugo : « Détruire la misère »",
+  "titre": "Victor Hugo : « Détruire la misère »",
   "date": "1849-07-09",
   "date_fin": null,
   "epoque": "IIe République et Second Empire",
   "theme": "discours",
   "retentissement": 4,
-  "resume": "Le 9 juillet 1849, Victor Hugo, qui siégeait d'abord à droite, soutient à l'Assemblée législative une proposition sur l'assistance publique. Son discours historique plaide pour « Détruire la misère ! ».",
+  "resume": "Le 9 juillet 1849, Victor Hugo, qui siégeait d'abord à droite, soutient à l'Assemblée législative une proposition sur l'assistance publique. Son discours historique plaide pour « Détruire la misère ! ».",
   "citation": null,
   "acteurs": [
    {
@@ -3609,7 +3397,7 @@
   "epoque": "IIe République et Second Empire",
   "theme": "coup d'éclat",
   "retentissement": 4,
-  "resume": "Le 19 juillet 1851, 446 députés votent pour la révision de la Constitution et 270 contre : la majorité des trois quarts (543 voix) n'est pas atteinte. Louis-Napoléon ne peut donc pas se représenter légalement.",
+  "resume": "Le 19 juillet 1851, 446 députés votent pour la révision de la Constitution et 270 contre : la majorité des trois quarts (543 voix) n'est pas atteinte. Louis-Napoléon ne peut donc pas se représenter légalement.",
   "citation": null,
   "acteurs": [
    {
@@ -3633,7 +3421,7 @@
   "epoque": "IIe République et Second Empire",
   "theme": "coup d'éclat",
   "retentissement": 5,
-  "resume": "Dans la nuit du 1er au 2 décembre 1851, les chefs de l'opposition sont arrêtés et le Palais Bourbon occupé. Louis-Napoléon dissout l'Assemblée et se dit sorti de la légalité « pour rentrer dans le droit ». Des députés réunis à la mairie du Xe sont arrêtés.",
+  "resume": "Dans la nuit du 1er au 2 décembre 1851, les chefs de l'opposition sont arrêtés et le Palais Bourbon occupé. Louis-Napoléon dissout l'Assemblée et se dit sorti de la légalité « pour rentrer dans le droit ». Des députés réunis à la mairie du Xe sont arrêtés.",
   "citation": {
    "texte": "pour rentrer dans le droit",
    "auteur": "Louis-Napoléon Bonaparte",
@@ -3759,7 +3547,7 @@
   "epoque": "IIe République et Second Empire",
   "theme": "première",
   "retentissement": 5,
-  "resume": "Après le sénatus-consulte du 7 novembre, le plébiscite donne 7 824 189 oui contre 253 145 non. Le décret du 2 décembre 1852 proclame Louis-Napoléon « empereur des Français » sous le nom de Napoléon III.",
+  "resume": "Après le sénatus-consulte du 7 novembre, le plébiscite donne 7 824 189 oui contre 253 145 non. Le décret du 2 décembre 1852 proclame Louis-Napoléon « empereur des Français » sous le nom de Napoléon III.",
   "citation": null,
   "acteurs": [
    {
@@ -3821,7 +3609,7 @@
   "epoque": "IIe République et Second Empire",
   "theme": "affaire",
   "retentissement": 3,
-  "resume": "Le 14 janvier 1858, Felice Orsini jette trois bombes sur la voiture de Napoléon III devant l'Opéra : huit morts, l'empereur indemne. Il en résulte la loi de sûreté générale, qui permet d'interner sans jugement ; environ 300 personnes sont bannies.",
+  "resume": "Le 14 janvier 1858, Felice Orsini jette trois bombes sur la voiture de Napoléon III devant l'Opéra : huit morts, l'empereur indemne. Il en résulte la loi de sûreté générale, qui permet d'interner sans jugement ; environ 300 personnes sont bannies.",
   "citation": null,
   "acteurs": [
    {
@@ -3843,13 +3631,13 @@
  },
  {
   "id": "thiers-libertes-necessaires-1864",
-  "titre": "Thiers et les « libertés nécessaires »",
+  "titre": "Thiers et les « libertés nécessaires »",
   "date": "1864-01-11",
   "date_fin": null,
   "epoque": "IIe République et Second Empire",
   "theme": "discours",
   "retentissement": 4,
-  "resume": "Le 11 janvier 1864, lors de la discussion de l'adresse, Adolphe Thiers fait son retour à la tribune du Corps législatif, douze ans après le coup d'État. Son discours sur les « libertés nécessaires » connaît une popularité immédiate et lance une brillante période d'opposition libérale.",
+  "resume": "Le 11 janvier 1864, lors de la discussion de l'adresse, Adolphe Thiers fait son retour à la tribune du Corps législatif, douze ans après le coup d'État. Son discours sur les « libertés nécessaires » connaît une popularité immédiate et lance une brillante période d'opposition libérale.",
   "citation": null,
   "acteurs": [
    {
@@ -4051,13 +3839,13 @@
  },
  {
   "id": "coeur-leger-1870",
-  "titre": "Ollivier : « d'un cœur léger »",
+  "titre": "Ollivier : « d'un cœur léger »",
   "date": "1870-07-15",
   "date_fin": null,
   "epoque": "IIe République et Second Empire",
   "theme": "mot célèbre",
   "retentissement": 5,
-  "resume": "Le 15 juillet 1870, devant les députés, Émile Ollivier justifie la guerre avec la Prusse. Il dit accepter la guerre « le cœur léger », puis corrige en « d'un cœur léger » : le mot le poursuivra toute sa vie.",
+  "resume": "Le 15 juillet 1870, devant les députés, Émile Ollivier justifie la guerre avec la Prusse. Il dit accepter la guerre « le cœur léger », puis corrige en « d'un cœur léger » : le mot le poursuivra toute sa vie.",
   "citation": {
    "texte": "Nous l'acceptons le cœur léger",
    "auteur": "Émile Ollivier",
@@ -4154,7 +3942,7 @@
   "epoque": "IIIe République",
   "theme": "première",
   "retentissement": 4,
-  "resume": "Réunie à Bordeaux depuis le 12 février, l'Assemblée élue le 8 février désigne à mains levées Adolphe Thiers « chef du pouvoir exécutif de la République française », chargé de négocier la paix préliminaire. La loi Rivet du 31 août 1871 lui donnera le titre de président de la République.",
+  "resume": "Réunie à Bordeaux depuis le 12 février, l'Assemblée élue le 8 février désigne à mains levées Adolphe Thiers « chef du pouvoir exécutif de la République française », chargé de négocier la paix préliminaire. La loi Rivet du 31 août 1871 lui donnera le titre de président de la République.",
   "citation": null,
   "acteurs": [
    {
@@ -4190,9 +3978,9 @@
   "epoque": "IIIe République",
   "theme": "démission",
   "retentissement": 4,
-  "resume": "À Bordeaux, Victor Hugo défend Garibaldi lors du débat sur l'annulation de son élection. Pris à partie par la droite, où l'on s'écrie qu'il « ne parle pas français », empêché de parler, l'élu de la Seine donne sa démission de l'Assemblée nationale.",
+  "resume": "À Bordeaux, Victor Hugo défend Garibaldi lors du débat sur l'annulation de son élection. Pris à partie par la droite, où l'on s'écrie qu'il « ne parle pas français », empêché de parler, l'élu de la Seine donne sa démission de l'Assemblée nationale.",
   "citation": {
-   "texte": "Il y a trois semaines, l'Assemblée a refusé d'entendre Garibaldi, aujourd'hui elle refuse de m'entendre : je donne ma démission.",
+   "texte": "Il y a trois semaines, l'Assemblée a refusé d'entendre Garibaldi, aujourd'hui elle refuse de m'entendre : je donne ma démission.",
    "auteur": "Victor Hugo",
    "source": "https://www2.assemblee-nationale.fr/sycomore/fiche/%28num_dept%29/8795"
   },
@@ -4224,6 +4012,38 @@
   ]
  },
  {
+  "id": "commune-paris-1871",
+  "titre": "La Commune de Paris",
+  "date": "1871-03-18",
+  "date_fin": "1871-05-28",
+  "epoque": "IIIe République",
+  "theme": "coup d'éclat",
+  "retentissement": 5,
+  "resume": "Le 18 mars 1871, une émeute éclate à Montmartre ; Thiers renonce à la réprimer et s'enfuit à Versailles, où siège l'Assemblée nationale, élue le 8 février, à majorité monarchiste. La Commune, proclamée le 28 mars, est écrasée du 21 au 28 mai : 20 000 à 25 000 victimes selon les sources.",
+  "citation": null,
+  "acteurs": [
+   {
+    "nom": "Adolphe Thiers",
+    "role": "replié à Versailles",
+    "carte": "7032"
+   }
+  ],
+  "sources": [
+   {
+    "url": "https://www.herodote.net/18_mars_1871-evenement-18710318.php",
+    "type": "media"
+   },
+   {
+    "url": "https://www.herodote.net/histoire/evenement.php?jour=18710528",
+    "type": "media"
+   },
+   {
+    "url": "https://www.universalis.fr/encyclopedie/commune-de-paris-en-bref/",
+    "type": "media"
+   }
+  ]
+ },
+ {
   "id": "chute-thiers-1873",
   "titre": "Thiers renversé le 24 mai",
   "date": "1873-05-24",
@@ -4231,7 +4051,7 @@
   "epoque": "IIIe République",
   "theme": "démission",
   "retentissement": 4,
-  "resume": "Le monarchiste Edmond Ernoul fait adopter, par 368 voix contre 344, un ordre du jour réclamant une « politique résolument conservatrice ». Adolphe Thiers démissionne ; le même jour, le maréchal de Mac Mahon est élu président de la République par 390 voix sur 721 présents.",
+  "resume": "Le monarchiste Edmond Ernoul fait adopter, par 368 voix contre 344, un ordre du jour réclamant une « politique résolument conservatrice ». Adolphe Thiers démissionne ; le même jour, le maréchal de Mac Mahon est élu président de la République par 390 voix sur 721 présents.",
   "citation": null,
   "acteurs": [
    {
@@ -4273,7 +4093,7 @@
   "epoque": "IIIe République",
   "theme": "première",
   "retentissement": 4,
-  "resume": "L'Assemblée vote la loi du 20 novembre 1873, qui confie « pour sept ans » le pouvoir exécutif au maréchal de Mac Mahon, duc de Magenta. Cette durée est reprise en 1875 pour le mandat du président de la République, à l'article 2 issu de l'amendement Wallon.",
+  "resume": "L'Assemblée vote la loi du 20 novembre 1873, qui confie « pour sept ans » le pouvoir exécutif au maréchal de Mac Mahon, duc de Magenta. Cette durée est reprise en 1875 pour le mandat du président de la République, à l'article 2 issu de l'amendement Wallon.",
   "citation": null,
   "acteurs": [
    {
@@ -4305,7 +4125,7 @@
   "epoque": "IIIe République",
   "theme": "record",
   "retentissement": 5,
-  "resume": "À Versailles, l'amendement d'Henri Wallon prévoit que le président de la République est élu par le Sénat et la Chambre des députés, « pour sept ans ». Il est adopté par 353 voix contre 352 : le mot « République » entre dans les lois constitutionnelles.",
+  "resume": "À Versailles, l'amendement d'Henri Wallon prévoit que le président de la République est élu par le Sénat et la Chambre des députés, « pour sept ans ». Il est adopté par 353 voix contre 352 : le mot « République » entre dans les lois constitutionnelles.",
   "citation": {
    "texte": "je ne proclame rien, je prends ce qui est.",
    "auteur": "Henri Wallon",
@@ -4375,13 +4195,13 @@
  },
  {
   "id": "gambetta-clericalisme-1877",
-  "titre": "« Le cléricalisme, voilà l'ennemi ! »",
+  "titre": "« Le cléricalisme, voilà l'ennemi ! »",
   "date": "1877-05-04",
   "date_fin": null,
   "epoque": "IIIe République",
   "theme": "coup d'éclat",
   "retentissement": 5,
-  "resume": "Lors de l'interpellation Leblond, Laussedat et de Marcère sur les menées ultramontaines, Gambetta dénonce l'« envahissement clérical » et reprend le mot de son ami Peyrat. Peu de jours plus tard éclate le Seize-Mai ; il sera l'un des auteurs principaux de la protestation des 363.",
+  "resume": "Lors de l'interpellation Leblond, Laussedat et de Marcère sur les menées ultramontaines, Gambetta dénonce l'« envahissement clérical » et reprend le mot de son ami Peyrat. Peu de jours plus tard éclate le Seize-Mai ; il sera l'un des auteurs principaux de la protestation des 363.",
   "citation": {
    "texte": "Le cléricalisme, voilà l'ennemi !",
    "auteur": "Léon Gambetta, reprenant le mot de son ami Peyrat",
@@ -4413,7 +4233,7 @@
   "epoque": "IIIe République",
   "theme": "démission",
   "retentissement": 5,
-  "resume": "Le maréchal de Mac Mahon écrit au président du Conseil Jules Simon pour lui demander s'il a « l'influence nécessaire pour faire prévaloir ses vues » à la Chambre. Simon démissionne ; le président nomme un gouvernement dit de « l'ordre moral », face à une Chambre républicaine.",
+  "resume": "Le maréchal de Mac Mahon écrit au président du Conseil Jules Simon pour lui demander s'il a « l'influence nécessaire pour faire prévaloir ses vues » à la Chambre. Simon démissionne ; le président nomme un gouvernement dit de « l'ordre moral », face à une Chambre républicaine.",
   "citation": null,
   "acteurs": [
    {
@@ -4446,7 +4266,7 @@
   "epoque": "IIIe République",
   "theme": "coup d'éclat",
   "retentissement": 4,
-  "resume": "Face au gouvernement d'« ordre moral » nommé après le renvoi de Jules Simon, les 363 députés du « Bloc des gauches » votent la défiance. Ils avaient signé un texte contre la politique présidentielle. Trois jours plus tard, le Sénat donne son accord à la dissolution.",
+  "resume": "Face au gouvernement d'« ordre moral » nommé après le renvoi de Jules Simon, les 363 députés du « Bloc des gauches » votent la défiance. Ils avaient signé un texte contre la politique présidentielle. Trois jours plus tard, le Sénat donne son accord à la dissolution.",
   "citation": null,
   "acteurs": [
    {
@@ -4474,7 +4294,7 @@
   "epoque": "IIIe République",
   "theme": "dissolution",
   "retentissement": 4,
-  "resume": "Avec l'accord du Sénat obtenu le 22 juin, le maréchal de Mac Mahon dissout la Chambre des députés. Gambetta le somme de « se soumettre ou se démettre ». Aux élections des 14 et 28 octobre 1877, les républicains conservent la majorité des sièges et des voix.",
+  "resume": "Avec l'accord du Sénat obtenu le 22 juin, le maréchal de Mac Mahon dissout la Chambre des députés. Gambetta le somme de « se soumettre ou se démettre ». Aux élections des 14 et 28 octobre 1877, les républicains conservent la majorité des sièges et des voix.",
   "citation": {
    "texte": "Quand la France aura fait entendre sa voix souveraine, il faudra se soumettre ou se démettre",
    "auteur": "Léon Gambetta",
@@ -4509,7 +4329,7 @@
  },
  {
   "id": "se-soumettre-se-demettre-1877",
-  "titre": "« Se soumettre ou se démettre »",
+  "titre": "« Se soumettre ou se démettre »",
   "date": "1877-08-15",
   "date_fin": null,
   "epoque": "IIIe République",
@@ -4585,7 +4405,7 @@
   "epoque": "IIIe République",
   "theme": "première",
   "retentissement": 4,
-  "resume": "Le 14 février 1879, au cours d'une séance présidée par Léon Gambetta, la Chambre des députés adopte La Marseillaise. Déclarée chant national par la Convention en 1795, elle redevient « hymne national » sous la IIIe République et retentit à Longchamp le 14 juillet suivant.",
+  "resume": "Le 14 février 1879, au cours d'une séance présidée par Léon Gambetta, la Chambre des députés adopte La Marseillaise. Déclarée chant national par la Convention en 1795, elle redevient « hymne national » sous la IIIe République et retentit à Longchamp le 14 juillet suivant.",
   "citation": null,
   "acteurs": [
    {
@@ -4730,7 +4550,7 @@
   "epoque": "IIIe République",
   "theme": "première",
   "retentissement": 5,
-  "resume": "Votée sous le ministère de Jules Ferry, la loi du 29 juillet 1881 proclame : « L'imprimerie et la librairie sont libres ». L'autorisation préalable et le cautionnement sont abolis. Plusieurs fois modifiée, elle reste le texte fondateur de la liberté de la presse en France.",
+  "resume": "Votée sous le ministère de Jules Ferry, la loi du 29 juillet 1881 proclame : « L'imprimerie et la librairie sont libres ». L'autorisation préalable et le cautionnement sont abolis. Plusieurs fois modifiée, elle reste le texte fondateur de la liberté de la presse en France.",
   "citation": {
    "texte": "L'imprimerie et la librairie sont libres",
    "auteur": "article 1er de la loi du 29 juillet 1881",
@@ -4760,7 +4580,7 @@
   "epoque": "IIIe République",
   "theme": "démission",
   "retentissement": 3,
-  "resume": "Formé le 14 novembre 1881, le « grand ministère » de Gambetta ne dure guère. Il s'obstine à réclamer la révision partielle de la Constitution et le scrutin de liste ; mis en minorité par 282 voix contre 227, il annonce sa démission et quitte ses fonctions le 27 janvier 1882.",
+  "resume": "Formé le 14 novembre 1881, le « grand ministère » de Gambetta ne dure guère. Il s'obstine à réclamer la révision partielle de la Constitution et le scrutin de liste ; mis en minorité par 282 voix contre 227, il annonce sa démission et quitte ses fonctions le 27 janvier 1882.",
   "citation": null,
   "acteurs": [
    {
@@ -4792,7 +4612,7 @@
   "epoque": "IIIe République",
   "theme": "première",
   "retentissement": 5,
-  "resume": "La loi du 28 mars 1882, signée par Jules Grévy et Jules Ferry, rend l'instruction primaire obligatoire de six à treize ans et remplace la morale religieuse par une « instruction morale et civique ». Au Sénat, Jules Simon avait fait ajouter les « devoirs envers Dieu », que la Chambre supprime.",
+  "resume": "La loi du 28 mars 1882, signée par Jules Grévy et Jules Ferry, rend l'instruction primaire obligatoire de six à treize ans et remplace la morale religieuse par une « instruction morale et civique ». Au Sénat, Jules Simon avait fait ajouter les « devoirs envers Dieu », que la Chambre supprime.",
   "citation": {
    "texte": "L'instruction primaire est obligatoire pour les enfants des deux sexes âgés de six ans révolus à treize ans révolus",
    "auteur": "article 4 de la loi du 28 mars 1882",
@@ -4866,7 +4686,7 @@
   "epoque": "IIIe République",
   "theme": "première",
   "retentissement": 4,
-  "resume": "Aboli en 1816 par la loi Bonald, le divorce revient avec la loi du 27 juillet 1884, portée par Alfred Naquet après plusieurs propositions repoussées. Il n'est admis que pour faute : adultère, peine afflictive et infamante, excès, sévices ou injures graves.",
+  "resume": "Aboli en 1816 par la loi Bonald, le divorce revient avec la loi du 27 juillet 1884, portée par Alfred Naquet après plusieurs propositions repoussées. Il n'est admis que pour faute : adultère, peine afflictive et infamante, excès, sévices ou injures graves.",
   "citation": null,
   "acteurs": [
    {
@@ -4892,13 +4712,13 @@
  },
  {
   "id": "ferry-tonkin-1885",
-  "titre": "Ferry « le Tonkinois » renversé",
+  "titre": "Ferry « le Tonkinois » renversé",
   "date": "1885-03-30",
   "date_fin": null,
   "epoque": "IIIe République",
   "theme": "démission",
   "retentissement": 4,
-  "resume": "L'évacuation de Lang Son, connue à Paris le 29 mars 1885, provoque une grande manifestation devant la Chambre. Le lendemain, le second ministère Ferry tombe devant l'hostilité bruyante des députés. Le surnom de « Ferry le Tonkinois » lui reste attaché.",
+  "resume": "L'évacuation de Lang Son, connue à Paris le 29 mars 1885, provoque une grande manifestation devant la Chambre. Le lendemain, le second ministère Ferry tombe devant l'hostilité bruyante des députés. Le surnom de « Ferry le Tonkinois » lui reste attaché.",
   "citation": null,
   "acteurs": [
    {
@@ -4952,7 +4772,7 @@
  },
  {
   "id": "clemenceau-ferry-colonies-1885",
-  "titre": "Clemenceau contre Ferry : les colonies",
+  "titre": "Clemenceau contre Ferry : les colonies",
   "date": "1885-07-28",
   "date_fin": "1885-07-31",
   "epoque": "IIIe République",
@@ -5037,7 +4857,7 @@
   "epoque": "IIIe République",
   "theme": "coup d'éclat",
   "retentissement": 4,
-  "resume": "Élection partielle dans la Seine, le 27 janvier 1889 : le général Boulanger remporte un triomphe électoral à Paris face à Édouard Jacques, candidat soutenu par le gouvernement. Il obtient 245 236 voix, contre 162 675 à son adversaire ; les trois cinquièmes des électeurs ont voté pour lui.",
+  "resume": "Élection partielle dans la Seine, le 27 janvier 1889 : le général Boulanger remporte un triomphe électoral à Paris face à Édouard Jacques, candidat soutenu par le gouvernement. Il obtient 245 236 voix, contre 162 675 à son adversaire ; les trois cinquièmes des électeurs ont voté pour lui.",
   "citation": null,
   "acteurs": [
    {
@@ -5070,7 +4890,7 @@
   "epoque": "IIIe République",
   "theme": "affaire",
   "retentissement": 4,
-  "resume": "Le Sénat, réuni en Haute Cour, juge le général Boulanger et ses soutiens Henri Rochefort et Arthur Dillon, tous absents. Le 14 août 1889, il les déclare coupables de « complot et d'attentat pour changer la forme du gouvernement » et les condamne par contumace à la déportation.",
+  "resume": "Le Sénat, réuni en Haute Cour, juge le général Boulanger et ses soutiens Henri Rochefort et Arthur Dillon, tous absents. Le 14 août 1889, il les déclare coupables de « complot et d'attentat pour changer la forme du gouvernement » et les condamne par contumace à la déportation.",
   "citation": null,
   "acteurs": [
    {
@@ -5102,13 +4922,13 @@
  },
  {
   "id": "panama-chequards-1892",
-  "titre": "Panama : Delahaye et les « chéquards »",
+  "titre": "Panama : Delahaye et les « chéquards »",
   "date": "1892-11-21",
   "date_fin": null,
   "epoque": "IIIe République",
   "theme": "commission d'enquête",
   "retentissement": 4,
-  "resume": "À la Chambre, le boulangiste Jules Delahaye accuse « ceux qui ont touché » dans l'affaire de Panama et range une centaine de collègues parmi les « chéquards ». Une commission d'enquête est nommée, présidée par Henri Brisson.",
+  "resume": "À la Chambre, le boulangiste Jules Delahaye accuse « ceux qui ont touché » dans l'affaire de Panama et range une centaine de collègues parmi les « chéquards ». Une commission d'enquête est nommée, présidée par Henri Brisson.",
   "citation": null,
   "acteurs": [
    {
@@ -5141,7 +4961,7 @@
   "epoque": "IIIe République",
   "theme": "duo ou duel",
   "retentissement": 4,
-  "resume": "Déroulède a mis en cause Clemenceau à la Chambre le 20 décembre, à propos de Cornelius Herz et de Panama. Duel au pistolet à Saint-Ouen devant environ trois cents curieux : six coups, aucun blessé.",
+  "resume": "Déroulède a mis en cause Clemenceau à la Chambre le 20 décembre, à propos de Cornelius Herz et de Panama. Duel au pistolet à Saint-Ouen devant environ trois cents curieux : six coups, aucun blessé.",
   "citation": null,
   "acteurs": [
    {
@@ -5174,7 +4994,7 @@
   "epoque": "IIIe République",
   "theme": "coup d'éclat",
   "retentissement": 5,
-  "resume": "L'anarchiste Auguste Vaillant lance une bombe dans la salle de la Chambre : de nombreux blessés, aucun mort. Le président Dupuy poursuit la séance. Les « lois scélérates » suivent ; Vaillant est exécuté le 5 février 1894.",
+  "resume": "L'anarchiste Auguste Vaillant lance une bombe dans la salle de la Chambre : de nombreux blessés, aucun mort. Le président Dupuy poursuit la séance. Les « lois scélérates » suivent ; Vaillant est exécuté le 5 février 1894.",
   "citation": {
    "texte": "Messieurs, la séance continue !",
    "auteur": "Charles Dupuy",
@@ -5275,13 +5095,13 @@
  },
  {
   "id": "meline-pas-affaire-dreyfus-1897",
-  "titre": "« Il n'y a pas d'affaire Dreyfus »",
+  "titre": "« Il n'y a pas d'affaire Dreyfus »",
   "date": "1897-12-04",
   "date_fin": null,
   "epoque": "IIIe République",
   "theme": "coup d'éclat",
   "retentissement": 4,
-  "resume": "Devant les députés, le président du Conseil Jules Méline, hostile à la révision du procès du capitaine Dreyfus, prononce une phrase restée célèbre : l'affaire n'existe pas. Quelques semaines plus tard, en janvier 1898, Zola publie « J'accuse » dans L'Aurore.",
+  "resume": "Devant les députés, le président du Conseil Jules Méline, hostile à la révision du procès du capitaine Dreyfus, prononce une phrase restée célèbre : l'affaire n'existe pas. Quelques semaines plus tard, en janvier 1898, Zola publie « J'accuse » dans L'Aurore.",
   "citation": {
    "texte": "Il n'y a pas d'affaire Dreyfus…",
    "auteur": "Jules Méline",
@@ -5317,7 +5137,7 @@
   "epoque": "IIIe République",
   "theme": "coup d'éclat",
   "retentissement": 3,
-  "resume": "Jaurès dénonce avec véhémence l'attitude du gouvernement dans l'affaire Dreyfus. Avant qu'il ait achevé son discours, le tumulte éclate : partisans et adversaires de Dreyfus en viennent aux mains dans l'hémicycle, puis dans les couloirs. La presse titre « Tuerie à la Chambre ! ».",
+  "resume": "Jaurès dénonce avec véhémence l'attitude du gouvernement dans l'affaire Dreyfus. Avant qu'il ait achevé son discours, le tumulte éclate : partisans et adversaires de Dreyfus en viennent aux mains dans l'hémicycle, puis dans les couloirs. La presse titre « Tuerie à la Chambre ! ».",
   "citation": null,
   "acteurs": [
    {
@@ -5457,7 +5277,7 @@
   "epoque": "IIIe République",
   "theme": "première",
   "retentissement": 4,
-  "resume": "Nommé par Émile Loubet, Pierre Waldeck-Rousseau forme un cabinet de « défense républicaine ». Le socialiste Millerand y siège aux côtés du général de Galliffet, figure de la répression de la Commune. Jaurès s'y rallie ; Guesde et Vaillant quittent le groupe socialiste.",
+  "resume": "Nommé par Émile Loubet, Pierre Waldeck-Rousseau forme un cabinet de « défense républicaine ». Le socialiste Millerand y siège aux côtés du général de Galliffet, figure de la répression de la Commune. Jaurès s'y rallie ; Guesde et Vaillant quittent le groupe socialiste.",
   "citation": null,
   "acteurs": [
    {
@@ -5612,12 +5432,12 @@
   "epoque": "IIIe République",
   "theme": "première",
   "retentissement": 5,
-  "resume": "Rapportée par Aristide Briand, votée par la Chambre le 3 juillet puis par le Sénat le 6 décembre, la loi est promulguée le 9 décembre 1905. « La République assure la liberté de conscience » et « ne reconnaît, ne salarie ni ne subventionne aucun culte » : le Concordat de 1801 est rompu.",
+  "resume": "Rapportée par Aristide Briand, votée par la Chambre le 3 juillet puis par le Sénat le 6 décembre, la loi est promulguée le 9 décembre 1905. « La République assure la liberté de conscience » et « ne reconnaît, ne salarie ni ne subventionne aucun culte » : le Concordat de 1801 est rompu.",
   "citation": null,
   "acteurs": [
    {
     "nom": "Aristide Briand",
-    "role": "rapporteur de la commission des « trente-trois »",
+    "role": "rapporteur de la commission des « trente-trois »",
     "carte": "1211"
    }
   ],
@@ -5953,7 +5773,7 @@
   "epoque": "IIIe République",
   "theme": "première",
   "retentissement": 4,
-  "resume": "La loi du 29 juillet 1913 impose le vote sous enveloppe et crée une « cabine d'isolement », le futur isoloir. Pour la première fois depuis la Révolution, l'électeur peut s'isoler avant de glisser son bulletin dans l'urne.",
+  "resume": "La loi du 29 juillet 1913 impose le vote sous enveloppe et crée une « cabine d'isolement », le futur isoloir. Pour la première fois depuis la Révolution, l'électeur peut s'isoler avant de glisser son bulletin dans l'urne.",
   "citation": null,
   "acteurs": [
    {
@@ -5989,7 +5809,7 @@
   "epoque": "IIIe République",
   "theme": "duo ou duel",
   "retentissement": 4,
-  "resume": "Malgré Jaurès qui lance au ministre de la Guerre « C'est de la folie ! », le service militaire actif passe à trois ans. Votée par la Chambre le 19 juillet 1913 par 356 voix contre 204, la loi est adoptée définitivement par le Sénat le 7 août par 245 voix contre 36.",
+  "resume": "Malgré Jaurès qui lance au ministre de la Guerre « C'est de la folie ! », le service militaire actif passe à trois ans. Votée par la Chambre le 19 juillet 1913 par 356 voix contre 204, la loi est adoptée définitivement par le Sénat le 7 août par 245 voix contre 36.",
   "citation": {
    "texte": "C'est un crime, contre la République, et contre la France !",
    "auteur": "Jean Jaurès",
@@ -6114,7 +5934,7 @@
   "epoque": "IIIe République",
   "theme": "affaire",
   "retentissement": 5,
-  "resume": "Le 31 juillet 1914 au soir, Jean Jaurès dîne au café du Croissant, rue Montmartre, quand Raoul Villain tire sur lui par la fenêtre ouverte. L'« apôtre de la paix » meurt à la veille de la mobilisation générale ; son assassin sera finalement acquitté.",
+  "resume": "Le 31 juillet 1914 au soir, Jean Jaurès dîne au café du Croissant, rue Montmartre, quand Raoul Villain tire sur lui par la fenêtre ouverte. L'« apôtre de la paix » meurt à la veille de la mobilisation générale ; son assassin sera finalement acquitté.",
   "citation": {
    "texte": "Jaurès a été assassiné par un dément, à l'heure même où il venait de tenter un suprême effort en faveur de la paix et de l'union nationale",
    "auteur": "Paul Deschanel",
@@ -6164,7 +5984,7 @@
   "epoque": "IIIe République",
   "theme": "coup d'éclat",
   "retentissement": 5,
-  "resume": "Le jour des obsèques de Jaurès, René Viviani lit aux Chambres le message de Raymond Poincaré appelant à « l'union sacrée ». Dix-huit projets de loi sont adoptés sans débat, à l'unanimité, puis le Parlement s'ajourne sine die et confie la conduite de la guerre au gouvernement.",
+  "resume": "Le jour des obsèques de Jaurès, René Viviani lit aux Chambres le message de Raymond Poincaré appelant à « l'union sacrée ». Dix-huit projets de loi sont adoptés sans débat, à l'unanimité, puis le Parlement s'ajourne sine die et confie la conduite de la guerre au gouvernement.",
   "citation": {
    "texte": "Elle sera héroïquement défendue par tous ses fils, dont rien ne brisera devant l'ennemi l'union sacrée",
    "auteur": "Raymond Poincaré",
@@ -6236,13 +6056,13 @@
  },
  {
   "id": "clemenceau-je-fais-la-guerre-1918",
-  "titre": "« Je fais la guerre »",
+  "titre": "« Je fais la guerre »",
   "date": "1918-03-08",
   "date_fin": null,
   "epoque": "IIIe République",
   "theme": "coup d'éclat",
   "retentissement": 4,
-  "resume": "Devant la Chambre, Georges Clemenceau, président du Conseil et ministre de la Guerre, résume sa politique d'une formule : « Je fais la guerre ». Il reprend ainsi sa déclaration ministérielle de novembre 1917, qui se fixait pour objectif la « guerre intégrale ».",
+  "resume": "Devant la Chambre, Georges Clemenceau, président du Conseil et ministre de la Guerre, résume sa politique d'une formule : « Je fais la guerre ». Il reprend ainsi sa déclaration ministérielle de novembre 1917, qui se fixait pour objectif la « guerre intégrale ».",
   "citation": {
    "texte": "Je fais la guerre",
    "auteur": "Georges Clemenceau",
@@ -6410,13 +6230,13 @@
  },
  {
   "id": "bleu-horizon-1919",
-  "titre": "La Chambre « bleu horizon »",
+  "titre": "La Chambre « bleu horizon »",
   "date": "1919-11-16",
   "date_fin": null,
   "epoque": "IIIe République",
   "theme": "record",
   "retentissement": 4,
-  "resume": "Premières législatives d'après-guerre : le Bloc national, lancé sous le mot d'ordre « Ni réaction, ni révolution », l'emporte largement. Peuplée d'anciens combattants, la nouvelle Chambre est surnommée « bleu horizon », de la couleur de l'uniforme des poilus.",
+  "resume": "Premières législatives d'après-guerre : le Bloc national, lancé sous le mot d'ordre « Ni réaction, ni révolution », l'emporte largement. Peuplée d'anciens combattants, la nouvelle Chambre est surnommée « bleu horizon », de la couleur de l'uniforme des poilus.",
   "citation": null,
   "acteurs": [
    {
@@ -6489,7 +6309,7 @@
   "epoque": "IIIe République",
   "theme": "affaire",
   "retentissement": 3,
-  "resume": "Arrêté en janvier 1918 pour intelligence avec l'ennemi, l'ancien président du Conseil Joseph Caillaux est jugé par le Sénat en Haute Cour en 31 audiences. Seule reste la « correspondance avec des sujets d'une puissance ennemie » : trois ans de prison et privation de ses droits politiques.",
+  "resume": "Arrêté en janvier 1918 pour intelligence avec l'ennemi, l'ancien président du Conseil Joseph Caillaux est jugé par le Sénat en Haute Cour en 31 audiences. Seule reste la « correspondance avec des sujets d'une puissance ennemie » : trois ans de prison et privation de ses droits politiques.",
   "citation": null,
   "acteurs": [
    {
@@ -6582,7 +6402,7 @@
   "epoque": "IIIe République",
   "theme": "coup d'éclat",
   "retentissement": 5,
-  "resume": "Au congrès socialiste de Tours, 3 252 mandats sur 4 763 votent l'adhésion à l'Internationale communiste et à ses 21 conditions, portée notamment par Marcel Cachin et Ludovic-Oscar Frossard. Léon Blum s'y oppose : le Parti communiste naît de ce vote.",
+  "resume": "Au congrès socialiste de Tours, 3 252 mandats sur 4 763 votent l'adhésion à l'Internationale communiste et à ses 21 conditions, portée notamment par Marcel Cachin et Ludovic-Oscar Frossard. Léon Blum s'y oppose : le Parti communiste naît de ce vote.",
   "citation": null,
   "acteurs": [
    {
@@ -6727,13 +6547,13 @@
  },
  {
   "id": "mur-argent-1925",
-  "titre": "Herriot et le « mur d'argent »",
+  "titre": "Herriot et le « mur d'argent »",
   "date": "1925-04-10",
   "date_fin": null,
   "epoque": "IIIe République",
   "theme": "démission",
   "retentissement": 4,
-  "resume": "Mis en minorité au Sénat, Édouard Herriot démissionne, alors que la Haute Assemblée ne peut constitutionnellement renverser le gouvernement. La Banque de France refusait de dépasser le plafond de la circulation monétaire : les milieux d'affaires opposent au Cartel le « mur d'argent ».",
+  "resume": "Mis en minorité au Sénat, Édouard Herriot démissionne, alors que la Haute Assemblée ne peut constitutionnellement renverser le gouvernement. La Banque de France refusait de dépasser le plafond de la circulation monétaire : les milieux d'affaires opposent au Cartel le « mur d'argent ».",
   "citation": null,
   "acteurs": [
    {
@@ -6761,7 +6581,7 @@
   "epoque": "IIIe République",
   "theme": "première",
   "retentissement": 4,
-  "resume": "Conforté par les législatives d'avril, où environ 400 députés sur 607 le soutiennent, Raymond Poincaré fait voter la loi monétaire qui redéfinit le franc. Sa valeur en or est réduite des quatre cinquièmes par rapport à 1914 : le franc germinal a vécu.",
+  "resume": "Conforté par les législatives d'avril, où environ 400 députés sur 607 le soutiennent, Raymond Poincaré fait voter la loi monétaire qui redéfinit le franc. Sa valeur en or est réduite des quatre cinquièmes par rapport à 1914 : le franc germinal a vécu.",
   "citation": null,
   "acteurs": [
    {
@@ -6921,7 +6741,7 @@
   "epoque": "IIIe République",
   "theme": "affaire",
   "retentissement": 5,
-  "resume": "Le corps de l'escroc Alexandre Stavisky est découvert à Chamonix, d'une balle : suicide probable, mais l'opinion soupçonne des politiques de l'avoir fait taire. Chautemps démissionne le 27 janvier, ouvrant la crise du 6 février.",
+  "resume": "Le corps de l'escroc Alexandre Stavisky est découvert à Chamonix, d'une balle : suicide probable, mais l'opinion soupçonne des politiques de l'avoir fait taire. Chautemps démissionne le 27 janvier, ouvrant la crise du 6 février.",
   "citation": null,
   "acteurs": [
    {
@@ -6949,7 +6769,7 @@
   "epoque": "IIIe République",
   "theme": "coup d'éclat",
   "retentissement": 5,
-  "resume": "Pendant qu'Édouard Daladier présente son gouvernement à la Chambre, les ligues manifestent place de la Concorde, face au Palais-Bourbon. La manifestation tourne à l'émeute et la garde mobile tire : au moins quinze morts. Investi, Daladier démissionne le lendemain ; Gaston Doumergue lui succède.",
+  "resume": "Pendant qu'Édouard Daladier présente son gouvernement à la Chambre, les ligues manifestent place de la Concorde, face au Palais-Bourbon. La manifestation tourne à l'émeute et la garde mobile tire : au moins quinze morts. Investi, Daladier démissionne le lendemain ; Gaston Doumergue lui succède.",
   "citation": null,
   "acteurs": [
    {
@@ -7056,7 +6876,7 @@
   "epoque": "IIIe République",
   "theme": "première",
   "retentissement": 3,
-  "resume": "Muni des pouvoirs de décrets-lois accordés en juin, Pierre Laval promulgue le 16 juillet 1935 vingt-neuf décrets-lois de déflation : réduction générale de 10 % des dépenses publiques, y compris les salaires des fonctionnaires et les intérêts des emprunts.",
+  "resume": "Muni des pouvoirs de décrets-lois accordés en juin, Pierre Laval promulgue le 16 juillet 1935 vingt-neuf décrets-lois de déflation : réduction générale de 10 % des dépenses publiques, y compris les salaires des fonctionnaires et les intérêts des emprunts.",
   "citation": null,
   "acteurs": [
    {
@@ -7157,7 +6977,7 @@
   "epoque": "IIIe République",
   "theme": "première",
   "retentissement": 4,
-  "resume": "Le premier cabinet Blum compte trois sous-secrétaires d'État : Cécile Brunschvicg à l'Éducation nationale, Irène Joliot-Curie à la Recherche scientifique, Suzanne Lacore à la Protection de l'enfance. Les femmes n'ont pourtant pas le droit de vote.",
+  "resume": "Le premier cabinet Blum compte trois sous-secrétaires d'État : Cécile Brunschvicg à l'Éducation nationale, Irène Joliot-Curie à la Recherche scientifique, Suzanne Lacore à la Protection de l'enfance. Les femmes n'ont pourtant pas le droit de vote.",
   "citation": null,
   "acteurs": [
    {
@@ -7200,7 +7020,7 @@
   "epoque": "IIIe République",
   "theme": "coup d'éclat",
   "retentissement": 3,
-  "resume": "Lors du débat d'investiture de Léon Blum, le député de l'Ardèche Xavier Vallat lance une attaque antisémite contre le nouveau président du Conseil. Édouard Herriot, qui préside, juge ses paroles « inadmissibles à la tribune française ». Blum obtient la confiance.",
+  "resume": "Lors du débat d'investiture de Léon Blum, le député de l'Ardèche Xavier Vallat lance une attaque antisémite contre le nouveau président du Conseil. Édouard Herriot, qui préside, juge ses paroles « inadmissibles à la tribune française ». Blum obtient la confiance.",
   "citation": {
    "texte": "Pour la première fois, ce vieux pays gallo-romain sera gouverné... par un juif.",
    "auteur": "Xavier Vallat",
@@ -7531,7 +7351,7 @@
   "epoque": "IIIe République",
   "theme": "première",
   "retentissement": 4,
-  "resume": "À Alger, l'Assemblée consultative provisoire adopte l'amendement du communiste Fernand Grenier : les femmes seront électrices et éligibles comme les hommes. L'ordonnance du 21 avril 1944 en fait le droit.",
+  "resume": "À Alger, l'Assemblée consultative provisoire adopte l'amendement du communiste Fernand Grenier : les femmes seront électrices et éligibles comme les hommes. L'ordonnance du 21 avril 1944 en fait le droit.",
   "citation": null,
   "acteurs": [
    {
@@ -7559,7 +7379,7 @@
   "epoque": "Libération et IVe République",
   "theme": "première",
   "retentissement": 4,
-  "resume": "Six mois après avoir voté pour la première fois aux municipales, les Françaises font leur entrée à l'Assemblée : 33 femmes sont élues à la première Assemblée constituante, dont 17 communistes, 9 MRP, 6 socialistes et une élue du Parti républicain de la liberté.",
+  "resume": "Six mois après avoir voté pour la première fois aux municipales, les Françaises font leur entrée à l'Assemblée : 33 femmes sont élues à la première Assemblée constituante, dont 17 communistes, 9 MRP, 6 socialistes et une élue du Parti républicain de la liberté.",
   "citation": null,
   "acteurs": [
    {
@@ -7699,7 +7519,7 @@
   "epoque": "Libération et IVe République",
   "theme": "première",
   "retentissement": 4,
-  "resume": "La loi du 13 avril 1946, dite loi Marthe Richard du nom de son inspiratrice, interdit les maisons de tolérance sur tout le territoire. Elle ne punit pas la prostitution elle-même mais son exploitation par les proxénètes ; un rapport du Sénat jugera qu'elle « ne fut guère appliquée ».",
+  "resume": "La loi du 13 avril 1946, dite loi Marthe Richard du nom de son inspiratrice, interdit les maisons de tolérance sur tout le territoire. Elle ne punit pas la prostitution elle-même mais son exploitation par les proxénètes ; un rapport du Sénat jugera qu'elle « ne fut guère appliquée ».",
   "citation": null,
   "acteurs": [
    {
@@ -7908,7 +7728,7 @@
   "epoque": "Libération et IVe République",
   "theme": "coup d'éclat",
   "retentissement": 4,
-  "resume": "Ramadier pose la question de confiance à l'Assemblée : il l'obtient par 360 voix contre 186, les communistes votant contre. Il renvoie alors leurs ministres du gouvernement : c'est la fin du tripartisme.",
+  "resume": "Ramadier pose la question de confiance à l'Assemblée : il l'obtient par 360 voix contre 186, les communistes votant contre. Il renvoie alors leurs ministres du gouvernement : c'est la fin du tripartisme.",
   "citation": null,
   "acteurs": [
    {
@@ -8071,12 +7891,12 @@
   "epoque": "Libération et IVe République",
   "theme": "affaire",
   "retentissement": 3,
-  "resume": "La coalition de la « troisième force » adopte une loi électorale qui permet aux listes de s'apparenter : celles qui réunissent la majorité absolue des suffrages remportent tous les sièges du département. Aux législatives du 17 juin 1951, le RPF obtient 117 sièges, les communistes 101.",
+  "resume": "La coalition de la « troisième force » adopte une loi électorale qui permet aux listes de s'apparenter : celles qui réunissent la majorité absolue des suffrages remportent tous les sièges du département. Aux législatives du 17 juin 1951, le RPF obtient 117 sièges, les communistes 101.",
   "citation": null,
   "acteurs": [
    {
     "nom": "Henri Queuille",
-    "role": "auteur du mot « hexagonale »",
+    "role": "auteur du mot « hexagonale »",
     "carte": "6554"
    }
   ],
@@ -8148,7 +7968,7 @@
   "epoque": "Libération et IVe République",
   "theme": "affaire",
   "retentissement": 4,
-  "resume": "Le soir d'une manifestation contre le général Ridgway, Jacques Duclos est arrêté : deux pigeons et un cahier de notes dans sa voiture. Libéré le 1er juillet, l'Assemblée refuse le 6 novembre 1953 de lever son immunité.",
+  "resume": "Le soir d'une manifestation contre le général Ridgway, Jacques Duclos est arrêté : deux pigeons et un cahier de notes dans sa voiture. Libéré le 1er juillet, l'Assemblée refuse le 6 novembre 1953 de lever son immunité.",
   "citation": null,
   "acteurs": [
    {
@@ -8333,13 +8153,13 @@
  },
  {
   "id": "algerie-c-est-la-france-1954",
-  "titre": "« L'Algérie, c'est la France »",
+  "titre": "« L'Algérie, c'est la France »",
   "date": "1954-11-12",
   "date_fin": null,
   "epoque": "Libération et IVe République",
   "theme": "coup d'éclat",
   "retentissement": 4,
-  "resume": "Après les attentats du 1er novembre, Pierre Mendès France distingue devant l'Assemblée, le 12 novembre, l'Algérie des protectorats de Tunisie et du Maroc et écarte toute scission. Son ministre de l'Intérieur François Mitterrand affirme aussi que « l'Algérie, c'est la France ».",
+  "resume": "Après les attentats du 1er novembre, Pierre Mendès France distingue devant l'Assemblée, le 12 novembre, l'Algérie des protectorats de Tunisie et du Maroc et écarte toute scission. Son ministre de l'Intérieur François Mitterrand affirme aussi que « l'Algérie, c'est la France ».",
   "citation": {
    "texte": "autant de forces qu'il en faudra et même plus",
    "auteur": "Pierre Mendès France",
@@ -8480,7 +8300,7 @@
   "epoque": "Libération et IVe République",
   "theme": "élection",
   "retentissement": 4,
-  "resume": "Le mouvement de Pierre Poujade obtient environ 2,5 millions de voix (11,5 %) et 52 députés, dont Jean-Marie Le Pen, 27 ans, plus jeune élu. Ils arrivent le 12 janvier au cri de « Sortez les sortants ».",
+  "resume": "Le mouvement de Pierre Poujade obtient environ 2,5 millions de voix (11,5 %) et 52 députés, dont Jean-Marie Le Pen, 27 ans, plus jeune élu. Ils arrivent le 12 janvier au cri de « Sortez les sortants ».",
   "citation": {
    "texte": "Sortez les sortants",
    "auteur": "cri de ralliement des poujadistes",
@@ -8512,7 +8332,7 @@
   "epoque": "Libération et IVe République",
   "theme": "coup d'éclat",
   "retentissement": 4,
-  "resume": "Par 455 voix contre 76, l'Assemblée habilite le gouvernement à prendre en Algérie « toutes mesures exceptionnelles en vue du rétablissement de l'ordre ». Un décret du 17 mars transfère l'essentiel de ces pouvoirs spéciaux à Robert Lacoste, ministre résidant.",
+  "resume": "Par 455 voix contre 76, l'Assemblée habilite le gouvernement à prendre en Algérie « toutes mesures exceptionnelles en vue du rétablissement de l'ordre ». Un décret du 17 mars transfère l'essentiel de ces pouvoirs spéciaux à Robert Lacoste, ministre résidant.",
   "citation": null,
   "acteurs": [
    {
@@ -8545,7 +8365,7 @@
   "epoque": "Libération et IVe République",
   "theme": "première",
   "retentissement": 4,
-  "resume": "Vingt ans après 1936, la loi du 27 mars 1956 porte le congé annuel à un jour ouvrable et demi par mois de travail, dans la limite de dix-huit jours : c'est la troisième semaine de congés payés, votée à l'unanimité par l'Assemblée le 28 février.",
+  "resume": "Vingt ans après 1936, la loi du 27 mars 1956 porte le congé annuel à un jour ouvrable et demi par mois de travail, dans la limite de dix-huit jours : c'est la troisième semaine de congés payés, votée à l'unanimité par l'Assemblée le 28 février.",
   "citation": null,
   "acteurs": [
    {
@@ -8678,7 +8498,7 @@
   "epoque": "Libération et IVe République",
   "theme": "record",
   "retentissement": 3,
-  "resume": "En fonction le 1er février 1956, le gouvernement Mollet tombe le 21 mai 1957 : plus d'un an, longévité exceptionnelle sous la IVe République, que la fiche de l'Assemblée annonce comme la plus longue du régime.",
+  "resume": "En fonction le 1er février 1956, le gouvernement Mollet tombe le 21 mai 1957 : plus d'un an, longévité exceptionnelle sous la IVe République, que la fiche de l'Assemblée annonce comme la plus longue du régime.",
   "citation": null,
   "acteurs": [
    {
@@ -8768,7 +8588,7 @@
   "epoque": "Libération et IVe République",
   "theme": "censure",
   "retentissement": 3,
-  "resume": "Après le bombardement du village tunisien de Sakiet Sidi Youcef (8 février), Félix Gaillard accepte les « bons offices » anglo-américains. À l'issue d'un débat passionné, il remet sa démission le 16 avril : la crise contribue à la fin de la IVe République et au retour de de Gaulle.",
+  "resume": "Après le bombardement du village tunisien de Sakiet Sidi Youcef (8 février), Félix Gaillard accepte les « bons offices » anglo-américains. À l'issue d'un débat passionné, il remet sa démission le 16 avril : la crise contribue à la fin de la IVe République et au retour de de Gaulle.",
   "citation": null,
   "acteurs": [
    {
@@ -8887,7 +8707,7 @@
   "epoque": "Libération et IVe République",
   "theme": "première",
   "retentissement": 4,
-  "resume": "Adoptée le 2 juin et promulguée le 3, elle déroge à l'article 90 de la Constitution : le gouvernement de Gaulle prépare une nouvelle Constitution selon cinq principes, dont la séparation des pouvoirs et la responsabilité du gouvernement devant le Parlement.",
+  "resume": "Adoptée le 2 juin et promulguée le 3, elle déroge à l'article 90 de la Constitution : le gouvernement de Gaulle prépare une nouvelle Constitution selon cinq principes, dont la séparation des pouvoirs et la responsabilité du gouvernement devant le Parlement.",
   "citation": {
    "texte": "Seul le suffrage universel est la source du pouvoir.",
    "auteur": "loi constitutionnelle du 3 juin 1958",
@@ -8964,7 +8784,7 @@
   "epoque": "Libération et IVe République",
   "theme": "première",
   "retentissement": 5,
-  "resume": "Le 28 septembre 1958, les Français approuvent par référendum la Constitution de la Ve République : 79,25 % des votants disent « oui ». En métropole, 17,7 millions de « oui » écrasent 4,6 millions de « non ». La Constitution est promulguée le 4 octobre.",
+  "resume": "Le 28 septembre 1958, les Français approuvent par référendum la Constitution de la Ve République : 79,25 % des votants disent « oui ». En métropole, 17,7 millions de « oui » écrasent 4,6 millions de « non ». La Constitution est promulguée le 4 octobre.",
   "citation": null,
   "acteurs": [
    {
@@ -9029,7 +8849,7 @@
   "epoque": "Ve République",
   "theme": "première",
   "retentissement": 4,
-  "resume": "Le 21 décembre 1958, près de 80 000 grands électeurs élisent Charles de Gaulle premier président de la Ve République : 62 394 voix sur 79 470 suffrages exprimés. Le collège électoral remplace le Parlement, qui désignait le chef de l'État depuis 1875.",
+  "resume": "Le 21 décembre 1958, près de 80 000 grands électeurs élisent Charles de Gaulle premier président de la Ve République : 62 394 voix sur 79 470 suffrages exprimés. Le collège électoral remplace le Parlement, qui désignait le chef de l'État depuis 1875.",
   "citation": null,
   "acteurs": [
    {
@@ -9140,7 +8960,7 @@
   "epoque": "Ve République",
   "theme": "première",
   "retentissement": 4,
-  "resume": "Après treize heures de débat, l'Assemblée vote par 427 voix contre 71 le projet de Michel Debré sur l'enseignement privé, devenu la loi du 31 décembre 1959 : l'État passe contrat avec les écoles privées. Le ministre de l'Éducation, André Boulloche, a démissionné.",
+  "resume": "Après treize heures de débat, l'Assemblée vote par 427 voix contre 71 le projet de Michel Debré sur l'enseignement privé, devenu la loi du 31 décembre 1959 : l'État passe contrat avec les écoles privées. Le ministre de l'Éducation, André Boulloche, a démissionné.",
   "citation": null,
   "acteurs": [
    {
@@ -9241,13 +9061,13 @@
  },
  {
   "id": "monnerville-forfaiture-1962",
-  "titre": "Monnerville et la « forfaiture »",
+  "titre": "Monnerville et la « forfaiture »",
   "date": "1962-09-29",
   "date_fin": null,
   "epoque": "Ve République",
   "theme": "duo ou duel",
   "retentissement": 4,
-  "resume": "Au congrès radical de Vichy, le 29 septembre 1962, le président du Sénat Gaston Monnerville attaque le projet de référendum sur l'élection du président : la motion de censure serait la réplique à « ce que j’appelle une forfaiture ». Il est réélu président du Sénat le 2 octobre.",
+  "resume": "Au congrès radical de Vichy, le 29 septembre 1962, le président du Sénat Gaston Monnerville attaque le projet de référendum sur l'élection du président : la motion de censure serait la réplique à « ce que j’appelle une forfaiture ». Il est réélu président du Sénat le 2 octobre.",
   "citation": {
    "texte": "m’apparaît comme la réplique directe, légale, constitutionnelle à ce que j’appelle une forfaiture",
    "auteur": "Gaston Monnerville",
@@ -9284,7 +9104,7 @@
   "epoque": "Ve République",
   "theme": "censure",
   "retentissement": 5,
-  "resume": "Contre le référendum voulu par de Gaulle sur l'élection du président, Paul Reynaud, Guy Mollet et d'autres déposent une motion de censure. À 4 h 45, le 5 octobre 1962, elle recueille 280 voix, quand 241 suffisaient : le gouvernement Pompidou est renversé.",
+  "resume": "Contre le référendum voulu par de Gaulle sur l'élection du président, Paul Reynaud, Guy Mollet et d'autres déposent une motion de censure. À 4 h 45, le 5 octobre 1962, elle recueille 280 voix, quand 241 suffisaient : le gouvernement Pompidou est renversé.",
   "citation": {
    "texte": "Pour nous, républicains, la France est ici et non ailleurs.",
    "auteur": "Paul Reynaud",
@@ -9368,7 +9188,7 @@
   "epoque": "Ve République",
   "theme": "première",
   "retentissement": 5,
-  "resume": "Par la voie contestée de l'article 11, de Gaulle soumet au peuple l'élection du président au suffrage universel direct. Le 28 octobre 1962, le « oui » l'emporte avec 62,25 % des suffrages exprimés. La loi est datée du 6 novembre 1962.",
+  "resume": "Par la voie contestée de l'article 11, de Gaulle soumet au peuple l'élection du président au suffrage universel direct. Le 28 octobre 1962, le « oui » l'emporte avec 62,25 % des suffrages exprimés. La loi est datée du 6 novembre 1962.",
   "citation": null,
   "acteurs": [
    {
@@ -9432,7 +9252,7 @@
   "epoque": "Ve République",
   "theme": "première",
   "retentissement": 5,
-  "resume": "Première présidentielle au suffrage universel, le 5 décembre 1965 : avec 44,6 % des voix, de Gaulle est mis en ballottage par François Mitterrand, candidat unique de la gauche. Il l'emporte au second tour face à lui, avec 54,8 %.",
+  "resume": "Première présidentielle au suffrage universel, le 5 décembre 1965 : avec 44,6 % des voix, de Gaulle est mis en ballottage par François Mitterrand, candidat unique de la gauche. Il l'emporte au second tour face à lui, avec 54,8 %.",
   "citation": null,
   "acteurs": [
    {
@@ -9478,7 +9298,7 @@
   "epoque": "Ve République",
   "theme": "duo ou duel",
   "retentissement": 3,
-  "resume": "Traité d'« abruti » en séance par Gaston Defferre, qui refuse de s'excuser, le gaulliste René Ribière obtient réparation sur le pré. Le 21 avril 1967, à Neuilly, les deux députés croisent l'épée au premier sang sous l'œil de Jean de Lipkowski. Ribière est touché, Defferre déclaré vainqueur.",
+  "resume": "Traité d'« abruti » en séance par Gaston Defferre, qui refuse de s'excuser, le gaulliste René Ribière obtient réparation sur le pré. Le 21 avril 1967, à Neuilly, les deux députés croisent l'épée au premier sang sous l'œil de Jean de Lipkowski. Ribière est touché, Defferre déclaré vainqueur.",
   "citation": null,
   "acteurs": [
    {
@@ -9541,6 +9361,42 @@
   ]
  },
  {
+  "id": "mai-68",
+  "titre": "Mai 68 : barricades et grève",
+  "date": "1968-05-10",
+  "date_fin": "1968-05-13",
+  "epoque": "Ve République",
+  "theme": "coup d'éclat",
+  "retentissement": 5,
+  "resume": "Dans la nuit du 10 au 11 mai 1968, une soixantaine de barricades s'élèvent à Paris ; les forces de l'ordre les dégagent à coups de grenades (367 graves hospitalisés, 468 interpellés). Le 13 mai, syndicats et étudiants défilent en grève, une grève bientôt généralisée.",
+  "citation": {
+   "texte": "10 ans ça suffit !",
+   "auteur": "Cri des manifestants, mai 1968",
+   "source": "https://www.universalis.fr/encyclopedie/mai-68/2-la-commune-etudiante/"
+  },
+  "acteurs": [
+   {
+    "nom": "Daniel Cohn-Bendit",
+    "role": "étudiant, lance l'appel à la dispersion à 5 h 30",
+    "carte": null
+   }
+  ],
+  "sources": [
+   {
+    "url": "https://www.larousse.fr/archives/journaux_annee/1968/5/dossier_mai_1968",
+    "type": "media"
+   },
+   {
+    "url": "https://www.larousse.fr/archives/journaux_annee/1968/20/dossier_mai_1968",
+    "type": "media"
+   },
+   {
+    "url": "https://www.universalis.fr/encyclopedie/mai-68/2-la-commune-etudiante/",
+    "type": "media"
+   }
+  ]
+ },
+ {
   "id": "dissolution-1968",
   "titre": "La dissolution de mai 68",
   "date": "1968-05-30",
@@ -9548,7 +9404,7 @@
   "epoque": "Ve République",
   "theme": "dissolution",
   "retentissement": 4,
-  "resume": "Le 30 mai 1968, de Gaulle annonce à la radio la dissolution de l'Assemblée nationale. Son brouillon disait l'inverse, « Je ne dissoudrai pas » : la phrase a été rayée après un entretien avec Georges Pompidou. Les électeurs sont appelés aux urnes en juin.",
+  "resume": "Le 30 mai 1968, de Gaulle annonce à la radio la dissolution de l'Assemblée nationale. Son brouillon disait l'inverse, « Je ne dissoudrai pas » : la phrase a été rayée après un entretien avec Georges Pompidou. Les électeurs sont appelés aux urnes en juin.",
   "citation": {
    "texte": "je dissous, aujourd’hui, l’Assemblée nationale",
    "auteur": "Charles de Gaulle",
@@ -9593,7 +9449,7 @@
   "epoque": "Ve République",
   "theme": "record",
   "retentissement": 4,
-  "resume": "Aux législatives de juin 1968, la majorité présidentielle rafle 367 sièges sur 487. L'UDR en obtient seule 293 : un parti détient pour la première fois à lui seul la majorité absolue à l'Assemblée.",
+  "resume": "Aux législatives de juin 1968, la majorité présidentielle rafle 367 sièges sur 487. L'UDR en obtient seule 293 : un parti détient pour la première fois à lui seul la majorité absolue à l'Assemblée.",
   "citation": null,
   "acteurs": [
    {
@@ -9625,7 +9481,7 @@
   "epoque": "Ve République",
   "theme": "coup d'éclat",
   "retentissement": 4,
-  "resume": "Le 10 juillet 1968, peu après la victoire de l'UDR aux élections de juin, de Gaulle remplace Georges Pompidou par Maurice Couve de Murville. Pompidou, placé « en réserve de la République », avait poussé à la dissolution plutôt qu'au référendum.",
+  "resume": "Le 10 juillet 1968, peu après la victoire de l'UDR aux élections de juin, de Gaulle remplace Georges Pompidou par Maurice Couve de Murville. Pompidou, placé « en réserve de la République », avait poussé à la dissolution plutôt qu'au référendum.",
   "citation": null,
   "acteurs": [
    {
@@ -9696,7 +9552,7 @@
   "epoque": "Ve République",
   "theme": "démission",
   "retentissement": 5,
-  "resume": "Le 27 avril 1969, le non l'emporte avec 52,41 % au référendum sur les régions et la réforme du Sénat. Peu après minuit, un communiqué tombe : de Gaulle cesse d'exercer ses fonctions, à compter de midi. Alain Poher, chef de file du non, assure l'intérim.",
+  "resume": "Le 27 avril 1969, le non l'emporte avec 52,41 % au référendum sur les régions et la réforme du Sénat. Peu après minuit, un communiqué tombe : de Gaulle cesse d'exercer ses fonctions, à compter de midi. Alain Poher, chef de file du non, assure l'intérim.",
   "citation": {
    "texte": "Je cesse d'exercer mes fonctions de Président de la République.",
    "auteur": "Charles de Gaulle",
@@ -9737,7 +9593,7 @@
   "epoque": "Ve République",
   "theme": "première",
   "retentissement": 3,
-  "resume": "Le 28 avril 1969, le président du Sénat Alain Poher devient président de la République par intérim. Ironie : le référendum qu'il venait de faire échouer prévoyait de confier cet intérim au Premier ministre. Candidat à la succession, il est battu par Georges Pompidou.",
+  "resume": "Le 28 avril 1969, le président du Sénat Alain Poher devient président de la République par intérim. Ironie : le référendum qu'il venait de faire échouer prévoyait de confier cet intérim au Premier ministre. Candidat à la succession, il est battu par Georges Pompidou.",
   "citation": null,
   "acteurs": [
    {
@@ -9850,13 +9706,13 @@
  },
  {
   "id": "nouvelle-societe-1969",
-  "titre": "Chaban et la « nouvelle société »",
+  "titre": "Chaban et la « nouvelle société »",
   "date": "1969-09-16",
   "date_fin": null,
   "epoque": "Ve République",
   "theme": "coup d'éclat",
   "retentissement": 4,
-  "resume": "Le 16 septembre 1969, dans sa déclaration de politique générale, Jacques Chaban-Delmas dénonce une « société bloquée » et propose de « construire une nouvelle société ». Le slogan, souvent moqué, est approuvé par les députés à 369 voix contre 85.",
+  "resume": "Le 16 septembre 1969, dans sa déclaration de politique générale, Jacques Chaban-Delmas dénonce une « société bloquée » et propose de « construire une nouvelle société ». Le slogan, souvent moqué, est approuvé par les députés à 369 voix contre 85.",
   "citation": {
    "texte": "Nous pouvons donc entreprendre de construire une nouvelle société.",
    "auteur": "Jacques Chaban-Delmas",
@@ -9886,13 +9742,13 @@
  },
  {
   "id": "loi-anticasseurs-1970",
-  "titre": "La loi « anticasseurs »",
+  "titre": "La loi « anticasseurs »",
   "date": "1970-06-08",
   "date_fin": null,
   "epoque": "Ve République",
   "theme": "affaire",
   "retentissement": 3,
-  "resume": "Adopté en urgence par l'Assemblée le 29 avril 1970, le texte « tendant à réprimer certaines formes nouvelles de délinquance » devient la loi du 8 juin 1970. Surnommée loi « anticasseurs », elle sera abrogée en 1981 après l'arrivée au pouvoir de François Mitterrand.",
+  "resume": "Adopté en urgence par l'Assemblée le 29 avril 1970, le texte « tendant à réprimer certaines formes nouvelles de délinquance » devient la loi du 8 juin 1970. Surnommée loi « anticasseurs », elle sera abrogée en 1981 après l'arrivée au pouvoir de François Mitterrand.",
   "citation": null,
   "acteurs": [
    {
@@ -9980,7 +9836,7 @@
   "epoque": "Ve République",
   "theme": "affaire",
   "retentissement": 4,
-  "resume": "Le Canard enchaîné publie la feuille d'impôts du Premier ministre : légale, elle montre qu'il ne paie pas d'impôt sur le revenu. Chaban-Delmas, lâché par des députés de son propre camp, quitte Matignon.",
+  "resume": "Le Canard enchaîné publie la feuille d'impôts du Premier ministre : légale, elle montre qu'il ne paie pas d'impôt sur le revenu. Chaban-Delmas, lâché par des députés de son propre camp, quitte Matignon.",
   "citation": null,
   "acteurs": [
    {
@@ -10004,7 +9860,7 @@
   "epoque": "Ve République",
   "theme": "démission",
   "retentissement": 3,
-  "resume": "En mai 1972, Jacques Chaban-Delmas obtient la confiance de l'Assemblée par 368 voix contre 96, contre l'avis de Georges Pompidou. Six semaines plus tard, il doit partir : le 5 juillet 1972, le président nomme Pierre Messmer à Matignon.",
+  "resume": "En mai 1972, Jacques Chaban-Delmas obtient la confiance de l'Assemblée par 368 voix contre 96, contre l'avis de Georges Pompidou. Six semaines plus tard, il doit partir : le 5 juillet 1972, le président nomme Pierre Messmer à Matignon.",
   "citation": null,
   "acteurs": [
    {
@@ -10070,7 +9926,7 @@
   "epoque": "Ve République",
   "theme": "coup d'éclat",
   "retentissement": 4,
-  "resume": "À quelques semaines du premier tour, quatre ministres et 39 parlementaires appellent la droite à s'unir sans citer Chaban-Delmas, un désaveu. Il finira troisième avec 15,11 % : l'expression « se faire chabaniser » naît.",
+  "resume": "À quelques semaines du premier tour, quatre ministres et 39 parlementaires appellent la droite à s'unir sans citer Chaban-Delmas, un désaveu. Il finira troisième avec 15,11 % : l'expression « se faire chabaniser » naît.",
   "citation": null,
   "acteurs": [
    {
@@ -10167,13 +10023,13 @@
  },
  {
   "id": "monopole-du-coeur-1974",
-  "titre": "« Vous n'avez pas le monopole du cœur »",
+  "titre": "« Vous n'avez pas le monopole du cœur »",
   "date": "1974-05-10",
   "date_fin": null,
   "epoque": "Ve République",
   "theme": "duo ou duel",
   "retentissement": 5,
-  "resume": "Lors du premier débat télévisé d'entre-deux-tours, suivi par quelque 25 millions de Français, Valéry Giscard d'Estaing lance la formule à François Mitterrand. Une note du député Michel Duval lui conseillait de montrer sa « générosité de cœur pour les petits ».",
+  "resume": "Lors du premier débat télévisé d'entre-deux-tours, suivi par quelque 25 millions de Français, Valéry Giscard d'Estaing lance la formule à François Mitterrand. Une note du député Michel Duval lui conseillait de montrer sa « générosité de cœur pour les petits ».",
   "citation": {
    "texte": "Vous n'avez pas, monsieur Mitterrand, le monopole du coeur",
    "auteur": "Valéry Giscard d'Estaing",
@@ -10328,7 +10184,7 @@
   "epoque": "Ve République",
   "theme": "coup d'éclat",
   "retentissement": 5,
-  "resume": "Le 26 novembre 1974, Simone Veil présente le projet de loi sur l'IVG devant une Assemblée de 9 femmes pour 481 hommes. Face aux insultes et aux propos de « soudards », selon son récit, elle l'emporte : le texte est voté dans la nuit du 28 au 29 par 284 voix contre 189.",
+  "resume": "Le 26 novembre 1974, Simone Veil présente le projet de loi sur l'IVG devant une Assemblée de 9 femmes pour 481 hommes. Face aux insultes et aux propos de « soudards », selon son récit, elle l'emporte : le texte est voté dans la nuit du 28 au 29 par 284 voix contre 189.",
   "citation": {
    "texte": "Je voudrais tout d'abord vous faire partager une conviction de femme",
    "auteur": "Simone Veil",
@@ -10443,7 +10299,7 @@
   "epoque": "Ve République",
   "theme": "élection",
   "retentissement": 4,
-  "resume": "Le Conseil de Paris élit Jacques Chirac maire par 67 voix contre 40 à Henri Fiszbin : Paris n'avait plus de maire depuis 1871.",
+  "resume": "Le Conseil de Paris élit Jacques Chirac maire par 67 voix contre 40 à Henri Fiszbin : Paris n'avait plus de maire depuis 1871.",
   "citation": null,
   "acteurs": [
    {
@@ -10472,7 +10328,7 @@
   "epoque": "Ve République",
   "theme": "coup d'éclat",
   "retentissement": 4,
-  "resume": "Le 6 décembre 1978, depuis l'hôpital Cochin où il est hospitalisé, Jacques Chirac prend position contre la politique européenne de Valéry Giscard d'Estaing : c'est l'« appel de Cochin ».",
+  "resume": "Le 6 décembre 1978, depuis l'hôpital Cochin où il est hospitalisé, Jacques Chirac prend position contre la politique européenne de Valéry Giscard d'Estaing : c'est l'« appel de Cochin ».",
   "citation": null,
   "acteurs": [
    {
@@ -10610,13 +10466,13 @@
  },
  {
   "id": "homme-du-passif-1981",
-  "titre": "« L'homme du passif »",
+  "titre": "« L'homme du passif »",
   "date": "1981-05-05",
   "date_fin": null,
   "epoque": "Ve République",
   "theme": "mot célèbre",
   "retentissement": 5,
-  "resume": "Lors du face-à-face télévisé de l'entre-deux-tours, le 5 mai 1981, Mitterrand retourne à Giscard le refrain « l'homme du passé » de 1974 : il est devenu, lui, « l'homme du passif ».",
+  "resume": "Lors du face-à-face télévisé de l'entre-deux-tours, le 5 mai 1981, Mitterrand retourne à Giscard le refrain « l'homme du passé » de 1974 : il est devenu, lui, « l'homme du passif ».",
   "citation": {
    "texte": "c'est quand même ennuyeux que dans l'intervalle vous soyez devenu, vous, l'homme du passif, cela gêne un peu votre démonstration d'aujourd'hui !",
    "auteur": "François Mitterrand",
@@ -10649,7 +10505,7 @@
   "epoque": "Ve République",
   "theme": "coup d'éclat",
   "retentissement": 5,
-  "resume": "François Mitterrand bat le président sortant Valéry Giscard d'Estaing avec 51,75 % des voix au second tour. Depuis Château-Chinon, il salue une victoire des « forces de la jeunesse ». Il est investi le 21 mai et nomme aussitôt Pierre Mauroy à Matignon.",
+  "resume": "François Mitterrand bat le président sortant Valéry Giscard d'Estaing avec 51,75 % des voix au second tour. Depuis Château-Chinon, il salue une victoire des « forces de la jeunesse ». Il est investi le 21 mai et nomme aussitôt Pierre Mauroy à Matignon.",
   "citation": {
    "texte": "Cette victoire est d'abord celle des forces de la jeunesse, des forces du travail, des forces de création, des forces du renouveau qui se sont rassemblées dans un grand élan national pour l'emploi, la paix, la liberté, thèmes qui furent ceux de ma campagne présidentielle et qui demeureront ceux de mon septennat.",
    "auteur": "François Mitterrand",
@@ -10680,13 +10536,13 @@
  },
  {
   "id": "au-revoir-giscard-1981",
-  "titre": "L'« au revoir » de Giscard",
+  "titre": "L'« au revoir » de Giscard",
   "date": "1981-05-19",
   "date_fin": null,
   "epoque": "Ve République",
   "theme": "coup d'éclat",
   "retentissement": 5,
-  "resume": "Deux jours avant la passation des pouvoirs, Valéry Giscard d'Estaing adresse à la télévision un message d'adieu de sept minutes et demie, conclu par un « Au revoir ! » appuyé, un gros plan et un long silence. Il regrettera d'avoir ainsi tourné le dos aux Français.",
+  "resume": "Deux jours avant la passation des pouvoirs, Valéry Giscard d'Estaing adresse à la télévision un message d'adieu de sept minutes et demie, conclu par un « Au revoir ! » appuyé, un gros plan et un long silence. Il regrettera d'avoir ainsi tourné le dos aux Français.",
   "citation": {
    "texte": "Au revoir !",
    "auteur": "Valéry Giscard d'Estaing",
@@ -10726,7 +10582,7 @@
   "epoque": "Ve République",
   "theme": "dissolution",
   "retentissement": 4,
-  "resume": "Tout juste élu, François Mitterrand signe le 22 mai 1981 le décret de dissolution de l'Assemblée nationale et en informe le président du Sénat, Alain Poher. Il demande aux Français les moyens de sa politique : ils sont appelés aux urnes les 14 et 21 juin.",
+  "resume": "Tout juste élu, François Mitterrand signe le 22 mai 1981 le décret de dissolution de l'Assemblée nationale et en informe le président du Sénat, Alain Poher. Il demande aux Français les moyens de sa politique : ils sont appelés aux urnes les 14 et 21 juin.",
   "citation": null,
   "acteurs": [
    {
@@ -10832,7 +10688,7 @@
   "epoque": "Ve République",
   "theme": "première",
   "retentissement": 4,
-  "resume": "Après un débat ouvert le 13 octobre sous urgence, l'Assemblée adopte le 26 octobre par 332 voix contre 154 les nationalisations : cinq groupes industriels, deux sociétés financières et 36 banques.",
+  "resume": "Après un débat ouvert le 13 octobre sous urgence, l'Assemblée adopte le 26 octobre par 332 voix contre 154 les nationalisations : cinq groupes industriels, deux sociétés financières et 36 banques.",
   "citation": null,
   "acteurs": [
    {
@@ -10856,7 +10712,7 @@
   "epoque": "Ve République",
   "theme": "première",
   "retentissement": 4,
-  "resume": "Saisi par 60 députés et 60 sénateurs, le Conseil constitutionnel censure la loi de nationalisation : l'indemnisation des actionnaires n'est pas jugée « juste ». Il affirme au passage la pleine valeur constitutionnelle du droit de propriété proclamé en 1789.",
+  "resume": "Saisi par 60 députés et 60 sénateurs, le Conseil constitutionnel censure la loi de nationalisation : l'indemnisation des actionnaires n'est pas jugée « juste ». Il affirme au passage la pleine valeur constitutionnelle du droit de propriété proclamé en 1789.",
   "citation": null,
   "acteurs": [],
   "sources": [
@@ -10874,7 +10730,7 @@
   "epoque": "Ve République",
   "theme": "première",
   "retentissement": 4,
-  "resume": "Portée par Gaston Defferre, la loi du 2 mars 1982 supprime la tutelle administrative : les actes des collectivités deviennent exécutoires sans contrôle préalable du préfet. L'exécutif du département et de la région passe aux présidents élus des conseils général et régional.",
+  "resume": "Portée par Gaston Defferre, la loi du 2 mars 1982 supprime la tutelle administrative : les actes des collectivités deviennent exécutoires sans contrôle préalable du préfet. L'exécutif du département et de la région passe aux présidents élus des conseils général et régional.",
   "citation": null,
   "acteurs": [
    {
@@ -10957,13 +10813,13 @@
  },
  {
   "id": "chevenement-gueule-1983",
-  "titre": "Chevènement : « ça ferme sa gueule »",
+  "titre": "Chevènement : « ça ferme sa gueule »",
   "date": "1983-03-22",
   "date_fin": null,
   "epoque": "Ve République",
   "theme": "démission",
   "retentissement": 4,
-  "resume": "Opposé à la « parenthèse libérale », Jean-Pierre Chevènement, ministre de la Recherche, quitte le gouvernement lors de la formation du troisième gouvernement Mauroy, chargé d'appliquer la rigueur. Sa formule sur le devoir de réserve des ministres est encore reprise trente ans plus tard.",
+  "resume": "Opposé à la « parenthèse libérale », Jean-Pierre Chevènement, ministre de la Recherche, quitte le gouvernement lors de la formation du troisième gouvernement Mauroy, chargé d'appliquer la rigueur. Sa formule sur le devoir de réserve des ministres est encore reprise trente ans plus tard.",
   "citation": {
    "texte": "un ministre ça ferme sa gueule, si ça veut l'ouvrir, ça démissionne",
    "auteur": "Jean-Pierre Chevènement",
@@ -11000,7 +10856,7 @@
   "epoque": "Ve République",
   "theme": "discours",
   "retentissement": 4,
-  "resume": "Le 25 mars 1983, le gouvernement dévoile un plan de rigueur : 65 milliards de francs de demande en moins, emprunt obligatoire sur l'impôt, plafond de devises touristiques à 2 000 francs.",
+  "resume": "Le 25 mars 1983, le gouvernement dévoile un plan de rigueur : 65 milliards de francs de demande en moins, emprunt obligatoire sur l'impôt, plafond de devises touristiques à 2 000 francs.",
   "citation": null,
   "acteurs": [
    {
@@ -11024,7 +10880,7 @@
   "epoque": "Ve République",
   "theme": "première",
   "retentissement": 3,
-  "resume": "La loi du 13 juillet 1983 sur l'égalité professionnelle entre les femmes et les hommes crée un rapport de situation comparée, obligatoire chaque année. Pour Yvette Roudy, c'est « une loi visant à l'égalité, et non plus une loi de protection ».",
+  "resume": "La loi du 13 juillet 1983 sur l'égalité professionnelle entre les femmes et les hommes crée un rapport de situation comparée, obligatoire chaque année. Pour Yvette Roudy, c'est « une loi visant à l'égalité, et non plus une loi de protection ».",
   "citation": {
    "texte": "L’élément principal de cette loi est la création d’un rapport de situation comparée, obligatoire tous les ans.",
    "auteur": "Yvette Roudy",
@@ -11317,7 +11173,7 @@
   "epoque": "Ve République",
   "theme": "duo ou duel",
   "retentissement": 4,
-  "resume": "Le 14 juillet 1986, sur TF1, François Mitterrand dit qu'il ne signera « certainement pas » l'ordonnance sur les privatisations du gouvernement Chirac, et refuse de la signer le 16. Le Premier ministre en fait un projet de loi, qu'il engage par le 49.3 le 24 juillet.",
+  "resume": "Le 14 juillet 1986, sur TF1, François Mitterrand dit qu'il ne signera « certainement pas » l'ordonnance sur les privatisations du gouvernement Chirac, et refuse de la signer le 16. Le Premier ministre en fait un projet de loi, qu'il engage par le 49.3 le 24 juillet.",
   "citation": {
    "texte": "Si la loi qui sera votée est contraire à mon sentiment, je le regretterai, mais ce sera la loi",
    "auteur": "François Mitterrand",
@@ -11393,13 +11249,13 @@
  },
  {
   "id": "le-pen-detail-1987",
-  "titre": "Le Pen et le « point de détail »",
+  "titre": "Le Pen et le « point de détail »",
   "date": "1987-09-13",
   "date_fin": null,
   "epoque": "Ve République",
   "theme": "mot célèbre",
   "retentissement": 5,
-  "resume": "Au Grand Jury RTL-Le Monde, Jean-Marie Le Pen qualifie la question des chambres à gaz de « point de détail » de l'histoire de la guerre. Un tollé suit, jusqu'à une manifestation devant l'Assemblée pour réclamer la levée de son immunité.",
+  "resume": "Au Grand Jury RTL-Le Monde, Jean-Marie Le Pen qualifie la question des chambres à gaz de « point de détail » de l'histoire de la guerre. Un tollé suit, jusqu'à une manifestation devant l'Assemblée pour réclamer la levée de son immunité.",
   "citation": {
    "texte": "un point de détail",
    "auteur": "Jean-Marie Le Pen",
@@ -11421,13 +11277,13 @@
  },
  {
   "id": "debat-1988",
-  "titre": "« Monsieur le Premier ministre »",
+  "titre": "« Monsieur le Premier ministre »",
   "date": "1988-04-28",
   "date_fin": null,
   "epoque": "Ve République",
   "theme": "duo ou duel",
   "retentissement": 4,
-  "resume": "Entre les deux tours, le président sortant affronte son propre Premier ministre. Quand Jacques Chirac affirme que, ce soir, il n'est pas le Premier ministre ni lui le président, François Mitterrand répond : « Mais vous avez tout à fait raison, monsieur le Premier ministre. »",
+  "resume": "Entre les deux tours, le président sortant affronte son propre Premier ministre. Quand Jacques Chirac affirme que, ce soir, il n'est pas le Premier ministre ni lui le président, François Mitterrand répond : « Mais vous avez tout à fait raison, monsieur le Premier ministre. »",
   "citation": {
    "texte": "Mais vous avez tout à fait raison, monsieur le Premier ministre.",
    "auteur": "François Mitterrand",
@@ -11581,7 +11437,7 @@
   "epoque": "Ve République",
   "theme": "affaire",
   "retentissement": 4,
-  "resume": "La loi du 15 janvier 1990 sur le financement politique contient une amnistie : elle évite à l'ex-ministre Christian Nucci, dans l'affaire du Carrefour du développement, de comparaître devant la Haute Cour. L'opinion y voit un déni de justice.",
+  "resume": "La loi du 15 janvier 1990 sur le financement politique contient une amnistie : elle évite à l'ex-ministre Christian Nucci, dans l'affaire du Carrefour du développement, de comparaître devant la Haute Cour. L'opinion y voit un déni de justice.",
   "citation": null,
   "acteurs": [
    {
@@ -11609,7 +11465,7 @@
   "epoque": "Ve République",
   "theme": "discours",
   "retentissement": 4,
-  "resume": "Députés et sénateurs approuvent l'engagement français : 523 voix contre 43 à l'Assemblée, 290 contre 25 au Sénat. Communistes et dix socialistes, dont six proches de Chevènement, votent contre.",
+  "resume": "Députés et sénateurs approuvent l'engagement français : 523 voix contre 43 à l'Assemblée, 290 contre 25 au Sénat. Communistes et dix socialistes, dont six proches de Chevènement, votent contre.",
   "citation": null,
   "acteurs": [
    {
@@ -11633,7 +11489,7 @@
   "epoque": "Ve République",
   "theme": "démission",
   "retentissement": 4,
-  "resume": "Opposé dès le début du mois à la « logique de guerre », Jean-Pierre Chevènement démissionne de la Défense en pleine guerre du Golfe. Pierre Joxe le remplace.",
+  "resume": "Opposé dès le début du mois à la « logique de guerre », Jean-Pierre Chevènement démissionne de la Défense en pleine guerre du Golfe. Pierre Joxe le remplace.",
   "citation": null,
   "acteurs": [
    {
@@ -11700,7 +11556,7 @@
   "epoque": "Ve République",
   "theme": "record",
   "retentissement": 4,
-  "resume": "De mai 1988 à mai 1991, Michel Rocard engage vingt-huit fois la responsabilité de son gouvernement par l'article 49.3 : quinze textes passent ainsi. Public Sénat le présente comme le « champion » en la matière.",
+  "resume": "De mai 1988 à mai 1991, Michel Rocard engage vingt-huit fois la responsabilité de son gouvernement par l'article 49.3 : quinze textes passent ainsi. Public Sénat le présente comme le « champion » en la matière.",
   "citation": null,
   "acteurs": [
    {
@@ -11718,13 +11574,13 @@
  },
  {
   "id": "chirac-bruit-odeur-1991",
-  "titre": "« Le bruit et l'odeur »",
+  "titre": "« Le bruit et l'odeur »",
   "date": "1991-06-19",
   "date_fin": null,
   "epoque": "Ve République",
   "theme": "mot célèbre",
   "retentissement": 4,
-  "resume": "Lors d'un dîner-débat du RPR à Orléans, Jacques Chirac, maire de Paris, évoque le « bruit et l'odeur » imputés aux familles immigrées. Il parlera plus tard d'« une vraie connerie ».",
+  "resume": "Lors d'un dîner-débat du RPR à Orléans, Jacques Chirac, maire de Paris, évoque le « bruit et l'odeur » imputés aux familles immigrées. Il parlera plus tard d'« une vraie connerie ».",
   "citation": {
    "texte": "Si vous ajoutez le bruit et l'odeur, hé bien le travailleur français sur le palier devient fou.",
    "auteur": "Jacques Chirac",
@@ -11746,13 +11602,13 @@
  },
  {
   "id": "dufoix-pas-coupable-1991",
-  "titre": "« Responsable mais pas coupable »",
+  "titre": "« Responsable mais pas coupable »",
   "date": "1991-11-03",
   "date_fin": null,
   "epoque": "Ve République",
   "theme": "mot célèbre",
   "retentissement": 5,
-  "resume": "En plein scandale du sang contaminé, Georgina Dufoix, ancienne ministre des Affaires sociales, déclare se sentir « responsable » mais pas « coupable ». Fabius et Hervé sont aussi mis en cause par le rapport de l'Igas.",
+  "resume": "En plein scandale du sang contaminé, Georgina Dufoix, ancienne ministre des Affaires sociales, déclare se sentir « responsable » mais pas « coupable ». Fabius et Hervé sont aussi mis en cause par le rapport de l'Igas.",
   "citation": null,
   "acteurs": [
    {
@@ -11786,7 +11642,7 @@
   "epoque": "Ve République",
   "theme": "discours",
   "retentissement": 5,
-  "resume": "À la tribune de l'Assemblée, Philippe Séguin dénonce le traité de Maastricht et réclame que la parole soit donnée au peuple. Son discours fait de lui le chef de file du « non » à droite.",
+  "resume": "À la tribune de l'Assemblée, Philippe Séguin dénonce le traité de Maastricht et réclame que la parole soit donnée au peuple. Son discours fait de lui le chef de file du « non » à droite.",
   "citation": {
    "texte": "fédéralisme au rabais fondamentalement antidémocratique",
    "auteur": "Philippe Séguin",
@@ -11841,7 +11697,7 @@
  },
  {
   "id": "petit-oui-1992",
-  "titre": "Le « petit oui » à Maastricht",
+  "titre": "Le « petit oui » à Maastricht",
   "date": "1992-09-20",
   "date_fin": null,
   "epoque": "Ve République",
@@ -11879,7 +11735,7 @@
   "epoque": "Ve République",
   "theme": "première",
   "retentissement": 4,
-  "resume": "Après la sévère défaite de la majorité présidentielle aux législatives de mars 1993, François Mitterrand nomme Édouard Balladur Premier ministre le 29 mars : c'est la seconde cohabitation. Le 2 avril, Philippe Séguin est élu président de l'Assemblée nationale.",
+  "resume": "Après la sévère défaite de la majorité présidentielle aux législatives de mars 1993, François Mitterrand nomme Édouard Balladur Premier ministre le 29 mars : c'est la seconde cohabitation. Le 2 avril, Philippe Séguin est élu président de l'Assemblée nationale.",
   "citation": null,
   "acteurs": [
    {
@@ -11972,7 +11828,7 @@
   "epoque": "Ve République",
   "theme": "affaire",
   "retentissement": 4,
-  "resume": "Yann Piat, députée UDF du Var, est tuée sur les hauteurs de Hyères : deux hommes à moto tirent six coups de feu sur sa voiture. Le tireur est condamné à la perpétuité en 1998, mais le mobile et les commanditaires restent discutés.",
+  "resume": "Yann Piat, députée UDF du Var, est tuée sur les hauteurs de Hyères : deux hommes à moto tirent six coups de feu sur sa voiture. Le tireur est condamné à la perpétuité en 1998, mais le mobile et les commanditaires restent discutés.",
   "citation": null,
   "acteurs": [
    {
@@ -12004,7 +11860,7 @@
   "epoque": "Ve République",
   "theme": "discours",
   "retentissement": 4,
-  "resume": "Le 17 janvier 1995, François Mitterrand présente devant le Parlement européen le programme de la présidence française de l'Union. Il y déclare : « le nationalisme, c'est la guerre ! » et parle de l'un de ses derniers actes publics.",
+  "resume": "Le 17 janvier 1995, François Mitterrand présente devant le Parlement européen le programme de la présidence française de l'Union. Il y déclare : « le nationalisme, c'est la guerre ! » et parle de l'un de ses derniers actes publics.",
   "citation": null,
   "acteurs": [
    {
@@ -12058,6 +11914,48 @@
   ]
  },
  {
+  "id": "chirac-elu-1995",
+  "titre": "Chirac élu président",
+  "date": "1995-05-07",
+  "date_fin": null,
+  "epoque": "Ve République",
+  "theme": "élection",
+  "retentissement": 5,
+  "resume": "Le 7 mai 1995, Jacques Chirac est élu président avec 52,64 % des suffrages face à Lionel Jospin (47,36 %), arrivé en tête au premier tour. L'abstention est de 20,33 %. Il nomme Alain Juppé Premier ministre le 17 mai.",
+  "citation": {
+   "texte": "Mes chers compatriotes, je serai le président de tous les Français.",
+   "auteur": "Jacques Chirac",
+   "source": "https://www.elysee.fr/jacques-chirac/1995/05/07/declaration-de-m-jacques-chirac-president-de-la-republique-au-soir-de-son-election-a-la-presidence-de-la-republique-paris-le-7-mai-1995"
+  },
+  "acteurs": [
+   {
+    "nom": "Jacques Chirac",
+    "role": "élu président de la République",
+    "carte": "1798"
+   },
+   {
+    "nom": "Lionel Jospin",
+    "role": "candidat socialiste battu au second tour",
+    "carte": "4052"
+   },
+   {
+    "nom": "Alain Juppé",
+    "role": "nommé Premier ministre le 17 mai",
+    "carte": "4104"
+   }
+  ],
+  "sources": [
+   {
+    "url": "https://www.universalis.fr/evenement/2-24-mai-1995-election-de-jacques-chirac-a-la-presidence-de-la-republique-et-nomination-d-alain-juppe-au-poste-de-premier-ministre/",
+    "type": "media"
+   },
+   {
+    "url": "https://www.elysee.fr/jacques-chirac/1995/05/07/declaration-de-m-jacques-chirac-president-de-la-republique-au-soir-de-son-election-a-la-presidence-de-la-republique-paris-le-7-mai-1995",
+    "type": "officiel"
+   }
+  ]
+ },
+ {
   "id": "vel-dhiv-chirac-1995",
   "titre": "Chirac et le Vel d'Hiv",
   "date": "1995-07-16",
@@ -12065,7 +11963,7 @@
   "epoque": "Ve République",
   "theme": "discours",
   "retentissement": 5,
-  "resume": "Lors de la cérémonie du Vél d'Hiv, le 16 juillet 1995, le président Jacques Chirac déclare que « la folie criminelle de l'occupant a été secondée par des Français, par l'État français ».",
+  "resume": "Lors de la cérémonie du Vél d'Hiv, le 16 juillet 1995, le président Jacques Chirac déclare que « la folie criminelle de l'occupant a été secondée par des Français, par l'État français ».",
   "citation": {
    "texte": "la folie criminelle de l'occupant a été secondée par des Français, par l'État français",
    "auteur": "Jacques Chirac",
@@ -12091,13 +11989,13 @@
  },
  {
   "id": "juppettes-1995",
-  "titre": "Les « Juppettes » remerciées",
+  "titre": "Les « Juppettes » remerciées",
   "date": "1995-11-07",
   "date_fin": null,
   "epoque": "Ve République",
   "theme": "coup d'éclat",
   "retentissement": 4,
-  "resume": "Au remaniement des 7-8 novembre 1995, huit des douze femmes du premier gouvernement Juppé ne sont pas reconduites. Elles étaient surnommées les « Juppettes ».",
+  "resume": "Au remaniement des 7-8 novembre 1995, huit des douze femmes du premier gouvernement Juppé ne sont pas reconduites. Elles étaient surnommées les « Juppettes ».",
   "citation": null,
   "acteurs": [
    {
@@ -12125,7 +12023,7 @@
   "epoque": "Ve République",
   "theme": "coup d'éclat",
   "retentissement": 5,
-  "resume": "Présenté le 15 novembre, le plan Juppé de réforme de la protection sociale se heurte à une grève très suivie à la SNCF et à la RATP dès le 24 novembre. Le 10 décembre, à la télévision, Alain Juppé cède : les roulants conserveront la retraite à 50 ans.",
+  "resume": "Présenté le 15 novembre, le plan Juppé de réforme de la protection sociale se heurte à une grève très suivie à la SNCF et à la RATP dès le 24 novembre. Le 10 décembre, à la télévision, Alain Juppé cède : les roulants conserveront la retraite à 50 ans.",
   "citation": null,
   "acteurs": [
    {
@@ -12153,7 +12051,7 @@
   "epoque": "Ve République",
   "theme": "dissolution",
   "retentissement": 5,
-  "resume": "Le 21 avril 1997, Jacques Chirac dissout l'Assemblée avec un an d'avance, les législatives étant prévues en 1998. Le pari tourne au « cataclysme électoral » : la droite perd la majorité et Alain Juppé quitte Matignon.",
+  "resume": "Le 21 avril 1997, Jacques Chirac dissout l'Assemblée avec un an d'avance, les législatives étant prévues en 1998. Le pari tourne au « cataclysme électoral » : la droite perd la majorité et Alain Juppé quitte Matignon.",
   "citation": null,
   "acteurs": [
    {
@@ -12186,7 +12084,7 @@
   "epoque": "Ve République",
   "theme": "élection",
   "retentissement": 5,
-  "resume": "Au second tour des législatives du 1er juin 1997, la gauche plurielle (PS, PC, radicaux de gauche, Verts) obtient la majorité absolue. Lionel Jospin devient Premier ministre : cinq ans de cohabitation commencent.",
+  "resume": "Au second tour des législatives du 1er juin 1997, la gauche plurielle (PS, PC, radicaux de gauche, Verts) obtient la majorité absolue. Lionel Jospin devient Premier ministre : cinq ans de cohabitation commencent.",
   "citation": null,
   "acteurs": [
    {
@@ -12363,7 +12261,7 @@
   "epoque": "Ve République",
   "theme": "première",
   "retentissement": 4,
-  "resume": "Réuni en Congrès à Versailles le 28 juin, le Parlement adopte par 741 voix contre 42 la révision qui inscrit à l'article 3 que « la loi favorise l'égal accès des femmes et des hommes aux mandats électoraux et fonctions électives ». La loi constitutionnelle est promulguée le 8 juillet.",
+  "resume": "Réuni en Congrès à Versailles le 28 juin, le Parlement adopte par 741 voix contre 42 la révision qui inscrit à l'article 3 que « la loi favorise l'égal accès des femmes et des hommes aux mandats électoraux et fonctions électives ». La loi constitutionnelle est promulguée le 8 juillet.",
   "citation": null,
   "acteurs": [],
   "sources": [
@@ -12451,7 +12349,7 @@
   "epoque": "Ve République",
   "theme": "démission",
   "retentissement": 4,
-  "resume": "Le 2 novembre 1999, Dominique Strauss-Kahn quitte le ministère de l'Économie après sa mise en cause dans l'affaire de la MNEF. Il dit ne pas se sentir « coupable » mais veut pouvoir se défendre.",
+  "resume": "Le 2 novembre 1999, Dominique Strauss-Kahn quitte le ministère de l'Économie après sa mise en cause dans l'affaire de la MNEF. Il dit ne pas se sentir « coupable » mais veut pouvoir se défendre.",
   "citation": null,
   "acteurs": [
    {
@@ -12479,7 +12377,7 @@
   "epoque": "Ve République",
   "theme": "démission",
   "retentissement": 4,
-  "resume": "Le 29 août 2000, Jean-Pierre Chevènement démissionne de l'Intérieur : il refuse de défendre le projet de statut de la Corse issu du processus de Matignon. Lionel Jospin perd un nouveau poids lourd.",
+  "resume": "Le 29 août 2000, Jean-Pierre Chevènement démissionne de l'Intérieur : il refuse de défendre le projet de statut de la Corse issu du processus de Matignon. Lionel Jospin perd un nouveau poids lourd.",
   "citation": null,
   "acteurs": [
    {
@@ -12545,7 +12443,7 @@
   "epoque": "Ve République",
   "theme": "première",
   "retentissement": 5,
-  "resume": "Le 10 mai 2001, le Sénat adopte définitivement la loi portée par Christiane Taubira : la traite et l'esclavage sont reconnus crime contre l'humanité. La loi est promulguée le 21 mai.",
+  "resume": "Le 10 mai 2001, le Sénat adopte définitivement la loi portée par Christiane Taubira : la traite et l'esclavage sont reconnus crime contre l'humanité. La loi est promulguée le 21 mai.",
   "citation": null,
   "acteurs": [
    {
@@ -12567,7 +12465,7 @@
  },
  {
   "id": "21-avril-2002",
-  "titre": "Le 21 avril : Jospin éliminé",
+  "titre": "Le 21 avril : Jospin éliminé",
   "date": "2002-04-21",
   "date_fin": null,
   "epoque": "Ve République",
@@ -12857,7 +12755,7 @@
   "epoque": "Ve République",
   "theme": "coup d'éclat",
   "retentissement": 5,
-  "resume": "Le 29 mai 2005, les Français rejettent par référendum le traité établissant une Constitution pour l'Europe : 54,67 % de non, avec plus de sept électeurs sur dix aux urnes. Le soir même, Jacques Chirac prend acte d'une « décision souveraine ».",
+  "resume": "Le 29 mai 2005, les Français rejettent par référendum le traité établissant une Constitution pour l'Europe : 54,67 % de non, avec plus de sept électeurs sur dix aux urnes. Le soir même, Jacques Chirac prend acte d'une « décision souveraine ».",
   "citation": {
    "texte": "Vous avez majoritairement rejeté la Constitution européenne.",
    "auteur": "Jacques Chirac",
@@ -12978,7 +12876,7 @@
     "type": "officiel"
    },
    {
-    "url": "https://www.maire-info.com/implantation-de-toyal-�-accous-pyrenees-atlantiques-le-bout-du-tunnel-pour-jean-lassale-article2-6895",
+    "url": "https://www.maire-info.com/implantation-de-toyal-%C3%A0-accous-pyrenees-atlantiques-le-bout-du-tunnel-pour-jean-lassale-article2-6895",
     "type": "media"
    }
   ]
@@ -13098,7 +12996,7 @@
   "epoque": "Ve République",
   "theme": "duo ou duel",
   "retentissement": 5,
-  "resume": "Le 2 mai 2007, devant 20,4 millions de téléspectateurs, Ségolène Royal se montre combative face à Nicolas Sarkozy, surtout sur la scolarisation des enfants handicapés. Accusée de « perdre ses nerfs », elle revendique des « colères très saines ».",
+  "resume": "Le 2 mai 2007, devant 20,4 millions de téléspectateurs, Ségolène Royal se montre combative face à Nicolas Sarkozy, surtout sur la scolarisation des enfants handicapés. Accusée de « perdre ses nerfs », elle revendique des « colères très saines ».",
   "citation": {
    "texte": "Je n'ai pas perdu mes nerfs, je suis en colère et il y a des colères très saines, très utiles",
    "auteur": "Ségolène Royal",
@@ -13156,14 +13054,48 @@
   ]
  },
  {
+  "id": "sarkozy-elu-2007",
+  "titre": "Sarkozy élu président",
+  "date": "2007-05-06",
+  "date_fin": null,
+  "epoque": "Ve République",
+  "theme": "élection",
+  "retentissement": 5,
+  "resume": "Le 6 mai 2007, Nicolas Sarkozy remporte le second tour face à Ségolène Royal : 18 983 138 voix contre 16 790 440, sur 35 773 578 suffrages exprimés. Le Conseil constitutionnel le proclame président de la République le 10 mai.",
+  "citation": null,
+  "acteurs": [
+   {
+    "nom": "Nicolas Sarkozy",
+    "role": "élu président de la République",
+    "carte": "6289"
+   },
+   {
+    "nom": "Ségolène Royal",
+    "role": "candidate battue au second tour",
+    "carte": "6174"
+   },
+   {
+    "nom": "Jacques Chirac",
+    "role": "président sortant",
+    "carte": "1798"
+   }
+  ],
+  "sources": [
+   {
+    "url": "https://www.elysee.fr/la-presidence/decision-du-10-mai-2007-portant-proclamation-des-resultats-de-l-election-du-president-de-la-republique",
+    "type": "officiel"
+   }
+  ]
+ },
+ {
   "id": "casse-toi-2008",
-  "titre": "« Casse-toi, pauvre con »",
+  "titre": "« Casse-toi, pauvre con »",
   "date": "2008-02-23",
   "date_fin": null,
   "epoque": "Ve République",
   "theme": "mot célèbre",
   "retentissement": 5,
-  "resume": "Au Salon de l'agriculture, le 23 février 2008, Nicolas Sarkozy lance « Casse-toi alors, pauvre con » à un visiteur qui refuse de lui serrer la main. La scène filmée devient virale et un slogan de l'opposition.",
+  "resume": "Au Salon de l'agriculture, le 23 février 2008, Nicolas Sarkozy lance « Casse-toi alors, pauvre con » à un visiteur qui refuse de lui serrer la main. La scène filmée devient virale et un slogan de l'opposition.",
   "citation": null,
   "acteurs": [
    {
@@ -13191,7 +13123,7 @@
   "epoque": "Ve République",
   "theme": "élection",
   "retentissement": 5,
-  "resume": "Réuni à Versailles le 21 juillet 2008, le Congrès adopte la révision constitutionnelle par 539 voix contre 357 : une seule voix de plus que la majorité des trois cinquièmes. Le socialiste Jack Lang a voté pour.",
+  "resume": "Réuni à Versailles le 21 juillet 2008, le Congrès adopte la révision constitutionnelle par 539 voix contre 357 : une seule voix de plus que la majorité des trois cinquièmes. Le socialiste Jack Lang a voté pour.",
   "citation": null,
   "acteurs": [
    {
@@ -13285,7 +13217,7 @@
   "epoque": "Ve République",
   "theme": "coup d'éclat",
   "retentissement": 5,
-  "resume": "Le 9 avril 2009, l'Assemblée rejette par 21 voix contre 15 le texte issu de la commission mixte paritaire sur Hadopi : les troupes de l'UMP, peu présentes, se sont laissé surprendre par la gauche. Le gouvernement fait revenir le texte.",
+  "resume": "Le 9 avril 2009, l'Assemblée rejette par 21 voix contre 15 le texte issu de la commission mixte paritaire sur Hadopi : les troupes de l'UMP, peu présentes, se sont laissé surprendre par la gauche. Le gouvernement fait revenir le texte.",
   "citation": null,
   "acteurs": [],
   "sources": [
@@ -13307,7 +13239,7 @@
   "epoque": "Ve République",
   "theme": "censure",
   "retentissement": 4,
-  "resume": "Le 10 juin 2009, le Conseil constitutionnel censure partiellement la loi Hadopi : le pouvoir de couper l'accès à Internet ne peut revenir qu'à un juge et non à l'autorité administrative. La partie non censurée est promulguée quelques jours plus tard.",
+  "resume": "Le 10 juin 2009, le Conseil constitutionnel censure partiellement la loi Hadopi : le pouvoir de couper l'accès à Internet ne peut revenir qu'à un juge et non à l'autorité administrative. La partie non censurée est promulguée quelques jours plus tard.",
   "citation": null,
   "acteurs": [],
   "sources": [
@@ -13329,7 +13261,7 @@
   "epoque": "Ve République",
   "theme": "discours",
   "retentissement": 4,
-  "resume": "Le 22 juin 2009, devant le Parlement réuni à Versailles, Nicolas Sarkozy s'exprime devant les parlementaires. Il y évoque la burqa, « pas la bienvenue ». Communistes et Verts boycottent la séance.",
+  "resume": "Le 22 juin 2009, devant le Parlement réuni à Versailles, Nicolas Sarkozy s'exprime devant les parlementaires. Il y évoque la burqa, « pas la bienvenue ». Communistes et Verts boycottent la séance.",
   "citation": null,
   "acteurs": [
    {
@@ -13357,7 +13289,7 @@
   "epoque": "Ve République",
   "theme": "affaire",
   "retentissement": 4,
-  "resume": "Candidat à la présidence de l'EPAD, l'établissement de La Défense, Jean Sarkozy suscite une vive polémique. Le 22 octobre 2009, au journal de 20 h de France 2, il y renonce pour ne pas devoir une victoire « entachée de soupçons ».",
+  "resume": "Candidat à la présidence de l'EPAD, l'établissement de La Défense, Jean Sarkozy suscite une vive polémique. Le 22 octobre 2009, au journal de 20 h de France 2, il y renonce pour ne pas devoir une victoire « entachée de soupçons ».",
   "citation": null,
   "acteurs": [],
   "sources": [
@@ -13379,7 +13311,7 @@
   "epoque": "Ve République",
   "theme": "première",
   "retentissement": 4,
-  "resume": "Pour sa toute première question prioritaire de constitutionnalité, renvoyée par le Conseil d'État, le Conseil constitutionnel censure la « cristallisation » des pensions servies aux ressortissants des anciens territoires français, notamment algériens. L'abrogation est fixée au 1er janvier 2011.",
+  "resume": "Pour sa toute première question prioritaire de constitutionnalité, renvoyée par le Conseil d'État, le Conseil constitutionnel censure la « cristallisation » des pensions servies aux ressortissants des anciens territoires français, notamment algériens. L'abrogation est fixée au 1er janvier 2011.",
   "citation": null,
   "acteurs": [
    {
@@ -13444,7 +13376,7 @@
   "epoque": "Ve République",
   "theme": "première",
   "retentissement": 4,
-  "resume": "Saisi par la Cour de cassation, le Conseil constitutionnel déclare contraire à la Constitution le régime de droit commun de la garde à vue : pas d'assistance effective d'un avocat, pas d'information sur le droit de se taire. L'abrogation est reportée au 1er juillet 2011.",
+  "resume": "Saisi par la Cour de cassation, le Conseil constitutionnel déclare contraire à la Constitution le régime de droit commun de la garde à vue : pas d'assistance effective d'un avocat, pas d'information sur le droit de se taire. L'abrogation est reportée au 1er juillet 2011.",
   "citation": null,
   "acteurs": [
    {
@@ -13619,13 +13551,13 @@
  },
  {
   "id": "moi-president-2012",
-  "titre": "« Moi président »",
+  "titre": "« Moi président »",
   "date": "2012-05-02",
   "date_fin": null,
   "epoque": "Ve République",
   "theme": "duo ou duel",
   "retentissement": 5,
-  "resume": "Lors du débat d'entre-deux-tours face à Nicolas Sarkozy, diffusé sur TF1 et France 2, François Hollande déroule seize fois l'anaphore « Moi, président de la République » pour décrire sa future présidence. Le débat dure près de trois heures.",
+  "resume": "Lors du débat d'entre-deux-tours face à Nicolas Sarkozy, diffusé sur TF1 et France 2, François Hollande déroule seize fois l'anaphore « Moi, président de la République » pour décrire sa future présidence. Le débat dure près de trois heures.",
   "citation": {
    "texte": "Moi, président de la République, je ferai en sorte que mon comportement soit exemplaire.",
    "auteur": "François Hollande",
@@ -13658,6 +13590,40 @@
    },
    {
     "url": "https://www.ozap.com/actu/-moi-president-de-la-republique-francois-hollande-remercie-laurence-ferrari/441091",
+    "type": "media"
+   }
+  ]
+ },
+ {
+  "id": "hollande-elu-2012",
+  "titre": "Hollande élu président",
+  "date": "2012-05-06",
+  "date_fin": null,
+  "epoque": "Ve République",
+  "theme": "élection",
+  "retentissement": 5,
+  "resume": "Le 6 mai 2012, François Hollande l'emporte au second tour avec 51,62 % des suffrages contre 48,38 % à Nicolas Sarkozy. La passation des pouvoirs a lieu le 15 mai, jour où il nomme Jean-Marc Ayrault Premier ministre.",
+  "citation": null,
+  "acteurs": [
+   {
+    "nom": "François Hollande",
+    "role": "élu président de la République",
+    "carte": "3853"
+   },
+   {
+    "nom": "Nicolas Sarkozy",
+    "role": "battu au second tour",
+    "carte": "6289"
+   },
+   {
+    "nom": "Jean-Marc Ayrault",
+    "role": "nommé Premier ministre le 15 mai",
+    "carte": "306"
+   }
+  ],
+  "sources": [
+   {
+    "url": "https://www.universalis.fr/evenement/1er-17-mai-2012-election-de-francois-hollande-a-la-presidence-de-la-republique-et-nomination-de-jean-marc-ayrault-au-poste-de-premier-ministre/",
     "type": "media"
    }
   ]
@@ -13762,7 +13728,7 @@
  },
  {
   "id": "cahuzac-qag-2012",
-  "titre": "« Je n'ai jamais eu de compte »",
+  "titre": "« Je n'ai jamais eu de compte »",
   "date": "2012-12-05",
   "date_fin": null,
   "epoque": "Ve République",
@@ -13809,7 +13775,7 @@
   "epoque": "Ve République",
   "theme": "première",
   "retentissement": 4,
-  "resume": "Le Conseil constitutionnel censure la contribution exceptionnelle de 75 % sur les revenus d'activité dépassant un million d'euros, prévue par la loi de finances pour 2013 : calculée par personne et non par foyer, elle méconnaît l'égalité devant les charges publiques.",
+  "resume": "Le Conseil constitutionnel censure la contribution exceptionnelle de 75 % sur les revenus d'activité dépassant un million d'euros, prévue par la loi de finances pour 2013 : calculée par personne et non par foyer, elle méconnaît l'égalité devant les charges publiques.",
   "citation": null,
   "acteurs": [
    {
@@ -13842,7 +13808,7 @@
   "epoque": "Ve République",
   "theme": "coup d'éclat",
   "retentissement": 3,
-  "resume": "Vers 0 h 45, en plein débat sur le mariage pour tous, des députés UMP excédés par une mimique d'un collaborateur de Christiane Taubira descendent dans l'hémicycle en criant « dehors ». Huissiers et Alain Vidalies s'interposent ; Claude Bartolone réclame des sanctions.",
+  "resume": "Vers 0 h 45, en plein débat sur le mariage pour tous, des députés UMP excédés par une mimique d'un collaborateur de Christiane Taubira descendent dans l'hémicycle en criant « dehors ». Huissiers et Alain Vidalies s'interposent ; Claude Bartolone réclame des sanctions.",
   "citation": null,
   "acteurs": [
    {
@@ -13917,7 +13883,7 @@
   "epoque": "Ve République",
   "theme": "affaire",
   "retentissement": 4,
-  "resume": "Le 4 juillet 2013, le Conseil constitutionnel confirme le rejet du compte de campagne de Nicolas Sarkozy en 2012 : plafond dépassé de 466 118 euros. Il n'a pas droit au remboursement forfaitaire et doit rendre l'avance de 153 000 euros.",
+  "resume": "Le 4 juillet 2013, le Conseil constitutionnel confirme le rejet du compte de campagne de Nicolas Sarkozy en 2012 : plafond dépassé de 466 118 euros. Il n'a pas droit au remboursement forfaitaire et doit rendre l'avance de 153 000 euros.",
   "citation": null,
   "acteurs": [
    {
@@ -13941,7 +13907,7 @@
   "epoque": "Ve République",
   "theme": "coup d'éclat",
   "retentissement": 3,
-  "resume": "Pendant le débat sur les retraites, l'écologiste Véronique Massonneau défend un amendement quand un député UMP l'interrompt d'un « Cot, cot, cot codec ! ». Claude Bartolone suspend la séance. L'auteur, Philippe Le Ray, écope d'un rappel à l'ordre avec inscription au procès-verbal.",
+  "resume": "Pendant le débat sur les retraites, l'écologiste Véronique Massonneau défend un amendement quand un député UMP l'interrompt d'un « Cot, cot, cot codec ! ». Claude Bartolone suspend la séance. L'auteur, Philippe Le Ray, écope d'un rappel à l'ordre avec inscription au procès-verbal.",
   "citation": {
    "texte": "Arrêtez ! Cela suffit ! Je ne suis pas une poule !",
    "auteur": "Véronique Massonneau",
@@ -14038,7 +14004,7 @@
  },
  {
   "id": "bygmalion-2014",
-  "titre": "Bygmalion : les larmes de Lavrilleux",
+  "titre": "Bygmalion : les larmes de Lavrilleux",
   "date": "2014-05-26",
   "date_fin": null,
   "epoque": "Ve République",
@@ -14180,7 +14146,7 @@
   "epoque": "Ve République",
   "theme": "première",
   "retentissement": 4,
-  "resume": "Aux sénatoriales, le Front national obtient ses deux premiers sièges au palais du Luxembourg : Stéphane Ravier dans les Bouches-du-Rhône et David Rachline dans le Var. À 26 ans, Rachline devient le plus jeune sénateur de la Ve République.",
+  "resume": "Aux sénatoriales, le Front national obtient ses deux premiers sièges au palais du Luxembourg : Stéphane Ravier dans les Bouches-du-Rhône et David Rachline dans le Var. À 26 ans, Rachline devient le plus jeune sénateur de la Ve République.",
   "citation": {
    "texte": "Plus une seule Assemblée en France n'est interdite au FN.",
    "auteur": "Marine Le Pen",
@@ -14216,13 +14182,13 @@
  },
  {
   "id": "madame-le-president-2014",
-  "titre": "« Madame le président »",
+  "titre": "« Madame le président »",
   "date": "2014-10-06",
   "date_fin": null,
   "epoque": "Ve République",
   "theme": "coup d'éclat",
   "retentissement": 3,
-  "resume": "En séance, le député UMP Julien Aubert s'adresse à la vice-présidente Sandrine Mazetier en l'appelant « Madame le président ». Après un premier rappel à l'ordre, il récidive et écope d'un rappel à l'ordre avec inscription au procès-verbal, soit le quart de son indemnité.",
+  "resume": "En séance, le député UMP Julien Aubert s'adresse à la vice-présidente Sandrine Mazetier en l'appelant « Madame le président ». Après un premier rappel à l'ordre, il récidive et écope d'un rappel à l'ordre avec inscription au procès-verbal, soit le quart de son indemnité.",
   "citation": null,
   "acteurs": [
    {
@@ -14248,6 +14214,39 @@
   ]
  },
  {
+  "id": "marche-republicaine-2015",
+  "titre": "La marche républicaine",
+  "date": "2015-01-11",
+  "date_fin": null,
+  "epoque": "Ve République",
+  "theme": "record",
+  "retentissement": 5,
+  "resume": "Le 11 janvier 2015, après les attentats des 7 au 9 janvier (17 victimes), au moins 3,7 millions de personnes défilent en France selon le ministère de l'Intérieur, la plus grande mobilisation jamais recensée. À Paris, les dirigeants d'une cinquantaine de pays se joignent à François Hollande.",
+  "citation": null,
+  "acteurs": [
+   {
+    "nom": "François Hollande",
+    "role": "a défilé à Paris",
+    "carte": "3853"
+   },
+   {
+    "nom": "Manuel Valls",
+    "role": "présent au rassemblement de Paris",
+    "carte": "10782"
+   }
+  ],
+  "sources": [
+   {
+    "url": "https://www.dhnet.be/actu/monde/2015/01/11/37-millions-de-marcheurs-aucun-incident-une-ville-unie-pour-la-liberte-photos-et-videos-CYUYUISFX5BV7CIZVHR5ZQXNAU/",
+    "type": "media"
+   },
+   {
+    "url": "https://www.livreshebdo.fr/article/4-millions-de-je-suis-charlie",
+    "type": "media"
+   }
+  ]
+ },
+ {
   "id": "loi-macron-493-2015",
   "titre": "La loi Macron passe au 49.3",
   "date": "2015-02-17",
@@ -14255,7 +14254,7 @@
   "epoque": "Ve République",
   "theme": "49.3",
   "retentissement": 4,
-  "resume": "Le 17 février 2015, Manuel Valls engage la responsabilité du gouvernement sur la loi Macron, faute de voix assurées chez les frondeurs socialistes. La motion de censure de l'UMP et de l'UDI recueille 234 voix le 19 février (289 requises) : le texte est adopté.",
+  "resume": "Le 17 février 2015, Manuel Valls engage la responsabilité du gouvernement sur la loi Macron, faute de voix assurées chez les frondeurs socialistes. La motion de censure de l'UMP et de l'UDI recueille 234 voix le 19 février (289 requises) : le texte est adopté.",
   "citation": {
    "texte": "Au moment où je parle le texte ne passe pas",
    "auteur": "Manuel Valls",
@@ -14371,7 +14370,7 @@
   "epoque": "Ve République",
   "theme": "coup d'éclat",
   "retentissement": 4,
-  "resume": "Faute d'accord entre l'Assemblée et le Sénat sur la déchéance de nationalité, François Hollande annonce depuis l'Élysée qu'il renonce à la révision constitutionnelle lancée après les attentats du 13 novembre et décide « de clore le débat constitutionnel ».",
+  "resume": "Faute d'accord entre l'Assemblée et le Sénat sur la déchéance de nationalité, François Hollande annonce depuis l'Élysée qu'il renonce à la révision constitutionnelle lancée après les attentats du 13 novembre et décide « de clore le débat constitutionnel ».",
   "citation": null,
   "acteurs": [
    {
@@ -14399,7 +14398,7 @@
   "epoque": "Ve République",
   "theme": "49.3",
   "retentissement": 4,
-  "resume": "Après un conseil des ministres extraordinaire, Manuel Valls engage la responsabilité du gouvernement sur le projet de loi Travail pour éviter « le spectacle désolant de la division ». La motion de censure de la droite et du centre est soumise au vote le 12 mai.",
+  "resume": "Après un conseil des ministres extraordinaire, Manuel Valls engage la responsabilité du gouvernement sur le projet de loi Travail pour éviter « le spectacle désolant de la division ». La motion de censure de la droite et du centre est soumise au vote le 12 mai.",
   "citation": null,
   "acteurs": [
    {
@@ -14431,7 +14430,7 @@
   "epoque": "Ve République",
   "theme": "censure",
   "retentissement": 3,
-  "resume": "Au lendemain du 49.3 sur la loi Travail, frondeurs socialistes, Front de gauche et écologistes tentent de déposer leur propre motion de censure. À l'expiration du délai, ils ont réuni 56 signatures : il en fallait 58.",
+  "resume": "Au lendemain du 49.3 sur la loi Travail, frondeurs socialistes, Front de gauche et écologistes tentent de déposer leur propre motion de censure. À l'expiration du délai, ils ont réuni 56 signatures : il en fallait 58.",
   "citation": null,
   "acteurs": [
    {
@@ -14595,7 +14594,7 @@
   "epoque": "Ve République",
   "theme": "affaire",
   "retentissement": 5,
-  "resume": "Le 14 mars 2017, quarante jours avant la présidentielle, François Fillon est mis en examen pour détournement de fonds publics, notamment, dans l'affaire des emplois de son épouse : une première pour un candidat. Pendant la primaire, il avait demandé qui imaginait le général de Gaulle mis en examen.",
+  "resume": "Le 14 mars 2017, quarante jours avant la présidentielle, François Fillon est mis en examen pour détournement de fonds publics, notamment, dans l'affaire des emplois de son épouse : une première pour un candidat. Pendant la primaire, il avait demandé qui imaginait le général de Gaulle mis en examen.",
   "citation": null,
   "acteurs": [
    {
@@ -14623,7 +14622,7 @@
   "epoque": "Ve République",
   "theme": "record",
   "retentissement": 4,
-  "resume": "Au premier tour de la présidentielle, le candidat socialiste Benoît Hamon n'obtient que 6,36 % des voix, loin derrière Emmanuel Macron, Marine Le Pen, François Fillon et Jean-Luc Mélenchon. Il parle d'une « profonde meurtrissure ».",
+  "resume": "Au premier tour de la présidentielle, le candidat socialiste Benoît Hamon n'obtient que 6,36 % des voix, loin derrière Emmanuel Macron, Marine Le Pen, François Fillon et Jean-Luc Mélenchon. Il parle d'une « profonde meurtrissure ».",
   "citation": null,
   "acteurs": [
    {
@@ -14651,7 +14650,7 @@
   "epoque": "Ve République",
   "theme": "duo ou duel",
   "retentissement": 5,
-  "resume": "Lors du débat d'entre-deux-tours, Marine Le Pen attaque Emmanuel Macron avec virulence, fiches à l'appui. Dix jours après sa défaite, elle reconnaîtra un débat « raté ». Suivi par 16,4 millions de téléspectateurs, c'est le moins regardé depuis 1974.",
+  "resume": "Lors du débat d'entre-deux-tours, Marine Le Pen attaque Emmanuel Macron avec virulence, fiches à l'appui. Dix jours après sa défaite, elle reconnaîtra un débat « raté ». Suivi par 16,4 millions de téléspectateurs, c'est le moins regardé depuis 1974.",
   "citation": null,
   "acteurs": [
    {
@@ -14729,7 +14728,7 @@
   "epoque": "Ve République",
   "theme": "record",
   "retentissement": 4,
-  "resume": "Au soir du second tour, l'Assemblée change de visage : plus de 420 élus sur 577 n'ont jamais siégé, 223 femmes entrent dans l'hémicycle, contre 155 en 2012, et l'âge moyen tombe de 54 à 48 ans. La République en marche et le MoDem totalisent 350 sièges.",
+  "resume": "Au soir du second tour, l'Assemblée change de visage : plus de 420 élus sur 577 n'ont jamais siégé, 223 femmes entrent dans l'hémicycle, contre 155 en 2012, et l'âge moyen tombe de 54 à 48 ans. La République en marche et le MoDem totalisent 350 sièges.",
   "citation": null,
   "acteurs": [],
   "sources": [
@@ -14818,7 +14817,7 @@
   "epoque": "Ve République",
   "theme": "commission d'enquête",
   "retentissement": 4,
-  "resume": "Après la diffusion d'images mettant en cause Alexandre Benalla, chargé de mission à l'Élysée, la commission des lois du Sénat obtient pour six mois les prérogatives d'une commission d'enquête. Son rapport du 20 février 2019 pointe des « dysfonctionnements majeurs » au sommet de l'État.",
+  "resume": "Après la diffusion d'images mettant en cause Alexandre Benalla, chargé de mission à l'Élysée, la commission des lois du Sénat obtient pour six mois les prérogatives d'une commission d'enquête. Son rapport du 20 février 2019 pointe des « dysfonctionnements majeurs » au sommet de l'État.",
   "citation": null,
   "acteurs": [
    {
@@ -14868,7 +14867,7 @@
   "epoque": "Ve République",
   "theme": "démission",
   "retentissement": 4,
-  "resume": "Invité de la matinale de France Inter, Nicolas Hulot annonce à la surprise générale qu'il quitte le gouvernement, sans en avoir averti ni Emmanuel Macron ni Édouard Philippe. « Vous êtes sérieux, là ? », lui lance Léa Salamé. François de Rugy lui succède le 4 septembre.",
+  "resume": "Invité de la matinale de France Inter, Nicolas Hulot annonce à la surprise générale qu'il quitte le gouvernement, sans en avoir averti ni Emmanuel Macron ni Édouard Philippe. « Vous êtes sérieux, là ? », lui lance Léa Salamé. François de Rugy lui succède le 4 septembre.",
   "citation": {
    "texte": "Je ne veux plus me mentir.",
    "auteur": "Nicolas Hulot",
@@ -14899,7 +14898,7 @@
  },
  {
   "id": "la-republique-c-est-moi-2018",
-  "titre": "« La République, c'est moi »",
+  "titre": "« La République, c'est moi »",
   "date": "2018-10-16",
   "date_fin": null,
   "epoque": "Ve République",
@@ -14934,6 +14933,42 @@
   ]
  },
  {
+  "id": "gilets-jaunes-2018",
+  "titre": "Les gilets jaunes",
+  "date": "2018-11-17",
+  "date_fin": "2018-12-10",
+  "epoque": "Ve République",
+  "theme": "coup d'éclat",
+  "retentissement": 5,
+  "resume": "Né sur les réseaux sociaux contre la hausse des taxes sur les carburants, le mouvement descend dans la rue le 17 novembre 2018 : 283 000 personnes selon l'Intérieur. Le 10 décembre, Emmanuel Macron juge la colère « juste à bien des égards » et annonce des mesures sociales.",
+  "citation": {
+   "texte": "juste à bien des égards",
+   "auteur": "Emmanuel Macron, à propos de la colère des gilets jaunes, le 10 décembre 2018",
+   "source": "https://www.dhnet.be/actu/monde/2018/12/10/emmanuel-macron-comprend-la-colere-des-gilets-jaunes-et-prend-plusieurs-decisions-dont-laugmentation-du-smic-YS5JOGH4RBDUFLSLWNLJLBNX5U/"
+  },
+  "acteurs": [
+   {
+    "nom": "Emmanuel Macron",
+    "role": "auteur de l'allocution du 10 décembre",
+    "carte": "G-macron-emmanuel"
+   }
+  ],
+  "sources": [
+   {
+    "url": "https://www.lavenir.net/actu/societe/2018/11/17/mobilisation-des-gilets-jaunes-283000-participants-un-mort-des-interpellations-et-des-heurts-LXNMNM5SJBGXJMHT2ZOIOJ7PEM/",
+    "type": "media"
+   },
+   {
+    "url": "https://www.universalis.fr/evenement/14-30-novembre-2018-mouvement-des-gilets-jaunes/",
+    "type": "media"
+   },
+   {
+    "url": "https://www.dhnet.be/actu/monde/2018/12/10/emmanuel-macron-comprend-la-colere-des-gilets-jaunes-et-prend-plusieurs-decisions-dont-laugmentation-du-smic-YS5JOGH4RBDUFLSLWNLJLBNX5U/",
+    "type": "media"
+   }
+  ]
+ },
+ {
   "id": "rugy-homards-2019",
   "titre": "De Rugy et les homards",
   "date": "2019-07-16",
@@ -14941,7 +14976,7 @@
   "epoque": "Ve République",
   "theme": "démission",
   "retentissement": 4,
-  "resume": "Après les révélations de Mediapart sur des dîners dispendieux organisés à l'hôtel de Lassay quand il présidait l'Assemblée, François de Rugy quitte le ministère de la Transition écologique en dénonçant un « lynchage médiatique ». Élisabeth Borne lui succède le soir même.",
+  "resume": "Après les révélations de Mediapart sur des dîners dispendieux organisés à l'hôtel de Lassay quand il présidait l'Assemblée, François de Rugy quitte le ministère de la Transition écologique en dénonçant un « lynchage médiatique ». Élisabeth Borne lui succède le soir même.",
   "citation": null,
   "acteurs": [
    {
@@ -15006,7 +15041,7 @@
   "epoque": "Ve République",
   "theme": "49.3",
   "retentissement": 4,
-  "resume": "Un samedi, après 13 jours de débats et des milliers d'amendements, Édouard Philippe engage la responsabilité du gouvernement sur le système universel de retraite. Le 3 mars, les motions de censure de LR (148 voix) et de la gauche (91 voix) échouent : le texte est adopté sans vote.",
+  "resume": "Un samedi, après 13 jours de débats et des milliers d'amendements, Édouard Philippe engage la responsabilité du gouvernement sur le système universel de retraite. Le 3 mars, les motions de censure de LR (148 voix) et de la gauche (91 voix) échouent : le texte est adopté sans vote.",
   "citation": null,
   "acteurs": [
    {
@@ -15039,7 +15074,7 @@
   "epoque": "Ve République",
   "theme": "première",
   "retentissement": 5,
-  "resume": "Après quatre jours de débats, le Parlement adopte la loi d'urgence face au covid-19, promulguée le 23 mars 2020. Elle crée l'état d'urgence sanitaire, déclaré pour deux mois : le Premier ministre peut ordonner par décret confinement, réquisitions et interdiction des rassemblements.",
+  "resume": "Après quatre jours de débats, le Parlement adopte la loi d'urgence face au covid-19, promulguée le 23 mars 2020. Elle crée l'état d'urgence sanitaire, déclaré pour deux mois : le Premier ministre peut ordonner par décret confinement, réquisitions et interdiction des rassemblements.",
   "citation": null,
   "acteurs": [
    {
@@ -15067,7 +15102,7 @@
   "epoque": "Ve République",
   "theme": "démission",
   "retentissement": 4,
-  "resume": "Cinq jours après sa réélection à la mairie du Havre, Édouard Philippe remet la démission de son gouvernement, que le président accepte. Jean Castex est nommé Premier ministre le jour même, pour ouvrir « une nouvelle étape du quinquennat ».",
+  "resume": "Cinq jours après sa réélection à la mairie du Havre, Édouard Philippe remet la démission de son gouvernement, que le président accepte. Jean Castex est nommé Premier ministre le jour même, pour ouvrir « une nouvelle étape du quinquennat ».",
   "citation": null,
   "acteurs": [
    {
@@ -15103,13 +15138,13 @@
  },
  {
   "id": "emmerder-2022",
-  "titre": "« Emmerder » les non-vaccinés",
+  "titre": "« Emmerder » les non-vaccinés",
   "date": "2022-01-04",
   "date_fin": null,
   "epoque": "Ve République",
   "theme": "coup d'éclat",
   "retentissement": 4,
-  "resume": "Dans un entretien au Parisien, Emmanuel Macron dit avoir « très envie » d'« emmerder » les non-vaccinés. À l'Assemblée, qui examine le passe vaccinal, les oppositions réclament le Premier ministre ; Marc Le Fur lève la séance en pleine nuit.",
+  "resume": "Dans un entretien au Parisien, Emmanuel Macron dit avoir « très envie » d'« emmerder » les non-vaccinés. À l'Assemblée, qui examine le passe vaccinal, les oppositions réclament le Premier ministre ; Marc Le Fur lève la séance en pleine nuit.",
   "citation": {
    "texte": "Eh bien là, les non-vaccinés, j'ai très envie de les emmerder.",
    "auteur": "Emmanuel Macron",
@@ -15150,7 +15185,7 @@
   "epoque": "Ve République",
   "theme": "première",
   "retentissement": 4,
-  "resume": "Président d'un pays en guerre, Volodymyr Zelensky s'adresse en direct par vidéo aux députés et aux sénateurs, après Gérard Larcher et Richard Ferrand. Il conclut par « Gloire à l'Ukraine ! » ; les députés se lèvent et applaudissent longuement.",
+  "resume": "Président d'un pays en guerre, Volodymyr Zelensky s'adresse en direct par vidéo aux députés et aux sénateurs, après Gérard Larcher et Richard Ferrand. Il conclut par « Gloire à l'Ukraine ! » ; les députés se lèvent et applaudissent longuement.",
   "citation": {
    "texte": "Merci, la France ! Gloire à l'Ukraine !",
    "auteur": "Volodymyr Zelensky",
@@ -15311,7 +15346,7 @@
   "epoque": "Ve République",
   "theme": "coup d'éclat",
   "retentissement": 3,
-  "resume": "Doyen d'âge, le député RN José Gonzalez ouvre la XVIe législature en évoquant sa terre natale quittée en 1962. Des élus de la Nupes et de la majorité y voient une nostalgie de l'Algérie française ; sur l'OAS, il dit ensuite ne pas savoir « bien ce que c'était ».",
+  "resume": "Doyen d'âge, le député RN José Gonzalez ouvre la XVIe législature en évoquant sa terre natale quittée en 1962. Des élus de la Nupes et de la majorité y voient une nostalgie de l'Algérie française ; sur l'OAS, il dit ensuite ne pas savoir « bien ce que c'était ».",
   "citation": {
    "texte": "J'ai laissé là-bas une partie de ma France et beaucoup d'amis.",
    "auteur": "José Gonzalez",
@@ -15719,7 +15754,7 @@
   "epoque": "Ve République",
   "theme": "coup d'éclat",
   "retentissement": 4,
-  "resume": "Coup de théâtre dans l'hémicycle : la motion de rejet préalable déposée par les écologistes contre le projet de loi immigration de Gérald Darmanin est adoptée par 270 voix contre 265. Le texte est rejeté sans même avoir été débattu, plusieurs députés de la majorité étant absents.",
+  "resume": "Coup de théâtre dans l'hémicycle : la motion de rejet préalable déposée par les écologistes contre le projet de loi immigration de Gérald Darmanin est adoptée par 270 voix contre 265. Le texte est rejeté sans même avoir été débattu, plusieurs députés de la majorité étant absents.",
   "citation": {
    "texte": "Les mêmes qui attaquent la Première ministre et le Gouvernement sur l'usage du 49.3 en veulent un à leur tour !",
    "auteur": "Gérald Darmanin",
@@ -15803,7 +15838,7 @@
   "epoque": "Ve République",
   "theme": "coup d'éclat",
   "retentissement": 4,
-  "resume": "Saisi par Emmanuel Macron, Yaël Braun-Pivet et des parlementaires de gauche, le Conseil constitutionnel censure tout ou partie de 35 des 86 articles de la loi immigration. Trente-deux sont des « cavaliers législatifs », ajoutés au texte sans lien suffisant avec le projet initial.",
+  "resume": "Saisi par Emmanuel Macron, Yaël Braun-Pivet et des parlementaires de gauche, le Conseil constitutionnel censure tout ou partie de 35 des 86 articles de la loi immigration. Trente-deux sont des « cavaliers législatifs », ajoutés au texte sans lien suffisant avec le projet initial.",
   "citation": null,
   "acteurs": [
    {
@@ -15877,7 +15912,7 @@
   "epoque": "Ve République",
   "theme": "coup d'éclat",
   "retentissement": 3,
-  "resume": "En pleines questions au gouvernement, le député LFI Sébastien Delogu brandit un drapeau palestinien. Yaël Braun-Pivet suspend la séance et réunit le Bureau ; l'Assemblée prononce la censure avec exclusion temporaire, sa sanction la plus lourde : quinze jours de séance et demi-indemnité deux mois.",
+  "resume": "En pleines questions au gouvernement, le député LFI Sébastien Delogu brandit un drapeau palestinien. Yaël Braun-Pivet suspend la séance et réunit le Bureau ; l'Assemblée prononce la censure avec exclusion temporaire, sa sanction la plus lourde : quinze jours de séance et demi-indemnité deux mois.",
   "citation": {
    "texte": "L’Assemblée nationale a prononcé la censure avec exclusion temporaire de M. Sébastien Delogu.",
    "auteur": "Yaël Braun-Pivet",
@@ -16029,7 +16064,7 @@
   "epoque": "Ve République",
   "theme": "coup d'éclat",
   "retentissement": 4,
-  "resume": "Après deux jours de consultations, l'Élysée écarte un gouvernement du seul Nouveau Front populaire, dont la candidate à Matignon est Lucie Castets : il serait aussitôt censuré, et la « stabilité institutionnelle » commande de ne pas retenir cette option. Fabien Roussel dénonce un « coup de force ».",
+  "resume": "Après deux jours de consultations, l'Élysée écarte un gouvernement du seul Nouveau Front populaire, dont la candidate à Matignon est Lucie Castets : il serait aussitôt censuré, et la « stabilité institutionnelle » commande de ne pas retenir cette option. Fabien Roussel dénonce un « coup de force ».",
   "citation": {
    "texte": "la stabilité institutionnelle de notre pays impose donc de ne pas retenir cette option",
    "auteur": "Présidence de la République (communiqué)",
@@ -16061,7 +16096,7 @@
   "epoque": "Ve République",
   "theme": "record",
   "retentissement": 4,
-  "resume": "Cinquante-deux jours après la démission du gouvernement, Emmanuel Macron nomme Michel Barnier à Matignon et le charge de former un « gouvernement de rassemblement ». Ancien ministre et négociateur du Brexit, il devient à 73 ans le plus âgé Premier ministre de la Ve République.",
+  "resume": "Cinquante-deux jours après la démission du gouvernement, Emmanuel Macron nomme Michel Barnier à Matignon et le charge de former un « gouvernement de rassemblement ». Ancien ministre et négociateur du Brexit, il devient à 73 ans le plus âgé Premier ministre de la Ve République.",
   "citation": null,
   "acteurs": [
    {
@@ -16139,7 +16174,7 @@
   "epoque": "Ve République",
   "theme": "coup d'éclat",
   "retentissement": 3,
-  "resume": "Après des débats qui l'ont profondément remaniée, la partie recettes du budget 2025 est rejetée par 362 voix contre 192 : seuls les groupes du Nouveau Front populaire votent pour. Tout le projet de loi de finances est réputé rejeté et transmis directement au Sénat.",
+  "resume": "Après des débats qui l'ont profondément remaniée, la partie recettes du budget 2025 est rejetée par 362 voix contre 192 : seuls les groupes du Nouveau Front populaire votent pour. Tout le projet de loi de finances est réputé rejeté et transmis directement au Sénat.",
   "citation": null,
   "acteurs": [
    {
@@ -16257,7 +16292,7 @@
   "epoque": "Ve République",
   "theme": "49.3",
   "retentissement": 3,
-  "resume": "François Bayrou engage la responsabilité du gouvernement sur le budget 2025 issu de la commission mixte paritaire, puis sur celui de la Sécurité sociale. Le 5 février, la motion de censure de LFI ne recueille que 128 voix, le RN et presque tous les socialistes ne la votant pas : le budget est considéré comme adopté.",
+  "resume": "François Bayrou engage la responsabilité du gouvernement sur le budget 2025 issu de la commission mixte paritaire, puis sur celui de la Sécurité sociale. Le 5 février, la motion de censure de LFI ne recueille que 128 voix, le RN et presque tous les socialistes ne la votant pas : le budget est considéré comme adopté.",
   "citation": {
    "texte": "Aucun pays ne peut vivre sans budget.",
    "auteur": "François Bayrou",
@@ -16293,7 +16328,7 @@
   "epoque": "Ve République",
   "theme": "affaire",
   "retentissement": 5,
-  "resume": "Dans l'affaire des assistants du FN au Parlement européen, le tribunal correctionnel de Paris condamne Marine Le Pen pour détournement de fonds publics : quatre ans de prison dont deux ferme, 100 000 euros d'amende et cinq ans d'inéligibilité avec exécution provisoire. Elle fait appel.",
+  "resume": "Dans l'affaire des assistants du FN au Parlement européen, le tribunal correctionnel de Paris condamne Marine Le Pen pour détournement de fonds publics : quatre ans de prison dont deux ferme, 100 000 euros d'amende et cinq ans d'inéligibilité avec exécution provisoire. Elle fait appel.",
   "citation": null,
   "acteurs": [
    {
@@ -16325,7 +16360,7 @@
   "epoque": "Ve République",
   "theme": "commission d'enquête",
   "retentissement": 4,
-  "resume": "Sous serment, le Premier ministre est entendu près de cinq heures et demie sur les violences commises à Notre-Dame-de-Bétharram. Face aux rapporteurs Paul Vannier et Violette Spillebout, il nie avoir menti, accuse LFI d'en faire une « arme politique » et contre-attaque.",
+  "resume": "Sous serment, le Premier ministre est entendu près de cinq heures et demie sur les violences commises à Notre-Dame-de-Bétharram. Face aux rapporteurs Paul Vannier et Violette Spillebout, il nie avoir menti, accuse LFI d'en faire une « arme politique » et contre-attaque.",
   "citation": {
    "texte": "Les victimes, personne ne s'en est occupé, sauf moi",
    "auteur": "François Bayrou",
@@ -16445,7 +16480,7 @@
   "epoque": "Ve République",
   "theme": "record",
   "retentissement": 4,
-  "resume": "Lancée le 10 juillet par une étudiante de 23 ans, la pétition « Non à la loi Duplomb » dépasse 500 000 signatures en neuf jours, puis 2,1 millions, un record sans précédent sur la plateforme de l'Assemblée. Elle est examinée en commission puis débattue en séance le 11 février 2026.",
+  "resume": "Lancée le 10 juillet par une étudiante de 23 ans, la pétition « Non à la loi Duplomb » dépasse 500 000 signatures en neuf jours, puis 2,1 millions, un record sans précédent sur la plateforme de l'Assemblée. Elle est examinée en commission puis débattue en séance le 11 février 2026.",
   "citation": {
    "texte": "aucune autre n'a jamais approché un tel nombre de signataires",
    "auteur": "Hélène Laporte",
@@ -16564,7 +16599,7 @@
   "epoque": "Ve République",
   "theme": "49.3",
   "retentissement": 4,
-  "resume": "Sur le perron de Matignon, Sébastien Lecornu annonce qu'il n'utilisera pas l'article 49.3, notamment pour le budget, comme le demandait le Parti socialiste. Il le confirme le 14 octobre devant l'Assemblée : sans 49.3, « le Parlement aura le dernier mot ».",
+  "resume": "Sur le perron de Matignon, Sébastien Lecornu annonce qu'il n'utilisera pas l'article 49.3, notamment pour le budget, comme le demandait le Parti socialiste. Il le confirme le 14 octobre devant l'Assemblée : sans 49.3, « le Parlement aura le dernier mot ».",
   "citation": {
    "texte": "J'ai renoncé à utiliser l'article 49, alinéa 3, de la Constitution.",
    "auteur": "Sébastien Lecornu",
@@ -16827,7 +16862,7 @@
   "epoque": "Ve République",
   "theme": "49.3",
   "retentissement": 4,
-  "resume": "Après avoir promis de s'en passer, Sébastien Lecornu engage la responsabilité de son gouvernement sur le budget 2026 : recettes le 20 janvier, dépenses le 23, puis texte entier le 30 janvier, troisième et dernier 49.3 sur ce budget.",
+  "resume": "Après avoir promis de s'en passer, Sébastien Lecornu engage la responsabilité de son gouvernement sur le budget 2026 : recettes le 20 janvier, dépenses le 23, puis texte entier le 30 janvier, troisième et dernier 49.3 sur ce budget.",
   "citation": {
    "texte": "avec une certaine forme de regret et un peu d'amertume",
    "auteur": "Sébastien Lecornu",
@@ -16870,7 +16905,7 @@
  },
  {
   "id": "reseaux-sociaux-15-ans-2026",
-  "titre": "Réseaux sociaux : interdits avant 15 ans",
+  "titre": "Réseaux sociaux : interdits avant 15 ans",
   "date": "2026-01-27",
   "date_fin": null,
   "epoque": "Ve République",
@@ -16905,7 +16940,7 @@
   "epoque": "Ve République",
   "theme": "censure",
   "retentissement": 3,
-  "resume": "Le 2 février 2026, la motion de la gauche hors PS (260 voix, 289 requises) et celle du RN et de l'UDR (135 voix) échouent : le budget 2026 est définitivement adopté, après une loi spéciale votée en décembre.",
+  "resume": "Le 2 février 2026, la motion de la gauche hors PS (260 voix, 289 requises) et celle du RN et de l'UDR (135 voix) échouent : le budget 2026 est définitivement adopté, après une loi spéciale votée en décembre.",
   "citation": null,
   "acteurs": [
    {
@@ -17035,7 +17070,7 @@
   "epoque": "Ve République",
   "theme": "première",
   "retentissement": 4,
-  "resume": "Le 23 juin 2026, l'Assemblée adopte par 271 voix contre 202 le projet de loi constitutionnelle « pour une Corse autonome au sein de la République ». RN, UDR et LR votent contre. Reste le Sénat, puis le Congrès aux trois cinquièmes.",
+  "resume": "Le 23 juin 2026, l'Assemblée adopte par 271 voix contre 202 le projet de loi constitutionnelle « pour une Corse autonome au sein de la République ». RN, UDR et LR votent contre. Reste le Sénat, puis le Congrès aux trois cinquièmes.",
   "citation": null,
   "acteurs": [
    {
@@ -17064,7 +17099,7 @@
   "epoque": "Ve République",
   "theme": "affaire",
   "retentissement": 5,
-  "resume": "Le 7 juillet 2026, la cour d'appel de Paris condamne Marine Le Pen dans l'affaire des assistants du FN mais ne maintient que 15 mois d'inéligibilité ferme, déjà purgés : elle reste éligible en 2027. Le soir, sur TF1, elle déclare sa candidature.",
+  "resume": "Le 7 juillet 2026, la cour d'appel de Paris condamne Marine Le Pen dans l'affaire des assistants du FN mais ne maintient que 15 mois d'inéligibilité ferme, déjà purgés : elle reste éligible en 2027. Le soir, sur TF1, elle déclare sa candidature.",
   "citation": {
    "texte": "Je suis candidate à l'élection présidentielle.",
    "auteur": "Marine Le Pen",
@@ -17124,7 +17159,7 @@
  },
  {
   "id": "plf-2027-rejet-2026",
-  "titre": "Budget 2027 : 458 voix contre, zéro pour",
+  "titre": "Budget 2027 : 458 voix contre, zéro pour",
   "date": "2026-11-04",
   "date_fin": null,
   "epoque": "Ve République",

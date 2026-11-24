@@ -55,9 +55,9 @@ const sx = Date.now().toString(36).slice(-4);
   // Paquet tiré par le serveur
   await A.click('nav [data-vue="paquet"]'); await A.waitForSelector("#paquet");
   await A.click("#paquet"); await A.waitForSelector("#suite");
-  for (let i = 0; i < 5; i++) await A.click("#suite");
+  while (!(await A.$(".recap"))) await A.click("#suite");  // cinq cartes, six avec un évènement
   const serveurA = await A.evaluate(() => fetch("/api/moi").then(r => r.json()));
-  assert.strictEqual(Object.values(serveurA.etat.possedees).reduce((a, n) => a + n, 0), 10);
+  assert.strictEqual(Object.entries(serveurA.etat.possedees).filter(([id]) => !id.startsWith("E-")).reduce((a, [, n]) => a + n, 0), 10);
   assert.strictEqual(await A.evaluate(() => Object.values(etat.verrous || {}).reduce((a, n) => a + n, 0)), 0, "exemplaires repris libres");
   // Bob : un autre navigateur, inscription sans collection, un paquet
   const Bp = await nouvelle(390);

@@ -177,6 +177,29 @@ première exécution : 19 816 fiches, entre 180 et 650 cartes étoilées par pol
   duels à jouer, « Lancer un défi » (amis et mise), en attente et historique ; la partie d'un duel s'y joue aussi (`majQag`
   rend la Séance et l'onglet, `htmlQuestion`, `clicQuiz` commun) ; la Séance garde les questions du jour et un renvoi quand un
   duel attend ; pastille sur l'onglet large, sur Plus et sur l'entrée Duels du menu ; bouton Défier de l'onglet Amis qui y mène, formulaire prérempli.
+- Cartes évènements (demande de l'utilisateur, novembre 2026) : 500 évènements politiques et parlementaires de 1789 à 2026,
+  chacun relu sur ses sources (`data/evenements/evenements.json` : titre, date, époque, retentissement 3 à 5, résumé, citation
+  mot pour mot avec auteur, acteurs, sources ; typographie française, espaces insécables avant les deux-points et dans les
+  guillemets) ; ajouts à la demande de l'utilisateur (Bastille, sacre, Commune, Mai 68, élections de 1995, 2007 et 2012, marche
+  du 11 janvier 2015, gilets jaunes) compensés par le retrait des évènements simples les plus anciens. Cartes « E-<id> »
+  ajoutées par `export_jeu.py` (`cartes_evenements`, table `evenements` de `jeu.json`) ; trois raretés en fin d'`ORDRE`
+  (`RARETES_EVENEMENT` : évènement ★, marquant ★★, historique ★★★ ; 91, 268 et 141 cartes), dissolution 120, 150 et 200 voix ;
+  hors des objectifs des parlementaires, lois, quiz, thèmes du jour et lots (`estEvenement`, `cat.parlementaires`), objectif
+  propre « Les grands évènements ». Sixième carte (demande de l'utilisateur) : un évènement s'ajoute aux cinq cartes d'un paquet
+  sur 70 (`CHANCE_EVENEMENT`, rareté par les poids relatifs de `POIDS` : 40, 48 et 12 %), sans en prendre la place ; les cinq
+  autres sont tirées parmi les parlementaires seuls (`parRareteParlementaires`). Paquet évènement offert (`paquetsEvenement`
+  de l'état, colonne `paquets_evt`, ouvert avant la réserve, sixième carte toujours un évènement) : un à chaque compte par la
+  migration unique `paquet-evenement-offert` (à l'arrivée des cartes), annonce `annonce-evenements` (`ANNONCES`) ; paquet
+  noir et or « Paquet spécial, un évènement garanti », case dorée dans la réserve. Illustrations dessinées par une autre IA
+  d'après `data/evenements/consignes_illustrations.csv` (style « full art », visages en illustration, décision de
+  l'utilisateur), en WebP 600 × 900 dans `site/evenements/<id>.webp` ; recto « fresque dorée » (image pleine, double liseré
+  d'or, reflet), verso : titre, date, citation encadrée, résumé à lettrine, deux sources et la mention « Illustration » (bulles
+  des acteurs retirées à la demande de l'utilisateur) ; galerie privée des 500 cartes pour la relecture
+  (https://claude.ai/artifact/K7FGX4ARdGR3azXJGoWcUq). Ouverture (`entreeEvenement`, `index.html`) : lumière d'or à la
+  déchirure du paquet qui contient un évènement ; à la carte évènement, rideau sombre, rayons d'or, millésime qui défile et se
+  pose sur l'année, étoiles une à une avec le nom du niveau, éclair et éclats, puis la carte arrive et se retourne (environ
+  3 s, un toucher abrège ; roulement de tambour et cymbale, `Sons.roulement`, `Sons.etoile`). Candidats libres de Commons
+  pour 120 évènements (`candidats_images.json`, licences relues par `illustrations_evenements.py`), gardés pour un usage futur.
 - Doubles réduits (demande de l'utilisateur, octobre 2026 : 10 % entre le 700e et le 1 500e paquet) : une carte déjà
   possédée ou déjà sortie dans le paquet est retirée dans la même rareté avec la probabilité `RELANCE_DOUBLE` (0,9) ;
   l'élu en exercice garanti, s'il est déjà possédé, laisse la place à une carte de la même rareté parmi toutes
@@ -619,21 +642,6 @@ légendaire et hors catégorie, plus ample mythique et unique) ; réglage « Son
    aussi leurs fiches, `senateurs-4eme-republique/senatl.html`, 718 noms, même méthode possible), gouvernements antérieurs à 1944, villes des circonscriptions avant 2012,
    fonctions au sein de l'Assemblée avant juin 2002 (seuls les comptes rendus de séance en PDF les portent ;
    leur lecture lèverait la règle de symétrie).
-5. Cartes évènements (demande de l'utilisateur, novembre 2026), en cours sur la branche `claude/cool-pasteur-nouke7` (commit
-   « Cartes évènements : 500 évènements, trois raretés, affichage (en cours) ») : 500 évènements politiques et parlementaires
-   de 1789 à novembre 2026, chacun relu sur ses sources (`data/evenements/evenements.json`, sur main ; acteurs rattachés aux
-   cartes par identifiant) ; cartes « E-<id> » ajoutées par `export_jeu.py` (`cartes_evenements`, table `evenements` de
-   `jeu.json`) ; trois raretés en fin d'`ORDRE` (`RARETES_EVENEMENT` : évènement ★, marquant ★★, historique ★★★ selon le
-   retentissement 3, 4, 5 ; 101, 267 et 132 cartes), poids 0,14, 0,17 et 0,045 (un paquet sur 70 environ, vérifié par le
-   test), dissolution 120, 150 et 200 voix ; hors des objectifs des parlementaires, lois, quiz, thèmes du jour et lots
-   (`estEvenement`, `cat.parlementaires`), objectif propre « Les grands évènements » ; recto et verso propres
-   (`htmlEvenement` d'`index.html` : date, résumé, citation, acteurs cochés s'ils sont possédés, sources). Reste à faire :
-   illustrations (décision de l'utilisateur : dessins façon carte « full art », visages en illustration, produits par une
-   autre IA d'après `data/evenements/consignes_illustrations.csv`, une consigne par évènement, fichier `<id>.png` ; Claude
-   les compresse, les range dans le site et les revoit à l'œil ; les maquettes vectorielles de Claude ont été refusées),
-   vérification du comptoir, de la vitrine et des miniatures pour ces cartes, Règlement, test du navigateur, PR. Images
-   libres de Commons trouvées pour 120 évènements (`candidats_images.json`, licences relues par `illustrations_evenements.py`
-   dans le workflow, vignettes dans `data/revue_evenements/`), utilisables au verso ou en repli.
-6. Questions laissées en suspens par l'utilisateur (novembre 2026) : ajouter les hors catégorie (180 membres du Gouvernement
+5. Questions laissées en suspens par l'utilisateur (novembre 2026) : ajouter les hors catégorie (180 membres du Gouvernement
    sans mandat, 40 voix) aux cartes à choisir des paliers 4 et 5 du jeu du Gouvernement ; compléter un lot dont les raretés
    sont épuisées par des épiques puis des rares plutôt que par le tirage ordinaire (surtout des communes aujourd'hui).

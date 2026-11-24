@@ -7,7 +7,7 @@ const cat = R.catalogue(cartes, d.assemblees);
 
 // Rareté unique : Charles de Gaulle seul, au-dessus de toutes, plus rare au tirage que n'importe quelle mythique
 assert.deepStrictEqual(cat.parRarete.unique.map(c => c.nom), ["Charles de Gaulle"]);
-assert.strictEqual(R.ORDRE[R.ORDRE.length - 1], "unique");
+assert.strictEqual(R.ORDRE[R.ORDRE.length - 1 - R.RARETES_EVENEMENT.length], "unique");
 assert.ok(R.POIDS.unique < R.POIDS.mythique / cat.parRarete.mythique.length, "tirage d'une mythique donnée plus fréquent");
 let graine = 42; const alea = () => (graine = (graine * 16807) % 2147483647) / 2147483647;
 
@@ -35,8 +35,15 @@ const s2 = R.etatVide(); s2.reserve = 0; s2.ancre = t0; s2.offerts = 1;
 assert.strictEqual(R.ouvrirPaquet(s2, cat, {maintenant: t0, aleatoire: alea}).origine, "offert");
 assert.strictEqual(s2.offerts, 0);
 const p = R.ouvrirPaquet(s, cat, {maintenant: t0 + 100 * H, aleatoire: alea});
-assert.strictEqual(p.tirage.length, 5); assert.ok(p.tirage.some(c => c.actuel));
-assert.strictEqual(Object.values(s.possedees).reduce((a, b) => a + b, 0), (R.RESERVE_MAX + 2) * R.CARTES_PAR_PAQUET);
+assert.strictEqual(p.tirage.filter(c => !R.estEvenement(c)).length, 5); assert.ok(p.tirage.some(c => c.actuel));
+assert.strictEqual(Object.entries(s.possedees).filter(([id]) => !id.startsWith("E-")).reduce((a, [, n]) => a + n, 0), (R.RESERVE_MAX + 2) * R.CARTES_PAR_PAQUET);
+// Paquet évènement offert : ouvert avant la réserve, cinq parlementaires et un évènement en sixième carte
+{ const e = R.etatVide(); e.paquetsEvenement = 1;
+  assert.strictEqual(R.paquetsDisponibles(e).total, R.RESERVE_MAX + 1);
+  const o = R.ouvrirPaquet(e, cat, {aleatoire: alea});
+  assert.strictEqual(o.origine, "evenement"); assert.strictEqual(o.tirage.length, 6); assert.ok(R.estEvenement(o.tirage[5]));
+  assert.strictEqual(e.paquetsEvenement, 0); assert.strictEqual(R.paquetsDisponibles(e).reserve, R.RESERVE_MAX);
+  assert.strictEqual(R.migrer({...e, paquetsEvenement: 2}).paquetsEvenement, 2); }
 
 // Recyclage : garde un exemplaire, points selon la rareté, raretés non choisies intactes
 const r = R.etatVide();
@@ -51,9 +58,12 @@ assert.ok(R.echangerPoints(r)); assert.strictEqual(r.points, 78); assert.strictE
 r.points = 24; assert.ok(!R.echangerPoints(r)); assert.strictEqual(r.offerts, 1);
 
 // Un paquet de doubles ne rend en moyenne pas plus d'un paquet
-const moyenne = Object.entries(R.POIDS).reduce((a, [k, w]) => a + w * R.VALEUR_RECYCLAGE[k], 0) / Object.values(R.POIDS).reduce((a, b) => a + b, 0);
-console.log("points moyens par paquet de doubles :", (moyenne * R.CARTES_PAR_PAQUET).toFixed(1), "pour un prix de", R.PRIX_PAQUET);
-assert.ok(moyenne * R.CARTES_PAR_PAQUET < R.PRIX_PAQUET);
+// (cinq parlementaires, plus la sixième carte évènement d'un paquet sur 70)
+const moyennePoids = ks => ks.reduce((a, k) => a + R.POIDS[k] * R.VALEUR_RECYCLAGE[k], 0) / ks.reduce((a, k) => a + R.POIDS[k], 0);
+const moyenneParPaquet = R.CARTES_PAR_PAQUET * moyennePoids(Object.keys(R.POIDS).filter(k => !R.RARETES_EVENEMENT.includes(k)))
+  + R.CHANCE_EVENEMENT * moyennePoids(R.RARETES_EVENEMENT);
+console.log("points moyens par paquet de doubles :", moyenneParPaquet.toFixed(1), "pour un prix de", R.PRIX_PAQUET);
+assert.ok(moyenneParPaquet < R.PRIX_PAQUET);
 
 // Objectifs
 const qv = cat.objectifParId["quatre-vingts"];
@@ -94,7 +104,20 @@ const pp = R.etatVide(); pp.possedees[pg.ids[0]] = 1;
 assert.deepStrictEqual(R.reclamer(pp, cat, "premier:gouvernement"), {paquets: 0, voix: 10}, "tâche simple : des voix");
 assert.deepStrictEqual(R.reclamer(pp, cat, "premier:gouvernement"), {paquets: 0, voix: 0});
 const hem = cat.objectifParId["hemicycle"];
-assert.strictEqual(hem.total, cat.cartes.length); assert.deepStrictEqual(hem.paliers.slice(0, 3), [[10, 10, "voix"], [25, 15, "voix"], [50, 20, "voix"]]);
+assert.strictEqual(hem.total, cat.parlementaires.length);
+// Cartes évènements : hors des objectifs des parlementaires et des lois, objectif à part, plus rares qu'une mythique donnée
+assert.strictEqual(cat.evenements.length, 500);
+assert.ok(cat.evenements.every(c => R.RARETES_EVENEMENT.includes(c.rarete) && String(c.id).startsWith("E-")));
+assert.deepStrictEqual(cat.objectifs.filter(o => o.ids.some(id => String(id).startsWith("E-"))).map(o => o.id), ["evenements"]);
+assert.ok(!R.remplit(cat, cat.evenements[0], {epoque: cat.evenements[0].epoque}), "un évènement ne remplit pas une loi");
+// Un évènement donné sort moins souvent qu'une mythique donnée
+{ const parl = Object.keys(R.POIDS).filter(k => !R.RARETES_EVENEMENT.includes(k)).reduce((a, k) => a + R.POIDS[k], 0);
+  const evt = R.RARETES_EVENEMENT.reduce((a, k) => a + R.POIDS[k], 0);
+  const mythique = (R.CARTES_PAR_PAQUET - 1) * R.POIDS.mythique / parl / cat.parRarete.mythique.length;
+  for (const r of R.RARETES_EVENEMENT) assert.ok(R.CHANCE_EVENEMENT * R.POIDS[r] / evt / cat.parRarete[r].length < mythique, r); }
+{ let g = 11, n = 0; const a = () => (g = (g * 16807) % 2147483647) / 2147483647;
+  for (let i = 0; i < 20000; i++) { const e = R.etatVide(); e.reserve = 1; if (R.ouvrirPaquet(e, cat, {aleatoire: a, maintenant: 0}).tirage.some(R.estEvenement)) n++; }
+  assert.ok(n > 20000 / 90 && n < 20000 / 55, "un paquet sur 70 environ contient un évènement : " + n); } assert.deepStrictEqual(hem.paliers.slice(0, 3), [[10, 10, "voix"], [25, 15, "voix"], [50, 20, "voix"]]);
 cat.cartes.slice(0, 10).forEach(c => pp.possedees[c.id] = 1);
 assert.deepStrictEqual(R.reclamer(pp, cat, "hemicycle"), {paquets: 0, voix: 10});
 // Catalogue du serveur : membres en plages, décodés à la demande, identiques au catalogue complet
