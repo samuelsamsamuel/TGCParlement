@@ -1,10 +1,10 @@
-Archive https://data.senat.fr/data/senateurs/export_sens.zip : 8634640 octets ; export_sens.sql (60643999 octets, 2026-11-23)
+Archive https://data.senat.fr/data/senateurs/export_sens.zip : 8636311 octets ; export_sens.sql (60666871 octets, 2026-11-24)
 
 # 95 tables
-  activite                     43560 lignes  Table des activités des Sénateurs faisant l'objet d'un relevé de présences
-  activite_delegation           3160 lignes  Délégations au cours d'une activité faisant l'objet d'un relevé de présences.
+  activite                     43572 lignes  Table des activités des Sénateurs faisant l'objet d'un relevé de présences
+  activite_delegation           3162 lignes  Délégations au cours d'une activité faisant l'objet d'un relevé de présences.
   activite_loi                  5397 lignes  Liens optionnels vers les textes examinés lors d'une activité.
-  activite_participant        688812 lignes  Participants à une activité.
+  activite_participant        689126 lignes  Participants à une activité.
   activite_senateur            11210 lignes  Activité personnelles saisies par un Sénateur
   activites_liees                326 lignes  Table de regroupement d'activités. Permet notamment de modéliser les réunions communes entre commissions.
   actpro                          41 lignes  Activités socio-professionnelles
@@ -37,7 +37,7 @@ Archive https://data.senat.fr/data/senateurs/export_sens.zip : 8634640 octets ; 
   fonmemcom                    21280 lignes  Fonctions des membres de Commission
   fonmemdelega                  3894 lignes  Fonctions des membres de délégation
   fonmemgrppol                  3749 lignes  Fonctions des membres de groupe politique
-  fonmemgrpsen                 40183 lignes  Fonction d'un membre d'un groupe sénatorial
+  fonmemgrpsen                 40217 lignes  Fonction d'un membre d'un groupe sénatorial
   fonmemorg                       17 lignes  Fonctions membres d'organisme
   fonorg                          15 lignes  Fonctions dans les organismes
   grppol                          29 lignes  Groupes Politiques
@@ -53,7 +53,7 @@ Archive https://data.senat.fr/data/senateurs/export_sens.zip : 8634640 octets ; 
   memdelega                     2881 lignes  Membres de délégation
   memextpar                     4563 lignes  Membre organisme extra-parlementaire
   memgrppol                     3587 lignes  Membres de groupe politique
-  memgrpsen                    32906 lignes  Membre groupe sénatorial
+  memgrpsen                    32937 lignes  Membre groupe sénatorial
   memorg                          17 lignes  Membres d'organisme
   minind                         396 lignes  Ministre
   mismin                          40 lignes  Missions et Ministères
@@ -69,7 +69,7 @@ Archive https://data.senat.fr/data/senateurs/export_sens.zip : 8634640 octets ; 
   pcs42                           50 lignes  Table INSEE Catégorie Socio-Professionnelle PCS42
   pcs8                             9 lignes  Table INSEE Catégorie Socio-Professionnelle PCS8
   pcscatpro                       40 lignes  Catégories Socio-professionelles
-  poicon                         967 lignes  Un point de contact est une adresse de sénateur comosée d'une adresse (postale) de numéros de tel et de mails
+  poicon                         968 lignes  Un point de contact est une adresse de sénateur comosée d'une adresse (postale) de numéros de tel et de mails
   qua                              3 lignes  Qualités (M., Mme, Mlle)
   reg                             49 lignes  Régions
   sen                           2015 lignes  Sénateurs

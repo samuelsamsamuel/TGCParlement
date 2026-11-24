@@ -1,4 +1,4 @@
-Portraits Wikipédia : 1 retenus, 572 écartés, sur 7873 cartes sans portrait ayant un article rattaché par identifiant officiel (8190 cartes sans portrait en tout)
+Portraits Wikipédia : 1 retenus, 573 écartés, sur 7873 cartes sans portrait ayant un article rattaché par identifiant officiel (8190 cartes sans portrait en tout)
 
 Retenus :
 S20066E	Annick Jacquemet	Annick Jacquemet (2026-06-20).jpg
@@ -497,6 +497,7 @@ S20066E	Annick Jacquemet	Annick Jacquemet (2026-06-20).jpg
 5435	Pierre Mortier	HC_DUTRIEU_H_CIM-Paris-Batignolles(02)_2015-11.jpg	nom de fichier
 5558	Albert Nivert	HC_NIVERT_A_CIM-Paris-Batignolles_2016-04.jpg	nom de fichier
 5902	François Pichat	Tombe.Jean-Francois.Pichat.jpg	nom de fichier
+6606	Paul Rassinier	Paul_Rassinier_(1906-1967),_écrivain_et_homme_politique_français.jpg	la fiche Commons ne dit pas représenter la personne
 6872	Louis Sonnery-Martin	SONNERY_Louis_signature.png	nom de fichier
 7703	Louis Lefoullon	HC_LEFOULLON_L_CIM-Neuilly-ancien(07)_2015-06.jpg	nom de fichier
 7740	Jean-Baptiste Lelièvre	Lelièvre_maire_de_Pipriac_et_conseiller_général.jpg	la fiche Commons ne dit pas représenter la personne
