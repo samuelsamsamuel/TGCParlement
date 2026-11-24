@@ -1302,7 +1302,7 @@ async function expirerDuels(env) {
 // par lots de ANNONCE_LOT joueurs (limite de sous-requêtes du plan gratuit) ; avancement noté dans reglages
 const ANNONCE_GOUV = "Nouveau mode de jeu : le Gouvernement ! Formez votre équipe de ministres (le premier gouvernement est offert) et enchaînez les victoires pour gagner des récompenses.";
 const ANNONCE_LOT = 15;
-const ANNONCE_EVENEMENTS = "Nouveau : 500 cartes évènements, de la prise de la Bastille aux gilets jaunes ! Un paquet spécial vous attend en séance, avec un évènement garanti.";
+const ANNONCE_EVENEMENTS = "Nouveau : 500 cartes évènements, de la prise de la Bastille à la dissolution de 2024 ! Un paquet spécial vous attend en séance, avec un évènement garanti.";
 // Annonces envoyées une fois à chaque joueur abonné, l'une après l'autre (avancement dans reglages, une clé par annonce),
 // un lot par heure toutes annonces confondues ; lien ouvert au toucher de la notification
 const ANNONCES = [
