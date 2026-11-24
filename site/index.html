@@ -1325,7 +1325,6 @@ function htmlEvenement(c, {retournee=true, neuve=false, classe="", id="", etoile
         ${citation ? `<blockquote>« ${echapper(citation[0])} »${citation[1] ? `<cite>${echapper(citation[1])}</cite>` : ""}</blockquote>` : ""}
         <p class="resume">${echapper(resume || "")}</p>
       </div>
-      ${acteurs.length ? `<div class="acteurs">${acteurs.map(a => { const p = a[2] && etat.possedees[a[2]]; return `<span class="puce${p ? " possede" : ""}">${p ? "✓ " : ""}${echapper(a[0])}</span>`; }).join("")}</div>` : ""}
       <div class="pied">${hotes.map((h, k) => `<a href="${echapper(sources.find(([u]) => hote(u) === h)[0])}" target="_blank" rel="noopener">${echapper(h)}</a>`).join(" · ")} · Illustration</div>
     </div></div></div>`;
 }
