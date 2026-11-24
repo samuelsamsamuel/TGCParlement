@@ -1322,7 +1322,7 @@ function htmlEvenement(c, {retournee=true, neuve=false, classe="", id="", etoile
     <div class="face verso"><div class="fond" style="background-image:url('${image}')"></div><div class="contenu">
       <div class="tete"><div class="t">${echapper(c.nom)}</div><div class="m">${echapper(quand)} · ${echapper(c.epoque)}</div></div>
       <div class="corps">
-        ${citation ? `<blockquote>« ${echapper(citation[0])} »${citation[1] ? `<cite>${echapper(citation[1])}</cite>` : ""}</blockquote>` : ""}
+        ${citation ? `<blockquote>«&nbsp;${echapper(citation[0])}&nbsp;»${citation[1] ? `<cite>${echapper(citation[1])}</cite>` : ""}</blockquote>` : ""}
         <p class="resume">${echapper(resume || "")}</p>
       </div>
       <div class="pied">${hotes.map((h, k) => `<a href="${echapper(sources.find(([u]) => hote(u) === h)[0])}" target="_blank" rel="noopener">${echapper(h)}</a>`).join(" · ")} · Illustration</div>
@@ -2412,7 +2412,7 @@ function htmlSerie(jouer = true){
     : `<p class="note">Formez d'abord un gouvernement complet pour jouer.</p>`;
   let corps;
   if (s.lot) corps = `<div class="encaisser"><button class="bouton" data-lot-gouv>Choisir ma carte</button></div>${jeu(false, jouer ? "Jouer" : "Rejouer")}`;
-  else if (s.serie) corps = `<p class="note">Gagnez encore pour atteindre « ${echapper(recompensesCourtes()[Math.min(4, s.serie)])} ». Une défaite fait tout perdre.</p>
+  else if (s.serie) corps = `<p class="note">Gagnez encore pour atteindre «&nbsp;${echapper(recompensesCourtes()[Math.min(4, s.serie)])}&nbsp;». Une défaite fait tout perdre.</p>
     ${jeu(true, "Continuer")}
     <div class="encaisser"><button class="bouton discret" data-encaisser>Encaisser : ${echapper(recompensesCourtes()[s.serie - 1])}</button><span class="note">${s.serie === 1 && s.palier1Voix ? `et la série repart de zéro ; ${s.palier1Voix === 1 ? "dernier encaissement en voix aujourd'hui" : `encore ${s.palier1Voix} fois en voix aujourd'hui`}` : "et la série repart de zéro"}</span></div>`;
   else corps = `<p class="note">Chaque victoire contre l'ordinateur ou un autre joueur fait monter d'un palier.</p>${jeu(jouer, jouer ? "Jouer" : "Rejouer")}`;
@@ -2626,13 +2626,13 @@ function bandeauTour(p){
   if (p.statut === "propose") return `<div class="tour-gouv attente"><b>En attente de ${adv}</b><span>${p.enDirect ? `${adv} regarde votre défi.` : `${adv} est averti du défi et pourra le relever quand il voudra.`}</span>${direct}</div>`;
   if (p.attente) return `<div class="tour-gouv attente"><b>En attente de ${adv}</b><span>Vous avez envoyé ${echapper(nomG(p.moi.ministres[p.attente[0]]))}${p.attente[1] ? " avec le 49.3" : ""}. ${p.enDirect
     ? "La manche se révèle dès son choix." : `${adv} n'a pas la partie ouverte : il est averti, et la manche se révélera dès qu'il aura joué.`}</span>${direct}</div>`;
-  return `<div class="tour-gouv a-vous"><b>À vous de jouer</b><span>Manche ${(p.manches || []).length + 1} : choisissez le ministre à envoyer sur « ${echapper(nomTheme(p.theme))} ».</span>${direct}</div>`;
+  return `<div class="tour-gouv a-vous"><b>À vous de jouer</b><span>Manche ${(p.manches || []).length + 1} : choisissez le ministre à envoyer sur «&nbsp;${echapper(nomTheme(p.theme))}&nbsp;».</span>${direct}</div>`;
 }
 function htmlPartie(){
   const p = partie, contre = libelleMode(p);
   const themes = `<div class="themes-annonces">${p.annonces.map(t => `<span class="${(p.manches || []).some(m => m.theme === t) ? "joue" : t === p.theme ? "courant" : ""}">${echapper(nomTheme(t))}</span>`).join("")}</div>`;
   const retour = `<p><button class="bouton discret" data-retour-gouv>Revenir au Gouvernement</button></p>`;
-  const nomCamp = c => c && c.nom ? `« ${echapper(c.nom)} »` : c ? `Gouvernement ${echapper(nomG(c.chef))}` : "";
+  const nomCamp = c => c && c.nom ? `«&nbsp;${echapper(c.nom)}&nbsp;»` : c ? `Gouvernement ${echapper(nomG(c.chef))}` : "";
   if (p.statut === "preparation" || p.statut === "propose") {
     const aChoisir = (p.statut === "preparation" && p.lance) || (p.statut === "propose" && !p.lance);
     const valeur = c => Gouvernement.valeur(ficheG(c.chef), c.ministres.map(ficheG), p.annonces);
@@ -2665,7 +2665,7 @@ function htmlPartie(){
     <div class="theme-manche"><span>Manche ${(p.manches || []).length + 1} · premier à ${Gouvernement.VICTOIRE}</span><b>${echapper(nomTheme(p.theme))}</b></div>
     ${p.mode === "ami" ? bandeauTour(p) : ""}
     <div class="deux-colonnes"><div><h3>Vos ministres</h3>
-      ${p.attente ? "" : `<p class="note">Touchez le ministre à envoyer. Le grand chiffre est sa force sur « ${echapper(nomTheme(p.theme))} ».</p>`}
+      ${p.attente ? "" : `<p class="note">Touchez le ministre à envoyer. Le grand chiffre est sa force sur «&nbsp;${echapper(nomTheme(p.theme))}&nbsp;».</p>`}
 
       ${lignesMiennes(p, pris)}
       ${p.attente ? "" : `<button class="joker" data-joker aria-pressed="${avec493}" ${p.a493[0] ? "disabled" : ""}><span class="num">49.3</span><span class="txt"><b class="etat-joker">${p.a493[0] ? "Déjà utilisé" : avec493 ? `Joué : +${chef.stature} pour cette manche` : `Jouer le 49.3 : +${chef.stature}`}</b>
