@@ -43,7 +43,7 @@ const T = process.argv[2] || require("os").tmpdir();
   assert.strictEqual(await page.getAttribute("#courante [data-favori]", "aria-pressed"), "true");
   assert.ok(!(await page.evaluate(() => document.getElementById("courante").classList.contains("envers"))), "l'étoile ne retourne pas la carte");
   assert.ok(avantEnvers && !(await page.isVisible("#qag")), "questions masquées pendant la découverte");
-  for (let i = 0; i < 5; i++) await page.click("#suite");
+  while (!(await page.$(".recap"))) await page.click("#suite");  // cinq cartes, six avec un évènement
   await page.waitForSelector(".recap");
   assert.ok(!(await page.evaluate(() => decouverte)), "ordre du jour mis à jour au récapitulatif");
   assert.strictEqual(await page.locator("#revoir").count(), 0);
@@ -202,7 +202,7 @@ const T = process.argv[2] || require("os").tmpdir();
   const e5 = await page.evaluate(() => JSON.parse(localStorage.getItem("hemicycle-collection")));
   assert.strictEqual(e5.offerts, 2); assert.strictEqual(e5.reserve, 0);
   // Questions au Gouvernement : cinq questions, récompense une fois par jour (masquées pendant la découverte)
-  for (let i = 0; i < 5; i++) await page.click("#suite");
+  while (!(await page.$(".recap"))) await page.click("#suite");  // cinq cartes, six avec un évènement
   await page.waitForSelector(".recap"); assert.ok(!(await page.isVisible("#qag")));
   // Deuxième paquet ouvert : thème et notifications proposés, une seule fois
   await page.waitForSelector("#preferences[open]");
@@ -230,7 +230,7 @@ const T = process.argv[2] || require("os").tmpdir();
   await tel.goto("http://localhost:8765/");
   // Récapitulatif d'un paquet : tout en bas de la page, le bouton reste entier au-dessus de la barre d'onglets
   await tel.click("#paquet"); await tel.waitForSelector("#suite");
-  for (let i = 0; i < 5; i++) await tel.click("#suite");
+  while (!(await tel.$(".recap"))) await tel.click("#suite");  // cinq cartes, six avec un évènement
   await tel.waitForSelector(".recap"); await tel.waitForSelector("#suivant");
   await tel.evaluate(() => scrollTo(0, document.documentElement.scrollHeight)); await tel.waitForTimeout(300);
   const [basBouton, hautBarre] = await tel.evaluate(() => [document.getElementById("suivant").getBoundingClientRect().bottom,

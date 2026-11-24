@@ -45,8 +45,8 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
   const estEvenement = c => !!c && String(c.id).startsWith("E-");
   // Probabilité de chaque rareté pour une carte tirée : les plus hautes restent rares, quel que soit leur nombre
   const POIDS = {"mythique": 0.4, "legendaire": 1.6, "epique": 6, "rare": 15, "peu-commune": 30, "commune": 46, "hors-categorie": 1, "unique": 0.002,
-    // Évènements : un paquet sur 70 environ en contient un (4 cartes tirées au hasard par paquet : 0,36 % par carte) ;
-    // poids d'une carte 4, 2 et 1 selon le retentissement (3, 4 et 5 sur 5) : simple 40 %, marquant 48 %, historique 12 %
+    // Évènements : poids relatifs des trois raretés pour la sixième carte (voir CHANCE_EVENEMENT) ; poids d'une carte 4, 2
+    // et 1 selon le retentissement (3, 4 et 5 sur 5) : simple 40 %, marquant 48 %, historique 12 %
     "evenement": 0.14, "evenement-marquant": 0.17, "evenement-historique": 0.045};
   // Recyclage : points rendus par exemplaire en trop, à peu près inverses de la fréquence de tirage.
   // Un paquet de doubles recyclé rapporte en moyenne 21 points, pour un paquet à 25 : recycler ne rend jamais
@@ -54,11 +54,14 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
   const VALEUR_RECYCLAGE = {"commune": 1, "peu-commune": 2, "rare": 5, "epique": 15, "hors-categorie": 40, "legendaire": 40, "mythique": 100, "unique": 250,
     "evenement": 120, "evenement-marquant": 150, "evenement-historique": 200};
   const PRIX_PAQUET = 25;
+  // Sixième carte (demande de l'utilisateur, novembre 2026) : un évènement s'ajoute aux cinq cartes d'un paquet sur 70
+  // environ, sans en prendre la place ; un paquet évènement offert (paquetsEvenement) en contient toujours un
+  const CHANCE_EVENEMENT = 1 / 70;
   const JOURNAL_MAX = 200;
 
   /* ---------- État ---------- */
   function etatVide() {
-    return {version: VERSION_ETAT, possedees: {}, reserve: RESERVE_MAX, ancre: 0, points: 0, offerts: 0, objectifs: {}, quiz: "", favoris: [], gardes: [], journal: [], deja: [], deposees: [], quotidien: {}};
+    return {version: VERSION_ETAT, possedees: {}, reserve: RESERVE_MAX, ancre: 0, points: 0, offerts: 0, paquetsEvenement: 0, objectifs: {}, quiz: "", favoris: [], gardes: [], journal: [], deja: [], deposees: [], quotidien: {}};
   }
   function entier(v) { v = Math.floor(Number(v)); return Number.isFinite(v) && v > 0 ? v : 0; }
   // Accepte les états des versions précédentes (paquets du jour : jour, ouverts) et tout état abîmé ; le passage
@@ -78,6 +81,7 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
     if (Array.isArray(brut.favoris)) e.favoris = [...new Set(brut.favoris.map(String))].slice(0, 300);
     if (Array.isArray(brut.gardes)) e.gardes = [...new Set(brut.gardes.map(String))].slice(0, MAX_GARDES);
     e.offerts = entier(brut.offerts);
+    e.paquetsEvenement = entier(brut.paquetsEvenement);
     if (brut.objectifs && typeof brut.objectifs === "object") Object.assign(e.objectifs, brut.objectifs);
     if (Array.isArray(brut.journal)) e.journal = brut.journal.slice(-JOURNAL_MAX);
     if (brut.quotidien && typeof brut.quotidien === "object" && !Array.isArray(brut.quotidien)) e.quotidien = brut.quotidien;
@@ -104,7 +108,9 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
       (parRarete[c.rarete] ||= []).push(c);
       if (c.actuel) (actuelsParRarete[c.rarete] ||= []).push(c);
     }
-    const cat = {cartes, parRarete, actuelsParRarete: Object.keys(actuelsParRarete).length ? actuelsParRarete : parRarete, parId, assemblees,
+    const parRareteParlementaires = {}, parRareteEvenements = {};
+    for (const [r, l] of Object.entries(parRarete)) (RARETES_EVENEMENT.includes(r) ? parRareteEvenements : parRareteParlementaires)[r] = l;
+    const cat = {cartes, parRarete, parRareteParlementaires, parRareteEvenements, actuelsParRarete: Object.keys(actuelsParRarete).length ? actuelsParRarete : parRarete, parId, assemblees,
       parlementaires: cartes.filter(c => !estEvenement(c)), evenements: cartes.filter(estEvenement)};
     cat.objectifs = objectifsDonnes ? objectifsDonnes.map(([id, famille, titre, sous, ids]) => objectif(id, famille, titre, ids, sous)) : definirObjectifs(cat);
     cat.objectifParId = Object.fromEntries(cat.objectifs.map(o => [o.id, o]));
@@ -178,8 +184,9 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
   }
   function paquetsDisponibles(etat, maintenant = Date.now()) {
     const r = reserveCourante(etat, maintenant);
-    return {reserve: r.n, max: RESERVE_MAX, prochain: r.prochain, offerts: etat.offerts,
-      echangeables: Math.floor(etat.points / PRIX_PAQUET), total: r.n + etat.offerts};
+    const evenement = etat.paquetsEvenement || 0;
+    return {reserve: r.n, max: RESERVE_MAX, prochain: r.prochain, offerts: etat.offerts, evenement,
+      echangeables: Math.floor(etat.points / PRIX_PAQUET), total: r.n + etat.offerts + evenement};
   }
   function tirerRarete(pool, aleatoire) {
     // Probabilités ramenées aux seules raretés présentes dans le vivier : une rareté absente
@@ -215,13 +222,15 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
     const r = tirerRarete(cat.actuelsParRarete, aleatoire), c = auHasard(cat.actuelsParRarete[r], aleatoire, sortie);
     return possedee(c.id) ? tirerDans(cat.parRarete[r], aleatoire, possedee, sortie) : c;
   }
-  // Consomme un paquet de la réserve s'il en reste, sinon un paquet offert. Renvoie null si aucun n'est disponible.
+  // Consomme d'abord un paquet évènement offert, puis un paquet de la réserve s'il en reste, sinon un paquet offert.
+  // Renvoie null si aucun n'est disponible.
   function ouvrirPaquet(etat, cat, {maintenant = Date.now(), aleatoire = Math.random} = {}) {
     preparerJour(etat, cat, jourDuJeu(new Date(maintenant)));
     const r = reserveCourante(etat, maintenant);
-    if (r.n + etat.offerts <= 0) return null;
+    if (r.n + etat.offerts + (etat.paquetsEvenement || 0) <= 0) return null;
     let origine;
-    if (r.n > 0) {
+    if (etat.paquetsEvenement > 0) { etat.paquetsEvenement -= 1; origine = "evenement"; }
+    else if (r.n > 0) {
       // Réserve pleine : la recharge repart de maintenant ; sinon l'heure entamée reste acquise
       etat.ancre = r.pleine ? maintenant : (etat.ancre || 0) + r.heures * intervalle(etat);
       etat.reserve = r.n - 1; origine = "reserve";
@@ -229,9 +238,13 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
     // Une carte parmi les élus et ministres en exercice (sauf s'il est déjà possédé), les autres au hasard
     const sortis = new Set(), possedee = id => !!etat.possedees[id], sortie = id => sortis.has(id);
     const garder = c => { sortis.add(c.id); return c; };
+    const parl = cat.parRareteParlementaires || cat.parRarete, evts = cat.parRareteEvenements || {};
     const tirage = [garder(tirerActuel(cat, aleatoire, possedee, sortie))]
-      .concat(Array.from({length: CARTES_PAR_PAQUET - 1}, () => garder(tirerCarte(cat.parRarete, aleatoire, possedee, sortie))))
-      .sort((a, b) => ORDRE.indexOf(a.rarete) - ORDRE.indexOf(b.rarete) || a.score - b.score);
+      .concat(Array.from({length: CARTES_PAR_PAQUET - 1}, () => garder(tirerCarte(parl, aleatoire, possedee, sortie))));
+    // sixième carte : un évènement, toujours dans un paquet évènement offert
+    if (Object.keys(evts).length && (origine === "evenement" || aleatoire() < CHANCE_EVENEMENT))
+      tirage.push(garder(tirerCarte(evts, aleatoire, possedee, sortie)));
+    tirage.sort((a, b) => ORDRE.indexOf(a.rarete) - ORDRE.indexOf(b.rarete) || a.score - b.score);
     const neuves = new Set(tirage.filter(c => !etat.possedees[c.id]).map(c => c.id));
     for (const c of tirage) etat.possedees[c.id] = (etat.possedees[c.id] || 0) + 1;
     noter(etat, "paquet", {origine, cartes: tirage.map(c => c.id)});
@@ -1081,7 +1094,7 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
     return voix;
   }
 
-  return {reparerLots, RARETES_EVENEMENT, estEvenement, VERSION_ETAT, PALIER1_VOIX_PAR_JOUR, retenirMise, SERIE_GOUV, serieGouv, issueSerieGouv, encaisserSerieGouv, choisirLotGouv, offrirChoixGouv, THEMES_LOI, loisDuJour, verifierLoi, etatLois, adopterLoi, remplirLoi, manquesLoi, semaineDuJeu, quinzaineDuJeu, remplit, basculerFavori, MAX_GARDES, garderCartes, RECHARGE_MS, QUIZ_QUESTIONS, graineDe, questions, compacterQuiz, catalogueQuiz, recompenseQuiz, validerQuiz, RESERVE_MAX, CARTES_PAR_PAQUET, reserveCourante, ORDRE, POIDS, VALEUR_RECYCLAGE, PRIX_PAQUET, PALIERS,
+  return {CHANCE_EVENEMENT, reparerLots, RARETES_EVENEMENT, estEvenement, VERSION_ETAT, PALIER1_VOIX_PAR_JOUR, retenirMise, SERIE_GOUV, serieGouv, issueSerieGouv, encaisserSerieGouv, choisirLotGouv, offrirChoixGouv, THEMES_LOI, loisDuJour, verifierLoi, etatLois, adopterLoi, remplirLoi, manquesLoi, semaineDuJeu, quinzaineDuJeu, remplit, basculerFavori, MAX_GARDES, garderCartes, RECHARGE_MS, QUIZ_QUESTIONS, graineDe, questions, compacterQuiz, catalogueQuiz, recompenseQuiz, validerQuiz, RESERVE_MAX, CARTES_PAR_PAQUET, reserveCourante, ORDRE, POIDS, VALEUR_RECYCLAGE, PRIX_PAQUET, PALIERS,
     etatVide, migrer, jourDuJeu, normer, cartesDeJeu, catalogue, compacter, catalogueCompact, paquetsDisponibles, ouvrirPaquet,
     disponibles, recyclables, doubles, recycler, dissoudre, MAX_SELECTION, dissoudreSelection, echangerPoints, avancement, clesAtteintes, reclamer, recompensesEnAttente,
     SERIE, serieDuJour, reclamerSerie, choisirLot, objectifsDuJour, preparerJour, etatDuJour, reclamerJour};

@@ -205,6 +205,8 @@ const COLONNES = {
     ["prestige", "INTEGER NOT NULL DEFAULT 0"],     // somme des valeurs de dissolution des cartes différentes
     ["rares", "INTEGER NOT NULL DEFAULT 0"],        // cartes différentes légendaires ou mieux
     ["differentes", "INTEGER NOT NULL DEFAULT 0"],  // cartes différentes
+    // Paquets évènement offerts (règles : paquetsEvenement), sixième carte toujours un évènement
+    ["paquets_evt", "INTEGER NOT NULL DEFAULT 0 CHECK (paquets_evt >= 0)"],
   ],
   // Carte déposée pour une loi (novembre 2026) : elle compte toujours pour les objectifs (règles : deposees)
   possessions: [
@@ -250,6 +252,8 @@ const MIGRATIONS = {
   // Cartes déposées pour une loi avant la colonne deposee (mise au point, novembre 2026), lues dans le journal
   "deposees-anciennes": `UPDATE possessions SET deposee = 1 WHERE deposee = 0 AND EXISTS (SELECT 1 FROM journal j, json_each(json_extract(j.detail, '$.cartes')) e
     WHERE j.joueur = possessions.joueur AND j.operation = 'loi' AND CAST(e.value AS TEXT) = possessions.carte)`,
+  // Arrivée des cartes évènements (demande de l'utilisateur, novembre 2026) : un paquet évènement offert à chaque compte
+  "paquet-evenement-offert": "UPDATE joueurs SET paquets_evt = paquets_evt + 1",
   "gouv-formes-anciens": `UPDATE joueurs SET gouv_formes = 1 WHERE gouv_formes = 0 AND (id IN (SELECT joueur FROM gouvernements)
     OR id IN (SELECT a FROM parties WHERE camp_a IS NOT NULL) OR id IN (SELECT b FROM parties WHERE mode = 'ami' AND camp_b IS NOT NULL))`,
 };
@@ -353,7 +357,7 @@ async function verifierBuvette(env, ...joueurs) {
 /* ---------- État d'un joueur ---------- */
 async function chargerEtat(env, joueur) {
   const [j, p, r, h] = await env.DB.batch([
-    env.DB.prepare("SELECT pseudo, cree, points, offerts, stock, ancre, version, quiz, vitrine, favoris, gardes, quotidien, prestige, rares, differentes, sanction FROM joueurs WHERE id = ?").bind(joueur),
+    env.DB.prepare("SELECT pseudo, cree, points, offerts, paquets_evt, stock, ancre, version, quiz, vitrine, favoris, gardes, quotidien, prestige, rares, differentes, sanction FROM joueurs WHERE id = ?").bind(joueur),
     // Toutes les lignes : celles à zéro (cartes cédées) se lisent de toute façon avec les autres par la clé du joueur
     env.DB.prepare("SELECT carte, n, importes, reserve, deposee FROM possessions WHERE joueur = ?").bind(joueur),
     env.DB.prepare("SELECT cle, date FROM reclames WHERE joueur = ?").bind(joueur),
@@ -362,7 +366,7 @@ async function chargerEtat(env, joueur) {
   const ligne = j.results[0];
   if (!ligne) throw new Refus(401, "Compte introuvable.");
   const etat = Regles.etatVide();
-  Object.assign(etat, {points: ligne.points, offerts: ligne.offerts, reserve: ligne.stock, ancre: ligne.ancre, quiz: ligne.quiz, verrous: {}});
+  Object.assign(etat, {points: ligne.points, offerts: ligne.offerts, paquetsEvenement: ligne.paquets_evt, reserve: ligne.stock, ancre: ligne.ancre, quiz: ligne.quiz, verrous: {}});
   for (const x of p.results) {
     if (x.deposee) etat.deposees.push(x.carte);
     if (!x.n) { etat.deja.push(x.carte); continue; }   // cartes cédées : restent « obtenues » dans Toutes les cartes
@@ -419,6 +423,8 @@ async function appliquer(env, joueur, operation, liees = []) {
     requetes.push(env.DB.prepare("UPDATE possessions SET deposee = 1 WHERE joueur = ? AND carte = ?").bind(joueur, id));
   const dPoints = apres.points - avant.points, dOfferts = apres.offerts - avant.offerts;
   if (dPoints || dOfferts) requetes.push(env.DB.prepare("UPDATE joueurs SET points = points + ?, offerts = offerts + ? WHERE id = ?").bind(dPoints, dOfferts, joueur));
+  const dEvt = (apres.paquetsEvenement || 0) - (avant.paquetsEvenement || 0);
+  if (dEvt) requetes.push(env.DB.prepare("UPDATE joueurs SET paquets_evt = paquets_evt + ? WHERE id = ?").bind(dEvt, joueur));
   if (apres.quiz !== avant.quiz) requetes.push(env.DB.prepare("UPDATE joueurs SET quiz = ? WHERE id = ?").bind(apres.quiz, joueur));
   const quotidien = JSON.stringify(apres.quotidien || {});
   if (quotidien !== JSON.stringify(avant.quotidien || {})) requetes.push(env.DB.prepare("UPDATE joueurs SET quotidien = ? WHERE id = ?").bind(quotidien, joueur));
@@ -1296,12 +1302,15 @@ async function expirerDuels(env) {
 // par lots de ANNONCE_LOT joueurs (limite de sous-requêtes du plan gratuit) ; avancement noté dans reglages
 const ANNONCE_GOUV = "Nouveau mode de jeu : le Gouvernement ! Formez votre équipe de ministres (le premier gouvernement est offert) et enchaînez les victoires pour gagner des récompenses.";
 const ANNONCE_LOT = 15;
+const ANNONCE_EVENEMENTS = "Nouveau : 500 cartes évènements, de la prise de la Bastille aux gilets jaunes ! Un paquet spécial vous attend en séance, avec un évènement garanti.";
 // Annonces envoyées une fois à chaque joueur abonné, l'une après l'autre (avancement dans reglages, une clé par annonce),
 // un lot par heure toutes annonces confondues ; lien ouvert au toucher de la notification
 const ANNONCES = [
   {cle: "annonce-gouv", texte: ANNONCE_GOUV, lien: null},
   // Ouverture des propositions de loi à tous (demande de l'utilisateur, novembre 2026, texte choisi par lui)
   {cle: "annonce-lois", texte: "Nouveau : les propositions de loi ! Réunissez les bons parlementaires, faites adopter vos lois et gagnez paquets et cartes à choisir.", lien: "vue:lois"},
+  // Cartes évènements (novembre 2026) : un paquet évènement offert à chaque compte (colonne paquets_evt)
+  {cle: "annonce-evenements", texte: ANNONCE_EVENEMENTS, lien: null},
 ];
 async function annoncerGouvernement(env) {
   const heure = Number(new Intl.DateTimeFormat("fr-FR", {timeZone: "Europe/Paris", hour: "numeric", hourCycle: "h23"}).format(new Date()));

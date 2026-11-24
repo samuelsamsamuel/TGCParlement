@@ -268,6 +268,55 @@ main{max-width:1120px;margin:0 auto;padding:1.5rem 1rem 4rem}
 .evt .verso .puce.possede{background:#e6c56a;color:#2b1a08;border-color:#e6c56a}
 .evt .verso .pied{display:flex;justify-content:center;gap:.4em;padding:.4em .6em .55em;font:italic .5em var(--serif);color:#cdbb9a;border-top:1px solid rgba(230,197,106,.25);white-space:nowrap;overflow:hidden}
 .evt .verso .pied a{color:#cdbb9a}
+/* Paquet évènement offert : noir et or, mention « évènement garanti » */
+.paquet.special .corps-paquet{background:
+    linear-gradient(115deg,transparent 30%,rgba(255,236,180,.45) 42%,transparent 54%) 0 0/250% 100%,
+    radial-gradient(circle at 50% 40%,#3a2a10,#140a06 70%);animation:brillance 3s linear infinite}
+.paquet.special .bordure{border-color:#f5dc8e;box-shadow:0 0 0 3px #6b4b12,0 0 0 4px #f5dc8e,0 0 18px rgba(230,197,106,.6)}
+.paquet .mention.special span{display:block;margin-top:.3em;font-size:.8rem;color:#f5dc8e}
+.paquet.special .mention em{background:linear-gradient(90deg,#f5dc8e,#c9a24a);color:#2b1a08}
+.cases i.special{background:linear-gradient(135deg,#f5dc8e,#8a6a1c);border-color:#fff3c4;box-shadow:0 0 6px rgba(245,220,142,.8)}
+/* Un évènement dans le paquet : une lumière d'or s'échappe de la déchirure */
+.paquet .lueur{position:absolute;left:-20%;right:-20%;top:-6%;height:40%;pointer-events:none;opacity:0;
+  background:radial-gradient(ellipse at 50% 60%,rgba(255,240,190,.95),rgba(230,197,106,.55) 30%,transparent 65%)}
+.paquet.ouvert.evt .lueur{animation:lueur 1.1s ease-out forwards}
+@keyframes lueur{0%{opacity:0;transform:scaleY(.2)}35%{opacity:1;transform:scaleY(1.4)}100%{opacity:0;transform:scaleY(2.2) translateY(-20%)}}
+/* Entrée d'une carte évènement (demande de l'utilisateur, novembre 2026) : rideau sombre, rayons d'or, millésime qui défile
+   comme un compteur et s'arrête sur l'année, étoiles de la rareté une à une, éclair, puis la carte arrive et se retourne */
+.entree-evt{position:fixed;inset:0;z-index:60;display:grid;place-items:center;overflow:hidden;cursor:pointer;
+  background:radial-gradient(circle at 50% 45%,rgba(40,22,8,.9),rgba(6,3,2,.97) 70%);animation:entree-fond .35s ease-out}
+.entree-evt .rayons{position:absolute;left:50%;top:45%;width:180vmax;height:180vmax;margin:-90vmax 0 0 -90vmax;opacity:.5;
+  background:repeating-conic-gradient(from 0deg,rgba(245,220,142,.22) 0 4deg,transparent 4deg 15deg);
+  -webkit-mask:radial-gradient(circle,#000 10%,transparent 55%);mask:radial-gradient(circle,#000 10%,transparent 55%);animation:rayons 14s linear infinite}
+.entree-evt .titre-entree{position:relative;text-align:center;color:#fbe7ad;font-family:var(--serif)}
+.entree-evt small{display:block;font-size:.8rem;letter-spacing:.42em;text-transform:uppercase;color:#e8cf8a;animation:monte .5s .15s both}
+.entree-evt .annee-defile{display:block;margin:.15em 0 .1em;font:700 clamp(4rem,22vw,7.5rem)/1 var(--serif);font-variant-numeric:tabular-nums;
+  background:linear-gradient(180deg,#fff6d6,#e6c56a 55%,#9a7322);-webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 0 18px rgba(230,197,106,.55))}
+.entree-evt .annee-defile.pose{animation:pose .45s cubic-bezier(.2,1.6,.4,1)}
+.entree-evt .etoiles-entree{display:flex;justify-content:center;gap:.35em;height:2rem;font-size:1.7rem}
+.entree-evt .etoiles-entree i{font-style:normal;color:#f5dc8e;text-shadow:0 0 12px #e6c56a;animation:etoile .45s cubic-bezier(.2,1.8,.4,1) both}
+.entree-evt .niveau-entree{display:block;margin-top:.5em;font-size:.95rem;letter-spacing:.2em;text-transform:uppercase;color:#e8cf8a;opacity:0}
+.entree-evt .niveau-entree.vu{animation:monte .45s both}
+.entree-evt .eclair{position:absolute;inset:0;background:radial-gradient(circle at 50% 45%,#fff8e0,rgba(245,220,142,.6) 35%,transparent 70%);opacity:0;pointer-events:none}
+.entree-evt.fin .eclair{animation:eclair .7s ease-out forwards}
+.entree-evt.fin{animation:sortie-fond .7s .15s ease-in forwards}
+.entree-evt .eclat{position:absolute;left:50%;top:45%;width:.5rem;height:.5rem;margin:-.25rem;border-radius:50%;background:#fff3c4;box-shadow:0 0 8px #e6c56a;opacity:0}
+.entree-evt.fin .eclat{animation:eclat .9s ease-out forwards}
+.entree-en-cours :is(.actions,.progres){visibility:hidden}
+.entree-en-cours #courante{opacity:0}
+.carte.arrivee-evt{animation:arrivee-evt .9s cubic-bezier(.2,1.25,.4,1) both}
+.carte.arrivee-evt .recto{box-shadow:0 0 0 2px #f5dc8e,0 0 4em rgba(245,220,142,.9),0 10px 26px rgba(0,0,0,.45)}
+@keyframes entree-fond{from{opacity:0}}
+@keyframes sortie-fond{to{opacity:0;visibility:hidden}}
+@keyframes rayons{to{transform:rotate(360deg)}}
+@keyframes monte{from{opacity:0;transform:translateY(.8em)}to{opacity:1;transform:none}}
+@keyframes pose{0%{transform:scale(1.35)}100%{transform:scale(1)}}
+@keyframes etoile{from{opacity:0;transform:scale(2.6) rotate(-40deg)}to{opacity:1;transform:none}}
+@keyframes eclair{0%{opacity:0}20%{opacity:1}100%{opacity:0}}
+@keyframes eclat{0%{opacity:1;transform:none}100%{opacity:0;transform:translate(var(--x),var(--y)) scale(.3)}}
+@keyframes arrivee-evt{0%{transform:scale(.35) translateY(30%) rotate(-8deg);opacity:0}60%{opacity:1}100%{transform:none;opacity:1}}
+:root[data-theme="clair"] .entree-evt{background:radial-gradient(circle at 50% 45%,rgba(40,22,8,.88),rgba(6,3,2,.96) 70%)}
 /* Bande de lumière à 45 % d'un dégradé large de 2,5 cartes : hors de la carte à 120 % comme à -20 % */
 @keyframes reflet{0%{background-position:120% 0}14%,100%{background-position:-20% 0}}
 
@@ -1180,7 +1229,7 @@ html.presentation{font-size:15px}
     <p>À la buvette, on propose à un autre joueur un échange de cartes, qu'il accepte ou refuse ; des voix peuvent s'ajouter d'un côté de l'échange, données ou demandées, et ne changent de main qu'à l'acceptation. On y tient aussi le comptoir, où les joueurs se vendent et s'achètent des cartes contre des voix. Le premier qui paie le prix demandé emporte la carte ; on peut aussi offrir moins, et le vendeur accepte ou refuse l'offre. Une carte posée au comptoir est réservée : elle ne peut être ni dissoute ni échangée tant qu'elle y reste. Sur la grande carte, « M'avertir quand elle est en vente » envoie une notification dès qu'un joueur la pose au comptoir.</p>
     <h3>Raretés</h3>
     <p>La rareté d'une carte dépend de son score, comparé à celui des autres parlementaires de la même époque. Par carte tirée : mythique 0,4 %, légendaire 1,6 %, épique 6 %, rare 15 %, peu commune 30 %, commune 46 %. Les élus en exercice gagnent un niveau de rareté. Quand une carte tirée est déjà dans votre hémicycle, ou déjà sortie dans le même paquet, elle est le plus souvent tirée une seconde fois dans la même rareté : les doubles restent possibles, mais rares tant que la collection est jeune (environ un sur dix entre le 700e et le 1 500e paquet). Au-dessus de toutes, la rareté unique ne compte qu'une carte, Charles de Gaulle, plus rare au tirage que n'importe quelle carte mythique : en moyenne une fois sur 50 000 cartes, soit environ un paquet sur 12 500.</p>
-    <p>Les cartes évènements retracent 500 moments marquants de la vie politique et parlementaire, de l'ouverture des États généraux aux censures récentes, chacun vérifié sur ses sources, citées au verso. Un paquet sur 70 environ en contient une. Elles ont trois niveaux selon leur retentissement : évènement (★), évènement marquant (★★) et évènement historique (★★★), tirés environ 4, 5 et 1 fois sur 10. Les parlementaires qui y figurent sont nommés au verso, marqués quand ils sont dans votre hémicycle. Les illustrations sont des œuvres libres de Wikimedia Commons, avec leur auteur et leur licence.</p>
+    <p>Les cartes évènements retracent 500 moments marquants de la vie politique et parlementaire, de l'ouverture des États généraux aux censures récentes, chacun vérifié sur ses sources, citées au verso avec la citation de l'époque. Un paquet sur 70 environ en contient une, en sixième carte : elle s'ajoute aux cinq autres sans en prendre la place. Elles ont trois niveaux selon leur retentissement : évènement (★), évènement marquant (★★) et évènement historique (★★★), tirés environ 4, 5 et 1 fois sur 10. Les illustrations ont été dessinées pour le jeu : elles évoquent la scène sans prétendre à l'exactitude d'une photographie.</p>
     <h3>Score</h3>
     <p>Le score additionne la durée des mandats (1 point par an jusqu'à 20 ans, puis 0,5 point jusqu'à 40 ans) et les fonctions exercées : chef de l'État, chef du Gouvernement, ministre, secrétaire d'État, présidence d'une assemblée, d'une commission ou d'un groupe, Bureau. Les fonctions exercées au sein des chambres (Bureau, présidence de commission ou de groupe, rapporteur général) ne sont connues par l'open data de l'Assemblée qu'à partir de juin 2002 ; pour que députés et sénateurs soient notés de la même façon, celles du Sénat ne comptent aussi qu'à partir de cette date, les plus anciennes restant affichées sur la carte. Dans chaque famille de fonctions, la plus haute compte en entier et les autres pour un quart. S'y ajoutent les distinctions historiques : Constituante de 1789, Convention, Quatre-vingts, premières élues de 1945, Compagnons de la Libération, Académie française, prix Nobel, Panthéon.</p>
     <h3>Sources</h3>
@@ -1545,8 +1594,8 @@ function majCompteur(){
   const prochain = d.reserve >= d.max ? "Réserve pleine : ouvrez un paquet pour qu'elle se remplisse à nouveau."
     : d.prochain ? `Prochain paquet dans ${delai(d.prochain - Date.now())}, un toutes les 30 minutes.` : "";
   document.getElementById("restants").innerHTML = `<p class="nombre">${d.total ? `<b>${d.total}</b> ${d.total > 1 ? "paquets à ouvrir" : "paquet à ouvrir"}` : "Suspension de séance"}</p>
-    <div class="cases" aria-hidden="true">${Array.from({length: d.max}, (_, k) => `<i class="${k < d.reserve ? "plein" : ""}"></i>`).join("")}${d.offerts ? Array.from({length: Math.min(d.offerts, 8)}, () => `<i class="offert"></i>`).join("") : ""}</div>
-    <p class="detail-reserve">Réserve : ${d.reserve} sur ${d.max}${d.offerts ? ` · ${pluriel(d.offerts, "paquet offert", "paquets offerts")} en plus` : ""}</p>
+    <div class="cases" aria-hidden="true">${Array.from({length: d.max}, (_, k) => `<i class="${k < d.reserve ? "plein" : ""}"></i>`).join("")}${d.offerts ? Array.from({length: Math.min(d.offerts, 8)}, () => `<i class="offert"></i>`).join("") : ""}${d.evenement ? Array.from({length: Math.min(d.evenement, 3)}, () => `<i class="special"></i>`).join("") : ""}</div>
+    <p class="detail-reserve">Réserve : ${d.reserve} sur ${d.max}${d.offerts ? ` · ${pluriel(d.offerts, "paquet offert", "paquets offerts")} en plus` : ""}${d.evenement ? ` · ${pluriel(d.evenement, "paquet spécial", "paquets spéciaux")} avec un évènement garanti` : ""}</p>
     ${prochain ? `<p class="detail-reserve">${prochain}</p>` : ""}`;
   const infos = [];
   if (d.echangeables) infos.push(`<span>Vos voix permettent d'échanger <b>${pluriel(d.echangeables, "paquet")}</b></span>`);
@@ -1626,6 +1675,7 @@ setInterval(() => {
 // Un paquet en cours (déchiré ou carte affichée) n'est jamais remplacé, sauf par ses propres boutons (force) : réclamer
 // un objectif ou dissoudre ailleurs pendant l'ouverture ne le fait plus disparaître ; le récapitulatif, lui, peut céder la place
 function afficherPaquet(force = false){
+  if (force) finirEntreeEvt();
   majCompteur();
   const scene = document.getElementById("scene");
   if (!force && scene.querySelector("#courante, #paquet.ouvert")) return;
@@ -1643,12 +1693,13 @@ function afficherPaquet(force = false){
     document.getElementById("voir").addEventListener("click", () => allerA("collection"));
     return;
   }
-  const mention = d.reserve > 0 ? "" : `<div class="mention"><em>Offert</em></div>`;
-  scene.innerHTML = `<button class="paquet" id="paquet" aria-label="Ouvrir le paquet">
+  const special = d.evenement > 0;
+  const mention = special ? `<div class="mention special"><em>Paquet spécial</em><span>un évènement garanti</span></div>` : d.reserve > 0 ? "" : `<div class="mention"><em>Offert</em></div>`;
+  scene.innerHTML = `<button class="paquet${special ? " special" : ""}" id="paquet" aria-label="Ouvrir le paquet">
       <div class="corps-paquet"><div class="bordure"></div>
         <div class="logo"><strong>Hémicycle</strong><span>Parlementaires de France<br>1789&nbsp;–&nbsp;2026</span></div>
         <div class="eventail"><i></i><i></i><i><b>H</b></i></div>${mention}</div>
-      <div class="soudure haut"></div><div class="ligne-ouverture"></div><div class="soudure bas"></div>
+      <div class="soudure haut"></div><div class="ligne-ouverture"></div><div class="soudure bas"></div><div class="lueur"></div>
     </button><p class="progres">Touchez le paquet pour le déchirer.</p>`;
   document.getElementById("paquet").addEventListener("click", ouvrir);
 }
@@ -1718,6 +1769,11 @@ const Sons = (() => {
           s.connect(f).connect(gg).connect(c.destination); s.start(at, Math.random() * .9); s.stop(at + d + .01);
         }
       } },
+    // Roulement de tambour (coups sourds de plus en plus serrés) qui finit sur une cymbale
+    roulement(){ const c = contexte(); if (!c) return; const t0 = c.currentTime;
+      let t = 0; for (let k = 0; k < 28; k++) { t += Math.max(.028, .08 - k * .002); souffle(c, t0 + t, .09, 260, 140, .22 + k * .007, 1.4); }
+      souffle(c, t0 + t + .05, 1.6, 9000, 4000, .18, .5); },
+    etoile(k){ const c = contexte(); if (!c) return; note(c, c.currentTime, [NOTES.sol5, NOTES.do6, NOTES.mi6][k] || NOTES.mi6, .5, .12); },
     retourner(){ const c = contexte(); if (!c) return; const t = c.currentTime; souffle(c, t, .12, 2500, 900, .35, 2); },
     rarete(r){ const m = MELODIES[r], c = m && contexte(); if (!c) return; const t = c.currentTime + .25;
       for (const [n, dt, d] of m) note(c, t + dt, NOTES[n], d, r === "rare" ? .12 : .15); },
@@ -1732,14 +1788,60 @@ async function ouvrir(){
   document.getElementById("qag").hidden = true;
   precharger(r.tirage);
   majTout();
+  p.classList.toggle("evt", r.tirage.some(Regles.estEvenement));
   p.classList.add("ouvert"); p.disabled = true; Sons.dechirer();
   setTimeout(() => montrer(r.tirage, r.neuves, 0), reduit() ? 0 : 900);
 }
 function reduit(){ return matchMedia("(prefers-reduced-motion: reduce)").matches; }
+// Entrée d'une carte évènement : rideau, rayons, millésime qui défile puis se pose sur l'année, étoiles de la rareté,
+// éclair et éclats, puis la carte arrive et se retourne. Un toucher passe directement à la carte. Environ 3,5 s.
+let entreeEvt = null;
+function finirEntreeEvt(){ if (entreeEvt) entreeEvt(true); }
+function entreeEvenement(el, c){
+  const scene = document.getElementById("scene");
+  const annee = Number(String((EVENEMENTS[c.id] || [])[0] || "").slice(0, 4)) || 1789;
+  const etoiles = (NIVEAU_EVT[c.rarete] || "★").length;
+  const niveau = {"evenement": "Évènement", "evenement-marquant": "Évènement marquant", "evenement-historique": "Évènement historique"}[c.rarete] || "Évènement";
+  const voile = document.createElement("div");
+  voile.className = "entree-evt"; voile.setAttribute("role", "presentation");
+  voile.innerHTML = `<div class="rayons"></div><div class="titre-entree"><small>Édition spéciale</small><b class="annee-defile">1789</b>
+    <span class="etoiles-entree"></span><span class="niveau-entree">${niveau}</span></div><div class="eclair"></div>
+    ${Array.from({length: 26}, (_, k) => { const a = k / 26 * 2 * Math.PI, d = 30 + Math.random() * 25;
+      return `<i class="eclat" style="--x:${(Math.cos(a) * d).toFixed(1)}vmin;--y:${(Math.sin(a) * d).toFixed(1)}vmin;animation-delay:${(Math.random() * .12).toFixed(2)}s"></i>`; }).join("")}`;
+  document.body.appendChild(voile);
+  scene.classList.add("entree-en-cours");
+  const minuteurs = [], plus = (f, ms) => minuteurs.push(setTimeout(f, ms));
+  const chiffre = voile.querySelector(".annee-defile");
+  Sons.roulement();
+  // millésime : années tirées entre 1789 et 2026, de plus en plus lentes, puis l'année de l'évènement
+  let t = 0;
+  for (let k = 0; k < 16; k++) { t += 30 + k * k * .8; plus(() => { chiffre.textContent = 1789 + Math.floor(Math.random() * 238); }, t); }
+  plus(() => { chiffre.textContent = annee; chiffre.classList.add("pose"); Sons.retourner(); }, t + 110);
+  const debutEtoiles = t + 450;
+  for (let k = 0; k < etoiles; k++) plus(() => { voile.querySelector(".etoiles-entree").insertAdjacentHTML("beforeend", "<i>★</i>"); Sons.etoile(k); }, debutEtoiles + k * 230);
+  plus(() => voile.querySelector(".niveau-entree").classList.add("vu"), debutEtoiles + etoiles * 230);
+  const revele = debutEtoiles + etoiles * 230 + 700;
+  plus(() => fin(false), revele);
+  function fin(saute){
+    if (!entreeEvt) return;
+    entreeEvt = null; minuteurs.forEach(clearTimeout);
+    scene.classList.remove("entree-en-cours");
+    if (saute) { voile.remove(); el.classList.add("retournee"); return; }
+    voile.classList.add("fin");
+    el.classList.add("arrivee-evt");
+    requestAnimationFrame(() => requestAnimationFrame(() => { el.classList.add("retournee"); Sons.retourner(); Sons.rarete(c.rarete); }));
+    setTimeout(() => voile.remove(), 900);
+    setTimeout(() => el.classList.remove("arrivee-evt"), 1000);
+    document.getElementById("suite")?.focus({preventScroll: true});
+  }
+  entreeEvt = fin;
+  voile.addEventListener("click", () => fin(false));
+}
 // Découverte d'un paquet, carte par carte. Toucher la carte la retourne (recto, verso), son étoile la met en
 // favori ; « Précédente » et « Suivante » naviguent. Une carte déjà vue revient sans l'animation de retournement.
 function montrer(tirage, neuves, i, vues = new Set()){
   const scene = document.getElementById("scene");
+  finirEntreeEvt();
   if (i >= tirage.length) {
     if (decouverte) { decouverte = false; majCompteur(); majJournee(); majObjectifs(); }
     scene.innerHTML = `<div class="grille recap">${tirage.map(c => htmlCarte(c,{neuve:neuves.has(c.id)})).join("")}</div>
@@ -1757,7 +1859,8 @@ function montrer(tirage, neuves, i, vues = new Set()){
       <button class="bouton" id="suite">${i+1<tirage.length?`Suivante (${i+2}/${tirage.length})`:"Voir le paquet"}</button></div>
       <p class="progres petit">Touchez la carte pour la retourner.</p>`;
   const el = document.getElementById("courante");
-  if (!dejaVue) requestAnimationFrame(() => requestAnimationFrame(() => { el.classList.add("retournee"); Sons.retourner(); Sons.rarete(c.rarete); }));
+  if (!dejaVue && Regles.estEvenement(c) && !reduit()) entreeEvenement(el, c);
+  else if (!dejaVue) requestAnimationFrame(() => requestAnimationFrame(() => { el.classList.add("retournee"); Sons.retourner(); Sons.rarete(c.rarete); }));
   el.addEventListener("click", e => { if (!e.target.closest("a, [data-favori]")) { el.classList.remove("statique"); el.classList.toggle("envers"); Sons.retourner(); } });
   document.getElementById("precedente")?.addEventListener("click", () => montrer(tirage, neuves, i - 1, vues));
   document.getElementById("suite").addEventListener("click", () => montrer(tirage, neuves, i + 1, vues));
