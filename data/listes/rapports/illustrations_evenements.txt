@@ -1,6 +1,6 @@
-Évènements : 500 ; avec candidats : 120 ; fichiers relus : 168 (libres : 163) ; restant à relire : 0 ; lots en échec : 0.
+Évènements : 500 ; avec candidats : 115 ; fichiers relus : 168 (libres : 163) ; restant à relire : 0 ; lots en échec : 0.
 Revue à l'œil : 0 évènements tranchés ; illustrations retenues : 0.
-Vignettes à revoir : 163 (nouvelles : 0, échecs : 0).
+Vignettes à revoir : 155 (nouvelles : 0, échecs : 0).
 Fichiers écartés (licence non libre ou introuvable) :
   (N°. 34.) PROCES-VERBAL DE LA SEANCE ROYALE DE LA CHAMBRE DES PAIRS ET DE LA CHAMBRE DES DEPUTES, REUNIES AU PALAIS, AFF3515.jpg : introuvable
   DuellDéroulède-ClemenceauBerlinerIllustrierte.jpg : introuvable

@@ -53,12 +53,6 @@
   "licence": "Public domain",
   "titre": "Le maréchal Ney jugé par les pairs"
  },
- "0b9c13df029c": {
-  "evenement": "marat-accusation-1793",
-  "fichier": "Jean Paul Marat, député de Paris a la Convention nationale... - estampe - Levachez sculp.. Marat porté en triomphe après avoir été acquitté par le tribunal revolutionnaire - Duplessi Bertaux inv. & del.... - btv1b6949743x.jpg",
-  "licence": "Public domain",
-  "titre": "Marat acquitté et porté en triomphe"
- },
  "0cbe678e7f43": {
   "evenement": "departements-1790",
   "fichier": "Carte géographique de la France divisée en 83 départements accompagnée des noms des différentes provinces, régions, dépa, G.28024.jpg",
@@ -299,24 +293,6 @@
   "licence": "CC BY-SA 3.0",
   "titre": "Sarkozy devant le Congrès"
  },
- "57d2d45b665d": {
-  "evenement": "lepeletier-1793",
-  "fichier": "Assassinat de Michel Le Pelletier le 20 janvier 1793 - estampe - dessiné par Desray ; gravé par Marchand - btv1b84117714.jpg",
-  "licence": "Public domain",
-  "titre": "Le Peletier assassiné"
- },
- "585f490f08fb": {
-  "evenement": "baiser-lamourette-1792",
-  "fichier": "Révolution française Journée du 7 juillet 1792. Baiser de Lamourette ou séance de réconciliation entre les députés à, G.28479.jpg",
-  "licence": "CC0",
-  "titre": "Le baiser Lamourette"
- },
- "5b4b39943044": {
-  "evenement": "fermeture-jacobins-1794",
-  "fichier": "Révolution française Nuit du 12 au 13 Thermidor An 2 (22 au 23 juillet 1794). Fermeture de la salle du Club des Jacobi, G.29032.jpg",
-  "licence": "CC0",
-  "titre": "Fermeture du club des Jacobins"
- },
  "5c5e1fac9e4f": {
   "evenement": "six-fevrier-1934",
   "fichier": "Émeute février 1934 place de la Concorde.jpg",
@@ -340,12 +316,6 @@
   "fichier": "Louis XVI accepte la Constitution le XIV 7.bre MDCCLXXXXI, et est proclame roi des français - estampe - non identifié - btv1b69480918.jpg",
   "licence": "Public domain",
   "titre": "La première Constitution écrite"
- },
- "6238bee90040": {
-  "evenement": "marat-accusation-1793",
-  "fichier": "Révolution française acquittement de Jean-Paul Marat par le Tribunal révolutionnaire, le 24 avril 1793. G.28771.jpg",
-  "licence": "CC0",
-  "titre": "Marat acquitté et porté en triomphe"
  },
  "65d91f8016c4": {
   "evenement": "vendemiaire-1795",
@@ -491,12 +461,6 @@
   "licence": "CC0",
   "titre": "Le 13 vendémiaire"
  },
- "8763922ac560": {
-  "evenement": "germinal-1795",
-  "fichier": "Barere-deportation.jpg",
-  "licence": "Public domain",
-  "titre": "L'insurrection du 12 germinal"
- },
  "879d038b6a2b": {
   "evenement": "ddhc-1789",
   "fichier": "Jean-Jacques Le Barbier - Déclaration des droits de l'homme et du citoyen - P708 - Musée Carnavalet.jpg",
@@ -521,12 +485,6 @@
   "licence": "Public domain",
   "titre": "Le 6 février 1934"
  },
- "89d543ecaad0": {
-  "evenement": "lepeletier-1793",
-  "fichier": "ASSASSINAT DE LE PELLETIER, MAISON DE FEVRIER RESTAURATEUR, le 20 Janvier 1793 ou 30 Nivôse An Ier de la République. G.28692.jpg",
-  "licence": "CC0",
-  "titre": "Le Peletier assassiné"
- },
  "8a58d6928971": {
   "evenement": "assassinat-barthou-1934",
   "fichier": "1934-10-17 MUNDO GRÁFICO 04.jpg",
@@ -543,7 +501,7 @@
   "evenement": "bleu-horizon-1919",
   "fichier": "Affiche du Bloc national républicain pour les élections législatives de novembre 1919 - A19061.jpg",
   "licence": "CC BY-SA 4.0",
-  "titre": "La Chambre « bleu horizon »"
+  "titre": "La Chambre « bleu horizon »"
  },
  "8f44f2ad3aa3": {
   "evenement": "cpe-retire-2006",
@@ -555,7 +513,7 @@
   "evenement": "se-soumettre-se-demettre-1877",
   "fichier": "Crise du 16 mai 1877 - Caricature de Mac-Mahon et Gambetta.jpg",
   "licence": "Public domain",
-  "titre": "« Se soumettre ou se démettre »"
+  "titre": "« Se soumettre ou se démettre »"
  },
  "906b2cd1f637": {
   "evenement": "journees-juin-1848",
@@ -717,7 +675,7 @@
   "evenement": "invasion-assemblee-1848",
   "fichier": "15 mai 1848, Paris Musées 20230608193804.jpg",
   "licence": "CC0",
-  "titre": "Le 15 mai : l'Assemblée envahie"
+  "titre": "Le 15 mai : l'Assemblée envahie"
  },
  "bfcc91122b07": {
   "evenement": "lois-constitutionnelles-1875",
@@ -753,7 +711,7 @@
   "evenement": "invasion-assemblee-1848",
   "fichier": "15 mai par Cham.JPG",
   "licence": "Public domain",
-  "titre": "Le 15 mai : l'Assemblée envahie"
+  "titre": "Le 15 mai : l'Assemblée envahie"
  },
  "c976c98aa30e": {
   "evenement": "departements-1790",
@@ -910,12 +868,6 @@
   "fichier": "Branle d'Autun - estampe - non identifié - btv1b69442583.jpg",
   "licence": "Public domain",
   "titre": "Les biens du clergé à la Nation"
- },
- "edcd0b8ecc01": {
-  "evenement": "germinal-1795",
-  "fichier": "N°121 Départ des ex-députés Billaud, Collot et Barrere pour la déportation, le 1er avril 1795 ou 12 Germinal An 3ème, G.29104.jpg",
-  "licence": "CC0",
-  "titre": "L'insurrection du 12 germinal"
  },
  "ef8ee03a71ea": {
   "evenement": "coup-etat-1851",

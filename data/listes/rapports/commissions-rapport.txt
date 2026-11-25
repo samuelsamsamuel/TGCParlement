@@ -1,11 +1,11 @@
-Cartes avec au moins une commission : 3283 ; périodes après fusion : 14833
+Cartes avec au moins une commission : 3283 ; périodes après fusion : 14881
 Les commissions aux attributions mixtes reçoivent chaque famille nommée dans leur intitulé officiel : la commission des affaires étrangères du Sénat, qui suit aussi la défense (« affaires étrangères, défense et forces armées »), n'a dans l'export du Sénat que l'intitulé court « commission des affaires étrangères » et reçoit donc aussi la famille défense ; à l'Assemblée, la commission des affaires culturelles, familiales et sociales (2002-2009) relève de la culture et des affaires sociales, celle des affaires économiques, de l'environnement et du territoire (2002-2009) de l'économie et des territoires.
 
-Sénat : ODSEN_COMS.csv, 21280 lignes ; colonnes : Matricule | Qualité | Nom usuel | Prénom usuel | État Sénateur | Nom commission | Type commission | Id d'appartenance | Début d'appartenance | Fin d'appartenance | Id de fonction | Début de fonction | Fin de fonction | Fonction
+Sénat : ODSEN_COMS.csv, 21294 lignes ; colonnes : Matricule | Qualité | Nom usuel | Prénom usuel | État Sénateur | Nom commission | Type commission | Id d'appartenance | Début d'appartenance | Fin d'appartenance | Id de fonction | Début de fonction | Fin de fonction | Fonction
   appartenances retenues : 3401 ; matricules sans carte : 0
-Fichier lu : https://data.assemblee-nationale.fr/static/openData/repository/17/amo/tous_acteurs_mandats_organes_xi_legislature/AMO30_tous_acteurs_tous_mandats_tous_organes_historique.json.zip (13744427 octets, essai 1)
-Assemblée : mandats COMPER retenus 26610 ; qualités : Membre (24805), Secrétaire (845), Vice-Président (698), Rapporteur spécial (103), Président (85), — (54), Rapporteur général (20)
-  députés non rattachés à une carte : 27
+Fichier lu : https://data.assemblee-nationale.fr/static/openData/repository/17/amo/tous_acteurs_mandats_organes_xi_legislature/AMO30_tous_acteurs_tous_mandats_tous_organes_historique.json.zip (13747822 octets, essai 1)
+Assemblée : mandats COMPER retenus 26689 ; qualités : Membre (24884), Secrétaire (845), Vice-Président (698), Rapporteur spécial (103), Président (85), — (54), Rapporteur général (20)
+  députés non rattachés à une carte : 28
     Anne-Sophie Frigout (1991-04-11)
     Antoine Valentin (1992-10-16)
     Augustin Bonrepaux (1936-08-11)
@@ -13,6 +13,7 @@ Assemblée : mandats COMPER retenus 26610 ; qualités : Membre (24805), Secréta
     Bernard Debré (1944-09-30)
     Christine Marin (1951-04-09)
     Daniel Garrigue (1948-04-04)
+    David Duizidou-Agest (1967-12-05)
     Emmanuel Riotte (1962-03-31)
     Fabien Limonta (1946-12-26)
     Georges Siffredi (1956-07-28)
@@ -35,16 +36,16 @@ Assemblée : mandats COMPER retenus 26610 ; qualités : Membre (24805), Secréta
     Éric Gérard (1962-01-19)
 
 Intitulés (chambre, cartes, familles) :
-  Assemblée : Commission de la défense nationale et des forces armées (778) -> defense
-  Assemblée : Commission des affaires culturelles et de l'éducation (789) -> culture-education
+  Assemblée : Commission de la défense nationale et des forces armées (779) -> defense
+  Assemblée : Commission des affaires culturelles et de l'éducation (791) -> culture-education
   Assemblée : Commission des affaires culturelles, familiales et sociales (257) -> affaires-sociales, culture-education
-  Assemblée : Commission des affaires sociales (841) -> affaires-sociales
+  Assemblée : Commission des affaires sociales (842) -> affaires-sociales
   Assemblée : Commission des affaires économiques (805) -> economie
   Assemblée : Commission des affaires économiques, de l'environnement et du territoire (250) -> economie, territoires
-  Assemblée : Commission des affaires étrangères (763) -> affaires-etrangeres
+  Assemblée : Commission des affaires étrangères (764) -> affaires-etrangeres
   Assemblée : Commission des finances, de l'économie générale et du contrôle budgétaire (858) -> finances, economie
-  Assemblée : Commission des lois constitutionnelles, de la législation et de l'administration générale de la République (892) -> lois
-  Assemblée : Commission du développement durable et de l'aménagement du territoire (810) -> territoires
+  Assemblée : Commission des lois constitutionnelles, de la législation et de l'administration générale de la République (893) -> lois
+  Assemblée : Commission du développement durable et de l'aménagement du territoire (812) -> territoires
   Sénat : Commission de l'aménagement du territoire et du développement durable (185) -> territoires
   Sénat : Commission de l'économie (233) -> economie
   Sénat : Commission de la culture (349) -> culture-education
