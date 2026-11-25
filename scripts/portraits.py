@@ -37,6 +37,12 @@ REQUETES = {
 REQUETE_NOMS = ("SELECT ?nom ?p ?img ?naissance ?deces ?francais WHERE { VALUES ?nom { %s } ?p rdfs:label|skos:altLabel ?nom ; "
                 "wdt:P31 wd:Q5 ; wdt:P18 ?img . OPTIONAL { ?p wdt:P569 ?naissance } OPTIONAL { ?p wdt:P570 ?deces } "
                 "OPTIONAL { ?p wdt:P27 wd:Q142 . BIND(true AS ?francais) } }")
+# Décisions (élément Wikidata imposé quand le libellé désigne un homonyme) : la source officielle écrit « Laurent Nunez »,
+# libellé exact de l'écrivain né en 1978 (Q3219418), seul candidat plausible par les dates ; le ministre de l'Intérieur
+# (Q30729111) est libellé « Laurent Nuñez » et n'était pas trouvé (photo de l'écrivain sur sa carte, signalé par
+# l'utilisateur, novembre 2026). Mesure du même jour : seul cas parmi les 134 portraits trouvés par libellé.
+DECISIONS_PORTRAITS = {"G-nunez-laurent": "Q30729111"}
+REQUETE_ELEMENTS = "SELECT ?p ?img WHERE { VALUES ?p { %s } ?p wdt:P18 ?img }"
 # Garde : pendant une panne, le service de requêtes de Wikidata peut répondre à vide ; un résultat très inférieur
 # au précédent n'écrase pas les fichiers existants.
 SEUIL_GARDE = 0.9
@@ -113,6 +119,14 @@ def main():
                 if plausible(b.get("naissance", {}).get("value", ""), b.get("deces", {}).get("value", ""), debut):
                     francais, ens = candidats.setdefault(ident, {}).setdefault(b["p"]["value"], ("francais" in b, set()))
                     ens.add(fichier(b["img"]["value"]))
+        for ident in DECISIONS_PORTRAITS:
+            candidats.pop(ident, None)
+        par_element = {}
+        for b in interroger(REQUETE_ELEMENTS % " ".join("wd:" + q for q in DECISIONS_PORTRAITS.values())):
+            par_element.setdefault(b["p"]["value"].rsplit("/", 1)[1], set()).add(fichier(b["img"]["value"]))
+        for ident, q in DECISIONS_PORTRAITS.items():
+            if par_element.get(q):
+                portraits[ident] = choisir(ident, par_element[q])
         for ident, elements in candidats.items():
             if len(elements) > 1:
                 elements = {p: v for p, v in elements.items() if v[0]}
