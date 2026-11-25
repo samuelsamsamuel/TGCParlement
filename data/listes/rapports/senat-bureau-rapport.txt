@@ -1,10 +1,10 @@
-Archive https://data.senat.fr/data/senateurs/export_sens.zip : 8636311 octets ; export_sens.sql (60666871 octets, 2026-11-24)
+Archive https://data.senat.fr/data/senateurs/export_sens.zip : 8643661 octets ; export_sens.sql (60721308 octets, 2026-11-25)
 
 # 95 tables
-  activite                     43572 lignes  Table des activités des Sénateurs faisant l'objet d'un relevé de présences
-  activite_delegation           3162 lignes  Délégations au cours d'une activité faisant l'objet d'un relevé de présences.
-  activite_loi                  5397 lignes  Liens optionnels vers les textes examinés lors d'une activité.
-  activite_participant        689126 lignes  Participants à une activité.
+  activite                     43591 lignes  Table des activités des Sénateurs faisant l'objet d'un relevé de présences
+  activite_delegation           3186 lignes  Délégations au cours d'une activité faisant l'objet d'un relevé de présences.
+  activite_loi                  5400 lignes  Liens optionnels vers les textes examinés lors d'une activité.
+  activite_participant        689703 lignes  Participants à une activité.
   activite_senateur            11210 lignes  Activité personnelles saisies par un Sénateur
   activites_liees                326 lignes  Table de regroupement d'activités. Permet notamment de modéliser les réunions communes entre commissions.
   actpro                          41 lignes  Activités socio-professionnelles
@@ -12,7 +12,7 @@ Archive https://data.senat.fr/data/senateurs/export_sens.zip : 8636311 octets ; 
   asster                          17 lignes  Assemblée territoriale
   bur                              5 lignes  Fonctions au bureau du Sénat
   categorie_activite              27 lignes  
-  com                            758 lignes  Commissions permanentes, spéciales, d'enquêtes, CMP, missions d'information.
+  com                            759 lignes  Commissions permanentes, spéciales, d'enquêtes, CMP, missions d'information.
   csp                             42 lignes  Catégories Socio-professionnelles CSP de l'INSEE
   delega                          30 lignes  Délégations parlementaires
   design                          51 lignes  Désignataires
@@ -25,7 +25,7 @@ Archive https://data.senat.fr/data/senateurs/export_sens.zip : 8636311 octets ; 
   eludiv                           3 lignes  Elus divers
   elueur                          41 lignes  ELU européen
   elusen                        3735 lignes  Mandats Sénateurs
-  elutit                       30803 lignes  Titres des élus
+  elutit                       30804 lignes  Titres des élus
   etadebman                       12 lignes  Etat début mandat
   etafinman                       25 lignes  Etat fin de mandat
   etasen                           8 lignes  Etat Sénateur
@@ -34,26 +34,26 @@ Archive https://data.senat.fr/data/senateurs/export_sens.zip : 8636311 octets ; 
   fondelega                       19 lignes  Fonctions dans les délégations
   fongrppol                        6 lignes  Fonctions de groupe politique
   fongrpsen                       16 lignes  Fonction dans le groupe sénatorial
-  fonmemcom                    21280 lignes  Fonctions des membres de Commission
+  fonmemcom                    21294 lignes  Fonctions des membres de Commission
   fonmemdelega                  3894 lignes  Fonctions des membres de délégation
   fonmemgrppol                  3749 lignes  Fonctions des membres de groupe politique
-  fonmemgrpsen                 40217 lignes  Fonction d'un membre d'un groupe sénatorial
+  fonmemgrpsen                 40369 lignes  Fonction d'un membre d'un groupe sénatorial
   fonmemorg                       17 lignes  Fonctions membres d'organisme
   fonorg                          15 lignes  Fonctions dans les organismes
   grppol                          29 lignes  Groupes Politiques
   grpsenami                      171 lignes  Groupes sénatoriaux (anciennement d'amitié)
-  libcom                         574 lignes  Historique des libellés de Commission
+  libcom                         575 lignes  Historique des libellés de Commission
   libdelega                       36 lignes  Historique des libellés de délégation
   libgrppol                       51 lignes  Libellés groupes politiques
   libgrpsen                      115 lignes  Libellé groupe sénatorial
   liborg                           8 lignes  Historique des libellés d'organisme
   mandat_local                  5378 lignes  
   mel                             80 lignes  Mels d'adresse de sénateurs
-  memcom                       17911 lignes  Membres de commission
+  memcom                       17925 lignes  Membres de commission
   memdelega                     2881 lignes  Membres de délégation
-  memextpar                     4563 lignes  Membre organisme extra-parlementaire
+  memextpar                     4565 lignes  Membre organisme extra-parlementaire
   memgrppol                     3587 lignes  Membres de groupe politique
-  memgrpsen                    32937 lignes  Membre groupe sénatorial
+  memgrpsen                    33016 lignes  Membre groupe sénatorial
   memorg                          17 lignes  Membres d'organisme
   minind                         396 lignes  Ministre
   mismin                          40 lignes  Missions et Ministères
