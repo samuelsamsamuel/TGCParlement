@@ -143,7 +143,7 @@ const T = process.argv[2] || require("os").tmpdir();
   console.log("bouton :", libelle.trim(), "| points :", e2.points);
   // L'échange de voix contre un paquet n'est pas proposé dans l'Hémicycle, mais dans l'encart des voix
   assert.ok(e2.points >= 30); assert.match(await page.textContent("#atelier"), /^(?![\s\S]*contre un paquet)/);
-  await page.click("#voix-tete"); await page.click("#voix-paquet");
+  await page.click("#voix-tete"); await page.click("#encart-voix [data-echanger]");
   await page.waitForFunction(() => JSON.parse(localStorage.getItem("hemicycle-collection")).offerts === 1);
   const e3 = await page.evaluate(() => JSON.parse(localStorage.getItem("hemicycle-collection")));
   assert.strictEqual(e3.offerts, 1); assert.strictEqual(e3.points, e2.points - 25);

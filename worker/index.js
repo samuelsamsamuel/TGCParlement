@@ -1698,7 +1698,9 @@ async function api(requete, env, url) {
     return avecEtat(await appliquer(env, joueur, e => Regles.recycler(e, cat, raretes)));
   }
   if (methode === "POST" && chemin === "/api/echanger-points") {
-    if (!(await appliquer(env, joueur, e => Regles.echangerPoints(e)))) throw new Refus(409, `Il faut ${Regles.PRIX_PAQUET} voix pour un paquet.`);
+    const n = (await lireCorps(requete)).paquets ?? 1;
+    if (!Number.isInteger(n) || n < 1 || n > Regles.ECHANGE_MAX) throw new Refus(400, "Nombre de paquets invalide.");
+    if (!(await appliquer(env, joueur, e => Regles.echangerPoints(e, n)))) throw new Refus(409, `Il faut ${n * Regles.PRIX_PAQUET} voix pour ${n > 1 ? n + " paquets" : "un paquet"}.`);
     return avecEtat(true);
   }
   if (methode === "POST" && chemin === "/api/reclamer") {
