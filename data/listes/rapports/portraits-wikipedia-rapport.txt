@@ -1,4 +1,4 @@
-Portraits Wikipédia : 1 retenus, 574 écartés, sur 7873 cartes sans portrait ayant un article rattaché par identifiant officiel (8190 cartes sans portrait en tout)
+Portraits Wikipédia : 1 retenus, 575 écartés, sur 7872 cartes sans portrait ayant un article rattaché par identifiant officiel (8189 cartes sans portrait en tout)
 
 Retenus :
 S20066E	Annick Jacquemet	Annick Jacquemet (2026-06-20).jpg
@@ -544,6 +544,7 @@ S20066E	Annick Jacquemet	Annick Jacquemet (2026-06-20).jpg
 9966	Théodore-Casimir Delamarre	Père-Lachaise_-_Division_60_-_Delamarre_01.jpg	nom de fichier
 S000118	Roger Thiébault	Blangy-sur-Bresle_angle_place_Thiébault_1_~K5-449.jpg	nom de fichier
 S000239	Raymond de Wazières	Famille_de_Wazières.png	la fiche Commons ne dit pas représenter la personne
+S000403	Saïd Mohamed Jaffar	Said_Mohammed_Djaffar.jpg	la fiche Commons ne dit pas représenter la personne
 S000476	Robert Pontillon	Tombe_Robert_Pontillon_cimetière_Voltaire_Suresnes.jpg	nom de fichier
 S000633	Philippe Machefer	HC_MACHEFER_P_CIM-Houilles_006_2015-11.jpg	nom de fichier
 S000679	Francis Le Basser	Père-Lachaise_-_Division_87_-_Columbarium_2711-2810.jpg	nom de fichier
