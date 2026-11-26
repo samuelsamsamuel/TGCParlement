@@ -331,10 +331,12 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
     if (r.exemplaires) { etat.points += r.points; noter(etat, "recyclage", {selection: r.cartes, exemplaires: r.exemplaires, points: r.points}); compter(etat, "dissous", r.exemplaires); }
     return r;
   }
-  function echangerPoints(etat) {
-    if (etat.points < PRIX_PAQUET) return false;
-    etat.points -= PRIX_PAQUET; etat.offerts += 1;
-    noter(etat, "echange", {points: PRIX_PAQUET});
+  // Plusieurs paquets d'un coup (demande de l'utilisateur, novembre 2026), ECHANGE_MAX au plus par opération
+  const ECHANGE_MAX = 100;
+  function echangerPoints(etat, n = 1) {
+    if (!Number.isInteger(n) || n < 1 || n > ECHANGE_MAX || etat.points < n * PRIX_PAQUET) return false;
+    etat.points -= n * PRIX_PAQUET; etat.offerts += n;
+    noter(etat, "echange", {points: n * PRIX_PAQUET, paquets: n});
     return true;
   }
 
@@ -1094,7 +1096,7 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
     return voix;
   }
 
-  return {CHANCE_EVENEMENT, reparerLots, RARETES_EVENEMENT, estEvenement, VERSION_ETAT, PALIER1_VOIX_PAR_JOUR, retenirMise, SERIE_GOUV, serieGouv, issueSerieGouv, encaisserSerieGouv, choisirLotGouv, offrirChoixGouv, THEMES_LOI, loisDuJour, verifierLoi, etatLois, adopterLoi, remplirLoi, manquesLoi, semaineDuJeu, quinzaineDuJeu, remplit, basculerFavori, MAX_GARDES, garderCartes, RECHARGE_MS, QUIZ_QUESTIONS, graineDe, questions, compacterQuiz, catalogueQuiz, recompenseQuiz, validerQuiz, RESERVE_MAX, CARTES_PAR_PAQUET, reserveCourante, ORDRE, POIDS, VALEUR_RECYCLAGE, PRIX_PAQUET, PALIERS,
+  return {ECHANGE_MAX, CHANCE_EVENEMENT, reparerLots, RARETES_EVENEMENT, estEvenement, VERSION_ETAT, PALIER1_VOIX_PAR_JOUR, retenirMise, SERIE_GOUV, serieGouv, issueSerieGouv, encaisserSerieGouv, choisirLotGouv, offrirChoixGouv, THEMES_LOI, loisDuJour, verifierLoi, etatLois, adopterLoi, remplirLoi, manquesLoi, semaineDuJeu, quinzaineDuJeu, remplit, basculerFavori, MAX_GARDES, garderCartes, RECHARGE_MS, QUIZ_QUESTIONS, graineDe, questions, compacterQuiz, catalogueQuiz, recompenseQuiz, validerQuiz, RESERVE_MAX, CARTES_PAR_PAQUET, reserveCourante, ORDRE, POIDS, VALEUR_RECYCLAGE, PRIX_PAQUET, PALIERS,
     etatVide, migrer, jourDuJeu, normer, cartesDeJeu, catalogue, compacter, catalogueCompact, paquetsDisponibles, ouvrirPaquet,
     disponibles, recyclables, doubles, recycler, dissoudre, MAX_SELECTION, dissoudreSelection, echangerPoints, avancement, clesAtteintes, reclamer, recompensesEnAttente,
     SERIE, serieDuJour, reclamerSerie, choisirLot, objectifsDuJour, preparerJour, etatDuJour, reclamerJour};

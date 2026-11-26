@@ -147,6 +147,14 @@ const preuve = c => require("crypto").createHash("sha256").update(c).digest("hex
   assert.strictEqual(eC.possedees[dbl], 1); assert.strictEqual(eC.points, avantC + 15);
   // Échange de points, réclamation, déconnexion
   r = await Bc("echanger-points", {}); assert.strictEqual(r.statut, pointsBob >= 25 ? 200 : 409);
+  // Plusieurs paquets d'un coup : nombre vérifié, voix comptées pour le tout (50 voix données puis reprises par l'échange)
+  assert.strictEqual((await Bc("echanger-points", {paquets: 0})).statut, 400);
+  assert.strictEqual((await Bc("echanger-points", {paquets: R.ECHANGE_MAX + 1})).statut, 400);
+  assert.strictEqual((await Bc("echanger-points", {paquets: R.ECHANGE_MAX})).statut, 409);
+  { const avant = (await Bc("moi")).d.etat;
+    baseD1(`UPDATE joueurs SET points = points + 50 WHERE pseudo = 'bob${suffixe}'`);
+    r = await Bc("echanger-points", {paquets: 2}); assert.strictEqual(r.statut, 200, JSON.stringify(r.d));
+    assert.strictEqual(r.d.etat.points, avant.points); assert.strictEqual(r.d.etat.offerts, avant.offerts + 2); }
   r = await A("deconnexion", {}); assert.strictEqual((await A("moi")).d.connecte, false);
   r = await A("connexion", {pseudo: "Alice" + suffixe, preuve: preuve("a")});
   assert.strictEqual(r.statut, 200); assert.strictEqual((await A("moi")).d.connecte, true);

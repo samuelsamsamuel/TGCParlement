@@ -36,6 +36,36 @@ header{position:relative;background:radial-gradient(120% 140% at 50% 120%,var(--
 .voix-tete{position:absolute;top:.8rem;right:.9rem;display:flex;align-items:center;gap:.35rem;padding:.3rem .65rem .3rem .45rem;border-radius:2rem;
   background:rgba(46,7,16,.75);border:1px solid rgba(201,162,74,.55);color:var(--dorure-pale);font-weight:700;font-size:.9rem;line-height:1}
 .voix-tete svg{width:1.15rem;height:1.15rem;flex:none}
+/* Échange de voix contre plusieurs paquets (demande de l'utilisateur, novembre 2026) : petite pile de paquets qui grandit,
+   réglage − / +, raccourcis, total et solde restant */
+.change{display:grid;gap:.6rem;justify-items:center;width:min(20rem,100%);margin:0 auto;padding:.9rem .9rem 1rem;border-radius:12px;
+  background:linear-gradient(180deg,rgba(92,16,32,.65),rgba(46,7,16,.85));border:1px solid rgba(201,162,74,.55);box-shadow:inset 0 1px 0 rgba(230,210,154,.15)}
+.change-tete{display:flex;justify-content:space-between;align-items:baseline;width:100%;font:600 .78rem var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--dorure-pale)}
+.change-tete b{font:700 .95rem var(--serif);letter-spacing:0;text-transform:none;color:#fff}
+.change-pile{position:relative;height:4.6rem;width:9rem}
+.change-pile i{position:absolute;left:50%;bottom:0;width:2.3rem;height:3.6rem;margin-left:-1.15rem;border-radius:4px;border:1.5px solid var(--dorure);
+  background:radial-gradient(circle at 50% 42%,#f1dc9a 0 18%,transparent 19%),conic-gradient(from 210deg at 50% 45%,#7a1a2e,#b8293a,#5c1020,#2c3e7a,#5c1020,#7a1a2e);
+  box-shadow:0 4px 10px rgba(0,0,0,.45);transform:translateX(calc(var(--k) * 1.05rem)) rotate(calc(var(--k) * 7deg));transform-origin:50% 120%;
+  transition:transform .25s cubic-bezier(.2,1.4,.4,1)}
+.change-pile i.neuf{animation:change-pop .3s cubic-bezier(.2,1.6,.4,1)}
+.change-pile span{position:absolute;right:-.4rem;top:-.2rem;font:700 .85rem var(--serif);color:var(--encre);background:var(--dorure);border-radius:1em;padding:.05em .5em;box-shadow:0 2px 6px rgba(0,0,0,.4)}
+@keyframes change-pop{from{opacity:0;transform:translateX(calc(var(--k) * 1.05rem)) translateY(-1.2rem) rotate(calc(var(--k) * 7deg)) scale(.7)}}
+.change-reglage{display:flex;align-items:center;gap:1rem}
+.change-reglage button{width:2.6rem;height:2.6rem;border-radius:50%;border:1px solid var(--dorure);background:rgba(0,0,0,.25);color:var(--dorure-pale);font:600 1.4rem/1 var(--sans);display:grid;place-items:center;cursor:pointer}
+.change-reglage button:disabled{opacity:.35;cursor:default}
+.change-n{display:grid;justify-items:center;min-width:4.5rem;line-height:1}
+.change-n b{font:700 2.4rem var(--serif);color:#fff;font-variant-numeric:tabular-nums}
+.change-n small{margin-top:.2rem;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--dorure-pale)}
+.change-rapides{display:flex;gap:.35rem;flex-wrap:wrap;justify-content:center}
+.change-rapides button{border:1px solid rgba(201,162,74,.5);background:none;color:var(--dorure-pale);border-radius:1em;padding:.15rem .7rem;font-size:.8rem;cursor:pointer}
+.change-rapides button[aria-pressed="true"]{background:var(--dorure);color:var(--encre);border-color:var(--dorure)}
+.change .bouton{width:100%}
+.change-reste{margin:0;font-size:.76rem;color:var(--dorure-pale);opacity:.85}
+:root[data-theme="clair"] #scene .change{background:linear-gradient(180deg,#fffaf0,#f6ecd8);border-color:rgba(122,90,30,.45)}
+:root[data-theme="clair"] #scene :is(.change-tete b,.change-n b){color:var(--encre)}
+:root[data-theme="clair"] #scene :is(.change-tete,.change-n small,.change-reste,.change-rapides button,.change-reglage button){color:#7a5a1e}
+:root[data-theme="clair"] #scene .change-reglage button{background:#fff}
+.encart-voix .change{margin-top:.7rem}
 .encart-voix{position:absolute;top:3.1rem;right:.9rem;z-index:30;width:min(21rem,calc(100vw - 1.5rem));text-align:left;background:var(--velours-fonce);border:1px solid var(--dorure);border-radius:8px;padding:.9rem 1rem;box-shadow:0 14px 34px rgba(0,0,0,.6);font-size:.88rem;line-height:1.45}
 .encart-voix[hidden]{display:none}
 .encart-voix h2{font:400 1.15rem var(--serif);margin:0 0 .35rem;color:var(--dorure-pale)}
@@ -1426,9 +1456,9 @@ const actions = {
     if (!compte) { const r = Regles.recycler(etat, cat, raretes); sauver(); return r; }
     return (await appel("recycler", {raretes})).resultat;
   },
-  async echangerPoints(){
-    if (!compte) { const ok = Regles.echangerPoints(etat); sauver(); return ok; }
-    return (await appel("echanger-points", {})).resultat;
+  async echangerPoints(n = 1){
+    if (!compte) { const ok = Regles.echangerPoints(etat, n); sauver(); return ok; }
+    return (await appel("echanger-points", {paquets: n})).resultat;
   },
   // Journée : premier passage du jour, lot de la série, carte choisie, objectif du jour
   async jour(){
@@ -1686,10 +1716,9 @@ function afficherPaquet(force = false){
   if (d.total <= 0) {
     const attente = Regles.recompensesEnAttente(etat, cat);
     scene.innerHTML = (attente.objectifs ? `<button class="bouton" id="vers-objectifs">Réclamer ${gainTexte(attente)} à l'ordre du jour</button>` : "")
-      + (d.echangeables ? `<button class="bouton" id="echanger">Échanger ${PRIX_PAQUET} voix contre un paquet</button>` : "")
+      + (d.echangeables ? htmlChange() : "")
       + `<button class="bouton discret" id="voir">Voir mon hémicycle</button>`;
     document.getElementById("vers-objectifs")?.addEventListener("click", () => allerA("objectifs"));
-    document.getElementById("echanger")?.addEventListener("click", e => occupe(e.target, async () => { if (await actions.echangerPoints()) { majTout(); afficherPaquet(); } }));
     document.getElementById("voir").addEventListener("click", () => allerA("collection"));
     return;
   }
@@ -1881,7 +1910,7 @@ function majEncartVoix(){
     <p>Les voix sont la monnaie du jeu. Ici, acheter des voix est parfaitement réglementaire.</p>
     <p><b>Pour en gagner :</b></p><ul><li>dissoudre vos doubles, dans l'Hémicycle ;</li><li>répondre aux questions au Gouvernement, sous les paquets (15 voix par jour au plus) ;</li>${compte ? "<li>gagner un duel avec mise ;</li>" : ""}<li>réclamer les objectifs simples de l'ordre du jour.</li></ul>
     <p><b>Pour les dépenser :</b> ${PRIX_PAQUET} voix donnent un paquet${compte ? ", et le comptoir de la buvette vend des cartes contre des voix" : ""}.</p>
-    ${d.echangeables ? `<button class="bouton" id="voix-paquet">Échanger ${PRIX_PAQUET} voix contre un paquet</button>` : `<p class="note">Encore ${pluriel(PRIX_PAQUET - etat.points % PRIX_PAQUET, "voix", "voix")} pour un paquet.</p>`}`;
+    ${d.echangeables ? htmlChange() : `<p class="note">Encore ${pluriel(PRIX_PAQUET - etat.points % PRIX_PAQUET, "voix", "voix")} pour un paquet.</p>`}`;
 }
 document.getElementById("voix-tete").addEventListener("click", e => {
   e.stopPropagation();
@@ -1889,15 +1918,54 @@ document.getElementById("voix-tete").addEventListener("click", e => {
   if (ouvert) majEncartVoix();
   encart.hidden = !ouvert; e.currentTarget.setAttribute("aria-expanded", ouvert);
 });
-document.getElementById("encart-voix").addEventListener("click", e => {
-  if (e.target.id !== "voix-paquet") return;
-  occupe(e.target, async () => {
-    if (!(await actions.echangerPoints())) return;
-    document.getElementById("encart-voix").hidden = true; majTout();
-    if (!document.getElementById("courante")) afficherPaquet();
-    signaler("Un paquet de plus vous attend dans la séance.");
-  });
-});
+// Échange de voix contre des paquets : module commun à la Séance (plus de paquet à ouvrir) et à l'encart des voix
+function htmlChange(){
+  const max = Math.min(Regles.ECHANGE_MAX, Math.floor(etat.points / PRIX_PAQUET));
+  return `<div class="change" data-change data-n="1" data-max="${max}">
+    <div class="change-tete"><span>Échanger des voix</span><b>${etat.points.toLocaleString("fr-FR")} voix</b></div>
+    <div class="change-pile" aria-hidden="true"></div>
+    <div class="change-reglage"><button type="button" data-pas="-1" aria-label="Un paquet de moins">−</button>
+      <output class="change-n" aria-live="polite"><b>1</b><small>paquet</small></output>
+      <button type="button" data-pas="1" aria-label="Un paquet de plus">+</button></div>
+    <div class="change-rapides">${[...new Set([1, 5, 10].filter(k => k < max).concat(max))].map(k => `<button type="button" data-fixe="${k}">${k === max && max > 1 ? `Tout (${k})` : k}</button>`).join("")}</div>
+    <button type="button" class="bouton" data-echanger></button>
+    <p class="change-reste"></p></div>`;
+}
+function majChange(el, n){
+  const max = Number(el.dataset.max), avant = Number(el.dataset.n);
+  n = Math.max(1, Math.min(max, n)); el.dataset.n = n;
+  el.querySelector(".change-n b").textContent = n;
+  el.querySelector(".change-n small").textContent = n > 1 ? "paquets" : "paquet";
+  el.querySelector('[data-pas="-1"]').disabled = n <= 1; el.querySelector('[data-pas="1"]').disabled = n >= max;
+  for (const b of el.querySelectorAll("[data-fixe]")) b.setAttribute("aria-pressed", String(Number(b.dataset.fixe) === n));
+  el.querySelector("[data-echanger]").textContent = `Échanger ${(n * PRIX_PAQUET).toLocaleString("fr-FR")} voix contre ${pluriel(n, "paquet")}`;
+  el.querySelector(".change-reste").textContent = `Il vous restera ${pluriel(etat.points - n * PRIX_PAQUET, "voix", "voix")}.`;
+  // pile : un paquet dessiné par paquet échangé, cinq au plus, éventail centré ; au-delà, le nombre en pastille
+  const vus = Math.min(n, 5), pile = el.querySelector(".change-pile");
+  pile.innerHTML = Array.from({length: vus}, (_, k) => `<i style="--k:${(k - (vus - 1) / 2).toFixed(1)}"${k >= Math.min(avant, 5) && n > avant ? ' class="neuf"' : ""}></i>`).join("")
+    + (n > 5 ? `<span>×${n}</span>` : "");
+}
+document.addEventListener("click", e => {
+  const el = e.target.closest("[data-change]");
+  if (!el) return;
+  e.stopPropagation();
+  const b = e.target.closest("button");
+  if (!b) return;
+  if (b.dataset.pas) return majChange(el, Number(el.dataset.n) + Number(b.dataset.pas));
+  if (b.dataset.fixe) return majChange(el, Number(b.dataset.fixe));
+  if (b.hasAttribute("data-echanger")) {
+    const n = Number(el.dataset.n);
+    occupe(b, async () => {
+      if (!(await actions.echangerPoints(n))) return;
+      document.getElementById("encart-voix").hidden = true; majTout();
+      if (!document.getElementById("courante")) afficherPaquet();
+      signaler(n > 1 ? `${n} paquets de plus vous attendent dans la séance.` : "Un paquet de plus vous attend dans la séance.");
+    });
+  }
+}, true);
+// module dessiné : réglage initial
+new MutationObserver(() => { for (const el of document.querySelectorAll("[data-change]:not([data-pret])")) { el.dataset.pret = "1"; majChange(el, 1); } })
+  .observe(document.body, {childList: true, subtree: true});
 document.addEventListener("click", e => {
   const encart = document.getElementById("encart-voix");
   if (!encart.hidden && !e.target.closest("#encart-voix")) { encart.hidden = true; document.getElementById("voix-tete").setAttribute("aria-expanded", "false"); }

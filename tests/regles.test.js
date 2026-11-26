@@ -56,6 +56,10 @@ assert.deepStrictEqual(R.recycler(r, cat, ["commune"]), {exemplaires: 0, points:
 R.recycler(r, cat, ["mythique"]); assert.strictEqual(r.points, 103);
 assert.ok(R.echangerPoints(r)); assert.strictEqual(r.points, 78); assert.strictEqual(r.offerts, 1);
 r.points = 24; assert.ok(!R.echangerPoints(r)); assert.strictEqual(r.offerts, 1);
+// Plusieurs paquets d'un coup : tout ou rien, ECHANGE_MAX au plus
+r.points = 110; assert.ok(!R.echangerPoints(r, 5)); assert.strictEqual(r.points, 110);
+assert.ok(R.echangerPoints(r, 4)); assert.strictEqual(r.points, 10); assert.strictEqual(r.offerts, 5);
+r.points = 1e6; assert.ok(!R.echangerPoints(r, R.ECHANGE_MAX + 1)); assert.ok(!R.echangerPoints(r, 0)); assert.ok(!R.echangerPoints(r, 2.5));
 
 // Un paquet de doubles ne rend en moyenne pas plus d'un paquet
 // (cinq parlementaires, plus la sixième carte évènement d'un paquet sur 70)
