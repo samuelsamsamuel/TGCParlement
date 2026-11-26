@@ -2529,16 +2529,16 @@
 ],
 "S01031L": [
 {
-"fonction": "Président de la commission des finances du Sénat",
-"liste": "presidence-commission",
-"debut": "2014-10-09",
-"fin": "2017-10-01"
-},
-{
 "fonction": "Vice-présidente du Sénat",
 "liste": "bureau-vp-questeur",
 "debut": "2004-10-06",
 "fin": "2008-10-06"
+},
+{
+"fonction": "Président de la commission des finances du Sénat",
+"liste": "presidence-commission",
+"debut": "2014-10-09",
+"fin": "2017-10-01"
 }
 ],
 "S83011J": [
@@ -2563,16 +2563,16 @@
 ],
 "S05008E": [
 {
-"fonction": "Président de la commission des lois du Sénat",
-"liste": "presidence-commission",
-"debut": "2014-10-09",
-"fin": "2020-10-05"
-},
-{
 "fonction": "Questeur du Sénat",
 "liste": "bureau-vp-questeur",
 "debut": "2020-10-06",
 "fin": "2023-10-01"
+},
+{
+"fonction": "Président de la commission des lois du Sénat",
+"liste": "presidence-commission",
+"debut": "2014-10-09",
+"fin": "2020-10-05"
 }
 ],
 "S000701": [
@@ -2645,6 +2645,12 @@
 ],
 "S04042C": [
 {
+"fonction": "Secrétaire du Sénat",
+"liste": "bureau-secretaire",
+"debut": "2014-10-08",
+"fin": "2017-07-12"
+},
+{
 "fonction": "Président de la commission des affaires étrangères du Sénat",
 "liste": "presidence-commission",
 "debut": "2017-07-12",
@@ -2661,12 +2667,6 @@
 "liste": "presidence-commission",
 "debut": "2020-10-07",
 "fin": "2023-10-01"
-},
-{
-"fonction": "Secrétaire du Sénat",
-"liste": "bureau-secretaire",
-"debut": "2014-10-08",
-"fin": "2017-07-12"
 }
 ],
 "S92015P": [
@@ -2687,16 +2687,16 @@
 ],
 "1796": [
 {
-"fonction": "Rapporteur général de la commission des finances du Sénat",
-"liste": "rapporteur-general",
-"debut": "1989-10-05",
-"fin": "1992-10-07"
-},
-{
 "fonction": "Vice-président du Sénat",
 "liste": "bureau-vp-questeur",
 "debut": "1992-10-07",
 "fin": "1995-10-01"
+},
+{
+"fonction": "Rapporteur général de la commission des finances du Sénat",
+"liste": "rapporteur-general",
+"debut": "1989-10-05",
+"fin": "1992-10-07"
 }
 ],
 "1894": [
@@ -2733,16 +2733,16 @@
 ],
 "S08052W": [
 {
-"fonction": "Rapporteur général de la commission des affaires sociales du Sénat",
-"liste": "rapporteur-general",
-"debut": "2011-10-01",
-"fin": "2014-10-07"
-},
-{
 "fonction": "Secrétaire du Sénat",
 "liste": "bureau-secretaire",
 "debut": "2017-10-04",
 "fin": "2020-09-30"
+},
+{
+"fonction": "Rapporteur général de la commission des affaires sociales du Sénat",
+"liste": "rapporteur-general",
+"debut": "2011-10-01",
+"fin": "2014-10-07"
 }
 ],
 "S01059Y": [
@@ -2829,30 +2829,30 @@
 ],
 "2258": [
 {
-"fonction": "Président de la commission des affaires sociales du Sénat",
-"liste": "presidence-commission",
-"debut": "1998-10-07",
-"fin": "2001-09-30"
-},
-{
 "fonction": "Vice-président du Sénat",
 "liste": "bureau-vp-questeur",
 "debut": "1995-11-06",
 "fin": "1998-10-06"
-}
-],
-"S10006L": [
+},
 {
 "fonction": "Président de la commission des affaires sociales du Sénat",
 "liste": "presidence-commission",
-"debut": "2020-10-07",
-"fin": "2023-10-01"
-},
+"debut": "1998-10-07",
+"fin": "2001-09-30"
+}
+],
+"S10006L": [
 {
 "fonction": "Secrétaire du Sénat",
 "liste": "bureau-secretaire",
 "debut": "2017-10-04",
 "fin": "2020-10-05"
+},
+{
+"fonction": "Président de la commission des affaires sociales du Sénat",
+"liste": "presidence-commission",
+"debut": "2020-10-07",
+"fin": "2023-10-01"
 }
 ],
 "S04051D": [
@@ -2911,6 +2911,12 @@
 ],
 "2825": [
 {
+"fonction": "Secrétaire du Sénat",
+"liste": "bureau-secretaire",
+"debut": "2017-07-13",
+"fin": "2017-10-03"
+},
+{
 "fonction": "Président de la commission de l'économie du Sénat",
 "liste": "presidence-commission",
 "debut": "2004-05-05",
@@ -2921,12 +2927,6 @@
 "liste": "presidence-commission",
 "debut": "2008-10-07",
 "fin": "2011-09-30"
-},
-{
-"fonction": "Secrétaire du Sénat",
-"liste": "bureau-secretaire",
-"debut": "2017-07-13",
-"fin": "2017-10-03"
 }
 ],
 "S14187A": [
@@ -2967,16 +2967,16 @@
 ],
 "3267": [
 {
-"fonction": "Président de la commission des lois du Sénat",
-"liste": "presidence-commission",
-"debut": "2001-10-04",
-"fin": "2004-10-07"
-},
-{
 "fonction": "Questeur du Sénat",
 "liste": "bureau-vp-questeur",
 "debut": "2004-10-06",
 "fin": "2011-10-04"
+},
+{
+"fonction": "Président de la commission des lois du Sénat",
+"liste": "presidence-commission",
+"debut": "2001-10-04",
+"fin": "2004-10-07"
 }
 ],
 "3347": [
@@ -2989,6 +2989,12 @@
 ],
 "S78006D": [
 {
+"fonction": "Vice-président du Sénat",
+"liste": "bureau-vp-questeur",
+"debut": "2001-10-03",
+"fin": "2008-10-06"
+},
+{
 "fonction": "Président de la commission de la culture du Sénat",
 "liste": "presidence-commission",
 "debut": "1995-10-11",
@@ -2999,40 +3005,34 @@
 "liste": "presidence-commission",
 "debut": "1998-10-07",
 "fin": "2001-10-03"
-},
-{
-"fonction": "Vice-président du Sénat",
-"liste": "bureau-vp-questeur",
-"debut": "2001-10-03",
-"fin": "2008-10-06"
 }
 ],
 "S000097": [
-{
-"fonction": "Président de la commission des affaires sociales du Sénat",
-"liste": "presidence-commission",
-"debut": "1968-10-08",
-"fin": "1971-10-06"
-},
 {
 "fonction": "Secrétaire du Sénat",
 "liste": "bureau-secretaire",
 "debut": "1962-10-03",
 "fin": "1978-05-08"
+},
+{
+"fonction": "Président de la commission des affaires sociales du Sénat",
+"liste": "presidence-commission",
+"debut": "1968-10-08",
+"fin": "1971-10-06"
 }
 ],
 "S000067": [
-{
-"fonction": "Président de la commission de la culture du Sénat",
-"liste": "presidence-commission",
-"debut": "1959-05-06",
-"fin": "1974-10-03"
-},
 {
 "fonction": "Vice-président du Sénat",
 "liste": "bureau-vp-questeur",
 "debut": "1974-10-03",
 "fin": "1977-03-04"
+},
+{
+"fonction": "Président de la commission de la culture du Sénat",
+"liste": "presidence-commission",
+"debut": "1959-05-06",
+"fin": "1974-10-03"
 }
 ],
 "S19569H": [
@@ -3087,16 +3087,16 @@
 ],
 "S58303Y": [
 {
-"fonction": "Président de la commission des lois du Sénat",
-"liste": "presidence-commission",
-"debut": "1971-10-06",
-"fin": "1983-03-03"
-},
-{
 "fonction": "Vice-président du Sénat",
 "liste": "bureau-vp-questeur",
 "debut": "1962-10-03",
 "fin": "1965-10-05"
+},
+{
+"fonction": "Président de la commission des lois du Sénat",
+"liste": "presidence-commission",
+"debut": "1971-10-06",
+"fin": "1983-03-03"
 }
 ],
 "S19611R": [
@@ -3149,12 +3149,6 @@
 ],
 "S86034E": [
 {
-"fonction": "Président de la commission de l'économie du Sénat",
-"liste": "presidence-commission",
-"debut": "2001-10-04",
-"fin": "2004-04-30"
-},
-{
 "fonction": "Secrétaire du Sénat",
 "liste": "bureau-secretaire",
 "debut": "1989-10-04",
@@ -3165,6 +3159,12 @@
 "liste": "bureau-vp-questeur",
 "debut": "1997-01-15",
 "fin": "2001-10-02"
+},
+{
+"fonction": "Président de la commission de l'économie du Sénat",
+"liste": "presidence-commission",
+"debut": "2001-10-04",
+"fin": "2004-04-30"
 }
 ],
 "S19711U": [
@@ -3385,6 +3385,12 @@
 ],
 "18564": [
 {
+"fonction": "Vice-présidente du Sénat",
+"liste": "bureau-vp-questeur",
+"debut": "2023-10-04",
+"fin": "2024-10-21"
+},
+{
 "fonction": "Président de la commission des affaires économiques du Sénat",
 "liste": "presidence-commission",
 "debut": "2017-10-05",
@@ -3395,29 +3401,29 @@
 "liste": "presidence-commission",
 "debut": "2020-10-07",
 "fin": "2023-10-01"
-},
-{
-"fonction": "Vice-présidente du Sénat",
-"liste": "bureau-vp-questeur",
-"debut": "2023-10-04",
-"fin": "2024-10-21"
 }
 ],
 "S95059Q": [
-{
-"fonction": "Président de la commission des affaires étrangères du Sénat",
-"liste": "presidence-commission",
-"debut": "2014-10-09",
-"fin": "2017-07-11"
-},
 {
 "fonction": "Vice-président du Sénat",
 "liste": "bureau-vp-questeur",
 "debut": "2011-03-29",
 "fin": "2014-09-30"
+},
+{
+"fonction": "Président de la commission des affaires étrangères du Sénat",
+"liste": "presidence-commission",
+"debut": "2014-10-09",
+"fin": "2017-07-11"
 }
 ],
 "S01016M": [
+{
+"fonction": "Secrétaire du Sénat",
+"liste": "bureau-secretaire",
+"debut": "2008-11-12",
+"fin": "2011-10-04"
+},
 {
 "fonction": "Président de la commission de l'économie du Sénat",
 "liste": "presidence-commission",
@@ -3429,12 +3435,6 @@
 "liste": "presidence-commission",
 "debut": "2012-02-21",
 "fin": "2014-10-07"
-},
-{
-"fonction": "Secrétaire du Sénat",
-"liste": "bureau-secretaire",
-"debut": "2008-11-12",
-"fin": "2011-10-04"
 }
 ],
 "S14225N": [
@@ -3469,16 +3469,16 @@
 ],
 "6359": [
 {
-"fonction": "Président de la commission de la culture du Sénat",
-"liste": "presidence-commission",
-"debut": "1986-10-06",
-"fin": "1995-10-04"
-},
-{
 "fonction": "Vice-président du Sénat",
 "liste": "bureau-vp-questeur",
 "debut": "1977-10-05",
 "fin": "1983-10-05"
+},
+{
+"fonction": "Président de la commission de la culture du Sénat",
+"liste": "presidence-commission",
+"debut": "1986-10-06",
+"fin": "1995-10-04"
 }
 ],
 "6363": [
@@ -3499,19 +3499,25 @@
 ],
 "6919": [
 {
-"fonction": "Président de la commission des lois du Sénat",
-"liste": "presidence-commission",
-"debut": "2011-10-01",
-"fin": "2014-10-07"
-},
-{
 "fonction": "Questeur du Sénat",
 "liste": "bureau-vp-questeur",
 "debut": "2020-10-06",
 "fin": "2023-10-01"
+},
+{
+"fonction": "Président de la commission des lois du Sénat",
+"liste": "presidence-commission",
+"debut": "2011-10-01",
+"fin": "2014-10-07"
 }
 ],
 "15286": [
+{
+"fonction": "Vice-président du Sénat",
+"liste": "bureau-vp-questeur",
+"debut": "1995-10-04",
+"fin": "2001-10-02"
+},
 {
 "fonction": "Président de la commission de la culture du Sénat",
 "liste": "presidence-commission",
@@ -3523,12 +3529,6 @@
 "liste": "presidence-commission",
 "debut": "2004-10-07",
 "fin": "2008-09-30"
-},
-{
-"fonction": "Vice-président du Sénat",
-"liste": "bureau-vp-questeur",
-"debut": "1995-10-04",
-"fin": "2001-10-02"
 }
 ],
 "S08049C": [
@@ -3569,16 +3569,16 @@
 ],
 "S89045V": [
 {
-"fonction": "Président de la commission des affaires étrangères du Sénat",
-"liste": "presidence-commission",
-"debut": "2004-10-07",
-"fin": "2007-12-16"
-},
-{
 "fonction": "Vice-président du Sénat",
 "liste": "bureau-vp-questeur",
 "debut": "2001-10-03",
 "fin": "2004-10-05"
+},
+{
+"fonction": "Président de la commission des affaires étrangères du Sénat",
+"liste": "presidence-commission",
+"debut": "2004-10-07",
+"fin": "2007-12-16"
 }
 ],
 "S04085P": [
@@ -3605,16 +3605,16 @@
 ],
 "S98006P": [
 {
-"fonction": "Président du groupe Socialiste, Écologiste et Républicain au Sénat",
-"liste": "presidence-groupe",
-"debut": "2004-10-05",
-"fin": "2011-09-30"
-},
-{
 "fonction": "Secrétaire du Sénat",
 "liste": "bureau-secretaire",
 "debut": "2001-10-03",
 "fin": "2004-10-05"
+},
+{
+"fonction": "Président du groupe Socialiste, Écologiste et Républicain au Sénat",
+"liste": "presidence-groupe",
+"debut": "2004-10-05",
+"fin": "2011-09-30"
 }
 ],
 "S95011X": [
@@ -3627,6 +3627,12 @@
 ],
 "S11029K": [
 {
+"fonction": "Secrétaire du Sénat",
+"liste": "bureau-secretaire",
+"debut": "2016-05-12",
+"fin": "2017-10-01"
+},
+{
 "fonction": "Président du groupe écologiste au Sénat",
 "liste": "presidence-groupe",
 "debut": "2015-11-06",
@@ -3637,12 +3643,6 @@
 "liste": "presidence-groupe",
 "debut": "2016-02-15",
 "fin": "2016-05-03"
-},
-{
-"fonction": "Secrétaire du Sénat",
-"liste": "bureau-secretaire",
-"debut": "2016-05-12",
-"fin": "2017-10-01"
 }
 ],
 "1335": [
@@ -3669,16 +3669,16 @@
 ],
 "S88008L": [
 {
-"fonction": "Président du groupe du RDSE au Sénat",
-"liste": "presidence-groupe",
-"debut": "2008-10-02",
-"fin": "2011-10-03"
-},
-{
 "fonction": "Secrétaire du Sénat",
 "liste": "bureau-secretaire",
 "debut": "1998-10-06",
 "fin": "2008-10-06"
+},
+{
+"fonction": "Président du groupe du RDSE au Sénat",
+"liste": "presidence-groupe",
+"debut": "2008-10-02",
+"fin": "2011-10-03"
 }
 ],
 "S11056N": [
@@ -3697,6 +3697,12 @@
 ],
 "S14259Y": [
 {
+"fonction": "Vice-président du Sénat",
+"liste": "bureau-vp-questeur",
+"debut": "2023-10-04",
+"fin": "2024-10-21"
+},
+{
 "fonction": "Président du groupe Les Républicains au Sénat",
 "liste": "presidence-groupe",
 "debut": "2024-10-01",
@@ -3707,26 +3713,20 @@
 "liste": "presidence-groupe",
 "debut": "2026-10-05",
 "fin": null
-},
-{
-"fonction": "Vice-président du Sénat",
-"liste": "bureau-vp-questeur",
-"debut": "2023-10-04",
-"fin": "2024-10-21"
 }
 ],
 "S04067M": [
-{
-"fonction": "Président du groupe écologiste au Sénat",
-"liste": "presidence-groupe",
-"debut": "2016-05-04",
-"fin": "2017-06-29"
-},
 {
 "fonction": "Secrétaire du Sénat",
 "liste": "bureau-secretaire",
 "debut": "2011-10-05",
 "fin": "2016-05-12"
+},
+{
+"fonction": "Président du groupe écologiste au Sénat",
+"liste": "presidence-groupe",
+"debut": "2016-05-04",
+"fin": "2017-06-29"
 }
 ],
 "19632": [
@@ -3747,18 +3747,6 @@
 ],
 "3293": [
 {
-"fonction": "Président du groupe Les Républicains au Sénat",
-"liste": "presidence-groupe",
-"debut": "2011-03-08",
-"fin": "2011-09-30"
-},
-{
-"fonction": "Président du groupe Les Républicains au Sénat",
-"liste": "presidence-groupe",
-"debut": "2011-10-01",
-"fin": "2014-10-06"
-},
-{
 "fonction": "Vice-président du Sénat",
 "liste": "bureau-vp-questeur",
 "debut": "1998-10-06",
@@ -3769,6 +3757,18 @@
 "liste": "bureau-vp-questeur",
 "debut": "2014-10-08",
 "fin": "2017-09-22"
+},
+{
+"fonction": "Président du groupe Les Républicains au Sénat",
+"liste": "presidence-groupe",
+"debut": "2011-03-08",
+"fin": "2011-09-30"
+},
+{
+"fonction": "Président du groupe Les Républicains au Sénat",
+"liste": "presidence-groupe",
+"debut": "2011-10-01",
+"fin": "2014-10-06"
 }
 ],
 "S19347U": [
@@ -3787,30 +3787,30 @@
 ],
 "S08016S": [
 {
-"fonction": "Président du groupe Socialiste, Écologiste et Républicain au Sénat",
-"liste": "presidence-groupe",
-"debut": "2014-04-15",
-"fin": "2018-01-22"
-},
-{
 "fonction": "Vice-président du Sénat",
 "liste": "bureau-vp-questeur",
 "debut": "2011-10-05",
 "fin": "2014-04-28"
+},
+{
+"fonction": "Président du groupe Socialiste, Écologiste et Républicain au Sénat",
+"liste": "presidence-groupe",
+"debut": "2014-04-15",
+"fin": "2018-01-22"
 }
 ],
 "S19591F": [
-{
-"fonction": "Président du groupe Rassemblement des démocrates, progressistes et indépendants au Sénat",
-"liste": "presidence-groupe",
-"debut": "2026-10-05",
-"fin": null
-},
 {
 "fonction": "Vice-président du Sénat",
 "liste": "bureau-vp-questeur",
 "debut": "2025-04-01",
 "fin": "2026-09-30"
+},
+{
+"fonction": "Président du groupe Rassemblement des démocrates, progressistes et indépendants au Sénat",
+"liste": "presidence-groupe",
+"debut": "2026-10-05",
+"fin": null
 }
 ],
 "S14021P": [
@@ -3881,6 +3881,12 @@
 ],
 "S11085T": [
 {
+"fonction": "Vice-président du Sénat",
+"liste": "bureau-vp-questeur",
+"debut": "2014-10-08",
+"fin": "2017-10-03"
+},
+{
 "fonction": "Président du groupe Union Centriste et Indépendants au Sénat",
 "liste": "presidence-groupe",
 "debut": "2017-10-03",
@@ -3897,12 +3903,6 @@
 "liste": "presidence-groupe",
 "debut": "2026-10-05",
 "fin": null
-},
-{
-"fonction": "Vice-président du Sénat",
-"liste": "bureau-vp-questeur",
-"debut": "2014-10-08",
-"fin": "2017-10-03"
 }
 ],
 "5197": [
@@ -3923,15 +3923,15 @@
 ],
 "S58914W": [
 {
-"fonction": "Président du groupe Rassemblement Démocratique et Européen au Sénat",
-"liste": "presidence-groupe",
-"debut": null,
-"fin": "1989-10-01"
-},
-{
 "fonction": "Secrétaire du Sénat",
 "liste": "bureau-secretaire",
 "debut": "1986-10-07",
+"fin": "1989-10-01"
+},
+{
+"fonction": "Président du groupe Rassemblement Démocratique et Européen au Sénat",
+"liste": "presidence-groupe",
+"debut": null,
 "fin": "1989-10-01"
 }
 ],
@@ -3959,16 +3959,16 @@
 ],
 "S66002K": [
 {
-"fonction": "Président du groupe du RDSE au Sénat",
-"liste": "presidence-groupe",
-"debut": "2001-10-02",
-"fin": "2007-09-03"
-},
-{
 "fonction": "Secrétaire du Sénat",
 "liste": "bureau-secretaire",
 "debut": "1974-10-03",
 "fin": "1977-10-05"
+},
+{
+"fonction": "Président du groupe du RDSE au Sénat",
+"liste": "presidence-groupe",
+"debut": "2001-10-02",
+"fin": "2007-09-03"
 }
 ],
 "S11069T": [
@@ -3987,18 +3987,6 @@
 ],
 "S86044G": [
 {
-"fonction": "Président du groupe des RI au Sénat",
-"liste": "presidence-groupe",
-"debut": "1995-11-14",
-"fin": "2002-12-10"
-},
-{
-"fonction": "Président du groupe Les Républicains au Sénat",
-"liste": "presidence-groupe",
-"debut": "2008-01-15",
-"fin": "2009-07-06"
-},
-{
 "fonction": "Secrétaire du Sénat",
 "liste": "bureau-secretaire",
 "debut": "1989-10-04",
@@ -4009,6 +3997,18 @@
 "liste": "bureau-vp-questeur",
 "debut": "1995-10-04",
 "fin": "1995-11-16"
+},
+{
+"fonction": "Président du groupe des RI au Sénat",
+"liste": "presidence-groupe",
+"debut": "1995-11-14",
+"fin": "2002-12-10"
+},
+{
+"fonction": "Président du groupe Les Républicains au Sénat",
+"liste": "presidence-groupe",
+"debut": "2008-01-15",
+"fin": "2009-07-06"
 }
 ],
 "S08070Y": [
@@ -4021,16 +4021,16 @@
 ],
 "S11012A": [
 {
-"fonction": "Président du groupe du RDSE au Sénat",
-"liste": "presidence-groupe",
-"debut": "2017-10-03",
-"fin": "2023-10-01"
-},
-{
 "fonction": "Secrétaire du Sénat",
 "liste": "bureau-secretaire",
 "debut": "2017-07-06",
 "fin": "2017-10-03"
+},
+{
+"fonction": "Président du groupe du RDSE au Sénat",
+"liste": "presidence-groupe",
+"debut": "2017-10-03",
+"fin": "2023-10-01"
 }
 ],
 "6689": [

@@ -18087,15 +18087,6 @@
 ],
 "S20028X": [
 {
-"commission": "Commission des affaires économiques",
-"familles": [
-"economie"
-],
-"chambre": "Sénat",
-"debut": "2020-10-06",
-"fin": null
-},
-{
 "commission": "Commission de l'aménagement du territoire et du développement durable",
 "familles": [
 "territoires"
@@ -18103,6 +18094,15 @@
 "chambre": "Sénat",
 "debut": "2020-10-06",
 "fin": "2020-10-06"
+},
+{
+"commission": "Commission des affaires économiques",
+"familles": [
+"economie"
+],
+"chambre": "Sénat",
+"debut": "2020-10-06",
+"fin": null
 }
 ],
 "S21732V": [
@@ -25303,7 +25303,7 @@
 ],
 "chambre": "Assemblée",
 "debut": "2026-10-17",
-"fin": "2026-11-24"
+"fin": null
 },
 {
 "commission": "Commission du développement durable et de l'aménagement du territoire",
@@ -25340,7 +25340,7 @@
 ],
 "chambre": "Assemblée",
 "debut": "2026-11-25",
-"fin": null
+"fin": "2026-11-25"
 }
 ],
 "S19737F": [
@@ -26691,7 +26691,7 @@
 ],
 "chambre": "Assemblée",
 "debut": "2024-07-20",
-"fin": "2026-11-24"
+"fin": null
 },
 {
 "commission": "Commission des affaires sociales",
@@ -26727,7 +26727,7 @@
 ],
 "chambre": "Assemblée",
 "debut": "2026-11-25",
-"fin": null
+"fin": "2026-11-25"
 }
 ],
 "18563": [
@@ -27238,7 +27238,7 @@
 ],
 "chambre": "Assemblée",
 "debut": "2024-09-25",
-"fin": "2026-11-24"
+"fin": null
 },
 {
 "commission": "Commission des affaires culturelles et de l'éducation",
@@ -27436,7 +27436,7 @@
 ],
 "chambre": "Assemblée",
 "debut": "2026-11-25",
-"fin": null
+"fin": "2026-11-25"
 }
 ],
 "19433": [
@@ -31240,7 +31240,7 @@
 ],
 "chambre": "Assemblée",
 "debut": "2026-10-08",
-"fin": "2026-11-20"
+"fin": null
 },
 {
 "commission": "Commission des affaires sociales",
@@ -31249,7 +31249,7 @@
 ],
 "chambre": "Assemblée",
 "debut": "2026-11-21",
-"fin": null
+"fin": "2026-11-25"
 }
 ],
 "18383": [
@@ -32976,7 +32976,7 @@
 ],
 "chambre": "Assemblée",
 "debut": "2024-07-20",
-"fin": "2026-11-24"
+"fin": null
 },
 {
 "commission": "Commission des finances, de l'économie générale et du contrôle budgétaire",
@@ -33059,7 +33059,7 @@
 ],
 "chambre": "Assemblée",
 "debut": "2026-11-25",
-"fin": null
+"fin": "2026-11-25"
 }
 ],
 "1656": [
@@ -34696,7 +34696,7 @@
 ],
 "chambre": "Assemblée",
 "debut": "2024-07-20",
-"fin": "2026-11-24"
+"fin": null
 },
 {
 "commission": "Commission des affaires sociales",
@@ -34778,7 +34778,7 @@
 ],
 "chambre": "Assemblée",
 "debut": "2026-10-14",
-"fin": null
+"fin": "2026-11-25"
 }
 ],
 "18395": [
@@ -34978,7 +34978,7 @@
 ],
 "chambre": "Assemblée",
 "debut": "2024-07-20",
-"fin": "2026-11-24"
+"fin": null
 },
 {
 "commission": "Commission des finances, de l'économie générale et du contrôle budgétaire",
@@ -34997,7 +34997,7 @@
 ],
 "chambre": "Assemblée",
 "debut": "2026-11-17",
-"fin": null
+"fin": "2026-11-25"
 }
 ],
 "19665": [
@@ -35035,7 +35035,7 @@
 ],
 "chambre": "Assemblée",
 "debut": "2026-04-30",
-"fin": "2026-11-24"
+"fin": null
 },
 {
 "commission": "Commission du développement durable et de l'aménagement du territoire",
@@ -35044,7 +35044,7 @@
 ],
 "chambre": "Assemblée",
 "debut": "2026-11-25",
-"fin": null
+"fin": "2026-11-25"
 }
 ],
 "17269": [
@@ -36278,7 +36278,7 @@
 ],
 "chambre": "Assemblée",
 "debut": "2024-07-20",
-"fin": "2026-11-24"
+"fin": null
 },
 {
 "commission": "Commission des affaires étrangères",
@@ -36450,7 +36450,7 @@
 ],
 "chambre": "Assemblée",
 "debut": "2026-11-25",
-"fin": null
+"fin": "2026-11-25"
 }
 ],
 "19596": [
@@ -43530,7 +43530,7 @@
 ],
 "chambre": "Assemblée",
 "debut": "2024-07-23",
-"fin": "2026-11-24"
+"fin": null
 },
 {
 "commission": "Commission des affaires économiques",
@@ -43639,7 +43639,7 @@
 ],
 "chambre": "Assemblée",
 "debut": "2026-11-25",
-"fin": null
+"fin": "2026-11-25"
 }
 ],
 "17213": [
@@ -45721,7 +45721,7 @@
 ],
 "chambre": "Assemblée",
 "debut": "2024-07-20",
-"fin": "2026-11-24"
+"fin": null
 },
 {
 "commission": "Commission des finances, de l'économie générale et du contrôle budgétaire",
@@ -45796,7 +45796,7 @@
 ],
 "chambre": "Assemblée",
 "debut": "2026-11-25",
-"fin": null
+"fin": "2026-11-25"
 }
 ],
 "19982": [
@@ -46929,7 +46929,7 @@
 ],
 "chambre": "Assemblée",
 "debut": "2024-07-20",
-"fin": "2026-11-24"
+"fin": null
 },
 {
 "commission": "Commission du développement durable et de l'aménagement du territoire",
@@ -47092,7 +47092,7 @@
 ],
 "chambre": "Assemblée",
 "debut": "2026-11-25",
-"fin": null
+"fin": "2026-11-25"
 }
 ],
 "19058": [
@@ -52579,7 +52579,7 @@
 ],
 "chambre": "Assemblée",
 "debut": "2024-07-20",
-"fin": "2026-11-24"
+"fin": null
 },
 {
 "commission": "Commission des lois constitutionnelles, de la législation et de l'administration générale de la République",
@@ -52714,7 +52714,7 @@
 ],
 "chambre": "Assemblée",
 "debut": "2026-10-10",
-"fin": null
+"fin": "2026-11-25"
 },
 {
 "commission": "Commission des affaires économiques",
@@ -56465,7 +56465,7 @@
 ],
 "chambre": "Assemblée",
 "debut": "2024-07-20",
-"fin": null
+"fin": "2026-11-25"
 },
 {
 "commission": "Commission des affaires culturelles et de l'éducation",
@@ -56521,6 +56521,16 @@
 "chambre": "Assemblée",
 "debut": "2026-06-05",
 "fin": "2026-06-08"
+},
+{
+"commission": "Commission des finances, de l'économie générale et du contrôle budgétaire",
+"familles": [
+"finances",
+"economie"
+],
+"chambre": "Assemblée",
+"debut": "2026-11-26",
+"fin": null
 }
 ],
 "19787": [
@@ -70587,7 +70597,7 @@
 ],
 "chambre": "Assemblée",
 "debut": "2024-07-20",
-"fin": "2026-11-24"
+"fin": null
 },
 {
 "commission": "Commission de la défense nationale et des forces armées",
@@ -70605,7 +70615,7 @@
 ],
 "chambre": "Assemblée",
 "debut": "2026-11-25",
-"fin": null
+"fin": "2026-11-25"
 }
 ],
 "19423": [
@@ -73322,7 +73332,7 @@
 ],
 "chambre": "Assemblée",
 "debut": "2024-07-20",
-"fin": "2026-11-20"
+"fin": null
 },
 {
 "commission": "Commission de la défense nationale et des forces armées",
@@ -73331,7 +73341,7 @@
 ],
 "chambre": "Assemblée",
 "debut": "2026-11-21",
-"fin": null
+"fin": "2026-11-25"
 }
 ],
 "19040": [
@@ -76261,7 +76271,7 @@
 ],
 "chambre": "Assemblée",
 "debut": "2024-07-20",
-"fin": "2026-11-24"
+"fin": null
 },
 {
 "commission": "Commission des affaires culturelles et de l'éducation",
@@ -76317,7 +76327,7 @@
 ],
 "chambre": "Assemblée",
 "debut": "2026-11-25",
-"fin": null
+"fin": "2026-11-25"
 }
 ],
 "19871": [
@@ -77536,7 +77546,7 @@
 ],
 "chambre": "Assemblée",
 "debut": "2024-07-20",
-"fin": "2026-11-24"
+"fin": null
 },
 {
 "commission": "Commission du développement durable et de l'aménagement du territoire",
@@ -77673,7 +77683,7 @@
 ],
 "chambre": "Assemblée",
 "debut": "2026-11-10",
-"fin": null
+"fin": "2026-11-25"
 }
 ],
 "10790": [
@@ -79153,7 +79163,7 @@
 ],
 "chambre": "Assemblée",
 "debut": "2024-10-02",
-"fin": "2026-11-24"
+"fin": null
 },
 {
 "commission": "Commission des affaires sociales",
@@ -79265,7 +79275,7 @@
 ],
 "chambre": "Assemblée",
 "debut": "2026-11-25",
-"fin": null
+"fin": "2026-11-25"
 }
 ],
 "5261": [
@@ -82411,7 +82421,7 @@
 ],
 "chambre": "Assemblée",
 "debut": "2024-07-20",
-"fin": "2026-11-24"
+"fin": null
 },
 {
 "commission": "Commission de la défense nationale et des forces armées",
@@ -82529,7 +82539,7 @@
 ],
 "chambre": "Assemblée",
 "debut": "2026-11-25",
-"fin": null
+"fin": "2026-11-25"
 }
 ],
 "19840": [
@@ -85224,7 +85234,7 @@
 ],
 "chambre": "Assemblée",
 "debut": "2024-07-20",
-"fin": "2026-11-24"
+"fin": null
 },
 {
 "commission": "Commission des lois constitutionnelles, de la législation et de l'administration générale de la République",
@@ -85242,7 +85252,7 @@
 ],
 "chambre": "Assemblée",
 "debut": "2026-11-25",
-"fin": null
+"fin": "2026-11-25"
 }
 ],
 "10644": [
@@ -88389,7 +88399,7 @@
 ],
 "chambre": "Assemblée",
 "debut": "2024-07-20",
-"fin": "2026-11-24"
+"fin": null
 },
 {
 "commission": "Commission du développement durable et de l'aménagement du territoire",
@@ -88590,7 +88600,7 @@
 ],
 "chambre": "Assemblée",
 "debut": "2026-11-11",
-"fin": null
+"fin": "2026-11-25"
 }
 ],
 "19160": [
@@ -90563,7 +90573,7 @@
 ],
 "chambre": "Assemblée",
 "debut": "2024-07-20",
-"fin": "2026-11-24"
+"fin": null
 },
 {
 "commission": "Commission des finances, de l'économie générale et du contrôle budgétaire",
@@ -90737,7 +90747,7 @@
 ],
 "chambre": "Assemblée",
 "debut": "2026-11-25",
-"fin": null
+"fin": "2026-11-25"
 }
 ],
 "350": [
@@ -91324,7 +91334,7 @@
 ],
 "chambre": "Assemblée",
 "debut": "2026-05-14",
-"fin": "2026-11-24"
+"fin": null
 },
 {
 "commission": "Commission des lois constitutionnelles, de la législation et de l'administration générale de la République",
@@ -91351,7 +91361,7 @@
 ],
 "chambre": "Assemblée",
 "debut": "2026-11-25",
-"fin": null
+"fin": "2026-11-25"
 }
 ],
 "10791": [
@@ -92888,7 +92898,7 @@
 ],
 "chambre": "Assemblée",
 "debut": "2026-10-01",
-"fin": "2026-11-24"
+"fin": null
 },
 {
 "commission": "Commission de la défense nationale et des forces armées",
@@ -92897,7 +92907,7 @@
 ],
 "chambre": "Assemblée",
 "debut": "2026-11-25",
-"fin": null
+"fin": "2026-11-25"
 }
 ],
 "19724": [
@@ -93659,7 +93669,7 @@
 ],
 "chambre": "Assemblée",
 "debut": "2024-07-20",
-"fin": "2026-11-24"
+"fin": null
 },
 {
 "commission": "Commission des affaires sociales",
@@ -93704,7 +93714,7 @@
 ],
 "chambre": "Assemblée",
 "debut": "2026-11-25",
-"fin": null
+"fin": "2026-11-25"
 }
 ],
 "18523": [
@@ -94816,7 +94826,7 @@
 ],
 "chambre": "Assemblée",
 "debut": "2026-01-06",
-"fin": "2026-11-24"
+"fin": null
 },
 {
 "commission": "Commission du développement durable et de l'aménagement du territoire",
@@ -94852,7 +94862,7 @@
 ],
 "chambre": "Assemblée",
 "debut": "2026-11-25",
-"fin": null
+"fin": "2026-11-25"
 }
 ],
 "7397": [
@@ -98477,7 +98487,7 @@
 ],
 "chambre": "Assemblée",
 "debut": "2024-07-20",
-"fin": "2026-11-24"
+"fin": null
 },
 {
 "commission": "Commission des finances, de l'économie générale et du contrôle budgétaire",
@@ -98604,7 +98614,7 @@
 ],
 "chambre": "Assemblée",
 "debut": "2026-11-07",
-"fin": null
+"fin": "2026-11-25"
 }
 ],
 "18541": [
@@ -98672,7 +98682,7 @@
 ],
 "chambre": "Assemblée",
 "debut": "2024-07-20",
-"fin": "2026-11-24"
+"fin": null
 },
 {
 "commission": "Commission des affaires économiques",
@@ -98700,7 +98710,7 @@
 ],
 "chambre": "Assemblée",
 "debut": "2026-11-25",
-"fin": null
+"fin": "2026-11-25"
 }
 ],
 "2562": [
@@ -99454,7 +99464,7 @@
 ],
 "chambre": "Assemblée",
 "debut": "2025-10-01",
-"fin": "2026-11-24"
+"fin": null
 },
 {
 "commission": "Commission des lois constitutionnelles, de la législation et de l'administration générale de la République",
@@ -99553,7 +99563,7 @@
 ],
 "chambre": "Assemblée",
 "debut": "2026-11-10",
-"fin": null
+"fin": "2026-11-25"
 }
 ],
 "18335": [
@@ -110025,7 +110035,7 @@
 ],
 "chambre": "Assemblée",
 "debut": "2024-07-20",
-"fin": "2026-11-24"
+"fin": null
 },
 {
 "commission": "Commission des finances, de l'économie générale et du contrôle budgétaire",
@@ -110100,7 +110110,7 @@
 ],
 "chambre": "Assemblée",
 "debut": "2026-11-10",
-"fin": null
+"fin": "2026-11-25"
 }
 ],
 "18077": [
@@ -114057,7 +114067,7 @@
 ],
 "chambre": "Assemblée",
 "debut": "2024-07-20",
-"fin": "2026-11-24"
+"fin": null
 },
 {
 "commission": "Commission des finances, de l'économie générale et du contrôle budgétaire",
@@ -114177,7 +114187,7 @@
 ],
 "chambre": "Assemblée",
 "debut": "2026-11-25",
-"fin": null
+"fin": "2026-11-25"
 }
 ],
 "19052": [
@@ -114243,7 +114253,7 @@
 ],
 "chambre": "Assemblée",
 "debut": "2024-07-20",
-"fin": null
+"fin": "2026-11-25"
 },
 {
 "commission": "Commission des affaires étrangères",
@@ -114362,7 +114372,7 @@
 ],
 "chambre": "Assemblée",
 "debut": "2026-11-07",
-"fin": "2026-11-09"
+"fin": null
 },
 {
 "commission": "Commission des affaires sociales",
@@ -115802,7 +115812,7 @@
 ],
 "chambre": "Assemblée",
 "debut": "2025-01-25",
-"fin": "2026-11-23"
+"fin": null
 },
 {
 "commission": "Commission du développement durable et de l'aménagement du territoire",
@@ -115930,7 +115940,7 @@
 ],
 "chambre": "Assemblée",
 "debut": "2026-11-03",
-"fin": null
+"fin": "2026-11-25"
 },
 {
 "commission": "Commission des affaires culturelles et de l'éducation",
@@ -116991,7 +117001,7 @@
 ],
 "chambre": "Assemblée",
 "debut": "2024-07-20",
-"fin": "2026-11-24"
+"fin": null
 },
 {
 "commission": "Commission des finances, de l'économie générale et du contrôle budgétaire",
@@ -117120,7 +117130,7 @@
 ],
 "chambre": "Assemblée",
 "debut": "2026-11-14",
-"fin": null
+"fin": "2026-11-25"
 }
 ],
 "19921": [
@@ -124541,7 +124551,7 @@
 ],
 "chambre": "Assemblée",
 "debut": "2024-07-20",
-"fin": "2026-11-23"
+"fin": null
 },
 {
 "commission": "Commission du développement durable et de l'aménagement du territoire",
@@ -124678,7 +124688,7 @@
 ],
 "chambre": "Assemblée",
 "debut": "2026-11-25",
-"fin": null
+"fin": "2026-11-25"
 }
 ],
 "19567": [
@@ -130381,7 +130391,7 @@
 ],
 "chambre": "Assemblée",
 "debut": "2024-07-20",
-"fin": "2026-11-24"
+"fin": null
 },
 {
 "commission": "Commission du développement durable et de l'aménagement du territoire",
@@ -130455,7 +130465,7 @@
 ],
 "chambre": "Assemblée",
 "debut": "2026-11-25",
-"fin": null
+"fin": "2026-11-25"
 }
 ],
 "7578": [
@@ -130895,7 +130905,7 @@
 ],
 "chambre": "Assemblée",
 "debut": "2024-07-20",
-"fin": null
+"fin": "2026-11-25"
 },
 {
 "commission": "Commission des affaires culturelles et de l'éducation",
@@ -130950,6 +130960,15 @@
 "chambre": "Assemblée",
 "debut": "2026-10-16",
 "fin": "2026-10-16"
+},
+{
+"commission": "Commission des lois constitutionnelles, de la législation et de l'administration générale de la République",
+"familles": [
+"lois"
+],
+"chambre": "Assemblée",
+"debut": "2026-11-26",
+"fin": null
 }
 ],
 "19009": [
@@ -134969,7 +134988,7 @@
 ],
 "chambre": "Assemblée",
 "debut": "2024-07-20",
-"fin": null
+"fin": "2026-11-25"
 },
 {
 "commission": "Commission des affaires économiques",
@@ -135077,7 +135096,7 @@
 ],
 "chambre": "Assemblée",
 "debut": "2026-11-07",
-"fin": "2026-11-18"
+"fin": null
 }
 ],
 "19184": [
@@ -135331,7 +135350,7 @@
 ],
 "chambre": "Assemblée",
 "debut": "2024-10-23",
-"fin": "2026-11-24"
+"fin": null
 },
 {
 "commission": "Commission du développement durable et de l'aménagement du territoire",
@@ -135453,7 +135472,7 @@
 ],
 "chambre": "Assemblée",
 "debut": "2026-11-25",
-"fin": null
+"fin": "2026-11-25"
 }
 ],
 "17387": [
@@ -135775,7 +135794,7 @@
 ],
 "chambre": "Assemblée",
 "debut": "2026-10-17",
-"fin": "2026-11-24"
+"fin": null
 },
 {
 "commission": "Commission des finances, de l'économie générale et du contrôle budgétaire",
@@ -135794,7 +135813,7 @@
 ],
 "chambre": "Assemblée",
 "debut": "2026-11-25",
-"fin": null
+"fin": "2026-11-25"
 }
 ],
 "17334": [
@@ -137908,7 +137927,7 @@
 ],
 "chambre": "Assemblée",
 "debut": "2024-07-20",
-"fin": "2026-11-24"
+"fin": null
 },
 {
 "commission": "Commission des lois constitutionnelles, de la législation et de l'administration générale de la République",
@@ -137962,7 +137981,7 @@
 ],
 "chambre": "Assemblée",
 "debut": "2026-11-25",
-"fin": null
+"fin": "2026-11-25"
 }
 ],
 "19357": [
@@ -139237,7 +139256,7 @@
 ],
 "chambre": "Assemblée",
 "debut": "2024-07-20",
-"fin": "2026-11-24"
+"fin": null
 },
 {
 "commission": "Commission de la défense nationale et des forces armées",
@@ -139336,7 +139355,7 @@
 ],
 "chambre": "Assemblée",
 "debut": "2026-11-25",
-"fin": null
+"fin": "2026-11-25"
 }
 ],
 "28": [
@@ -140977,7 +140996,7 @@
 ],
 "chambre": "Assemblée",
 "debut": "2024-07-20",
-"fin": "2026-11-24"
+"fin": null
 },
 {
 "commission": "Commission des affaires étrangères",
@@ -141105,7 +141124,7 @@
 ],
 "chambre": "Assemblée",
 "debut": "2026-11-25",
-"fin": null
+"fin": "2026-11-25"
 }
 ],
 "5587": [
