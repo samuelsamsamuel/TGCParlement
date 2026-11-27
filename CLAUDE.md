@@ -200,6 +200,19 @@ première exécution : 19 816 fiches, entre 180 et 650 cartes étoilées par pol
   pose sur l'année, étoiles une à une avec le nom du niveau, éclair et éclats, puis la carte arrive et se retourne (environ
   3 s, un toucher abrège ; roulement de tambour et cymbale, `Sons.roulement`, `Sons.etoile`). Candidats libres de Commons
   pour 120 évènements (`candidats_images.json`, licences relues par `illustrations_evenements.py`), gardés pour un usage futur.
+- Carte présidentielle (demande de l'utilisateur, novembre 2026) : Emmanuel Macron, « édition Jupiter », remise une fois
+  au joueur dont l'hémicycle réunit toutes les cartes de parlementaires et de ministres (objectif `hemicycle`, évènements
+  exclus, Charles de Gaulle compris, cartes déposées pour une loi comprises) : `remettreCartePresidentielle` appelée par
+  `reclamer(…, "hemicycle")`, état `trophee` (date), colonnes `trophee` et `trophee_rang` (rang d'arrivée, calculé à l'écriture
+  par `appliquer`, relu par `/api/reclamer` pour la cérémonie), `presidentielle` du profil. Trophée hors collection : ni vendu,
+  ni échangé, ni dissous, gardé même si des cartes partent ensuite. Interface : encart en tête de l'Hémicycle (silhouette et
+  avancement, puis miniature), fenêtre `presidentielle-fenetre` (cérémonie : arrivée en tournoyant, roulement et fanfare ;
+  ensuite contemplation), carte en couches 3D inclinées au doigt (`htmlPresidentielle`, `animerPresidentielle`, classes
+  `p-…`) : ciel d'orage, drapeau tricolore translucide qui ondule (SVG `feTurbulence`), éclairs, cadre d'or qui pulse, portrait
+  détouré (rembg, modèle isnet) dont la tête sort du cadre, `site/speciales/macron-jupiter.webp`. Photo : Commission
+  européenne, sommet de l'ONU sur l'océan, Nice, 8 juin 2025, CC BY 4.0 (« Emmanuel Macron - June 2025.jpg » sur Commons),
+  crédit affiché sous la carte (`CREDIT_PRES`) ; le portrait officiel de l'Élysée (© Présidence de la République, Soazig de La
+  Moissonnière) n'est pas libre. Règlement à jour.
 - Doubles réduits (demande de l'utilisateur, octobre 2026 : 10 % entre le 700e et le 1 500e paquet) : une carte déjà
   possédée ou déjà sortie dans le paquet est retirée dans la même rareté avec la probabilité `RELANCE_DOUBLE` (0,9) ;
   l'élu en exercice garanti, s'il est déjà possédé, laisse la place à une carte de la même rareté parmi toutes
