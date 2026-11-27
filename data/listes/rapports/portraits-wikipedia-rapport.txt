@@ -297,7 +297,7 @@ S20066E	Annick Jacquemet	Annick Jacquemet (2026-06-20).jpg
 14719	Jean-Baptiste Gouvion	P_vip.svg	format
 14733	Eustache Antoine Hua	Père-Lachaise_-_Division_51_-_Hua_02.jpg	nom de fichier
 14748	Alfred de Chastellux	Orn_ext_comte_et_pair_OLH.svg	format
-14749	César Laurent de Chastellux	Orn_ext_Comte_(baron-pair)_OLH.svg	format
+14749	César Laurent de Chastellux	Blason_fam_fr_de_Chastellux.svg	format
 14776	Jérôme de Larochette	Blason_famille_fr_Rimoz_de_La_Rochette.svg	format
 14786	Claude Le Coz	Ornements_extérieurs_Comtes_Archevêques_de_l'Empire_français.svg	format
 14815	Adrien Jean Alexandre Lucy	Père-Lachaise_-_Division_17_-_Lucy_01.jpg	nom de fichier
