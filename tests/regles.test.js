@@ -56,6 +56,21 @@ assert.deepStrictEqual(R.recycler(r, cat, ["commune"]), {exemplaires: 0, points:
 R.recycler(r, cat, ["mythique"]); assert.strictEqual(r.points, 103);
 assert.ok(R.echangerPoints(r)); assert.strictEqual(r.points, 78); assert.strictEqual(r.offerts, 1);
 r.points = 24; assert.ok(!R.echangerPoints(r)); assert.strictEqual(r.offerts, 1);
+// Carte présidentielle : toutes les cartes de parlementaires et de ministres, déposées comprises, évènements non exigés
+{ const e = R.etatVide(), ids = cat.objectifParId.hemicycle.ids;
+  ids.forEach(id => e.possedees[id] = 1);
+  delete e.possedees[ids[0]]; delete e.possedees[ids[1]];
+  assert.ok(!R.collectionComplete(e, cat)); assert.ok(!R.reclamer(e, cat, "hemicycle").presidentielle); assert.ok(!e.trophee);
+  e.deposees.push(String(ids[0]));
+  assert.ok(!R.collectionComplete(e, cat), "une carte manque encore");
+  e.possedees[ids[1]] = 1;
+  assert.ok(R.collectionComplete(e, cat), "carte déposée comptée");
+  assert.ok(cat.objectifParId.hemicycle.ids.some(id => cat.parId[id].rarete === "unique"), "Charles de Gaulle exigé");
+  assert.ok(!cat.objectifParId.hemicycle.ids.some(id => R.estEvenement(cat.parId[id])));
+  assert.ok(R.reclamer(e, cat, "hemicycle").presidentielle); assert.ok(e.trophee);
+  const avant = e.trophee; delete e.possedees[ids[2]];
+  assert.ok(!R.reclamer(e, cat, "hemicycle").presidentielle); assert.strictEqual(e.trophee, avant, "remise une seule fois, gardée");
+  assert.strictEqual(R.migrer(JSON.parse(JSON.stringify({...e, tropheeRang: 3}))).tropheeRang, 3); }
 // Plusieurs paquets d'un coup : tout ou rien, ECHANGE_MAX au plus
 r.points = 110; assert.ok(!R.echangerPoints(r, 5)); assert.strictEqual(r.points, 110);
 assert.ok(R.echangerPoints(r, 4)); assert.strictEqual(r.points, 10); assert.strictEqual(r.offerts, 5);

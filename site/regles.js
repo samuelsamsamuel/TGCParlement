@@ -82,6 +82,8 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
     if (Array.isArray(brut.gardes)) e.gardes = [...new Set(brut.gardes.map(String))].slice(0, MAX_GARDES);
     e.offerts = entier(brut.offerts);
     e.paquetsEvenement = entier(brut.paquetsEvenement);
+    if (typeof brut.trophee === "string" && brut.trophee) e.trophee = brut.trophee;
+    if (entier(brut.tropheeRang)) e.tropheeRang = entier(brut.tropheeRang);
     if (brut.objectifs && typeof brut.objectifs === "object") Object.assign(e.objectifs, brut.objectifs);
     if (Array.isArray(brut.journal)) e.journal = brut.journal.slice(-JOURNAL_MAX);
     if (brut.quotidien && typeof brut.quotidien === "object" && !Array.isArray(brut.quotidien)) e.quotidien = brut.quotidien;
@@ -461,7 +463,21 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
       gain.paquets += e.paquets; gain.voix += e.voix;
     }
     if (gain.paquets || gain.voix) { etat.offerts += gain.paquets; etat.points += gain.voix; noter(etat, "objectif", {id, ...gain}); compter(etat, "objectifs", 1); }
+    if (id === "hemicycle" && remettreCartePresidentielle(etat, cat)) gain.presidentielle = true;
     return gain;
+  }
+  // Carte présidentielle (demande de l'utilisateur, novembre 2026) : remise une fois, pour de bon, au joueur dont l'hémicycle
+  // réunit toutes les cartes de parlementaires et de ministres (évènements exclus, Charles de Gaulle compris), cartes déposées
+  // pour une loi comprises. Trophée hors de la collection : ni vendu, ni échangé, ni dissous (état trophee : date de remise).
+  function collectionComplete(etat, cat) {
+    const obj = cat.objectifParId && cat.objectifParId.hemicycle;
+    return !!obj && avancement(etat, obj).obtenues >= obj.total;
+  }
+  function remettreCartePresidentielle(etat, cat) {
+    if (etat.trophee || !collectionComplete(etat, cat)) return false;
+    etat.trophee = new Date().toISOString();
+    noter(etat, "presidentielle", {});
+    return true;
   }
   // Récompenses en attente : {paquets, voix, objectifs} (objectifs : nombre d'objectifs à réclamer)
   function recompensesEnAttente(etat, cat) {
@@ -1096,7 +1112,7 @@ tirages et des récompenses, l'interface se contentant alors d'appeler ces même
     return voix;
   }
 
-  return {ECHANGE_MAX, CHANCE_EVENEMENT, reparerLots, RARETES_EVENEMENT, estEvenement, VERSION_ETAT, PALIER1_VOIX_PAR_JOUR, retenirMise, SERIE_GOUV, serieGouv, issueSerieGouv, encaisserSerieGouv, choisirLotGouv, offrirChoixGouv, THEMES_LOI, loisDuJour, verifierLoi, etatLois, adopterLoi, remplirLoi, manquesLoi, semaineDuJeu, quinzaineDuJeu, remplit, basculerFavori, MAX_GARDES, garderCartes, RECHARGE_MS, QUIZ_QUESTIONS, graineDe, questions, compacterQuiz, catalogueQuiz, recompenseQuiz, validerQuiz, RESERVE_MAX, CARTES_PAR_PAQUET, reserveCourante, ORDRE, POIDS, VALEUR_RECYCLAGE, PRIX_PAQUET, PALIERS,
+  return {collectionComplete, remettreCartePresidentielle, ECHANGE_MAX, CHANCE_EVENEMENT, reparerLots, RARETES_EVENEMENT, estEvenement, VERSION_ETAT, PALIER1_VOIX_PAR_JOUR, retenirMise, SERIE_GOUV, serieGouv, issueSerieGouv, encaisserSerieGouv, choisirLotGouv, offrirChoixGouv, THEMES_LOI, loisDuJour, verifierLoi, etatLois, adopterLoi, remplirLoi, manquesLoi, semaineDuJeu, quinzaineDuJeu, remplit, basculerFavori, MAX_GARDES, garderCartes, RECHARGE_MS, QUIZ_QUESTIONS, graineDe, questions, compacterQuiz, catalogueQuiz, recompenseQuiz, validerQuiz, RESERVE_MAX, CARTES_PAR_PAQUET, reserveCourante, ORDRE, POIDS, VALEUR_RECYCLAGE, PRIX_PAQUET, PALIERS,
     etatVide, migrer, jourDuJeu, normer, cartesDeJeu, catalogue, compacter, catalogueCompact, paquetsDisponibles, ouvrirPaquet,
     disponibles, recyclables, doubles, recycler, dissoudre, MAX_SELECTION, dissoudreSelection, echangerPoints, avancement, clesAtteintes, reclamer, recompensesEnAttente,
     SERIE, serieDuJour, reclamerSerie, choisirLot, objectifsDuJour, preparerJour, etatDuJour, reclamerJour};

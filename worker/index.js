@@ -207,6 +207,9 @@ const COLONNES = {
     ["differentes", "INTEGER NOT NULL DEFAULT 0"],  // cartes différentes
     // Paquets évènement offerts (règles : paquetsEvenement), sixième carte toujours un évènement
     ["paquets_evt", "INTEGER NOT NULL DEFAULT 0 CHECK (paquets_evt >= 0)"],
+    // Carte présidentielle (règles : trophee) : date de remise et rang du joueur parmi ceux qui l'ont reçue
+    ["trophee", "TEXT NOT NULL DEFAULT ''"],
+    ["trophee_rang", "INTEGER NOT NULL DEFAULT 0"],
   ],
   // Carte déposée pour une loi (novembre 2026) : elle compte toujours pour les objectifs (règles : deposees)
   possessions: [
@@ -357,7 +360,7 @@ async function verifierBuvette(env, ...joueurs) {
 /* ---------- État d'un joueur ---------- */
 async function chargerEtat(env, joueur) {
   const [j, p, r, h] = await env.DB.batch([
-    env.DB.prepare("SELECT pseudo, cree, points, offerts, paquets_evt, stock, ancre, version, quiz, vitrine, favoris, gardes, quotidien, prestige, rares, differentes, sanction FROM joueurs WHERE id = ?").bind(joueur),
+    env.DB.prepare("SELECT pseudo, cree, points, offerts, paquets_evt, trophee, trophee_rang, stock, ancre, version, quiz, vitrine, favoris, gardes, quotidien, prestige, rares, differentes, sanction FROM joueurs WHERE id = ?").bind(joueur),
     // Toutes les lignes : celles à zéro (cartes cédées) se lisent de toute façon avec les autres par la clé du joueur
     env.DB.prepare("SELECT carte, n, importes, reserve, deposee FROM possessions WHERE joueur = ?").bind(joueur),
     env.DB.prepare("SELECT cle, date FROM reclames WHERE joueur = ?").bind(joueur),
@@ -366,6 +369,7 @@ async function chargerEtat(env, joueur) {
   const ligne = j.results[0];
   if (!ligne) throw new Refus(401, "Compte introuvable.");
   const etat = Regles.etatVide();
+  if (ligne.trophee) Object.assign(etat, {trophee: ligne.trophee, tropheeRang: ligne.trophee_rang});
   Object.assign(etat, {points: ligne.points, offerts: ligne.offerts, paquetsEvenement: ligne.paquets_evt, reserve: ligne.stock, ancre: ligne.ancre, quiz: ligne.quiz, verrous: {}});
   for (const x of p.results) {
     if (x.deposee) etat.deposees.push(x.carte);
@@ -423,6 +427,9 @@ async function appliquer(env, joueur, operation, liees = []) {
     requetes.push(env.DB.prepare("UPDATE possessions SET deposee = 1 WHERE joueur = ? AND carte = ?").bind(joueur, id));
   const dPoints = apres.points - avant.points, dOfferts = apres.offerts - avant.offerts;
   if (dPoints || dOfferts) requetes.push(env.DB.prepare("UPDATE joueurs SET points = points + ?, offerts = offerts + ? WHERE id = ?").bind(dPoints, dOfferts, joueur));
+  // Carte présidentielle : rang = nombre de joueurs qui l'avaient déjà, plus un (une seule fois, trophee vide jusque-là)
+  if (apres.trophee && !avant.trophee)
+    requetes.push(env.DB.prepare("UPDATE joueurs SET trophee = ?1, trophee_rang = (SELECT COUNT(*) FROM joueurs WHERE trophee <> '') + 1 WHERE id = ?2 AND trophee = ''").bind(apres.trophee, joueur));
   const dEvt = (apres.paquetsEvenement || 0) - (avant.paquetsEvenement || 0);
   if (dEvt) requetes.push(env.DB.prepare("UPDATE joueurs SET paquets_evt = paquets_evt + ? WHERE id = ?").bind(dEvt, joueur));
   if (apres.quiz !== avant.quiz) requetes.push(env.DB.prepare("UPDATE joueurs SET quiz = ? WHERE id = ?").bind(apres.quiz, joueur));
@@ -942,7 +949,7 @@ async function changerVitrine(env, requete, joueur) {
   return json({ok: true, vitrine: ids});
 }
 async function profil(env, pseudo) {
-  const j = await env.DB.prepare("SELECT id, pseudo, cree, vitrine FROM joueurs WHERE pseudo = ?").bind(String(pseudo).normalize("NFC").trim()).first();
+  const j = await env.DB.prepare("SELECT id, pseudo, cree, vitrine, trophee, trophee_rang FROM joueurs WHERE pseudo = ?").bind(String(pseudo).normalize("NFC").trim()).first();
   if (!j) throw new Refus(404, "Aucun joueur ne porte ce pseudo.");
   const [c, p, d, v] = await env.DB.batch([
     env.DB.prepare("SELECT COUNT(*) AS n FROM possessions WHERE joueur = ? AND n > 0").bind(j.id),
@@ -953,7 +960,8 @@ async function profil(env, pseudo) {
   ]);
   const garde = new Set(v.results.map(x => x.carte));
   return json({pseudo: j.pseudo, cree: j.cree, cartes: c.results[0].n, paliers: p.results[0].n,
-    duels: {joues: d.results[0].joues || 0, gagnes: d.results[0].gagnes || 0}, vitrine: JSON.parse(j.vitrine).filter(id => garde.has(id))});
+    duels: {joues: d.results[0].joues || 0, gagnes: d.results[0].gagnes || 0}, vitrine: JSON.parse(j.vitrine).filter(id => garde.has(id)),
+    presidentielle: j.trophee ? {date: j.trophee, rang: j.trophee_rang} : null});
 }
 // Favoris : étoile posée ou retirée sur une carte de la collection (300 au plus)
 const MAX_FAVORIS = 300;
@@ -1706,7 +1714,11 @@ async function api(requete, env, url) {
   if (methode === "POST" && chemin === "/api/reclamer") {
     const c = await lireCorps(requete);
     const cat = await catalogueDuJeu();
-    return avecEtat(await appliquer(env, joueur, e => Regles.reclamer(e, cat, String(c.id || ""))));
+    const gain = await appliquer(env, joueur, e => Regles.reclamer(e, cat, String(c.id || "")));
+    // carte présidentielle remise : rang relu pour la cérémonie
+    if (gain.presidentielle && env.etatEcrit)
+      env.etatEcrit.etat.tropheeRang = (await env.DB.prepare("SELECT trophee_rang FROM joueurs WHERE id = ?").bind(joueur).first()).trophee_rang;
+    return avecEtat(gain);
   }
   // Journée : premier passage du jour (compte du thème recherché), série de connexion, lot à choisir, objectifs du jour
   if (methode === "POST" && chemin === "/api/jour") {
