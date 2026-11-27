@@ -56,6 +56,12 @@ assert.deepStrictEqual(R.recycler(r, cat, ["commune"]), {exemplaires: 0, points:
 R.recycler(r, cat, ["mythique"]); assert.strictEqual(r.points, 103);
 assert.ok(R.echangerPoints(r)); assert.strictEqual(r.points, 78); assert.strictEqual(r.offerts, 1);
 r.points = 24; assert.ok(!R.echangerPoints(r)); assert.strictEqual(r.offerts, 1);
+// Doubles d'évènements : avec la moitié des évènements déjà possédés, cent paquets spéciaux ne donnent presque que des neufs
+{ let g = 5; const al = () => (g = (g * 16807) % 2147483647) / 2147483647;
+  const e = R.etatVide(); cat.evenements.forEach((c, i) => { if (i % 2) e.possedees[c.id] = 1; });
+  let doubles = 0;
+  for (let k = 0; k < 100; k++) { e.paquetsEvenement = 1; const o = R.ouvrirPaquet(e, cat, {aleatoire: al, maintenant: 0}); if (!o.neuves.has(o.tirage[5].id)) doubles++; }
+  assert.ok(doubles <= 8, "doubles d'évènements : " + doubles); }
 // Carte présidentielle : toutes les cartes de parlementaires et de ministres, déposées comprises, évènements non exigés
 { const e = R.etatVide(), ids = cat.objectifParId.hemicycle.ids;
   ids.forEach(id => e.possedees[id] = 1);

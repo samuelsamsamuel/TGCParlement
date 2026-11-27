@@ -187,7 +187,7 @@ première exécution : 19 816 fiches, entre 180 et 650 cartes étoilées par pol
   hors des objectifs des parlementaires, lois, quiz, thèmes du jour et lots (`estEvenement`, `cat.parlementaires`), objectif
   propre « Les grands évènements ». Sixième carte (demande de l'utilisateur) : un évènement s'ajoute aux cinq cartes d'un paquet
   sur 70 (`CHANCE_EVENEMENT`, rareté par les poids relatifs de `POIDS` : 40, 48 et 12 %), sans en prendre la place ; les cinq
-  autres sont tirées parmi les parlementaires seuls (`parRareteParlementaires`). Paquet évènement offert (`paquetsEvenement`
+  autres sont tirées parmi les parlementaires seuls (`parRareteParlementaires`). Doubles d'évènements (demande de l'utilisateur, novembre 2026 : 5 à 6 % chez deux joueurs à quelque 10 000 paquets, ce que la simulation retrouve) : un évènement déjà possédé laisse la place, 97 fois sur 100, à un évènement jamais obtenu de la même rareté (`tirerEvenement`, `RELANCE_EVENEMENT`) ; simulation : 0,1 % de doubles à 6 000 paquets, 0,6 % à 12 000 (avant : 3,1 et 8,6 %). Paquet évènement offert (`paquetsEvenement`
   de l'état, colonne `paquets_evt`, ouvert avant la réserve, sixième carte toujours un évènement) : un à chaque compte par la
   migration unique `paquet-evenement-offert` (à l'arrivée des cartes), annonce `annonce-evenements` (`ANNONCES`) ; paquet
   noir et or « Paquet spécial, un évènement garanti », case dorée dans la réserve. Illustrations dessinées par une autre IA
