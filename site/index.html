@@ -331,15 +331,12 @@ main{max-width:1120px;margin:0 auto;padding:1.5rem 1rem 4rem}
 #presidentielle-fenetre p{margin:.3rem 0;font-size:.9rem;line-height:1.45;color:#e8dcff}
 #presidentielle-fenetre .credit-pres{font-size:.7rem;opacity:.7}
 #presidentielle-fenetre .bouton{margin-top:.8rem}
-/* Encart de l'Hémicycle : la carte reçue en miniature, ou sa silhouette et l'avancement */
+/* Encart de l'Hémicycle : la carte reçue, en miniature (rien avant) */
 .encart-pres{display:flex;gap:1rem;align-items:center;margin:0 auto 1rem;max-width:40rem;padding:.8rem 1rem;border-radius:12px;border:1px solid rgba(255,213,106,.45);background:linear-gradient(120deg,rgba(42,20,80,.85),rgba(18,10,44,.9));color:#f3ead8;text-align:left;font:inherit;cursor:pointer;width:100%}
 .encart-pres .mini{flex:none;width:58px;height:87px;border-radius:6px;overflow:hidden;position:relative;background:radial-gradient(ellipse at 50% 35%,#3a2a6a,#120a2c 60%);box-shadow:0 0 0 1.5px #ffd56a,0 0 14px rgba(255,213,106,.5)}
 .encart-pres .mini i{position:absolute;inset:6% 4% 0;background:url(speciales/macron-jupiter.webp) 50% 0/100% auto no-repeat}
-.encart-pres.verrouille .mini i{filter:brightness(0) drop-shadow(0 0 4px rgba(255,213,106,.6));opacity:.8}
 .encart-pres b{display:block;font:700 1rem var(--serif);color:#ffd56a}
 .encart-pres span{font-size:.82rem;color:#e8dcff}
-.encart-pres .jauge{height:5px;border-radius:3px;background:rgba(255,255,255,.12);margin-top:.4rem;overflow:hidden}
-.encart-pres .jauge i{display:block;height:100%;background:linear-gradient(90deg,#b07a1c,#ffd56a)}
 @media (prefers-reduced-motion:reduce){.pres,.pres *{animation:none!important}}
 .evt .verso .pied a{color:#cdbb9a}
 /* Paquet évènement offert : noir et or, mention « évènement garanti » */
@@ -4461,15 +4458,11 @@ function majPresidentielle(){
     el.innerHTML = `<button class="encart-pres" data-voir-pres><span class="mini"><i></i></span><span><b>Carte présidentielle${etat.tropheeRang ? ` · N° ${etat.tropheeRang}` : ""}</b><span>Emmanuel Macron, édition Jupiter. Touchez pour la contempler.</span></span></button>`;
     return;
   }
-  const obj = cat.objectifParId.hemicycle, n = Regles.avancement(etat, obj).obtenues, complet = n >= obj.total;
-  el.innerHTML = `<button class="encart-pres verrouille" ${complet ? "data-recevoir-pres" : "disabled"}><span class="mini"><i></i></span><span><b>Carte présidentielle</b>
-    <span>${complet ? "Votre hémicycle est complet : touchez pour recevoir la carte." : `Une carte unique, remise au joueur qui réunit les ${obj.total.toLocaleString("fr-FR")} parlementaires et ministres : ${n.toLocaleString("fr-FR")} sur ${obj.total.toLocaleString("fr-FR")}.`}</span>
-    <span class="jauge"><i style="width:${Math.min(100, 100 * n / obj.total).toFixed(2)}%"></i></span></span></button>`;
+  // Rien tant que la carte n'est pas reçue (demande de l'utilisateur : la récompense seule, sans silhouette ni avancement)
+  el.innerHTML = "";
 }
 document.addEventListener("click", e => {
   if (e.target.closest("[data-voir-pres]")) return voirPresidentielle();
-  const b = e.target.closest("[data-recevoir-pres]");
-  if (b) occupe(b, async () => { const g = await actions.reclamer("hemicycle"); majTout(); if (g.presidentielle || etat.trophee) voirPresidentielle(true); });
 });
 // Sélection multiple : « Sélectionner » fait des cartes de l'hémicycle des cases à cocher ; la barre du bas dissout
 // d'un coup les doubles des cartes choisies, ou les cartes elles-mêmes si « Garder un exemplaire » est décoché

@@ -205,8 +205,8 @@ première exécution : 19 816 fiches, entre 180 et 650 cartes étoilées par pol
   exclus, Charles de Gaulle compris, cartes déposées pour une loi comprises) : `remettreCartePresidentielle` appelée par
   `reclamer(…, "hemicycle")`, état `trophee` (date), colonnes `trophee` et `trophee_rang` (rang d'arrivée, calculé à l'écriture
   par `appliquer`, relu par `/api/reclamer` pour la cérémonie), `presidentielle` du profil. Trophée hors collection : ni vendu,
-  ni échangé, ni dissous, gardé même si des cartes partent ensuite. Interface : encart en tête de l'Hémicycle (silhouette et
-  avancement, puis miniature), fenêtre `presidentielle-fenetre` (cérémonie : arrivée en tournoyant, roulement et fanfare ;
+  ni échangé, ni dissous, gardé même si des cartes partent ensuite. Interface : encart en tête de l'Hémicycle, seulement une
+  fois la carte reçue (miniature ; ni silhouette ni avancement avant, demande de l'utilisateur), fenêtre `presidentielle-fenetre` (cérémonie : arrivée en tournoyant, roulement et fanfare ;
   ensuite contemplation), carte en couches 3D inclinées au doigt (`htmlPresidentielle`, `animerPresidentielle`, classes
   `p-…`) : ciel d'orage, drapeau tricolore translucide qui ondule (SVG `feTurbulence`), éclairs, cadre d'or qui pulse, portrait
   détouré (rembg, modèle isnet) dont la tête sort du cadre, `site/speciales/macron-jupiter.webp`. Photo : Commission
